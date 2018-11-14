@@ -3,7 +3,9 @@ sap.ui.define([
 ], function(BaseController) {
 	"use strict";
 
-	return BaseController.extend("toyota.ca.SoldOrder.controller.App", {});
+	return BaseController.extend("toyota.ca.SoldOrder.controller.App", {
+		// to test the git
+	});
 
 });
 
