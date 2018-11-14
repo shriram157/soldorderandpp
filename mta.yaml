@@ -33,7 +33,6 @@ modules:
       service-url: '${default-url}'
       disk-quota: 256M
       memory: 256M
- 
    build-parameters:
       builder: grunt
    requires:
