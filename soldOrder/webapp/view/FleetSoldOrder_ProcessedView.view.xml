@@ -68,49 +68,49 @@
 					<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>orderNumber}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>APX}"  class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
@@ -122,55 +122,55 @@
 					<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 							</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-								<t:Column>
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>quantity}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
@@ -183,62 +183,62 @@
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
 							
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>soldOrderNumber}" class="TableLabel"/>
 								<t:template>
 									<Link text="{Quantity}"/>
 								</t:template>
 							</t:Column>
 							
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-								<t:Column>
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>

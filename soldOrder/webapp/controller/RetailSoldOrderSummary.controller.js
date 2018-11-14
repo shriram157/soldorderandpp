@@ -1,10 +1,11 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
-], function (BaseController) {
+	"toyota/ca/SoldOrder/util/formatter"
+], function (BaseController,formatter) {
 	"use strict";
 
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderSummary", {
-
+	formatter:formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -12,6 +13,9 @@ sap.ui.define([
 		 */
 		onInit: function () {
 			this.getBrowserLanguage();
+		},
+		_createNewOrder:function(){
+		this.getRouter().navTo("RetailSoldOrderA", {}, true); 	
 		},
 		onLinkVehicle: function (evt) {
 		var dialog= this.getView().byId("VTNDialog");

@@ -25,46 +25,46 @@
 						</m:items>
 					</m:VBox>
 					
-					<Table id="table_RSOVehicleSel" selectionMode="None"  rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+					<Table id="table_RSOVehicleSelNationalStock" selectionMode="None"  rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<columns>
-							<Column>
+						<Column width="14.2%" resizable="false" >
 								<m:Label text=""/>
 								<template>
-									<m:Link text="Select" wrapping="false"/>
+									<m:Link text="Select" press="_onSelect" wrapping="false"/>
 								</template>
 							</Column>
-							<Column id="deliverydate" sortProperty="ETA">
+						<Column width="14.2%" resizable="false"  id="deliverydate" sortProperty="ETA">
 								<m:Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Category}" wrapping="true"/>
 								</template>
 							</Column>
-							<Column id="etaTime" >
+						<Column width="14.2%" resizable="false"  id="etaTime" >
 								<m:Label text="{i18n>ETATime}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Category}" wrapping="false"/>
 								</template>
 							</Column>
-								<Column id="model" >
+							<Column width="14.2%" resizable="false"  id="model" >
 								<m:Label text="{i18n>Model}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Category}" wrapping="false"/>
 								</template>
 								</Column>
-								<Column id="suffix" >
+							<Column width="14.2%" resizable="false"  id="suffix" >
 								<m:Label text="{i18n>Suffix}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Category}" wrapping="false"/>
 								</template>
 							</Column>
-								<Column id="apx" >
+							<Column width="14.2%" resizable="false"  id="apx" >
 								<m:Label text="{i18n>APX}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Category}" wrapping="false"/>
 								</template>
 							</Column>
-							<Column id="colour" >
+						<Column width="14.2%" resizable="false"  id="colour" >
 								<m:Label text="{i18n>Colour}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Category}" wrapping="false"/>

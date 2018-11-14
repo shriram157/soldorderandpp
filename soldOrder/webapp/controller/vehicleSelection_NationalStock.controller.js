@@ -13,7 +13,12 @@ sap.ui.define([
 		onInit: function () {
 			this.getBrowserLanguage();
 		},
-
+		_onSelect: function (evt) {
+			var oTable = this.getView().byId("table_RSOVehicleSelNationalStock");
+			console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
+			var sPath = evt.getSource().getBindingContext().sPath;
+			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+		},
 		sortETA: function (oEvent) {
 				/*
 							var oCurrentColumn = oEvent.getParameter("column");

@@ -1,10 +1,11 @@
 sap.ui.define([
-	"toyota/ca/SoldOrder/controller/BaseController"
-], function (BaseController) {
+	"toyota/ca/SoldOrder/controller/BaseController",
+	"toyota/ca/SoldOrder/util/formatter"
+], function (BaseController, formatter) {
 	"use strict";
 
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderB", {
-
+		formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -14,18 +15,23 @@ sap.ui.define([
 			this.getBrowserLanguage();
 		},
 		onValidateCustomer: function () {
-				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText("error1");
-				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Customer Conformation", sap.m.MessageBox.Action.OK, null, null);
-			}
-			
-			/**
-			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-			 * (NOT before the first rendering! onInit() is used for that one!).
-			 * @memberOf toyota.capractise.view.RetailSoldOrderB
-			 */
-			//	onBeforeRendering: function() {
-			//
-			//	},
+			var errMsg = this.getView().getModel("i18n").getResourceBundle().getText("error1");
+			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Customer Conformation", sap.m.MessageBox.Action.OK, null, null);
+			/*var errMsg = formatter.formatErrorType("SO00003");
+							sap.m.MessageBox.show(errMsg, sap
+								.m.MessageBox.Icon.ERROR, "Error", sap
+								.m.MessageBox.Action.OK, null, null);
+			*/
+		}
+
+		/**
+		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+		 * (NOT before the first rendering! onInit() is used for that one!).
+		 * @memberOf toyota.capractise.view.RetailSoldOrderB
+		 */
+		//	onBeforeRendering: function() {
+		//
+		//	},
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.

@@ -41,55 +41,55 @@
 							<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" class="marginCorners">
 								<t:columns>
-									<t:Column>
+										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>orderNum}"/>
 										<t:template>
 												<Link text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>orderType}"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-										<t:Column>
+											<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>series}"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>modelYear}"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>model}"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>suffix}"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>status}"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>OwnershipUploaded}"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>CreditMemo}"/>
 										<t:template>
 											<Text text="{Category}"/>

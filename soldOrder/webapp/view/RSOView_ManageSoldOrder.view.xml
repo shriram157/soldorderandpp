@@ -211,20 +211,20 @@
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss"></MessageStrip >
 					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners" visibleRowCount='6'>
-						<t:columns>
-							<t:Column>
+					<t:columns>
+						<t:Column width="33.33%" resizable="false" >
 								<Label text=""/>
 								<t:template>
 									<Link text="{i18n>DeleteAttachment}"  press="_onDeleteAttachment" wrapping="false"/>
 								</t:template>
 							</t:Column>
-							<t:Column id="file">
+						<t:Column width="33.33%" resizable="false"  id="file">
 								<Label text="{i18n>File}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Name}" wrapping="false"/>
 								</t:template>
 							</t:Column>
-							<t:Column id="comments">
+						<t:Column width="33.33%" resizable="false"  id="comments">
 								<Label text="{i18n>Comments}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}" wrapping="true"/>
