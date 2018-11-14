@@ -1,0 +1,96 @@
+/* Enter your custom styles here */
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+.clCustomFont {
+    font-family: 'Raleway', sans-serif;
+}
+.sapContrastPlus.clCustomHeaderBg,
+.clCustomHeaderBg.sapMIBar {
+    background-color: #fff!important;
+    color: #2f3c48;
+    text-shadow: none;
+}
+.sapContrastPlus.clCustomHeaderBg .sapMBtnInner {
+    color: #2f3c48;
+    text-shadow: none;
+}
+.sapContrastPlus.clCustomHeaderBg .sapMText {
+    color: #2f3c48;
+}
+.sapContrastPlus.sapMIBar-CTX.clCustomHeaderBg .sapMBtn:hover>.sapMBtnHoverable:not(.sapMBtnActive) {
+    background-color: transparent;
+    color: #346187;
+}
+/*custom color on header*/
+.marginCss{
+	margin-top: auto;
+}
+.scroll_tcm_tableTruck_CSS {
+    -moz-box-shadow: 0px 3px 8px rgb(100, 100, 100);
+    -webkit-box-shadow: 0px 3px 8px rgb(100, 100, 100);
+    box-shadow: 0px 3px 8px rgb(100, 100, 100);
+    background-color: white;
+    height: 20.8rem !important;
+}
+.wrapwidth{
+	    flex-wrap: wrap;
+    width: 78%;
+}
+.heightcss{
+	height: 415px ;
+}
+.formhieghtcss{
+	height:903px;
+}
+.formhieghtcss_cso{
+	height:26rem;
+}
+.cssShift{
+	float: right;
+}
+.justifyContentCenter{
+	    justify-content: center;
+}
+.justifyContentSpaceBetween{
+	justify-content: space-between;
+}
+.justifyContentEnd{
+	    justify-content: flex-end;
+}
+.fontsize{
+	font-size: large;
+		font-weight:bold;
+}
+.fontsizeIn{
+	font-size: initial;
+}
+.marginCenter{
+	padding-inline-start: 42%;
+}
+.marginCorners{
+	margin:16px;	
+}
+.marginCornersRight{
+	margin-right:16px;	
+}
+.marginCornersLeft{
+	margin-left:16px;	
+}
+.marginCornersBottom{
+	margin-bottom:16px;	
+}
+.TableLabel{
+	font-weight:bold;
+}
+.msgStripCss{
+	text-align: center;
+	font-weight:bold;
+}
+
+.VBox_color{
+	background-color: #ECEBEC;
+    }
+
+.VBox_SOChange{
+	background-color: #ECEBEC;
+    width: 69%;
+    }

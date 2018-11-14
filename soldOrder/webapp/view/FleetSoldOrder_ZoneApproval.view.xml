@@ -1,0 +1,189 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" controllerName="toyota.ca.SoldOrder.controller.FleetSoldOrder_ZoneApproval"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page >
+				<customHeader>
+					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+						<contentLeft>
+							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
+							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</contentLeft>
+						<contentRight>
+							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
+							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
+							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<Label id="label_FSO_ZoneApprovaid" text="{i18n>zoneApprovalTitle}" 
+					class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
+					<HBox class="marginCorners">
+						<items>
+							<VBox width="100%">
+								<items>
+									<f:SimpleForm title="{i18n>RequestDetails}" editable="true" width="100%" layout="ResponsiveLayout">
+										<f:content >
+											<Label text="{i18n>FanNumber}"/>
+											<Text text="{/ProductCollection/0/Quantity}"/>
+											<Label text="{i18n>PONumber}"/>
+											<Text text="{/ProductCollection/0/Quantity}"/>
+											<Label text="{i18n>orderType}"/>
+												<ComboBox id="resonCancelId" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }" required="true">
+								<core:Item key="{key}" text="{text}"/>
+							</ComboBox>
+											<Label text="{i18n>status}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label text="{i18n>zoneAppNumber}"/>
+											<Input value="{address>/Name}"/>
+											<Label text="{i18n>totalVehicles}"/>
+											<Text text="{/ProductCollection/0/Quantity}"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+							<VBox width="100%">
+								<items>
+									<f:SimpleForm title="{i18n>CustomerDetails}" editable="true" width="100%" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>CustName}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label text="{i18n>address}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label text="{i18n>city}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label text="{i18n>province}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label text="{i18n>postalcode}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label text="{i18n>phnNo}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+						</items>
+					</HBox>
+					<Label text="{i18n>dealerInventoryVeh}" class="marginCorners fontsize"></Label>
+					<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+						enableColumnFreeze="false" class="marginCorners">
+						<t:columns>
+							<t:Column>
+								<Label text="{i18n>vtn}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>modelYear}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>series}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>model}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>suffix}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>APX}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>colour}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+					<Label text="{i18n>reqVeh}" class="marginCorners fontsize"></Label>
+					<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+						enableColumnFreeze="false" class="marginCorners">
+						<t:columns>
+							<t:Column>
+								<Label text="{i18n>modelYear}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>series}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>model}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>suffix}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+								<t:Column>
+								<Label text="{i18n>APX}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>colour}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>ETATime}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>quantity}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+					<HBox class="cssShift marginCornersBottom marginCornersRight">
+						<items>
+							<Button text="{i18n>approve}"></Button>
+							<Button text="{i18n>reject}" class="sapUiSmallMarginBegin"></Button>
+							<Button text="{i18n>back}" class="sapUiSmallMarginBegin"></Button>
+						</items>
+					</HBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

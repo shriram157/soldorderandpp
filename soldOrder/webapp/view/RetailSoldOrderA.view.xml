@@ -1,0 +1,146 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	controllerName="toyota.ca.SoldOrder.controller.RetailSoldOrderA" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page >
+				<customHeader>
+					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+						<contentLeft>
+							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
+							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</contentLeft>
+						<contentRight>
+							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
+							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
+							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<Label text="{i18n>createSoldOrderTitle}" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"></Label>
+					<HBox class="marginCorners">
+						<items>
+							<VBox width="100%">
+								<items>
+									<MessageStrip text="{i18n>VehicleInformation}" class="msgStripCss marginCornersRight"></MessageStrip >
+									<f:SimpleForm id="simpleFormChange" editable="true" width="100%" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>modelYear}"/>
+											<ComboBox id="modelYrId" items="{ path: '/modelYear', sorter: { path: 'text' } }">
+												<core:Item key="{key}" text="{text}"/>
+											</ComboBox>
+											<Label text="{i18n>Series}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>Model}"/>
+											<ComboBox items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
+												<core:Item key="{key}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.Formatter.formatter.formatModel'}"/>
+											</ComboBox>
+											<!--[{path:'ModelCode'},{path:'ModelDescription'}] , -->
+											<Label text="{i18n>Suffix}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>APX}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>Colour}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>ETA}" required="true"/>
+											<VBox>
+												<items>
+													<HBox>
+														<items>
+															<DatePicker placeholder="dd/MMM/yy"></DatePicker>
+															<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
+														</items>
+													</HBox>
+													<HBox>
+														<items>
+															<DatePicker placeholder="dd/MMM/yy"></DatePicker>
+															<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
+														</items>
+													</HBox>
+												</items>
+											</VBox>
+										</f:content>
+									</f:SimpleForm>
+									<MessageStrip text="{i18n>CustomerInformation}" class="msgStripCss marginCornersRight"></MessageStrip >
+									<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>custname}"/>
+											<Input value="{address>/Name}" required="true"/>
+											<Label text="{i18n>address}"/>
+											<Input
+												value="{/Products/0/Name}"
+												required="true"/>
+											<Label text="{i18n>city}"/>
+											<Input value="{path:'/Products/0/Name',formatter:'toyota.ca.SoldOrder.Formatter.formatter.format'}" required="true"/>
+											<Label text="{i18n>province}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>postalcode}"/>
+											<Input value="{address>/City}" required="true"/>
+											<Label text="{i18n>phnNo}"/>
+											<Input value="{address>/City}"/>
+											<Label text="{i18n>email}"/>
+											<Input value="{address>/City}"/>
+											<Label text="{i18n>driverLic}"/>
+											<Input value="{address>/City}" required="true"/>
+										</f:content>
+									</f:SimpleForm>
+									<Button text="{i18n>valCust}" class="cssShift" press="onValidateCustomer"></Button>
+								</items>
+							</VBox>
+							<VBox width="100%">
+								<items>
+									<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripCss marginCornersLeft"></MessageStrip >
+									<f:SimpleForm id="simpleFormChange3" editable="true" width="100%" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>contractDate}"/>
+											<DatePicker placeholder="dd/MMM/yy" required="true"></DatePicker>
+											<Label text="{i18n>salesType}"/>
+											<ComboBox items="{path: '/SalesType', sorter: {path: 'text'}}" required="true">
+												<core:Item key="{key}" text="{text}"/>
+											</ComboBox>
+											<Label text="{i18n>approvalNumber}"/>
+											<Input value="{address>/Street}"/>
+											<Label text="{i18n>salesPerName}"/>
+											<Input value="{address>/HouseNumber}"/>
+											<Label text="{i18n>salesManName}"/>
+											<Input value="{address>/ZIPCode}"/>
+											<Label text="{i18n>tradeInModelYr}"/>
+											<ComboBox id="modelYear_RSOAid" items="{ path: '/modelYear', sorter: { path: 'text' } }">
+												<core:Item key="{key}" text="{text}"/>
+											</ComboBox>
+											<Label text="{i18n>tradeInMake}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>tradeInModel}"/>
+											<Input value="{address>/City}"/>
+										</f:content>
+									</f:SimpleForm>
+									<MessageStrip text="{i18n>Comments}" class="msgStripCss marginCornersLeft"></MessageStrip >
+									<f:SimpleForm id="simpleFormChange4" editable="true" width="100%" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>Comments}"/>
+											<TextArea value="{address>/Name}"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+						</items>
+					</HBox>
+					<Button text="{i18n>submit}" type="Emphasized" class="marginCornersRight marginCornersBottom cssShift"></Button>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

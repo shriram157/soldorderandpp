@@ -1,0 +1,135 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	controllerName="toyota.ca.SoldOrder.controller.ChangeSoldOrderRequest" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page >
+				<customHeader>
+					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+						<contentLeft>
+							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
+								<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+								<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</contentLeft>
+						<contentRight>
+							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
+							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
+							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<Label text="{i18n>changeSoldOrdertitle}" class="sapUiTinyMarginTop sapUiTinyMarginBegin fontsize"></Label>
+					<HBox class="marginCorners">
+						<items>
+							<VBox width="100%">
+								<items>
+	
+									<MessageStrip text="{i18n>VehicleInformation}" class="msgStripCss marginCornersRight"></MessageStrip >
+									<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>modelYear}"/>
+											<Text text="{/Products/Name}"/>
+											
+											<Label text="{i18n>Series}"/>
+											<Text text="{DimUnit}"/>
+										
+											<Label text="{i18n>Model}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>Suffix}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>APX}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>Colour}"/>
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+												<core:Item key="{ProductId}" text="{Name}"/>
+											</ComboBox>
+											<Label text="{i18n>ETA}" required="true"/>
+											<VBox>
+												<items>
+													<HBox>
+														<items>
+															<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
+															<DatePicker placeholder="dd/MMM/yy"></DatePicker>
+														</items>
+													</HBox>
+													<HBox>
+														<items>
+															
+															<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
+															<DatePicker placeholder="dd/MMM/yy"></DatePicker>
+														</items>
+													</HBox>
+												</items>
+											</VBox>
+										</f:content>
+									</f:SimpleForm>
+									<MessageStrip text="{i18n>CustomerInformation}" class="msgStripCss marginCornersRight"></MessageStrip >
+									<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>custname}"/>
+											<Text text="{address>/Name}" />
+											<Label text="{i18n>address}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>city}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>province}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>postalcode}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>phnNo}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>email}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>driverLic}"/>
+											<Text text="{address>/Name}"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+							<VBox width="100%">
+								<items>
+									<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripCss marginCornersLeft"></MessageStrip >
+									<f:SimpleForm editable="true" width="100%" class="formhieghtcss_cso" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>contractDate}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>salesType}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>salesPerName}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>salesManName}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>tradeInModelYr}"/>
+											<Text text="{address>/Name}"/>
+											
+											<Label text="{i18n>tradeInMake}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>tradeInModel}"/>
+											<Text text="{address>/Name}"/>
+										</f:content>
+									</f:SimpleForm>
+									<MessageStrip text="{i18n>Comments}" class="msgStripCss marginCornersLeft"></MessageStrip >
+									<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>PreSoldOrder}"/>
+											<Link text="S092999"></Link>
+											<Label text="{i18n>Comments}"/>
+											<TextArea value="{address>/Name}"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+						</items>
+					</HBox>
+					<Button text="{i18n>submit}" type="Emphasized" class="marginCornersRight marginCornersBottom cssShift"></Button>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

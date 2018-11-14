@@ -1,0 +1,472 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"id": "toyota.ca.SoldOrder",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+			"version": "1.40.12"
+		},
+		"dataSources": {}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "toyota.ca.SoldOrder.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.38.34",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "toyota.ca.SoldOrder.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "initData",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"errorModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "errorTypeData",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "toyota.ca.SoldOrder.view",
+				"controlAggregation": "pages",
+				"controlId": "idAppControl",
+				"clearControlAggregation": false,
+				"bypassed": {
+					"target": "notFound"
+				}
+			},
+			"routes": [
+				{
+					"name": "RouteView1",
+					"pattern": "",
+					"target": "home1"
+				},
+				{
+					"pattern": "page2",
+					"name": "RetailSoldOrderB",
+					"target": "home2",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page3",
+					"name": "RSOView_ManageSoldOrder",
+					"target": "home3",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page4",
+					"name": "vehicleSelection_NationalStock",
+					"target": "home4",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page5",
+					"name": "vehicleSelection_DealerInventory",
+					"target": "home5",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page6",
+					"name": "RetailSoldOrderCancelRequest",
+					"target": "home6",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page7",
+					"name": "SoldOrderChangeReason",
+					"target": "home7",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page8",
+					"name": "ChangeSoldOrderRequest",
+					"target": "home8",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page9",
+					"name": "RSO_ChangeVehicleSelection",
+					"target": "home9",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page10",
+					"name": "RetailSoldOrderSummary",
+					"target": "home10",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page11",
+					"name": "CreateFleetSoldOrder",
+					"target": "home11",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page12",
+					"name": "InventoryVehicleSelection",
+					"target": "home12",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page13",
+					"name": "FleetSoldOrder_ZoneApproval",
+					"target": "home13",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page14",
+					"name": "FleetSoldOrder_ProcessedView",
+					"target": "home14",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page15",
+					"name": "FleetSoldOrderSummary",
+					"target": "home15",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page16",
+					"name": "FleetSoldOrderDetails",
+					"target": "home16",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page17",
+					"name": "PriceProtectionDetails_Dealer",
+					"target": "home17",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page18",
+					"name": "PriceProtectionDetails_Zone_PPD",
+					"target": "home18",
+					"clearTarget": "true"
+				},
+				{
+					"pattern": "page19",
+					"name": "NationalFleetSoldOrderView",
+					"target": "home19",
+					"clearTarget": "true"
+				}
+			],
+			"targets": {
+				"home1": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "RetailSoldOrderA",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home2": {
+					"viewName": "RetailSoldOrderB",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home3": {
+					"viewName": "RSOView_ManageSoldOrder",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home4": {
+					"viewName": "vehicleSelection_NationalStock",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home5": {
+					"viewName": "vehicleSelection_DealerInventory",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home6": {
+					"viewName": "RetailSoldOrderCancelRequest",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home7": {
+					"viewName": "SoldOrderChangeReason",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home8": {
+					"viewName": "ChangeSoldOrderRequest",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home9": {
+					"viewName": "RSO_ChangeVehicleSelection",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"notFound": {
+					"viewName": "notFound",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home10": {
+					"viewType": "XML",
+					"viewName": "RetailSoldOrderSummary",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home11": {
+					"viewName": "CreateFleetSoldOrder",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home12": {
+					"viewType": "XML",
+					"viewName": "InventoryVehicleSelection",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home13": {
+					"viewType": "XML",
+					"viewName": "FleetSoldOrder_ZoneApproval",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home14": {
+					"viewType": "XML",
+					"viewName": "FleetSoldOrder_ProcessedView",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home15": {
+					"viewType": "XML",
+					"viewName": "FleetSoldOrderSummary",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home16": {
+					"viewType": "XML",
+					"viewName": "FleetSoldOrderDetails",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home17": {
+					"viewType": "XML",
+					"viewName": "PriceProtectionDetails_Dealer",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home18": {
+					"viewType": "XML",
+					"viewName": "PriceProtectionDetails_Zone_PPD",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+				"home19": {
+					"viewType": "XML",
+					"viewName": "NationalFleetSoldOrderView"
+				}
+			}
+		}
+	}
+}

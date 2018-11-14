@@ -1,0 +1,189 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" controllerName="toyota.ca.SoldOrder.controller.NationalFleetSoldOrderView"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page>
+				<customHeader>
+					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+						<contentLeft>
+							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
+							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</contentLeft>
+						<contentRight>
+							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
+							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
+							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<Label id="NationalFleetSoldOrderViewid" text="{i18n>NationalFleetSoldOrderViewtitle}" 
+						class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiTinyMarginBottom fontsize"></Label>
+					<MessageStrip text="{i18n>VehicleInformation}" class="  msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
+					<HBox class="">
+						<items>
+							<VBox width="100%">
+								<items>
+									<f:SimpleForm singleContainerFullSize="true" minWidth="1" editable="false" width="100%" layout="ResponsiveLayout" columnsL="2" columnsM="2">
+										<f:content >
+											<Label text="{i18n>modelYear}"/>
+											<Text text="1980"/>
+											<Label text="{i18n>Series}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>Model}"/>
+											<Text text="1980"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+							<VBox width="100%">
+								<items>
+									<f:SimpleForm singleContainerFullSize="false" minWidth="1" editable="false" width="100%" columnsL="2" columnsM="2" layout="ResponsiveLayout">
+										<f:content >
+											<Label text="{i18n>suffix}"/>
+											<Text text="1980"/>
+											<Label text="{i18n>APX}"/>
+											<Text text="1980"/>
+											<Label text="{i18n>Colour}"/>
+											<Text text="red"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+							<VBox width="100%">
+								<items>
+									<f:SimpleForm singleContainerFullSize="false" minWidth="1" editable="false" width="100%" layout="ResponsiveLayout" columnsL="2" columnsM="2">
+										<f:content >
+											<Label text="{i18n>VehTrackNo}"/>
+											<Text text="1980"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+						</items>
+					</HBox>
+					<HBox>
+						<items>
+							<VBox width="100%">
+								<items>
+									<MessageStrip text="{i18n>CustInfoAllocTitle}" class="  msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
+									<f:SimpleForm editable="false" width="100%" layout="ResponsiveLayout">
+										<f:content>
+											<Label text="{i18n>CustName}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>address}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>city}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>province}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>postalcode}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>phnNo}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>email}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>driverLic}"/>
+											<Text text="{address>/Name}"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+							<VBox width="100%">
+								<items>
+									<MessageStrip text="{i18n>CustInfoRegTitle}" class=" msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
+									<f:SimpleForm singleContainerFullSize="false" minWidth="1" editable="false" width="100%" columnsL="2" columnsM="2" layout="ResponsiveLayout">
+										<f:content >
+											<Label text="{i18n>CustName}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>address}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>city}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>province}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>postalcode}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>phnNo}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>email}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>driverLic}"/>
+											<Text text="{address>/Name}"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+							<VBox width="100%">
+								<items>
+									<MessageStrip text="{i18n>PriceProtectionDetails}" class="  msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
+									<f:SimpleForm singleContainerFullSize="false" minWidth="1" editable="false" width="100%" layout="ResponsiveLayout" columnsL="2" columnsM="2">
+										<f:content >
+											<Label text="{i18n>Eligibility}"/>
+											<Text text="1980"/>
+											<Label text="{i18n>status}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>CreditMemo}"/>
+											<Text text="1980"/>
+											<Label text="{i18n>Comments}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>App/RejDate}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>PayDate}"/>
+											<Text text="{address>/Name}"/>
+											<Label text="{i18n>PayAmount}"/>
+											<Text text="{address>/Name}"/>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+						</items>
+					</HBox>
+					<MessageStrip text="{i18n>titleVehicleOwnership}" class="  msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
+				<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+								enableColumnFreeze="false" class="marginCorners">
+								<t:columns>
+							<t:Column>
+								<Label class="TableLabel"  text=""/>
+								<t:template>
+									<Link text="Delete" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							<t:Column id="file">
+								<Label class="TableLabel"  text="{i18n>File}"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column id="comments">
+								<Label class="TableLabel"  text="{i18n>Comments}"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+					<HBox class="justifyContentCenter">
+						<items>
+							<Label text="{i18n>Attachment}" class="sapUiMediumMarginEnd sapUiSmallMarginBegin sapUiSmallMarginTop"></Label>
+							<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
+								uploadComplete="handleUploadComplete" class="sapUiMediumMarginEnd"/>
+							<Label text="{i18n>Comments}" class="sapUiMediumMarginEnd sapUiSmallMarginTop"></Label>
+							<TextArea class="sapUiMediumMarginEnd"></TextArea>
+							<Button text="{i18n>AddAttach}"></Button>
+						</items>
+					</HBox>
+					<HBox class=" marginCorners justifyContentEnd">
+						<items>
+							<Button text="{i18n>AppPricePro}"></Button>
+							<Button text="{i18n>RejPricePro}" class="sapUiMediumMarginBegin"></Button>
+							<Button text="{i18n>Back}" class="sapUiMediumMarginBegin marginCornersRight "></Button>
+						</items>
+					</HBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

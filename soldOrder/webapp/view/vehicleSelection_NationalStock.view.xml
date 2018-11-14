@@ -1,0 +1,80 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns="sap.ui.table"
+	controllerName="toyota.ca.SoldOrder.controller.vehicleSelection_NationalStock" xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:App>
+		<m:pages>
+			<m:Page>
+					<m:customHeader>
+						<m:Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+							<m:contentLeft>
+							<m:Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
+							<m:Text text="|" class="sapUiTinyMarginBeginEnd"/>
+							<m:Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</m:contentLeft>
+						<m:contentRight>
+							<m:Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></m:Text>
+							<m:Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></m:Text>
+							<!--	<m:Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+						</m:contentRight>
+						</m:Bar>
+					</m:customHeader>
+			<m:content>
+					<m:VBox>
+						<m:items>
+							<m:Label  text="{i18n>RSOVehicleSel}" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiMediumMarginBottom fontsize"></m:Label>
+							<m:Label  text="{i18n>PipeVehAvlbl}" class="sapUiTinyMarginTop sapUiTinyMarginBegin fontsize"></m:Label>
+						</m:items>
+					</m:VBox>
+					
+					<Table id="table_RSOVehicleSel" selectionMode="None"  rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+						enableColumnFreeze="false" class="marginCorners">
+						<columns>
+							<Column>
+								<m:Label text=""/>
+								<template>
+									<m:Link text="Select" wrapping="false"/>
+								</template>
+							</Column>
+							<Column id="deliverydate" sortProperty="ETA">
+								<m:Label text="{i18n>ETAFrom}" class="TableLabel"/>
+								<template>
+									<m:Text text="{Category}" wrapping="true"/>
+								</template>
+							</Column>
+							<Column id="etaTime" >
+								<m:Label text="{i18n>ETATime}" class="TableLabel"/>
+								<template>
+									<m:Text text="{Category}" wrapping="false"/>
+								</template>
+							</Column>
+								<Column id="model" >
+								<m:Label text="{i18n>Model}" class="TableLabel"/>
+								<template>
+									<m:Text text="{Category}" wrapping="false"/>
+								</template>
+								</Column>
+								<Column id="suffix" >
+								<m:Label text="{i18n>Suffix}" class="TableLabel"/>
+								<template>
+									<m:Text text="{Category}" wrapping="false"/>
+								</template>
+							</Column>
+								<Column id="apx" >
+								<m:Label text="{i18n>APX}" class="TableLabel"/>
+								<template>
+									<m:Text text="{Category}" wrapping="false"/>
+								</template>
+							</Column>
+							<Column id="colour" >
+								<m:Label text="{i18n>Colour}" class="TableLabel"/>
+								<template>
+									<m:Text text="{Category}" wrapping="false"/>
+								</template>
+							</Column>
+						</columns>
+					</Table>
+				
+					</m:content>
+			</m:Page>
+		</m:pages>
+	</m:App>
+</mvc:View>

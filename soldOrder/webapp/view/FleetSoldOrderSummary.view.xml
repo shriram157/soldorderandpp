@@ -1,0 +1,106 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table"
+	controllerName="toyota.ca.SoldOrder.controller.FleetSoldOrderSummary" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page>
+				<customHeader>
+					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+						<contentLeft>
+							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
+							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</contentLeft>
+						<contentRight>
+							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
+							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
+							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<VBox>
+						<items>
+							<Label id="label_FleetSoldOrderSummaryid" text="{i18n>fleetSoldOrderSummary}"
+								class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
+							<HBox class="marginCorners VBox_color">
+								<items>
+									<Label text="{i18n>status}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"></Label>
+									<ComboBox items="{ path: '/FSOSummary_Status', sorter: { path: 'key' } }" required="true" class="sapUiMediumMarginEnd">
+										<core:Item key="{key}" text="{text}"/>
+									</ComboBox>
+									<Label text="{i18n>OrderType}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"></Label>
+									<ComboBox items="{ path: '/FSOSummary_OrderType', sorter: { path: 'key' } }" required="true" class="sapUiMediumMarginEnd">
+										<core:Item key="{key}" text="{text}"/>
+									</ComboBox>
+									<Label text="{i18n>dealer}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"></Label>
+									<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'key' } }" required="true" class="sapUiMediumMarginEnd">
+										<core:Item key="{key}" text="{text}"/>
+									</ComboBox>
+								</items>
+							</HBox>
+							<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+								enableColumnFreeze="false" class="marginCorners">
+								<t:columns>
+										<t:Column>
+										<Label text="{i18n>orderNum}" class="TableLabel"/>
+										<t:template>
+											<Link text="{Quantity}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>dealer}" class="TableLabel"/>
+										<t:template>
+											<Text text="{Category}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>status}" class="TableLabel"/>
+										<t:template>
+											<Text text="{Category}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>FanNumber}" class="TableLabel"/>
+										<t:template>
+											<Text text="{Category}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>CustName}" class="TableLabel"/>
+										<t:template>
+											<Text text="{Category}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>PONumber}" class="TableLabel"/>
+										<t:template>
+											<Text text="{Category}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>orderType}" class="TableLabel"/>
+										<t:template>
+											<Text text="{Category}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>zoneAppNumber}" class="TableLabel"/>
+										<t:template>
+											<Text text="{Category}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>totalVehicles}" class="TableLabel"/>
+										<t:template>
+											<Text text="{Quantity}"/>
+										</t:template>
+									</t:Column>
+								</t:columns>
+							</t:Table>
+						</items>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

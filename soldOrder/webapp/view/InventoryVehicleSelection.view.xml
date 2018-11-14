@@ -1,0 +1,92 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" controllerName="toyota.ca.SoldOrder.controller.InventoryVehicleSelection"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page>
+				<customHeader>
+					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+						<contentLeft>
+							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
+							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</contentLeft>
+						<contentRight>
+							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
+							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
+							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<VBox >
+						<items>
+					<Label text="{i18n>SOVehicleSel}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiMediumMarginBottom fontsize"></Label>		
+					<HBox class="justifyContentSpaceBetween">
+						<items>
+					<Label text="{i18n>myStockPipelineVeh}" class="sapUiSmallMarginBegin sapUiMediumMarginBottom fontsize"></Label>
+					<Button text="{i18n>Select}" class="sapUiSmallMarginEnd"></Button>		
+						</items>
+					</HBox>
+						</items>
+					</VBox>
+					
+					
+					<t:Table rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+						enableColumnFreeze="false" class="marginCorners">
+						<t:columns>
+							<t:Column>
+								<Label text="{i18n>series}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>modelYear}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>VehTrackNo}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>orderNumber}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>model}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>suffix}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>colour}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>status}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}"/>
+								</t:template>
+							</t:Column>
+								</t:columns>
+						</t:Table>
+				</content>
+				</Page>
+			</pages>
+		</App>
+	</mvc:View>

@@ -1,0 +1,365 @@
+{
+	"SalesType": [{
+		"key": "1",
+		"text": "CASH"
+	}, {
+		"key": "2",
+		"text": "LEASE"
+	}, {
+		"key": "3",
+		"text": "FINANCE"
+	}],
+
+	"SoldOrderStatus": [{
+		"key": "1",
+		"text": "In Progress"
+	}, {
+		"key": "2",
+		"text": "Pending Fulfillment"
+	}, {
+		"key": "3",
+		"text": "Filled"
+	}, {
+		"key": "4",
+		"text": "Registered"
+	}, {
+		"key": "5",
+		"text": "Cancelled"
+	}],
+
+	"AuditStatus": [{
+		"key": "1",
+		"text": "Blank"
+	}, {
+		"key": "2",
+		"text": "In Progress"
+	}, {
+		"key": "3",
+		"text": "Complete"
+	}],
+
+	"CancellationReason": [{
+		"key": "1",
+		"text": "Customer Cancelled"
+	}, {
+		"key": "2",
+		"text": "Customer Changed Vehicle"
+	}, {
+		"key": "3",
+		"text": "Others"
+	}],
+
+	"RequestType": [{
+		"key": "1",
+		"text": "Request Vehicle from TCI"
+	}, {
+		"key": "2",
+		"text": "Select Vehicle from my Inventory"
+	}],
+
+	"FSO_OrderType": [{
+		"key": "1",
+		"text": " Dealer RAC"
+	}, {
+		"key": "2",
+		"text": "Fleet - Dealer Elite"
+	}, {
+		"key": "3",
+		"text": "Dealer Mobility"
+	}],
+
+	"FSOSummary_OrderType": [{
+		"key": "1",
+		"text": " Dealer RAC"
+	}, {
+		"key": "2",
+		"text": "Fleet - Dealer Elite"
+	}, {
+		"key": "3",
+		"text": "Dealer Mobility"
+	}, {
+		"key": "4",
+		"text": "All"
+	}],
+
+	"FSOSummary_Status": [{
+		"key": "1",
+		"text": "Requested"
+	}, {
+		"key": "2",
+		"text": "Pending Fulfillment "
+	}, {
+		"key": "3",
+		"text": "Approved"
+	}, {
+		"key": "4",
+		"text": "Filled"
+	}, {
+		"key": "5",
+		"text": "Rejected"
+	}, {
+		"key": "6",
+		"text": "Completed"
+	}, {
+		"key": "7",
+		"text": "Cancelled"
+	}],
+
+	"FSODetails_Status": [{
+		"key": "1",
+		"text": "Audit - Completed"
+	}, {
+		"key": "2",
+		"text": "Pending Fulfillment "
+	}, {
+		"key": "3",
+		"text": "Failed"
+	}, {
+		"key": "4",
+		"text": "Filled"
+	}, {
+		"key": "5",
+		"text": "Audit - In Progress"
+	}, {
+		"key": "6",
+		"text": "Registered"
+	}, {
+		"key": "7",
+		"text": "Cancelled"
+	}],
+
+	"FSODetail_OrderType": [{
+		"key": "1",
+		"text": " Fleet- Dealer RAC"
+	}, {
+		"key": "2",
+		"text": "Dealer Elite"
+	}, {
+		"key": "3",
+		"text": "Fleet- Dealer Mobility"
+	}, {
+		"key": "4",
+		"text": "All"
+	}],
+
+	"FSODetail_AuditStatus": [{
+		"key": "1",
+		"text": "In Progress"
+	}, {
+		"key": "2",
+		"text": "Completed"
+	}, {
+		"key": "3",
+		"text": " "
+	}],
+	"PriceProtectionStatus": [{
+		"key": "1",
+		"text": " Open"
+	}, {
+		"key": "2",
+		"text": "In Progress"
+	}, {
+		"key": "3",
+		"text": "Pre-Approved"
+	}, {
+		"key": "4",
+		"text": "Under Review"
+	}, {
+		"key": "5",
+		"text": "Approved"
+	}, {
+		"key": "6",
+		"text": "Rejected"
+	}],
+
+	  
+	 "PriceProtection_OrderType": [{
+		"key": "2",
+		"text": " Fleet- Dealer RAC"
+	}, {
+		"key": "3",
+		"text": "Dealer Elite"
+	}, {
+		"key": "4",
+		"text": "Fleet- Dealer Mobility"
+	}, {
+		"key": "5",
+		"text": "Fleet- National RAC"
+	}, {
+		"key": "6",
+		"text": "Fleet- National Elite"
+	}, {
+		"key": "1",
+		"text": "All"
+	}],
+	"PriceProtectionZone_OrderType": [{
+		"key": "2",
+		"text": " Fleet- Dealer RAC"
+	}, {
+		"key": "3",
+		"text": "Dealer Elite"
+	}, {
+		"key": "4",
+		"text": "Fleet- Dealer Mobility"
+	}, {
+		"key": "5",
+		"text": "Fleet- National RAC"
+	}, {
+		"key": "6",
+		"text": "Fleet- National Elite"
+	}, {
+		"key": "7",
+		"text": "Fleet- National Mobility"
+	}, {
+		"key": "1",
+		"text": "All"
+	}],
+	"PriceProtectionZoneStatus": [{
+		"key": "3",
+		"text": " Open"
+	}, {
+		"key": "1",
+		"text": "Pre-Approved"
+	}, {
+		"key": "2",
+		"text": "Under Review"
+	}, {
+		"key": "4",
+		"text": "Approved"
+	}, {
+		"key": "5",
+		"text": "Rejected"
+	}],
+	
+	"Products": [{
+		"ProductId": "HT-1000",
+		"Category": "Laptops",
+		"MainCategory": "Computer Systems",
+		"TaxTarifCode": "1",
+		"SupplierName": "Very Best Screens",
+		"WeightMeasure": 4.2,
+		"WeightUnit": "KG",
+		"Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+		"Name": "Notebook Basic 15",
+		"DateOfSale": "2017-03-26",
+		"ProductPicUrl": "test-resources/sap/ui/demokit/explored/img/HT-1000.jpg",
+		"Status": "Available",
+		"Quantity": 10,
+		"UoM": "PC",
+		"CurrencyCode": "EUR",
+		"Price": 956,
+		"Width": 30,
+		"Depth": 18,
+		"Height": 3,
+		"DimUnit": "cm"
+	}],	
+	
+	"ProductCollection": [{
+		"ProductId": "HT-1000",
+		"Category": "Laptops",
+		"MainCategory": "Computer Systems",
+		"TaxTarifCode": "1",
+		"SupplierName": "Very Best Screens",
+		"WeightMeasure": 4.2,
+		"WeightUnit": "KG",
+		"Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+		"Name": "Notebook Basic 15",
+		"DateOfSale": "2017-03-26",
+		"ProductPicUrl": "test-resources/sap/ui/demokit/explored/img/HT-1000.jpg",
+		"Status": "Available",
+		"Quantity": 10,
+		"UoM": "PC",
+		"CurrencyCode": "EUR",
+		"Price": 956,
+		"Width": 30,
+		"Depth": 18,
+		"Height": 3,
+		"DimUnit": "cm"
+	}, {
+		"ProductId": "HT-1001",
+		"Category": "Laptops",
+		"MainCategory": "Computer Systems",
+		"TaxTarifCode": "1",
+		"SupplierName": "Very Best Screens",
+		"WeightMeasure": 4.5,
+		"WeightUnit": "KG",
+		"Description": "Notebook Basic 17 with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+		"Name": "Notebook Basic 17",
+		"DateOfSale": "2017-04-17",
+		"ProductPicUrl": "test-resources/sap/ui/demokit/explored/img/HT-1001.jpg",
+		"Status": "Available",
+		"Quantity": 20,
+		"UoM": "PC",
+		"CurrencyCode": "EUR",
+		"Price": 1249,
+		"Width": 29,
+		"Depth": 17,
+		"Height": 3.1,
+		"DimUnit": "cm"
+	}, {
+		"ProductId": "HT-1002",
+		"Category": "Laptops",
+		"MainCategory": "Computer Systems",
+		"TaxTarifCode": "1",
+		"SupplierName": "Very Best Screens",
+		"WeightMeasure": 4.2,
+		"WeightUnit": "KG",
+		"Description": "Notebook Basic 18 with 2,80 GHz quad core, 18\" LCD, 8 GB DDR3 RAM, 1000 GB Hard Disc, Windows 8 Pro",
+		"Name": "Notebook Basic 18",
+		"DateOfSale": "2017-01-07",
+		"ProductPicUrl": "test-resources/sap/ui/demokit/explored/img/HT-1002.jpg",
+		"Status": "Available",
+		"Quantity": 10,
+		"UoM": "PC",
+		"CurrencyCode": "EUR",
+		"Price": 1570,
+		"Width": 28,
+		"Depth": 19,
+		"Height": 2.5,
+		"DimUnit": "cm"
+	}, {
+		"ProductId": "HT-1003",
+		"Category": "Laptops",
+		"MainCategory": "Computer Systems",
+		"TaxTarifCode": "1",
+		"SupplierName": "Smartcards",
+		"WeightMeasure": 4.2,
+		"WeightUnit": "KG",
+		"Description": "Notebook Basic 19 with 2,80 GHz quad core, 19\" LCD, 8 GB DDR3 RAM, 1000 GB Hard Disc, Windows 8 Pro",
+		"Name": "Notebook Basic 19",
+		"DateOfSale": "2017-04-09",
+		"ProductPicUrl": "test-resources/sap/ui/demokit/explored/img/HT-1003.jpg",
+		"Status": "Available",
+		"Quantity": 15,
+		"UoM": "PC",
+		"CurrencyCode": "EUR",
+		"Price": 1650,
+		"Width": 32,
+		"Depth": 21,
+		"Height": 4,
+		"DimUnit": "cm"
+	}, {
+		"ProductId": "HT-1007",
+		"Category": "Accessories",
+		"MainCategory": "Computer Components",
+		"TaxTarifCode": "1",
+		"SupplierName": "Technocom",
+		"WeightMeasure": 0.2,
+		"WeightUnit": "KG",
+		"Description": "Digital Organizer with State-of-the-Art Storage Encryption",
+		"Name": "ITelO Vault",
+		"DateOfSale": "2017-05-17",
+		"ProductPicUrl": "test-resources/sap/ui/demokit/explored/img/HT-1007.jpg",
+		"Status": "Available",
+		"Quantity": 15,
+		"UoM": "PC",
+		"CurrencyCode": "EUR",
+		"Price": 299,
+		"Width": 32,
+		"Depth": 22,
+		"Height": 3,
+		"DimUnit": "cm"
+	}]
+
+
+}
