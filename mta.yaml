@@ -27,7 +27,6 @@ modules:
    type: html5
    path: soldOrder
    parameters:
-    parameters:
       host: soldOrder
       register-service-url: true
       service-name: soldOrder
