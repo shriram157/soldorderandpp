@@ -34,19 +34,19 @@
 											<Text text="{DimUnit}"/>
 										
 											<Label text="{i18n>Model}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+											<ComboBox id="model_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>Suffix}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+											<ComboBox id="suffix_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>APX}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+											<ComboBox id="apx_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>Colour}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+											<ComboBox id="colour_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>ETA}" required="true"/>
@@ -55,14 +55,14 @@
 													<HBox>
 														<items>
 															<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-															<DatePicker placeholder="dd/MMM/yy"></DatePicker>
+															<DatePicker id="etaFrom_CSOR" placeholder="dd/MMM/yy"></DatePicker>
 														</items>
 													</HBox>
 													<HBox>
 														<items>
 															
 															<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
-															<DatePicker placeholder="dd/MMM/yy"></DatePicker>
+															<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy"></DatePicker>
 														</items>
 													</HBox>
 												</items>
@@ -127,7 +127,7 @@
 							</VBox>
 						</items>
 					</HBox>
-					<Button text="{i18n>submit}" type="Emphasized" class="marginCornersRight marginCornersBottom cssShift"></Button>
+					<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight marginCornersBottom cssShift"></Button>
 				</content>
 			</Page>
 		</pages>

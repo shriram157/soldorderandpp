@@ -29,7 +29,7 @@
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label text="{i18n>Comments}"/>
-							<TextArea/>
+							<TextArea id="comm_CancelSO" maxLength="150"/>
 							<Label text=""/>
 							<Button text="{i18n>submit}" press="UpdateSoldOrderRequest"></Button>
 							<Button text="{i18n>Back}" press="onNavBack"></Button>

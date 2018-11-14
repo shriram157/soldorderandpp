@@ -28,57 +28,57 @@
 					
 					<Table id="table_RSOVehicleDealer"  selectionMode="None"  rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
-						<columns>
-							<Column>
+					<columns>
+					<Column width="10%" resizable="false" >
 								<m:Label text=""/>
 								<template>
-									<m:Link text="Select" wrapping="false"/>
+									<m:Link text="Select"  press="_onSelect" wrapping="false"/>
 								</template>
 							</Column>
-							<Column  sortProperty="ETAFrom">
+						<Column width="10%" resizable="false"   sortProperty="ETAFrom">
 								<m:Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<template>
 									<m:Text text="{ETAFrom}" wrapping="false"/>
 								</template>
 							</Column>
-							<Column  >
+						<Column width="10%" resizable="false"   >
 								<m:Label text="{i18n>ETATime}" class="TableLabel"/>
 								<template>
 									<m:Text text="{date}" wrapping="false"/>
 								</template>
 							</Column>
-							<Column >
+						<Column width="10%" resizable="false"  >
 								<m:Label text="{i18n>vehicleTrackingNumber}" class="TableLabel"/>
 								<template>
 									<m:Text text="{date}" wrapping="false"/>
 								</template>
 							</Column>
-							<Column  >
+						<Column width="10%" resizable="false"   >
 								<m:Label text="{i18n>orderNumber}" class="TableLabel"/>
 								<template>
 									<m:Text text="{date}" wrapping="false"/>
 								</template>
 							</Column>
-								<Column  >
+							<Column width="10%" resizable="false"   >
 								<m:Label text="{i18n>Model}" class="TableLabel"/>
 								<template>
 									<m:Text text="{model}" wrapping="false"/>
 								</template>
 								</Column>
-								<Column id="suffix" >
+							<Column width="10%" resizable="false"  id="suffix" >
 								<m:Label text="{i18n>Suffix}" class="TableLabel"/>
 								<template>
 									<m:Text text="{suffix}" wrapping="false"/>
 								</template>
 							</Column>
 								
-							<Column id="colour" >
+						<Column width="10%" resizable="false"  id="colour" >
 								<m:Label text="{i18n>Colour}" class="TableLabel"/>
 								<template>
 									<m:Text text="{color}" wrapping="false"/>
 								</template>
 							</Column>
-							<Column id="apx" >
+						<Column width="10%" resizable="false"  id="apx" >
 								<m:Label text="{i18n>status}" class="TableLabel"/>
 								<template>
 									<m:Text text="{APX}" wrapping="false"/>

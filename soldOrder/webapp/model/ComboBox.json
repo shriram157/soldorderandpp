@@ -250,7 +250,7 @@
 		"Price": 956,
 		"Width": 30,
 		"Depth": 18,
-		"Height": 3,
+		"Height": 1,
 		"DimUnit": "cm"
 	}],	
 	
@@ -267,13 +267,13 @@
 		"DateOfSale": "2017-03-26",
 		"ProductPicUrl": "test-resources/sap/ui/demokit/explored/img/HT-1000.jpg",
 		"Status": "Available",
-		"Quantity": 10,
+		"Quantity": 90,
 		"UoM": "PC",
 		"CurrencyCode": "EUR",
 		"Price": 956,
 		"Width": 30,
 		"Depth": 18,
-		"Height": 3,
+		"Height": 2,
 		"DimUnit": "cm"
 	}, {
 		"ProductId": "HT-1001",
@@ -294,7 +294,7 @@
 		"Price": 1249,
 		"Width": 29,
 		"Depth": 17,
-		"Height": 3.1,
+		"Height": 3,
 		"DimUnit": "cm"
 	}, {
 		"ProductId": "HT-1002",
@@ -315,7 +315,7 @@
 		"Price": 1570,
 		"Width": 28,
 		"Depth": 19,
-		"Height": 2.5,
+		"Height": 4,
 		"DimUnit": "cm"
 	}, {
 		"ProductId": "HT-1003",
@@ -336,7 +336,7 @@
 		"Price": 1650,
 		"Width": 32,
 		"Depth": 21,
-		"Height": 4,
+		"Height": 5,
 		"DimUnit": "cm"
 	}, {
 		"ProductId": "HT-1007",
@@ -351,13 +351,13 @@
 		"DateOfSale": "2017-05-17",
 		"ProductPicUrl": "test-resources/sap/ui/demokit/explored/img/HT-1007.jpg",
 		"Status": "Available",
-		"Quantity": 15,
+		"Quantity": 85,
 		"UoM": "PC",
 		"CurrencyCode": "EUR",
 		"Price": 299,
 		"Width": 32,
 		"Depth": 22,
-		"Height": 3,
+		"Height": 6,
 		"DimUnit": "cm"
 	}]
 

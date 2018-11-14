@@ -36,33 +36,33 @@
 											</ComboBox>
 											<Label text="{i18n>Model}"/>
 											<ComboBox items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
-												<core:Item key="{key}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.Formatter.formatter.formatModel'}"/>
+												<core:Item key="{key}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 											</ComboBox>
 											<!--[{path:'ModelCode'},{path:'ModelDescription'}] , -->
 											<Label text="{i18n>Suffix}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}" text="{Name}"/>
+											<ComboBox items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
+												<core:Item key="{ProductId}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 											</ComboBox>
 											<Label text="{i18n>APX}"/>
 											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>Colour}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}" text="{Name}"/>
+											<ComboBox items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
+												<core:Item key="{ProductId}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
 											</ComboBox>
 											<Label text="{i18n>ETA}" required="true"/>
 											<VBox>
 												<items>
 													<HBox>
 														<items>
-															<DatePicker placeholder="dd/MMM/yy"></DatePicker>
+															<DatePicker id="etaFrom_RSOA" placeholder="dd/MMM/yy"></DatePicker>
 															<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 														</items>
 													</HBox>
 													<HBox>
 														<items>
-															<DatePicker placeholder="dd/MMM/yy"></DatePicker>
+															<DatePicker id="etaTo_RSOA"  navigate="_handleChange" placeholder="dd/MMM/yy"></DatePicker>
 															<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 														</items>
 													</HBox>
@@ -80,7 +80,7 @@
 												value="{/Products/0/Name}"
 												required="true"/>
 											<Label text="{i18n>city}"/>
-											<Input value="{path:'/Products/0/Name',formatter:'toyota.ca.SoldOrder.Formatter.formatter.format'}" required="true"/>
+											<Input value="{path:'/Products/0/Name',formatter:'toyota.ca.SoldOrder.util.formatter.format'}" required="true"/>
 											<Label text="{i18n>province}"/>
 											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>

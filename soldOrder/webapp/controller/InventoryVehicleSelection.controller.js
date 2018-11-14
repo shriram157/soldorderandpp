@@ -1,27 +1,39 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"toyota/ca/SoldOrder/controller/BaseController",
+	"toyota/ca/SoldOrder/util/formatter"
+], function (BaseController, formatter) {
 	"use strict";
 
-	return Controller.extend("toyota.ca.SoldOrder.controller.InventoryVehicleSelection", {
+	return BaseController.extend("toyota.ca.SoldOrder.controller.InventoryVehicleSelection", {
+		formatter: formatter,
 
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf toyota.ca.SoldOrder.view.InventoryVehicleSelection
-		 */
-		//	onInit: function() {
-		//
-		//	},
-
-		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf toyota.ca.SoldOrder.view.InventoryVehicleSelection
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
+		onInit: function () {
+			this.getBrowserLanguage();
+		},
+		_onSelect: function () {
+				var oTable = this.getView().byId("idFSO_IVS_Table");
+				var indiceArray=oTable.getSelectedIndices();
+				
+			/*	if (oTable.setSelectedIndex(-1) == true) {
+					var errForm = formatter.formatErrorType("SO00007");
+					var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+				} else {
+					var aContexts = oTable.getSelectedIndices();
+					for (var i = aContexts.length - 1; i >= 0; i--) {
+						var index = aContexts[i];
+					}
+				}
+*/
+			}
+			/**
+			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+			 * (NOT before the first rendering! onInit() is used for that one!).
+			 * @memberOf toyota.ca.SoldOrder.view.InventoryVehicleSelection
+			 */
+			//	onBeforeRendering: function() {
+			//
+			//	},
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.

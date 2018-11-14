@@ -20,7 +20,7 @@
 		"text": "Comments not filled and reason for selection is other."
 	}, {
 		"key": "SO00007",
-		"text": "If the user doesn't select any row, then display an error message"
+		"text": "Please select a row"
 	}, {
 		"key": "SO00008",
 		"text": "The user selected a date which is less than 30 days+ Current calendar date"

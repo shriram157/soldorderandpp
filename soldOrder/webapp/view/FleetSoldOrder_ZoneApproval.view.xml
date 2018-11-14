@@ -71,43 +71,43 @@
 					<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
@@ -119,55 +119,55 @@
 					<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-								<t:Column>
+									<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+								<t:Column width="11.1%" resizable="false" >
 								<Label text="{i18n>quantity}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
@@ -177,8 +177,8 @@
 					</t:Table>
 					<HBox class="cssShift marginCornersBottom marginCornersRight">
 						<items>
-							<Button text="{i18n>approve}"></Button>
-							<Button text="{i18n>reject}" class="sapUiSmallMarginBegin"></Button>
+							<Button text="{i18n>approve}" press="_approveFleetSoldRequest"></Button>
+							<Button text="{i18n>reject}" press="_rejectFleetSoldRequest" class="sapUiSmallMarginBegin"></Button>
 							<Button text="{i18n>back}" class="sapUiSmallMarginBegin"></Button>
 						</items>
 					</HBox>

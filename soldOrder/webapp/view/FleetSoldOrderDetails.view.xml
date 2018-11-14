@@ -49,73 +49,73 @@
 							<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" class="marginCorners">
 								<t:columns>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>Suffix}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>APX}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>colour}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>audit}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>VehTrackNo}" class="TableLabel"/>
 										<t:template>
 												<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column width="8.3%" resizable="false" >
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
 												<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-										<t:Column>
+										<t:Column width="8.3%" resizable="false" >
 											<Label text="{i18n>ETATime}" class="TableLabel"/>
 											<t:template>
 													<Text text="{Category}"/>
 												</t:template>
 											</t:Column>
-											<t:Column>
+											<t:Column width="8.3%" resizable="false" >
 												<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 												<t:template>
 													<Button text="{i18n>linkVehicle}" press="onLinkVehicle"/>

@@ -145,19 +145,19 @@
 				<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" class="marginCorners">
 								<t:columns>
-							<t:Column>
+								<t:Column width="33.3%" resizable="false" sortProperty="Category">
 								<Label class="TableLabel"  text=""/>
 								<t:template>
 									<Link text="Delete" wrapping="false"/>
 								</t:template>
 							</t:Column>
-							<t:Column id="file">
+								<t:Column width="33.3%" resizable="false" sortProperty="Category" id="file">
 								<Label class="TableLabel"  text="{i18n>File}"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column id="comments">
+								<t:Column width="33.3%" resizable="false" sortProperty="Category" id="comments">
 								<Label class="TableLabel"  text="{i18n>Comments}"/>
 								<t:template>
 									<Text text="{Category}"/>

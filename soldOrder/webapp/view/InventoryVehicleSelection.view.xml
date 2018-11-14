@@ -25,62 +25,69 @@
 					<HBox class="justifyContentSpaceBetween">
 						<items>
 					<Label text="{i18n>myStockPipelineVeh}" class="sapUiSmallMarginBegin sapUiMediumMarginBottom fontsize"></Label>
-					<Button text="{i18n>Select}" class="sapUiSmallMarginEnd"></Button>		
+					<Button text="{i18n>Select}" press="_onSelect" class="sapUiSmallMarginEnd"></Button>		
 						</items>
 					</HBox>
 						</items>
 					</VBox>
 					
 					
-					<t:Table rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
-						enableColumnFreeze="false" class="marginCorners">
+					<t:Table id="idFSO_IVS_Table" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false"
+						class="marginCorners">
 						<t:columns>
-							<t:Column>
+						<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+							<t:Column width="13.11%" resizable="false">
 								<Label text="{i18n>VehTrackNo}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>orderNumber}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+							<t:Column width="11.11%" resizable="false" sortProperty="Category">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+								<!--	<Text text="{Category}"/>-->
+									<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+							<t:Column width="11.11%" sortProperty="Category" resizable="false">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
+									<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+								</t:template>
+							</t:Column>
+								<t:Column width="9.11%" resizable="false">
+								<Label text="{i18n>APX}" class="TableLabel"/>
+								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
 								</t:template>
 							</t:Column>
-							<t:Column>
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>status}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text=""/>
 								</t:template>
 							</t:Column>
 								</t:columns>

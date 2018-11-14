@@ -12,8 +12,14 @@ sap.ui.define([
 		 */
 			onInit: function () {
 			this.getBrowserLanguage();
+		},
+			_onSelect: function (evt) {
+			var oTable = this.getView().byId("table_RSOVehicleDealer");
+			console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
+			var sPath = evt.getSource().getBindingContext().sPath;
+			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+			console.log(oIndex)
 		}
-
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).

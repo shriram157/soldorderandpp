@@ -17,7 +17,12 @@ sap.ui.define([
 			this.getView().setModel(i18nModel, "i18n");*/
 			this.getBrowserLanguage();
 		},
-
+		_approveFleetSoldRequest:function(){
+			
+		},
+		_rejectFleetSoldRequest:function(){
+			
+		},
 		onAfterRendering: function () {
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var sRecipient = "09784"; // this.getView().getModel().getProperty("/recipient/name");
