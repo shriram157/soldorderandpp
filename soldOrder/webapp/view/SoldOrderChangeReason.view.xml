@@ -31,12 +31,12 @@
 							<Label text="{i18n>Comments}"/>
 							<TextArea maxLength="150"/>
 							<Label text="{i18n>ReqType}"/>
-							<ComboBox id="reqTypeId" items="{ path: '/RequestType', sorter: { path: 'key' } }" required="true">
+							<ComboBox id="reqTypeId_SOCR" items="{ path: '/RequestType', sorter: { path: 'key' } }" required="true">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label text=""/>
 							<Button text="{i18n>submit}" type="Emphasized" press="UpdateSoldOrderRequest"></Button>
-							<Button text="{i18n>Back}" press="onBack"></Button>
+							<Button text="{i18n>Back}" ></Button>
 						</f:content>
 					</f:SimpleForm>
 						</items>

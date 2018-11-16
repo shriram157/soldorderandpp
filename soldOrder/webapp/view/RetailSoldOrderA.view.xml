@@ -24,31 +24,31 @@
 							<VBox width="100%">
 								<items>
 									<MessageStrip text="{i18n>VehicleInformation}" class="msgStripCss marginCornersRight"></MessageStrip >
-									<f:SimpleForm id="simpleFormChange" editable="true" width="100%" layout="ResponsiveLayout">
+									<f:SimpleForm  editable="true" width="100%" layout="ResponsiveLayout">
 										<f:content>
 											<Label text="{i18n>modelYear}"/>
-											<ComboBox id="modelYrId" items="{ path: '/modelYear', sorter: { path: 'text' } }">
+											<ComboBox id="modelYr_RSOA" items="{ path: '/modelYear', sorter: { path: 'text' } }" required="true">
 												<core:Item key="{key}" text="{text}"/>
 											</ComboBox>
 											<Label text="{i18n>Series}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+											<ComboBox id="series_RSOA" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>Model}"/>
-											<ComboBox items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
+											<ComboBox id="model_RSOA" items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
 												<core:Item key="{key}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 											</ComboBox>
 											<!--[{path:'ModelCode'},{path:'ModelDescription'}] , -->
 											<Label text="{i18n>Suffix}"/>
-											<ComboBox items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
+											<ComboBox id="Suffix_RSOA" items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
 												<core:Item key="{ProductId}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 											</ComboBox>
 											<Label text="{i18n>APX}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+											<ComboBox id="Apx_RSOA" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>Colour}"/>
-											<ComboBox items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
+											<ComboBox id="Colour_RSOA" items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
 												<core:Item key="{ProductId}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
 											</ComboBox>
 											<Label text="{i18n>ETA}" required="true"/>
@@ -74,25 +74,25 @@
 									<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
 										<f:content>
 											<Label text="{i18n>custname}"/>
-											<Input value="{address>/Name}" required="true"/>
+											<Input id="CustName_RSOA" value="{address>/Name}" required="true"/>
 											<Label text="{i18n>address}"/>
-											<Input
+											<Input id="Address_RSOA"
 												value="{/Products/0/Name}"
 												required="true"/>
 											<Label text="{i18n>city}"/>
-											<Input value="{path:'/Products/0/Name',formatter:'toyota.ca.SoldOrder.util.formatter.format'}" required="true"/>
+											<Input id="City_RSOA" value="{/Products/0/Name}" required="true"/>
 											<Label text="{i18n>province}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+											<ComboBox id="Province_RSOA" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>postalcode}"/>
-											<Input value="{address>/City}" required="true"/>
+											<Input id="PostalCode_RSOA" value="{/Products/0/Name}" required="true"/>
 											<Label text="{i18n>phnNo}"/>
-											<Input value="{address>/City}"/>
+											<Input value="{/Products/0/Name}"/>
 											<Label text="{i18n>email}"/>
-											<Input value="{address>/City}"/>
+											<Input value="{/Products/0/Name}"/>
 											<Label text="{i18n>driverLic}"/>
-											<Input value="{address>/City}" required="true"/>
+											<Input id="License_RSOA" value="{address>/City}" required="true"/>
 										</f:content>
 									</f:SimpleForm>
 									<Button text="{i18n>valCust}" class="cssShift" press="onValidateCustomer"></Button>
@@ -101,12 +101,12 @@
 							<VBox width="100%">
 								<items>
 									<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripCss marginCornersLeft"></MessageStrip >
-									<f:SimpleForm id="simpleFormChange3" editable="true" width="100%" layout="ResponsiveLayout">
+									<f:SimpleForm  editable="true" width="100%" layout="ResponsiveLayout">
 										<f:content>
 											<Label text="{i18n>contractDate}"/>
-											<DatePicker placeholder="dd/MMM/yy" required="true"></DatePicker>
+											<DatePicker id="ContractDate_RSOA" placeholder="dd/MMM/yy" required="true"></DatePicker>
 											<Label text="{i18n>salesType}"/>
-											<ComboBox items="{path: '/SalesType', sorter: {path: 'text'}}" required="true">
+											<ComboBox id="SalesType_RSOA" items="{path: '/SalesType', sorter: {path: 'text'}}" required="true">
 												<core:Item key="{key}" text="{text}"/>
 											</ComboBox>
 											<Label text="{i18n>approvalNumber}"/>
@@ -128,7 +128,7 @@
 										</f:content>
 									</f:SimpleForm>
 									<MessageStrip text="{i18n>Comments}" class="msgStripCss marginCornersLeft"></MessageStrip >
-									<f:SimpleForm id="simpleFormChange4" editable="true" width="100%" layout="ResponsiveLayout">
+									<f:SimpleForm  editable="true" width="100%" layout="ResponsiveLayout">
 										<f:content>
 											<Label text="{i18n>Comments}"/>
 											<TextArea value="{address>/Name}"/>
@@ -138,7 +138,7 @@
 							</VBox>
 						</items>
 					</HBox>
-					<Button text="{i18n>submit}" type="Emphasized" class="marginCornersRight marginCornersBottom cssShift"></Button>
+					<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight marginCornersBottom cssShift"></Button>
 				</content>
 			</Page>
 		</pages>

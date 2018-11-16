@@ -1,34 +1,36 @@
 sap.ui.define([
-		"toyota/ca/SoldOrder/controller/BaseController"
-], function (BaseController) {
+	"toyota/ca/SoldOrder/controller/BaseController",
+	"toyota/ca/SoldOrder/util/formatter"
+], function (BaseController, formatter) {
 	"use strict";
 
 	return BaseController.extend("toyota.ca.SoldOrder.controller.SoldOrderChangeReason", {
-
+		formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf toyota.ca.SoldOrder.view.SoldOrderChange
 		 */
-			onInit: function () {
+		onInit: function () {
 			this.getBrowserLanguage();
 		},
-			onAfterRendering: function () {
+		onAfterRendering: function () {
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var sRecipient = "09732984"; // this.getView().getModel().getProperty("/recipient/name");
 			var sMsg = oBundle.getText("soldOrderReqTitle", [sRecipient]);
 			this.getView().byId("label_SoldOrderid").setText(sMsg);
 		},
-		
-		UpdateSoldOrderRequest:function(){
-		var router=this.getRouter();
-		router.navTo('ChangeSoldOrderRequest');  
-		},
-		onBack:function(){
-		var router=this.getRouter();
-		router.navTo('');  
+
+		UpdateSoldOrderRequest: function () {
+			var comboBox = this.getView().byId("reqTypeId_SOCR");
+			var cbVal = comboBox.getSelectedKey();
+			if (cbVal == 2) {
+				this.getRouter().navTo("RSO_ChangeVehicleSelection", {}, true);
+			} else if (cbVal == 1) {
+				this.getRouter().navTo("ChangeSoldOrderRequest", {}, true);
+			}
 		}
-		
+
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).

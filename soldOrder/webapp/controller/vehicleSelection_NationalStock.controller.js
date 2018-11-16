@@ -1,15 +1,15 @@
 sap.ui.define([
-	"toyota/ca/SoldOrder/controller/BaseController"
-
+	"toyota/ca/SoldOrder/controller/BaseController",
+	"toyota/ca/SoldOrder/util/formatter"
 	/*	"sap/ui/table/SortOrder",
 		"sap/ui/model/Sorter",
 		"sap/ui/core/format/DateFormat"*/
 
-], function (BaseController) {
+], function (BaseController,formatter) {
 	"use strict";
 
 	return BaseController.extend("toyota.ca.SoldOrder.controller.vehicleSelection_NationalStock", {
-
+formatter:formatter,
 		onInit: function () {
 			this.getBrowserLanguage();
 		},

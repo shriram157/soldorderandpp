@@ -39,7 +39,7 @@
 											</ComboBox>
 											<Label text="{i18n>Suffix}"/>
 											<ComboBox id="suffix_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}" text="{Name}"/>
+												<core:Item key="{ProductId}" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 											</ComboBox>
 											<Label text="{i18n>APX}"/>
 											<ComboBox id="apx_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
@@ -47,7 +47,7 @@
 											</ComboBox>
 											<Label text="{i18n>Colour}"/>
 											<ComboBox id="colour_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}" text="{Name}"/>
+												<core:Item key="{ProductId}" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
 											</ComboBox>
 											<Label text="{i18n>ETA}" required="true"/>
 											<VBox>
@@ -62,7 +62,7 @@
 														<items>
 															
 															<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
-															<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy"></DatePicker>
+															<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy" navigate="_handleChange"></DatePicker>
 														</items>
 													</HBox>
 												</items>

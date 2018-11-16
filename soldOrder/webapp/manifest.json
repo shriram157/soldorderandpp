@@ -22,6 +22,7 @@
 				"uri": "model/Errors.json",
 				"type": "JSON"
 			}
+		
 		}
 	},
 	"sap.ui": {

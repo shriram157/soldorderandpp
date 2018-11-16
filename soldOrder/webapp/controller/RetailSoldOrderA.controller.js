@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (BaseController, ResourceModel, formatter, JSONModel) {
 	"use strict";
-
+	var validateFlag = false;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderA", {
 		formatter: formatter,
 		onInit: function () {
@@ -16,31 +16,31 @@ sap.ui.define([
 			day1.setDate(today.getDate() + 1);
 			this.getView().byId("etaFrom_RSOA").setMinDate(day1);
 
-		/*	var oI18nModel = new sap.ui.model.resource.ResourceModel({
-				bundleUrl: "i18n/i18n.properties"
-			});
-			this.getView().setModel(oI18nModel, "i18n");
-			var isLocaleSent = window.location.search.match(/language=([^&]*)/i);
-			if (isLocaleSent) {
-				var sSelectedLocale = window.location.search.match(/language=([^&]*)/i)[1];
-			} else {
-				var sSelectedLocale = "EN"; // default is english 
-			}
-			if (sSelectedLocale == "fr") {
-				var i18nModel = new sap.ui.model.resource.ResourceModel({
-					bundleUrl: "i18n/i18n.properties",
-					bundleLocale: ("fr")
+			/*	var oI18nModel = new sap.ui.model.resource.ResourceModel({
+					bundleUrl: "i18n/i18n.properties"
 				});
-				this.getView().setModel(i18nModel, "i18n");
-				this.sCurrentLocale = 'FR';
-			} else {
-				var i18nModel = new sap.ui.model.resource.ResourceModel({
-					bundleUrl: "i18n/i18n.properties",
-					bundleLocale: ("en")
-				});
-				this.getView().setModel(i18nModel, "i18n");
-				this.sCurrentLocale = 'EN';
-			}*/
+				this.getView().setModel(oI18nModel, "i18n");
+				var isLocaleSent = window.location.search.match(/language=([^&]*)/i);
+				if (isLocaleSent) {
+					var sSelectedLocale = window.location.search.match(/language=([^&]*)/i)[1];
+				} else {
+					var sSelectedLocale = "EN"; // default is english 
+				}
+				if (sSelectedLocale == "fr") {
+					var i18nModel = new sap.ui.model.resource.ResourceModel({
+						bundleUrl: "i18n/i18n.properties",
+						bundleLocale: ("fr")
+					});
+					this.getView().setModel(i18nModel, "i18n");
+					this.sCurrentLocale = 'FR';
+				} else {
+					var i18nModel = new sap.ui.model.resource.ResourceModel({
+						bundleUrl: "i18n/i18n.properties",
+						bundleLocale: ("en")
+					});
+					this.getView().setModel(i18nModel, "i18n");
+					this.sCurrentLocale = 'EN';
+				}*/
 
 			/*	var sLocation = window.location.host;
 				console.log(sLocation);
@@ -84,7 +84,18 @@ sap.ui.define([
 		},
 		onValidateCustomer: function () {
 			var errMsg = this.getView().getModel("i18n").getResourceBundle().getText("error1");
-			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Customer Conformation", sap.m.MessageBox.Action.OK, null, null);
+			//sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Customer Conformation", sap.m.MessageBox.Action.OK, null, null,{contentWidth:"5rem"});
+			sap.m.MessageBox.show(errMsg, {
+				icon: sap.m.MessageBox.Icon.WARNING,
+				title: "Customer Conformation",
+				actions: sap.m.MessageBox.Action.OK,
+				onClose: null,
+				styleClass: "",
+				initialFocus: null,
+				textDirection: sap.ui.core.TextDirection.Inherit,
+				contentWidth: "10rem"
+			});
+			validateFlag = true;
 		},
 		listOfModelYear: function () {
 			//	var omodelYearModel;
@@ -105,15 +116,47 @@ sap.ui.define([
 					"text": nextModelYear
 				}]
 			};
-			var modelYearModel = new JSONModel(); //this.getOwnerComponent().getModel('modelYearModel');
+			var modelYearModel = new JSONModel(); 
 			modelYearModel.setData(data);
-			//	sap.ui.getCore().setModel(modelYearModel,"omodelYearModel");
-			this.getView().byId("modelYrId").setModel(modelYearModel);
-			//	console.log(modelYearModel);
-			//	this.getView().setModel(modelYearModel);
-			//	this.getView().getModel().updateBindings(true);
+			this.getView().byId("modelYr_RSOA").setModel(modelYearModel);
 		},
+		_onSubmit: function () {
 
+			var valModelYr = this.getView().byId("modelYr_RSOA").getValue();
+			var valSuffix = this.getView().byId("Suffix_RSOA").getValue();
+			var valSeries = this.getView().byId("series_RSOA").getValue();
+			//	var valModelCode = this.getView().byId("modelCode_RSOA").getValue();
+			var valCustName = this.getView().byId("CustName_RSOA").getValue();
+			var valETATo = this.getView().byId("etaTo_RSOA").getValue();
+			var valETAFrom = this.getView().byId("etaFrom_RSOA").getValue();
+			var valColour = this.getView().byId("Colour_RSOA").getValue();
+			var valModel = this.getView().byId("model_RSOA").getValue();
+			var valApx = this.getView().byId("Apx_RSOA").getValue();
+			var valSalesType = this.getView().byId("SalesType_RSOA").getValue();
+			var valContractDate = this.getView().byId("ContractDate_RSOA").getValue();
+			var valAddress = this.getView().byId("Address_RSOA").getValue();
+			var valCity = this.getView().byId("City_RSOA").getValue();
+			var valProvince = this.getView().byId("Province_RSOA").getValue();
+			var valPostalCode = this.getView().byId("PostalCode_RSOA").getValue();
+			var valLicense = this.getView().byId("License_RSOA").getValue();
+
+			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valCustName == "" || valETATo == "" || valETAFrom == "" || valColour ==
+				"" || valModel == "" || valApx == "" || valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
+				valProvince == "" || valPostalCode == "" || valLicense == "") {
+				var errForm = formatter.formatErrorType("SO00003");
+				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			} 
+			if (validateFlag == false) {
+				var errForm2 = formatter.formatErrorType("SO00004");
+				var errMsg2 = this.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				sap.m.MessageBox.show(errMsg2, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			}
+		},
 		//	onBeforeRendering: function() {
 		//
 		//	},

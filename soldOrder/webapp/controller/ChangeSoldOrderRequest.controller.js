@@ -1,8 +1,8 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"sap/ui/model/resource/ResourceModel",
-		"toyota/ca/SoldOrder/util/formatter"
-], function (BaseController, ResourceModel,formatter) {
+	"toyota/ca/SoldOrder/util/formatter"
+], function (BaseController, ResourceModel, formatter) {
 	"use strict";
 
 	return BaseController.extend("toyota.ca.SoldOrder.controller.ChangeSoldOrderRequest", {
@@ -17,14 +17,22 @@ sap.ui.define([
 
 			var today = new Date();
 			var day1 = new Date();
-			day1.setDate(today.getDate()+1);
-			var day5 = new Date();
-			day5.setDate(today.getDate()+6);
-			
-
+			day1.setDate(today.getDate() + 1);
 			this.getView().byId("etaFrom_CSOR").setMinDate(day1);
-			this.getView().byId("etaTo_CSOR").setMinDate(day1);
-			this.getView().byId("etaTo_CSOR").setMaxDate(day5);
+			
+		},
+			_handleChange: function () {
+			var etaFrom = this.getView().byId("etaFrom_CSOR").getValue();
+			if (etaFrom !== "") {
+				var CDate = new Date(etaFrom);
+				var day5 = CDate;
+				day5.setDate(CDate.getDate() + 5);
+				this.getView().byId("etaTo_CSOR").setMinDate(day5);
+			} else {
+				var errForm = formatter.formatErrorType("SO00002");
+				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			}
 		},
 		_onSubmit: function () {
 			var valModel = this.getView().byId("model_CSOR").getValue();
@@ -34,21 +42,22 @@ sap.ui.define([
 			var valFrom = this.getView().byId("etaFrom_CSOR").getValue();
 			var valTo = this.getView().byId("etaTo_CSOR").getValue();
 			if (valModel == "" || valSuffix == "" || valApx == "" || valColour == "" || valFrom == "" || valTo == "") {
-			var errMsg=	formatter.formatErrorType("SO00003"); 
+				var errForm = formatter.formatErrorType("SO00003");
+				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			}
 		}
-	
-			/**
-			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-			 * (NOT before the first rendering! onInit() is used for that one!).
-			 * @memberOf toyota.ca.SoldOrder.view.ChangeSoldOrderRequest
-			 */
-			//	onBeforeRendering: function() {
-			//
-			//	},
+
+		/**
+		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+		 * (NOT before the first rendering! onInit() is used for that one!).
+		 * @memberOf toyota.ca.SoldOrder.view.ChangeSoldOrderRequest
+		 */
+		//	onBeforeRendering: function() {
+		//
+		//	},
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.

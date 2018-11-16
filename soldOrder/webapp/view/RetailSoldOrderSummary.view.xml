@@ -25,26 +25,26 @@
 							<HBox class="marginCorners VBox_color">
 								<items>
 									<Label text="{i18n>series}" class="sapUiSmallMarginTop sapUiTinyMarginEnd TableLabel"></Label>
-									<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true" class="sapUiMediumMarginEnd">
+									<ComboBox selectionChange="_refresh" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true" class="sapUiMediumMarginEnd">
 										<core:Item key="{ProductId}" text="{Name}"/>
 									</ComboBox>
 									<Label text="{i18n>soldOrderStatus}" class="sapUiSmallMarginTop sapUiTinyMarginEnd TableLabel"></Label>
-									<MultiComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true" class="sapUiMediumMarginEnd">
+									<MultiComboBox selectionChange="_refresh"  items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true" class="sapUiMediumMarginEnd">
 										<core:Item key="{ProductId}" text="{Name}"/>
 									</MultiComboBox>
 									<Label text="{i18n>auditStatus}" class="sapUiSmallMarginTop sapUiTinyMarginEnd TableLabel"></Label>
-									<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true" class="sapUiMediumMarginEnd">
+									<ComboBox selectionChange="_refresh" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true" class="sapUiMediumMarginEnd">
 										<core:Item key="{ProductId}" text="{Name}"/>
 									</ComboBox>
 									<Label text="{i18n>dealer}" class="sapUiSmallMarginTop sapUiTinyMarginEnd TableLabel"></Label>
-									<MultiComboBox items="{ path: '/ProductCollection', sorter: { path: 'WeightMeasure' } }" required="true">
+									<MultiComboBox selectionChange="_refresh" items="{ path: '/ProductCollection', sorter: { path: 'WeightMeasure' } }" required="true">
 										<core:Item key="{ProductId}" text="{parts: [{path:'Name'},{path:'WeightMeasure'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
 									</MultiComboBox>
 								</items>
 							</HBox>
 							<Button text="{i18n>new}" class="cssShift marginCornersRight marginCornersBottom" press="_createNewOrder"></Button>
 							<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
-						enableColumnFreeze="false" class="marginCorners">
+						enableColumnFreeze="false" visibleRowCount="10" class="marginCorners">
 								<t:columns>
 									
 									<t:Column width="11.11%" resizable="false" >
@@ -65,25 +65,25 @@
 											<Text text="{Category}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false" >
+									<t:Column width="11.11%" sortProperty="Category" resizable="false" >
 										<Label text="{i18n>series}"  class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" >
+										<t:Column width="11.11%" sortProperty="Category" resizable="false" >
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
 											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}" wrapping="true"/>
 										</t:template>
 									</t:Column >
-										<t:Column width="11.11%" resizable="false" >
+										<t:Column width="11.11%" sortProperty="Category" resizable="false" >
 										<Label text="{i18n>suffix}" class="TableLabel"/>
 										<t:template>
 											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" >
+										<t:Column width="11.11%" sortProperty="Category" resizable="false" >
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}" wrapping="true"/>
@@ -98,7 +98,7 @@
 									<t:Column width="11.11%" resizable="false" >
 										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 										<t:template>
-											<Button text="{i18n>linkVehicle}" press="onLinkVehicle" />
+											<Button id="btn_linkVeh_RSOS" visible="false" text="{i18n>linkVehicle}" press="onLinkVehicle" />
 										</t:template>
 									</t:Column>
 								</t:columns>
@@ -112,7 +112,7 @@
 									<HBox class="justifyContentCenter">
 										<items>
 											<Label text="{i18n>vtn}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-											<Input></Input>
+											<Input id="vtin_RSOS"></Input>
 										</items>
 									</HBox>
 									<HBox class="justifyContentCenter">
@@ -123,12 +123,12 @@
 									<HBox class="justifyContentCenter">
 										<items>
 											<Label text="{i18n>vin}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd "></Label>
-											<Input></Input>
+											<Input id="vin_RSOS" ></Input>
 										</items>
 									</HBox>
 									<HBox class="justifyContentCenter">
 										<items>
-											<Button text="{i18n>searchLink}" ></Button>
+											<Button text="{i18n>searchLink}" press="_searchNLink" ></Button>
 										</items>
 									</HBox>
 								</items>

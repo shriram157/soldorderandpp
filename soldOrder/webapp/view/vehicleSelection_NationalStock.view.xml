@@ -34,7 +34,7 @@
 									<m:Link text="Select" press="_onSelect" wrapping="false"/>
 								</template>
 							</Column>
-						<Column width="14.2%" resizable="false"  id="deliverydate" sortProperty="ETA">
+						<Column width="14.2%" resizable="false"  id="deliverydate" sortProperty="Category">
 								<m:Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Category}" wrapping="true"/>
@@ -49,13 +49,13 @@
 							<Column width="14.2%" resizable="false"  id="model" >
 								<m:Label text="{i18n>Model}" class="TableLabel"/>
 								<template>
-									<m:Text text="{Category}" wrapping="false"/>
+									<m:Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}" wrapping="false"/>
 								</template>
 								</Column>
 							<Column width="14.2%" resizable="false"  id="suffix" >
 								<m:Label text="{i18n>Suffix}" class="TableLabel"/>
 								<template>
-									<m:Text text="{Category}" wrapping="false"/>
+									<m:Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="14.2%" resizable="false"  id="apx" >
@@ -67,7 +67,7 @@
 						<Column width="14.2%" resizable="false"  id="colour" >
 								<m:Label text="{i18n>Colour}" class="TableLabel"/>
 								<template>
-									<m:Text text="{Category}" wrapping="false"/>
+									<m:Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}" wrapping="false"/>
 								</template>
 							</Column>
 						</columns>

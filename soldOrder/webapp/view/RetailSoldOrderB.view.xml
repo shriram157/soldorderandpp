@@ -31,9 +31,9 @@
 											<Label text="{i18n>Series}"/>
 											<Text text="{address>/Name}"/>
 											<Label text="{i18n>Model}"/>
-											<Text text="{address>/Name}"/>
+											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 											<Label text="{i18n>Suffix}"/>
-											<Text text="{address>/Name}"/>
+											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 											<Label text="{i18n>APX}"/>
 											<Text text="{address>/Name}"/>
 											<Label text="{i18n>Color}"/>
@@ -46,23 +46,23 @@
 									<f:SimpleForm id="simpleFormChange2" editable="true" width="100%" layout="ResponsiveLayout">
 										<f:content>
 											<Label text="{i18n>custname}"/>
-											<Input value="{address>/Name}" required="true"/>
+											<Input id="CustName_RSOB" value="{address>/Name}" required="true"/>
 											<Label text="{i18n>address}"/>
-											<Input value="{address>/Street}" required="true"/>
+											<Input id="Address_RSOB" value="{address>/Street}" required="true"/>
 											<Label text="{i18n>city}"/>
-											<Input value="{address>/HouseNumber}" required="true"/>
+											<Input id="City_RSOB" value="{address>/HouseNumber}" required="true"/>
 											<Label text="{i18n>province}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
+											<ComboBox id="Province_RSOB" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>postalcode}"/>
-											<Input value="{address>/City}" required="true"/>
+											<Input id="PostalCode_RSOB" value="560076" required="true"/>
 											<Label text="{i18n>phnNo}"/>
 											<Input value="{address>/City}"/>
 											<Label text="{i18n>email}"/>
 											<Input value="{address>/City}"/>
 											<Label text="{i18n>driverLic}"/>
-												<Input value="{address>/City}" required="true"/>
+											<Input id="License_RSOB" value="{address>/City}" required="true"/>
 										</f:content>
 									</f:SimpleForm>
 									<Button text="{i18n>valCust}" class="cssShift" press="onValidateCustomer"></Button>
@@ -74,23 +74,23 @@
 									<f:SimpleForm id="simpleFormChange3" editable="true" width="100%" layout="ResponsiveLayout">
 										<f:content>
 											<Label text="{i18n>contractDate}"/>
-											<DatePicker placeholder="dd/MMM/yy" required="true"></DatePicker>
+											<DatePicker id="ContractDate_RSOB" placeholder="dd/MMM/yy" required="true"></DatePicker>
 											<Label text="{i18n>salesType}"/>
-											<ComboBox items="{ path: '/SalesType', sorter: { path: 'key' } }" >
+											<ComboBox id="SalesType_RSOB" items="{ path: '/SalesType', sorter: { path: 'key' } }" required="true">
 												<core:Item key="{key}" text="{text}"/>
 											</ComboBox>
 											<Label text="{i18n>approvalNumber}"/>
-											<Input value="{address>/Street}" required="true"/>
+											<Input value="{address>/Street}"/>
 											<Label text="{i18n>salesPerName}"/>
 											<Input value="{address>/HouseNumber}"/>
 											<Label text="{i18n>salesManName}"/>
 											<Input value="{address>/ZIPCode}"/>
 											<Label text="{i18n>tradeInModelYr}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" >
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>tradeInMake}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" >
+											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
 												<core:Item key="{ProductId}" text="{Name}"/>
 											</ComboBox>
 											<Label text="{i18n>tradeInModel}"/>
@@ -101,7 +101,8 @@
 									<f:SimpleForm id="simpleFormChange4" editable="true" width="100%" layout="ResponsiveLayout">
 										<f:content>
 											<Label text="{i18n>Comments}"/>
-											<TextArea/> <!--maxLength="150"-->
+											<TextArea/>
+											<!--maxLength="150"-->
 										</f:content>
 									</f:SimpleForm>
 								</items>

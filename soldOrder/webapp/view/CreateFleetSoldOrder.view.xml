@@ -118,8 +118,8 @@
 									<f:SimpleForm title="{i18n>VehicleInformation}" editable="true" width="100%" layout="ResponsiveLayout">
 										<f:content>
 											<Label text="{i18n>modelYear}"/>
-											<ComboBox id="modelYr_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}" text="{Name}"/>
+											<ComboBox id="modelYr_CFSO" items="{ path: '/modelYear', sorter: { path: 'key' } }" required="true">
+												<core:Item key="{key}" text="{text}"/>
 											</ComboBox>
 											<Label text="{i18n>series}"/>
 											<ComboBox id="series_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
@@ -131,7 +131,7 @@
 											</ComboBox>
 											<Label text="{i18n>suffix}"/>
 											<ComboBox id="suffix_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}" text="{Name}"/>
+												<core:Item key="{ProductId}" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 											</ComboBox>
 										</f:content>
 									</f:SimpleForm>
@@ -143,7 +143,7 @@
 										<f:content>
 											<Label text="{i18n>colour}"/>
 											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}" text="{Name}"/>
+												<core:Item key="{ProductId}" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
 											</ComboBox>
 											<Label text="{i18n>quantity}"/>
 											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">

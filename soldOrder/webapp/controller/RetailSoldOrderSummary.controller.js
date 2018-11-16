@@ -13,6 +13,18 @@ sap.ui.define([
 		 */
 		onInit: function () {
 			this.getBrowserLanguage();
+			this.flagSipUser=false;
+			this.requestStatus="";
+			this._sipUserToTrue();
+		},
+		_refresh:function(){
+			
+		},
+		_sipUserToTrue:function(){
+			this.requestStatus="Pending Fulfilment";
+				this.flagSipUser=true;
+				this.getView().byId("btn_linkVeh_RSOS").setVisible(true);
+			
 		},
 		_createNewOrder:function(){
 		this.getRouter().navTo("RetailSoldOrderA", {}, true); 	
@@ -25,6 +37,15 @@ sap.ui.define([
 			closeDialog:function(){
 			var dialog= this.getView().byId("VTNDialog");
 				dialog.close();
+			},
+			_searchNLink:function(){
+					var vinVal=this.getView().byId("vin_RSOS").getValue();
+				var vtinVal=this.getView().byId("vin_RSOS").getValue();
+				
+					var errForm = formatter.formatErrorType("SO000010");
+				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+		
 			}
 			/**
 			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered

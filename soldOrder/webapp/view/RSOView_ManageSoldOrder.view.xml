@@ -32,14 +32,13 @@
 											<Label text="{i18n>Series}"/>
 											<Text text="{address>/Name}"/>
 											<Label text="{i18n>Model}"/>
-											<Text text="{address>/Name}"/>
+											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 											<Label text="{i18n>Suffix}"/>
-											<Text text="{address>/Name}"/>
+											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 											<Label text="{i18n>APX}"/>
 											<Text text="{address>/Name}"/>
-											<Label text="{i18n>Color}"/>
+											<Label text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
 											<Text text="{address>/Name}"/>
-											
 											<Label text="{i18n>ContractDate}"/>
 											<Text text="{address>/Name}"/>
 											<Label text="{i18n>SalesType}"/>
@@ -209,22 +208,22 @@
 						</items>
 					</HBox>
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss"></MessageStrip >
-					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
-						enableColumnFreeze="false" class="marginCorners" visibleRowCount='6'>
-					<t:columns>
-						<t:Column width="33.33%" resizable="false" >
+					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false"
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount='10'>
+						<t:columns>
+							<t:Column width="33.33%" resizable="false">
 								<Label text=""/>
 								<t:template>
-									<Link text="{i18n>DeleteAttachment}"  press="_onDeleteAttachment" wrapping="false"/>
+									<Link text="{i18n>DeleteAttachment}" press="_onDeleteAttachment" wrapping="false"/>
 								</t:template>
 							</t:Column>
-						<t:Column width="33.33%" resizable="false"  id="file">
+							<t:Column width="33.33%" resizable="false">
 								<Label text="{i18n>File}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Name}" wrapping="false"/>
 								</t:template>
 							</t:Column>
-						<t:Column width="33.33%" resizable="false"  id="comments">
+							<t:Column width="33.33%" resizable="false">
 								<Label text="{i18n>Comments}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}" wrapping="true"/>
@@ -239,23 +238,23 @@
 								uploadStart="_oBrowse" uploadComplete="browse" handleUploadPress="_onBrowse" class="sapUiMediumMarginEnd"/>
 							<Label text="{i18n>Comments}" class="sapUiMediumMarginEnd sapUiSmallMarginTop" required="true"></Label>
 							<TextArea id="idComments_TA_RSO_ManageSO" maxLength="30" class="sapUiMediumMarginEnd"></TextArea>
-							<Button text="{i18n>AddAttach}" press="_ohandleUploadComplete"></Button>
+							<Button id="btn_addAttach_RSO_MSO" enabled="false" text="{i18n>AddAttach}" press="_addAttachment"></Button>
 						</items>
 					</HBox>
 					<HBox class="justifyContentEnd marginCornersBottom marginCornersRight">
 						<items>
-							<Button text="{i18n>Update}"></Button>
-							<Button text="{i18n>SelVeh}" class="sapUiMediumMarginBegin"></Button>
-							<Button text="{i18n>OrderChange}" class="sapUiLargeMarginBegin"></Button>
-							<Button text="{i18n>CancelOrder}" class="sapUiMediumMarginBegin"></Button>
-							<Button text="{i18n>Back}" class="sapUiMediumMarginBegin"></Button>
+							<Button text="{i18n>Update}" press="_updateSoldOrderRequest"></Button>
+							<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" enabled="false" press="_getVehiclesToFillSoldOrderRequest" class="sapUiMediumMarginBegin"></Button>
+							<Button id="btn_orderChange_RSO_MSO" text="{i18n>OrderChange}" press="_navToRSOrderChange" enabled="false" class="sapUiLargeMarginBegin"></Button>
+							<Button id="btn_cancelOrder_RSO_MSO" text="{i18n>CancelOrder}" press="_navCancleOrder" enabled="false" class="sapUiMediumMarginBegin"></Button>
+							<Button text="{i18n>Back}" press="onNavBack" class="sapUiMediumMarginBegin"></Button>
 						</items>
 					</HBox>
 					<HBox class="justifyContentEnd marginCornersBottom marginCornersRight">
 						<items>
-							<Button text="{i18n>AuditComp}"></Button>
-							<Button text="{i18n>ApprPriceProt}" class="sapUiMediumMarginBegin"></Button>
-							<Button text="{i18n>RejPriceProt}" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"></Button>
+							<Button id="btn_AuditComp_RSO_MSO" enabled="false" text="{i18n>AuditComp}" press="_updateAuditSoldOrderRequest"></Button>
+							<Button id="btn_ApprPriceProt_RSO_MSO" enabled="false" text="{i18n>ApprPriceProt}" press="_approvePriceProtectionDetails" class="sapUiMediumMarginBegin"></Button>
+							<Button id="btn_RejPriceProt_RSO_MSO" enabled="false" text="{i18n>RejPriceProt}" press="_rejectPriceProtectionDetails" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"></Button>
 						</items>
 					</HBox>
 				</content>

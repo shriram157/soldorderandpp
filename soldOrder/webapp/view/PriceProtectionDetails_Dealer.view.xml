@@ -38,13 +38,13 @@
 									</ComboBox>
 								</items>
 							</HBox>
-							<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
-								enableColumnFreeze="false" class="marginCorners">
+							<t:Table id="table_PPD_Dealer" selectionMode="None" rows="{/}" enableColumnReordering="false" alternateRowColors="true"
+								enableColumnFreeze="false" class="marginCorners"> <!--'priceProtModel>/zc_campaign_pricing'-->
 								<t:columns>
 										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>orderNum}"/>
 										<t:template>
-												<Link text="{Category}"/>
+												<Link text="{num}"/>
 										</t:template>
 									</t:Column>
 										<t:Column width="11.1%" resizable="false" >
@@ -56,13 +56,13 @@
 											<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>series}"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{series}"/>
 										</t:template>
 									</t:Column>
 										<t:Column width="11.1%" resizable="false" >
 										<Label class="TableLabel" text="{i18n>modelYear}"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{model_year}"/>
 										</t:template>
 									</t:Column>
 										<t:Column width="11.1%" resizable="false" >

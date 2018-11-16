@@ -1,33 +1,60 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
-	"toyota/ca/SoldOrder/util/formatter"
-], function (BaseController, formatter) {
+	"toyota/ca/SoldOrder/util/formatter",
+		"sap/ui/model/json/JSONModel"
+], function (BaseController, formatter,JSONModel) {
 	"use strict";
 
 	return BaseController.extend("toyota.ca.SoldOrder.controller.CreateFleetSoldOrder", {
 		formatter: formatter,
 
 		onInit: function () {
-			/*var i18nModel = new ResourceModel({
-				bundleName: "toyota.ca.SoldOrder.i18n.i18n"	
-			});
-			this.getView().setModel(i18nModel, "i18n");*/
 			this.getBrowserLanguage();
 			var today = new Date();
 			var day30 = new Date();
 			day30.setDate(today.getDate() + 30);
 			this.getView().byId("etaFrom_CFSO").setMinDate(day30);
-//			this.getView().byId("etaTo_CFSO").setMinDate(day35);
+		
 		},
-		_handleChange:function(){
-			var etaFrom=this.getView().byId("etaFrom_CFSO").getValue();
-			if(etaFrom!==""){
-			var CDate = new Date(etaFrom);
-			var day5=CDate;
-			day5.setDate(CDate.getDate() + 5);
-			this.getView().byId("etaTo_CFSO").setMinDate(day5);
-			}
-			else{
+		listOfModelYear: function () {
+			var d = new Date();
+			var currentModelYear = d.getFullYear();
+			var previousModelYear = currentModelYear - 1;
+			var nextModelYear = currentModelYear + 1;
+			var previousModelYear2 = previousModelYear - 1;
+			var nextModelYear2 = nextModelYear + 1;
+			
+			var data = {
+				"modelYear": [{
+					"key": "1",
+					"text": previousModelYear2
+				}, {
+					"key": "2",
+					"text": previousModelYear
+				}, {
+					"key": "3",
+					"text": currentModelYear
+				}, {
+					"key": "4",
+					"text": nextModelYear
+				}, {
+					"key": "5",
+					"text": nextModelYear2
+				}]
+			};
+			var modelYearModel2 = new JSONModel(); 
+			modelYearModel2.setData(data);
+			this.getView().byId("modelYr_CFSO").setModel(modelYearModel2);
+
+		},
+		_handleChange: function () {
+			var etaFrom = this.getView().byId("etaFrom_CFSO").getValue();
+			if (etaFrom !== "") {
+				var CDate = new Date(etaFrom);
+				var day5 = CDate;
+				day5.setDate(CDate.getDate() + 5);
+				this.getView().byId("etaTo_CFSO").setMinDate(day5);
+			} else {
 				var errForm = formatter.formatErrorType("SO00009");
 				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
@@ -123,6 +150,9 @@ sap.ui.define([
 						.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				}
+			},
+			onAfterRendering: function() {
+			this.listOfModelYear();
 			}
 			//for (var i = aContexts.length - 1; i >= 0; i--) {
 			/*	var oThisObj = aContexts[i].getObject();
@@ -146,9 +176,7 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf toyota.ca.SoldOrder.view.CreateFleetSoldOrder
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+			
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.

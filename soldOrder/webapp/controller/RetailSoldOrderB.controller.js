@@ -3,7 +3,7 @@ sap.ui.define([
 	"toyota/ca/SoldOrder/util/formatter"
 ], function (BaseController, formatter) {
 	"use strict";
-
+//	var validateFlag = false;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderB", {
 		formatter: formatter,
 		/**
@@ -13,15 +13,48 @@ sap.ui.define([
 		 */
 		onInit: function () {
 			this.getBrowserLanguage();
+			this.validateFlagB = false;
 		},
 		onValidateCustomer: function () {
 			var errMsg = this.getView().getModel("i18n").getResourceBundle().getText("error1");
-			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Customer Conformation", sap.m.MessageBox.Action.OK, null, null);
-			/*var errMsg = formatter.formatErrorType("SO00003");
-							sap.m.MessageBox.show(errMsg, sap
-								.m.MessageBox.Icon.ERROR, "Error", sap
-								.m.MessageBox.Action.OK, null, null);
-			*/
+			//sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Customer Conformation", sap.m.MessageBox.Action.OK, null, null,{contentWidth:"5rem"});
+			sap.m.MessageBox.show(errMsg, {
+				icon: sap.m.MessageBox.Icon.WARNING,
+				title: "Customer Conformation",
+				actions: sap.m.MessageBox.Action.OK,
+				onClose: null,
+				styleClass: "",
+				initialFocus: null,
+				textDirection: sap.ui.core.TextDirection.Inherit,
+				contentWidth: "10rem"
+			});
+			this.validateFlagB = true;
+		},
+		_onSubmit: function () {
+
+			var valSalesType = this.getView().byId("SalesType_RSOB").getValue();
+			var valContractDate = this.getView().byId("ContractDate_RSOB").getValue();
+			var valAddress = this.getView().byId("Address_RSOB").getValue();
+			var valCity = this.getView().byId("City_RSOB").getValue();
+			var valProvince = this.getView().byId("Province_RSOB").getValue();
+			var valPostalCode = this.getView().byId("PostalCode_RSOB").getValue();
+			var valLicense = this.getView().byId("License_RSOB").getValue();
+var valCustName = this.getView().byId("CustName_RSOB").getValue();
+			if (valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
+				valProvince == "" || valPostalCode == "" || valLicense == ""||valCustName=="") {
+				var errForm = formatter.formatErrorType("SO00003");
+				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			} 
+			if (this.validateFlagB == false) {
+				var errForm2 = formatter.formatErrorType("SO00004");
+				var errMsg2 = this.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				sap.m.MessageBox.show(errMsg2, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			}
 		}
 
 		/**
