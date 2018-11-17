@@ -9,6 +9,12 @@
       "source": "^/soldOrder/(.*)$",
       "target": "$1",
       "localDir": "webapp"
+    },
+                  {
+      "source": "/node(.*)",
+      "destination": "retailSoldOrder-node-backend",
+      "csrfProtection": false,
+      "authenticationType": "none"
     }
   ]
 }

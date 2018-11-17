@@ -21,8 +21,24 @@ sap.ui.define([
 		*/
 		onInit: function () {
 			
-						this.nodeJsUrl = "/node";
-						var url ="http://tcid1gwapp1.tci.internal.toyota.ca:8000/sap/opu/odata/sap/zprice_protection_srv/zc_campaign_pricing";
+			
+			          			     var sLocation = window.location.host;
+									      var sLocation_conf = sLocation.search("webide");
+									    
+									      if (sLocation_conf == 0) {
+									        this.sPrefix = "/soldorder_node";
+									      } else {
+									        this.sPrefix = "";
+									     }
+									      
+									      this.nodeJsUrl = this.sPrefix + "/node";
+			
+			
+			          var url = this.nodeJsUrl + "/sap/opu/odata/sap/zprice_protection_srv/zc_campaign_pricing";
+
+			
+						// this.nodeJsUrl = "/node";
+				//		var url ="http://tcid1gwapp1.tci.internal.toyota.ca:8000/sap/opu/odata/sap/zprice_protection_srv/zc_campaign_pricing";
 						//"https://fioridev1.dev.toyota.ca:44300/sap/opu/odata/sap/Z_VEHICLE_MASTER_SRV/zc_vehicle_items";
 						//"http://tcid1gwapp1.tci.internal.toyota.ca:8000/sap/opu/odata/sap/zprice_protection_srv/zc_campaign_pricing";
 						jQuery.ajax({

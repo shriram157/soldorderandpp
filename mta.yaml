@@ -8,14 +8,12 @@ modules:
    type: nodejs
    path: retailSoldOrder_Node
    parameters:
-      host: retailSoldOrder_Node
+      host: soldOrder_Node
       register-service-url: true
-      service-name: retailSoldOrder_Node
+      service-name: soldOrder_Node
       service-url: '${default-url}'
       disk-quota: 256M
       memory: 256M
-   build-parameters:
-      builder: grunt 
    requires:
     - name: RETAIL_SOLD_ORDER_APIM_CUPS 
    provides:

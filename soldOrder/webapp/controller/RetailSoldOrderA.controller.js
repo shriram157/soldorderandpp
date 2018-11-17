@@ -15,6 +15,65 @@ sap.ui.define([
 			var day1 = new Date();
 			day1.setDate(today.getDate() + 1);
 			this.getView().byId("etaFrom_RSOA").setMinDate(day1);
+			
+			
+			
+			// =============================================Begin of changes service call from price protection details dealer.controller.sj================================
+			
+						    		     var sLocation = window.location.host;
+									      var sLocation_conf = sLocation.search("webide");
+									    
+									      if (sLocation_conf == 0) { 
+									        this.sPrefix = "/soldorder_node";
+									      } else { 
+									        this.sPrefix = ""; 
+									     }
+									      
+									      this.nodeJsUrl = this.sPrefix + "/node";
+			
+			//ZPRICE_PROTECTION_SRV
+			          var url = this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing";
+
+			
+						// this.nodeJsUrl = "/node";
+				//		var url ="http://tcid1gwapp1.tci.internal.toyota.ca:8000/sap/opu/odata/sap/zprice_protection_srv/zc_campaign_pricing";
+						//"https://fioridev1.dev.toyota.ca:44300/sap/opu/odata/sap/Z_VEHICLE_MASTER_SRV/zc_vehicle_items";
+						//"http://tcid1gwapp1.tci.internal.toyota.ca:8000/sap/opu/odata/sap/zprice_protection_srv/zc_campaign_pricing";
+						jQuery.ajax({
+							url: url,
+							method: 'GET',
+							async: false,
+							dataType: 'json',
+							success: function(data, textStatus, jqXHR) {
+								console.log("table_PPD_Dealer service getting called");
+								console.log(data);
+								console.log(data.results);
+								
+								var oTable = sap.ui.getCore().byId("table_PPD_Dealer");
+								var oModel = new sap.ui.model.json.JSONModel(data);
+								oTable.setModel(oModel);
+							},
+							error: function(jqXHR, textStatus, errorThrown) {
+								console.log(jqXHR );
+								console.log(textStatus );
+								console.log(errorThrown);
+									console.log("table_PPD_Dealer ERROR in service");
+								sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+									.m.MessageBox.Action.OK, null, null);
+							}
+						});	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			// =========================================== End of changes service call from Price protectin details dealer.controller.js=======================================
 
 			/*	var oI18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties"
