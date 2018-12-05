@@ -232,8 +232,9 @@
 	}],
 	
 	"Products": [{
+		"num": "SO869634",
 		"ProductId": "HT-1000",
-		"Category": "Laptops",
+		"Category": "Laptops1",
 		"MainCategory": "Computer Systems",
 		"TaxTarifCode": "1",
 		"SupplierName": "Very Best Screens",
@@ -255,8 +256,31 @@
 	}],	
 	
 	"ProductCollection": [{
+		"num": "SO869909",
 		"ProductId": "HT-1000",
-		"Category": "Laptops",
+		"Category": "Laptops1",
+		"MainCategory": "Computer Systems",
+		"TaxTarifCode": "1",
+		"SupplierName": "Very Best Screens",
+		"WeightMeasure": 4.2,
+		"WeightUnit": "KG",
+		"Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+		"Name": "Notebook Basic 15",
+		"DateOfSale": "2017-03-26",
+		"ProductPicUrl": "test-resources/sap/ui/demokit/explored/img/HT-1000.jpg",
+		"Status": "Available",
+		"Quantity": 90,
+		"UoM": "PC",
+		"CurrencyCode": "EUR",
+		"Price": 956,
+		"Width": 30,
+		"Depth": 18,
+		"Height": 2,
+		"DimUnit": "cm"
+	},{
+		"num": "SO86969",
+		"ProductId": "HT-1000",
+		"Category": "Laptops2",
 		"MainCategory": "Computer Systems",
 		"TaxTarifCode": "1",
 		"SupplierName": "Very Best Screens",
@@ -276,8 +300,9 @@
 		"Height": 2,
 		"DimUnit": "cm"
 	}, {
+		"num": "BUDGET6969",
 		"ProductId": "HT-1001",
-		"Category": "Laptops",
+		"Category": "Laptops3",
 		"MainCategory": "Computer Systems",
 		"TaxTarifCode": "1",
 		"SupplierName": "Very Best Screens",
@@ -297,8 +322,9 @@
 		"Height": 3,
 		"DimUnit": "cm"
 	}, {
+		"num": "NAT86969",
 		"ProductId": "HT-1002",
-		"Category": "Laptops",
+		"Category": "Laptops4",
 		"MainCategory": "Computer Systems",
 		"TaxTarifCode": "1",
 		"SupplierName": "Very Best Screens",
@@ -318,8 +344,9 @@
 		"Height": 4,
 		"DimUnit": "cm"
 	}, {
+		"num": "SO86962",
 		"ProductId": "HT-1003",
-		"Category": "Laptops",
+		"Category": "Laptops5",
 		"MainCategory": "Computer Systems",
 		"TaxTarifCode": "1",
 		"SupplierName": "Smartcards",
@@ -339,6 +366,7 @@
 		"Height": 5,
 		"DimUnit": "cm"
 	}, {
+		"num": "NAT86969",
 		"ProductId": "HT-1007",
 		"Category": "Accessories",
 		"MainCategory": "Computer Components",

@@ -3,24 +3,307 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page>
-				<customHeader>
-					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
-						<contentLeft>
-							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
-							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
-							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
-						</contentLeft>
-						<contentRight>
-							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
-							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
-							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
-						</contentRight>
-					</Bar>
-				</customHeader>
+			<Page showHeader="false">
+				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
 					<Label id="label_MangSoldOrderid" text="" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"></Label>
-					<HBox class="marginCorners">
+					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
+						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+						singleContainerFullSize="false">
+						<f:content>
+							<core:Title text="" class="titleFontSize"/>
+							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<Label wrapping="true" text="{i18n>modelYear}"/>
+							<Text text="1980"/>
+							<Label wrapping="true" text="{i18n>Series}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>Model}"/>
+							<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
+							<Label wrapping="true" text="{i18n>Suffix}"/>
+							<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+							<Label wrapping="true" text="{i18n>APX}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true"
+								text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>ContractDate}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>SalesType}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
+							<VBox>
+								<items>
+									<HBox>
+										<items>
+											<Text ></Text>
+											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginTop"/>
+										</items>
+									</HBox>
+									<HBox>
+										<items>
+											<Text ></Text>
+											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginTop"/>
+										</items>
+									</HBox>
+								</items>
+							</VBox>
+							<core:Title text="" class="titleFontSize"/>
+							<MessageStrip text="{i18n>soldOrderInfoTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<Label wrapping="true" text="{i18n>PrevSoldOrder}"/>
+							<Link text="S012345"></Link>
+							<Label wrapping="true" text="{i18n>SalesPerName}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>SalesManName}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>TradeInModelYr}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>TradeInMake}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>TradeInModel}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>SoldOrdStatus}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>Comments}"/>
+							<TextArea maxLength="150"></TextArea>
+							<core:Title text="" class="titleFontSize"/>
+							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
+							<Link text="{}"></Link>
+							<Label wrapping="true" text="{i18n>AuditStatus}"/>
+							<Text text="{address>/ZIPCode}"/>
+							<Label wrapping="true" text="{i18n>DealerAcpETA}"/>
+							<VBox>
+								<items>
+									<HBox>
+										<items>
+											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
+											<Text text="19-08-2001"></Text>
+										</items>
+									</HBox>
+									<HBox>
+										<items>
+											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
+											<Text text="19-08-2001"></Text>
+										</items>
+									</HBox>
+								</items>
+							</VBox>
+							<Label wrapping="true" text="{i18n>CurrrentETA}"/>
+							<VBox>
+								<items>
+									<HBox>
+										<items>
+											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
+											<Text text="19-08-2001"></Text>
+										</items>
+									</HBox>
+									<HBox>
+										<items>
+											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
+											<Text text="19-08-2001"></Text>
+										</items>
+									</HBox>
+								</items>
+							</VBox>
+							<Label wrapping="true" text="{i18n>VehDelDate}"/>
+							<Text text="{address>/City}"/>
+							<Label wrapping="true" text="{i18n>OrderType}"/>
+							<Text text="{address>/City}"/>
+							<Label wrapping="true" text="{i18n>CancellationReason}"/>
+							<Text text="{address>/City}"/>
+							<Label wrapping="true" text="{i18n>Comments}"/>
+							<TextArea maxLength="150"></TextArea>
+						</f:content>
+					</f:SimpleForm>
+					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
+						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+						singleContainerFullSize="false">
+						<f:content>
+							<core:Title text="" class="titleFontSize"/>
+							<MessageStrip text="{i18n>CustInfoTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<Label wrapping="true" text="{i18n>CustName}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>address}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>city}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>province}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>postalcode}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>phnNo}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>email}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>driverLic}"/>
+							<Text text="{address>/Name}"/>
+							<core:Title text="" class="titleFontSize"/>
+							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<Label wrapping="true" text="{i18n>CustName}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>address}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>city}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>province}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>postalcode}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>phnNo}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>email}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true" text="{i18n>driverLic}"/>
+							<Text text="{address>/Name}"/>
+							<core:Title text="" class="titleFontSize"/>
+							<MessageStrip text="{i18n>PriceProtectionDetails}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<Label wrapping="true" text="{i18n>Eligibility}"/>
+							<Text text="{address>/Street}"/>
+							<Label wrapping="true" text="{i18n>Status}"/>
+							<Text text="{address>/HouseNumber}"/>
+							<Label wrapping="true" text="{i18n>CreditMemo}"/>
+							<Text text="{address>/ZIPCode}"/>
+							<Label wrapping="true" text="{i18n>Comments}"/>
+							<TextArea maxLength="150"></TextArea>
+							<Label wrapping="true" text="{i18n>App/RejDate}"/>
+							<Text text="{address>/City}"/>
+							<Label wrapping="true" text="{i18n>PayDate}"/>
+							<Text text="{address>/City}"/>
+							<Label wrapping="true" text="{i18n>PayAmount}"/>
+							<Text text="{address>/City}"/>
+						</f:content>
+					</f:SimpleForm>
+					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss2"></MessageStrip >
+					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false"
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount='10'>
+						<t:columns>
+							<t:Column width="33.33%" resizable="false">
+								<Label text=""/>
+								<t:template>
+									<Link text="{i18n>DeleteAttachment}" press="_onDeleteAttachment" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="33.33%" resizable="false">
+								<Label text="{i18n>File}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Name}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="33.33%" resizable="false">
+								<Label text="{i18n>Comments}" class="TableLabel"/>
+								<t:template>
+									<Text text="{Category}" wrapping="true"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+					<!--<HBox class="justifyContentCenter smallMarginBottom marginCornersRight">
+						<items>
+							<Label text="{i18n>Attachment}" class="sapUiMediumMarginEnd sapUiSmallMarginBegin sapUiSmallMarginTop"></Label>
+							<u:FileUploader id="fileUploader" name="myFileUpload" tooltip="Upload your file to the local server"
+								 class="sapUiMediumMarginEnd"/>
+							<Label text="{i18n>Comments}" class="sapUiMediumMarginEnd sapUiSmallMarginTop" required="true"></Label>
+							<TextArea id="idComments_TA_RSO_ManageSO" maxLength="30" class="sapUiMediumMarginEnd"></TextArea>
+							<Button id="btn_addAttach_RSO_MSO" enabled="false" text="{i18n>AddAttach}" press="_addAttachment"></Button>
+						</items>
+					</HBox>-->
+					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12">
+						<Label text="{i18n>Attachment}" wrapping="true" class="sapUiSmallMarginTop">
+							<layoutData>
+								<l:GridData span="L1 M2 S12" indent="L3 M3"/>
+							</layoutData>
+						</Label>
+						<u:FileUploader/>
+						<HBox>
+							<items>
+								<Label text="{i18n>Comments}" wrapping="true" class="sapUiSmallMarginTop sapUiSmallMarginEnd" required="true">
+									<layoutData>
+										<l:GridData span="L1 M3 S6"/>
+									</layoutData>
+								</Label>
+								<TextArea id="idComments_TA_RSO_ManageSO" maxLength="30">
+									<layoutData>
+										<l:GridData span="L2 M3 S6"/>
+									</layoutData>
+								</TextArea>
+							</items>
+							<layoutData>
+								<l:GridData indent="M3"/>
+							</layoutData>
+						</HBox>
+						<Button id="btn_addAttach_RSO_MSO" text="{i18n>AddAttach}" press="_addAttachment">
+							<layoutData>
+								<l:GridData span="L2 M3 S6"/>
+							</layoutData>
+						</Button>
+					</l:Grid>
+					<!--<HBox class="justifyContentEnd smallMarginBottom marginCornersRight">
+						<items>
+							<Button text="{i18n>Update}" press="_updateSoldOrderRequest"></Button>
+							<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" enabled="false" press="_getVehiclesToFillSoldOrderRequest" class="sapUiMediumMarginBegin"></Button>
+							<Button id="btn_orderChange_RSO_MSO" text="{i18n>OrderChange}" press="_navToRSOrderChange" enabled="false" class="sapUiLargeMarginBegin"></Button>
+							<Button id="btn_cancelOrder_RSO_MSO" text="{i18n>CancelOrder}" press="_navCancleOrder" enabled="false" class="sapUiMediumMarginBegin"></Button>
+							<Button text="{i18n>Back}" press="onNavBack" class="sapUiMediumMarginBegin"></Button>
+						</items>
+					</HBox>-->
+					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12">
+						<Button text="{i18n>Update}" press="_updateSoldOrderRequest">
+							<layoutData>
+								<l:GridData span="L2 M4 S6" indent="L2 M3"/>
+							</layoutData>
+						</Button>
+						<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" enabled="false" press="_getVehiclesToFillSoldOrderRequest"
+							class="sapUiMediumMarginBegin">
+							<layoutData>
+								<l:GridData span="L2 M4 S6"/>
+							</layoutData>
+						</Button>
+						<Button id="btn_orderChange_RSO_MSO" text="{i18n>OrderChange}" press="_navToRSOrderChange" enabled="false" class="sapUiLargeMarginBegin">
+							<layoutData>
+								<l:GridData span="L2 M4 S6" indent="M1"/>
+							</layoutData>
+						</Button>
+						<Button id="btn_cancelOrder_RSO_MSO" text="{i18n>CancelOrder}" press="_navCancleOrder" enabled="false" class="sapUiMediumMarginBegin">
+							<layoutData>
+								<l:GridData span="L2 M4 S6"/>
+							</layoutData>
+						</Button>
+						<Button text="{i18n>Back}" press="onNavBack" class="sapUiMediumMarginBegin">
+							<layoutData>
+								<l:GridData span="L2 M3 S6"/>
+							</layoutData>
+						</Button>
+					</l:Grid>
+					<!--	<HBox class="justifyContentEnd marginCornersBottom marginCornersRight">
+						<items>
+							<Button id="btn_AuditComp_RSO_MSO" enabled="false" text="{i18n>AuditComp}" press="_updateAuditSoldOrderRequest"></Button>
+							<Button id="btn_ApprPriceProt_RSO_MSO" enabled="false" text="{i18n>ApprPriceProt}" press="_approvePriceProtectionDetails" class="sapUiMediumMarginBegin"></Button>
+							<Button id="btn_RejPriceProt_RSO_MSO" enabled="false" text="{i18n>RejPriceProt}" press="_rejectPriceProtectionDetails" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"></Button>
+						</items>
+					</HBox>-->
+					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12" class="marginCornersBottom">
+						<Button id="btn_AuditComp_RSO_MSO" enabled="false" text="{i18n>AuditComp}" press="_updateAuditSoldOrderRequest">
+							<layoutData>
+								<l:GridData span="L2 M3 S6" indent="L4 M1"/>
+							</layoutData>
+						</Button>
+						<Button id="btn_ApprPriceProt_RSO_MSO" enabled="false" text="{i18n>ApprPriceProt}" press="_approvePriceProtectionDetails">
+							<layoutData>
+								<l:GridData span="L3 M4 S6"/>
+							</layoutData>
+						</Button>
+						<Button id="btn_RejPriceProt_RSO_MSO" enabled="false" text="{i18n>RejPriceProt}" press="_rejectPriceProtectionDetails">
+							<layoutData>
+								<l:GridData span="L3 M4 S12"/>
+							</layoutData>
+						</Button>
+					</l:Grid>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
+<!--<HBox class="marginCorners">
 						<items>
 							<VBox width="100%">
 								<items>
@@ -206,59 +489,4 @@
 								</items>
 							</VBox>
 						</items>
-					</HBox>
-					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss"></MessageStrip >
-					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false"
-						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount='10'>
-						<t:columns>
-							<t:Column width="33.33%" resizable="false">
-								<Label text=""/>
-								<t:template>
-									<Link text="{i18n>DeleteAttachment}" press="_onDeleteAttachment" wrapping="false"/>
-								</t:template>
-							</t:Column>
-							<t:Column width="33.33%" resizable="false">
-								<Label text="{i18n>File}" class="TableLabel"/>
-								<t:template>
-									<Text text="{Name}" wrapping="false"/>
-								</t:template>
-							</t:Column>
-							<t:Column width="33.33%" resizable="false">
-								<Label text="{i18n>Comments}" class="TableLabel"/>
-								<t:template>
-									<Text text="{Category}" wrapping="true"/>
-								</t:template>
-							</t:Column>
-						</t:columns>
-					</t:Table>
-					<HBox class="justifyContentCenter marginCornersBottom marginCornersRight">
-						<items>
-							<Label text="{i18n>Attachment}" class="sapUiMediumMarginEnd sapUiSmallMarginBegin sapUiSmallMarginTop"></Label>
-							<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
-								uploadStart="_oBrowse" uploadComplete="browse" handleUploadPress="_onBrowse" class="sapUiMediumMarginEnd"/>
-							<Label text="{i18n>Comments}" class="sapUiMediumMarginEnd sapUiSmallMarginTop" required="true"></Label>
-							<TextArea id="idComments_TA_RSO_ManageSO" maxLength="30" class="sapUiMediumMarginEnd"></TextArea>
-							<Button id="btn_addAttach_RSO_MSO" enabled="false" text="{i18n>AddAttach}" press="_addAttachment"></Button>
-						</items>
-					</HBox>
-					<HBox class="justifyContentEnd marginCornersBottom marginCornersRight">
-						<items>
-							<Button text="{i18n>Update}" press="_updateSoldOrderRequest"></Button>
-							<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" enabled="false" press="_getVehiclesToFillSoldOrderRequest" class="sapUiMediumMarginBegin"></Button>
-							<Button id="btn_orderChange_RSO_MSO" text="{i18n>OrderChange}" press="_navToRSOrderChange" enabled="false" class="sapUiLargeMarginBegin"></Button>
-							<Button id="btn_cancelOrder_RSO_MSO" text="{i18n>CancelOrder}" press="_navCancleOrder" enabled="false" class="sapUiMediumMarginBegin"></Button>
-							<Button text="{i18n>Back}" press="onNavBack" class="sapUiMediumMarginBegin"></Button>
-						</items>
-					</HBox>
-					<HBox class="justifyContentEnd marginCornersBottom marginCornersRight">
-						<items>
-							<Button id="btn_AuditComp_RSO_MSO" enabled="false" text="{i18n>AuditComp}" press="_updateAuditSoldOrderRequest"></Button>
-							<Button id="btn_ApprPriceProt_RSO_MSO" enabled="false" text="{i18n>ApprPriceProt}" press="_approvePriceProtectionDetails" class="sapUiMediumMarginBegin"></Button>
-							<Button id="btn_RejPriceProt_RSO_MSO" enabled="false" text="{i18n>RejPriceProt}" press="_rejectPriceProtectionDetails" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"></Button>
-						</items>
-					</HBox>
-				</content>
-			</Page>
-		</pages>
-	</App>
-</mvc:View>
+					</HBox>-->

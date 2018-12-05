@@ -1,87 +1,180 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
-	"sap/ui/model/resource/ResourceModel"
-], function (BaseController, ResourceModel) {
+	"sap/ui/model/resource/ResourceModel",
+	"toyota/ca/SoldOrder/util/formatter"
+], function (BaseController, ResourceModel, formatter) {
 	"use strict";
-
+var RSO_MSO_controller;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder", {
+		formatter: formatter,
+
 		onInit: function () {
-			this.getBrowserLanguage();
-			this._oBusyDialog = new sap.m.BusyDialog();
-			this.flagOrderingDealer = false;
-			this.nationalSIPUser = false;
-			this.nationalPPDUser = false;
-			this.flagOwnershipUploaded = false;
-			this.soldOrderRequestStatus = "";
-			this.priceProtectionRequestStatus = "";
-			this._orderingDealerIsTrue();
-			this._nationalPPDUserIsTrue();
-			this._nationalSIPUserIsTrue();
+			RSO_MSO_controller=this;
+			RSO_MSO_controller.getBrowserLanguage();
+			RSO_MSO_controller._oBusyDialog = new sap.m.BusyDialog();
+			RSO_MSO_controller.flagOrderingDealer = false;
+			RSO_MSO_controller.flagNationalSIPUser = false;
+			RSO_MSO_controller.flagNationalPPDUser = false;
+			RSO_MSO_controller.flagOwnershipUploaded = false;
+			RSO_MSO_controller.flagSoldOrderRequestStatus = "";
+			RSO_MSO_controller.flagPriceProtectionRequestStatus = "";
+			RSO_MSO_controller._orderingDealerIsTrue();
+			RSO_MSO_controller._nationalPPDUserIsTrue();
+			RSO_MSO_controller._nationalSIPUserIsTrue();
 		},
 		_nationalPPDUserIsTrue: function () {
-			this.nationalPPDUser = true;
-			if (this.nationalPPDUser === true) {
-				this.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
-				this.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
+			RSO_MSO_controller.flagNationalPPDUser = true;
+			if (RSO_MSO_controller.flagNationalPPDUser === true) {
+				RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
+				RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
 			}
 		},
 		_nationalSIPUserIsTrue: function () {
-			this.nationalSIPUser = true;
-			if (this.nationalSIPUser === true) {
-				this.getView().byId("btn_AuditComp_RSO_MSO").setEnabled(true);
+			RSO_MSO_controller.flagNationalSIPUser = true;
+			if (RSO_MSO_controller.flagNationalSIPUser === true) {
+				RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO").setEnabled(true);
 			}
 		},
 		_orderingDealerIsTrue: function () {
-			this.flagOrderingDealer = true;
-			if (this.flagOrderingDealer === true) {
-				this.getView().byId("btn_orderChange_RSO_MSO").setEnabled(true);
-				this.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(true);
-				this.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(true);
-				this.getView().byId("btn_addAttach_RSO_MSO").setEnabled(true);
+			RSO_MSO_controller.flagOrderingDealer = true;
+			if (RSO_MSO_controller.flagOrderingDealer === true) {
+				RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(true);
+				RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(true);
+				RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(true);
+				RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(true);
 			}
 		},
 		_updateSoldOrderRequest: function () {
 
 		},
 		_updateAuditSoldOrderRequest: function () {
-			this.soldOrderRequestStatus = "Audit-Complete";
+			RSO_MSO_controller.flagSoldOrderRequestStatus = "Audit-Complete";
 		},
 		_approvePriceProtectionDetails: function () {
 
 		},
 		_rejectPriceProtectionDetails: function () {
-			this.priceProtectionRequestStatus = "Rejected";
+			RSO_MSO_controller.flagPriceProtectionRequestStatus = "Rejected";
 		},
 		_getVehiclesToFillSoldOrderRequest: function () {
-			this.getRouter().navTo("vehicleSelection_DealerInventory", {}, true); //page5
+			if (RSO_MSO_controller.flagOrderingDealer === true) {
+				RSO_MSO_controller.getRouter().navTo("vehicleSelection_DealerInventory", {}, true); //page5 
+			}
+			if (RSO_MSO_controller.flagNationalSIPUser === true) {
+				RSO_MSO_controller.getRouter().navTo("vehicleSelection_NationalStock", {}, true); //page6  
+			}
+			
+			var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorVeh");
+			var title=RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("title2");
+			var icon =new sap.ui.core.Icon({src:"sap-icon://alert", size:"2rem"});
+			var msg=new sap.m.HBox({items:[icon,new sap.m.Text({text:errMsg})]});
+			sap.m.MessageBox.show(msg, {
+			//	icon: sap.m.MessageBox.Icon.WARNING,
+				title:title,
+				actions: sap.m.MessageBox.Action.OK,
+				onClose: null,
+				styleClass: "",
+				initialFocus: null,
+				textDirection: sap.ui.core.TextDirection.Inherit,
+				contentWidth: "10rem"
+			});
 		},
 		_navCancleOrder: function () {
-			this.getRouter().navTo("RetailSoldOrderCancelRequest", {}, true); //page5
+			
+			var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorCancel");
+			var title=RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("title4");
+			var icon =new sap.ui.core.Icon({src:"sap-icon://alert", size:"2rem"});
+			var msg=new sap.m.HBox({items:[icon,new sap.m.Text({text:errMsg})]});
+			sap.m.MessageBox.show(msg, {
+				
+				title:title,
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				onClose:function (sAction) {
+					if (sAction == "YES") {
+					RSO_MSO_controller.getRouter().navTo("RetailSoldOrderCancelRequest", {}, true); //page6
+					} else {
+					//
+					}
+				},
+				styleClass: "",
+				initialFocus: null,
+				textDirection: sap.ui.core.TextDirection.Inherit,
+				contentWidth: "10rem"
+			});
 		},
 		_onDeleteAttachment: function (evt) {
-			var oTable = this.getView().byId("table_RSOViewManageSO");
-			console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
-			var sPath = evt.getSource().getBindingContext().sPath;
+			var evtContext = evt.getSource().getBindingContext(); // "/ProductCollection/0"
+			var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("deleteError");
+			var title=RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("title1");
+			var icon =new sap.ui.core.Icon({src:"sap-icon://alert", size:"2rem"});
+			var msg=new sap.m.HBox({items:[icon,new sap.m.Text({text:errMsg})]});
+			sap.m.MessageBox.show(msg, {
+				//icon: sap.m.MessageBox.Icon.WARNING,
+				title:title,
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				onClose: function (sAction) {
+					if (sAction == "YES") {
+						RSO_MSO_controller.deleteAtt(evtContext);
+					} else {
+						//
+					}
+				},
+				styleClass: "",
+				initialFocus: null,
+				textDirection: sap.ui.core.TextDirection.Inherit,
+				contentWidth: "10rem"
+			});
+		},
+		deleteAtt: function (evtContext) {
+			var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
+			var sPath = evtContext.sPath;
 			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 			var model = oTable.getModel();
 			var data = model.getProperty("/ProductCollection");
-			var removed = data.splice(oIndex, 1);
+			data.splice(oIndex, 1);
 			model.setProperty("/ProductCollection", data);
-			console.log(data);
 			oTable.getModel().refresh();
-			this.getView().getModel().refresh(true);
+			RSO_MSO_controller.getView().getModel().refresh(true);
 		},
 		_addAttachment: function () {
-			this.flagOwnershipUploaded = true;
+			RSO_MSO_controller.flagOwnershipUploaded = true;
+			var com = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").getValue();
+			if (com == "") {
+				var errForm = formatter.formatErrorType("SO000012");
+				var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			}
+
 		},
 		_navToRSOrderChange: function () {
-			this.getRouter().navTo("SoldOrderChangeReason", {}, true); //page7
+			
+			var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorChange");
+			var title=RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("title3");
+			var icon =new sap.ui.core.Icon({src:"sap-icon://alert", size:"2rem"});
+			var msg=new sap.m.HBox({items:[icon,new sap.m.Text({text:errMsg})]});
+			sap.m.MessageBox.show(msg, {
+			//	icon: sap.m.MessageBox.Icon.WARNING,
+				title:title,
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				onClose: function (sAction) {
+					if (sAction == "YES") {
+					RSO_MSO_controller.getRouter().navTo("SoldOrderChangeReason", {}, true); //page7
+					} else {
+					}
+				},
+				styleClass: "",
+				initialFocus: null,
+				textDirection: sap.ui.core.TextDirection.Inherit,
+				contentWidth: "10rem"
+			});
 		},
 		onAfterRendering: function () {
-			var oBundle = this.getView().getModel("i18n").getResourceBundle();
-			var sRecipient = "S09732984"; // this.getView().getModel().getProperty("/recipient/name");
+			var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
+			var sRecipient = "S09732984"; // RSO_MSO_controller.getView().getModel().getProperty("/recipient/name");
 			var sMsg = oBundle.getText("mangSoldOrder", [sRecipient]);
-			this.getView().byId("label_MangSoldOrderid").setText(sMsg);
+			RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);
 		},
 
 		browse: function () {
@@ -89,7 +182,7 @@ sap.ui.define([
 		},
 		_oBrowse: function () {
 			console.log("in upload progress");
-			var textArea = this.getView().byId("idComments_TA_RSO_ManageSO");
+			var textArea = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
 			var text = textArea.getValue();
 			console.log(text);
 			if (text == "") {
@@ -100,14 +193,14 @@ sap.ui.define([
 
 		onUpload: function (e) {
 
-			var t = this;
-			var fU = this.getView().byId("idfileUploader");
+			var t = RSO_MSO_controller;
+			var fU = RSO_MSO_controller.getView().byId("idfileUploader");
 			var domRef = fU.getFocusDomRef();
 			var file = domRef.files[0];
 			var dublicateValue = [];
 			try {
 				if (file) {
-					var that = this;
+					var that = RSO_MSO_controller;
 					that._oBusyDialog.open();
 
 					// To Fetch CSRF Token
@@ -206,8 +299,8 @@ sap.ui.define([
 				var file = jQuery.sap.domById("__xmlview2– fileupload - fu").files[0];
 				try {
 					if (file) {
-						this._bUploading = true;
-						var that = this;
+						RSO_MSO_controller._bUploading = true;
+						var that = RSO_MSO_controller;
 					
 						var a = “/Yourservice URL or Metadata URL “;
 						var f = {
@@ -267,7 +360,7 @@ sap.ui.define([
 		//	},
 
 		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+		 * Similar to onAfterRendering, but RSO_MSO_controller hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
 		 * @memberOf toyota.capractise.view.RSOView_ManageSoldOrder
 		 */
@@ -277,7 +370,7 @@ sap.ui.define([
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
+		 * RSO_MSO_controller hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf toyota.capractise.view.RSOView_ManageSoldOrder
 		 */
 		//	onAfterRendering: function() {
@@ -285,7 +378,7 @@ sap.ui.define([
 		//	},
 
 		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
+		 * Called when the Controller is destroyed. Use RSO_MSO_controller one to free resources and finalize activities.
 		 * @memberOf toyota.capractise.view.RSOView_ManageSoldOrder
 		 */
 		//	onExit: function() {
@@ -293,18 +386,18 @@ sap.ui.define([
 		//	}
 
 		handleUploadComplete: function (c) {
-			var _ = this.getControllerInstance();
+			var _ = RSO_MSO_controller.getControllerInstance();
 			var p = c.getParameters();
 			if (parseInt(p.status, 10) >= 400) {
 				var X = jQuery.parseXML(p.responseRaw);
-				var e = this.Xml2Json(X.documentElement);
+				var e = RSO_MSO_controller.Xml2Json(X.documentElement);
 				var s = {
 					message: e.message,
 					type: sap.ca.ui.message.Type.ERROR
 				};
 				sap.ca.ui.message.showMessageBox(s);
 			}
-			this.onSubmitLRCsuccess(_.objectResponse, _.ResponseMessage);
+			RSO_MSO_controller.onSubmitLRCsuccess(_.objectResponse, _.ResponseMessage);
 		},
 		getControllerInstance: function () {
 			var _ = null;
@@ -313,7 +406,7 @@ sap.ui.define([
 		},
 		Xml2Json: function (n) {
 			var a = {},
-				t = this;
+				t = RSO_MSO_controller;
 			var A = function (e, v) {
 				if (a[e]) {
 					if (a[e].constructor !== Array) {

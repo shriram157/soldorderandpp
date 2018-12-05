@@ -13,7 +13,7 @@ sap.ui.define([
 		_onSelect: function () {
 				var oTable = this.getView().byId("idFSO_IVS_Table");
 				var indiceArray=oTable.getSelectedIndices();
-				
+					this.getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
 			/*	if (oTable.setSelectedIndex(-1) == true) {
 					var errForm = formatter.formatErrorType("SO00007");
 					var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);

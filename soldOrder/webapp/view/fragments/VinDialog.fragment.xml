@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
+	<Dialog draggable="true" title='Search Vehicle By VTN/VIN' contentWidth="400px" contentHeight="260px"> <!--id="VTNDialog"-->
+						<content>
+							<VBox>
+								<items>
+									<HBox class="justifyContentCenter">
+										<items>
+											<Label text="{i18n>vtn}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+											<Input id="vtin"></Input>
+										</items>
+									</HBox>
+									<HBox class="justifyContentCenter">
+										<items>
+											<Label text="{i18n>or}"></Label>
+										</items>
+									</HBox>
+									<HBox class="justifyContentCenter">
+										<items>
+											<Label text="{i18n>vin}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd "></Label>
+											<Input id="vin"></Input>
+										</items>
+									</HBox>
+									<HBox class="justifyContentCenter">
+										<items>
+											<Button text="{i18n>searchLink}" press="_searchNLink"></Button>
+										</items>
+									</HBox>
+								</items>
+							</VBox>
+						</content>
+						<beginButton>
+							<Button text="{i18n>Close}" press="closeDialog"></Button>
+						</beginButton>
+					</Dialog>
+</core:FragmentDefinition>
+

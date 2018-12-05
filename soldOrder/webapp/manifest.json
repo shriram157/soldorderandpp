@@ -22,7 +22,7 @@
 				"uri": "model/Errors.json",
 				"type": "JSON"
 			}
-		
+
 		}
 	},
 	"sap.ui": {
@@ -73,7 +73,7 @@
 					"bundleName": "toyota.ca.SoldOrder.i18n.i18n"
 				}
 			},
-			"":{
+			"": {
 				"type": "sap.ui.model.json.JSONModel",
 				"dataSource": "initData",
 				"settings": {
@@ -203,6 +203,9 @@
 			}],
 			"targets": {
 				"home1": {
+
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
@@ -230,6 +233,8 @@
 					}
 				},
 				"home3": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewName": "RSOView_ManageSoldOrder",
 					"routerClass": "sap.m.routing.Router",
 					"viewType": "XML",
@@ -243,6 +248,8 @@
 					}
 				},
 				"home4": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewName": "vehicleSelection_NationalStock",
 					"routerClass": "sap.m.routing.Router",
 					"viewType": "XML",
@@ -256,6 +263,8 @@
 					}
 				},
 				"home5": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewName": "vehicleSelection_DealerInventory",
 					"routerClass": "sap.m.routing.Router",
 					"viewType": "XML",
@@ -269,6 +278,8 @@
 					}
 				},
 				"home6": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewName": "RetailSoldOrderCancelRequest",
 					"routerClass": "sap.m.routing.Router",
 					"viewType": "XML",
@@ -295,6 +306,8 @@
 					}
 				},
 				"home8": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewName": "ChangeSoldOrderRequest",
 					"routerClass": "sap.m.routing.Router",
 					"viewType": "XML",
@@ -308,6 +321,8 @@
 					}
 				},
 				"home9": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewName": "RSO_ChangeVehicleSelection",
 					"routerClass": "sap.m.routing.Router",
 					"viewType": "XML",
@@ -334,6 +349,8 @@
 					}
 				},
 				"home10": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
 					"viewName": "RetailSoldOrderSummary",
 					"routerClass": "sap.m.routing.Router",
@@ -347,6 +364,8 @@
 					}
 				},
 				"home11": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewName": "CreateFleetSoldOrder",
 					"routerClass": "sap.m.routing.Router",
 					"viewType": "XML",
@@ -360,6 +379,8 @@
 					}
 				},
 				"home12": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
 					"viewName": "InventoryVehicleSelection",
 					"routerClass": "sap.m.routing.Router",
@@ -373,6 +394,8 @@
 					}
 				},
 				"home13": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
 					"viewName": "FleetSoldOrder_ZoneApproval",
 					"routerClass": "sap.m.routing.Router",
@@ -386,6 +409,8 @@
 					}
 				},
 				"home14": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
 					"viewName": "FleetSoldOrder_ProcessedView",
 					"routerClass": "sap.m.routing.Router",
@@ -399,6 +424,8 @@
 					}
 				},
 				"home15": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
 					"viewName": "FleetSoldOrderSummary",
 					"routerClass": "sap.m.routing.Router",
@@ -412,6 +439,8 @@
 					}
 				},
 				"home16": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
 					"viewName": "FleetSoldOrderDetails",
 					"routerClass": "sap.m.routing.Router",
@@ -425,6 +454,8 @@
 					}
 				},
 				"home17": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
 					"viewName": "PriceProtectionDetails_Dealer",
 					"routerClass": "sap.m.routing.Router",
@@ -438,6 +469,8 @@
 					}
 				},
 				"home18": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
 					"viewName": "PriceProtectionDetails_Zone_PPD",
 					"routerClass": "sap.m.routing.Router",
@@ -451,8 +484,19 @@
 					}
 				},
 				"home19": {
+					"targetAggregation": "content",
+					"clearTarget": true,
 					"viewType": "XML",
-					"viewName": "NationalFleetSoldOrderView"
+					"viewName": "NationalFleetSoldOrderView",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
 				}
 			}
 		}

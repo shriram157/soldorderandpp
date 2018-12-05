@@ -3,25 +3,47 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page >
-				<customHeader>
-					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
-						<contentLeft>
-							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
-							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
-							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
-						</contentLeft>
-						<contentRight>
-							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
-							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
-							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
-						</contentRight>
-					</Bar>
-				</customHeader>
+			<Page showHeader="false">
+				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
-					<Label id="label_FSO_ZoneApprovaid" text="{i18n>zoneApprovalTitle}" 
-					class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
-					<HBox class="marginCorners">
+					<Label id="label_FSO_ZoneApprovaid" text="{i18n>zoneApprovalTitle}" wrapping="true" 
+					class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize "></Label>
+						<f:SimpleForm title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
+						singleContainerFullSize="false">
+						<f:content>
+								<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
+							<Label wrapping="true"  text="{i18n>FanNumber}"/>
+											<Text text="{/ProductCollection/0/Quantity}"/>
+											<Label wrapping="true"  text="{i18n>PONumber}"/>
+											<Text text="{/ProductCollection/0/Quantity}"/>
+											<Label wrapping="true"  text="{i18n>orderType}"/>
+												<ComboBox enabled="false" id="orderType_FSOZA" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }" required="true">
+								<core:Item key="{key}" text="{text}"/>
+							</ComboBox>
+											<Label wrapping="true"  text="{i18n>status}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label wrapping="true"  text="{i18n>zoneAppNumber}"/>
+											<Input value="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>totalVehicles}"/>
+											<Text text="{/ProductCollection/0/Quantity}"/>
+								<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
+							<Label wrapping="true"  text="{i18n>CustName}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label wrapping="true"  text="{i18n>address}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label wrapping="true"  text="{i18n>city}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label wrapping="true"  text="{i18n>province}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label wrapping="true"  text="{i18n>postalcode}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+											<Label wrapping="true"  text="{i18n>phnNo}"/>
+											<Text text="{/ProductCollection/0/Category}"/>
+						</f:content>
+					</f:SimpleForm>
+					
+					<!--<HBox class="marginCorners">
 						<items>
 							<VBox width="100%">
 								<items>
@@ -32,7 +54,7 @@
 											<Label text="{i18n>PONumber}"/>
 											<Text text="{/ProductCollection/0/Quantity}"/>
 											<Label text="{i18n>orderType}"/>
-												<ComboBox id="resonCancelId" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }" required="true">
+												<ComboBox enabled="false" id="orderType_FSOZA" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }" required="true">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 											<Label text="{i18n>status}"/>
@@ -66,7 +88,7 @@
 								</items>
 							</VBox>
 						</items>
-					</HBox>
+					</HBox>-->
 					<Label text="{i18n>dealerInventoryVeh}" class="marginCorners fontsize"></Label>
 					<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
@@ -177,9 +199,9 @@
 					</t:Table>
 					<HBox class="cssShift marginCornersBottom marginCornersRight">
 						<items>
-							<Button text="{i18n>approve}" press="_approveFleetSoldRequest"></Button>
-							<Button text="{i18n>reject}" press="_rejectFleetSoldRequest" class="sapUiSmallMarginBegin"></Button>
-							<Button text="{i18n>back}" class="sapUiSmallMarginBegin"></Button>
+							<Button id="btn_approve_FSOZA" text="{i18n>approve}" visible="false" press="_approveFleetSoldRequest"></Button>
+							<Button id="btn_reject_FSOZA" text="{i18n>reject}" visible="false" press="_rejectFleetSoldRequest" class="sapUiSmallMarginBegin"></Button>
+							<Button id="btn_back_FSOZA" text="{i18n>back}" visible="false" class="sapUiSmallMarginBegin"></Button>
 						</items>
 					</HBox>
 				</content>

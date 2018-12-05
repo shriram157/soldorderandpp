@@ -3,26 +3,36 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page>
-				<customHeader>
-					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
-						<contentLeft>
-							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
-							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
-							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
-						</contentLeft>
-						<contentRight>
-							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
-							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
-							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
-						</contentRight>
-					</Bar>
-				</customHeader>
+			<Page showHeader="false">
+				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
-					<Label id="NationalFleetSoldOrderViewid" text="{i18n>NationalFleetSoldOrderViewtitle}" 
+					<Label id="NationalFleetSoldOrderViewid" text="{i18n>NationalFleetSoldOrderViewtitle}"
 						class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiTinyMarginBottom fontsize"></Label>
-					<MessageStrip text="{i18n>VehicleInformation}" class="  msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
-					<HBox class="">
+					<MessageStrip text="{i18n>VehicleInformation}" class=" msgStripCss2 marginCornersLeft marginCornersRight "></MessageStrip >
+					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+						singleContainerFullSize="false">
+						<f:content>
+							<core:Title text="" class="titleFontSize"/>
+							<Label wrapping="true"  text="{i18n>modelYear}"/>
+							<Text text="1980"/>
+							<Label wrapping="true"  text="{i18n>Series}"/>
+							<Text text="{address>/Name}"/>
+							<Label wrapping="true"  text="{i18n>Model}"/>
+							<Text text="1980"/>
+							<core:Title text="" class="titleFontSize"/>
+							<Label wrapping="true"  text="{i18n>suffix}"/>
+							<Text text="1980"/>
+							<Label wrapping="true"  text="{i18n>APX}"/>
+							<Text text="1980"/>
+							<Label wrapping="true"  text="{i18n>Colour}"/>
+							<Text text="red"/>
+							<core:Title text="" class="titleFontSize"/>
+							<Label wrapping="true"  text="{i18n>VehTrackNo}"/>
+							<Text text="1980"/>
+						</f:content>
+					</f:SimpleForm>
+					<!--	<HBox >
 						<items>
 							<VBox width="100%">
 								<items>
@@ -63,12 +73,71 @@
 								</items>
 							</VBox>
 						</items>
-					</HBox>
-					<HBox>
+					</HBox>-->
+					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+						singleContainerFullSize="false">
+						<f:content>
+							<core:Title text="" class="titleFontSize"/>
+							<MessageStrip text="{i18n>CustInfoAllocTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<Label wrapping="true"  text="{i18n>CustName}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>address}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>city}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>province}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>postalcode}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>phnNo}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>email}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>driverLic}"/>
+											<Text text="{address>/Name}"/>
+							<core:Title text="" class="titleFontSize"/>
+							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<Label wrapping="true"  text="{i18n>CustName}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>address}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>city}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>province}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>postalcode}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>phnNo}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>email}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>driverLic}"/>
+											<Text text="{address>/Name}"/>
+							<core:Title text="" class="titleFontSize"/>
+							<MessageStrip text="{i18n>PriceProtectionDetails}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<Label wrapping="true"  text="{i18n>Eligibility}"/>
+											<Text text="1980"/>
+											<Label wrapping="true"  text="{i18n>status}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>CreditMemo}"/>
+											<Text text="1980"/>
+											<Label wrapping="true"  text="{i18n>Comments}"/>
+											<TextArea maxLength="150"/>
+											<Label wrapping="true"  text="{i18n>App/RejDate}"/>
+											<Text text="08/12/2018"/>
+											<Label wrapping="true"  text="{i18n>PayDate}"/>
+											<Text text="{address>/Name}"/>
+											<Label wrapping="true"  text="{i18n>PayAmount}"/>
+											<Text text="{address>/Name}"/>
+						</f:content>
+					</f:SimpleForm>
+					
+					<!--<HBox>
 						<items>
 							<VBox width="100%">
 								<items>
-									<MessageStrip text="{i18n>CustInfoAllocTitle}" class="  msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
+									<MessageStrip text="{i18n>CustInfoAllocTitle}" class=" msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
 									<f:SimpleForm editable="false" width="100%" layout="ResponsiveLayout">
 										<f:content>
 											<Label text="{i18n>CustName}"/>
@@ -118,7 +187,7 @@
 							</VBox>
 							<VBox width="100%">
 								<items>
-									<MessageStrip text="{i18n>PriceProtectionDetails}" class="  msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
+									<MessageStrip text="{i18n>PriceProtectionDetails}" class=" msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
 									<f:SimpleForm singleContainerFullSize="false" minWidth="1" editable="false" width="100%" layout="ResponsiveLayout" columnsL="2" columnsM="2">
 										<f:content >
 											<Label text="{i18n>Eligibility}"/>
@@ -128,7 +197,7 @@
 											<Label text="{i18n>CreditMemo}"/>
 											<Text text="1980"/>
 											<Label text="{i18n>Comments}"/>
-											<Text text="{address>/Name}"/>
+											<TextArea maxLength="150"/>
 											<Label text="{i18n>App/RejDate}"/>
 											<Text text="{address>/Name}"/>
 											<Label text="{i18n>PayDate}"/>
@@ -140,48 +209,96 @@
 								</items>
 							</VBox>
 						</items>
-					</HBox>
-					<MessageStrip text="{i18n>titleVehicleOwnership}" class="  msgStripCss marginCornersLeft marginCornersRight "></MessageStrip >
-				<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
-								enableColumnFreeze="false" class="marginCorners">
-								<t:columns>
-								<t:Column width="33.3%" resizable="false" sortProperty="Category">
-								<Label class="TableLabel"  text=""/>
+					</HBox>-->
+					<MessageStrip text="{i18n>titleVehicleOwnership}" class=" msgStripCss2 marginCornersLeft marginCornersRight "></MessageStrip >
+					<t:Table id="tbl_NFSOV" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+						enableColumnFreeze="false" class="marginCorners">
+						<t:columns>
+							<t:Column width="33.3%" resizable="false" sortProperty="Category">
+								<Label class="TableLabel" text=""/>
 								<t:template>
-									<Link text="Delete" wrapping="false"/>
+									<Link id="linkId_NFSOV" text="Delete" press="_onDelete" wrapping="false" visible="false"/>
 								</t:template>
 							</t:Column>
-								<t:Column width="33.3%" resizable="false" sortProperty="Category" id="file">
-								<Label class="TableLabel"  text="{i18n>File}"/>
+							<t:Column width="33.3%" resizable="false" sortProperty="Category" id="file">
+								<Label class="TableLabel" text="{i18n>File}"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Link text="{Category}" press="_openFile"></Link>
 								</t:template>
 							</t:Column>
-								<t:Column width="33.3%" resizable="false" sortProperty="Category" id="comments">
-								<Label class="TableLabel"  text="{i18n>Comments}"/>
+							<t:Column width="33.3%" resizable="false" sortProperty="Category" id="comments">
+								<Label class="TableLabel" text="{i18n>Comments}"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
 						</t:columns>
 					</t:Table>
-					<HBox class="justifyContentCenter">
+					<!--<HBox class="justifyContentCenter">
 						<items>
-							<Label text="{i18n>Attachment}" class="sapUiMediumMarginEnd sapUiSmallMarginBegin sapUiSmallMarginTop"></Label>
-							<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
+							<Label text="{i18n>Attachment}"  class="sapUiMediumMarginEnd sapUiSmallMarginBegin sapUiSmallMarginTop"></Label>
+							<u:FileUploader id="fileUploader1" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
 								uploadComplete="handleUploadComplete" class="sapUiMediumMarginEnd"/>
-							<Label text="{i18n>Comments}" class="sapUiMediumMarginEnd sapUiSmallMarginTop"></Label>
-							<TextArea class="sapUiMediumMarginEnd"></TextArea>
-							<Button text="{i18n>AddAttach}"></Button>
+							<Label text="{i18n>Comments}" required="true" class="sapUiMediumMarginEnd sapUiSmallMarginTop"></Label>
+							<TextArea id="comments_NFSO1" class="sapUiMediumMarginEnd" maxLength="30" ></TextArea>
+							<Button text="{i18n>AddAttach}" press="_addAttachment"></Button>
 						</items>
 					</HBox>
-					<HBox class=" marginCorners justifyContentEnd">
+					<HBox class=" marginCornersBottom  justifyContentEnd">
 						<items>
-							<Button text="{i18n>AppPricePro}"></Button>
-							<Button text="{i18n>RejPricePro}" class="sapUiMediumMarginBegin"></Button>
-							<Button text="{i18n>Back}" class="sapUiMediumMarginBegin marginCornersRight "></Button>
+							<Button text="{i18n>AppPricePro}" press="_approvePriceProtectionDetails"></Button>
+							<Button text="{i18n>RejPricePro}" press="_rejectPriceProtectionDetails" class="sapUiMediumMarginBegin"></Button>
+							<Button text="{i18n>Back}" press="onNavBack" class="sapUiMediumMarginBegin marginCornersRight "></Button>
 						</items>
-					</HBox>
+					</HBox>-->
+					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12">
+						<Label text="{i18n>Attachment}" wrapping="true" class="sapUiSmallMarginTop">
+							<layoutData>
+								<l:GridData span="L1 M2 S12" indent="L3 M3"/>
+							</layoutData>
+						</Label>
+						<u:FileUploader id="fileUploader"/>
+						<HBox>
+							<items>
+								<Label text="{i18n>Comments}" wrapping="true" class="sapUiSmallMarginTop sapUiSmallMarginEnd" required="true">
+									<layoutData>
+										<l:GridData span="L1 M3 S6"/>
+									</layoutData>
+								</Label>
+								<TextArea id="comments_NFSO" maxLength="30">
+									<layoutData>
+										<l:GridData span="L2 M3 S6"/>
+									</layoutData>
+								</TextArea>
+							</items>
+							<layoutData>
+								<l:GridData indent="M3"/>
+							</layoutData>
+						</HBox>
+						<Button text="{i18n>AddAttach}" press="_addAttachment">
+							<layoutData>
+								<l:GridData span="L2 M3 S6"/>
+							</layoutData>
+						</Button>
+					</l:Grid>
+					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12" class="marginCornersBottom">
+						<Button text="{i18n>AppPricePro}" press="_approvePriceProtectionDetails">
+							<layoutData>
+								<l:GridData span="L3 M4 S6" indent="L4 M1"/>
+							</layoutData>
+						</Button>
+						<Button text="{i18n>RejPricePro}" press="_rejectPriceProtectionDetails">
+							<layoutData>
+								<l:GridData span="L3 M4 S6"/>
+							</layoutData>
+						</Button>
+						<!--class="sapUiMediumMarginBegin"-->
+						<Button text="{i18n>Back}" press="onNavBack">
+							<layoutData>
+								<l:GridData span="L2 M3 S12"/>
+							</layoutData>
+						</Button>
+					</l:Grid>
 				</content>
 			</Page>
 		</pages>

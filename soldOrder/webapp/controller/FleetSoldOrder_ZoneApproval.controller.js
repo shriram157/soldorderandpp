@@ -12,11 +12,16 @@ sap.ui.define([
 		 * @memberOf toyota.ca.SoldOrder.view.FleetSoldOrder_ZoneApproval
 		 */
 		onInit: function () {
-			/*var i18nModel = new ResourceModel({
-				bundleName: "toyota.ca.SoldOrder.i18n.i18n"	
-			});
-			this.getView().setModel(i18nModel, "i18n");*/
-			this.getBrowserLanguage();
+		this.getBrowserLanguage();
+		this.flagZoneUser=false;
+		this.zoneUserToTrue();
+		},
+		zoneUserToTrue:function(){
+			this.flagZoneUser=true;
+			this.getView().byId("btn_approve_FSOZA").setVisible(true);
+			this.getView().byId("btn_reject_FSOZA").setVisible(true);
+			this.getView().byId("btn_back_FSOZA").setVisible(true); 
+			this.getView().byId("orderType_FSOZA").setEnabled(true);
 		},
 		_approveFleetSoldRequest: function () {
 
@@ -26,7 +31,7 @@ sap.ui.define([
 		},
 		onAfterRendering: function () {
 				var oBundle = this.getView().getModel("i18n").getResourceBundle();
-				var sRecipient = "09784"; // this.getView().getModel().getProperty("/recipient/name");
+				var sRecipient = "09787878784"; // this.getView().getModel().getProperty("/recipient/name");
 				var sMsg = oBundle.getText("zoneApprovalTitle", [sRecipient]);
 				this.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg);
 			}

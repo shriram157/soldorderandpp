@@ -2,22 +2,9 @@
 	controllerName="toyota.ca.SoldOrder.controller.vehicleSelection_DealerInventory" xmlns:html="http://www.w3.org/1999/xhtml">
 	<m:App>
 		<m:pages>
-			<m:Page>
-					<m:customHeader>
-						<m:Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
-							<m:contentLeft>
-							<m:Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
-							<m:Text text="|" class="sapUiTinyMarginBeginEnd"/>
-							<m:Text class="clCustomFont" text="{i18n>PageTitle}"/>
-						</m:contentLeft>
-						<m:contentRight>
-							<m:Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></m:Text>
-							<m:Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></m:Text>
-							<!--	<m:Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-						</m:contentRight>
-						</m:Bar>
-					</m:customHeader>
-			<m:content>
+			<m:Page showHeader="false">
+				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
+				<m:content>
 					<m:VBox>
 						<m:items>
 					<m:Label  text="{i18n>RSOVehicleSel}" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></m:Label>

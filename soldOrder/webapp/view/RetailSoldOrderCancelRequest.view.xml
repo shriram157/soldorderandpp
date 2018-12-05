@@ -2,24 +2,11 @@
 	controllerName="toyota.ca.SoldOrder.controller.RetailSoldOrderCancelRequest" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page>
-				<customHeader>
-					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
-						<contentLeft>
-							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
-							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
-							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
-						</contentLeft>
-						<contentRight>
-							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
-							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
-							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
-						</contentRight>
-					</Bar>
-				</customHeader>
+			<Page showHeader="false">
+				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
-					<Label id="label_CancelSoldOrderid" text="" class=" sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
-					<VBox class="VBox_color" width="49%">
+					<Label id="label_CancelSoldOrderid" text="" class=" sapUiTinyMarginTop sapUiSmallMarginBegin sapUiTinyMarginBottom fontsize"></Label>
+					<VBox class="VBox_color marginCornersBottom marginCorners" width="49%">
 						<items>
 					
 					<f:SimpleForm class="marginCorners" editable="true" width="90%" layout="ResponsiveLayout">

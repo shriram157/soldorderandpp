@@ -1,95 +1,119 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table"
-	controllerName="toyota.ca.SoldOrder.controller.FleetSoldOrderSummary" xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" controllerName="toyota.ca.SoldOrder.controller.FleetSoldOrderSummary" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page>
-				<customHeader>
-					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
-						<contentLeft>
-							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
-							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
-							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
-						</contentLeft>
-						<contentRight>
-							<Text text="{i18n>soldOrder}" class="sapUiTinyMarginBeginEnd"></Text>
-							<Text text="{i18n>priceProtection}" class="sapUiTinyMarginBeginEnd"></Text>
-							<!--	<Text text="{i18n>summary}" class="sapUiTinyMarginBeginEnd"></Text>-->
-						</contentRight>
-					</Bar>
-				</customHeader>
+			<Page showHeader="false">
+				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
 					<VBox>
 						<items>
 							<Label id="label_FleetSoldOrderSummaryid" text="{i18n>fleetSoldOrderSummary}"
 								class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
-							<HBox class="marginCorners VBox_color">
+						
+							<VBox class="marginCorners VBox_color">
 								<items>
-									<Label text="{i18n>status}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"></Label>
-									<ComboBox items="{ path: '/FSOSummary_Status', sorter: { path: 'key' } }" required="true" class="sapUiMediumMarginEnd">
-										<core:Item key="{key}" text="{text}"/>
-									</ComboBox>
-									<Label text="{i18n>OrderType}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"></Label>
-									<ComboBox items="{ path: '/FSOSummary_OrderType', sorter: { path: 'key' } }" required="true" class="sapUiMediumMarginEnd">
-										<core:Item key="{key}" text="{text}"/>
-									</ComboBox>
-									<Label text="{i18n>dealer}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"></Label>
-									<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'key' } }" required="true" class="sapUiMediumMarginEnd">
-										<core:Item key="{key}" text="{text}"/>
-									</ComboBox>
+									<f:SimpleForm columnsL="3" columnsM="3" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="4" labelSpanM="4"
+										layout="ResponsiveGridLayout" >
+										<f:content>
+											<VBox>
+												<Label text="{i18n>status}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+												<MultiComboBox id="mcb_status_FSOS"  selectionChange="_refresh" items="{ path: '/FSOSummary_Status', sorter: { path: 'key' } }"
+													class="sapUiMediumMarginEnd">
+													<core:Item key="{key}" text="{text}"/>
+													<layoutData>
+														<l:GridData span="L1 M6 S12"/>
+													</layoutData>
+												</MultiComboBox>
+											</VBox>
+											<VBox>
+												<Label text="{i18n>OrderType}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+												<MultiComboBox id="mcb_ordTyp_FSOS"  selectionChange="_refresh" items="{ path: '/FSOSummary_OrderType', sorter: { path: 'key' } }"
+													class="sapUiMediumMarginEnd">
+													<core:Item key="{key}" text="{text}"/>
+													<layoutData>
+														<l:GridData span="L1 M6 S12"/>
+													</layoutData>
+												</MultiComboBox>
+											</VBox>
+											<VBox>
+												<Label text="{i18n>dealer}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+												<MultiComboBox id="mcb_dealer_FSOS"  selectionChange="_refresh" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" class="sapUiMediumMarginEnd">
+													<core:Item key="{ProductId}" text="{Category}"/>
+													<layoutData>
+														<l:GridData span="L1 M6 S12"/>
+													</layoutData>
+												</MultiComboBox>
+											</VBox>
+										</f:content>
+									</f:SimpleForm>
+								
 								</items>
-							</HBox>
-							<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
-								enableColumnFreeze="false" class="marginCorners">
+							</VBox>
+							
+							<t:Table id="tble_FSO_S" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+								enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
-											<t:Column width="11.11%" resizable="false" sortProperty="Category">
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
-											<Link text="{Quantity}"/>
+											<Link text="{Quantity}" press="_navToSoldOrder"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" sortProperty="Category">
+									<t:Column width="11.11%" resizable="false" sortProperty="/Products/0/Name">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
+											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Category'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" sortProperty="Category">
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" sortProperty="Category">
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>FanNumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" sortProperty="Category">
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>CustName}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" sortProperty="Category">
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>PONumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" sortProperty="Category">
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>orderType}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" sortProperty="Category">
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>zoneAppNumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Category}"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="11.11%" resizable="false" sortProperty="Category">
+									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>totalVehicles}" class="TableLabel"/>
 										<t:template>
 											<Text text="{Quantity}"/>

@@ -25,9 +25,9 @@ sap.ui.define([
 			var comboBox = this.getView().byId("reqTypeId_SOCR");
 			var cbVal = comboBox.getSelectedKey();
 			if (cbVal == 2) {
-				this.getRouter().navTo("RSO_ChangeVehicleSelection", {}, true);
+				this.getRouter().navTo("RSO_ChangeVehicleSelection", {}, true); //page 9
 			} else if (cbVal == 1) {
-				this.getRouter().navTo("ChangeSoldOrderRequest", {}, true);
+				this.getRouter().navTo("ChangeSoldOrderRequest", {}, true); //page8
 			}
 		}
 

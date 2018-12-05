@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (BaseController, ResourceModel, formatter, JSONModel) {
 	"use strict";
-	var validateFlag = false;
+	var validateFlagA = false;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderA", {
 		formatter: formatter,
 		onInit: function () {
@@ -54,7 +54,7 @@ sap.ui.define([
 				this.nodeJsUrl = this.sPrefix + "/node";
 				console.log(this.nodeJsUrl);
 				$.ajax({
-					url: this.sPrefix + "/userDetails/attributes",
+					url: this.sPrefix + "/zprice_protection_srv/zc_campaign_pricing",
 					//url: getUrlTable_Driver,
 					method: 'GET',
 					async: false,
@@ -84,10 +84,20 @@ sap.ui.define([
 		},
 		onValidateCustomer: function () {
 			var errMsg = this.getView().getModel("i18n").getResourceBundle().getText("error1");
-			//sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Customer Conformation", sap.m.MessageBox.Action.OK, null, null,{contentWidth:"5rem"});
-			sap.m.MessageBox.show(errMsg, {
-				icon: sap.m.MessageBox.Icon.WARNING,
-				title: "Customer Conformation",
+			var title = this.getView().getModel("i18n").getResourceBundle().getText("title5");
+			var icon = new sap.ui.core.Icon({
+				src: "sap-icon://alert",
+				size: "2rem"
+			});
+			var msg = new sap.m.HBox({
+				items: [icon, new sap.m.Text({
+					text: errMsg
+				})]
+			});
+
+			sap.m.MessageBox.show(msg, {
+				//	icon: sap.m.MessageBox.Icon.WARNING,
+				title: title,
 				actions: sap.m.MessageBox.Action.OK,
 				onClose: null,
 				styleClass: "",
@@ -95,7 +105,7 @@ sap.ui.define([
 				textDirection: sap.ui.core.TextDirection.Inherit,
 				contentWidth: "10rem"
 			});
-			validateFlag = true;
+			validateFlagA = true;
 		},
 		listOfModelYear: function () {
 			//	var omodelYearModel;
@@ -116,12 +126,15 @@ sap.ui.define([
 					"text": nextModelYear
 				}]
 			};
-			var modelYearModel = new JSONModel(); 
+			var modelYearModel = new JSONModel();
 			modelYearModel.setData(data);
 			this.getView().byId("modelYr_RSOA").setModel(modelYearModel);
 		},
 		_onSubmit: function () {
-
+			var flag1 = false;
+			var flag2 = false;
+			var errMsg2;
+			var errMsg;
 			var valModelYr = this.getView().byId("modelYr_RSOA").getValue();
 			var valSuffix = this.getView().byId("Suffix_RSOA").getValue();
 			var valSeries = this.getView().byId("series_RSOA").getValue();
@@ -143,16 +156,33 @@ sap.ui.define([
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valCustName == "" || valETATo == "" || valETAFrom == "" || valColour ==
 				"" || valModel == "" || valApx == "" || valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
 				valProvince == "" || valPostalCode == "" || valLicense == "") {
+				flag1 = true;
+			}
+			if (validateFlagA == false) {
+				flag2 = true;
+			}
+
+			if (flag1 == true && flag2 == false) {
 				var errForm = formatter.formatErrorType("SO00003");
-				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
-			} 
-			if (validateFlag == false) {
+			}
+			if (flag1 == false && flag2 == true) {
 				var errForm2 = formatter.formatErrorType("SO00004");
-				var errMsg2 = this.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				errMsg2 = this.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				sap.m.MessageBox.show(errMsg2, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			}
+			if (flag1 == true && flag2 == true) {
+				var errForm = formatter.formatErrorType("SO00003");
+				errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errForm2 = formatter.formatErrorType("SO00004");
+				errMsg2 = this.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				var errMsg3 = errMsg + "\n" + errMsg2;
+				sap.m.MessageBox.show(errMsg3, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			}

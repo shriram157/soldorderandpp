@@ -22,6 +22,35 @@ sap.ui.define([
 				jQuery.sap.log.info("Route name is : " + name);
 			});
 		},
+		handleBaseLinkPress: function (oEvent) {
+			this.oBundle = this.getView().getModel("i18n").getResourceBundle();
+			var oGetText = oEvent.getSource().getText();
+			if (oGetText === this.oBundle.getText("menu1")) {
+				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderA"); //page 1
+			} else if (oGetText === this.oBundle.getText("menu2")) {
+				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary"); //page 10
+			} else if (oGetText === this.oBundle.getText("menu3")) {
+				this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder");  //page 11
+			} else if (oGetText === this.oBundle.getText("menu4")) { //dicey sol, check it again 
+				//this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary");
+				if (this.requestStatus == "Pending Fulfilment") {
+					this.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ZoneApproval"); //page 13
+				} else if (this.requestStatus == "Approved") { //processed
+					this.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView"); // page 14
+				} else {
+					this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary"); //page 15 
+				}
+			} else if (oGetText === this.oBundle.getText("menu5")) {
+				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails");  //page 16
+			} else if (oGetText === this.oBundle.getText("menu6")) {
+				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
+			} else if (oGetText === this.oBundle.getText("menu7")) {
+				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderB");  //page 2
+			} else if (oGetText === this.oBundle.getText("menu8")) {
+				this.getOwnerComponent().getRouter().navTo("NationalFleetSoldOrderView");  //page 19
+			}
+
+		},
 
 		getRouter: function () {
 			return sap.ui.core.UIComponent.getRouterFor(basCont);
@@ -48,7 +77,7 @@ sap.ui.define([
 			console.log(sSelectedLocale);
 			//selected language. 
 			// if (window.location.search == "?language=fr") {
-			if (sSelectedLocale == "fr"||sSelectedLocale == "fr/") {
+			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/") {
 				var i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
 					bundleLocale: ("fr")
@@ -64,6 +93,7 @@ sap.ui.define([
 				this.getView().setModel(i18nModel, "i18n");
 				this.sCurrentLocale = 'EN';
 			}
+		},
 			/*var i18nModel;
 			var sLocale;
 			var oI18nModel = new sap.ui.model.resource.ResourceModel({
@@ -123,30 +153,21 @@ sap.ui.define([
 			// this._oResourceBundle = oModeli18n.getResourceBundle();
 			// console.log(this._oResourceBundle);
 
-		},
+	
 
-		/*bindData:function(){
-			console.log("entered bind");
-			var port="https://sapui5.netweaver.ondemand.com";
-		var url=port+"/sdk/test-resources/sap/ui/demokit/explored/products.json";
-		
-		var oDataModel=new sap.ui.model.odata.v2.ODataModel(url,true);
-		var oJsonModel=new	sap.ui.model.json.JSONModel();
-		oDataModel.read("/",null, null,true, function(oData,response){
-			oJsonModel.setData(oData);
-			console.log(oData);
-		});
-		sap.ui.getCore().setModel(oJsonModel);
-		},*/
+	
 
 		onNavBack: function (oEvent) {
 			var oHistory, sPreviousHash;
 			oHistory = History.getInstance();
+			console.log(oHistory);
 			sPreviousHash = oHistory.getPreviousHash();
+			console.log(sPreviousHash);
+			console.log(window.history);
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
-				basCont.getRouter().navTo("view1", {}, true); // has the value true and makes sure that the
+				basCont.getRouter().navTo("RetailSoldOrderA", {}, true); // has the value true and makes sure that the
 				//	hash is replaced /*no history
 			}
 		}
