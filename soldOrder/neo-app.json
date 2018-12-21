@@ -26,6 +26,14 @@
       	"name": "soldorder_node"
       },
        "description":"soldorder_node"
+    },
+      {
+      "path": "/Claims_Destination",
+      "target": {
+      	"type": "destination",
+      	"name": "Claims_Destination"
+      },
+       "description":"Claims_Destination"
     }
   ],
   "sendWelcomeFileRedirect": true

@@ -1,9 +1,7 @@
 {
-	"engines": {
-		"node": "6.x"
-	},
-	"dependencies": {
-
+	"dependencies": {},
+	"description": "Node module for sold Order processing",
+	"devDependencies": {
 		"@sap/xsenv": "1.2.9",
 		"@sap/xssec": "2.1.10",
 		"@sap/hdbext": "4.3.4",
@@ -12,25 +10,25 @@
 		"@sap/jobs-client": "1.1.1",
 		"passport": "0.3.2",
 		"express": "4.12.3",
-        "request": "",
+		"request": "",
 		"async": "2.5.0",
-		"ws": "1.1.4"
-
-	},
-	"description": "Vehicle Locator Node Application  to make oDATA Calls to SAP API Management",
-	"devDependencies": {
-		"@sap/xsjs-test": "2.0.9"
+		"ws": "1.1.4",
+		"gulp": "3.9.1",
+		"gulp-replace": "0.5.4",
+		"jasmine-reporters": "2.1.1",
+		"gulp-jasmine": "2.4.1",
+		"gulp-istanbul": "1.1.1"
 	},
 	"files": [],
 	"main": "server.js",
-	"name": "vehicleLocator_Node",
+	"name": "retailSoldOrder_Node",
 	"scripts": {
 		"start": "node server.js",
-		"test": "node testrun.js"
+		"test": "node ./node_modules/gulp/bin/gulp test",
+		"test-coverage": "node ./node_modules/gulp/bin/gulp test-coverage"
 	},
-
+	"engines": {
+		"node": "8.x"
+	},
 	"version": "1.0.0"
 }
-
-
-
