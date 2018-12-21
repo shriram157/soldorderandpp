@@ -14,12 +14,11 @@ sap.ui.define([
 		onInit: function () {
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
-			RSOS_controller.flagSipUser = false;
-			RSOS_controller.requestStatus = "";
-			RSOS_controller._sipUserToTrue();
+		
 		},
 		onAfterRendering: function () {
-
+			var oTbl = RSOS_controller.getView().byId("table_RSOS");
+			var data = oTbl.getModel().getData().ProductCollection;
 			var mcb_series_RSOS = RSOS_controller.getView().byId("mcb_series_RSOS");
 			var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
 			var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
@@ -30,12 +29,46 @@ sap.ui.define([
 			mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
 			mcb_dealer_RSOS.setSelectedItems(mcb_dealer_RSOS.getItems());
 
-			console.log(mcb_series_RSOS.getItems());
-			console.log(mcb_series_RSOS.getSelectedItems());
+			if (AppController.flagDealerUser == true) {
+				RSOS_controller.getView().byId("idBtn_RSOS_new").setVisible(true);
+				var len = data.length;
+				for (var i = 1; i <= len; i++) {
+					var Id = "tbl_lbl_dealer_RSOS-__clone" + (i + 8 * (i - 1));  // 2+ 8*(2-1) =10
+					RSOS_controller.getView().byId(Id).setVisible(false);
+				}
+				//	RSOS_controller.getView().byId("lblTbl_btn_RSOS").setVisible(true);
+				
+			}
+		if (AppController.flagSIPUser == true ){//|| AppController.flgSoldOrderReqStatus == "Pending Fulfillment") {
+		
+					
+				var len4 = data.length;
+				for (var u = 1; u <= len4; u++) {
+					var ID = "btn_linkVeh_RSOS-__clone"+((7+u) + 8 * ((7+u) - 8)); 
+					console.log(ID);
+					RSOS_controller.getView().byId(ID).setVisible(true);
+				}
+			}
+			if (AppController.flagZoneUser == true) {
+				var len2 = data.length;
+				for (var j = 1; j <= len2; j++) {
+					var Id2 = "tbl_lbl_dealer_RSOS-__clone" + (j + 8 * (j - 1));
+					RSOS_controller.getView().byId(Id2).setVisible(true);
+				}
+			}
+			if (AppController.flagNationalUser == true) {
+				var len3 = data.length;
+				for (var k = 1; k <= len3; k++) {
+					var Id3 = "tbl_lbl_dealer_RSOS-__clone" + (k + 8 * (k - 1));
+					RSOS_controller.getView().byId(Id3).setVisible(true);
+				}
+			}
 		},
+
 		_refresh: function () {
 
 		},
+		
 		_dispalySoldOrderDetails: function (evt) {
 			var oTable = RSOS_controller.getView().byId("table_RSOS");
 			console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
@@ -46,12 +79,7 @@ sap.ui.define([
 			RSOS_controller.getRouter().navTo("RSOView_ManageSoldOrder", {}, true);
 		},
 
-		_sipUserToTrue: function () {
-			RSOS_controller.requestStatus = "Pending Fulfilment";
-			RSOS_controller.flagSipUser = true;
-			RSOS_controller.getView().byId("btn_linkVeh_RSOS").setVisible(true);
-
-		},
+	
 		_createNewOrder: function () {
 			RSOS_controller.getRouter().navTo("RetailSoldOrderA", {}, true);
 		},
@@ -59,7 +87,7 @@ sap.ui.define([
 			var d = new sap.ui.jsfragment(RSOS_controller.createId("idFrag_RSOS"), "toyota.ca.SoldOrder.view.fragments.VtinDialog",
 				RSOS_controller);
 			RSOS_controller.getView().addDependent(d);
-			console.log(d);
+			
 			d.open();
 		},
 		_searchNLink: function (evt) {
@@ -75,47 +103,6 @@ sap.ui.define([
 			//var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.VinDialog", RSOS_controller);
 			//	RSOS_controller.oDialogBox.close();
 		}
-
-		//new sap.ui.xmlfragment(RSOS_controller.createId("idFragment"),  "fragmentcreation.SampleFragment"));
-		//RSOS_controller.oDialogBox = new sap.ui.xmlfragment(RSOS_controller.createId("idFragment"), "toyota.ca.SoldOrder.view.fragments.VinDialog", RSOS_controller);
-		//	RSOS_controller.getView().addDependent(RSOS_controller.oDialogBox);
-		//var vinVal = RSOS_controller.getView().byId(sap.ui.core.Fragment.createId("idFragment", "vin")).getValue();
-		/*	console.log(RSOS_controller.byId("idFrag_RSOS--VinIdFrag"));
-			console.log(vinVal);
-				 console.log(RSOS_controller.byId("idFrag_RSOS--VtinIdFrag"));
-			console.log(vtinVal);*/
-
-		//console.log(RSOS_controller.byId(sap.ui.core.Fragment.createId("idFragment", "VinIdFrag")));
-		//	console.log(RSOS_controller.byId("VinIdFrag").getValue());
-		//var vtinVal = RSOS_controller.getView().byId("VtinIdFrag").getValue();
-		//var vtinVal = RSOS_controller.getView().byId(sap.ui.core.Fragment.createId("idFragment", "vtin")).getValue();
-
-		/**
-		 * Similar to onAfterRendering, but RSOS_controller hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf toyota.ca.SoldOrder.view.RetailSoldOrderSummary
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * RSOS_controller hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf toyota.ca.SoldOrder.view.RetailSoldOrderSummary
-		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the Controller is destroyed. Use RSOS_controller one to free resources and finalize activities.
-		 * @memberOf toyota.ca.SoldOrder.view.RetailSoldOrderSummary
-		 */
-		//	onExit: function() {
-		//
-		//	}
-
 	});
 
 });

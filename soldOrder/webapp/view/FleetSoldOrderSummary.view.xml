@@ -43,13 +43,13 @@
 													</layoutData>
 												</MultiComboBox>
 											</VBox>
-											<VBox>
-												<Label text="{i18n>dealer}" class="TableLabel">
+											<VBox id="vbx_dealer_FSOS">
+												<Label id="lbl_dealer_FSOS" visible="false" text="{i18n>dealer}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_dealer_FSOS"  selectionChange="_refresh" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" class="sapUiMediumMarginEnd">
+												<MultiComboBox id="mcb_dealer_FSOS"  visible="false" selectionChange="_refresh" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{ProductId}" text="{Category}"/>
 													<layoutData>
 														<l:GridData span="L1 M6 S12"/>
@@ -62,7 +62,7 @@
 								</items>
 							</VBox>
 							
-							<t:Table id="tble_FSO_S" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+							<t:Table id="tbl_FSOS" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
@@ -72,9 +72,9 @@
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="/Products/0/Name">
-										<Label text="{i18n>dealer}" class="TableLabel"/>
+										<Label id="tbl_lbl_dealer_FSOS" visible="false" text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Category'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
+											<Text id="tbl_val_dealer_FSOS" visible="false" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Category'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">

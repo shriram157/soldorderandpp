@@ -75,8 +75,8 @@
 												</MultiComboBox>
 											</VBox>
 											<VBox>
-												<Label text="{i18n>dealer}" class="TableLabel"></Label>
-												<MultiComboBox id="mcb_dealer_FSOD" width="" selectionChange="_refresh" items="{ path: '/', sorter: { path: 'key' } }">
+												<Label text="{i18n>dealer}" id="lbl_dealer_FSOD" visible="false" class="TableLabel"></Label>
+												<MultiComboBox id="mcb_dealer_FSOD" visible="false" selectionChange="_refresh" items="{ path:'/', sorter: { path: 'key' } }">
 													<core:Item key="{key}"
 														text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
 													<layoutData>
@@ -98,7 +98,7 @@
 									</f:SimpleForm>
 								</items>
 							</VBox>
-							<t:Table selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+							<t:Table id="tbl_FSOD" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
 									<t:Column width="8.3%" sortProperty="Category" resizable="false">
@@ -110,7 +110,7 @@
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
+											<Text id="tbl_val_dealer_FSOD" visible="false" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
@@ -170,20 +170,20 @@
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 										<t:template>
-											<Button text="{i18n>linkVehicle}" id="btn_linkVeh_FSOS" press="onLinkVehicle"/>
+											<Button text="{i18n>linkVehicle}" id="btn_linkVeh_FSOD" press="onLinkVehicle"/>
 										</t:template>
 									</t:Column>
 								</t:columns>
 							</t:Table>
 						</items>
 					</VBox>
-					<!--<Dialog draggable="true" id="VTNDialog_FSOS" title='Search Vehicle By VTN/VIN' contentWidth="400px" contentHeight="260px">
+					<!--<Dialog draggable="true" id="VTNDialog_FSOD" title='Search Vehicle By VTN/VIN' contentWidth="400px" contentHeight="260px">
 						<content>
 							<VBox>
 								<items>
 									<HBox class="justifyContentCenter">
 										<items>
-											<Label id="vin_FSOS" text="{i18n>vtn}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+											<Label id="vin_FSOD" text="{i18n>vtn}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
 											<Input></Input>
 										</items>
 									</HBox>
@@ -194,7 +194,7 @@
 									</HBox>
 									<HBox class="justifyContentCenter">
 										<items>
-											<Label id="vtin_FSOS" text="{i18n>vin}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd "></Label>
+											<Label id="vtin_FSOD" text="{i18n>vin}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd "></Label>
 											<Input></Input>
 										</items>
 									</HBox>

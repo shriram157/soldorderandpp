@@ -8,41 +8,39 @@
 				<content>
 					<Label id="label_FSO_ProcessedViewid" text="{i18n>procViewTitle}" wrapping="true"
 						class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
-						<f:SimpleForm title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+					<f:SimpleForm title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
 						singleContainerFullSize="false">
 						<f:content>
-								<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
-											<Label wrapping="true"  text="{i18n>FanNumber}"/>
-											<Text text="{/Products/0/Quantity}"/>
-											<Label wrapping="true"  text="{i18n>PONumber}"/>
-											<Text text="{/Products/0/Quantity}"/>
-											<Label wrapping="true"  text="{i18n>orderType}"/>
-											<Text text="{/Products/0/Quantity}"/>
-											<Label wrapping="true"  text="{i18n>status}"/>
-											<Text text="{/Products/0/Quantity}"/>
-											<Label wrapping="true"  text="{i18n>zoneAppNumber}"/>
-											<Text text="{/ProductCollection/1/Quantity}"/>
-											<Label wrapping="true"  text="{i18n>totalVehicles}"/>
-											<Text text="{/Products/0/Quantity}"/>
-						
-								<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
-						<Label wrapping="true"  text="{i18n>CustName}"/>
-											<Text text="Rochelle Michelle Xyz"/>
-											<Label wrapping="true"  text="{i18n>address}"/>
-											<Text text="ABC Park, New Hutcamp, Xyz Road, Canada"/>
-											<Label wrapping="true"  text="{i18n>city}"/>
-											<Text text="{/Products/0/Quantity}"/>
-											<Label wrapping="true"  text="{i18n>province}"/>
-											<Text text="{/Products/0/Quantity}"/>
-											<Label wrapping="true"  text="{i18n>postalcode}"/>
-											<Text text="{/Products/0/Quantity}"/>
-											<Label wrapping="true"  text="{i18n>phnNo}"/>
-											<Text text="{/Products/0/Quantity}"/>
+							<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
+							<Label wrapping="true" text="{i18n>FanNumber}"/>
+							<Text text="{/Products/0/Quantity}"/>
+							<Label wrapping="true" text="{i18n>PONumber}"/>
+							<Text text="{/Products/0/Quantity}"/>
+							<Label wrapping="true" text="{i18n>orderType}"/>
+							<Text text="{/Products/0/Quantity}"/>
+							<Label wrapping="true" text="{i18n>status}"/>
+							<Text text="{/Products/0/Quantity}"/>
+							<Label wrapping="true" text="{i18n>zoneAppNumber}"/>
+							<Text text="{/ProductCollection/1/Quantity}"/>
+							<Label wrapping="true" text="{i18n>totalVehicles}"/>
+							<Text text="{/Products/0/Quantity}"/>
+							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
+							<Label wrapping="true" text="{i18n>CustName}"/>
+							<Text text="Rochelle Michelle Xyz"/>
+							<Label wrapping="true" text="{i18n>address}"/>
+							<Text text="ABC Park, New Hutcamp, Xyz Road, Canada"/>
+							<Label wrapping="true" text="{i18n>city}"/>
+							<Text text="{/Products/0/Quantity}"/>
+							<Label wrapping="true" text="{i18n>province}"/>
+							<Text text="{/Products/0/Quantity}"/>
+							<Label wrapping="true" text="{i18n>postalcode}"/>
+							<Text text="{/Products/0/Quantity}"/>
+							<Label wrapping="true" text="{i18n>phnNo}"/>
+							<Text text="{/Products/0/Quantity}"/>
 						</f:content>
 					</f:SimpleForm>
-					
-				<!--	<HBox class="marginCorners">
+					<!--	<HBox class="marginCorners">
 						<items>
 							<VBox width="100%">
 								<items>

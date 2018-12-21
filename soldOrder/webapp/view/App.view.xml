@@ -1,27 +1,28 @@
 <mvc:View controllerName="toyota.ca.SoldOrder.controller.App" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true" xmlns="sap.m">
-		<Page>
-			<customHeader>
-					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
-						<contentLeft>
-							<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
-							<Text text="|" class="sapUiTinyMarginBegin"/>
-							<Text class="clCustomFont" text="{i18n>PageTitle}" wrapping="true"/>
-						</contentLeft>
-						<contentRight>
-							<Text text="{i18n>soldOrder}" wrapping="true" class="sapUiTinyMarginBeginEnd"></Text>
-							<Text text="{i18n>priceProtection}" wrapping="true"></Text>
-						</contentRight>
-					</Bar>
-				</customHeader>
-				<App id="idAppControl"/>
-			<footer >
-				<OverflowToolbar>
-					<ToolbarSpacer/>
-				</OverflowToolbar>
-			</footer>
-		</Page>
-	
-
+	<Page>
+		<customHeader>
+			<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+				<contentLeft>
+					<Image id="idLexusLogo" src="images/Lexus_EN.png" width="100px"/>
+					<Text text="|" class="sapUiTinyMarginBegin"/>
+					<Text class="clCustomFont" text="{i18n>PageTitle}" wrapping="true"/>
+				</contentLeft>
+				<contentMiddle>
+					<Text text="Logged User Key"></Text>
+					<Input id="AppInputId" width="15%" liveChange="user" value="3" enabled="false"></Input>
+				</contentMiddle>
+				<contentRight>
+					<Text text="{i18n>soldOrder}" wrapping="true" class="sapUiTinyMarginBeginEnd"></Text>
+					<Text text="{i18n>priceProtection}" wrapping="true"></Text>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<App id="idAppControl"/>
+		<footer >
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
 </mvc:View>
-

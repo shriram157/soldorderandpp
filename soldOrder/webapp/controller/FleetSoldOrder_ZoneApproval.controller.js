@@ -3,7 +3,7 @@ sap.ui.define([
 	"toyota/ca/SoldOrder/util/formatter"
 ], function (BaseController, formatter) {
 	"use strict";
-
+var FSO_Z_controller;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.FleetSoldOrder_ZoneApproval", {
 		formatter: formatter,
 		/**
@@ -12,17 +12,18 @@ sap.ui.define([
 		 * @memberOf toyota.ca.SoldOrder.view.FleetSoldOrder_ZoneApproval
 		 */
 		onInit: function () {
-		this.getBrowserLanguage();
-		this.flagZoneUser=false;
-		this.zoneUserToTrue();
+			FSO_Z_controller=this;
+			FSO_Z_controller.getBrowserLanguage();
+			// FSO_Z_controller.flagZoneUser=false;
+			// FSO_Z_controller.zoneUserToTrue();
 		},
-		zoneUserToTrue:function(){
-			this.flagZoneUser=true;
-			this.getView().byId("btn_approve_FSOZA").setVisible(true);
-			this.getView().byId("btn_reject_FSOZA").setVisible(true);
-			this.getView().byId("btn_back_FSOZA").setVisible(true); 
-			this.getView().byId("orderType_FSOZA").setEnabled(true);
-		},
+		/*zoneUserToTrue:function(){
+			FSO_Z_controller.flagZoneUser=true;
+			FSO_Z_controller.getView().byId("btn_approve_FSOZA").setVisible(true);
+			FSO_Z_controller.getView().byId("btn_reject_FSOZA").setVisible(true);
+			FSO_Z_controller.getView().byId("btn_back_FSOZA").setVisible(true); 
+			FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
+		},*/
 		_approveFleetSoldRequest: function () {
 
 		},
@@ -30,35 +31,22 @@ sap.ui.define([
 
 		},
 		onAfterRendering: function () {
-				var oBundle = this.getView().getModel("i18n").getResourceBundle();
-				var sRecipient = "09787878784"; // this.getView().getModel().getProperty("/recipient/name");
-				var sMsg = oBundle.getText("zoneApprovalTitle", [sRecipient]);
-				this.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg);
+			var oBundle = FSO_Z_controller.getView().getModel("i18n").getResourceBundle();
+			var sRecipient = "09787878784"; // FSO_Z_controller.getView().getModel().getProperty("/recipient/name");
+			var sMsg = oBundle.getText("zoneApprovalTitle", [sRecipient]);
+			FSO_Z_controller.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg);
+
+			if (AppController.flagZoneUser == true) {
+				FSO_Z_controller.getView().byId("btn_approve_FSOZA").setVisible(true);
+				FSO_Z_controller.getView().byId("btn_reject_FSOZA").setVisible(true);
+				FSO_Z_controller.getView().byId("btn_back_FSOZA").setVisible(true);
+				FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
 			}
-			//	onInit: function() {
-			//
-			//	},
+
+		}
 
 		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf toyota.ca.SoldOrder.view.FleetSoldOrder_ZoneApproval
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf toyota.ca.SoldOrder.view.FleetSoldOrder_ZoneApproval
-		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
+		 * Called when the Controller is destroyed. Use FSO_Z_controller one to free resources and finalize activities.
 		 * @memberOf toyota.ca.SoldOrder.view.FleetSoldOrder_ZoneApproval
 		 */
 		//	onExit: function() {

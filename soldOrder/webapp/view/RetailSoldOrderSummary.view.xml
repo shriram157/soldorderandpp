@@ -74,7 +74,7 @@
 									</f:SimpleForm>
 								</items>
 							</VBox>
-							<Button text="{i18n>new}" class="cssShift marginCornersRight " press="_createNewOrder"></Button>
+							<Button text="{i18n>new}" id="idBtn_RSOS_new" class="cssShift marginCornersRight" visible="false" press="_createNewOrder"></Button>
 							<t:Table id="table_RSOS" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" 
 							alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners marginCornersBottom">
 								<t:columns>
@@ -87,7 +87,7 @@
 									<t:Column width="11.11%" resizable="false">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"
+											<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"
 												wrapping="true"/>
 										</t:template>
 									</t:Column>

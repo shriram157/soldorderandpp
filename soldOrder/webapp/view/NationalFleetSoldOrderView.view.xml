@@ -210,14 +210,14 @@
 							</VBox>
 						</items>
 					</HBox>-->
-					<MessageStrip text="{i18n>titleVehicleOwnership}" class=" msgStripCss2 marginCornersLeft marginCornersRight "></MessageStrip >
+					<MessageStrip id="idNFOS_msgstrip"  text="{i18n>titleVehicleOwnership}" class=" msgStripCss2 marginCornersLeft marginCornersRight "></MessageStrip >
 					<t:Table id="tbl_NFSOV" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
 							<t:Column width="33.3%" resizable="false" sortProperty="Category">
 								<Label class="TableLabel" text=""/>
 								<t:template>
-									<Link id="linkId_NFSOV" text="Delete" press="_onDelete" wrapping="false" visible="false"/>
+									<Link id="linkId_NFSOV" text="Delete" press="_onDelete" wrapping="true" visible="false"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="33.3%" resizable="false" sortProperty="Category" id="file">

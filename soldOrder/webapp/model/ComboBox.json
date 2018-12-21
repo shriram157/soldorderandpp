@@ -1,4 +1,32 @@
 {
+	"Users": [{
+		"key": "1",
+		"LoggedUserName": "PPD"
+	}, {
+		"key": "2",
+		"LoggedUserName": "National SIP"
+	}, {
+		"key": "3",
+		"LoggedUserName": "National PPD"
+	}, {
+		"key": "4",
+		"LoggedUserName": "Dealer"
+	}, {
+		"key": "5",
+		"LoggedUserName": "Zone"
+	}, {
+		"key": "6",
+		"LoggedUserName": "TCI National"
+	}, {
+		"key": "7",
+		"LoggedUserName": "SIP"
+	}, {
+		"key": "8",
+		"LoggedUserName": "National"
+	}, {
+		"key": "9",
+		"LoggedUserName": "OrderingDealer"
+	}],
 	"SalesType": [{
 		"key": "1",
 		"text": "CASH"

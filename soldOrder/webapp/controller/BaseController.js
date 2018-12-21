@@ -16,7 +16,6 @@ sap.ui.define([
 				jQuery.sap.log.info("sorry invalid hash " + hash + ". Try valid hash");
 
 			});
-
 			r.attachRouteMatched(function (evt) {
 				var name = evt.getParameter('name');
 				jQuery.sap.log.info("Route name is : " + name);

@@ -64,7 +64,7 @@
 							<Label wrapping="true" text="{i18n>SoldOrdStatus}"/>
 							<Text text="{address>/Name}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea maxLength="150"></TextArea>
+							<TextArea id="RSOV_MSO_comment1" enabled="false" maxLength="150"></TextArea>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
@@ -112,7 +112,7 @@
 							<Label wrapping="true" text="{i18n>CancellationReason}"/>
 							<Text text="{address>/City}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea maxLength="150"></TextArea>
+							<TextArea id="RSOV_MSO_comment2" enabled="false" maxLength="150"></TextArea>
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
@@ -164,7 +164,7 @@
 							<Label wrapping="true" text="{i18n>CreditMemo}"/>
 							<Text text="{address>/ZIPCode}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea maxLength="150"></TextArea>
+							<TextArea id="RSOV_MSO_comment3" enabled="false" maxLength="150"></TextArea>
 							<Label wrapping="true" text="{i18n>App/RejDate}"/>
 							<Text text="{address>/City}"/>
 							<Label wrapping="true" text="{i18n>PayDate}"/>
@@ -180,13 +180,13 @@
 							<t:Column width="33.33%" resizable="false">
 								<Label text=""/>
 								<t:template>
-									<Link text="{i18n>DeleteAttachment}" press="_onDeleteAttachment" wrapping="false"/>
+									<Button enabled="false" id="idRSOV_MSO_delButton" text="{i18n>DeleteAttachment}" press="_onDeleteAttachment" />
 								</t:template>
 							</t:Column>
 							<t:Column width="33.33%" resizable="false">
 								<Label text="{i18n>File}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Name}" wrapping="false"/>
+									<Link press="_openFile" text="{Name}" wrapping="false"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="33.33%" resizable="false">
@@ -213,7 +213,7 @@
 								<l:GridData span="L1 M2 S12" indent="L3 M3"/>
 							</layoutData>
 						</Label>
-						<u:FileUploader/>
+						<u:FileUploader id="idRSOV_MSO_fileUpl" enabled="false"/>
 						<HBox>
 							<items>
 								<Label text="{i18n>Comments}" wrapping="true" class="sapUiSmallMarginTop sapUiSmallMarginEnd" required="true">
@@ -221,7 +221,7 @@
 										<l:GridData span="L1 M3 S6"/>
 									</layoutData>
 								</Label>
-								<TextArea id="idComments_TA_RSO_ManageSO" maxLength="30">
+								<TextArea id="idComments_TA_RSO_ManageSO" enabled="false" maxLength="30">
 									<layoutData>
 										<l:GridData span="L2 M3 S6"/>
 									</layoutData>
@@ -231,7 +231,7 @@
 								<l:GridData indent="M3"/>
 							</layoutData>
 						</HBox>
-						<Button id="btn_addAttach_RSO_MSO" text="{i18n>AddAttach}" press="_addAttachment">
+						<Button id="btn_addAttach_RSO_MSO" enabled="false" text="{i18n>AddAttach}" press="_addAttachment">
 							<layoutData>
 								<l:GridData span="L2 M3 S6"/>
 							</layoutData>
@@ -252,7 +252,7 @@
 								<l:GridData span="L2 M4 S6" indent="L2 M3"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" enabled="false" press="_getVehiclesToFillSoldOrderRequest"
+						<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" enabled="false" visible="false" press="_getVehiclesToFillSoldOrderRequest"
 							class="sapUiMediumMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>

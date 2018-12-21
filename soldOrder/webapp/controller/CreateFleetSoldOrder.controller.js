@@ -4,18 +4,50 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (BaseController, formatter, JSONModel) {
 	"use strict";
-
+	var CFSO_controller;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.CreateFleetSoldOrder", {
 		formatter: formatter,
 
 		onInit: function () {
-			this.getBrowserLanguage();
+			CFSO_controller = this;
+			CFSO_controller.getBrowserLanguage();
 			var today = new Date();
 			var day30 = new Date();
 			day30.setDate(today.getDate() + 30);
-			this.getView().byId("etaFrom_CFSO").setMinDate(day30);
-
+			CFSO_controller.getView().byId("etaFrom_CFSO").setMinDate(day30);
 		},
+
+		onAfterRendering: function () {
+			CFSO_controller.listOfModelYear();
+			if (AppController.flagPPDUser == true) {
+				CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			}
+			if (AppController.flagNationalSIPUser == true) {
+				CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			}
+			if (AppController.flagNationalPPDUser == true) {
+				CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			}
+			if (AppController.flagDealerUser == true) {
+
+			}
+			if (AppController.flagZoneUser == true) {
+				CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			}
+			if (AppController.flagTCINationalUser == true) {
+				CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			}
+			if (AppController.flagSIPUser == true) {
+				CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			}
+			if (AppController.flagNationalUser == true) {
+				CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			}
+			if (AppController.flagOrderingDealer == true) {
+				CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			}
+		},
+
 		listOfModelYear: function () {
 			var d = new Date();
 			var currentModelYear = d.getFullYear();
@@ -44,19 +76,19 @@ sap.ui.define([
 			};
 			var modelYearModel2 = new JSONModel();
 			modelYearModel2.setData(data);
-			this.getView().byId("modelYr_CFSO").setModel(modelYearModel2);
+			CFSO_controller.getView().byId("modelYr_CFSO").setModel(modelYearModel2);
 
 		},
 		_handleChange: function () {
-			var etaFrom = this.getView().byId("etaFrom_CFSO").getValue();
+			var etaFrom = CFSO_controller.getView().byId("etaFrom_CFSO").getValue();
 			if (etaFrom !== "") {
 				var CDate = new Date(etaFrom);
 				var day5 = CDate;
 				day5.setDate(CDate.getDate() + 5);
-				this.getView().byId("etaTo_CFSO").setMinDate(day5);
+				CFSO_controller.getView().byId("etaTo_CFSO").setMinDate(day5);
 			} else {
 				var errForm = formatter.formatErrorType("SO00009");
-				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			}
 		},
@@ -64,17 +96,17 @@ sap.ui.define([
 			oEvent.preventDefault();
 		},
 		_addVehiclesToInventory: function () {
-			this.getRouter().navto("InventoryVehicleSelection",{},true); //page 12
+			CFSO_controller.getRouter().navto("InventoryVehicleSelection", {}, true); //page 12
 		},
 		_onDelete1: function () {
-			var oTable = this.getView().byId("idCFSO_Table1");
+			var oTable = CFSO_controller.getView().byId("idCFSO_Table1");
 			var oModel2 = oTable.getModel();
 			var aRows = oModel2.getData().ProductCollection;
 			var aContexts = oTable.getSelectedIndices();
 
 			if (aContexts.length === 0) {
 				var errForm = formatter.formatErrorType("SO00007");
-				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			} else {
 				for (var i = aContexts.length - 1; i >= 0; i--) {
@@ -90,14 +122,14 @@ sap.ui.define([
 
 		},
 		_onDelete2: function () {
-			var oTable = this.getView().byId("idCFSO_Table2");
+			var oTable = CFSO_controller.getView().byId("idCFSO_Table2");
 			var oModel2 = oTable.getModel();
 			var aRows = oModel2.getData().ProductCollection;
 			var aContexts = oTable.getSelectedIndices();
 
 			if (aContexts.length === 0) {
 				var errForm = formatter.formatErrorType("SO00007");
-				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			} else {
 				for (var i = aContexts.length - 1; i >= 0; i--) {
@@ -112,14 +144,14 @@ sap.ui.define([
 			}
 		},
 		_onSubmit: function () {
-			var valModelYr = this.getView().byId("modelYr_CFSO").getValue();
-			var valSuffix = this.getView().byId("suffix_CFSO").getValue();
-			var valSeries = this.getView().byId("series_CFSO").getValue();
-			var valModelCode = this.getView().byId("modelCode_CFSO").getValue();
+			var valModelYr = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
+			var valSuffix = CFSO_controller.getView().byId("suffix_CFSO").getValue();
+			var valSeries = CFSO_controller.getView().byId("series_CFSO").getValue();
+			var valModelCode = CFSO_controller.getView().byId("modelCode_CFSO").getValue();
 
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "") {
 				var errForm = formatter.formatErrorType("SO00003");
-				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
@@ -133,32 +165,30 @@ sap.ui.define([
 			console.log(dealerFleetNum);
 		},
 		_onAddRow: function () {
-			var valModelYr = this.getView().byId("modelYr_CFSO").getValue();
-			var valSuffix = this.getView().byId("suffix_CFSO").getValue();
-			var valSeries = this.getView().byId("series_CFSO").getValue();
-			var valModelCode = this.getView().byId("modelCode_CFSO").getValue();
+			var valModelYr = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
+			var valSuffix = CFSO_controller.getView().byId("suffix_CFSO").getValue();
+			var valSeries = CFSO_controller.getView().byId("series_CFSO").getValue();
+			var valModelCode = CFSO_controller.getView().byId("modelCode_CFSO").getValue();
 
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "") {
 				var errForm = formatter.formatErrorType("SO00003");
-				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			}
-		},
-		onAfterRendering: function () {
-				this.listOfModelYear();
-			}
-			//for (var i = aContexts.length - 1; i >= 0; i--) {
-			/*	var oThisObj = aContexts[i].getObject();
-				var index = $.map(aRows, function (obj, index) {
-					if (obj === oThisObj) {
-						return index;
-					}
-				});*/
+		}
+
+		//for (var i = aContexts.length - 1; i >= 0; i--) {
+		/*	var oCFSO_controllerObj = aContexts[i].getObject();
+			var index = $.map(aRows, function (obj, index) {
+				if (obj === oCFSO_controllerObj) {
+					return index;
+				}
+			});*/
 
 		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+		 * Similar to onAfterRendering, but CFSO_controller hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
 		 * @memberOf toyota.ca.SoldOrder.view.CreateFleetSoldOrder
 		 */
@@ -168,12 +198,12 @@ sap.ui.define([
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
+		 * CFSO_controller hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf toyota.ca.SoldOrder.view.CreateFleetSoldOrder
 		 */
 
 		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
+		 * Called when the Controller is destroyed. Use CFSO_controller one to free resources and finalize activities.
 		 * @memberOf toyota.ca.SoldOrder.view.CreateFleetSoldOrder
 		 */
 		//	onExit: function() {

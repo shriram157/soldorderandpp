@@ -4,8 +4,10 @@ sap.ui.define([
 ], function (BaseController, formatter) {
 	"use strict";
 	var PPD_Zone_controller;
+
 	return BaseController.extend("toyota.ca.SoldOrder.controller.PriceProtectionDetails_Zone_PPD", {
 		formatter: formatter,
+
 		onInit: function () {
 			PPD_Zone_controller = this;
 			PPD_Zone_controller.getBrowserLanguage();
@@ -44,6 +46,15 @@ sap.ui.define([
 			mcb_status_PPD_Z.setSelectedItems(mcb_status_PPD_Z.getItems());
 			mcb_dealer_PPD_Z.setSelectedItems(mcb_dealer_PPD_Z.getItems());
 			mcb_ordTyp_PPD_Z.setSelectedItems(mcb_ordTyp_PPD_Z.getItems());
+
+			if (AppController.flagZoneUser == true) {
+				PPD_Zone_controller.getView().byId("lbl_dealer_PPD_Z").setVisible(true);
+				PPD_Zone_controller.getView().byId("mcb_dealer_PPD_Z").setVisible(true);
+			}
+			if (AppController.flagNationalUser == true) {
+				PPD_Zone_controller.getView().byId("lbl_dealer_PPD_Z").setVisible(true);
+				PPD_Zone_controller.getView().byId("mcb_dealer_PPD_Z").setVisible(true);
+			}
 		},
 
 		_refresh: function () {

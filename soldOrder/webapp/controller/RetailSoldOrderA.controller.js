@@ -6,85 +6,101 @@ sap.ui.define([
 ], function (BaseController, ResourceModel, formatter, JSONModel) {
 	"use strict";
 	var validateFlagA = false;
+	var RSOA_controller;
+	
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderA", {
 		formatter: formatter,
+		
 		onInit: function () {
-			this.getBrowserLanguage();
-
+			RSOA_controller=this;
+			RSOA_controller.getBrowserLanguage();
 			var today = new Date();
 			var day1 = new Date();
 			day1.setDate(today.getDate() + 1);
-			this.getView().byId("etaFrom_RSOA").setMinDate(day1);
-
-			/*	var oI18nModel = new sap.ui.model.resource.ResourceModel({
-					bundleUrl: "i18n/i18n.properties"
-				});
-				this.getView().setModel(oI18nModel, "i18n");
-				var isLocaleSent = window.location.search.match(/language=([^&]*)/i);
-				if (isLocaleSent) {
-					var sSelectedLocale = window.location.search.match(/language=([^&]*)/i)[1];
-				} else {
-					var sSelectedLocale = "EN"; // default is english 
-				}
-				if (sSelectedLocale == "fr") {
-					var i18nModel = new sap.ui.model.resource.ResourceModel({
-						bundleUrl: "i18n/i18n.properties",
-						bundleLocale: ("fr")
-					});
-					this.getView().setModel(i18nModel, "i18n");
-					this.sCurrentLocale = 'FR';
-				} else {
-					var i18nModel = new sap.ui.model.resource.ResourceModel({
-						bundleUrl: "i18n/i18n.properties",
-						bundleLocale: ("en")
-					});
-					this.getView().setModel(i18nModel, "i18n");
-					this.sCurrentLocale = 'EN';
-				}*/
-
-			/*	var sLocation = window.location.host;
-				console.log(sLocation);
-				var sLocation_conf = sLocation.search("webide");
-				console.log(sLocation_conf);
-				if (sLocation_conf == 0) {
-					this.sPrefix = "/soldOrder_node";
-				} else {
-					this.sPrefix = "";
-				}
-				this.nodeJsUrl = this.sPrefix + "/node";
-				console.log(this.nodeJsUrl);
-				$.ajax({
-					url: this.sPrefix + "/zprice_protection_srv/zc_campaign_pricing",
-					//url: getUrlTable_Driver,
-					method: 'GET',
-					async: false,
-					dataType: 'json',
-					success: function (data, textStatus, jqXHR) {
-					//	console.log("safety manager service getting called");
-					},
-					error: function (jqXHR, textStatus, errorThrown) {
-						//console.log("safety manager ERROR service getting called");
-						sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-							.m.MessageBox.Action.OK, null, null);
-					}
-				});*/
+			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(day1);
 		},
+		
+		_handleService: function () {
+			var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				RSOA_controller.sPrefix = "/soldorder_node";
+			} else {
+				RSOA_controller.sPrefix = "";
+			}
+			RSOA_controller.nodeJsUrl = RSOA_controller.sPrefix + "/node";
+			$.ajax({
+				url: RSOA_controller.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing", //?sap-client=200&$format=json",
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					var oTable = PPD_DealerCont.getView().byId("table_PPD_Dealer");
+					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					oTable.setModel(oModel);
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+			/*var oToken = XMLHttpRequest.getResponseHeader('X-CSRF-Token');
+			var oHeaders = {
+				"x-csrf-token": oToken,
+			};*/
+
+			var data = [];
+			var payLoad = {
+				//ModelYear:
+				ZZMOYR: RSOA_controller.getView().byId("modelYr_RSOA").getValue(),
+				//Model:
+				ZZMODEL: RSOA_controller.getView().byId("model_RSOA").getValue(),
+				//Suffix:
+				ZZSUFFIX: RSOA_controller.getView().byId("Suffix_RSOA").getValue(),
+				//Colour:
+				ZZEXTCOL: RSOA_controller.getView().byId("Colour_RSOA").getValue(),
+				//RequestedETAFrom:
+				ZZREQ_ETA_FROM: RSOA_controller.getView().byId("etaFrom_RSOA").getValue(),
+				//RequestedETATO:
+				ZZREQ_ETA_TO: RSOA_controller.getView().byId("etaTo_RSOA").getValue(),
+			};
+			data.push(payLoad);
+			$.ajax({
+				type: 'POST',
+				url: oURL,
+				//headers: oHeaders,
+				cache: false,
+				//contentType: ["csv"],
+				//processData: false,
+				data: data,
+				success: function (data) {
+					//console.log(data);
+				},
+				error: function (data) {
+					sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+
+			})
+		},
+		
 		_handleChange: function () {
-			var etaFrom = this.getView().byId("etaFrom_RSOA").getValue();
+			var etaFrom = RSOA_controller.getView().byId("etaFrom_RSOA").getValue();
 			if (etaFrom !== "") {
 				var CDate = new Date(etaFrom);
 				var day5 = CDate;
 				day5.setDate(CDate.getDate() + 5);
-				this.getView().byId("etaTo_RSOA").setMinDate(day5);
+				RSOA_controller.getView().byId("etaTo_RSOA").setMinDate(day5);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
-				var errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			}
 		},
+		
 		onValidateCustomer: function () {
-			var errMsg = this.getView().getModel("i18n").getResourceBundle().getText("error1");
-			var title = this.getView().getModel("i18n").getResourceBundle().getText("title5");
+			var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error1");
+			var title = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
 			var icon = new sap.ui.core.Icon({
 				src: "sap-icon://alert",
 				size: "2rem"
@@ -107,6 +123,7 @@ sap.ui.define([
 			});
 			validateFlagA = true;
 		},
+		
 		listOfModelYear: function () {
 			//	var omodelYearModel;
 			var d = new Date();
@@ -128,30 +145,31 @@ sap.ui.define([
 			};
 			var modelYearModel = new JSONModel();
 			modelYearModel.setData(data);
-			this.getView().byId("modelYr_RSOA").setModel(modelYearModel);
+			RSOA_controller.getView().byId("modelYr_RSOA").setModel(modelYearModel);
 		},
+		
 		_onSubmit: function () {
 			var flag1 = false;
 			var flag2 = false;
 			var errMsg2;
 			var errMsg;
-			var valModelYr = this.getView().byId("modelYr_RSOA").getValue();
-			var valSuffix = this.getView().byId("Suffix_RSOA").getValue();
-			var valSeries = this.getView().byId("series_RSOA").getValue();
-			//	var valModelCode = this.getView().byId("modelCode_RSOA").getValue();
-			var valCustName = this.getView().byId("CustName_RSOA").getValue();
-			var valETATo = this.getView().byId("etaTo_RSOA").getValue();
-			var valETAFrom = this.getView().byId("etaFrom_RSOA").getValue();
-			var valColour = this.getView().byId("Colour_RSOA").getValue();
-			var valModel = this.getView().byId("model_RSOA").getValue();
-			var valApx = this.getView().byId("Apx_RSOA").getValue();
-			var valSalesType = this.getView().byId("SalesType_RSOA").getValue();
-			var valContractDate = this.getView().byId("ContractDate_RSOA").getValue();
-			var valAddress = this.getView().byId("Address_RSOA").getValue();
-			var valCity = this.getView().byId("City_RSOA").getValue();
-			var valProvince = this.getView().byId("Province_RSOA").getValue();
-			var valPostalCode = this.getView().byId("PostalCode_RSOA").getValue();
-			var valLicense = this.getView().byId("License_RSOA").getValue();
+			var valModelYr = RSOA_controller.getView().byId("modelYr_RSOA").getValue();
+			var valSuffix = RSOA_controller.getView().byId("Suffix_RSOA").getValue();
+			var valSeries = RSOA_controller.getView().byId("series_RSOA").getValue();
+			//	var valModelCode = RSOA_controller.getView().byId("modelCode_RSOA").getValue();
+			var valCustName = RSOA_controller.getView().byId("CustName_RSOA").getValue();
+			var valETATo = RSOA_controller.getView().byId("etaTo_RSOA").getValue();
+			var valETAFrom = RSOA_controller.getView().byId("etaFrom_RSOA").getValue();
+			var valColour = RSOA_controller.getView().byId("Colour_RSOA").getValue();
+			var valModel = RSOA_controller.getView().byId("model_RSOA").getValue();
+			var valApx = RSOA_controller.getView().byId("Apx_RSOA").getValue();
+			var valSalesType = RSOA_controller.getView().byId("SalesType_RSOA").getValue();
+			var valContractDate = RSOA_controller.getView().byId("ContractDate_RSOA").getValue();
+			var valAddress = RSOA_controller.getView().byId("Address_RSOA").getValue();
+			var valCity = RSOA_controller.getView().byId("City_RSOA").getValue();
+			var valProvince = RSOA_controller.getView().byId("Province_RSOA").getValue();
+			var valPostalCode = RSOA_controller.getView().byId("PostalCode_RSOA").getValue();
+			var valLicense = RSOA_controller.getView().byId("License_RSOA").getValue();
 
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valCustName == "" || valETATo == "" || valETAFrom == "" || valColour ==
 				"" || valModel == "" || valApx == "" || valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
@@ -164,40 +182,33 @@ sap.ui.define([
 
 			if (flag1 == true && flag2 == false) {
 				var errForm = formatter.formatErrorType("SO00003");
-				errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			}
 			if (flag1 == false && flag2 == true) {
 				var errForm2 = formatter.formatErrorType("SO00004");
-				errMsg2 = this.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				sap.m.MessageBox.show(errMsg2, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			}
 			if (flag1 == true && flag2 == true) {
 				var errForm = formatter.formatErrorType("SO00003");
-				errMsg = this.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				var errForm2 = formatter.formatErrorType("SO00004");
-				errMsg2 = this.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				var errMsg3 = errMsg + "\n" + errMsg2;
 				sap.m.MessageBox.show(errMsg3, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			}
 		},
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
+	
 		onAfterRendering: function () {
-			this.listOfModelYear();
+			RSOA_controller.listOfModelYear();
 		}
-
-		//	onExit: function() {
-		//
-		//	}
 
 	});
 
