@@ -32,19 +32,20 @@ sap.ui.define([
 									      this.nodeJsUrl = this.sPrefix + "/node";
 			
 			//ZPRICE_PROTECTION_SRV
-			          var url = this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing";
+			          var url = this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing?sap-client=200";
 
 			
 						// this.nodeJsUrl = "/node";
 				//		var url ="http://tcid1gwapp1.tci.internal.toyota.ca:8000/sap/opu/odata/sap/zprice_protection_srv/zc_campaign_pricing";
 						//"https://fioridev1.dev.toyota.ca:44300/sap/opu/odata/sap/Z_VEHICLE_MASTER_SRV/zc_vehicle_items";
 						//"http://tcid1gwapp1.tci.internal.toyota.ca:8000/sap/opu/odata/sap/zprice_protection_srv/zc_campaign_pricing";
-						jQuery.ajax({
+						// jQuery.ajax({
+						$.ajax({		
 							url: url,
-							method: 'GET',
-							async: false,
+							type: 'GET',
+							// async: false,
 							dataType: 'json',
-							success: function(data, textStatus, jqXHR) {
+							success: function(data) {
 								console.log("table_PPD_Dealer service getting called");
 								console.log(data);
 								console.log(data.results);
@@ -53,8 +54,8 @@ sap.ui.define([
 								var oModel = new sap.ui.model.json.JSONModel(data);
 								oTable.setModel(oModel);
 							},
-							error: function(jqXHR, textStatus, errorThrown) {
-								console.log(jqXHR );
+							error: function(  errorThrown) {
+								// console.log(jqXHR );
 								console.log(textStatus );
 								console.log(errorThrown);
 									console.log("table_PPD_Dealer ERROR in service");

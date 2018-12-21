@@ -63,3 +63,4 @@ resources:
      service-name: RETAIL_SOLD_ORDER_APIM_CUPS
    properties:
       odata-call-service-name: '${service-name}'
+  

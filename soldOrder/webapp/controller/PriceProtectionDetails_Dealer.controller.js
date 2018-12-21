@@ -34,7 +34,7 @@ sap.ui.define([
 									      this.nodeJsUrl = this.sPrefix + "/node";
 			
 			
-			          var url = this.nodeJsUrl + "/sap/opu/odata/sap/zprice_protection_srv/zc_campaign_pricing";
+			          var url = this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing";
 
 			
 						// this.nodeJsUrl = "/node";
