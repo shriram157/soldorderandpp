@@ -93,7 +93,7 @@ sap.ui.define([
 				dialog.close();
 			},*/
 		_navToRSO: function () {
-			FSOD_controller.getRouter().navTo("RSOView_ManageSoldOrder", {}, true);
+			FSOD_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {}, true);
 		},
 		_refresh: function () {
 

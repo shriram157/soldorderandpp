@@ -10,7 +10,7 @@
 				</contentLeft>
 				<contentMiddle>
 					<Text text="Logged User Key"></Text>
-					<Input id="AppInputId" width="15%" liveChange="user" value="3" enabled="false"></Input>
+					<Input id="AppInputId" width="15%" liveChange="user" value="9" enabled="false"></Input>
 				</contentMiddle>
 				<contentRight>
 					<Text text="{i18n>soldOrder}" wrapping="true" class="sapUiTinyMarginBeginEnd"></Text>

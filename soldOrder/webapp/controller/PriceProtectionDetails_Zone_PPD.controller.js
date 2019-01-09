@@ -20,11 +20,15 @@ sap.ui.define([
 			}
 			PPD_Zone_controller.nodeJsUrl = PPD_Zone_controller.sPrefix + "/node";
 			$.ajax({
-				url: PPD_Zone_controller.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing", //?sap-client=200&$format=json",
+				//https://tcid1gwapp1.tci.internal.toyota.ca:44300/sap/opu/odata/sap/ZPRICE_PROTECTION_SRV/zc_item?sap-client=200&$format=json
+				//	url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?sap-client=200&$format=json",
+				//url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/ZC_HEADER",//?sap-client=200&$format=json",
+				url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_item",//?sap-client=200&$format=json",
 				method: 'GET',
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
+					console.log(data);
 					var oTable = PPD_Zone_controller.getView().byId("table_PPD_ZoneDealer");
 					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					oTable.setModel(oModel);

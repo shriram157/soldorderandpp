@@ -12,27 +12,41 @@
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "></MessageStrip >
-							<Label wrapping="true"  text="{i18n>modelYear}"/>
-							<ComboBox id="modelYr_RSOA" items="{ path: '/modelYear', sorter: { path: 'text' } }" required="true">
-								<core:Item key="{key}" text="{text}"/>
+							<!--<Label wrapping="true"  text="{i18n>modelYear}"/>
+							<ComboBox id="modelYr_RSOA" items="{ path: 'modelYear_Model>/',sorter: { path: 'modelYear_Model>/' } }" required="true">
+								<core:Item key="{modelYear_Model>}" text="{modelYear_Model>}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>Series}"/>
-							<ComboBox id="series_RSOA" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-								<core:Item key="{ProductId}" text="{Name}"/>
+							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/', sorter: { path: '/TCISeries' } }" required="true">
+								<core:Item key="{seriesModel>}" text="{seriesModel>}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>Model}"/>
-							<ComboBox id="model_RSOA" items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
-								<!--<core:Item key="{key}" text="{text}"></core:Item>-->
-								<core:Item key="{key}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
+							<ComboBox id="model_RSOA" items="{ path: 'model_Model>/', sorter: { path: '/Model' } }" required="true">
+								<core:Item key="{model_Model>}" text="{parts: [{path:'model_Model>'},{path:'model_Model>'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>Suffix}"/>
-							<ComboBox id="Suffix_RSOA" items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
-								<!--<core:Item key="{key}" text="{text}"></core:Item>-->
-								<core:Item key="{ProductId}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+							<ComboBox id="Suffix_RSOA" items="{ path: 'suffix_Model>/', sorter: { path: 'suffix_Model>/' } }" required="true">
+								<core:Item key="{suffix_Model>}" text="{parts: [{path:'suffix_Model>'},{path:'suffix_Model>'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+							</ComboBox>-->
+							<Label wrapping="true"  text="{i18n>modelYear}"/>
+							<ComboBox id="modelYr_RSOA" items="{ path: 'mode_Model>/',sorter: { path: 'mode_Model>/' } }" required="true">
+								<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>
+							</ComboBox>
+							<Label wrapping="true"  text="{i18n>Series}"/>
+							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/', sorter: { path: '/TCISeries' } }" required="true">
+								<core:Item key="{seriesModel>}" text="{seriesModel>}"/>
+							</ComboBox>
+							<Label wrapping="true"  text="{i18n>Model}"/>
+							<ComboBox id="model_RSOA" items="{ path: 'mode_Model>/', sorter: { path: 'mode_Model>/' } }" required="true">
+								<core:Item key="{mode_Model>zzmodel}" text="{parts: [{path:'mode_Model>zzmodel'},{path:'mode_Model>zzmodel'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
+							</ComboBox>
+							<Label wrapping="true"  text="{i18n>Suffix}"/>
+							<ComboBox id="Suffix_RSOA" items="{ path: 'mode_Model>/', sorter: { path: 'mode_Model>/' } }" required="true">
+								<core:Item key="{mode_Model>zzsuffix}" text="{parts: [{path:'mode_Model>zzsuffix'},{path:'mode_Model>zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>APX}"/>
-							<ComboBox id="Apx_RSOA" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-								<core:Item key="{ProductId}" text="{Name}"/>
+							<ComboBox id="Apx_RSOA" items="{ path: 'mode_Model>/', sorter: { path: 'key' } }" required="true">
+								<core:Item key="{mode_Model>zzapx}" text="{mode_Model>zzapx}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>Colour}"/>
 							<ComboBox id="Colour_RSOA" items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
@@ -50,7 +64,7 @@
 									</HBox>
 									<HBox>
 										<items>
-											<DatePicker id="etaTo_RSOA" navigate="_handleChange" placeholder="dd/MMM/yy"></DatePicker>
+											<DatePicker id="etaTo_RSOA" navigate="_handleToDateChange" placeholder="dd/MMM/yy"></DatePicker>
 											<Label wrapping="true"  text="{i18n>to}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 										</items>
 									</HBox>
@@ -64,18 +78,18 @@
 							<ComboBox id="SalesType_RSOA" items="{path: '/SalesType', sorter: {path: 'text'}}" required="true">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
-							<Label wrapping="true"  text="{i18n>approvalNumber}"/>
-							<Input value="{address>/Street}"/>
+							<Label wrapping="true" text="{i18n>approvalNumber}"/>
+							<Input id="tcciNo_RSOA" value="{address>/Street}"/>
 							<Label wrapping="true"  text="{i18n>salesPerName}"/>
-							<Input value="{address>/HouseNumber}"/>
+							<Input  id="salesperson_RSOA" value="{address>/HouseNumber}"/>
 							<Label wrapping="true"  text="{i18n>salesManName}"/>
-							<Input value="{address>/ZIPCode}"/>
-							<Label wrapping="true"  text="{i18n>tradeInModelYr}"/>
-							<ComboBox id="modelYear_RSOAid" items="{ path: '/modelYear', sorter: { path: 'text' } }">
-								<core:Item key="{key}" text="{text}"/>
+							<Input id="salesMan_RSOA" value="{address>/ZIPCode}"/>
+							<Label wrapping="true" id="tradeInModelYr_RSOA"  text="{i18n>tradeInModelYr}"/>
+							<ComboBox id="trademodelYear_RSOAid" items="{ path: 'modelYearM>/modelYear', sorter: { path: 'text' } }">
+								<core:Item key="{modelYearM>key}" text="{modelYearM>text}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>tradeInMake}"/>
-							<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
+							<ComboBox id="tradeInMakeYear_RSOAid" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
 								<core:Item key="{ProductId}" text="{Name}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>tradeInModel}"/>

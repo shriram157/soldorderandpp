@@ -14,22 +14,23 @@
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "></MessageStrip >
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Text text="1980"/>
+							<Text text="{RSO_MSO_Model>/Zzmoyr}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<Text text="{address>/Name}"/>
+								<Text text="{RSO_MSO_Model>/Zzseries}"/>
 							<Label wrapping="true" text="{i18n>Model}"/>
-							<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
+							<Text text="{parts: [{path:'RSO_MSO_Model>/Zzmodel'},{path:'RSO_MSO_Model>/Zzmodel'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 							<Label wrapping="true" text="{i18n>Suffix}"/>
-							<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+							<Text text="{parts: [{path:'RSO_MSO_Model>/Zzsuffix'},{path:'RSO_MSO_Model>/Zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 							<Label wrapping="true" text="{i18n>APX}"/>
-							<Text text="{address>/Name}"/>
-							<Label wrapping="true"
-								text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
-							<Text text="{address>/Name}"/>
+								<Text text="{RSO_MSO_Model>/Zzapx}"/>
+									<Label wrapping="true" text="{i18n>colour}"/>
+							<Text wrapping="true"
+								text="{parts: [{path:'RSO_MSO_Model>/Zzextcol'},{path:'RSO_MSO_Model>/Zzextcol'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
+							
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{RSO_MSO_Model>/ZzeffDate}"/>
 							<Label wrapping="true" text="{i18n>SalesType}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{RSO_MSO_Model>/ZzsoType}"/>
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<VBox>
 								<items>
@@ -37,12 +38,14 @@
 										<items>
 											<Text ></Text>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginTop"/>
+												<Text text="{RSO_MSO_Model>/ZzreqEtaFrom}"/>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Text ></Text>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginTop"/>
+												<Text text="{RSO_MSO_Model>/ZzreqEtaTo}"/>
 										</items>
 									</HBox>
 								</items>
@@ -50,7 +53,7 @@
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>soldOrderInfoTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
 							<Label wrapping="true" text="{i18n>PrevSoldOrder}"/>
-							<Link text="S012345"></Link>
+							<Link text=""></Link>
 							<Label wrapping="true" text="{i18n>SalesPerName}"/>
 							<Text text="{address>/Name}"/>
 							<Label wrapping="true" text="{i18n>SalesManName}"/>
@@ -62,7 +65,7 @@
 							<Label wrapping="true" text="{i18n>TradeInModel}"/>
 							<Text text="{address>/Name}"/>
 							<Label wrapping="true" text="{i18n>SoldOrdStatus}"/>
-							<Text text="{address>/Name}"/>
+								<Text text="{RSO_MSO_Model>/ZzsoStatus}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" maxLength="150"></TextArea>
 							<core:Title text="" class="titleFontSize"/>
@@ -77,13 +80,13 @@
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="19-08-2001"></Text>
+											<Text text=""></Text>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="19-08-2001"></Text>
+											<Text text=""></Text>
 										</items>
 									</HBox>
 								</items>
@@ -94,13 +97,13 @@
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="19-08-2001"></Text>
+											<Text text=""></Text>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="19-08-2001"></Text>
+											<Text text=""></Text>
 										</items>
 									</HBox>
 								</items>

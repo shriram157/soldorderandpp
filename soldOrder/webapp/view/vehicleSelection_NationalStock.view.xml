@@ -8,11 +8,11 @@
 					<m:VBox>
 						<m:items>
 							<m:Label  text="{i18n>RSOVehicleSel}" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiMediumMarginBottom fontsize"></m:Label>
-							<m:Label  text="{i18n>PipeVehAvlbl}" class="sapUiTinyMarginTop sapUiTinyMarginBegin fontsize"></m:Label>
+							<m:Text  text="{i18n>PipeVehAvlbl}" class="sapUiTinyMarginTop sapUiTinyMarginBegin fontsize bulletlist"></m:Text>
 						</m:items>
 					</m:VBox>
 					
-					<Table id="table_RSOVehicleSelNationalStock" selectionMode="None"  rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+					<Table id="table_RSOVehicleSelNationalStock" selectionMode="None"  rows="{vehSel_NatStock_Model>/}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<columns>
 						<Column width="14.2%" resizable="false" >
@@ -24,37 +24,37 @@
 						<Column width="14.2%" resizable="false"  id="deliverydate" sortProperty="Category">
 								<m:Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<template>
-									<m:Text text="{Category}" wrapping="true"/>
+									<m:Text text="{vehSel_NatStock_Model>ZzreqEtaFrom}" wrapping="true"/>
 								</template>
 							</Column>
 						<Column width="14.2%" resizable="false"  id="etaTime" >
 								<m:Label text="{i18n>ETATime}" class="TableLabel"/>
 								<template>
-									<m:Text text="{Category}" wrapping="false"/>
+									<m:Text text="{vehSel_NatStock_Model>ZzreqEtaTo}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="14.2%" resizable="false"  id="model" >
 								<m:Label text="{i18n>Model}" class="TableLabel"/>
 								<template>
-									<m:Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}" wrapping="false"/>
+									<m:Text text="{parts: [{path:'vehSel_NatStock_Model>Zzmodel'},{path:'vehSel_NatStock_Model>Zzmodel'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}" wrapping="false"/>
 								</template>
 								</Column>
 							<Column width="14.2%" resizable="false"  id="suffix" >
 								<m:Label text="{i18n>Suffix}" class="TableLabel"/>
 								<template>
-									<m:Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}" wrapping="false"/>
+									<m:Text text="{parts: [{path:'vehSel_NatStock_Model>Zzsuffix'},{path:'vehSel_NatStock_Model>Zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="14.2%" resizable="false"  id="apx" >
 								<m:Label text="{i18n>APX}" class="TableLabel"/>
 								<template>
-									<m:Text text="{Category}" wrapping="false"/>
+									<m:Text text="{vehSel_NatStock_Model>Zzapx}" wrapping="false"/>
 								</template>
 							</Column>
 						<Column width="14.2%" resizable="false"  id="colour" >
 								<m:Label text="{i18n>Colour}" class="TableLabel"/>
 								<template>
-									<m:Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}" wrapping="false"/>
+									<m:Text text="{parts: [{path:'vehSel_NatStock_Model>Zzextcol'},{path:'vehSel_NatStock_Model>Zzextcol'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}" wrapping="false"/>
 								</template>
 							</Column>
 						</columns>

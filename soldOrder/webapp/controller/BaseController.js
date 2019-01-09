@@ -21,6 +21,17 @@ sap.ui.define([
 				jQuery.sap.log.info("Route name is : " + name);
 			});
 		},
+		host:function(){
+		var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				this.sPrefix = "/soldorder_node";
+			} else {
+				this.sPrefix = "";
+			}
+			this.nodeJsUrl = this.sPrefix + "/node";
+			return this.nodeJsUrl;
+		},
 		handleBaseLinkPress: function (oEvent) {
 			this.oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var oGetText = oEvent.getSource().getText();
@@ -67,13 +78,13 @@ sap.ui.define([
 			this.getView().setModel(oI18nModel, "i18n");
 
 			var isLocaleSent = window.location.search.match(/language=([^&]*)/i);
-			console.log(isLocaleSent);
+			//console.log(isLocaleSent);
 			if (isLocaleSent) {
 				var sSelectedLocale = window.location.search.match(/language=([^&]*)/i)[1];
 			} else {
 				var sSelectedLocale = "EN"; // default is english 
 			}
-			console.log(sSelectedLocale);
+			//console.log(sSelectedLocale);
 			//selected language. 
 			// if (window.location.search == "?language=fr") {
 			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/") {

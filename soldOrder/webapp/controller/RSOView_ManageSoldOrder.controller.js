@@ -12,13 +12,41 @@ sap.ui.define([
 			RSO_MSO_controller = this;
 			RSO_MSO_controller.getBrowserLanguage();
 			RSO_MSO_controller._oBusyDialog = new sap.m.BusyDialog();
+			RSO_MSO_controller.getSO();
 		},
+		getSO: function () {
+			var host = RSO_MSO_controller.host();
+			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?sap-client=200&$format=json";
+			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$filter=ZzsoReqNo eq 'SO0000000009'&$format=json";
+			$.ajax({
+				type: 'GET',
+				url: oURL,
+				cache: false,
+				success: function (data) {
+					console.log(data.d.results[0]);
+					var oModel = new sap.ui.model.json.JSONModel();
+					oModel.setData(data.d.results[0]);
+					RSO_MSO_controller.getView().setModel(oModel, "RSO_MSO_Model");
+					
+					var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
+					var sRecipient = data.d.results[0].ZzsoReqNo;
+					var sMsg = oBundle.getText("mangSoldOrder", [sRecipient]);
+					RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);
+				},
+				error: function (data) {
+					sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
 
+			});
+		},
 		onAfterRendering: function () {
-			var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
-			var sRecipient = "S09732984"; // RSO_MSO_controller.getView().getModel().getProperty("/recipient/name");
-			var sMsg = oBundle.getText("mangSoldOrder", [sRecipient]);
-			RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);
+			/*	var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
+				//var sRecipient = "S09732984"; // RSO_MSO_controller.getView().getModel().getProperty("/recipient/name");
+					var sRecipient =RSO_MSO_controller.getView().getModel("RSO_MSO_Model").getData()[0].ZzsoReqNo;
+					console.log(sRecipient);
+				var sMsg = oBundle.getText("mangSoldOrder", [sRecipient]);
+				RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);*/
 
 			if (AppController.flagOrderingDealer == true) {
 				RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(true);
@@ -33,8 +61,8 @@ sap.ui.define([
 				var data = oTbl.getModel().getData().ProductCollection;
 				var len = data.length;
 				for (var i = 0; i < len; i++) {
-					var Id = "idRSOV_MSO_delButton-__clone" + (i*3);
-					console.log(Id);
+					var Id = "idRSOV_MSO_delButton-__clone" + (i * 3);
+
 					RSO_MSO_controller.getView().byId(Id).setEnabled(true);
 				}
 			}
@@ -82,10 +110,11 @@ sap.ui.define([
 
 		_getVehiclesToFillSoldOrderRequest: function () {
 			if (RSO_MSO_controller.flagOrderingDealer === true) {
-				RSO_MSO_controller.getRouter().navTo("vehicleSelection_DealerInventory", {}, true); //page5 
+
+				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {}, true); //page5 
 			}
 			if (RSO_MSO_controller.flagNationalSIPUser === true) {
-				RSO_MSO_controller.getRouter().navTo("vehicleSelection_NationalStock", {}, true); //page6  
+				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_NationalStock", {}, true); //page6  
 			}
 			var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorVeh");
 			var title = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("title2");
@@ -126,7 +155,8 @@ sap.ui.define([
 				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 				onClose: function (sAction) {
 					if (sAction == "YES") {
-						RSO_MSO_controller.getRouter().navTo("RetailSoldOrderCancelRequest", {}, true); //page6
+
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderCancelRequest", {}, true); //page6
 					} else {
 						//
 					}
@@ -219,7 +249,7 @@ sap.ui.define([
 				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 				onClose: function (sAction) {
 					if (sAction == "YES") {
-						RSO_MSO_controller.getRouter().navTo("SoldOrderChangeReason", {}, true); //page7
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("SoldOrderChangeReason", {}, true); //page7
 					} else {}
 				},
 				styleClass: "",

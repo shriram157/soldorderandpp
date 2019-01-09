@@ -7,14 +7,37 @@ sap.ui.define([
 
 ], function (BaseController,formatter) {
 	"use strict";
-
+var VehSel_NatStock_Controller;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.vehicleSelection_NationalStock", {
 formatter:formatter,
 		onInit: function () {
-			this.getBrowserLanguage();
+			VehSel_NatStock_Controller=this;
+			VehSel_NatStock_Controller.getBrowserLanguage();
+			VehSel_NatStock_Controller.getSO();
+		},
+			getSO: function () {
+			var host = VehSel_NatStock_Controller.host();
+			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?sap-client=200&$format=json";
+		//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$filter=ZzsoReqNo eq 'SO0000000009'&$format=json";
+			$.ajax({
+				type: 'GET',
+				url: oURL,
+				cache: false,
+				success: function (data) {
+					console.log(data.d.results);
+					var oModel = new sap.ui.model.json.JSONModel();
+					oModel.setData(data.d.results);
+					VehSel_NatStock_Controller.getView().setModel(oModel, "vehSel_NatStock_Model");
+				},
+				error: function (data) {
+					sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+
+			});
 		},
 		_onSelect: function (evt) {
-			var oTable = this.getView().byId("table_RSOVehicleSelNationalStock");
+			var oTable = VehSel_NatStock_Controller.getView().byId("table_RSOVehicleSelNationalStock");
 			console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
 			var sPath = evt.getSource().getBindingContext().sPath;
 			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
@@ -22,7 +45,7 @@ formatter:formatter,
 		sortETA: function (oEvent) {
 				/*
 							var oCurrentColumn = oEvent.getParameter("column");
-							var oDeliveryDateColumn = this.byId("deliverydate");
+							var oDeliveryDateColumn = VehSel_NatStock_Controller.byId("deliverydate");
 							if (oCurrentColumn != oDeliveryDateColumn) {
 								oDeliveryDateColumn.setSorted(false); //No multi-column sorting
 								return;
@@ -33,7 +56,7 @@ formatter:formatter,
 							var sOrder = oEvent.getParameter("sortOrder");
 							var oDateFormat = DateFormat.getDateInstance({pattern: "dd/MM/yyyy"});
 
-							this._resetSortingState(); //No multi-column sorting
+							VehSel_NatStock_Controller._resetSortingState(); //No multi-column sorting
 							oDeliveryDateColumn.setSorted(true);
 							oDeliveryDateColumn.setSortOrder(sOrder);
 
@@ -58,7 +81,7 @@ formatter:formatter,
 								}
 								return 0;
 							};
-							this.byId("table_RSOVehicleSel").getBinding("rows").sort(oSorter);
+							VehSel_NatStock_Controller.byId("table_RSOVehicleSel").getBinding("rows").sort(oSorter);
 						*/
 			}
 			/**
@@ -71,7 +94,7 @@ formatter:formatter,
 			//	},
 
 		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+		 * Similar to onAfterRendering, but VehSel_NatStock_Controller hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
 		 * @memberOf toyota.capractise.view.vehicleSelection_PipelineVehAvlbl
 		 */
@@ -81,7 +104,7 @@ formatter:formatter,
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
+		 * VehSel_NatStock_Controller hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf toyota.capractise.view.vehicleSelection_PipelineVehAvlbl
 		 */
 		//	onAfterRendering: function() {
@@ -89,7 +112,7 @@ formatter:formatter,
 		//	},
 
 		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
+		 * Called when the Controller is destroyed. Use VehSel_NatStock_Controller one to free resources and finalize activities.
 		 * @memberOf toyota.capractise.view.vehicleSelection_PipelineVehAvlbl
 		 */
 		//	onExit: function() {
