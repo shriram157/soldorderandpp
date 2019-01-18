@@ -6,11 +6,7 @@ sap.ui.define([
 	var RSOB_controller;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderB", {
 		formatter: formatter,
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf toyota.capractise.view.RetailSoldOrderB
-		 */
+		
 		onInit: function () {
 			RSOB_controller = this;
 			RSOB_controller.getBrowserLanguage();
@@ -114,18 +110,6 @@ sap.ui.define([
 						RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder"); //page 3
 			}
 		}
-
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the Controller is destroyed. Use RSOB_controller one to free resources and finalize activities.
-		 * @memberOf toyota.capractise.view.RetailSoldOrderB
-		 */
-		//	onExit: function() {
-		//
-		//	}
 
 	});
 

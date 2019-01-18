@@ -187,28 +187,6 @@ sap.ui.define([
 				}
 			});*/
 
-		/**
-		 * Similar to onAfterRendering, but CFSO_controller hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf toyota.ca.SoldOrder.view.CreateFleetSoldOrder
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * CFSO_controller hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf toyota.ca.SoldOrder.view.CreateFleetSoldOrder
-		 */
-
-		/**
-		 * Called when the Controller is destroyed. Use CFSO_controller one to free resources and finalize activities.
-		 * @memberOf toyota.ca.SoldOrder.view.CreateFleetSoldOrder
-		 */
-		//	onExit: function() {
-		//
-		//	}
 
 	});
 

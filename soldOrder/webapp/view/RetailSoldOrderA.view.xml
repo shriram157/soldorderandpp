@@ -37,34 +37,36 @@
 								<core:Item key="{seriesModel>}" text="{seriesModel>}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>Model}"/>
-							<ComboBox id="model_RSOA" items="{ path: 'mode_Model>/', sorter: { path: 'mode_Model>/' } }" required="true">
-								<core:Item key="{mode_Model>zzmodel}" text="{parts: [{path:'mode_Model>zzmodel'},{path:'mode_Model>zzmodel'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
+							<ComboBox id="model_RSOA" items="{ path: 'oModel3>/', sorter: { path: 'oModel3>/' } }" required="true">
+								<core:Item key="{oModel3>Model}" text="{parts: [{path:'oModel3>Model'},{path:'oModel3>ENModelDesc'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>Suffix}"/>
-							<ComboBox id="Suffix_RSOA" items="{ path: 'mode_Model>/', sorter: { path: 'mode_Model>/' } }" required="true">
-								<core:Item key="{mode_Model>zzsuffix}" text="{parts: [{path:'mode_Model>zzsuffix'},{path:'mode_Model>zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+							<ComboBox id="Suffix_RSOA" items="{ path: 'oModel1>/', sorter: { path: 'oModel1>/' } }" required="true">
+								<core:Item key="{oModel1>Suffix}" text="{parts: [{path:'oModel1>SuffixDescriptionEN'},{path:'oModel2>TrimInteriorColor'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+		<!--	<core:ListItem   text="{=${SeriesData>SPRAS}==='English' ? ${SeriesData>TCISeriesDescriptionEN}:${SeriesData>TCISeriesDescriptionFR} }" key="{SeriesData>TCISeries}" />-->
+						
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>APX}"/>
 							<ComboBox id="Apx_RSOA" items="{ path: 'mode_Model>/', sorter: { path: 'key' } }" required="true">
 								<core:Item key="{mode_Model>zzapx}" text="{mode_Model>zzapx}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>Colour}"/>
-							<ComboBox id="Colour_RSOA" items="{ path: '/SoldOrderStatus', sorter: { path: 'key' } }" required="true">
+							<ComboBox id="Colour_RSOA" items="{ path: 'oModel2>/', sorter: { path: 'key' } }" required="true">
 								<!--<core:Item key="{key}" text="{text}"></core:Item>-->
-								<core:Item key="{ProductId}" text="{parts: [{path:'key'},{path:'text'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
+								<core:Item key="{oModel2>}" text="{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
 							</ComboBox>
 							<Label wrapping="true"  text="{i18n>ETA}" required="true"/>
 							<VBox>
 								<items>
 									<HBox>
 										<items>
-											<DatePicker id="etaFrom_RSOA" placeholder="dd/MMM/yy"></DatePicker>
+											<DatePicker id="etaFrom_RSOA" valueFormat="yyyyMMdd" placeholder="dd/MMM/yy"></DatePicker>
 											<Label wrapping="true"  text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
-											<DatePicker id="etaTo_RSOA" navigate="_handleToDateChange" placeholder="dd/MMM/yy"></DatePicker>
+											<DatePicker id="etaTo_RSOA" valueFormat="yyyyMMdd" navigate="_handleToDateChange" placeholder="dd/MMM/yy"></DatePicker>
 											<Label wrapping="true"  text="{i18n>to}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 										</items>
 									</HBox>
@@ -73,7 +75,7 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss"></MessageStrip >
 							<Label wrapping="true"  text="{i18n>contractDate}"/>
-							<DatePicker id="ContractDate_RSOA" placeholder="dd/MMM/yy" required="true"></DatePicker>
+							<DatePicker id="ContractDate_RSOA" valueFormat="yyyyMMdd" placeholder="dd/MMM/yy" required="true"></DatePicker>
 							<Label wrapping="true"  text="{i18n>salesType}"/>
 							<ComboBox id="SalesType_RSOA" items="{path: '/SalesType', sorter: {path: 'text'}}" required="true">
 								<core:Item key="{key}" text="{text}"/>

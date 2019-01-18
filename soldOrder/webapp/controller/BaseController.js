@@ -8,6 +8,7 @@ sap.ui.define([
 	"use strict";
 	var basCont;
 	return Controller.extend("toyota.ca.SoldOrder.controller.BaseController", {
+		
 		onInit: function () {
 			basCont = this;
 			var r = basCont.getRouter();
@@ -21,6 +22,7 @@ sap.ui.define([
 				jQuery.sap.log.info("Route name is : " + name);
 			});
 		},
+		
 		host:function(){
 		var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
@@ -32,6 +34,7 @@ sap.ui.define([
 			this.nodeJsUrl = this.sPrefix + "/node";
 			return this.nodeJsUrl;
 		},
+		
 		handleBaseLinkPress: function (oEvent) {
 			this.oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var oGetText = oEvent.getSource().getText();

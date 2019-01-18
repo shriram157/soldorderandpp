@@ -18,11 +18,82 @@ sap.ui.define([
 			var day1 = new Date();
 			day1.setDate(today.getDate() + 1);
 			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(day1);
+			RSOA_controller._newService1();
+			RSOA_controller._newService2();
+			RSOA_controller._newService3();
 			RSOA_controller._handleServiceModel_ModelYear();
 			RSOA_controller._handleServiceSuffix_Series();
 			RSOA_controller._handleRSADropDown();
 		},
 
+		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
+
+		//2) Suffix  and  Suffix Description : Z_VEHICLE_CATALOGUE_SRV/zc_configuration SuffixDescriptionEN, Suffix
+		//     Interior Colour Description     :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  TrimInteriorColor    
+
+		//3)Color Code , Colour Description :  :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  ExteriorColorCode: "0218"ExteriorDescriptionEN: "BLACK"
+
+		_newService1: function () {
+			var host = RSOA_controller.host();
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_configuration?sap-client=200&$format=json";
+			$.ajax({
+				url: oUrl,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					console.log("Result from zc_configuration");
+					console.log(data.d.results);
+					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					RSOA_controller.getView().setModel(oModel, "oModel1");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+		},
+		_newService2: function () {
+			var host = RSOA_controller.host();
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim?sap-client=200&$format=json";
+			$.ajax({
+				url: oUrl,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					console.log("Result from zc_exterior_trim");
+					console.log(data.d.results);
+					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					RSOA_controller.getView().setModel(oModel, "oModel2");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+		},
+		_newService3: function () {
+			var host = RSOA_controller.host();
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL?sap-client=200&$format=json";
+			$.ajax({
+				url: oUrl,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					console.log("Result from ZC_BRAND_MODEL_DETAIL");
+					console.log(data.d.results);
+					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					//	RSOA_controller.getView().byId("model_RSOA").setSizeLimit(oModel.getData().length);
+					RSOA_controller.getView().setModel(oModel, "oModel3");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+		},
 		_handleRSADropDown: function () {
 			var host = RSOA_controller.host();
 			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_PIO_DIO?sap-client=200&$format=json";
@@ -171,54 +242,56 @@ sap.ui.define([
 			var Zzsuffix = RSOA_controller.getView().byId("Suffix_RSOA").getValue();
 			var Zzextcol = RSOA_controller.getView().byId("Colour_RSOA").getValue();
 			var Zzapx = RSOA_controller.getView().byId("Apx_RSOA").getValue();
-			var ZzreqEtaFrom1= RSOA_controller.getView().byId("etaFrom_RSOA").getValue();
-			var ZzreqEtaFrom2=Date.now(ZzreqEtaFrom1);
-			var ZzreqEtaFrom="Date("+ZzreqEtaFrom2+")";
+			var ZzreqEtaFrom1 = RSOA_controller.getView().byId("etaFrom_RSOA").getValue();
+			console.log(ZzreqEtaFrom1);
+			console.log(RSOA_controller.getView().byId("etaFrom_RSOA").getDateValue());
+			var ZzreqEtaFrom2 = Date.now(ZzreqEtaFrom1);
+			var ZzreqEtaFrom = "Date(" + ZzreqEtaFrom2 + ")";
 			var ZzreqEtaTo1 = RSOA_controller.getView().byId("etaTo_RSOA").getValue();
-			var ZzreqEtaTo2=Date.now(ZzreqEtaTo1);
-			var ZzreqEtaTo="Date("+ZzreqEtaTo2+")";
-			var ZcontractDate1=RSOA_controller.getView().byId("ContractDate_RSOA").getValue();
-			var ZcontractDate2=Date.now(ZcontractDate1);
-			var ZcontractDate="Date("+ZcontractDate2+")";
-			var ZsalesType=RSOA_controller.getView().byId("SalesType_RSOA").getValue();
-			var ZtcciNum=RSOA_controller.getView().byId("tcciNo_RSOA").getValue();
-			var Zsalesperson=RSOA_controller.getView().byId("salesperson_RSOA").getValue();
-			var Zsalesmanager=RSOA_controller.getView().byId("salesMan_RSOA").getValue();
-			var ZtradeModelYr=RSOA_controller.getView().byId("trademodelYear_RSOAid").getValue();
-			var ZtradeMake=RSOA_controller.getView().byId("tradeInMakeYear_RSOAid").getValue();
+			var ZzreqEtaTo2 = Date.now(ZzreqEtaTo1);
+			var ZzreqEtaTo = "Date(" + ZzreqEtaTo2 + ")";
+			var ZcontractDate1 = RSOA_controller.getView().byId("ContractDate_RSOA").getValue();
+			var ZcontractDate2 = Date.now(ZcontractDate1);
+			var ZcontractDate = "Date(" + ZcontractDate2 + ")";
+			var ZsalesType = RSOA_controller.getView().byId("SalesType_RSOA").getValue();
+			var ZtcciNum = RSOA_controller.getView().byId("tcciNo_RSOA").getValue();
+			var Zsalesperson = RSOA_controller.getView().byId("salesperson_RSOA").getValue();
+			var Zsalesmanager = RSOA_controller.getView().byId("salesMan_RSOA").getValue();
+			var ZtradeModelYr = RSOA_controller.getView().byId("trademodelYear_RSOAid").getValue();
+			var ZtradeMake = RSOA_controller.getView().byId("tradeInMakeYear_RSOAid").getValue();
 			var host = RSOA_controller.host();
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/SOcreateSet";
 			var d = {
-				       "ZzsoReqNo" : "SO0000000239",
-       "Zzmodel" : "YZ3DCT",
-       "Zzmoyr" : "2018",
-       "Zzsuffix" : "ML",
-       "Zzextcol" : "01D6",
-       "Zzapx" : "00",
-       "ZzreqEtaFrom" : null,
-       "ZzreqEtaTo" : null,
-       "ZcontractDate" : null,
-       "ZsalesType" : "ML",
-       "ZtcciNum" : "ML",
-       "Zsalesperson" : "ML",
-       "Zsalesmanager" : "ML",
-       "ZtradeModelYr" : "201",
-       "ZtradeMake" : "89"
-				/*"ZzsoReqNo": "SO0000000239",
-				"Zzmodel": Zzmodel, //"YZ3DCT",
-				"Zzmoyr": Zzmoyr, //"2018",
-				"Zzsuffix": Zzsuffix, //"ML",
-				"Zzextcol": Zzextcol, //"01D6",
-				"Zzapx": Zzapx, // "00",
-				"ZzreqEtaFrom": ZzreqEtaFrom, //null,
-				"ZzreqEtaTo": ZzreqEtaTo, //null,
-				"ZcontractDate": ZcontractDate, //null,
-				"ZsalesType":ZsalesType, // "",
-				"ZtcciNum":ZtcciNum,// "",
-				"Zsalesperson":Zsalesperson,// "",
-				"Zsalesmanager": Zsalesmanager, //"",
-				"ZtradeModelYr":ZtradeModelYr,// "",
-				"ZtradeMake":ZtradeMake,*/ // ""
+				"ZzsoReqNo": "",
+				"Zzmodel": "YZ3DCT",
+				"Zzmoyr": "2018",
+				"Zzsuffix": "ML",
+				"Zzextcol": "01D6",
+				"Zzapx": "00",
+				"ZzreqEtaFrom": "20190102",
+				"ZzreqEtaTo": "20180304",
+				"ZcontractDate": "20180304",
+				"ZsalesType": "",
+				"ZtcciNum": "",
+				"Zsalesperson": "",
+				"Zsalesmanager": "",
+				"ZtradeModelYr": "",
+				"ZtradeMake": ""
+					/*"ZzsoReqNo": "",
+					"Zzmodel": Zzmodel, //"YZ3DCT",
+					"Zzmoyr": Zzmoyr, //"2018",
+					"Zzsuffix": Zzsuffix, //"ML",
+					"Zzextcol": Zzextcol, //"01D6",
+					"Zzapx": Zzapx, // "00",
+					"ZzreqEtaFrom": ZzreqEtaFrom1, //null,
+					"ZzreqEtaTo": ZzreqEtaTo1, //null,
+					"ZcontractDate": ZcontractDate1, //null,
+					"ZsalesType":ZsalesType, // "",
+					"ZtcciNum":ZtcciNum,// "",
+					"Zsalesperson":Zsalesperson,// "",
+					"Zsalesmanager": Zsalesmanager, //"",
+					"ZtradeModelYr":ZtradeModelYr,// "",
+					"ZtradeMake":ZtradeMake, */ // ""
 			};
 			var dataString = JSON.stringify({
 				d
@@ -229,9 +302,11 @@ sap.ui.define([
 				url: oURL,
 				cache: false,
 				data: dataString,
+				dataType: 'json',
 				success: function (data) {
 					console.log(data);
-						RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder"); //page 3
+				
+					//	RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder"); //page 3
 				},
 				error: function (data) {
 					sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
@@ -302,11 +377,11 @@ sap.ui.define([
 			};
 			var modelYearModel = new JSONModel();
 			modelYearModel.setData(data);
-			RSOA_controller.getView().byId("modelYr_RSOA").setModel(modelYearModel, "modelYearM");
+			RSOA_controller.getView().byId("modelYr_RSOA").setModel(modelYearModel, "codedModel");
 		},
 
 		_onSubmit: function () {
-		
+			RSOA_controller.submitSO();
 			var flag1 = false;
 			var flag2 = false;
 			var errMsg2;
@@ -360,9 +435,8 @@ sap.ui.define([
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			} else {
-				RSOA_controller.submitSO();
-					
-			
+				//	RSOA_controller.submitSO();
+
 			}
 		},
 

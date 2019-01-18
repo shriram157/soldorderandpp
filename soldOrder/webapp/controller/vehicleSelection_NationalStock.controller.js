@@ -1,10 +1,6 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"toyota/ca/SoldOrder/util/formatter"
-	/*	"sap/ui/table/SortOrder",
-		"sap/ui/model/Sorter",
-		"sap/ui/core/format/DateFormat"*/
-
 ], function (BaseController,formatter) {
 	"use strict";
 var VehSel_NatStock_Controller;
@@ -84,41 +80,6 @@ formatter:formatter,
 							VehSel_NatStock_Controller.byId("table_RSOVehicleSel").getBinding("rows").sort(oSorter);
 						*/
 			}
-			/**
-			 * Called when a controller is instantiated and its View controls (if available) are already created.
-			 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-			 * @memberOf toyota.capractise.view.vehicleSelection_PipelineVehAvlbl
-			 */
-			//	onInit: function() {
-			//
-			//	},
-
-		/**
-		 * Similar to onAfterRendering, but VehSel_NatStock_Controller hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf toyota.capractise.view.vehicleSelection_PipelineVehAvlbl
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * VehSel_NatStock_Controller hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf toyota.capractise.view.vehicleSelection_PipelineVehAvlbl
-		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the Controller is destroyed. Use VehSel_NatStock_Controller one to free resources and finalize activities.
-		 * @memberOf toyota.capractise.view.vehicleSelection_PipelineVehAvlbl
-		 */
-		//	onExit: function() {
-		//
-		//	}
-
 	});
 
 });

@@ -6,11 +6,7 @@ sap.ui.define([
 var FSO_Z_controller;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.FleetSoldOrder_ZoneApproval", {
 		formatter: formatter,
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf toyota.ca.SoldOrder.view.FleetSoldOrder_ZoneApproval
-		 */
+		
 		onInit: function () {
 			FSO_Z_controller=this;
 			FSO_Z_controller.getBrowserLanguage();
@@ -45,13 +41,6 @@ var FSO_Z_controller;
 
 		}
 
-		/**
-		 * Called when the Controller is destroyed. Use FSO_Z_controller one to free resources and finalize activities.
-		 * @memberOf toyota.ca.SoldOrder.view.FleetSoldOrder_ZoneApproval
-		 */
-		//	onExit: function() {
-		//
-		//	}
 
 	});
 

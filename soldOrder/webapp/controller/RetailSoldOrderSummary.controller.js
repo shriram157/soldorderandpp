@@ -6,11 +6,7 @@ sap.ui.define([
 	var RSOS_controller;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderSummary", {
 		formatter: formatter,
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf toyota.ca.SoldOrder.view.RetailSoldOrderSummary
-		 */
+		
 		onInit: function () {
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
@@ -76,12 +72,12 @@ sap.ui.define([
 			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 			var model = oTable.getModel();
 
-			RSOS_controller.getRouter().navTo("RSOView_ManageSoldOrder", {}, true);
+			RSOS_controller.getOwnerComponent().getRouter().navto("RSOView_ManageSoldOrder", {}, true);
 		},
 
 	
 		_createNewOrder: function () {
-			RSOS_controller.getRouter().navTo("RetailSoldOrderA", {}, true);
+			RSOS_controller.getOwnerComponent().getRouter().navto("RetailSoldOrderA", {}, true);
 		},
 		onLinkVehicle: function (evt) {
 			var d = new sap.ui.jsfragment(RSOS_controller.createId("idFrag_RSOS"), "toyota.ca.SoldOrder.view.fragments.VtinDialog",
