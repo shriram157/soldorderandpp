@@ -39,7 +39,7 @@ sap.ui.define([
 			this.oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var oGetText = oEvent.getSource().getText();
 			if (oGetText === this.oBundle.getText("menu1")) {
-				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderA"); //page 1
+				this.getOwnerComponent().getRouter().navTo("RouteView1",{},true); //page 1
 			} else if (oGetText === this.oBundle.getText("menu2")) {
 				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary"); //page 10
 			} else if (oGetText === this.oBundle.getText("menu3")) {

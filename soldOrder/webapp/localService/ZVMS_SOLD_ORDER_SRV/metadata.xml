@@ -1,0 +1,126 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZVMS_SOLD_ORDER_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="ZVMS_SOLD_ORDER" sap:content-version="1">
+				<Key><PropertyRef Name="ZzsoReqNo"/></Key><Property Name="ZzsoReqNo" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="SO Request No"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzmodel" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="Model Code" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzmoyr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Model year" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzsuffix" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Suffix" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzextcol" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Exterior colour code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzapx" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Apx" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzdealerCode" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Dealer code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzendcu" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="End Customer"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzreqEtaFrom" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Requested ETA from" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzreqEtaTo" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Requested ETA To" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzvtn" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Vehicle Tracking Num"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzsoType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="SO type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzsoFltReqNo" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Fleet Order No"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzsoFltReqItem" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Fleet Sold Order Itm"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzsoStatus" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Sales Order Status"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzAuditStatus" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SO Audit Status"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzcancelRsn" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Reason for Cancel"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzcancelComment" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Cancel Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzseries" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="TCI Series" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzeffDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Effective Date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZcreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZcreatedOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Created On"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZchgBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZchgOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Changed On" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ZVMS_SO_FLEET_I" sap:content-version="1">
+				<Key><PropertyRef Name="FleetSONo"/><PropertyRef Name="FleetSOItem"/></Key><Property Name="FleetSONo" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Fleet Sold Order No"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FleetSOItem" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Fleet Sold Order Itm"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Model" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="Model" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Modelyear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Model year" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Suffix" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Suffix" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ExteriorColourCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Exterior colour code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="APX" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Apx" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ReqEtaFrom" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Requested ETA From"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ReqEtaTo" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Requested ETA To"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FltSOQty" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Fleet SO Qty"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Created On"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ChgBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ChgOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Changed On" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="SO_FLEET_Header" sap:content-version="1">
+				<Key><PropertyRef Name="ZsoFltReqNo"/></Key><Property Name="ZsoFltReqNo" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Fleet Sold Order No"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzdealerCode" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Dealer code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZfanNo" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Fan Number" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zendcu" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="End Customer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZsoFltStatus" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Fleet SO Status"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZpoNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="PO Number" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzoneApproval" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Zone Appr No"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZdriverLiNum" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Driver Licence No"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZfleetComment" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Fleet Comment"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZpriceApproval" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Price App Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZstatusComment" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Status Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd1" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 1" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd2" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 2" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd3" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 3" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd4" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 4" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd5" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 5" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZcreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZcreatedOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Created On"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZchgBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZchgOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Changed On" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="FHeadertoItems" Relationship="ZVMS_SOLD_ORDER_SRV.FHtoFI" FromRole="FromRole_FHtoFI" ToRole="ToRole_FHtoFI"/></EntityType>
+			<EntityType Name="ZVMS_SOLD_ADDINF" sap:content-version="1">
+				<Key><PropertyRef Name="ZsoReqNo"/></Key><Property Name="ZsoReqNo" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="SO Request No"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZcontractDate" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Contract Date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZsalesType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Sales Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtcciNum" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="TCCI Approval Number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zsalesperson" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Sales Person Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zsalesmanager" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Sales Manager Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtradeModelYr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Trade In Model Year"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtradeMake" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Trade In Make"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZdriverLiNum" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Driver Licence No"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZretailComment" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Retail Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZpriceApproval" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Price App Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZstatusComment" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Status Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd1" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 1" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd2" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 2" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd3" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 3" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd4" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 4" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zadd5" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Additional 5" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZcreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZcreatedOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Created On"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZchgBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZchgOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Changed On" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="SOcreate" sap:content-version="1">
+				<Key><PropertyRef Name="ZzsoReqNo"/></Key><Property Name="Zzmoyr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ZzsoReqNo" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ZcontractDate" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Contract Date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZsalesType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Sales Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtcciNum" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="TCCI Approval Number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zsalesperson" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Sales Person Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zsalesmanager" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Sales Manager Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtradeModelYr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Trade In Model Year"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TradeinModel" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Trade In Model"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtradeMake" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Trade In Make"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzreqEtaFrom" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Requested ETA from" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZzreqEtaTo" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Requested ETA To" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzextcol" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Exterior colour code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzapx" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Apx" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzsuffix" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Suffix" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzmodel" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="Model Code" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="FHtoFI" sap:content-version="1"><End Type="ZVMS_SOLD_ORDER_SRV.SO_FLEET_Header" Multiplicity="1" Role="FromRole_FHtoFI"/><End Type="ZVMS_SOLD_ORDER_SRV.ZVMS_SO_FLEET_I" Multiplicity="*" Role="ToRole_FHtoFI"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_FHtoFI"><PropertyRef Name="ZsoFltReqNo"/></Principal>
+					<Dependent Role="ToRole_FHtoFI"><PropertyRef Name="FleetSONo"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZVMS_SOLD_ORDER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZVMS_SOLD_ORDERSet" EntityType="ZVMS_SOLD_ORDER_SRV.ZVMS_SOLD_ORDER" sap:searchable="true" sap:pageable="false"
+				sap:content-version="1"/><EntitySet Name="ZVMS_SO_FLEET_ISet" EntityType="ZVMS_SOLD_ORDER_SRV.ZVMS_SO_FLEET_I" sap:searchable="true" sap:pageable="false"
+				sap:content-version="1"/><EntitySet Name="SO_FLEET_HeaderSet" EntityType="ZVMS_SOLD_ORDER_SRV.SO_FLEET_Header" sap:searchable="true" sap:pageable="false"
+				sap:content-version="1"/><EntitySet Name="ZVMS_SOLD_ADDINFSet" EntityType="ZVMS_SOLD_ORDER_SRV.ZVMS_SOLD_ADDINF" sap:searchable="true" sap:pageable="false"
+				sap:content-version="1"/><EntitySet Name="SOcreateSet" EntityType="ZVMS_SOLD_ORDER_SRV.SOcreate" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<AssociationSet Name="FHtoFISet" Association="ZVMS_SOLD_ORDER_SRV.FHtoFI" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:content-version="1"><End EntitySet="SO_FLEET_HeaderSet" Role="FromRole_FHtoFI"/><End EntitySet="ZVMS_SO_FLEET_ISet" Role="ToRole_FHtoFI"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZVMS_SOLD_ORDER_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZVMS_SOLD_ORDER_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -75,66 +75,72 @@
 								</items>
 							</VBox>
 							<Button text="{i18n>new}" id="idBtn_RSOS_new" class="cssShift marginCornersRight" visible="false" press="_createNewOrder"></Button>
-							<t:Table id="table_RSOS" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" 
+							<t:Table id="table_RSOS" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" 
 							alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners marginCornersBottom">
 								<t:columns>
 									<t:Column width="11.11%" resizable="false">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
-											<Link text="{Category}" press="_dispalySoldOrderDetails" wrapping="true"/>
+											<Link text="{mainservices>ZzsoReqNo}" press="_dispalySoldOrderDetails" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"
+											<!--<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"-->
+											<!--	wrapping="true"/>-->
+											<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{mainservices>ZzdealerCode}"
 												wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false">
 										<Label text="{i18n>modelYear}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}" wrapping="true"/>
+											<Text text="{mainservices>Zzmoyr}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" sortProperty="Category" resizable="false">
 										<Label text="{i18n>series}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}" wrapping="true"/>
+											<Text text="{mainservices>Zzseries}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" sortProperty="Category" resizable="false">
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
-											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+											<!--<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"-->
+											<!--	wrapping="true"/>-->
+												<Text text="{mainservices>Zzmodel}"
 												wrapping="true"/>
 										</t:template>
 									</t:Column >
 									<t:Column width="11.11%" sortProperty="Category" resizable="false">
 										<Label text="{i18n>suffix}" class="TableLabel"/>
 										<t:template>
-											<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
+											<!--<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"-->
+											<!--	wrapping="true"/>-->
+												<Text text="{mainservices>Zzsuffix}"
 												wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" sortProperty="Category" resizable="false">
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}" wrapping="true"/>
+											<Text text="{mainservices>ZzsoStatus}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false">
 										<Label text="{i18n>vehicleTrackingNumber}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}" wrapping="true"/>
+											<Text text="{mainservices>Zzvtn}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false">
-										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
-										<t:template>
-											<Button id="btn_linkVeh_RSOS" visible="false" text="{i18n>linkVehicle}" press="onLinkVehicle"/>
-										</t:template>
-									</t:Column>
+									<!--<t:Column width="11.11%" resizable="false">-->
+									<!--	<Label text="{i18n>linkVehicle}" class="TableLabel"/>-->
+									<!--	<t:template>-->
+									<!--		<Button id="btn_linkVeh_RSOS" visible="false" text="{i18n>linkVehicle}" press="onLinkVehicle"/>-->
+									<!--	</t:template>-->
+									<!--</t:Column>-->
 								</t:columns>
 							</t:Table>
 						</items>

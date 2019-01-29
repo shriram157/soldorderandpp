@@ -14,38 +14,56 @@
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "></MessageStrip >
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Text text="{RSO_MSO_Model>/Zzmoyr}"/>
+							<Text text="{mainservices>Zzmoyr}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
-								<Text text="{RSO_MSO_Model>/Zzseries}"/>
+							<Text text="{mainservices>Zzseries}"/>
 							<Label wrapping="true" text="{i18n>Model}"/>
-							<Text text="{parts: [{path:'RSO_MSO_Model>/Zzmodel'},{path:'RSO_MSO_Model>/Zzmodel'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
-							<Label wrapping="true" text="{i18n>Suffix}"/>
-							<Text text="{parts: [{path:'RSO_MSO_Model>/Zzsuffix'},{path:'RSO_MSO_Model>/Zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
-							<Label wrapping="true" text="{i18n>APX}"/>
-								<Text text="{RSO_MSO_Model>/Zzapx}"/>
-									<Label wrapping="true" text="{i18n>colour}"/>
-							<Text wrapping="true"
-								text="{parts: [{path:'RSO_MSO_Model>/Zzextcol'},{path:'RSO_MSO_Model>/Zzextcol'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
-							
+							<!--<Text text="{path:'mainservices>Zzmodel',filters: [{ path: 'Zzmodel', operator: 'EQ', value1: 'mainservices>Zzmodel']}}"/>-->
+							<!--<Label wrapping="true" text="{i18n>Suffix}"/>-->
+							<!--<Text-->
+							<!--	text="{parts: [{path:'mainservices>Zzsuffix'},{path:'mainservices>Zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
+							<!--<Label wrapping="true" text="{i18n>APX}"/>-->
+							<!--<Text text="{mainservices>Zzapx}"/>-->
+							<!--<Label wrapping="true" text="{i18n>colour}"/>-->
+							<!--<Text wrapping="true"-->
+							<!--	text="{parts: [{path:'mainservices>Zzextcol'},{path:'mainservices>Zzextcol'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
+							<ComboBox id="model_CSOR" items="{VechileModel>/ZC_BRAND_MODEL_DETAIL}" editable="false" selectedKey="{mainservices>Zzmodel}">
+								<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ENModelDesc}"/>
+							</ComboBox>
+							<Label text="{i18n>Suffix}"/>
+							<ComboBox id="suffix_CSOR" items="{VechileModel>/zc_configuration}" editable="false" selectedKey="{mainservices>Zzsuffix}">
+								<core:Item key="{VechileModel>Suffix}" text="{VechileModel>SuffixDescriptionEN}"/>
+							</ComboBox>
+							<Label text="{i18n>APX}"/>
+							<ComboBox id="apx_CSOR" items="{path: 'VechileModel>/ZC_PIO_DIO'}" editable="false" selectedKey="{mainservices>Zzapx}">
+								<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>
+							</ComboBox>
+							<Label text="{i18n>Colour}"/>
+							<ComboBox id="colour_CSOR" items="{ path: 'VechileModel>/zc_exterior_trim'}" editable="false" selectedKey="{mainservices>Zzextcol}">
+								<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>
+							</ComboBox>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
-							<Text text="{RSO_MSO_Model>/ZzeffDate}"/>
+							<Text
+								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>SalesType}"/>
-							<Text text="{RSO_MSO_Model>/ZzsoType}"/>
+							<Text text="{mainservices>ZsalesType}"/>
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<VBox>
 								<items>
 									<HBox>
 										<items>
 											<Text ></Text>
-											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginTop"/>
-												<Text text="{RSO_MSO_Model>/ZzreqEtaFrom}"/>
+											<Label wrapping="true" text="{i18n>from}:-" class="sapUiSmallMarginTop"/>
+											<Text
+												text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Text ></Text>
-											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginTop"/>
-												<Text text="{RSO_MSO_Model>/ZzreqEtaTo}"/>
+											<Label wrapping="true" text="{i18n>to}:-" class="sapUiSmallMarginTop"/>
+											<Text
+												text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</items>
 									</HBox>
 								</items>
@@ -55,19 +73,19 @@
 							<Label wrapping="true" text="{i18n>PrevSoldOrder}"/>
 							<Link text=""></Link>
 							<Label wrapping="true" text="{i18n>SalesPerName}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{mainservices>Zsalesperson}"/>
 							<Label wrapping="true" text="{i18n>SalesManName}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{mainservices>Zsalesmanager}"/>
 							<Label wrapping="true" text="{i18n>TradeInModelYr}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{mainservices>ZtradeModelYr}"/>
 							<Label wrapping="true" text="{i18n>TradeInMake}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{mainservices>ZtradeMake}"/>
 							<Label wrapping="true" text="{i18n>TradeInModel}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{mainservices>ZtradeModel}"/>
 							<Label wrapping="true" text="{i18n>SoldOrdStatus}"/>
-								<Text text="{RSO_MSO_Model>/ZzsoStatus}"/>
+							<Text text="{mainservices>ZzsoStatus}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea id="RSOV_MSO_comment1" enabled="false" maxLength="150"></TextArea>
+							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="150" value="{mainservices>Comment}"></TextArea>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
@@ -115,7 +133,7 @@
 							<Label wrapping="true" text="{i18n>CancellationReason}"/>
 							<Text text="{address>/City}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea id="RSOV_MSO_comment2" enabled="false" maxLength="150"></TextArea>
+							<TextArea id="RSOV_MSO_comment2" editable="false" enabled="false" maxLength="150"></TextArea>
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
@@ -125,37 +143,37 @@
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
 							<Label wrapping="true" text="{i18n>CustName}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/addresses/0/line1}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/addresses/0/city}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/addresses/0/provinceCode}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/addresses/0/postalCode}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/phones/0/localNumber}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
-							<Text text="{address>/Name}"/>
+							<Text text=""/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
-							<Label wrapping="true" text="{i18n>CustName}"/>
-							<Text text="{address>/Name}"/>
+								<Label wrapping="true" text="{i18n>CustName}"/>
+							<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/addresses/0/line1}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/addresses/0/city}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/addresses/0/provinceCode}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/addresses/0/postalCode}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/phones/0/localNumber}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Text text="{address>/Name}"/>
 							<core:Title text="" class="titleFontSize"/>
@@ -177,25 +195,27 @@
 						</f:content>
 					</f:SimpleForm>
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss2"></MessageStrip >
-					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false"
+					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{mainservices>AttachmentSet}" enableColumnReordering="false"
 						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount='10'>
 						<t:columns>
 							<t:Column width="33.33%" resizable="false">
 								<Label text=""/>
 								<t:template>
-									<Button enabled="false" id="idRSOV_MSO_delButton" text="{i18n>DeleteAttachment}" press="_onDeleteAttachment" />
+									<Button enabled="true" id="idRSOV_MSO_delButton" text="{i18n>DeleteAttachment}" press="_onDeleteAttachment"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="33.33%" resizable="false">
 								<Label text="{i18n>File}" class="TableLabel"/>
 								<t:template>
-									<Link press="_openFile" text="{Name}" wrapping="false"/>
+									<Link
+										href="/sap/opu/odata/sap/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZsoReqNo}')/AttachmentSet(Filename='{mainservices>Filename}')/$value"
+										text="{mainservices>Filename}" wrapping="false"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="33.33%" resizable="false">
 								<Label text="{i18n>Comments}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}" wrapping="true"/>
+									<Text text="{mainservices>Mimetype}" wrapping="true"/>
 								</t:template>
 							</t:Column>
 						</t:columns>
@@ -216,7 +236,9 @@
 								<l:GridData span="L1 M2 S12" indent="L3 M3"/>
 							</layoutData>
 						</Label>
-						<u:FileUploader id="idRSOV_MSO_fileUpl" enabled="false"/>
+						<u:FileUploader id="idRSOV_MSO_fileUpl" useMultipart="false"
+							uploadUrl="/sap/opu/odata/sap/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet"
+							uploadComplete="handleUploadComplete"/>
 						<HBox>
 							<items>
 								<Label text="{i18n>Comments}" wrapping="true" class="sapUiSmallMarginTop sapUiSmallMarginEnd" required="true">

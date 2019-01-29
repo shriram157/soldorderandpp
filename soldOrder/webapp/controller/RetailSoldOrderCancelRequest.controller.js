@@ -5,21 +5,27 @@ sap.ui.define([
 	"sap/ui/model/resource/ResourceModel"
 ], function (BaseController, MessageToast, formatter, ResourceModel) {
 	"use strict";
-var RSOCancel_controller;
+	var RSOCancel_controller,
+		requestid;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderCancelRequest", {
 		formatter: formatter,
-		
+
 		onInit: function () {
-			RSOCancel_controller=this;
+			RSOCancel_controller = this;
 			RSOCancel_controller.getBrowserLanguage();
+			RSOCancel_controller.getOwnerComponent().getRouter().getRoute("RetailSoldOrderCancelRequest").attachPatternMatched(this._getattachRouteMatched,
+				this);
 
 		},
-
-		onAfterRendering: function () {
+		_getattachRouteMatched: function (parameters) {
+			requestid = parameters.getParameters().arguments.Soreq;
 			var oBundle = RSOCancel_controller.getView().getModel("i18n").getResourceBundle();
-			var sRecipient = "09732984"; // RSOCancel_controller.getView().getModel().getProperty("/recipient/name");
+			var sRecipient = requestid; // RSOCancel_controller.getView().getModel().getProperty("/recipient/name");
 			var sMsg = oBundle.getText("CancelReq", [sRecipient]);
 			RSOCancel_controller.getView().byId("label_CancelSoldOrderid").setText(sMsg);
+		},
+		onAfterRendering: function () {
+
 		},
 
 		UpdateSoldOrderRequest: function () {
@@ -32,14 +38,28 @@ var RSOCancel_controller;
 				var errForm = formatter.formatErrorType("SO00003");
 				var errMsg = RSOCancel_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			}
-		else if (valComment == "" && valCombo == "3") {
+			} else if (valComment == "" && valCombo == "3") {
 				var errForm2 = formatter.formatErrorType("SO00006");
 				var errMsg2 = RSOCancel_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				sap.m.MessageBox.show(errMsg2, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			}
-			else{
-				RSOCancel_controller.getOwnerComponent().getRouter().navto("RSOView_ManageSoldOrder", {}, true); //page 3
+			} else {
+				RSOCancel_controller.getView().getModel('mainservices').callFunction("/RSO_Cancel", {
+					method: "POST",
+					urlParameters: {
+						Reason_comment: commentTA.getValue(),
+						Reason: comboInput.getValue(),
+						ZzsoReqNo: requestid
+					}, // function import parameters
+					success: function (oData, response) {
+						RSOCancel_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+							Soreq: requestid
+						}, true); //page 3
+					},
+					error: function (oError) {
+
+					}
+				});
+
 			}
 		}
 	});

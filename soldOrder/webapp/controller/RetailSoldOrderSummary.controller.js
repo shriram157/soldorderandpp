@@ -66,13 +66,12 @@ sap.ui.define([
 		},
 		
 		_dispalySoldOrderDetails: function (evt) {
-			var oTable = RSOS_controller.getView().byId("table_RSOS");
-			console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
-			var sPath = evt.getSource().getBindingContext().sPath;
-			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-			var model = oTable.getModel();
-
-			RSOS_controller.getOwnerComponent().getRouter().navto("RSOView_ManageSoldOrder", {}, true);
+			// var oTable = RSOS_controller.getView().byId("table_RSOS");
+			// var sPath = evt.getSource().getBindingContext().sPath;
+			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+			// var model = oTable.getModel();
+            
+			RSOS_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {Soreq:evt.getSource().getText()}, true);
 		},
 
 	
