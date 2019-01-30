@@ -7,65 +7,68 @@
 				<m:content>
 					<m:VBox>
 						<m:items>
-					<m:Label  text="{i18n>RSOVehicleSel}" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></m:Label>
-						<m:Label  text="{i18n>myStockPipeline}" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiTinyMarginBegin fontsize"></m:Label>
-						<m:Label  text="{i18n>disclaimer}" class="sapUiTinyMarginTop sapUiLargeMarginBegin fontsizeIn"></m:Label>		
+							<!--<m:Label  id="selectlabel" text="{i18n>filtertype}" class="sapUiTinyMarginTop sapUiLargeMarginBegin fontsizeIn"></m:Label>-->
+							<m:ComboBox placeholder="{i18n>placeholder_select}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" selectionChange="filter_change" width="30%">
+								<core:Item key="1" text="{i18n>inventorys}"/>
+								<core:Item key="2" text="{i18n>nationals}"/>
+							</m:ComboBox>
+							<m:Label text="{i18n>RSOVehicleSel}" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></m:Label>
+							<m:Label text="{i18n>myStockPipeline}" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiTinyMarginBegin fontsize"></m:Label>
+							<m:Label text="{i18n>disclaimer}" class="sapUiTinyMarginTop sapUiLargeMarginBegin fontsizeIn"></m:Label>
 						</m:items>
 					</m:VBox>
-					
-					<Table id="table_RSOVehicleDealer"  selectionMode="None"  rows="{Vehicle_Model>/InventoryDetailsSet?$filter=MATRIX eq'A205'&Dealer eq'2400014084'&Model eq'YZ3DCT'&Modelyear eq'2018'&Suffix eq'AL'&ExteriorColorCode eq'01D6'&INTCOL eq'42'}" enableColumnReordering="false" alternateRowColors="true"
-						enableColumnFreeze="false" class="marginCorners">
-					<columns>
-					<Column width="10%" resizable="false" >
+					<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{Vehicle_Model>/InventoryDetailsSet}" enableColumnReordering="false"
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">
+						<columns>
+							<Column width="10%" resizable="false">
 								<m:Label text=""/>
 								<template>
-									<m:Link text="Select"  press="_onSelect" wrapping="false"/>
+									<m:Link text="Select" press="_onSelect" wrapping="false"/>
 								</template>
 							</Column>
-						<Column width="10%" resizable="false"   sortProperty="Category">
+							<Column width="10%" resizable="false" sortProperty="Category">
 								<m:Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Vehicle_Model>ETAFrom}" wrapping="false"/>
 								</template>
 							</Column>
-						<Column width="10%" resizable="false"   >
+							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>ETATime}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Vehicle_Model>ETATo}" wrapping="false"/>
 								</template>
 							</Column>
-						<Column width="10%" resizable="false"  >
+							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>vehicleTrackingNumber}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Vehicle_Model>ZZVTN}" wrapping="false"/>
 								</template>
 							</Column>
-						<Column width="10%" resizable="false"   >
+							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>orderNumber}" class="TableLabel"/>
 								<template>
 									<m:Text text="" wrapping="false"/>
 								</template>
 							</Column>
-							<Column width="10%" resizable="false"   >
+							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>Model}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Vehicle_Model>Model}" wrapping="false"/>
 								</template>
-								</Column>
-							<Column width="10%" resizable="false"  id="suffix" >
+							</Column>
+							<Column width="10%" resizable="false" id="suffix">
 								<m:Label text="{i18n>Suffix}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Vehicle_Model>Suffix}" wrapping="false"/>
 								</template>
 							</Column>
-								
-						<Column width="10%" resizable="false"  id="colour" >
+							<Column width="10%" resizable="false" id="colour">
 								<m:Label text="{i18n>Colour}" class="TableLabel"/>
 								<template>
 									<m:Text text="{Vehicle_Model>ExteriorColorCode}" wrapping="false"/>
 								</template>
 							</Column>
-						<Column width="10%" resizable="false"  id="apx" >
+							<Column width="10%" resizable="false" id="apx">
 								<m:Label text="{i18n>status}" class="TableLabel"/>
 								<template>
 									<m:Text text="" wrapping="false"/>
@@ -73,8 +76,7 @@
 							</Column>
 						</columns>
 					</Table>
-				
-					</m:content>
+				</m:content>
 			</m:Page>
 		</m:pages>
 	</m:App>
