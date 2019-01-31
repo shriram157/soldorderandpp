@@ -207,15 +207,16 @@
 							<t:Column width="33.33%" resizable="false">
 								<Label text="{i18n>File}" class="TableLabel"/>
 								<t:template>
+									<!--,AttacheComment='{mainservices>AttacheComment}'-->
 									<Link
-										href="/sap/opu/odata/sap/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZsoReqNo}')/AttachmentSet(Filename='{mainservices>Filename}')/$value"
+										href="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZsoReqNo}')/AttachmentSet(Filename='{mainservices>Filename}')/$value"
 										text="{mainservices>Filename}" wrapping="false"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="33.33%" resizable="false">
 								<Label text="{i18n>Comments}" class="TableLabel"/>
 								<t:template>
-									<Text text="{mainservices>Mimetype}" wrapping="true"/>
+									<Text text="{mainservices>AttacheComment}" wrapping="true"/>
 								</t:template>
 							</t:Column>
 						</t:columns>
@@ -237,7 +238,7 @@
 							</layoutData>
 						</Label>
 						<u:FileUploader id="idRSOV_MSO_fileUpl" useMultipart="false"
-							uploadUrl="/sap/opu/odata/sap/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet"
+							uploadUrl="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet"
 							uploadComplete="handleUploadComplete"/>
 						<HBox>
 							<items>

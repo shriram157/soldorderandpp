@@ -61,6 +61,12 @@ sap.ui.define([
 				});
 
 			}
+		},
+		onNavBack:function(oe)
+		{
+				RSOCancel_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+							Soreq: requestid
+						}, true);
 		}
 	});
 

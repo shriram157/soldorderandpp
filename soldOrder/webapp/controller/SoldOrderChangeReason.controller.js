@@ -36,7 +36,9 @@ sap.ui.define([
 			var reqTypeId_SOCR_val = SOCR_controller.getView().byId("reqTypeId_SOCR").getValue();
 			var cbVal = SOCR_controller.getView().byId("resonCancelId").getSelectedKey();
 			if (cbVal == 2) {
-				SOCR_controller.getOwnerComponent().getRouter().navTo("RSO_ChangeVehicleSelection", {}, true); //page 9
+				SOCR_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
+				Soreq: requestid
+			}, true); 
 			} else if (cbVal == 1) {
 				SOCR_controller.getView().getModel('mainservices').callFunction("/RSO_Change", {
 					method: "POST",
@@ -57,6 +59,12 @@ sap.ui.define([
 				});
 
 			}
+		},
+		onback:function()
+		{
+				SOCR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+							Soreq: requestid
+						}, true);
 		}
 
 	});

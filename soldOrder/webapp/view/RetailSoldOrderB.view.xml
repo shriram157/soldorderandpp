@@ -27,30 +27,47 @@
 							<Text text="{RSOB_Model>/Zzextcol}"/>
 							<Label wrapping="true" text="{i18n>vtn}" required="true"/>
 							<Text text="{RSOB_Model>/Zzvtn}"/>
+								<Label text="{i18n>ETA}" required="true"/>
+							<VBox>
+								<items>
+									<HBox>
+										<items>
+											<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
+											<DatePicker id="etaFrom_CSOR" placeholder="dd/MMM/yy" editable="false" dateValue="{RSOB_Model>/ZzreqEtaFrom}" change="_handleChangeDate"></DatePicker>
+										</items>
+									</HBox>
+									<HBox>
+										<items>
+											<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
+											<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy" editable="false"  dateValue="{RSOB_Model>/ZzreqEtaTo}"></DatePicker>
+										</items>
+									</HBox>
+								</items>
+							</VBox>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss"></MessageStrip >
 							<Label wrapping="true" text="{i18n>contractDate}"/>
-							<DatePicker id="ContractDate_RSOB" placeholder="dd/MMM/yy" required="true"></DatePicker>
+							<DatePicker id="ContractDate_RSOB" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder="dd/MMM/yy"  required="true"></DatePicker>
 							<Label wrapping="true" text="{i18n>salesType}"/>
 							<ComboBox id="SalesType_RSOB" items="{ path: '/SalesType', sorter: { path: 'key' } }" required="true">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>approvalNumber}"/>
-							<Input value="{address>/Street}"/>
+							<Input id="tcciNo_RSOB" value="{address>/Street}"/>
 							<Label wrapping="true" text="{i18n>salesPerName}"/>
-							<Input value="{address>/HouseNumber}"/>
+							<Input id="salesperson_RSOB" value="{address>/HouseNumber}"/>
 							<Label wrapping="true" text="{i18n>salesManName}"/>
-							<Input value="{address>/ZIPCode}"/>
+							<Input id="salesMan_RSOB" value="{address>/ZIPCode}"/>
 							<Label wrapping="true" text="{i18n>tradeInModelYr}"/>
-							<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
+							<ComboBox id="trademodelYear_RSOBid" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
 								<core:Item key="{ProductId}" text="{Name}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInMake}"/>
-							<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
+							<ComboBox id="tradeInMakeYear_RSOBid" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
 								<core:Item key="{ProductId}" text="{Name}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInModel}"/>
-							<Input value="{address>/City}"/>
+							<Input id="trademodel_RSOBid" value="{address>/City}"/>
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" id="form2_RSOB" title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
@@ -60,23 +77,24 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"></MessageStrip >
 							<Label wrapping="true" text="{i18n>custname}"/>
-							<Input id="CustName_RSOB" value="{address>/Name}" required="true"/>
+							<Input id="CustName_RSOB" value="{Customer>/Name}" required="true"/>
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Input id="Address_RSOB" value="{address>/Street}" required="true"/>
+							<Input id="Address_RSOB" value="{Customer>/Address}" required="true"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Input id="City_RSOB" value="{address>/HouseNumber}" required="true"/>
+							<Input id="City_RSOB" value="{Customer>/City}" required="true"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<ComboBox id="Province_RSOB" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-								<core:Item key="{ProductId}" text="{Name}"/>
-							</ComboBox>
+							<Input id="Province_RSOB" value="{Customer>/Province}" required="true"/>
+							<!--<ComboBox id="Province_RSOB" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">-->
+							<!--	<core:Item key="{ProductId}" text="{Name}"/>-->
+							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Input id="PostalCode_RSOB" value="560076" required="true"/>
+							<Input id="PostalCode_RSOB" value="{Customer>/PostCode}" required="true"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Input value="{address>/City}"/>
+							<Input value="{Customer>/Phone}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Input value="{address>/City}"/>
+							<Input value="{Customer>/Email}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
-							<Input id="License_RSOB" value="{address>/City}" required="true"/>
+							<Input id="License_RSOB" value="" required="true"/>
 							<Label wrapping="true" text=""/>
 							<Button text="{i18n>valCust}" press="onValidateCustomer">
 								<layoutData>
@@ -86,7 +104,7 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"></MessageStrip >
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea value="{address>/Name}"/>
+							<TextArea id="Comment" />
 						</f:content>
 					</f:SimpleForm>
 					<Button text="{i18n>submit}" type="Emphasized" class="marginCornersRight marginCornersBottom cssShift" press="_onSubmit"></Button>
