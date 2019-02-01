@@ -14,6 +14,8 @@ modules:
      service-url: '${default-url}'
      disk-quota: 256M
      memory: 256M
+  properties:
+     NODE_TLS_REJECT_UNAUTHORIZED: 0
   requires:
    - name: RETAIL_SOLD_ORDER_APIM_CUPS
   provides:
