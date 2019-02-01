@@ -8,15 +8,16 @@ modules:
   type: nodejs
   path: retailSoldOrder_Node
   parameters:
+     disk-quota: 256M
      host: soldOrder_Node
+     memory: 256M
      register-service-url: true
      service-name: soldOrder_Node
      service-url: '${default-url}'
-     disk-quota: 256M
-     memory: 256M
   properties:
      NODE_TLS_REJECT_UNAUTHORIZED: 0
   requires:
+   - name: application-logs_retailSoldOrder
    - name: RETAIL_SOLD_ORDER_APIM_CUPS
   provides:
    - name: retailSoldOrder_Node_api
@@ -28,16 +29,17 @@ modules:
   path: soldOrder
   parameters:
      host: soldOrder
-     register-service-url: true
-     service-name: soldOrder
-     service-url: '${default-url}'
      disk-quota: 256M
      memory: 256M
+     service-name: soldOrder
+     service-url: '${default-url}'
+     register-service-url: true
   build-parameters:
      builder: grunt
   requires:
-   - name: uaa_retailSoldOrder
+   - name: application-logs_retailSoldOrder
    - name: dest_retailSoldOrder
+   - name: uaa_retailSoldOrder
    - name: retailSoldOrder_Node_api
      group: destinations
      properties:
@@ -46,17 +48,23 @@ modules:
        forwardAuthToken: true
 
 resources:
-- name: uaa_retailSoldOrder
+- name: application-logs_retailSoldOrder
   parameters:
-     path: ./xs-security.json
-     service-plan: application
-     service: xsuaa
+     service: application-logs
+     service-plan: lite
   type: org.cloudfoundry.managed-service
 
 - name: dest_retailSoldOrder
   parameters:
-     service-plan: lite
      service: destination
+     service-plan: lite
+  type: org.cloudfoundry.managed-service
+
+- name: uaa_retailSoldOrder
+  parameters:
+     service: xsuaa
+     service-plan: application
+     path: ./xs-security.json
   type: org.cloudfoundry.managed-service
 
 - name: RETAIL_SOLD_ORDER_APIM_CUPS

@@ -4,19 +4,22 @@
 "use strict";
 
 var express = require("express");
+var log = require("cf-nodejs-logging-support");
 var request = require("request");
 var xsenv = require("@sap/xsenv");
 
 module.exports = function () {
 	var router = express.Router();
 
+	// TODO: provide service name via environment variable instead
+	var apimServiceName = "RETAIL_SOLD_ORDER_APIM_CUPS";
 	var options = {};
 	options = Object.assign(options, xsenv.getServices({
 		api: {
-			// TODO: provide service name via environment variable instead
-			name: "RETAIL_SOLD_ORDER_APIM_CUPS"
+			name: apimServiceName
 		}
 	}));
+	log.logMessage("debug", "Properties of APIM user-provided service '%s' : %s", apimServiceName, JSON.stringify(options));
 
 	var url = options.api.host;
 	var APIKey = options.api.APIKey;
@@ -49,6 +52,11 @@ module.exports = function () {
 		if (req.url.startsWith("/tci/internal")) {
 			proxiedReqHeaders["x-ibm-client-id"] = apicClientId;
 			proxiedReqHeaders["x-ibm-client-secret"] = apicClientSecret;
+
+			req.logMessage("debug", "Proxied Method: %s", proxiedMethod);
+			req.logMessage("debug", "Proxied request headers: %s", JSON.stringify(proxiedReqHeaders));
+			req.logMessage("debug", "Proxied URL: %s", proxiedUrl);
+
 			let proxiedReq = request({
 				headers: proxiedReqHeaders,
 				method: proxiedMethod,
@@ -56,9 +64,11 @@ module.exports = function () {
 			});
 			req.pipe(proxiedReq);
 			proxiedReq.on("response", proxiedRes => {
+				req.logMessage("verbose", "Proxied call %s %s successful.", proxiedMethod, proxiedUrl);
 				delete proxiedRes.headers.cookie;
 				proxiedReq.pipe(res);
 			}).on("error", error => {
+				req.logMessage("error", "Proxied call %s %s FAILED: %s", proxiedMethod, proxiedUrl, error);
 				next(error);
 			});
 		}
@@ -71,6 +81,11 @@ module.exports = function () {
 			} else if (proxiedMethod === "DELETE" || proxiedMethod === "HEAD" || proxiedMethod === "POST" || proxiedMethod === "PUT") {
 				proxiedReqHeaders["x-csrf-token"] = cachedCsrfToken;
 			}
+
+			req.logMessage("debug", "Proxied Method: %s", proxiedMethod);
+			req.logMessage("debug", "Proxied request headers: %s", JSON.stringify(proxiedReqHeaders));
+			req.logMessage("debug", "Proxied URL: %s", proxiedUrl);
+
 			let proxiedReq = request({
 				headers: proxiedReqHeaders,
 				method: proxiedMethod,
@@ -78,16 +93,21 @@ module.exports = function () {
 			});
 			req.pipe(proxiedReq);
 			proxiedReq.on("response", proxiedRes => {
+				req.logMessage("verbose", "Proxied call %s %s successful.", proxiedMethod, proxiedUrl);
 				delete proxiedRes.headers.cookie;
 
 				// Cache fetched CSRF token
 				var proxiedResCsrfToken = proxiedRes.headers["x-csrf-token"];
 				if (proxiedResCsrfToken && proxiedResCsrfToken !== "Required") {
+					req.logMessage("debug", "Received CSRF token: %s", proxiedResCsrfToken);
 					cachedCsrfToken = proxiedResCsrfToken;
+				} else {
+					req.logMessage("error", "Proxied call %s %s FAILED due to invalid or missing CSRF token.", proxiedMethod, proxiedUrl);
 				}
 
 				proxiedReq.pipe(res);
 			}).on("error", error => {
+				req.logMessage("error", "Proxied call %s %s FAILED: %s", proxiedMethod, proxiedUrl, error);
 				next(error);
 			});
 		}

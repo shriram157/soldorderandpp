@@ -5,7 +5,7 @@
 
 var express = require("express");
 var https = require("https");
-var logging = require("@sap/logging");
+var log = require("cf-nodejs-logging-support");
 
 var server = require("http").createServer();
 var port = process.env.PORT || 3000;
@@ -14,8 +14,8 @@ var port = process.env.PORT || 3000;
 var app = express();
 
 // Logging
-var appContext = logging.createAppContext();
-app.use(logging.expressMiddleware(appContext));
+log.setLoggingLevel(process.env.XS_APP_LOG_LEVEL || "info");
+app.use(log.logNetwork);
 
 // Router
 var router = require("./router")(app, server);
@@ -23,5 +23,5 @@ var router = require("./router")(app, server);
 // Start server
 server.on("request", app);
 server.listen(port, function () {
-	console.info(`HTTP Server: ${server.address().port}`);
+	log.logMessage("info", "Server is listening on port %d", port);
 });
