@@ -95,7 +95,7 @@ module.exports = function () {
 
 				var reqHeader = {
 					"Authorization": auth64,
-					"Content-Type": "application/json",
+					"Content-Type": req.get("Content-Type"),
 					"APIKey": APIKey,
 					"x-csrf-token": "Fetch"
 				};
@@ -107,7 +107,7 @@ module.exports = function () {
 			if (method == "POST" || method == "DELETE" || method == "PUT" || method == "HEAD") {
 				reqHeader = {
 					"Authorization": auth64,
-					"Content-Type": "application/json",
+					"Content-Type": req.get("Content-Type"),
 					"APIKey": APIKey,
 					"x-csrf-token": csrfToken
 				};
