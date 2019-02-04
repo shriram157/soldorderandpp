@@ -14,12 +14,33 @@ sap.ui.define([
 			RSOB_controller.validateFlagB = false;
 			var model = new JSONModel({});
 			RSOB_controller.getView().setModel(model, 'Customer');
+			RSOB_controller._handleRSADropDown();
 			RSOB_controller.getSO();
 		},
 		onBeforeRendering: function () {
 			// console.log(RSOB_controller.getView().byId("form1_RSOB").getTitle());
 			RSOB_controller.getView().byId("form1_RSOB").destroyTitle();
 			RSOB_controller.getView().byId("form2_RSOB").destroyTitle();
+		},
+		_handleRSADropDown: function () {
+			var host = RSOB_controller.host();
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_PIO_DIO?sap-client=200&$format=json";
+			$.ajax({
+				url: oUrl,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					// console.log("Result from ZC_PIO_DIO");
+					// console.log(data.d.results);
+					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					RSOB_controller.getView().setModel(oModel, "mode_Model");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
 		},
 		getSO: function () {
 			var host = RSOB_controller.host();
@@ -256,36 +277,50 @@ sap.ui.define([
 				var dataString = JSON.stringify(
 					_data
 				);
-
-				$.ajax({
-					type: 'POST',
-					url: oURL,
-					cache: false,
-					data: dataString,
-					dataType: 'json',
-					headers: {
-						accept: 'application/json',
-						// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
-						// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
-						'content-type': 'application/json'
-					},
-					success: function (data) {
-						// console.log(data);
-						// sap.m.MessageBox.show("Successfully Request Created", sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK,
-						// 	null, null);
-						if (data.d.ZzsoReqNo) {
+				this.getOwnerComponent().getModel("mainservices").create('/Retail_Sold_OrderSet', _data, {
+					success: function (data, oResponse) {
+						if (data.ZzsoReqNo) {
 							RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-								Soreq: data.d.ZzsoReqNo
+								Soreq: data.ZzsoReqNo
 							}, true);
-						} //page 3
+						}
+
 					},
-					error: function (data) {
+					error: function (oData, oResponse) {
 						sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
 							.m
 							.MessageBox.Action.OK, null, null);
 					}
-
 				});
+				// $.ajax({
+				// 	type: 'POST',
+				// 	url: oURL,
+				// 	cache: false,
+				// 	data: dataString,
+				// 	dataType: 'json',
+				// 	headers: {
+				// 		accept: 'application/json',
+				// 		// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
+				// 		// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+				// 		'content-type': 'application/json'
+				// 	},
+				// 	success: function (data) {
+				// 		// console.log(data);
+				// 		// sap.m.MessageBox.show("Successfully Request Created", sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK,
+				// 		// 	null, null);
+				// 		if (data.d.ZzsoReqNo) {
+				// 			RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+				// 				Soreq: data.d.ZzsoReqNo
+				// 			}, true);
+				// 		} //page 3
+				// 	},
+				// 	error: function (data) {
+				// 		sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+				// 			.m
+				// 			.MessageBox.Action.OK, null, null);
+				// 	}
+
+				// });
 				//	RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder"); //page 3
 			}
 		}

@@ -307,35 +307,51 @@ sap.ui.define([
 			var dataString = JSON.stringify(
 				_data
 			);
-
-			$.ajax({
-				type: 'POST',
-				url: oURL,
-				cache: false,
-				data: dataString,
-				dataType: 'json',
-				headers: {
-// 							accept: 'application/json',
-							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
-							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
-							'content-type': 'application/json'
-						},
-				success: function (data) {
-					// console.log(data);
-					// sap.m.MessageBox.show("Successfully Request Created", sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK,
-					// 	null, null);
-					if (data.d.ZzsoReqNo) {
+			RSOA_controller.getView().getModel('mainservices').create('/Retail_Sold_OrderSet', _data, {
+				success: function (data, oResponse) {
+					if (data.ZzsoReqNo) {
 						RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-							Soreq: data.d.ZzsoReqNo
+							Soreq: data.ZzsoReqNo
 						}, true);
-					} //page 3
+					}
+
 				},
-				error: function (data) {
+				error: function (oData, oResponse) {
 					sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
 						.MessageBox.Action.OK, null, null);
 				}
-
 			});
+			//---------------------------------------
+			//---------Old Code-----------------------
+			//---------------------------------------
+			// 			$.ajax({
+			// 				type: 'POST',
+			// 				url: oURL,
+			// 				cache: false,
+			// 				data: dataString,
+			// 				dataType: 'json',
+			// 				headers: {
+			// // 							accept: 'application/json',
+			// 							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
+			// 							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+			// 							'content-type': 'application/json'
+			// 						},
+			// 				success: function (data) {
+			// 					// console.log(data);
+			// 					// sap.m.MessageBox.show("Successfully Request Created", sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK,
+			// 					// 	null, null);
+			// 					if (data.d.ZzsoReqNo) {
+			// 						RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+			// 							Soreq: data.d.ZzsoReqNo
+			// 						}, true);
+			// 					} //page 3
+			// 				},
+			// 				error: function (data) {
+			// 					sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+			// 						.MessageBox.Action.OK, null, null);
+			// 				}
+
+			// 			});
 		},
 
 		_handleToDateChange: function () {
@@ -387,8 +403,8 @@ sap.ui.define([
 				url: url,
 				headers: {
 					accept: 'application/json'
-					// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
-					// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
+						// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
+						// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
 				},
 				type: "GET",
 				dataType: "json",
