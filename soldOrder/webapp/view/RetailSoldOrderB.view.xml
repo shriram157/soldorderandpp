@@ -59,8 +59,11 @@
 							<Label wrapping="true" text="{i18n>salesManName}"/>
 							<Input id="salesMan_RSOB" value="{address>/ZIPCode}"/>
 							<Label wrapping="true" text="{i18n>tradeInModelYr}"/>
-							<ComboBox id="trademodelYear_RSOBid" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
-								<core:Item key="{ProductId}" text="{Name}"/>
+							<!--<ComboBox id="trademodelYear_RSOBid" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">-->
+							<!--	<core:Item key="{ProductId}" text="{Name}"/>-->
+							<!--</ComboBox>-->
+								<ComboBox id="trademodelYear_RSOBid" items="{ path: 'mode_Model>/'}" required="true">
+								<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInMake}"/>
 							<ComboBox id="tradeInMakeYear_RSOBid" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">

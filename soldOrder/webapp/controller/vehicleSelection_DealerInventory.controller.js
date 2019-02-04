@@ -26,7 +26,7 @@ sap.ui.define([
 
 				vechile_items.filter([new Filter([
 					new Filter("MATRIX", FilterOperator.EQ, "A205"),
-					new Filter("Dealer", FilterOperator.EQ, "2400014084")
+					new Filter("Dealer", FilterOperator.EQ, "2400001132")
 					// new Filter("Model", FilterOperator.EQ, "YZ3DCT"),
 					// new Filter("Modelyear", FilterOperator.EQ, "2018"),
 					// new Filter("Suffix", FilterOperator.EQ, "AL"),

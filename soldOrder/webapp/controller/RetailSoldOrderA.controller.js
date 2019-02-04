@@ -314,6 +314,12 @@ sap.ui.define([
 				cache: false,
 				data: dataString,
 				dataType: 'json',
+				headers: {
+// 							accept: 'application/json',
+							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
+							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+							'content-type': 'application/json'
+						},
 				success: function (data) {
 					// console.log(data);
 					// sap.m.MessageBox.show("Successfully Request Created", sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK,
@@ -375,14 +381,14 @@ sap.ui.define([
 				})]
 			});
 			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
-			var url = "https://api.sit.toyota.ca/tci/internal/api/v1.0/customer/cdms/customers/profile?lastName=" + CustModel.Name;
+			var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?lastName=" + CustModel.Name;
 			//+ "&phone=" +CustModel.Phone;
 			$.ajax({
 				url: url,
 				headers: {
-					accept: 'application/json',
-					'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
-					'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
+					accept: 'application/json'
+					// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
+					// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
 				},
 				type: "GET",
 				dataType: "json",
@@ -430,11 +436,11 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-						url: 'https://api.sit.toyota.ca/tci/internal/api/v1.0/customer/custupdate/oicc/profileChange',
+						url: '/node/tci/internal/api/v1.0/customer/custupdate/oicc/profileChange',
 						headers: {
 							accept: 'application/json',
-							'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
-							'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
+							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
 							'content-type': 'application/json'
 						},
 						type: "POST",

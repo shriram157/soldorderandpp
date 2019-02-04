@@ -28,12 +28,12 @@ sap.ui.define([
 			//--------------Mock Data for Vechile Information till make integration with PipeLine App------------------
 			//---------------------------------------------------------------------------------------------------------
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$filter=ZzsoReqNo eq 'SO0000000112'&$format=json";
-			 RSOB_controller.getView().getModel('mainservices').read("/ZVMS_SOLD_ORDERSet?$filter=ZzsoReqNo eq 'SO0000000112'", {
-                success : function(oData) {
-                        RSOB_controller.getView().setModel(new JSONModel(oData.results[0]), "RSOB_Model");
-                },
-                error : function(Oerror){}
-			 });
+			this.getOwnerComponent().getModel("mainservices").read("/Retail_Sold_OrderSet?$filter=ZzsoReqNo eq'SO0000000112'", {
+				success: function (oData) {
+					RSOB_controller.getView().setModel(new JSONModel(oData.results[0]), "RSOB_Model");
+				},
+				error: function (Oerror) {}
+			});
 			// $.ajax({
 			// 	type: 'GET',
 			// 	url: oURL,
@@ -67,14 +67,14 @@ sap.ui.define([
 			//----Customer API-----------------------------------
 			//--------------------------------------------------
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
-			var url = "https://api.sit.toyota.ca/tci/internal/api/v1.0/customer/cdms/customers/profile?lastName=" + CustModel.Name;
+			var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?lastName=" + CustModel.Name;
 			//+ "&phone=" +CustModel.Phone;
 			$.ajax({
 				url: url,
 				headers: {
-					accept: 'application/json',
-					'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
-					'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
+					accept: 'application/json'
+						// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
+						// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
 				},
 				type: "GET",
 				dataType: "json",
@@ -122,11 +122,11 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-						url: 'https://api.sit.toyota.ca/tci/internal/api/v1.0/customer/custupdate/oicc/profileChange',
+						url: '/node/tci/internal/api/v1.0/customer/custupdate/oicc/profileChange',
 						headers: {
 							accept: 'application/json',
-							'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
-							'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
+							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
 							'content-type': 'application/json'
 						},
 						type: "POST",
@@ -200,6 +200,9 @@ sap.ui.define([
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			} else {
+				var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+					pattern: "yyyy-MM-ddTHH:mm:ss"
+				});
 				var zvechile_model = RSOB_controller.getView().getModel('RSOB_Model').getData();
 				var ZcontractDate1 = RSOB_controller.getView().byId("ContractDate_RSOB").getValue();
 				var ZsalesType = RSOB_controller.getView().byId("SalesType_RSOB").getSelectedKey();
@@ -236,8 +239,8 @@ sap.ui.define([
 					"Zzsuffix": zvechile_model.Zzsuffix, //"ML",
 					"Zzextcol": zvechile_model.Zzextcol, //"01D6",
 					"Zzapx": zvechile_model.Zzapx, // "00",
-					"ZzreqEtaFrom": zvechile_model.ZzreqEtaFrom1, //null,
-					"ZzreqEtaTo": zvechile_model.ZzreqEtaTo1, //null,
+					"ZzreqEtaFrom": zdateFormat.format(zvechile_model.ZzreqEtaFrom), //null,
+					"ZzreqEtaTo": zdateFormat.format(zvechile_model.ZzreqEtaTo), //null,
 					"Zzvtn": zvechile_model.Zzvtn,
 					"ZcontractDate": ZcontractDate1, //null,
 					"ZsalesType": ZsalesType, // "",
@@ -260,6 +263,12 @@ sap.ui.define([
 					cache: false,
 					data: dataString,
 					dataType: 'json',
+					headers: {
+						accept: 'application/json',
+						// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
+						// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+						'content-type': 'application/json'
+					},
 					success: function (data) {
 						// console.log(data);
 						// sap.m.MessageBox.show("Successfully Request Created", sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK,
@@ -277,7 +286,7 @@ sap.ui.define([
 					}
 
 				});
-			//	RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder"); //page 3
+				//	RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder"); //page 3
 			}
 		}
 
