@@ -1,20 +1,82 @@
 {
-  "xsappname": "retailSoldOrder",
-  "tenant-mode": "dedicated",
-  "description": "Security profile of called application",
-  "scopes": [
-    {
-      "name": "uaa.user",
-      "description": "UAA"
-    }
-  ],
-  "role-templates": [
-    {
-      "name": "retailSoldOrder_Token",
-      "description": "UAA",
-      "scope-references": [
-        "uaa.user"
-      ]
-    }
-  ]
+	"xsappname": "retailSoldOrder",
+	"tenant-mode": "dedicated",
+	"description": "Security profile of called application",
+	"scopes": [{
+		"name": "$XSAPPNAME.Approve_Fleet_Sold_Order",
+		"description": "Approve fleet sold order"
+	}, {
+		"name": "$XSAPPNAME.Manage_Fleet_Sold_Order",
+		"description": "Manage fleet sold order"
+	}, {
+		"name": "$XSAPPNAME.Manage_Retail_Sold_Order",
+		"description": "Manage retail sold order"
+	}, {
+		"name": "$XSAPPNAME.View_Fleet_Sold_Order",
+		"description": "View fleet sold order"
+	}, {
+		"name": "$XSAPPNAME.View_Price_Protection",
+		"description": "View price protection"
+	}, {
+		"name": "$XSAPPNAME.View_Retail_Sold_Order",
+		"description": "View retail sold order"
+	}],
+	"attributes": [{
+		"name": "DealerCode",
+		"description": "Dealer Code",
+		"valueType": "s"
+	}, {
+		"name": "Language",
+		"description": "Language",
+		"valueType": "s"
+	}, {
+		"name": "UserType",
+		"description": "UserType, identifies dealer or not",
+		"valueType": "s"
+	}, {
+		"name": "Zone",
+		"description": "restrict based on Zone",
+		"valueType": "s"
+	}],
+	"role-templates": [{
+		"name": "Dealer_User",
+		"description": "Dealer User",
+		"scope-references": [
+			"$XSAPPNAME.Manage_Fleet_Sold_Order",
+			"$XSAPPNAME.Manage_Retail_Sold_Order",
+			"$XSAPPNAME.View_Price_Protection"
+		],
+		"attribute-references": [
+			"DealerCode",
+			"Language",
+			"UserType"
+		]
+	}, {
+		"name": "TCI_User",
+		"description": "TCI User",
+		"scope-references": [
+			"$XSAPPNAME.Approve_Fleet_Sold_Order",
+			"$XSAPPNAME.View_Fleet_Sold_Order",
+			"$XSAPPNAME.View_Retail_Sold_Order",
+			"$XSAPPNAME.View_Price_Protection"
+		],
+		"attribute-references": [
+			"Language",
+			"UserType"
+		]
+	}, {
+		"name": "TCI_Zone_user",
+		"description": "TCI Zone User",
+		"scope-references": [
+			"$XSAPPNAME.Approve_Fleet_Sold_Order",
+			"$XSAPPNAME.View_Fleet_Sold_Order",
+			"$XSAPPNAME.View_Retail_Sold_Order",
+			"$XSAPPNAME.View_Price_Protection"
+		],
+		"attribute-references": [
+			"Language",
+			"UserType",
+			"Zone"
+		]
+	}]
 }

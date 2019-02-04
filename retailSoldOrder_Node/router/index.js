@@ -4,10 +4,13 @@
 "use strict";
 
 var apiProxy = require("./routes/api-proxy");
+var userDetails = require("./routes/user-details");
 
 module.exports = (app, server) => {
-	app.use("/api-proxy", apiProxy());
+	app.use("/apiProxy", apiProxy());
 
 	// Kept for backward compatibility
 	app.use("/node", apiProxy());
+	
+	app.use("/userDetails", userDetails());
 };

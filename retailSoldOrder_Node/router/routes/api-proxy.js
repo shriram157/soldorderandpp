@@ -15,19 +15,19 @@ module.exports = function () {
 	var apimServiceName = "RETAIL_SOLD_ORDER_APIM_CUPS";
 	var options = {};
 	options = Object.assign(options, xsenv.getServices({
-		api: {
+		apim: {
 			name: apimServiceName
 		}
 	}));
 	log.logMessage("debug", "Properties of APIM user-provided service '%s' : %s", apimServiceName, JSON.stringify(options));
 
-	var url = options.api.host;
-	var APIKey = options.api.APIKey;
-	var s4Client = options.api.client;
-	var s4User = options.api.user;
-	var s4Password = options.api.password;
-	var apicClientId = options.api.apicClientId;
-	var apicClientSecret = options.api.apicClientSecret;
+	var url = options.apim.host;
+	var APIKey = options.apim.APIKey;
+	var s4Client = options.apim.client;
+	var s4User = options.apim.user;
+	var s4Password = options.apim.password;
+	var apicClientId = options.apim.apicClientId;
+	var apicClientSecret = options.apim.apicClientSecret;
 
 	var cachedCsrfToken;
 
@@ -110,5 +110,6 @@ module.exports = function () {
 			});
 		}
 	});
+
 	return router;
 };

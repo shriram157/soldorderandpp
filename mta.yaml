@@ -18,6 +18,7 @@ modules:
      NODE_TLS_REJECT_UNAUTHORIZED: 0
   requires:
    - name: application-logs_retailSoldOrder
+   - name: uaa_retailSoldOrder
    - name: RETAIL_SOLD_ORDER_APIM_CUPS
   provides:
    - name: retailSoldOrder_Node_api
