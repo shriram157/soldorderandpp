@@ -3,12 +3,12 @@
 
 "use strict";
 
-var express = require("express");
-var log = require("cf-nodejs-logging-support");
-var request = require("request");
-var xsenv = require("@sap/xsenv");
-
 module.exports = function () {
+	var express = require("express");
+	var log = require("cf-nodejs-logging-support");
+	var request = require("request");
+	var xsenv = require("@sap/xsenv");
+
 	var router = express.Router();
 
 	// TODO: provide service name via environment variable instead
@@ -67,11 +67,18 @@ module.exports = function () {
 		// Proxied call is to S4/HANA
 		else {
 			proxiedReqHeaders.Authorization = "Basic " + new Buffer(s4User + ":" + s4Password).toString("base64");
+			/*
 			if (proxiedMethod === "GET") {
 				proxiedReqHeaders["x-csrf-token"] = "Fetch";
 			} else if (proxiedMethod === "DELETE" || proxiedMethod === "HEAD" || proxiedMethod === "POST" || proxiedMethod === "PUT") {
 				proxiedReqHeaders["x-csrf-token"] = cachedCsrfToken;
 			}
+			*/
+			// Pass through x-csrf-token from request to proxied request to S4/HANA
+			// This requires manual handling of CSRF tokens from the front-end
+			// Note: req.get() will get header in a case-insensitive manner 
+			var csrfTokenHeaderValue = req.get("X-Csrf-Token");
+			proxiedReqHeaders["X-Csrf-Token"] = csrfTokenHeaderValue;
 
 			req.logMessage("debug", "Proxied Method: %s", proxiedMethod);
 			req.logMessage("debug", "Proxied request headers: %s", JSON.stringify(proxiedReqHeaders));
