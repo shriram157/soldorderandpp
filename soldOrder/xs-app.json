@@ -1,21 +1,22 @@
 {
-  "welcomeFile": "/soldOrder/index.html",
-  "authenticationMethod": "none",
-  "logout": {
-    "logoutEndpoint": "/do/logout"
-  },
-  "routes": [
-    {
-      "source": "^/soldOrder/(.*)$",
-      "target": "$1",
-      "localDir": "webapp"
-    },
-                  {
-      "source": "/node(.*)",
-      "destination": "retailSoldOrder-node-backend",
-      "csrfProtection": false,
-      "authenticationType": "none"
-    }
-   
-  ]
+	"welcomeFile": "/soldOrder/index.html",
+	"authenticationMethod": "none",
+	"logout": {
+		"logoutEndpoint": "/do/logout"
+	},
+	"routes": [{
+		"source": "^/soldOrder/(.*)$",
+		"target": "$1",
+		"localDir": "webapp"
+	}, {
+		"source": "/api-proxy(.*)",
+		"destination": "retailSoldOrder-node-backend",
+		"csrfProtection": false,
+		"authenticationType": "none"
+	}, {
+		"source": "/node(.*)",
+		"destination": "retailSoldOrder-node-backend",
+		"csrfProtection": false,
+		"authenticationType": "none"
+	}]
 }
