@@ -3,6 +3,7 @@
 
 "use strict";
 
+var cors = require("cors");
 var express = require("express");
 var https = require("https");
 var log = require("cf-nodejs-logging-support");
@@ -16,6 +17,9 @@ var app = express();
 // Logging
 log.setLoggingLevel(process.env.XS_APP_LOG_LEVEL || "info");
 app.use(log.logNetwork);
+
+// CORS
+app.use(cors());
 
 // Router
 var router = require("./router")(app, server);

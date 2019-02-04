@@ -29,15 +29,6 @@ module.exports = function () {
 	var apicClientId = options.api.apicClientId;
 	var apicClientSecret = options.api.apicClientSecret;
 
-	// Add router middleware for CORS
-	router.use(function (req, res, next) {
-		// TODO: should allow only the UI module in the MTA
-		res.header("Access-Control-Allow-Origin", "*");
-		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-		res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
-		next();
-	});
-
 	var cachedCsrfToken;
 
 	router.all("/*", function (req, res, next) {
