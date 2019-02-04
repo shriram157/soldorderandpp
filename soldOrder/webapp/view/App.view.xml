@@ -13,8 +13,8 @@
 					<Input id="AppInputId" width="15%" liveChange="user" value="9" enabled="false"></Input>
 				</contentMiddle>
 				<contentRight>
-					<Text text="{i18n>soldOrder}" wrapping="true" class="sapUiTinyMarginBeginEnd"></Text>
-					<Text text="{i18n>priceProtection}" wrapping="true"></Text>
+					<!--<Text text="{i18n>soldOrder}" wrapping="true" class="sapUiTinyMarginBeginEnd"></Text>-->
+					<!--<Text text="{i18n>priceProtection}" wrapping="true"></Text>-->
 				</contentRight>
 			</Bar>
 		</customHeader>
