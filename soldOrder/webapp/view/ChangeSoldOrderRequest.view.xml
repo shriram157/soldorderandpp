@@ -98,8 +98,14 @@
 							<TextArea id="Comment" value="{mainservices>Comment}"/>
 						</f:content>
 					</f:SimpleForm>
-					<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight marginCornersBottom cssShift"></Button>
+					
 				</content>
+				<footer class="sitefooter">
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" ></Button>
+					</Toolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>

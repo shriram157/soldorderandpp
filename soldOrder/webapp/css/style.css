@@ -144,7 +144,6 @@
     padding-bottom: 0.8125rem;
     text-align:center !important;
 }
-
 .sapMBtnPaddingRight {
     padding-right: 0rem;
 }
@@ -155,4 +154,9 @@
 .FormTitle .sapUiFormM .sapUiFormContainerTitle>.sapUiFormTitle {
     height: 0.5rem;
     line-height: 1rem;
+}
+.sapMPageFooter 
+{ position: fixed !important; }
+.sapMPageWithFooter>section {
+    bottom: 6rem !important;
 }

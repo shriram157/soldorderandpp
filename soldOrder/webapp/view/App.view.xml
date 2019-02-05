@@ -18,11 +18,11 @@
 				</contentRight>
 			</Bar>
 		</customHeader>
-		<App id="idAppControl"/>
-		<footer >
-			<OverflowToolbar>
-				<ToolbarSpacer/>
-			</OverflowToolbar>
-		</footer>
+		<App id="idAppControl" height="100%"/>
+		<!--<footer >-->
+			<!--<OverflowToolbar>-->
+			<!--	<ToolbarSpacer/>-->
+			<!--</OverflowToolbar>-->
+		<!--</footer>-->
 	</Page>
 </mvc:View>

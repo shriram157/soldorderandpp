@@ -53,14 +53,14 @@ sap.ui.define([
 						//	var x = 'W27687139';
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
-							var url = "https://api.sit.toyota.ca/tci/internal/api/v1.0/customer/cdms/customers/profile?customerNumber=" +
+							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?customerNumber=" +
 								zcustomerNumber;
 							$.ajax({
 								url: url,
 								headers: {
-									accept: 'application/json',
-									'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
-									'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
+									accept: 'application/json'
+									// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
+									// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
 								},
 								type: "GET",
 								dataType: "json",

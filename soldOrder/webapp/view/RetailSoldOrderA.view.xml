@@ -1,8 +1,8 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
-	xmlns:l="sap.ui.layout" controllerName="toyota.ca.SoldOrder.controller.RetailSoldOrderA" xmlns:html="http://www.w3.org/1999/xhtml">
+	xmlns:l="sap.ui.layout" controllerName="toyota.ca.SoldOrder.controller.RetailSoldOrderA" xmlns:html="http://www.w3.org/1999/xhtml" height="100%">
 	<App>
 		<pages>
-			<Page showHeader="false">
+			<Page showHeader="false" showFooter="true" >
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
 					<Label text="{i18n>createSoldOrderTitle}" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"></Label>
@@ -11,7 +11,7 @@
 						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss"/>
 							<!--<Label wrapping="true"  text="{i18n>modelYear}"/>
 							<ComboBox id="modelYr_RSOA" items="{ path: 'modelYear_Model>/',sorter: { path: 'modelYear_Model>/' } }" required="true">
 								<core:Item key="{modelYear_Model>}" text="{modelYear_Model>}"/>
@@ -75,7 +75,7 @@
 								</items>
 							</VBox>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss"></MessageStrip >
+							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>contractDate}"/>
 							<DatePicker id="ContractDate_RSOA" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder="dd/MMM/yy" required="true"></DatePicker>
 							<Label wrapping="true" text="{i18n>salesType}"/>
@@ -108,7 +108,7 @@
 						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"></MessageStrip >
+							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>custname}"/>
 							<Input id="CustName_RSOA" value="{Customer>/Name}" required="true"/>
 							<Label wrapping="true" text="{i18n>address}"/>
@@ -135,13 +135,18 @@
 								</layoutData>
 							</Button>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"></MessageStrip >
+							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="Comment" value="{address>/Name}"/>
 						</f:content>
 					</f:SimpleForm>
-					<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight marginCornersBottom cssShift"></Button>
 				</content>
+				<footer class="sitefooter">
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized"></Button>
+					</Toolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>
