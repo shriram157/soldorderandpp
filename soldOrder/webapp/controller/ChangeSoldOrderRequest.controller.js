@@ -2,11 +2,11 @@ sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"sap/ui/model/resource/ResourceModel",
 	"toyota/ca/SoldOrder/util/formatter",
-		"sap/ui/model/json/JSONModel"
-], function (BaseController, ResourceModel, formatter,JSONModel) {
+	"sap/ui/model/json/JSONModel"
+], function (BaseController, ResourceModel, formatter, JSONModel) {
 	"use strict";
 	var CSOR_controller;
-	var requestid,zcustomerModel;
+	var requestid, zcustomerModel;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.ChangeSoldOrderRequest", {
 		formatter: formatter,
 		/**
@@ -42,8 +42,8 @@ sap.ui.define([
 								url: url,
 								headers: {
 									accept: 'application/json'
-									// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
-									// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
+										// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
+										// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
 								},
 								type: "GET",
 								dataType: "json",
@@ -113,6 +113,11 @@ sap.ui.define([
 						delete zdata.__metadata;
 					}
 					var URI = "/Retail_Sold_OrderSet('" + zdata.ZzsoReqNo + "')";
+					//	CSOR_controller.getView().getModel('mainservices').refreshSecurityToken();
+					//Checking if there is no Token , it will refresh to get another one 
+					if (!CSOR_controller.getView().getModel('mainservices').getSecurityToken()) {
+						CSOR_controller.getView().getModel('mainservices').refreshSecurityToken();
+					}
 					CSOR_controller.getView().getModel('mainservices').update(URI, zdata, {
 						success: function (data) {
 							// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",

@@ -307,6 +307,10 @@ sap.ui.define([
 			var dataString = JSON.stringify(
 				_data
 			);
+			//Checking if there is no Token , it will refresh to get another one 
+			if (!RSOA_controller.getView().getModel('mainservices').getSecurityToken()) {
+				RSOA_controller.getView().getModel('mainservices').refreshSecurityToken();
+			}
 			RSOA_controller.getView().getModel('mainservices').create('/Retail_Sold_OrderSet', _data, {
 				success: function (data, oResponse) {
 					if (data.ZzsoReqNo) {

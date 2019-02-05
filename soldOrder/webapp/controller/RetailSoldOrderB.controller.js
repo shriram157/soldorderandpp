@@ -277,6 +277,10 @@ sap.ui.define([
 				var dataString = JSON.stringify(
 					_data
 				);
+               // refresh token if it is not there 
+				if (!this.getOwnerComponent().getModel("mainservices").getSecurityToken()) {
+					this.getOwnerComponent().getModel("mainservices").refreshSecurityToken();
+				}
 				this.getOwnerComponent().getModel("mainservices").create('/Retail_Sold_OrderSet', _data, {
 					success: function (data, oResponse) {
 						if (data.ZzsoReqNo) {
