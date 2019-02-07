@@ -1,5 +1,5 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified"
-	xmlns:f="sap.ui.layout.form" xmlns:uxap="sap.uxap" xmlns:t="sap.ui.table"
+	xmlns:f="sap.ui.layout.form" xmlns:uxap="sap.uxap" xmlns:t="sap.ui.table" 
 	controllerName="toyota.ca.SoldOrder.controller.CreateFleetSoldOrder" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
@@ -12,23 +12,23 @@
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
 						singleContainerFullSize="false">
 						<f:content>
-								<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
-							<Label wrapping="true"  text="{i18n>FanNumber}"/>
+							<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
+							<Label wrapping="true" text="{i18n>FanNumber}"/>
 							<Input value="23645"/>
-							<Label wrapping="true"  text="{i18n>PONumber}"/>
+							<Label wrapping="true" text="{i18n>PONumber}"/>
 							<Input value="{address>/Name}"/>
-								<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
-							<Label wrapping="true"  text="{i18n>CustName}"/>
+							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
+							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{address>/Name}"/>
-							<Label wrapping="true"  text="{i18n>address}"/>
+							<Label wrapping="true" text="{i18n>address}"/>
 							<Text text="{address>/Name}"/>
-							<Label wrapping="true"  text="{i18n>city}"/>
+							<Label wrapping="true" text="{i18n>city}"/>
 							<Text text="{address>/Name}"/>
-							<Label wrapping="true"  text="{i18n>province}"/>
+							<Label wrapping="true" text="{i18n>province}"/>
 							<Text text="{address>/Name}"/>
-							<Label wrapping="true"  text="{i18n>postalcode}"/>
+							<Label wrapping="true" text="{i18n>postalcode}"/>
 							<Text text="{address>/Name}"/>
-							<Label wrapping="true"  text="{i18n>phnNo}"/>
+							<Label wrapping="true" text="{i18n>phnNo}"/>
 							<Text text="{address>/Name}"/>
 						</f:content>
 					</f:SimpleForm>
@@ -84,43 +84,43 @@
 						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
 							<t:Column width="14.2%" resizable="false">
-								<Label wrapping="true"  text="{i18n>vtn}" class="TableLabel"/>
+								<Label wrapping="true" text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
-								<Label wrapping="true"  text="{i18n>modelYear}" class="TableLabel"/>
+								<Label wrapping="true" text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Height}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
-								<Label wrapping="true"  text="{i18n>series}" class="TableLabel"/>
+								<Label wrapping="true" text="{i18n>series}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
-								<Label wrapping="true"  text="{i18n>model}" class="TableLabel"/>
+								<Label wrapping="true" text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
-								<Label wrapping="true"  text="{i18n>suffix}" class="TableLabel"/>
+								<Label wrapping="true" text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Quantity}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
-								<Label wrapping="true"  text="{i18n>APX}" class="TableLabel"/>
+								<Label wrapping="true" text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
-								<Label wrapping="true"  text="{i18n>colour}" class="TableLabel"/>
+								<Label wrapping="true" text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
@@ -133,58 +133,56 @@
 						singleContainerFullSize="false" class="VBox_color">
 						<f:content>
 							<core:Title text="{i18n>VehicleInformation}" class="titleFontSize"/>
-							<Label wrapping="true"  text="{i18n>modelYear}"/>
-							<ComboBox id="modelYr_CFSO" items="{ path: '/modelYear', sorter: { path: 'key' } }" required="true">
-								<core:Item key="{key}" text="{text}"/>
-							</ComboBox>
-							<Label wrapping="true"  text="{i18n>series}"/>
+							<Label wrapping="true" text="{i18n>modelYear}"/>
+							<Input id="year" value="" width="" showValueHelp="true" valueHelpRequest="select_year"></Input>
+							<Label wrapping="true" text="{i18n>series}"/>
 							<ComboBox id="series_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 								<core:Item key="{ProductId}" text="{Name}"/>
 							</ComboBox>
-							<Label wrapping="true"  text="{i18n>modelCode}"/>
+							<Label wrapping="true" text="{i18n>modelCode}"/>
 							<ComboBox id="modelCode_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 								<core:Item key="{ProductId}"
 									text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 							</ComboBox>
-							<Label wrapping="true"  text="{i18n>suffix}"/>
+							<Label wrapping="true" text="{i18n>suffix}"/>
 							<ComboBox id="suffix_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 								<core:Item key="{ProductId}"
 									text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 							</ComboBox>
 							<core:Title text="" class="titleFontSize"/>
-							<Label wrapping="true"  text="{i18n>colour}"/>
+							<Label wrapping="true" text="{i18n>colour}"/>
 							<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
 								<core:Item key="{ProductId}"
 									text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
 							</ComboBox>
-							<Label wrapping="true"  text="{i18n>quantity}"/>
+							<Label wrapping="true" text="{i18n>quantity}"/>
 							<Input></Input>
-							<Label wrapping="true"  text="{i18n>DealerReqETA}"/>
+							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<Text text="{i18n>from}">
-									<layoutData>
+								<layoutData>
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
 							<DatePicker id="etaFrom_CFSO" placeholder="MMM DD, YY">
-									<layoutData>
+								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
 							</DatePicker>
-							<Label wrapping="true"  text=" "></Label>
+							<Label wrapping="true" text=" "></Label>
 							<Text text="{i18n>to}">
-									<layoutData>
-									<l:GridData span="L1 M1 S1" />
+								<layoutData>
+									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
 							<DatePicker id="etaTo_CFSO" navigate="_handleChange" change="_handleChange" placeholder="MMM DD, YY">
-									<layoutData>
-									<l:GridData span="L4 M4 S12" />
+								<layoutData>
+									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
 							</DatePicker>
 							<!--<Label></Label>-->
 							<Button text="{i18n>add}" press="_onAddRow">
 								<layoutData>
-									<l:GridData span="L3 M3 S12" />
+									<l:GridData span="L3 M3 S12"/>
 								</layoutData>
 							</Button>
 						</f:content>

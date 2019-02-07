@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:Y="sap.ui.unified.calendar"
+	xmlns:core="sap.ui.core">
+	<Popover
+		title="Select Year"
+		placement="Bottom"
+	afterOpen="initailyear"
+			initialFocus="Ok">
+	<beginButton>
+	<Button icon="sap-icon://navigation-left-arrow" press="onpreviousyears"></Button>	
+	</beginButton>
+	<endButton>
+			<Button icon="sap-icon://navigation-right-arrow" press="onnextyears"></Button>	
+	</endButton>
+	 <Y:YearPicker id="Year_Popup" value=""  select="handleSelectYearPress" ></Y:YearPicker>
+	</Popover>
+</core:FragmentDefinition>

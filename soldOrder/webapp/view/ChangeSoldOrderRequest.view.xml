@@ -22,7 +22,8 @@
 							</ComboBox>
 							<Label text="{i18n>Suffix}"/>
 							<ComboBox id="suffix_CSOR" items="{ path: 'VechileModel>/zc_configuration'}" required="true" selectedKey="{mainservices>Zzsuffix}">
-								<core:Item key="{VechileModel>Suffix}" text="{parts: [{path:'VechileModel>SuffixDescriptionEN'},{path:'VechileModel>TrimInteriorColor'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+								<core:Item key="{VechileModel>Suffix}"
+									text="{parts: [{path:'VechileModel>SuffixDescriptionEN'},{path:'VechileModel>TrimInteriorColor'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 							</ComboBox>
 							<Label text="{i18n>APX}"/>
 							<ComboBox id="apx_CSOR" items="{path: 'VechileModel>/ZC_PIO_DIO'}" required="true" selectedKey="{mainservices>Zzapx}">
@@ -38,13 +39,13 @@
 									<HBox>
 										<items>
 											<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-											<DatePicker id="etaFrom_CSOR" placeholder="dd/MMM/yy"  dateValue="{mainservices>ZzreqEtaFrom}" change="_handleChangeDate"></DatePicker>
+											<DatePicker id="etaFrom_CSOR" placeholder="dd/MMM/yy" dateValue="{mainservices>ZzreqEtaFrom}" change="_handleChangeDate"></DatePicker>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
-											<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy"   dateValue="{mainservices>ZzreqEtaTo}"></DatePicker>
+											<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy" dateValue="{mainservices>ZzreqEtaTo}"></DatePicker>
 										</items>
 									</HBox>
 								</items>
@@ -53,9 +54,13 @@
 							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss"></MessageStrip >
 							<!--<Label text="{i18n>custname}"/>-->
 							<Label text="{i18n>contractDate}"/>
-							<Text text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+							<Text
+								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label text="{i18n>salesType}"/>
-							<Text text="{mainservices>ZsalesType}"/>
+							<ComboBox id="salestype_CSOR" items="{ path: '/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
+								<core:Item key="{key}" text="{text}"/>
+							</ComboBox>
+							<!--<Text text="{mainservices>ZsalesType}"/>-->
 							<Label text="{i18n>salesPerName}"/>
 							<Text text="{mainservices>Zsalesperson}"/>
 							<Label text="{i18n>salesManName}"/>
@@ -74,19 +79,19 @@
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"></MessageStrip >
-							<Label  text="{i18n>CustName}"/>
+							<Label text="{i18n>CustName}"/>
 							<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>
 							<Label text="{i18n>address}"/>
 							<Text text="{Customer>/addresses/0/line1}"/>
 							<Label text="{i18n>city}"/>
 							<Text text="{Customer>/addresses/0/city}"/>
-							<Label  text="{i18n>province}"/>
+							<Label text="{i18n>province}"/>
 							<Text text="{Customer>/addresses/0/provinceCode}"/>
-							<Label  text="{i18n>postalcode}"/>
+							<Label text="{i18n>postalcode}"/>
 							<Text text="{Customer>/addresses/0/postalCode}"/>
-							<Label  text="{i18n>phnNo}"/>
+							<Label text="{i18n>phnNo}"/>
 							<Text text="{Customer>/phones/0/localNumber}"/>
-							<Label  text="{i18n>email}"/>
+							<Label text="{i18n>email}"/>
 							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label text="{i18n>driverLic}"/>
 							<Text text="{address>/Name}"/>
@@ -98,12 +103,11 @@
 							<TextArea id="Comment" value="{mainservices>Comment}"/>
 						</f:content>
 					</f:SimpleForm>
-					
 				</content>
 				<footer class="sitefooter">
 					<Toolbar>
 						<ToolbarSpacer/>
-						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" ></Button>
+						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized"></Button>
 					</Toolbar>
 				</footer>
 			</Page>

@@ -240,7 +240,7 @@ sap.ui.define([
 		submitSO: function () {
 			// Ayad editing to handle the creation method
 			// ="yyyy-MM-ddTHH:mm:ss"
-			var Zzmoyr = RSOA_controller.getView().byId("modelYr_RSOA").getSelectedKey();
+			var Zzmoyr = RSOA_controller.getView().byId("modelYr_RSOA").geValue();
 			var Zzseries = RSOA_controller.getView().byId("series_RSOA").getSelectedKey();
 			var Zzmodel = RSOA_controller.getView().byId("model_RSOA").getSelectedKey();
 			var Zzsuffix = RSOA_controller.getView().byId("Suffix_RSOA").getSelectedKey();
@@ -578,7 +578,43 @@ sap.ui.define([
 
 		onAfterRendering: function () {
 			RSOA_controller.listOfModelYear();
-		}
+		},
+		//-----------------------------------------
+		//---------Handling Select Year----------
+		//--------------------------------------------
+		select_year: function (Oevent) {
+
+			if (!this._oPopover) {
+				this._oPopover = sap.ui.xmlfragment("YearPopup", "toyota.ca.SoldOrder.view.fragments.YearPopup", this);
+				this.getView().addDependent(this._oPopover);
+			}
+			this._oPopover.openBy(Oevent.getSource());
+
+		},
+		handleSelectYearPress: function (Oevent) {
+			this.getView().byId('modelYr_RSOA').setValue(this._oPopover.getContent()[0].getYear());
+			var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+			 items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, this._oPopover.getContent()[0].getYear()));
+			this._oPopover.close();
+		},
+		initailyear: function (oEvent) {
+			this._oPopover.getContent()[0].setDate(new Date());
+		},
+		onpreviousyears: function (oEvent) {
+			this._oPopover.getContent()[0].previousPage();
+		},
+		onnextyears: function (oEvent) {
+			this._oPopover.getContent()[0].nextPage();
+		},
+		//---------------------------------------
+		//--------Handling Filter---------------
+		//----------------------------------
+		// year_selected: function (oEvent) {
+
+		// 	var year = this.getView().byId('modelYr_RSOA').getValue();
+		// 	var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+		// 	items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, year));
+		// }
 
 	});
 

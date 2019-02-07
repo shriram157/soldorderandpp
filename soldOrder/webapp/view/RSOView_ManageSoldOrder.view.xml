@@ -46,7 +46,10 @@
 							<Text
 								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>SalesType}"/>
-							<Text text="{mainservices>ZsalesType}"/>
+							<ComboBox id="salestype_CSOR" items="{ path: '/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
+								<core:Item key="{key}" text="{text}"/>
+							</ComboBox>
+
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<VBox>
 								<items>
@@ -83,7 +86,10 @@
 							<Label wrapping="true" text="{i18n>TradeInModel}"/>
 							<Text text="{mainservices>ZtradeModel}"/>
 							<Label wrapping="true" text="{i18n>SoldOrdStatus}"/>
-							<Text text="{mainservices>ZzsoStatus}"/>
+								<ComboBox id="soldostatus_CSOR" items="{ path: '/SoldOrderStatus'}" editable="false" selectedKey="{mainservices>ZzsoStatus}">
+								<core:Item key="{key}" text="{text}"/>
+							</ComboBox>
+						
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="150" value="{mainservices>Comment}"></TextArea>
 							<core:Title text="" class="titleFontSize"/>
@@ -91,7 +97,7 @@
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
 							<Link text="{mainservices>Zzvtn}"></Link>
 							<Label wrapping="true" text="{i18n>AuditStatus}"/>
-							<Text text="{address>/ZIPCode}"/>
+							<Text text="{mainservices>ZzAuditStatus}"/>
 							<Label wrapping="true" text="{i18n>DealerAcpETA}"/>
 							<VBox>
 								<items>
@@ -131,9 +137,9 @@
 							<Label wrapping="true" text="{i18n>OrderType}"/>
 							<Text text="{address>/City}"/>
 							<Label wrapping="true" text="{i18n>CancellationReason}"/>
-							<Text text="{address>/City}"/>
+							<Text text="{mainservices>ZzcancelRsn}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea id="RSOV_MSO_comment2" editable="false" enabled="false" maxLength="150"></TextArea>
+							<TextArea id="RSOV_MSO_comment2" value="{mainservices>ZzcancelComment}" editable="false" enabled="false" maxLength="150"></TextArea>
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"

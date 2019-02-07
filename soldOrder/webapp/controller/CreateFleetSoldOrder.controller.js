@@ -96,7 +96,7 @@ sap.ui.define([
 			oEvent.preventDefault();
 		},
 		_addVehiclesToInventory: function () {
-			CFSO_controller.getOwnerComponent().getRouter().navto("InventoryVehicleSelection", {}, true); //page 12
+			CFSO_controller.getOwnerComponent().getRouter().navTo("InventoryVehicleSelection", {}, true); //page 12
 		},
 		_onDelete1: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table1");
@@ -177,7 +177,7 @@ sap.ui.define([
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			}
-		}
+		},
 
 		//for (var i = aContexts.length - 1; i >= 0; i--) {
 		/*	var oCFSO_controllerObj = aContexts[i].getObject();
@@ -186,7 +186,31 @@ sap.ui.define([
 					return index;
 				}
 			});*/
+        //-----------------------------------------
+        //---------Handling Select Year----------
+        //--------------------------------------------
+		select_year: function (Oevent) {
 
+			if (!this._oPopover) {
+				this._oPopover = sap.ui.xmlfragment("YearPopup", "toyota.ca.SoldOrder.view.fragments.YearPopup", this);
+				this.getView().addDependent(this._oPopover);
+			}
+			this._oPopover.openBy(Oevent.getSource());
+
+		},
+		handleSelectYearPress: function (Oevent) {
+			this.getView().byId('year').setValue(this._oPopover.getContent()[0].getYear());
+			this._oPopover.close();
+		},
+		initailyear: function (oEvent) {
+			this._oPopover.getContent()[0].setDate(new Date());
+		},
+		onpreviousyears: function (oEvent) {
+			this._oPopover.getContent()[0].previousPage();
+		},
+		onnextyears: function (oEvent) {
+			this._oPopover.getContent()[0].nextPage();
+		}
 
 	});
 

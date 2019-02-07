@@ -29,15 +29,16 @@
 								<core:Item key="{suffix_Model>}" text="{parts: [{path:'suffix_Model>'},{path:'suffix_Model>'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 							</ComboBox>-->
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<ComboBox id="modelYr_RSOA" items="{ path: 'mode_Model>/'}" required="true">
-								<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>
-							</ComboBox>
+							<Input id="modelYr_RSOA"  showValueHelp="true" valueHelpRequest="select_year"></Input>
+							<!--<ComboBox id="modelYr_RSOA" items="{ path: 'mode_Model>/'}" required="true">-->
+							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
+							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/', sorter: { path: '/TCISeries' } }" required="true">
+							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/', sorter: { path: '/TCISeries' } }" required="true" >
 								<core:Item key="{seriesModel>}" text="{seriesModel>}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Model}"/>
-							<ComboBox id="model_RSOA" items="{ path: 'oModel3>/'}" required="true">
+							<ComboBox id="model_RSOA" items="{ path: 'oModel3>/'}" required="true" >
 								<core:Item key="{oModel3>Model}"
 									text="{parts: [{path:'oModel3>Model'},{path:'oModel3>ENModelDesc'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
 							</ComboBox>

@@ -59,8 +59,8 @@ sap.ui.define([
 								url: url,
 								headers: {
 									accept: 'application/json'
-									// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
-									// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
+										// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
+										// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
 								},
 								type: "GET",
 								dataType: "json",
@@ -179,7 +179,7 @@ sap.ui.define([
 		},
 
 		_updateSoldOrderRequest: function () {
-
+			window.location.reload();
 		},
 
 		_updateAuditSoldOrderRequest: function () {
@@ -197,7 +197,7 @@ sap.ui.define([
 		_getVehiclesToFillSoldOrderRequest: function () {
 			RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 				Soreq: zrequest
-			}, true); 
+			}, true);
 			// Hashed for test first scenario Select from Inventory	
 			// if (RSO_MSO_controller.flagOrderingDealer === true) {
 
@@ -261,9 +261,10 @@ sap.ui.define([
 		},
 
 		_onDeleteAttachment: function (evt) {
-			var evtContext = evt.getSource().getBindingContext(); // "/ProductCollection/0"
+			var evtContext = evt.getSource().getBindingContext('mainservices'); // "/ProductCollection/0"
 			var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("deleteError");
 			var title = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("title1");
+			var index = evt.getSource().getParent().getIndex();
 			var icon = new sap.ui.core.Icon({
 				src: "sap-icon://alert",
 				size: "2rem"
@@ -279,7 +280,7 @@ sap.ui.define([
 				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 				onClose: function (sAction) {
 					if (sAction == "YES") {
-						RSO_MSO_controller.deleteAtt(evtContext);
+						RSO_MSO_controller.deleteAtt(evtContext,index);
 					} else {
 						//
 					}
@@ -291,21 +292,30 @@ sap.ui.define([
 			});
 		},
 
-		deleteAtt: function (evtContext) {
+		deleteAtt: function (evtContext,index) {
 			var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 			var sPath = evtContext.sPath;
-			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-			var model = oTable.getModel();
-			var data = model.getProperty("/ProductCollection");
-			data.splice(oIndex, 1);
-			model.setProperty("/ProductCollection", data);
-			oTable.getModel().refresh();
-			RSO_MSO_controller.getView().getModel().refresh(true);
+			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+			// var model = oTable.getModel();
+			// var data = model.getProperty("/AttachmentSet");
+			RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
+				success: function (data, oResponse) {
+					// data.splice(index, 1);
+					// model.setProperty("/AttachmentSet", data);
+					oTable.getModel('mainservices').refresh();
+					//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
+				},
+				error: function (oData, oResponse) {
+					sap.m.MessageBox.show("Error Remove File. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+						.MessageBox.Action.OK, null, null);
+				}
+			});
+
 		},
 
 		_openFile: function (oEvent) {
-			var fileUrl = "https://google.com";
-			parent.window.open(fileUrl, '_blank');
+			// var fileUrl = "https://google.com";
+			// parent.window.open(fileUrl, '_blank');
 		},
 
 		_addAttachment: function () {
@@ -322,9 +332,10 @@ sap.ui.define([
 			} else {
 				// AppController.flgOwnershipUploaded = true;
 				var oFileUploader = RSO_MSO_controller.getView().byId("idRSOV_MSO_fileUpl");
+				var zcomment = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
 				oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
 					name: "slug",
-					value: oFileUploader.getValue()
+					value: oFileUploader.getValue()  + "," + zcomment.getValue()
 				}));
 
 				oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
@@ -528,6 +539,9 @@ sap.ui.define([
 		handleUploadComplete: function (c) {
 			sap.m.MessageBox.show("File Uploaded on Request No:-" + zrequest, sap.m.MessageBox.Icon.SUCCESS, "Success", sap
 				.m.MessageBox.Action.OK, null, null);
+			RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
+			// RSO_MSO_controller.getView().byId('idRSOV_MSO_fileUpl').setValue('');
+			RSO_MSO_controller.getView().byId('idComments_TA_RSO_ManageSO').setValue('');
 			// var _ = RSO_MSO_controller.getControllerInstance();
 			// var p = c.getParameters();
 			// if (parseInt(p.status, 10) >= 400) {
@@ -581,6 +595,5 @@ sap.ui.define([
 		onNavBack: function (Oevent) {
 			RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {}, true);
 		}
-
 	});
 });

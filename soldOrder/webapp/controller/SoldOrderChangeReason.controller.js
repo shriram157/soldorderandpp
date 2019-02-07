@@ -39,7 +39,7 @@ sap.ui.define([
 				SOCR_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 				Soreq: requestid
 			}, true); 
-			} else if (cbVal == 1) {
+			} else if (cbVal == 1 || cbVal == 3) {
 				SOCR_controller.getView().getModel('mainservices').callFunction("/RSO_Change", {
 					method: "POST",
 					urlParameters: {
