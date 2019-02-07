@@ -240,7 +240,7 @@ sap.ui.define([
 		submitSO: function () {
 			// Ayad editing to handle the creation method
 			// ="yyyy-MM-ddTHH:mm:ss"
-			var Zzmoyr = RSOA_controller.getView().byId("modelYr_RSOA").geValue();
+			var Zzmoyr = RSOA_controller.getView().byId("modelYr_RSOA").getValue();
 			var Zzseries = RSOA_controller.getView().byId("series_RSOA").getSelectedKey();
 			var Zzmodel = RSOA_controller.getView().byId("model_RSOA").getSelectedKey();
 			var Zzsuffix = RSOA_controller.getView().byId("Suffix_RSOA").getSelectedKey();
