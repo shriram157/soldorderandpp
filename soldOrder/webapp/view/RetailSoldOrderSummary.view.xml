@@ -22,9 +22,9 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items=""
+												<MultiComboBox id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items="{path:'seriesModel>/'}"
 													class="sapUiMediumMarginEnd">
-													<core:Item key="" text=""/>
+													<core:Item key="{seriesModel>}" text="{seriesModel>}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -50,8 +50,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_auditStatus_RSOS" width="300px" selectionChange="_refresh" items="" class="sapUiMediumMarginEnd">
-													<core:Item key="" text=""/>
+												<MultiComboBox  id="mcb_auditStatus_RSOS" width="300px" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+													<!--<core:Item key="" text=""/>-->
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -63,8 +63,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_dealer_RSOS" width="300px" selectionChange="_refresh" items="" class="sapUiMediumMarginEnd">
-													<core:Item key="" text=""/>
+												<MultiComboBox  id="mcb_dealer_RSOS" width="300px" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+													<!--<core:Item key="" text=""/>-->
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
