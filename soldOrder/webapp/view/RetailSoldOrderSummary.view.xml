@@ -22,9 +22,9 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items="{ path: '/FSOSummary_Status', sorter: { path: 'key' } }"
+												<MultiComboBox id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items=""
 													class="sapUiMediumMarginEnd">
-													<core:Item key="{key}" text="{text}"/>
+													<core:Item key="" text=""/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -36,7 +36,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: '/FSOSummary_OrderType', sorter: { path: 'key' } }"
+												<MultiComboBox id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: '/FSOSummary_Status', sorter: { path: 'key' } }"
 													class="sapUiMediumMarginEnd">
 													<core:Item key="{key}" text="{text}"/>
 													<layoutData>
@@ -50,8 +50,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_auditStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: '/Products', sorter: { path: 'reason' } }" class="sapUiMediumMarginEnd">
-													<core:Item key="{ProductId}" text="{Name}"/>
+												<MultiComboBox  id="mcb_auditStatus_RSOS" width="300px" selectionChange="_refresh" items="" class="sapUiMediumMarginEnd">
+													<core:Item key="" text=""/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -63,8 +63,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_dealer_RSOS" width="300px" selectionChange="_refresh" items="{ path: '/Products', sorter: { path: 'reason' } }" class="sapUiMediumMarginEnd">
-													<core:Item key="{ProductId}" text="{Name}"/>
+												<MultiComboBox  id="mcb_dealer_RSOS" width="300px" selectionChange="_refresh" items="" class="sapUiMediumMarginEnd">
+													<core:Item key="" text=""/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>

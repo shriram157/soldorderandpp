@@ -1,7 +1,9 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
-	"toyota/ca/SoldOrder/util/formatter"
-], function (BaseController, formatter) {
+	"toyota/ca/SoldOrder/util/formatter",
+		"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+], function (BaseController, formatter,Filter,FilterOperator) {
 	"use strict";
 	var RSOS_controller;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderSummary", {
@@ -61,8 +63,16 @@ sap.ui.define([
 			}
 		},
 
-		_refresh: function () {
-
+		_refresh: function (oEvent) {
+		var afilter = [];	
+       for(var i = 0 ;i< this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length;i++)
+       {
+       	 afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ,  this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getText()));
+       	
+       }
+       var items = this.getView().byId("table_RSOS").getBinding('rows');
+       items.filter(new Filter(afilter,true));
+                    
 		},
 		
 		_dispalySoldOrderDetails: function (evt) {
