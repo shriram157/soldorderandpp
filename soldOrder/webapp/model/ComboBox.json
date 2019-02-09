@@ -37,7 +37,48 @@
 		"key": "3",
 		"text": "FINANCE"
 	}],
-
+	"Province": [{
+		"key": "AB",
+		"text": "Alberta"
+	}, {
+		"key": "BC",
+		"text": "British Columbia"
+	}, {
+		"key": "MB",
+		"text": "Manitoba"
+	},
+	{
+		"key": "NB",
+		"text": "New Brunswick"
+	},
+	{
+		"key": "NL",
+		"text": "Newfoundland & Labr."
+	},{
+		"key": "NS",
+		"text": "Nova Scotia"
+	},{
+		"key": "NT",
+		"text": "Northwest Terr."
+	},{
+		"key": "NU",
+		"text": "Nunavut"
+	},{
+		"key": "ON",
+		"text": "Ontario"
+	},{
+		"key": "PE",
+		"text": "Prince Edward Island"
+	},{
+		"key": "QC",
+		"text": "Quebec"
+	},{
+		"key": "SK",
+		"text": "Saskatchewan"
+	},{
+		"key": "YT",
+		"text": "Yukon Territory"
+	}],
 	"SoldOrderStatus": [{
 		"key": "1",
 		"text": "In Progress"
@@ -131,6 +172,10 @@
 	}, {
 		"key": "7",
 		"text": "Cancelled"
+	},
+	{
+		"key": "8",
+		"text": "In Progress"
 	}],
 
 	"FSODetails_Status": [{

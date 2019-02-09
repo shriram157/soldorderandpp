@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (BaseController, ResourceModel, formatter, JSONModel) {
 	"use strict";
 	var validateFlagA = false;
-	var RSOA_controller, Zcustomer_No;
+	var RSOA_controller, Zcustomer_No,input_ref;
 
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderA", {
 		formatter: formatter,
@@ -261,7 +261,7 @@ sap.ui.define([
 			var ZtcciNum = RSOA_controller.getView().byId("tcciNo_RSOA").getValue();
 			var Zsalesperson = RSOA_controller.getView().byId("salesperson_RSOA").getValue();
 			var Zsalesmanager = RSOA_controller.getView().byId("salesMan_RSOA").getValue();
-			var ZtradeModelYr = RSOA_controller.getView().byId("trademodelYear_RSOAid").getSelectedKey();
+			var ZtradeModelYr = RSOA_controller.getView().byId("trademodelYear_RSOAid").getValue();
 			var ZtradeModel = RSOA_controller.getView().byId("trademodel_RSOAid").getValue();
 			var ZtradeMake = RSOA_controller.getView().byId("tradeInMakeYear_RSOAid").getSelectedKey();
 			var comment = RSOA_controller.getView().byId("Comment").getValue();
@@ -441,8 +441,8 @@ sap.ui.define([
 								"addressType": "BUSINESS"
 							}],
 							"phones": [{
-								"localNumber": CustModel.Phone,
-								"areaCode": "(416)",
+								"localNumber": CustModel.Phone.substr(4,7),
+								"areaCode": CustModel.Phone.substr(0,3),
 								"useCode": "WORK"
 							}],
 							"preferredLanguageCode": "en-CA",
@@ -589,22 +589,23 @@ sap.ui.define([
 				this.getView().addDependent(this._oPopover);
 			}
 			this._oPopover.openBy(Oevent.getSource());
+			 input_ref = Oevent.getSource();
 
 		},
 		handleSelectYearPress: function (Oevent) {
-			this.getView().byId('modelYr_RSOA').setValue(this._oPopover.getContent()[0].getYear());
+			input_ref.setValue(Oevent.getSource().getYear());//this._oPopover.getContent()[0].getYear()
 			var items_binding = this.getView().byId('model_RSOA').getBinding('items');
-			 items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, this._oPopover.getContent()[0].getYear()));
+			 items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
 			this._oPopover.close();
 		},
 		initailyear: function (oEvent) {
-			this._oPopover.getContent()[0].setDate(new Date());
+			oEvent.getSource().getContent()[0].setDate(new Date());
 		},
 		onpreviousyears: function (oEvent) {
-			this._oPopover.getContent()[0].previousPage();
+			oEvent.getSource().getContent()[0].previousPage();
 		},
 		onnextyears: function (oEvent) {
-			this._oPopover.getContent()[0].nextPage();
+			oEvent.getSource().getContent()[0].nextPage();
 		},
 		//---------------------------------------
 		//--------Handling Filter---------------

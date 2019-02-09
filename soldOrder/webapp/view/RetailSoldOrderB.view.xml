@@ -66,11 +66,11 @@
 								<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInMake}"/>
-							<ComboBox id="tradeInMakeYear_RSOBid" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }">
-								<core:Item key="{ProductId}" text="{Name}"/>
+							<ComboBox id="tradeInMakeYear_RSOBid" >
+								<!--<core:Item key="{ProductId}" text="{Name}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInModel}"/>
-							<Input id="trademodel_RSOBid" value="{address>/City}"/>
+							<Input id="trademodel_RSOBid" value="" maxLength='7'/>
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" id="form2_RSOB" title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
@@ -86,14 +86,17 @@
 							<Label wrapping="true" text="{i18n>city}"/>
 							<Input id="City_RSOB" value="{Customer>/City}" required="true"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Input id="Province_RSOB" value="{Customer>/Province}" required="true"/>
+							<!--<Input id="Province_RSOB" value="{Customer>/Province}" required="true"/>-->
+							<ComboBox id="Province_RSOB" items="{ path: '/Province', sorter: { path: 'key' } }" required="true" selectedKey="{Customer>/Province}">
+								<core:Item key="{key}" text="{text}"/>
+							</ComboBox>
 							<!--<ComboBox id="Province_RSOB" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">-->
 							<!--	<core:Item key="{ProductId}" text="{Name}"/>-->
 							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>postalcode}"/>
 							<Input id="PostalCode_RSOB" value="{Customer>/PostCode}" required="true"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Input value="{Customer>/Phone}"/>
+							<Input value="{Customer>/Phone}" placeholder="xxx-xxxxxxx"/>
 							<Label wrapping="true" text="{i18n>email}"/>
 							<Input value="{Customer>/Email}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>

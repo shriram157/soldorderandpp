@@ -128,8 +128,8 @@ sap.ui.define([
 								"addressType": "BUSINESS"
 							}],
 							"phones": [{
-								"localNumber": CustModel.Phone,
-								"areaCode": "(416)",
+								"localNumber": CustModel.Phone.substr(4,7),
+								"areaCode": CustModel.Phone.substr(0,3),
 								"useCode": "WORK"
 							}],
 							"preferredLanguageCode": "en-CA",

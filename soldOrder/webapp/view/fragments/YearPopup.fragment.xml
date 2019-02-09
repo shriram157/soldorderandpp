@@ -13,6 +13,7 @@
 	<endButton>
 			<Button icon="sap-icon://navigation-right-arrow" press="onnextyears"></Button>	
 	</endButton>
+	<!--<Input id='control_id' value='' visible='false'></Input>-->
 	 <Y:YearPicker id="Year_Popup" value=""  select="handleSelectYearPress" ></Y:YearPicker>
 	</Popover>
 </core:FragmentDefinition>

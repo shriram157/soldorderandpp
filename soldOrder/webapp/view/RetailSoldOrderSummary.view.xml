@@ -50,8 +50,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_auditStatus_RSOS" width="300px" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
-													<!--<core:Item key="" text=""/>-->
+												<MultiComboBox  id="mcb_auditStatus_RSOS" items="{ path:'/AuditStatus'}" width="300px" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+													<core:Item key="{key}" text="{text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
