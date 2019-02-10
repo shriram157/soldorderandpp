@@ -23,7 +23,7 @@
 				"type": "JSON"
 			},
 			"mainService": {
-				"uri": "/soldorder_node/node/ZVMS_SOLD_ORDER_SRV/",
+				"uri": "/node/ZVMS_SOLD_ORDER_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
@@ -31,14 +31,14 @@
 				}
 			},
 			"VechileS": {
-				"uri": "/soldorder_node/node/Z_VEHICLE_CATALOGUE_SRV/",
+				"uri": "/node/Z_VEHICLE_CATALOGUE_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0"
 				}
 			},
 			"ZPIPELINE_ETA_INVENT_SUMMARY_SRV": {
-				"uri": "/soldorder_node/node/ZPIPELINE_ETA_INVENT_SUMMARY_SRV/",
+				"uri": "/node/ZPIPELINE_ETA_INVENT_SUMMARY_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
