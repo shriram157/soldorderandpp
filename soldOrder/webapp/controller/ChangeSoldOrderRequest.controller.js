@@ -35,6 +35,11 @@ sap.ui.define([
 				model: "mainservices",
 				events: {
 					change: function (OEvent) {
+						//Filter Data Sold Order
+						CSOR_controller.series_selected();
+						CSOR_controller.model_selected();
+						CSOR_controller.suffix_selected();
+						//------------------------------------------
 						if (CSOR_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = CSOR_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
 							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?customerNumber=" + zcustomerNumber;
@@ -132,6 +137,74 @@ sap.ui.define([
 						}
 					});
 				}
+			}
+		},
+		//---------------------------------------
+		//--------Handling Filter---------------
+		//----------------------------------
+		series_selected: function (oEvent) {
+
+			// var year = this.getView().byId('modelYr_RSOA').getValue();
+			// items="{ path: 'oModel3>/'}"
+			
+			if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')) {
+				var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
+				// this.getView().byId('model_CSOR').bindItems("oModel3>/", new sap.ui.core.ListItem({
+				// 	key: "{oModel3>Model}",
+				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+				// }));
+				var items_binding = this.getView().byId('model_CSOR').getBinding('items');
+				items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
+			}
+		},
+		model_selected: function (oEvent) {
+			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
+			var model = this.getView().byId('model_CSOR').getSelectedKey();
+			
+			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
+				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+				// this.getView().byId('suffix_CSOR').bindItems('oModel1>/', new sap.ui.core.ListItem({
+				// 	key: "{oModel1>Suffix}",
+				// 	text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel2>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
+				// }));
+				var items_binding = this.getView().byId('suffix_CSOR').getBinding('items');
+				items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+					new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+				], true));
+			}
+		},
+		suffix_selected: function (oEvent) {
+			//-----------------
+			//----APX---------
+			//----------------
+			//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
+			var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+			
+			var model = this.getView().byId('model_CSOR').getSelectedKey();
+			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
+				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+				// this.getView().byId('apx_CSOR').bindItems('mode_Model>/', new sap.ui.core.ListItem({
+				// 	key: "{mode_Model>zzapx}",
+				// 	text: "{mode_Model>zzapx}"
+				// }));
+				var items_binding = this.getView().byId('apx_CSOR').getBinding('items');
+				items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
+					new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
+					new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
+				], true));
+				//-----------------
+				//----Color---------
+				//----------------
+				// this.getView().byId('colour_CSOR').bindItems('oModel2>/', new sap.ui.core.ListItem({
+				// 	key: "{oModel2>ExteriorColorCode}",
+				// 	text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+				// }));
+				var items_binding = this.getView().byId('colour_CSOR').getBinding('items');
+				items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+					new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
+					new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+				], true));
+
 			}
 		}
 

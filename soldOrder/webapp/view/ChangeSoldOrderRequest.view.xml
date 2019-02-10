@@ -11,19 +11,19 @@
 						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "></MessageStrip >
+							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss " />
 							<Label text="{i18n>modelYear}"/>
 							<Text text="{mainservices>Zzmoyr}"/>
 							<Label text="{i18n>Series}"/>
 							<Text text="{mainservices>Zzseries}"/>
 							<Label text="{i18n>Model}"/>
-							<ComboBox id="model_CSOR" items="{ path: 'VechileModel>/ZC_BRAND_MODEL_DETAIL' }" required="true" selectedKey="{mainservices>Zzmodel}">
-								<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ENModelDesc}"/>
+							<ComboBox id="model_CSOR" items="{ path: 'VechileModel>/zc_model' }" selectionChange="model_selected"   required="true" selectedKey="{mainservices>Zzmodel}">
+								<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>
 							</ComboBox>
 							<Label text="{i18n>Suffix}"/>
-							<ComboBox id="suffix_CSOR" items="{ path: 'VechileModel>/zc_configuration'}" required="true" selectedKey="{mainservices>Zzsuffix}">
+							<ComboBox id="suffix_CSOR" items="{ path: 'VechileModel>/zc_configuration'}" selectionChange="suffix_selected" required="true" selectedKey="{mainservices>Zzsuffix}">
 								<core:Item key="{VechileModel>Suffix}"
-									text="{parts: [{path:'VechileModel>SuffixDescriptionEN'},{path:'VechileModel>TrimInteriorColor'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+									text="{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 							</ComboBox>
 							<Label text="{i18n>APX}"/>
 							<ComboBox id="apx_CSOR" items="{path: 'VechileModel>/ZC_PIO_DIO'}" required="true" selectedKey="{mainservices>Zzapx}">
@@ -31,7 +31,7 @@
 							</ComboBox>
 							<Label text="{i18n>Colour}"/>
 							<ComboBox id="colour_CSOR" items="{ path: 'VechileModel>/zc_exterior_trim'}" required="true" selectedKey="{mainservices>Zzextcol}">
-								<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>
+								<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>
 							</ComboBox>
 							<Label text="{i18n>ETA}" required="true"/>
 							<VBox>
@@ -51,7 +51,7 @@
 								</items>
 							</VBox>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss"></MessageStrip >
+							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss" />
 							<!--<Label text="{i18n>custname}"/>-->
 							<Label text="{i18n>contractDate}"/>
 							<Text
@@ -78,7 +78,7 @@
 						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"></MessageStrip >
+							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss" />
 							<Label text="{i18n>CustName}"/>
 							<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>
 							<Label text="{i18n>address}"/>

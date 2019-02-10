@@ -44,13 +44,29 @@ sap.ui.define([
 				model: "mainservices",
 				events: {
 					change: function (oEvent) {
+						// Filter for Display Data Sold Order
+						// Model
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel')) {
 							var model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel');
 							var model_CSOR_items = RSO_MSO_controller.getView().byId("model_CSOR").getBinding("items");
 							model_CSOR_items.filter([new Filter("Model", FilterOperator.EQ, model)]);
 						}
+						// Suffix
+						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix')) {
+							var suffix = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix');
+							var suffix_CSOR_items = RSO_MSO_controller.getView().byId("suffix_CSOR").getBinding("items");
+							suffix_CSOR_items.filter([new Filter("Suffix", FilterOperator.EQ, suffix)]);
+						}
+						// APX
+						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx')) {
+							var apx = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx');
+							var apx_CSOR_items = RSO_MSO_controller.getView().byId("apx_CSOR").getBinding("items");
+							apx_CSOR_items.filter([new Filter("zzapx", FilterOperator.EQ, apx)]);
+						}
+						//----------------------------------------------------------
 						// Get Customer Details by Customer No From API
 						//	var x = 'W27687139';
+						//----------------------------------------------------------
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
 							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?customerNumber=" +

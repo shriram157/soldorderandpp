@@ -17,10 +17,10 @@ toyota.ca.SoldOrder.util.formatter = {
 		var text = DealerCode + "-" + DealerName;
 		return text;
 	},
-	formatSuffix: function (SuffixDescription, InteriorColourDescription) {
+	formatSuffix: function (Suffix, SuffixDescriptionEN) {
 		// "Suffix - " +  
-		var text = SuffixDescription + "/ " + InteriorColourDescription;
-		if (SuffixDescription) {
+		var text = Suffix + "/ " + SuffixDescriptionEN ;//InteriorColourDescription;
+		if (Suffix) {
 			return text;
 		}
 	},

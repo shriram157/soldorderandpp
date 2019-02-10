@@ -79,6 +79,67 @@
 		"key": "YT",
 		"text": "Yukon Territory"
 	}],
+	"Trademake": [{
+		"key": "Accura",
+		"text": "Accura"
+	}, {
+		"key": "Nissan",
+		"text": "Nissan"
+	}, {
+		"key": "Infinti",
+		"text": "Infinti"
+	}, {
+		"key": "Mazda",
+		"text": "Mazda"
+	}, {
+		"key": "Mistbushi",
+		"text": "Mistbushi"
+	},{
+		"key": "Subaru",
+		"text": "Subaru"
+	},{
+		"key": "Hyundai",
+		"text": "Hyundai"
+	},{
+		"key": "Genesis",
+		"text": "Genesis"
+	},{
+		"key": "KIA",
+		"text": "KIA"
+	},{
+		"key": "Volkswagen",
+		"text": "Volkswagen"
+	},{
+		"key": "BMW",
+		"text": "BMW"
+	},{
+		"key": "MINI",
+		"text": "MINI"
+	},{
+		"key": "Mercedes Benz",
+		"text": "Mercedes Benz"
+	},{
+		"key": "Smart",
+		"text": "Smart"
+	},{
+		"key": "Volvo",
+		"text": "Volvo"
+	},{
+		"key": "Audi",
+		"text": "Audi"
+	},{
+		"key": "Jaguar",
+		"text": "Jaguar"
+	},{
+		"key": "Maserati",
+		"text": "Maserati"
+	},{
+		"key": "Porsche",
+		"text": "Porsche"
+	},{
+		"key": "Landrover",
+		"text": "Landrover"
+	}],
 	"SoldOrderStatus": [{
 		"key": "1",
 		"text": "In Progress"

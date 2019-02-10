@@ -34,29 +34,29 @@
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/', sorter: { path: '/TCISeries' } }" required="true" >
+							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/', sorter: { path: '/TCISeries' } }" required="true" selectionChange="series_selected">
 								<core:Item key="{seriesModel>}" text="{seriesModel>}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Model}"/>
-							<ComboBox id="model_RSOA" items="{ path: 'oModel3>/'}" required="true" >
-								<core:Item key="{oModel3>Model}"
-									text="{parts: [{path:'oModel3>Model'},{path:'oModel3>ENModelDesc'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
+							<ComboBox id="model_RSOA"  required="true" selectionChange="model_selected">
+								<!--<core:Item key="{oModel3>Model}"-->
+								<!--	text="{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Suffix}"/>
-							<ComboBox id="Suffix_RSOA" items="{ path: 'oModel1>/'}" required="true">
-								<core:Item key="{oModel1>Suffix}"
-									text="{parts: [{path:'oModel1>SuffixDescriptionEN'},{path:'oModel2>TrimInteriorColor'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+							<ComboBox id="Suffix_RSOA"  required="true" selectionChange="suffix_selected">
+								<!--<core:Item key="{oModel1>Suffix}"-->
+								<!--	text="{parts: [{path:'oModel1>SuffixDescriptionEN'},{path:'oModel2>TrimInteriorColor'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 								<!--	<core:ListItem   text="{=${SeriesData>SPRAS}==='English' ? ${SeriesData>TCISeriesDescriptionEN}:${SeriesData>TCISeriesDescriptionFR} }" key="{SeriesData>TCISeries}" />-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>APX}"/>
-							<ComboBox id="Apx_RSOA" items="{ path: 'mode_Model>/', sorter: { path: 'key' } }" required="true">
-								<core:Item key="{mode_Model>zzapx}" text="{mode_Model>zzapx}"/>
+							<ComboBox id="Apx_RSOA" required="true">
+								<!--<core:Item key="{mode_Model>zzapx}" text="{mode_Model>zzapx}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Colour}"/>
-							<ComboBox id="Colour_RSOA" items="{ path: 'oModel2>/', sorter: { path: 'key' } }" required="true">
+							<ComboBox id="Colour_RSOA"  required="true">
 								<!--<core:Item key="{key}" text="{text}"></core:Item>-->
-								<core:Item key="{oModel2>ExteriorColorCode}"
-									text="{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
+								<!--<core:Item key="{oModel2>ExteriorColorCode}"-->
+								<!--	text="{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>ETA}" required="true"/>
 							<VBox>
@@ -95,8 +95,8 @@
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>tradeInMake}"/>
-							<ComboBox id="tradeInMakeYear_RSOAid" >
-								<!--<core:Item key="{ProductId}" text="{Name}"/>-->
+							<ComboBox id="tradeInMakeYear_RSOAid" items="{/Trademake}">
+								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInModel}"/>
 							<Input id="trademodel_RSOAid" value="" maxLength='7'/>

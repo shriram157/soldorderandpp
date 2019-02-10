@@ -66,8 +66,8 @@
 								<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInMake}"/>
-							<ComboBox id="tradeInMakeYear_RSOBid" >
-								<!--<core:Item key="{ProductId}" text="{Name}"/>-->
+							<ComboBox id="tradeInMakeYear_RSOBid" items="{/Trademake}">
+								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInModel}"/>
 							<Input id="trademodel_RSOBid" value="" maxLength='7'/>

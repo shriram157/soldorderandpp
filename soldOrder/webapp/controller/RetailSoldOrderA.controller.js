@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (BaseController, ResourceModel, formatter, JSONModel) {
 	"use strict";
 	var validateFlagA = false;
-	var RSOA_controller, Zcustomer_No,input_ref;
+	var RSOA_controller, Zcustomer_No, input_ref;
 
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderA", {
 		formatter: formatter,
@@ -76,7 +76,8 @@ sap.ui.define([
 		},
 		_newService3: function () {
 			var host = RSOA_controller.host();
-			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL?sap-client=200&$format=json";
+			// ZC_BRAND_MODEL_DETAIL
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_model?sap-client=200&$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
@@ -441,8 +442,8 @@ sap.ui.define([
 								"addressType": "BUSINESS"
 							}],
 							"phones": [{
-								"localNumber": CustModel.Phone.substr(4,7),
-								"areaCode": CustModel.Phone.substr(0,3),
+								"localNumber": CustModel.Phone.substr(4, 7),
+								"areaCode": CustModel.Phone.substr(0, 3),
 								"useCode": "WORK"
 							}],
 							"preferredLanguageCode": "en-CA",
@@ -589,33 +590,89 @@ sap.ui.define([
 				this.getView().addDependent(this._oPopover);
 			}
 			this._oPopover.openBy(Oevent.getSource());
-			 input_ref = Oevent.getSource();
+			input_ref = Oevent.getSource();
 
 		},
 		handleSelectYearPress: function (Oevent) {
-			input_ref.setValue(Oevent.getSource().getYear());//this._oPopover.getContent()[0].getYear()
-			var items_binding = this.getView().byId('model_RSOA').getBinding('items');
-			 items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
+			input_ref.setValue(Oevent.getSource().getYear()); //this._oPopover.getContent()[0].getYear()
+			// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+			//  items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
 			this._oPopover.close();
 		},
 		initailyear: function (oEvent) {
 			oEvent.getSource().getContent()[0].setDate(new Date());
 		},
 		onpreviousyears: function (oEvent) {
-			oEvent.getSource().getContent()[0].previousPage();
+			this._oPopover.getContent()[0].previousPage();
 		},
 		onnextyears: function (oEvent) {
-			oEvent.getSource().getContent()[0].nextPage();
+			this._oPopover.getContent()[0].nextPage();
 		},
 		//---------------------------------------
 		//--------Handling Filter---------------
 		//----------------------------------
-		// year_selected: function (oEvent) {
+		series_selected: function (oEvent) {
 
-		// 	var year = this.getView().byId('modelYr_RSOA').getValue();
-		// 	var items_binding = this.getView().byId('model_RSOA').getBinding('items');
-		// 	items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, year));
-		// }
+			// var year = this.getView().byId('modelYr_RSOA').getValue();
+			// items="{ path: 'oModel3>/'}"
+			var series = oEvent.getSource().getSelectedKey();
+			if (series) {
+				this.getView().byId('model_RSOA').bindItems("oModel3>/", new sap.ui.core.ListItem({
+					key: "{oModel3>Model}",
+					text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+				}));
+				var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
+			}
+		},
+		model_selected: function (oEvent) {
+			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
+			var model = oEvent.getSource().getSelectedKey();
+			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+			if (model && modelyear) {
+				this.getView().byId('Suffix_RSOA').bindItems('oModel1>/', new sap.ui.core.ListItem({
+					key: "{oModel1>Suffix}",
+					text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel1>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
+				}));
+				var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
+				items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+					new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+				], true));
+			}
+		},
+		suffix_selected: function (oEvent) {
+			//-----------------
+			//----APX---------
+			//----------------
+			//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
+			var suffix = oEvent.getSource().getSelectedKey();
+			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+			var model = this.getView().byId('model_RSOA').getSelectedKey();
+			if (model && modelyear && suffix) {
+				this.getView().byId('Apx_RSOA').bindItems('mode_Model>/', new sap.ui.core.ListItem({
+					key: "{mode_Model>zzapx}",
+					text: "{mode_Model>zzapx}"
+				}));
+				var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');
+				items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
+					new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
+					new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
+				], true));
+				//-----------------
+				//----Color---------
+				//----------------
+				this.getView().byId('Colour_RSOA').bindItems('oModel2>/', new sap.ui.core.ListItem({
+					key: "{oModel2>ExteriorColorCode}",
+					text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+				}));
+				var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
+				items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+					new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
+					new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+				], true));
+
+			}
+		}
 
 	});
 
