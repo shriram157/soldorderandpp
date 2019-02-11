@@ -134,26 +134,26 @@
 						<f:content>
 							<core:Title text="{i18n>VehicleInformation}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Input id="year" value="" width="" showValueHelp="true" valueHelpRequest="select_year"></Input>
+							<Input id="modelYr_CFSO" value="" width="" showValueHelp="true" valueHelpRequest="select_year"></Input>
 							<Label wrapping="true" text="{i18n>series}"/>
-							<ComboBox id="series_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-								<core:Item key="{ProductId}" text="{Name}"/>
+							<ComboBox id="series_CFSO" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
+							<core:Item key="{seriesModel>}" text="{seriesModel>}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>modelCode}"/>
-							<ComboBox id="modelCode_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-								<core:Item key="{ProductId}"
-									text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
+							<ComboBox id="modelCode_CFSO" selectionChange="model_selected" required="true">
+								<!--<core:Item key="{ProductId}"-->
+								<!--	text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>suffix}"/>
-							<ComboBox id="suffix_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-								<core:Item key="{ProductId}"
-									text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+							<ComboBox id="suffix_CFSO"  required="true" selectionChange="suffix_selected">
+								<!--<core:Item key="{ProductId}"-->
+								<!--	text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							</ComboBox>
 							<core:Title text="" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>colour}"/>
-							<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-								<core:Item key="{ProductId}"
-									text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
+							<ComboBox  required="true" id="color_CFSO">
+								<!--<core:Item key="{ProductId}"-->
+								<!--	text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>quantity}"/>
 							<Input></Input>

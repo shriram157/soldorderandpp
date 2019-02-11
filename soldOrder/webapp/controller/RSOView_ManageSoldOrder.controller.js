@@ -63,6 +63,12 @@ sap.ui.define([
 							var apx_CSOR_items = RSO_MSO_controller.getView().byId("apx_CSOR").getBinding("items");
 							apx_CSOR_items.filter([new Filter("zzapx", FilterOperator.EQ, apx)]);
 						}
+						// Color
+						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol')) {
+							var color = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol');
+							var color_CSOR_items = RSO_MSO_controller.getView().byId("colour_CSOR").getBinding("items");
+							color_CSOR_items.filter([new Filter("ExteriorColorCode", FilterOperator.EQ, color)]);
+						}
 						//----------------------------------------------------------
 						// Get Customer Details by Customer No From API
 						//	var x = 'W27687139';

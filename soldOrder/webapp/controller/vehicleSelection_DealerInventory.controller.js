@@ -59,26 +59,33 @@ sap.ui.define([
 			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 			// console.log(oIndex)
 			// Store the Vechile No
-            if(evt.getSource().getBindingContext('Vehicle_Model').getProperty('ZZVTN'))
-            {
-            	var V_No = evt.getSource().getBindingContext('Vehicle_Model').getProperty('ZZVTN');
-            		VehSel_DealerInv_controller.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
+			if (evt.getSource().getBindingContext('Vehicle_Model').getProperty('ZZVTN')) {
+				var V_No = evt.getSource().getBindingContext('Vehicle_Model').getProperty('ZZVTN');
+				VehSel_DealerInv_controller.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
 					method: "POST",
 					urlParameters: {
 						Zzvtn: V_No,
 						ZzsoReqNo: zrequest
 					}, // function import parameters
 					success: function (oData, response) {
-						VehSel_DealerInv_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-							Soreq: zrequest
-						}, true); //page 3
+						if (oData.Type == 'E') {
+							var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
+							var sMsg = oBundle.getText("SO000013", [zrequest]);
+							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+								.m.MessageBox.Action.OK, null, null);
+						} else {
+							VehSel_DealerInv_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+								Soreq: zrequest
+							}, true); //page 3	
+						}
+
 					},
 					error: function (oError) {
 
 					}
 				});
-            	
-            }
+
+			}
 			// sap.ui.getCore().setModel(oModel,"Vechile");
 		}
 
