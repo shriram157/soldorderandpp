@@ -142,7 +142,7 @@
 	}],
 	"SoldOrderStatus": [{
 		"key": "1",
-		"text": "In Progress"
+		"text": "In-Progress"
 	}, {
 		"key": "2",
 		"text": "Pending Fulfillment"

@@ -468,8 +468,8 @@ sap.ui.define([
 						dataType: "json",
 						data: zdataString,
 						success: function (data, textStatus, jqXHR) {
-							if (data.customers[0]) {
-								Zcustomer_No = data.customers[0].customerNumber;
+							if (data.customer) {
+								Zcustomer_No = data.customer.customerNumber;
 							}
 						},
 						error: function (request, errorText, errorCode) {
