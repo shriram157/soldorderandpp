@@ -17,21 +17,25 @@
 							<Label text="{i18n>Series}"/>
 							<Text text="{mainservices>Zzseries}"/>
 							<Label text="{i18n>Model}"/>
-							<ComboBox id="model_CSOR" items="{ path: 'VechileModel>/zc_model' }" selectionChange="model_selected"   required="true" selectedKey="{mainservices>Zzmodel}">
-								<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>
+							<!--items="{ path: 'VechileModel>/zc_model' }"-->
+							<ComboBox id="model_CSOR"  selectionChange="model_selected"   required="true" selectedKey="{mainservices>Zzmodel}">
+								<!--<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Suffix}"/>
-							<ComboBox id="suffix_CSOR" items="{ path: 'VechileModel>/zc_configuration'}" selectionChange="suffix_selected" required="true" selectedKey="{mainservices>Zzsuffix}">
-								<core:Item key="{VechileModel>Suffix}"
-									text="{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+							<!--items="{ path: 'VechileModel>/zc_configuration'}"-->
+							<ComboBox id="suffix_CSOR"  selectionChange="suffix_selected" required="true" selectedKey="{mainservices>Zzsuffix}">
+								<!--<core:Item key="{VechileModel>Suffix}"-->
+								<!--	text="{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							</ComboBox>
 							<Label text="{i18n>APX}"/>
-							<ComboBox id="apx_CSOR" items="{path: 'VechileModel>/ZC_PIO_DIO'}" required="true" selectedKey="{mainservices>Zzapx}">
-								<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>
+							<!--items="{path: 'VechileModel>/ZC_PIO_DIO'}"-->
+							<ComboBox id="apx_CSOR"  required="true" selectedKey="{mainservices>Zzapx}">
+								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Colour}"/>
-							<ComboBox id="colour_CSOR" items="{ path: 'VechileModel>/zc_exterior_trim'}" required="true" selectedKey="{mainservices>Zzextcol}">
-								<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>
+							<!--items="{ path: 'VechileModel>/zc_exterior_trim'}"-->
+							<ComboBox id="colour_CSOR"  required="true" selectedKey="{mainservices>Zzextcol}">
+								<!--<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>-->
 							</ComboBox>
 							<Label text="{i18n>ETA}" required="true"/>
 							<VBox>

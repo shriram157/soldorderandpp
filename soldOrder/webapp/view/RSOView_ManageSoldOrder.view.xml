@@ -168,21 +168,21 @@
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "></MessageStrip >
 								<Label wrapping="true" text="{i18n>CustName}"/>
-							<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>
+							<Text text="{mainservices>ZzendcuName}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Text text="{Customer>/addresses/0/line1}"/>
+							<Text text="{mainservices>ZzendcuAddress}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Text text="{Customer>/addresses/0/city}"/>
+							<Text text="{mainservices>ZzendcuCity}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Text text="{Customer>/addresses/0/provinceCode}"/>
+							<Text text="{mainservices>ZzendcuProvincy}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text text="{Customer>/addresses/0/postalCode}"/>
+							<Text text="{mainservices>ZzendcuPostCode}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{Customer>/phones/0/localNumber}"/>
+							<Text text="{mainservices>ZzendcuTelNumber}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
+							<Text text="{mainservices>ZzendcuEmail}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{mainservices>ZzendcuLicense}"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>PriceProtectionDetails}" class="msgStripFormat msgStripCss "></MessageStrip >
 							<Label wrapping="true" text="{i18n>Eligibility}"/>

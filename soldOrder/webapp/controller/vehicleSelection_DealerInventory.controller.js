@@ -61,11 +61,28 @@ sap.ui.define([
 			// Store the Vechile No
 			if (evt.getSource().getBindingContext('Vehicle_Model').getProperty('ZZVTN')) {
 				var V_No = evt.getSource().getBindingContext('Vehicle_Model').getProperty('ZZVTN');
+				// var host = VehSel_DealerInv_controller.host();
+				// var oUrl = host + "/Z_VEHICLE_MASTER_SRV/zc_exterior_trim?sap-client=200&$format=json";
+				// $.ajax({
+				// 	url: oUrl,
+				// 	method: 'GET',
+				// 	async: false,
+				// 	dataType: 'json',
+				// 	success: function (data, textStatus, jqXHR) {
+				// 		var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+				// 	},
+				// 	error: function (jqXHR, textStatus, errorThrown) {
+				// 		sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
+				// 			sap
+				// 			.m.MessageBox.Action.OK, null, null);
+				// 	}
+				// });
 				VehSel_DealerInv_controller.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
 					method: "POST",
 					urlParameters: {
 						Zzvtn: V_No,
 						ZzsoReqNo: zrequest
+					//	Endcustomer:
 					}, // function import parameters
 					success: function (oData, response) {
 						if (oData.Type == 'E') {
@@ -87,7 +104,10 @@ sap.ui.define([
 
 			}
 			// sap.ui.getCore().setModel(oModel,"Vechile");
-		}
+		},
+		_GetCustomer: function () {
+
+		},
 
 	});
 

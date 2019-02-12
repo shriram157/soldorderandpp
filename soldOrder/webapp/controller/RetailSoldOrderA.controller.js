@@ -18,12 +18,12 @@ sap.ui.define([
 			var day1 = new Date();
 			day1.setDate(today.getDate() + 1);
 			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(day1);
-			RSOA_controller._newService1();
-			RSOA_controller._newService2();
-			RSOA_controller._newService3();
-			RSOA_controller._handleServiceModel_ModelYear();
+			// RSOA_controller._newService1();
+			// RSOA_controller._newService2();
+			// RSOA_controller._newService3();
+			// RSOA_controller._handleServiceModel_ModelYear();
 			RSOA_controller._handleServiceSuffix_Series();
-			RSOA_controller._handleRSADropDown();
+			// RSOA_controller._handleRSADropDown();
 			var model = new JSONModel({});
 			RSOA_controller.getView().setModel(model, 'Customer');
 		},
@@ -617,12 +617,16 @@ sap.ui.define([
 			// items="{ path: 'oModel3>/'}"
 			var series = oEvent.getSource().getSelectedKey();
 			if (series) {
-				this.getView().byId('model_RSOA').bindItems("oModel3>/", new sap.ui.core.ListItem({
-					key: "{oModel3>Model}",
-					text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
-				}));
-				var items_binding = this.getView().byId('model_RSOA').getBinding('items');
-				items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
+				this.getView().byId('model_RSOA').bindItems({
+					path: "VechileModel>/zc_model",
+					filters: new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series),
+					template: new sap.ui.core.ListItem({
+						key: "{VechileModel>Model}",
+						text: "{parts: [{path:'VechileModel>Model'},{path:'VechileModel>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+					})
+				});
+				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
 		},
 		model_selected: function (oEvent) {
@@ -630,14 +634,20 @@ sap.ui.define([
 			var model = oEvent.getSource().getSelectedKey();
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			if (model && modelyear) {
-				this.getView().byId('Suffix_RSOA').bindItems('oModel1>/', new sap.ui.core.ListItem({
-					key: "{oModel1>Suffix}",
-					text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel1>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
-				}));
-				var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
-				items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-					new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-				], true));
+				this.getView().byId('Suffix_RSOA').bindItems({
+					path: 'VechileModel>/zc_configuration',
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
+					template: new sap.ui.core.ListItem({
+						key: "{VechileModel>Suffix}",
+						text: "{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
+					})
+				});
+				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
+				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+				// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+				// ], true));
 			}
 		},
 		suffix_selected: function (oEvent) {
@@ -649,27 +659,37 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			var model = this.getView().byId('model_RSOA').getSelectedKey();
 			if (model && modelyear && suffix) {
-				this.getView().byId('Apx_RSOA').bindItems('mode_Model>/', new sap.ui.core.ListItem({
-					key: "{mode_Model>zzapx}",
-					text: "{mode_Model>zzapx}"
-				}));
-				var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');
-				items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
+				this.getView().byId('Apx_RSOA').bindItems({path:'VechileModel>/ZC_PIO_DIO',
+				filters:new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
 					new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
 					new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-				], true));
+				], true),
+				template:new sap.ui.core.ListItem({
+					key: "{VechileModel>zzapx}",
+					text: "{VechileModel>zzapx}"
+				})});
+				// var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');
+				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
+				// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
+				// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
+				// ], true));
 				//-----------------
 				//----Color---------
 				//----------------
-				this.getView().byId('Colour_RSOA').bindItems('oModel2>/', new sap.ui.core.ListItem({
-					key: "{oModel2>ExteriorColorCode}",
-					text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
-				}));
-				var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
-				items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+				this.getView().byId('Colour_RSOA').bindItems({path:'VechileModel>/zc_exterior_trim',
+				filters:new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 					new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
 					new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-				], true));
+				], true),
+				template:new sap.ui.core.ListItem({
+					key: "{VechileModel>ExteriorColorCode}",
+					text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+				})});
+				// var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
+				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
+				// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+				// ], true));
 
 			}
 		}

@@ -4,7 +4,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (BaseController, formatter, JSONModel) {
 	"use strict";
-	var RSOB_controller, Zcustomer_No;
+	var RSOB_controller, Zcustomer_No,input_ref;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderB", {
 		formatter: formatter,
 
@@ -14,7 +14,7 @@ sap.ui.define([
 			RSOB_controller.validateFlagB = false;
 			var model = new JSONModel({});
 			RSOB_controller.getView().setModel(model, 'Customer');
-			RSOB_controller._handleRSADropDown();
+			// RSOB_controller._handleRSADropDown();
 			RSOB_controller.getSO();
 		},
 		onBeforeRendering: function () {
@@ -327,7 +327,35 @@ sap.ui.define([
 				// });
 				//	RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder"); //page 3
 			}
-		}
+		},
+		//-----------------------------------------
+		//---------Handling Select Year----------
+		//--------------------------------------------
+		select_year: function (Oevent) {
+
+			if (!this._oPopover) {
+				this._oPopover = sap.ui.xmlfragment("YearPopup", "toyota.ca.SoldOrder.view.fragments.YearPopup", this);
+				this.getView().addDependent(this._oPopover);
+			}
+			this._oPopover.openBy(Oevent.getSource());
+			input_ref = Oevent.getSource();
+
+		},
+		handleSelectYearPress: function (Oevent) {
+			input_ref.setValue(Oevent.getSource().getYear()); //this._oPopover.getContent()[0].getYear()
+			// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+			//  items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
+			this._oPopover.close();
+		},
+		initailyear: function (oEvent) {
+			oEvent.getSource().getContent()[0].setDate(new Date());
+		},
+		onpreviousyears: function (oEvent) {
+			this._oPopover.getContent()[0].previousPage();
+		},
+		onnextyears: function (oEvent) {
+			this._oPopover.getContent()[0].nextPage();
+		},
 
 	});
 
