@@ -14,9 +14,9 @@
 						<f:content>
 							<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Input value="23645"/>
+							<Input id="FanNo_CFSO" value="" valueHelpRequest="_valuehelpfanno" showValueHelp="true"/>
 							<Label wrapping="true" text="{i18n>PONumber}"/>
-							<Input value="{address>/Name}"/>
+							<Input value=""/>
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{address>/Name}"/>
@@ -38,91 +38,49 @@
 							<Button text="{i18n>deleteRows}" press="_onDelete1"></Button>
 						</items>
 					</HBox>
-					<!--	<HBox class="marginCorners">
-						<items>
-							<VBox width="100%">
-								<items>
-									<f:SimpleForm title="{i18n>RequestDetails}" editable="true" width="100%" layout="ResponsiveLayout">
-										<f:content >
-											<Label text="{i18n>FanNumber}"/>
-											<Input value="23645"/>
-											<Label text="{i18n>PONumber}"/>
-											<Input value="{address>/Name}"/>
-										</f:content>
-									</f:SimpleForm>
-									<HBox class="marginCss">
-										<items>
-											<Button text="{i18n>AddVehiclesinmyInventory}" press="_addVehiclesToInventory" class="sapUiSmallMarginEnd sapUiTinyMarginBegin"></Button>
-											<Button text="{i18n>deleteRows}" press="_onDelete1"></Button>
-										</items>
-									</HBox>
-								</items>
-							</VBox>
-							<VBox width="100%">
-								<items>
-									<f:SimpleForm title="{i18n>CustomerDetails}" editable="true" width="100%" layout="ResponsiveLayout">
-										<f:content>
-											<Label text="{i18n>CustName}"/>
-											<Text text="{address>/Name}"/>
-											<Label text="{i18n>address}"/>
-											<Text text="{address>/Name}"/>
-											<Label text="{i18n>city}"/>
-											<Text text="{address>/Name}"/>
-											<Label text="{i18n>province}"/>
-											<Text text="{address>/Name}"/>
-											<Label text="{i18n>postalcode}"/>
-											<Text text="{address>/Name}"/>
-											<Label text="{i18n>phnNo}"/>
-											<Text text="{address>/Name}"/>
-										</f:content>
-									</f:SimpleForm>
-								</items>
-							</VBox>
-						</items>
-					</HBox>-->
-					<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{/ProductCollection}" enableColumnReordering="false"
+					<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{FirstTable>/items}" enableColumnReordering="false"
 						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{FirstTable>Category}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Height}"/>
+									<Text text="{FirstTable>modelYear}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>series}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{FirstTable>series}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>model}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{FirstTable>model}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Quantity}"/>
+									<Text text="{FirstTable>suffix}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{FirstTable>APX}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{FirstTable>colour}"/>
 								</t:template>
 							</t:Column>
 						</t:columns>
@@ -156,7 +114,7 @@
 								<!--	text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>quantity}"/>
-							<Input></Input>
+							<Input id="quantity_CFSO"></Input>
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<Text text="{i18n>from}">
 								<layoutData>
@@ -180,126 +138,70 @@
 								</layoutData>
 							</DatePicker>
 							<!--<Label></Label>-->
-							<Button text="{i18n>add}" press="_onAddRow">
+							<Button text="{i18n>add}" press="_onAddRow2">
 								<layoutData>
 									<l:GridData span="L3 M3 S12"/>
 								</layoutData>
 							</Button>
 						</f:content>
 					</f:SimpleForm>
-					<!--	<HBox class="marginCorners VBox_color">
-						<items>
-							<VBox width="100%">
-								<items>
-									<f:SimpleForm title="{i18n>VehicleInformation}" editable="true" width="100%" layout="ResponsiveLayout">
-										<f:content>
-											<Label text="{i18n>modelYear}"/>
-											<ComboBox id="modelYr_CFSO" items="{ path: '/modelYear', sorter: { path: 'key' } }" required="true">
-												<core:Item key="{key}" text="{text}"/>
-											</ComboBox>
-											<Label text="{i18n>series}"/>
-											<ComboBox id="series_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}" text="{Name}"/>
-											</ComboBox>
-											<Label text="{i18n>modelCode}"/>
-											<ComboBox id="modelCode_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}"
-													text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
-											</ComboBox>
-											<Label text="{i18n>suffix}"/>
-											<ComboBox id="suffix_CFSO" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}"
-													text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
-											</ComboBox>
-										</f:content>
-									</f:SimpleForm>
-								</items>
-							</VBox>
-							<VBox width="100%" class="marginCss">
-								<items>
-									<f:SimpleForm title="" editable="true" width="100%" layout="ResponsiveLayout">
-										<f:content>
-											<Label text="{i18n>colour}"/>
-											<ComboBox items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-												<core:Item key="{ProductId}"
-													text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
-											</ComboBox>
-											<Label text="{i18n>quantity}"/>
-											<Input></Input>
-											<Label text="{i18n>DealerReqETA}"/>
-											<Text text="{i18n>from}"/>
-											<DatePicker id="etaFrom_CFSO" placeholder="MMM DD, YY"></DatePicker>
-											<Label text=" "/>
-											<Text text="{i18n>to}"/>
-											<DatePicker id="etaTo_CFSO	/>
-										</f:content>
-									</f:SimpleForm>
-								</items>
-							</VBox>
-							<HBox class="marginCss">
-								<items>
-									<Button text="{i18n>add}" press="_onAddRow" class="sapUiSmallMarginBegin"></Button>
-								</items>
-							</HBox>
-						</items>
-					</HBox>
-				-->
+				
 					<Button text="{i18n>deleteRows}" press="_onDelete2" class="sapUiSmallMarginBegin"></Button>
-					<t:Table id="idCFSO_Table2" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false"
+					<t:Table id="idCFSO_Table2" rows="{SecondTable>/items}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false"
 						class="marginCorners">
 						<t:columns>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{SecondTable>modelYear}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{SecondTable>series}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{SecondTable>model}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{SecondTable>suffix}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false">
-								<Label text="{i18n>APX}" class="TableLabel"/>
-								<t:template>
-									<Text text="{Category}"/>
-								</t:template>
-							</t:Column>
+							<!--<t:Column width="11.11%" resizable="false">-->
+							<!--	<Label text="{i18n>APX}" class="TableLabel"/>-->
+							<!--	<t:template>-->
+							<!--		<Text text="{SecondTable>Apx}"/>-->
+							<!--	</t:template>-->
+							<!--</t:Column>-->
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{SecondTable>colour}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{path:'SecondTable>ETAFrom' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{path:'SecondTable>ETATime' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>quantity}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{SecondTable>quantity}"/>
 								</t:template>
 							</t:Column>
 						</t:columns>

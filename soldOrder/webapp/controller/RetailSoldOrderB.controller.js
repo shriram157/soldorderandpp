@@ -1,10 +1,12 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"toyota/ca/SoldOrder/util/formatter",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
 	"sap/ui/model/json/JSONModel"
-], function (BaseController, formatter, JSONModel) {
+], function (BaseController, formatter, Filter, FilterOperator, JSONModel) {
 	"use strict";
-	var RSOB_controller, Zcustomer_No,input_ref;
+	var RSOB_controller, Zcustomer_No, input_ref;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderB", {
 		formatter: formatter,
 
@@ -14,8 +16,8 @@ sap.ui.define([
 			RSOB_controller.validateFlagB = false;
 			var model = new JSONModel({});
 			RSOB_controller.getView().setModel(model, 'Customer');
+			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderB").attachPatternMatched(this._getattachRouteMatched, this);
 			// RSOB_controller._handleRSADropDown();
-			RSOB_controller.getSO();
 		},
 		onBeforeRendering: function () {
 			// console.log(RSOB_controller.getView().byId("form1_RSOB").getTitle());
@@ -42,19 +44,84 @@ sap.ui.define([
 				}
 			});
 		},
+		_getattachRouteMatched: function (parameters) {
+
+			var values = {};
+			if (parameters.getParameters().arguments.modelyear) {
+				values.modelyear = parameters.getParameters().arguments.modelyear;
+			}
+			if (parameters.getParameters().arguments.modelkey) {
+				values.modelkey = parameters.getParameters().arguments.modelkey;
+				var model_RSOB_items = RSOB_controller.getView().byId("model_RSOB").getBinding("items");
+				model_RSOB_items.filter([new Filter("Model", FilterOperator.EQ, values.modelkey)]);
+			}
+			if (parameters.getParameters().arguments.serieskey) {
+				values.serieskey = parameters.getParameters().arguments.serieskey;
+			}
+			if (parameters.getParameters().arguments.suffixkey) {
+				values.suffixkey = parameters.getParameters().arguments.suffixkey;
+				var suffix_RSOB_items = RSOB_controller.getView().byId("suffix_RSOB").getBinding("items");
+				suffix_RSOB_items.filter([new Filter("Suffix", FilterOperator.EQ, values.suffixkey)]);
+			}
+			if (parameters.getParameters().arguments.apxkey) {
+				values.apxkey = parameters.getParameters().arguments.apxkey;
+				var apx_RSOB_items = RSOB_controller.getView().byId("apx_RSOB").getBinding("items");
+				apx_RSOB_items.filter([new Filter("zzapx", FilterOperator.EQ, values.apxkey)]);
+			}
+			if (parameters.getParameters().arguments.colorkey) {
+				values.colorkey = parameters.getParameters().arguments.colorkey;
+				var color_RSOB_items = RSOB_controller.getView().byId("colour_RSOB").getBinding("items");
+				color_RSOB_items.filter([new Filter("ExteriorColorCode", FilterOperator.EQ, values.colorkey)]);
+			}
+			if (parameters.getParameters().arguments.vtnn) {
+				values.vtnn = parameters.getParameters().arguments.vtnn;
+			}
+			if (parameters.getParameters().arguments.fromdate) {
+				values.fromdate = parameters.getParameters().arguments.fromdate;
+			}
+			if (parameters.getParameters().arguments.todate) {
+				values.todate = parameters.getParameters().arguments.todate;
+			}
+			RSOB_controller.getView().setModel(new JSONModel(values), "RSOB_Model");
+
+		},
 		getSO: function () {
 			var host = RSOB_controller.host();
 			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?sap-client=200&$format=json";
 			//---------------------------------------------------------------------------------------------------------
 			//--------------Mock Data for Vechile Information till make integration with PipeLine App------------------
 			//---------------------------------------------------------------------------------------------------------
-			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$filter=ZzsoReqNo eq 'SO0000000112'&$format=json";
-			this.getOwnerComponent().getModel("mainservices").read("/Retail_Sold_OrderSet?$filter=ZzsoReqNo eq'SO0000000112'", {
-				success: function (oData) {
-					RSOB_controller.getView().setModel(new JSONModel(oData.results[0]), "RSOB_Model");
-				},
-				error: function (Oerror) {}
-			});
+			// Model
+			// if (RSO_MSO_controller.getView().getModel('RSOB_Model').getProperty('Zzmodel')) {
+			// 	var model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel');
+			// 	var model_CSOR_items = RSO_MSO_controller.getView().byId("model_CSOR").getBinding("items");
+			// 	model_CSOR_items.filter([new Filter("Model", FilterOperator.EQ, model)]);
+			// }
+			// // Suffix
+			// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix')) {
+			// 	var suffix = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix');
+			// 	var suffix_CSOR_items = RSO_MSO_controller.getView().byId("suffix_CSOR").getBinding("items");
+			// 	suffix_CSOR_items.filter([new Filter("Suffix", FilterOperator.EQ, suffix)]);
+			// }
+			// // APX
+			// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx')) {
+			// 	var apx = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx');
+			// 	var apx_CSOR_items = RSO_MSO_controller.getView().byId("apx_CSOR").getBinding("items");
+			// 	apx_CSOR_items.filter([new Filter("zzapx", FilterOperator.EQ, apx)]);
+			// }
+			// // Color
+			// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol')) {
+			// 	var color = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol');
+			// 	var color_CSOR_items = RSO_MSO_controller.getView().byId("colour_CSOR").getBinding("items");
+			// 	color_CSOR_items.filter([new Filter("ExteriorColorCode", FilterOperator.EQ, color)]);
+			// }
+			// var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$filter=ZzsoReqNo eq 'SO0000000112'&$format=json";
+			// this.getOwnerComponent().getModel("mainservices").read("/Retail_Sold_OrderSet?$filter=ZzsoReqNo eq'SO0000000112'", {
+			// 	success: function (oData) {
+			// 		RSOB_controller.getView().setModel(new JSONModel(oData.results[0]), "RSOB_Model");
+			// 	},
+			// 	error: function (Oerror) {}
+			// });
 			// $.ajax({
 			// 	type: 'GET',
 			// 	url: oURL,
@@ -128,8 +195,8 @@ sap.ui.define([
 								"addressType": "BUSINESS"
 							}],
 							"phones": [{
-								"localNumber": CustModel.Phone.substr(4,7),
-								"areaCode": CustModel.Phone.substr(0,3),
+								"localNumber": CustModel.Phone.substr(4, 7),
+								"areaCode": CustModel.Phone.substr(0, 3),
 								"useCode": "WORK"
 							}],
 							"preferredLanguageCode": "en-CA",
@@ -230,7 +297,7 @@ sap.ui.define([
 				var ZtcciNum = RSOB_controller.getView().byId("tcciNo_RSOB").getValue();
 				var Zsalesperson = RSOB_controller.getView().byId("salesperson_RSOB").getValue();
 				var Zsalesmanager = RSOB_controller.getView().byId("salesMan_RSOB").getValue();
-				var ZtradeModelYr = RSOB_controller.getView().byId("trademodelYear_RSOBid").getSelectedKey();
+				var ZtradeModelYr = RSOB_controller.getView().byId("trademodelYear_RSOBid").getValue();
 				var ZtradeModel = RSOB_controller.getView().byId("trademodel_RSOBid").getValue();
 				var ZtradeMake = RSOB_controller.getView().byId("tradeInMakeYear_RSOBid").getSelectedKey();
 				var comment = RSOB_controller.getView().byId("Comment").getValue();
@@ -277,7 +344,7 @@ sap.ui.define([
 				var dataString = JSON.stringify(
 					_data
 				);
-               // refresh token if it is not there 
+				// refresh token if it is not there 
 				if (!this.getOwnerComponent().getModel("mainservices").getSecurityToken()) {
 					this.getOwnerComponent().getModel("mainservices").refreshSecurityToken();
 				}

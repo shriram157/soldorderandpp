@@ -26,7 +26,7 @@ sap.ui.define([
 
 				vechile_items.filter([new Filter([
 					new Filter("MATRIX", FilterOperator.EQ, "A205"),
-					new Filter("Dealer", FilterOperator.EQ, "2400001132")
+					new Filter("Dealer", FilterOperator.EQ, "2400001003")
 					// new Filter("Model", FilterOperator.EQ, "YZ3DCT"),
 					// new Filter("Modelyear", FilterOperator.EQ, "2018"),
 					// new Filter("Suffix", FilterOperator.EQ, "AL"),
@@ -59,8 +59,8 @@ sap.ui.define([
 			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 			// console.log(oIndex)
 			// Store the Vechile No
-			if (evt.getSource().getBindingContext('Vehicle_Model').getProperty('ZZVTN')) {
-				var V_No = evt.getSource().getBindingContext('Vehicle_Model').getProperty('ZZVTN');
+			if (evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN')) {
+				var V_No = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
 				// var host = VehSel_DealerInv_controller.host();
 				// var oUrl = host + "/Z_VEHICLE_MASTER_SRV/zc_exterior_trim?sap-client=200&$format=json";
 				// $.ajax({
@@ -108,6 +108,12 @@ sap.ui.define([
 		_GetCustomer: function () {
 
 		},
+		onback:function(oEvent)
+		{
+			VehSel_DealerInv_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+								Soreq: zrequest
+							}, true); //page 3		
+		}
 
 	});
 

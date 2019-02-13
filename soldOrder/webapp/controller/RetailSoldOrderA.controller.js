@@ -22,7 +22,7 @@ sap.ui.define([
 			// RSOA_controller._newService2();
 			// RSOA_controller._newService3();
 			// RSOA_controller._handleServiceModel_ModelYear();
-			RSOA_controller._handleServiceSuffix_Series();
+			// RSOA_controller._handleServiceSuffix_Series();
 			// RSOA_controller._handleRSADropDown();
 			var model = new JSONModel({});
 			RSOA_controller.getView().setModel(model, 'Customer');
@@ -171,7 +171,7 @@ sap.ui.define([
 		},
 		_handleServiceSuffix_Series: function () {
 			var host = RSOA_controller.host();
-			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_MODEL_DETAILS?sap-client=200&$format=json";
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/SoldOrderSeriesSet?sap-client=200&$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
@@ -187,8 +187,8 @@ sap.ui.define([
 					var j = 0;
 					for (var c = 0; c < data.d.results.length; c++) {
 						for (var i = 0; i < data.d.results.length; i++) {
-							if ($.inArray(data.d.results[i]["TCISeries"], arr) < 0) {
-								arr[j] = data.d.results[i]["TCISeries"];
+							if ($.inArray(data.d.results[i]["Zzseries"], arr) < 0) {
+								arr[j] = data.d.results[i]["Zzseries"];
 								j++;
 
 							}

@@ -355,6 +355,7 @@ sap.ui.define([
 				// AppController.flgOwnershipUploaded = true;
 				var oFileUploader = RSO_MSO_controller.getView().byId("idRSOV_MSO_fileUpl");
 				var zcomment = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
+				oFileUploader.removeAllHeaderParameters();
 				oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
 					name: "slug",
 					value: oFileUploader.getValue()  + "," + zcomment.getValue()

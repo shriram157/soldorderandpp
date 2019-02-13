@@ -58,7 +58,17 @@ sap.ui.define([
 			} else if (oGetText === this.oBundle.getText("menu6")) {
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
 			} else if (oGetText === this.oBundle.getText("menu7")) {
-				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderB");  //page 2
+				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderB",{
+				modelyear:'2018',
+				modelkey:'YZ3DCT',
+				serieskey:'SIE',
+				suffixkey:'BB',
+				apxkey:'00',
+				colorkey:'0070'	,
+				vtnn:'1234',
+				fromdate:'20181212',
+				todate:'20181224'
+				},true);  //page 2
 			} else if (oGetText === this.oBundle.getText("menu8")) {
 				this.getOwnerComponent().getRouter().navTo("NationalFleetSoldOrderView");  //page 19
 			}

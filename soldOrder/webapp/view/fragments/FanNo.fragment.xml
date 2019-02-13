@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <SelectDialog
+        noDataText="No Fan No Found"
+        multiSelect="false"
+        title="Select Fan Number"
+        search="handleSearchFan"
+        liveChange="handleSearchFan"
+        rememberSelections="true"
+        confirm="onCloseDialogFan"
+        items="{mainservices>/ZvmsFleetSoFanNumberShSet}" >
+        <StandardListItem
+            title="{mainservices>BuSort2}"
+            description="{mainservices>Partner}"
+            type="Active"/>
+    </SelectDialog>
+</core:FragmentDefinition>
