@@ -32,8 +32,6 @@ module.exports = function () {
 	var apicClientId = options.apim.apicClientId;
 	var apicClientSecret = options.apim.apicClientSecret;
 
-	var cachedCsrfToken;
-
 	router.all("/*", function (req, res, next) {
 		var proxiedMethod = req.method;
 		var proxiedReqHeaders = {
