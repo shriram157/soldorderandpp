@@ -14,22 +14,22 @@
 						<f:content>
 							<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Input id="FanNo_CFSO" value="" valueHelpRequest="_valuehelpfanno" showValueHelp="true"/>
+							<Input id="FanNo_CFSO" value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showValueHelp="true"/>
 							<Label wrapping="true" text="{i18n>PONumber}"/>
-							<Input value=""/>
+							<Input value="{Data>/ZpoNumber}"/>
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer/NameFirst}{Customer/NameLast}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/HouseNum1}{Customer>/Street}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/City1}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/Region}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/PostCode1}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{Customer>/TelNumber}"/>
 						</f:content>
 					</f:SimpleForm>
 					<HBox class="marginCss">
@@ -44,31 +44,31 @@
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>Category}"/>
+									<Text text="{FirstTable>ZZVTN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>modelYear}"/>
+									<Text text="{FirstTable>Modelyear}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>series}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>series}"/>
+									<Text text="{FirstTable>TCISeries}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>model}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>model}"/>
+									<Text text="{FirstTable>MODEL_DESC_EN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>suffix}"/>
+									<Text text="{FirstTable>SUFFIX_DESC_EN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
@@ -80,7 +80,7 @@
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>colour}"/>
+									<Text text="{FirstTable>ExteriorColorCode}"/>
 								</t:template>
 							</t:Column>
 						</t:columns>
@@ -94,9 +94,12 @@
 							<Label wrapping="true" text="{i18n>modelYear}"/>
 							<Input id="modelYr_CFSO" value="" width="" showValueHelp="true" valueHelpRequest="select_year"></Input>
 							<Label wrapping="true" text="{i18n>series}"/>
-							<ComboBox id="series_CFSO" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
-							<core:Item key="{seriesModel>}" text="{seriesModel>}"/>
+							<ComboBox id="series_CFSO" items="{ path: 'mainservices>/SoldOrderSeriesSet'}" required="true" selectionChange="series_selected">
+								<core:Item key="{mainservices>Zzseries}" text="{mainservices>Zzseries}/{mainservices>ZzseriesDescEn}"/>
 							</ComboBox>
+							<!--<ComboBox id="series_CFSO" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">-->
+							<!--<core:Item key="{seriesModel>}" text="{seriesModel>}"/>-->
+							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>modelCode}"/>
 							<ComboBox id="modelCode_CFSO" selectionChange="model_selected" required="true">
 								<!--<core:Item key="{ProductId}"-->

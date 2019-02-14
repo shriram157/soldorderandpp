@@ -14,9 +14,9 @@
 						<f:content>
 							<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Text text="{/Products/0/Quantity}"/>
+							<Text text="{mainservices>ZfanNo}"/>
 							<Label wrapping="true" text="{i18n>PONumber}"/>
-							<Text text="{/Products/0/Quantity}"/>
+							<Text text="{mainservices>ZpoNumber}"/>
 							<Label wrapping="true" text="{i18n>orderType}"/>
 							<Text text="{/Products/0/Quantity}"/>
 							<Label wrapping="true" text="{i18n>status}"/>

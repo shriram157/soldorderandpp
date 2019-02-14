@@ -45,7 +45,9 @@ sap.ui.define([
 			});
 		},
 		_getattachRouteMatched: function (parameters) {
-
+			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+				pattern: "yyyy-MM-ddTHH:mm:ss"
+			});
 			var values = {};
 			if (parameters.getParameters().arguments.modelyear) {
 				values.modelyear = parameters.getParameters().arguments.modelyear;
@@ -77,10 +79,10 @@ sap.ui.define([
 				values.vtnn = parameters.getParameters().arguments.vtnn;
 			}
 			if (parameters.getParameters().arguments.fromdate) {
-				values.fromdate = parameters.getParameters().arguments.fromdate;
+				values.fromdate = zdateFormat.parse(parameters.getParameters().arguments.fromdate);
 			}
 			if (parameters.getParameters().arguments.todate) {
-				values.todate = parameters.getParameters().arguments.todate;
+				values.todate = zdateFormat.parse(parameters.getParameters().arguments.todate);
 			}
 			RSOB_controller.getView().setModel(new JSONModel(values), "RSOB_Model");
 

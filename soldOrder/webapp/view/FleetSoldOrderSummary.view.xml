@@ -62,61 +62,62 @@
 								</items>
 							</VBox>
 							
-							<t:Table id="tbl_FSOS" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+							<t:Table id="tbl_FSOS" selectionMode="None" rows="{mainservices>/SO_FLEET_HeaderSet}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
-											<Link text="{Quantity}" press="_navToSoldOrder"/>
+											<Link text="{mainservices>ZsoFltReqNo}" press="_navToSoldOrder"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="/Products/0/Name">
 										<Label id="tbl_lbl_dealer_FSOS" visible="false" text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text id="tbl_val_dealer_FSOS" visible="false" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Category'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
+											<!--,{path:'/Products/0/Category'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}-->
+											<Text id="tbl_val_dealer_FSOS" visible="false" text="{path:'mainservices>ZzdealerCode'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>ZsoFltStatus}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>FanNumber}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>ZfanNo}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>CustName}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>Zendcu}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>PONumber}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>ZpoNumbe}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>orderType}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>zoneAppNumber}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>ZpriceApproval}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>totalVehicles}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Quantity}"/>
+											<Text text="{mainservices>ZdriverLiNum}"/>
 										</t:template>
 									</t:Column>
 								</t:columns>

@@ -239,7 +239,7 @@
 					"clearTarget": "true"
 				},
 				{
-					"pattern": "page14",
+					"pattern": "page14/{Soreq}",
 					"name": "FleetSoldOrder_ProcessedView",
 					"target": "home14",
 					"clearTarget": "true"

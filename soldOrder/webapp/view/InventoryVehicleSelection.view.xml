@@ -9,10 +9,10 @@
 					<VBox >
 						
 						<items>
-						<m:ComboBox placeholder="{i18n>placeholder_select}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" selectionChange="filter_change" width="30%">
+						<ComboBox placeholder="{i18n>placeholder_select}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" selectionChange="filter_change" width="30%">
 								<core:Item key="1" text="{i18n>inventorys}"/>
 								<core:Item key="2" text="{i18n>nationals}"/>
-							</m:ComboBox>		
+							</ComboBox>		
 					<Label text="{i18n>SOVehicleSel}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiMediumMarginBottom fontsize"></Label>		
 					<HBox class="justifyContentSpaceBetween">
 						<items>
