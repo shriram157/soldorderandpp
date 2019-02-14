@@ -22,6 +22,9 @@ module.exports = function () {
 	log.logMessage("debug", "Properties of APIM user-provided service '%s' : %s", apimServiceName, JSON.stringify(options));
 
 	var url = options.apim.host;
+	if (url.endsWith("/")) {
+		url = url.slice(0, -1);
+	}
 	var APIKey = options.apim.APIKey;
 	var s4Client = options.apim.client;
 	var s4User = options.apim.user;
@@ -67,13 +70,7 @@ module.exports = function () {
 		// Proxied call is to S4/HANA
 		else {
 			proxiedReqHeaders.Authorization = "Basic " + new Buffer(s4User + ":" + s4Password).toString("base64");
-			/*
-			if (proxiedMethod === "GET") {
-				proxiedReqHeaders["x-csrf-token"] = "Fetch";
-			} else if (proxiedMethod === "DELETE" || proxiedMethod === "HEAD" || proxiedMethod === "POST" || proxiedMethod === "PUT") {
-				proxiedReqHeaders["x-csrf-token"] = cachedCsrfToken;
-			}
-			*/
+
 			// Pass through x-csrf-token from request to proxied request to S4/HANA
 			// This requires manual handling of CSRF tokens from the front-end
 			// Note: req.get() will get header in a case-insensitive manner 
@@ -93,15 +90,6 @@ module.exports = function () {
 			proxiedReq.on("response", proxiedRes => {
 				req.logMessage("verbose", "Proxied call %s %s successful.", proxiedMethod, proxiedUrl);
 				delete proxiedRes.headers.cookie;
-
-				// Cache fetched CSRF token
-				var proxiedResCsrfToken = proxiedRes.headers["x-csrf-token"];
-				if (proxiedResCsrfToken && proxiedResCsrfToken !== "Required") {
-					req.logMessage("debug", "Received CSRF token: %s", proxiedResCsrfToken);
-					cachedCsrfToken = proxiedResCsrfToken;
-				} else {
-					req.logMessage("error", "Proxied call %s %s FAILED due to invalid or missing CSRF token.", proxiedMethod, proxiedUrl);
-				}
 
 				proxiedReq.pipe(res);
 			}).on("error", error => {
