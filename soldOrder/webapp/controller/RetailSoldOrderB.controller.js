@@ -360,9 +360,22 @@ sap.ui.define([
 
 					},
 					error: function (oData, oResponse) {
-						sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-							.m
-							.MessageBox.Action.OK, null, null);
+						var message = "";
+						if (oData.responseText) {
+							if (JSON.parse(oData.responseText).error.innererror.errordetails) {
+								message = JSON.parse(oData.responseText).error.innererror.errordetails;
+							}
+							sap.m.MessageBox.show(JSON.parse(oData.responseText).error.message.value, {
+								icon: sap.m.MessageBox.Icon.ERROR,
+								title: "Error",
+								actions: [sap.m.MessageBox.Action.CLOSE],
+								details: message
+
+							});
+						}
+						// sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						// 	.m
+						// 	.MessageBox.Action.OK, null, null);
 					}
 				});
 				// $.ajax({

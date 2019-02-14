@@ -15,19 +15,19 @@ sap.ui.define([
 		onBeforeRendering: function () {
 			if (AppController.flagZoneUser == true) {
 				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true)
-				}
+			}
 			if (AppController.flagNationalUser == true) {
 				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
 			}
-		/*	if (AppController.flagTCINationalUser == true) {
-				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
-			}*/
+			/*	if (AppController.flagTCINationalUser == true) {
+					FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
+				}*/
 		},
 		onAfterRendering: function () {
 
 			var mcb_status_FSOS = FSOS_controller.getView().byId("mcb_status_FSOS");
 			var mcb_ordTyp_FSOS = FSOS_controller.getView().byId("mcb_ordTyp_FSOS");
-				var mcb_dealer_FSOS = FSOS_controller.getView().byId("mcb_dealer_FSOS");
+			var mcb_dealer_FSOS = FSOS_controller.getView().byId("mcb_dealer_FSOS");
 			var oTbl = FSOS_controller.getView().byId("tbl_FSOS");
 			var data = oTbl.getModel().getData().ProductCollection;
 			mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems());
@@ -37,14 +37,14 @@ sap.ui.define([
 				FSOS_controller.getView().byId("lbl_dealer_FSOS").setVisible(true);
 				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
 				FSOS_controller.getView().byId("tbl_lbl_dealer_FSOS").setVisible(true);
-			//	FSOS_controller.getView().byId("tbl_val_dealer_FSOS").setVisible(true);
+				//	FSOS_controller.getView().byId("tbl_val_dealer_FSOS").setVisible(true);
 
 				var len = data.length;
 				for (var i = 1; i <= len; i++) {
 					var Id = "tbl_val_dealer_FSOS-__clone" + (i + 8 * (i - 1));
 					FSOS_controller.getView().byId(Id).setVisible(true);
 				}
-			//	FSOS_controller.getView().byId(Id).setVisible(true);
+				//	FSOS_controller.getView().byId(Id).setVisible(true);
 
 				//	mcb_dealer_FSOS.setSelectedItems(mcb_dealer_FSOS.getItems());
 
@@ -65,18 +65,20 @@ sap.ui.define([
 					console.log(FSOS_controller.getView().byId(Id2));
 					FSOS_controller.getView().byId(Id2).setVisible(true);
 				}
-			//	FSOS_controller.getView().byId(Id2).setVisible(true);
+				//	FSOS_controller.getView().byId(Id2).setVisible(true);
 				//	mcb_dealer_FSOS.setSelectedItems(mcb_dealer_FSOS.getItems());
 
 			}
 		},
 		_navToSoldOrder: function (evt) {
-			var sPath = evt.getSource().getBindingContext().sPath;
-			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-			FSOS_controller.getView().byId("tbl_FSOS").getModel().getData();
-
-			console.log(FSOS_controller.getView().byId("tbl_FSOS").getModel().getData().ProductCollection[oIndex]);
-			console.log(FSOS_controller.getView().byId("tbl_FSOS").getModel().getData().ProductCollection[oIndex].Category);
+			// var sPath = evt.getSource().getBindingContext().sPath;
+			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+			// FSOS_controller.getView().byId("tbl_FSOS").getModel().getData();
+			FSOS_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
+				Soreq: evt.getSource().getText()
+			}, true);
+			// console.log(FSOS_controller.getView().byId("tbl_FSOS").getModel().getData().ProductCollection[oIndex]);
+			// console.log(FSOS_controller.getView().byId("tbl_FSOS").getModel().getData().ProductCollection[oIndex].Category);
 		},
 
 		onLinkVehicle: function (evt) {
@@ -99,8 +101,7 @@ sap.ui.define([
 		},
 		_refresh: function () {
 
-			}
-		
+		}
 
 	});
 

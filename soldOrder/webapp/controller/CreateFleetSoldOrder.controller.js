@@ -21,7 +21,7 @@ sap.ui.define([
 			// CFSO_controller._newService1();
 			// CFSO_controller._newService2();
 			// CFSO_controller._newService3();
-			CFSO_controller._handleServiceSuffix_Series();
+			// CFSO_controller._handleServiceSuffix_Series();
 			// CFSO_controller._handleRSADropDown();
 			this._alldata = new JSONModel({
 				ZsoFltReqNo: 'FSO',
@@ -345,6 +345,7 @@ sap.ui.define([
 
 			}
 			this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
+			this.getView().getModel('Data').getData().Zadd1 = length + 1;
 			this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
 				success: function (oData, oResponse) {
 					if (oData.ZsoFltReqNo) {

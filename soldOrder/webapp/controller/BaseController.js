@@ -47,6 +47,8 @@ sap.ui.define([
 			} else if (oGetText === this.oBundle.getText("menu4")) { //dicey sol, check it again 
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary");
 			}
+			//REquired More Clarification 
+			//---------------------------------------------------------------------
 			// else if (oGetText === this.oBundle.getText("menu4")) { //dicey sol, check it again 
 			// 	//this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary");
 			// 	if (this.requestStatus == "Pending Fulfilment") {

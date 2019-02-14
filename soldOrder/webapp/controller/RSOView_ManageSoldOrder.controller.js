@@ -45,6 +45,13 @@ sap.ui.define([
 				events: {
 					change: function (oEvent) {
 						// Filter for Display Data Sold Order
+						sap.ui.getCore().setModel(new JSONModel({
+							model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
+							modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
+							suffix: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix'),
+							color: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'),
+							series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')
+						}), 'Vehicle_Selection');
 						// Model
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel')) {
 							var model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel');
@@ -302,7 +309,7 @@ sap.ui.define([
 				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 				onClose: function (sAction) {
 					if (sAction == "YES") {
-						RSO_MSO_controller.deleteAtt(evtContext,index);
+						RSO_MSO_controller.deleteAtt(evtContext, index);
 					} else {
 						//
 					}
@@ -314,7 +321,7 @@ sap.ui.define([
 			});
 		},
 
-		deleteAtt: function (evtContext,index) {
+		deleteAtt: function (evtContext, index) {
 			var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 			var sPath = evtContext.sPath;
 			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
@@ -358,7 +365,7 @@ sap.ui.define([
 				oFileUploader.removeAllHeaderParameters();
 				oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
 					name: "slug",
-					value: oFileUploader.getValue()  + "," + zcomment.getValue()
+					value: oFileUploader.getValue() + "," + zcomment.getValue()
 				}));
 
 				oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({

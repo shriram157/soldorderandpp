@@ -99,13 +99,13 @@
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>PONumber}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>ZpoNumbe}"/>
+											<Text text="{mainservices>ZpoNumber}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>orderType}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>}"/>
+											<Text text="{mainservices>Zadd2}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
@@ -117,7 +117,7 @@
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>totalVehicles}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>ZdriverLiNum}"/>
+											<Text text="{mainservices>Zadd1}"/>
 										</t:template>
 									</t:Column>
 								</t:columns>

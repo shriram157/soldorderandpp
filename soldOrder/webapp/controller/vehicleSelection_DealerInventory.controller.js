@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
 	var VehSel_DealerInv_controller;
-	var zrequest;
+	var zrequest,vehicle,model, modelyear, suffix, color, series;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.vehicleSelection_DealerInventory", {
 		formatter: formatter,
 
@@ -22,17 +22,18 @@ sap.ui.define([
 		filter_change: function (Oevent) {
 			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
 			//Dealer Inventory
+			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 			if (Oevent.getSource().getSelectedKey() == '1') {
-
+            
 				vechile_items.filter([new Filter([
 					new Filter("MATRIX", FilterOperator.EQ, "A205"),
-					new Filter("Dealer", FilterOperator.EQ, "2400001003")
-					// new Filter("Model", FilterOperator.EQ, "YZ3DCT"),
-					// new Filter("Modelyear", FilterOperator.EQ, "2018"),
-					// new Filter("Suffix", FilterOperator.EQ, "AL"),
-					// new Filter("ExteriorColorCode", FilterOperator.EQ, "01D6"),
+					new Filter("Dealer", FilterOperator.EQ, "2400001003"),
+					new Filter("Model", FilterOperator.EQ, vehicle.model),
+					new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
+					new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
+					new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
 					// new Filter("INTCOL", FilterOperator.EQ, "42")
-					// new Filter("TCISeries", FilterOperator.EQ, ""),
+					new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
 					// new Filter("ETA", FilterOperator.EQ, ""),
 					// new Filter("APX", FilterOperator.EQ, ""),
 				], true)]);
@@ -82,7 +83,7 @@ sap.ui.define([
 					urlParameters: {
 						Zzvtn: V_No,
 						ZzsoReqNo: zrequest
-					//	Endcustomer:
+							//	Endcustomer:
 					}, // function import parameters
 					success: function (oData, response) {
 						if (oData.Type == 'E') {
@@ -108,11 +109,10 @@ sap.ui.define([
 		_GetCustomer: function () {
 
 		},
-		onback:function(oEvent)
-		{
+		onback: function (oEvent) {
 			VehSel_DealerInv_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-								Soreq: zrequest
-							}, true); //page 3		
+				Soreq: zrequest
+			}, true); //page 3		
 		}
 
 	});
