@@ -209,13 +209,19 @@
 							</t:Column>
 						</t:columns>
 					</t:Table>
-					<HBox class="cssShift marginCornersBottom">
-						<items>
+					<!--<HBox class="cssShift marginCornersBottom">-->
+					<!--	<items>-->
+						
+					<!--	</items>-->
+					<!--</HBox>-->
+				</content>
+					<footer class="sitefooter">
+					<Toolbar>
+						<ToolbarSpacer/>
 							<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight "></Button>
 							<Button text="{i18n>Back}" press="onNavBack" class="sapUiSmallMarginBegin marginCornersRight"></Button>
-						</items>
-					</HBox>
-				</content>
+					</Toolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>

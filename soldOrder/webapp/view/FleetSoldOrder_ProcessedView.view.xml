@@ -85,52 +85,52 @@
 						</items>
 					</HBox>-->
 					<Label text="{i18n>dealerInventoryVeh}" class="marginCorners fontsize"></Label>
-					<t:Table selectionMode="None" rows="{mainservices>FHeadertoItems}" enableColumnReordering="false" alternateRowColors="true"
+					<t:Table id="table1" selectionMode="None" rows="{mainservices>FHeadertoItems}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
-									<Text text="{mainservices>}"/>
+									<Text text="{mainservices>Zzvtn}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>orderNumber}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>FleetSONo}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>Modelyear}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
-								<Label text="{i18n>series}" class="TableLabel"/>
-								<t:template>
-									<Text text="{mainservices>}"/>
-								</t:template>
-							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<!--<t:Column width="11.11%" resizable="false">-->
+							<!--	<Label text="{i18n>series}" class="TableLabel"/>-->
+							<!--	<t:template>-->
+							<!--		<Text text="{mainservices>}"/>-->
+							<!--	</t:template>-->
+							<!--</t:Column>-->
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>Model}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>Suffix}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>APX}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>ExteriorColourCode}"/>
@@ -139,58 +139,59 @@
 						</t:columns>
 					</t:Table>
 					<Label text="{i18n>reqVeh}" class="marginCorners fontsize"></Label>
-					<t:Table selectionMode="None" rows="{mainservices>FHeadertoItems}" enableColumnReordering="false" alternateRowColors="true"
+					<t:Table id="table2" selectionMode="None" rows="{mainservices>FHeadertoItems}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>Modelyear}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
-								<Label text="{i18n>series}" class="TableLabel"/>
-								<t:template>
-									<Text text="{mainservices>}"/>
-								</t:template>
-							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<!--<t:Column width="11.11%" resizable="false">-->
+							<!--	<Label text="{i18n>series}" class="TableLabel"/>-->
+							<!--	<t:template>-->
+							<!--		<Text text="{mainservices>}"/>-->
+							<!--	</t:template>-->
+							<!--</t:Column>-->
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>Model}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>Suffix}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
-								<Label text="{i18n>APX}" class="TableLabel"/>
-								<t:template>
-									<Text text="{mainservices>APX}"/>
-								</t:template>
-							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<!--<t:Column width="11.11%" resizable="false">-->
+							<!--	<Label text="{i18n>APX}" class="TableLabel"/>-->
+							<!--	<t:template>-->
+							<!--		<Text text="{mainservices>APX}"/>-->
+							<!--	</t:template>-->
+							<!--</t:Column>-->
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>ExteriorColourCode}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{path:'mainservices>ReqEtaFrom',type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text
+										text="{path:'mainservices>ReqEtaTo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>quantity}" class="TableLabel"/>
 								<t:template>
 									<Text text="{mainservices>FltSOQty}"/>
@@ -202,61 +203,61 @@
 					<t:Table id="tble_FSO_PV" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>soldOrderNumber}" class="TableLabel"/>
 								<t:template>
 									<Link text="{Quantity}" press="_navToSoldOrder"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" >
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
 									<Text text="{Category}"/>

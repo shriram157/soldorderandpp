@@ -323,7 +323,8 @@ sap.ui.define([
 					ExteriorColourCode: _Table_Data1[i].ExteriorColorCode,
 					APX: _Table_Data1[i].APX,
 					ReqEtaFrom: zdateFormat.parse(_Table_Data1[i].ETAFrom),
-					ReqEtaTo: zdateFormat.parse(_Table_Data1[i].ETATo)
+					ReqEtaTo: zdateFormat.parse(_Table_Data1[i].ETATo),
+					Zzvtn:_Table_Data1[i].ZZVTN
 				});
 			}
 			var length = _Table_Data1.length;
@@ -345,7 +346,8 @@ sap.ui.define([
 
 			}
 			this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
-			this.getView().getModel('Data').getData().Zadd1 = length + 1;
+			length = length + 1;
+			this.getView().getModel('Data').getData().Zadd1 = length.toString();
 			this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
 				success: function (oData, oResponse) {
 					if (oData.ZsoFltReqNo) {

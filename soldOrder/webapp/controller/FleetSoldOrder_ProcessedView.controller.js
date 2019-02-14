@@ -1,7 +1,9 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
-	"toyota/ca/SoldOrder/util/formatter"
-], function (BaseController, formatter) {
+	"toyota/ca/SoldOrder/util/formatter",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
 	var FSO_PVController, zrequest;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.FleetSoldOrder_ProcessedView", {
@@ -35,7 +37,14 @@ sap.ui.define([
 				model: "mainservices",
 				events: {
 					change: function (oEvent) {
+						var table1 = FSO_PVController.getView().byId('table1');
+						var items1 = table1.getBinding('rows');
+						items1.filter([new Filter("Zzvtn", FilterOperator.EQ, '')]);
+						var table2 = FSO_PVController.getView().byId('table2');
+						var items2 = table2.getBinding('rows');
+						items2.filter([new Filter("Zzvtn", FilterOperator.NE, '')]);
 						var partner = FSO_PVController.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');
+
 						FSO_PVController.getView().getModel('mainservices').read("/Customer_infoSet('" + partner + "')", {
 							success: function (data, textStatus, jqXHR) {
 								var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
@@ -66,9 +75,8 @@ sap.ui.define([
 			// var sMsg = oBundle.getText("procViewTitle", [sRecipient]);
 			// FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg);
 		},
-		onNavback:function(Oevent)
-		{
-		FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary", {}, true);	
+		onNavback: function (Oevent) {
+			FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary", {}, true);
 		}
 	});
 
