@@ -1,7 +1,9 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
-	"toyota/ca/SoldOrder/util/formatter"
-], function (Controller, formatter) {
+	"toyota/ca/SoldOrder/util/formatter",
+		"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function (Controller, formatter,Filter,FilterOperator) {
 	"use strict";
 	var FSOS_controller;
 	return Controller.extend("toyota.ca.SoldOrder.controller.FleetSoldOrderSummary", {
@@ -99,9 +101,26 @@ sap.ui.define([
 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 		},
-		_refresh: function () {
+		_refresh: function (oEvent) {
+			//-----------------Sold Order Status-----------------
+			var afilter = [];
+			for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
+				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getText()));
+			}
+			var filter_sstatus = new Filter(afilter, false);
+			//---------------------------------------------------------------
+			//-----------------Order Type-----------------
+			var Sfilter = [];
+			for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
+				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getText()));
+			}
+			var filter_ordertype = new Filter(Sfilter, false);
+			//---------------------------------------------------------------
+			var filter_all = new Filter([filter_ordertype, filter_sstatus], true);
+			var items = this.getView().byId("tbl_FSOS").getBinding('rows');
+			items.filter(filter_all);
 
-		}
+		},
 
 	});
 

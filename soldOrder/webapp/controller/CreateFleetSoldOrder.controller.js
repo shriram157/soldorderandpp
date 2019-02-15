@@ -346,8 +346,6 @@ sap.ui.define([
 
 			}
 			this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
-			length = length + 1;
-			this.getView().getModel('Data').getData().Zadd1 = length.toString();
 			this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
 				success: function (oData, oResponse) {
 					if (oData.ZsoFltReqNo) {

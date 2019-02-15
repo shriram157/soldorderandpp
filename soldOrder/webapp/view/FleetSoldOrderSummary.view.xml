@@ -44,16 +44,16 @@
 												</MultiComboBox>
 											</VBox>
 											<VBox id="vbx_dealer_FSOS">
-												<Label id="lbl_dealer_FSOS" visible="false" text="{i18n>dealer}" class="TableLabel">
+												<Label id="lbl_dealer_FSOS" visible="true" text="{i18n>dealer}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_dealer_FSOS"  visible="false" selectionChange="_refresh" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" class="sapUiMediumMarginEnd">
-													<core:Item key="{ProductId}" text="{Category}"/>
-													<layoutData>
-														<l:GridData span="L1 M6 S12"/>
-													</layoutData>
+												<MultiComboBox id="mcb_dealer_FSOS"  visible="true" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+													<!--<core:Item key="{ProductId}" text="{Category}"/>-->
+													<!--<layoutData>-->
+													<!--	<l:GridData span="L1 M6 S12"/>-->
+													<!--</layoutData>-->
 												</MultiComboBox>
 											</VBox>
 										</f:content>

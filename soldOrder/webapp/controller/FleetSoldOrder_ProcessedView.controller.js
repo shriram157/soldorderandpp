@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator"
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-	var FSO_PVController, zrequest;
+	var FSO_PVController, zrequest,vehicle_no;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.FleetSoldOrder_ProcessedView", {
 		formatter: formatter,
 
@@ -37,12 +37,21 @@ sap.ui.define([
 				model: "mainservices",
 				events: {
 					change: function (oEvent) {
+						vehicle_no = 0;
 						var table1 = FSO_PVController.getView().byId('table1');
 						var items1 = table1.getBinding('rows');
-						items1.filter([new Filter("Zzvtn", FilterOperator.EQ, '')]);
+						items1.attachChange(function (sReason) {
+							vehicle_no = vehicle_no + items1.getLength();
+						});
+						items1.filter([new Filter("WithVtn", FilterOperator.EQ, 'X')]);
 						var table2 = FSO_PVController.getView().byId('table2');
 						var items2 = table2.getBinding('rows');
-						items2.filter([new Filter("Zzvtn", FilterOperator.NE, '')]);
+						items2.attachChange(function (sReason) {
+							vehicle_no = vehicle_no + items2.getLength();
+							FSO_PVController.getView().byId('vechilecounter').setText(vehicle_no.toString());
+							
+						});
+						items2.filter([new Filter("WithVtn", FilterOperator.EQ, '')]);
 						var partner = FSO_PVController.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');
 
 						FSO_PVController.getView().getModel('mainservices').read("/Customer_infoSet('" + partner + "')", {

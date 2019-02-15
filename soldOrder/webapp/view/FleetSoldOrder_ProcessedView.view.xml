@@ -23,8 +23,8 @@
 							<Text text="{mainservices>ZsoFltStatus}"/>
 							<Label wrapping="true" text="{i18n>zoneAppNumber}"/>
 							<Text text="{mainservices>ZzoneApproval}"/>
-							<Label wrapping="true" text="{i18n>totalVehicles}"/>
-							<Text text="{mainservices>Zadd1}"/>
+							<Label wrapping="true"  text="{i18n>totalVehicles}"/>
+							<Text text="" id="vechilecounter"/>
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{Customer>/NameFirst}{Customer>/NameLast}"/>
@@ -139,7 +139,7 @@
 						</t:columns>
 					</t:Table>
 					<Label text="{i18n>reqVeh}" class="marginCorners fontsize"></Label>
-					<t:Table id="table2" selectionMode="None" rows="{mainservices>FHeadertoItems}" enableColumnReordering="false" alternateRowColors="true"
+					<t:Table id="table2" selectionMode="None" rows="{mainservices>FHeadertoItems}"  enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
 							<t:Column width="11.11%" resizable="false">
