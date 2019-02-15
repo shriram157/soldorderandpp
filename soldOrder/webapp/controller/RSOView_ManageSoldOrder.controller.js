@@ -38,6 +38,7 @@ sap.ui.define([
 			var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("mangSoldOrder", [req]);
 			RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);
+			zmodel.refresh();
 			this.getView().bindElement({
 
 				path: sObjectPath,

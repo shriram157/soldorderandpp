@@ -31,6 +31,7 @@ sap.ui.define([
 			var oBundle = FSO_PVController.getView().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("procViewTitle", [req]);
 			FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg);
+			zmodel.refresh();
 			this.getView().bindElement({
 
 				path: sObjectPath,
@@ -47,7 +48,11 @@ sap.ui.define([
 						var table2 = FSO_PVController.getView().byId('table2');
 						var items2 = table2.getBinding('rows');
 						items2.attachChange(function (sReason) {
-							vehicle_no = vehicle_no + items2.getLength();
+							for(var i = 0;i< items2.getLength();i++)
+							{
+								vehicle_no = vehicle_no + parseInt(items2.getContexts()[i].getProperty('FltSOQty'),10);
+							}
+							
 							FSO_PVController.getView().byId('vechilecounter').setText(vehicle_no.toString());
 							
 						});
