@@ -157,7 +157,9 @@ sap.ui.define([
 			//----Customer API-----------------------------------
 			//--------------------------------------------------
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
-			var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?lastName=" + CustModel.Name;
+			var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?phone=" + CustModel.Phone;
+			
+			//lastName=" + CustModel.Name;
 			//+ "&phone=" +CustModel.Phone;
 			$.ajax({
 				url: url,
@@ -197,7 +199,7 @@ sap.ui.define([
 								"addressType": "BUSINESS"
 							}],
 							"phones": [{
-								"localNumber": CustModel.Phone.substr(4, 7),
+								"localNumber": CustModel.Phone.substr(3, 7),
 								"areaCode": CustModel.Phone.substr(0, 3),
 								"useCode": "WORK"
 							}],

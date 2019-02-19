@@ -11,8 +11,6 @@
 								class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
 							<VBox class="marginCorners VBox_color">
 								<items>
-									
-
 									<f:SimpleForm columnsL="3" columnsM="3" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="4" labelSpanM="4"
 										layout="ResponsiveGridLayout">
 										<f:content>
@@ -22,7 +20,7 @@
 											<l:GridData span="L2 M12 S12"/>
 										</layoutData>-->
 												</Label>
-											<MultiComboBox width="" id="mcb_status_FSOD" selectionChange="_refresh" items="{ path: '/FSODetails_Status', sorter: { path: 'key' } }">
+												<MultiComboBox width="" id="mcb_status_FSOD" selectionChange="_refresh" items="{ path: '/FSODetails_Status', sorter: { path: 'key' } }">
 													<core:Item key="{key}" text="{text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -67,7 +65,8 @@
 											<l:GridData span="L2 M12 S12"/>
 										</layoutData>-->
 												</Label>
-												<MultiComboBox id="mcb_series_FSOD" width="" selectionChange="_refresh" items="{ path: '/Products', sorter: { path: 'key' } }" required="true">
+												<MultiComboBox id="mcb_series_FSOD" width="" selectionChange="_refresh" items="{ path: '/Products', sorter: { path: 'key' } }"
+													required="true">
 													<core:Item key="{key}" text="{Category}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -86,7 +85,7 @@
 											</VBox>
 											<VBox visible="false">
 												<Label text="{i18n>dealer}" class="TableLabel"></Label>
-												<MultiComboBox  width="" selectionChange="_refresh" items="{ path: '/', sorter: { path: 'key' } }">
+												<MultiComboBox width="" selectionChange="_refresh" items="{ path: '/', sorter: { path: 'key' } }">
 													<core:Item key="{key}"
 														text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
 													<layoutData>
@@ -98,49 +97,50 @@
 									</f:SimpleForm>
 								</items>
 							</VBox>
-							<t:Table id="tbl_FSOD" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
-								enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
+							<t:Table id="tbl_FSOD" selectionMode="None" rows="{mainservices>/ZVMS_SO_FLEET_ISet}" enableColumnReordering="false"
+								alternateRowColors="true" enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
 									<t:Column width="8.3%" sortProperty="Category" resizable="false">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
-											<Link text="{Category}" press="_navToRSO"/>
+											<Link text="{mainservices>FleetSONo}" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text id="tbl_val_dealer_FSOD" visible="false" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
+											<Text id="tbl_val_dealer_FSOD" visible="false" text="{path:'mainservices>'}"/>
+											<!--, formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'-->
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>Model}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>Suffix}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>Suffix}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>APX}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+										<Text text="{mainservices>APX}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>colour}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>ExteriorColourCode}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>ZsoFltStatus}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
@@ -152,19 +152,20 @@
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>VehTrackNo}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>Zzvtn}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{path:'mainservices>ReqEtaFrom',type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>ETATime}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text
+										text="{path:'mainservices>ReqEtaTo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">

@@ -233,7 +233,7 @@
 					"clearTarget": "true"
 				},
 				{
-					"pattern": "page13",
+					"pattern": "page13/{Soreq}",
 					"name": "FleetSoldOrder_ZoneApproval",
 					"target": "home13",
 					"clearTarget": "true"

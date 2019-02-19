@@ -59,9 +59,12 @@ sap.ui.define([
 			// 		this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary"); //page 15 
 			// 	}
 			// } 
-			// else if (oGetText === this.oBundle.getText("menu5")) {
-			// 	this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
-			// } 
+			else if (oGetText === this.oBundle.getText("menu5")) {
+				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
+			} 
+			else if (oGetText === this.oBundle.getText("menu9")) {
+				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer"); //page 16
+			}
 			// else if (oGetText === this.oBundle.getText("menu6")) {
 			// 	this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
 			// }
