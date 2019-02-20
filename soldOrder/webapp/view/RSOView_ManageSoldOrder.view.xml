@@ -203,7 +203,7 @@
 					</f:SimpleForm>
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss2"></MessageStrip >
 					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{mainservices>AttachmentSet}" enableColumnReordering="false"
-						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount='10'>
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount='3'>
 						<t:columns>
 							<t:Column width="33.33%" resizable="false">
 								<Label text=""/>
@@ -315,17 +315,17 @@
 						</items>
 					</HBox>-->
 					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12" class="marginCornersBottom">
-						<Button id="btn_AuditComp_RSO_MSO" enabled="false" text="{i18n>AuditComp}" press="_updateAuditSoldOrderRequest">
+						<Button id="btn_AuditComp_RSO_MSO" enabled="false" visible="false" text="{i18n>AuditComp}" press="_updateAuditSoldOrderRequest">
 							<layoutData>
 								<l:GridData span="L2 M3 S6" indent="L4 M1"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_ApprPriceProt_RSO_MSO" enabled="false" text="{i18n>ApprPriceProt}" press="_approvePriceProtectionDetails">
+						<Button id="btn_ApprPriceProt_RSO_MSO" enabled="false" visible="false" text="{i18n>ApprPriceProt}" press="_approvePriceProtectionDetails">
 							<layoutData>
 								<l:GridData span="L3 M4 S6"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_RejPriceProt_RSO_MSO" enabled="false" text="{i18n>RejPriceProt}" press="_rejectPriceProtectionDetails">
+						<Button id="btn_RejPriceProt_RSO_MSO" enabled="false" visible="false" text="{i18n>RejPriceProt}" press="_rejectPriceProtectionDetails">
 							<layoutData>
 								<l:GridData span="L3 M4 S12"/>
 							</layoutData>

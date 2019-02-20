@@ -267,10 +267,11 @@ sap.ui.define([
 				valProvince == "" || valPostalCode == "" || valLicense == "" || valCustName == "") {
 				flag1 = true;
 
-			} else if (RSOB_controller.validateFlagB == false) {
+			} 
+			if (RSOB_controller.validateFlagB == false) {
 				flag2 = true;
-
-			} else if (flag1 == true && flag2 == false) {
+			} 
+			if (flag1 == true && flag2 == false) {
 				var errForm = formatter.formatErrorType("SO00003");
 				errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
@@ -285,9 +286,9 @@ sap.ui.define([
 			} else if (flag1 == true && flag2 == true) {
 				var errForm = formatter.formatErrorType("SO00003");
 				errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				var errForm2 = formatter.formatErrorType("SO00004");
-				errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
-				var errMsg3 = errMsg + "\n" + errMsg2;
+				// var errForm2 = formatter.formatErrorType("SO00004");
+				// errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				var errMsg3 = errMsg ;//+ "\n" + errMsg2;
 				sap.m.MessageBox.show(errMsg3, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);

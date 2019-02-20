@@ -17,6 +17,12 @@ sap.ui.define([
 		},
 		onAfterRendering: function () {
 			var oTbl = RSOS_controller.getView().byId("table_RSOS");
+			//-----------------------------------------------------------
+			//-----Binding without Fleet Reference----------------------
+			//----------------------------------------------------------
+			var items = oTbl.getBinding('rows');
+			items.filter([new Filter("FleetReference", FilterOperator.EQ, '')]);
+			//-------------------------------------------------------------------------------
 			var data = oTbl.getModel().getData().ProductCollection;
 			var mcb_series_RSOS = RSOS_controller.getView().byId("mcb_series_RSOS");
 			var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
@@ -64,7 +70,7 @@ sap.ui.define([
 		},
 		_handleServiceSuffix_Series: function () {
 			var host = RSOS_controller.host();
-			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_MODEL_DETAILS?sap-client=200&$format=json";
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?sap-client=200&$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
@@ -76,37 +82,37 @@ sap.ui.define([
 					// console.log(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
 
-					var arr = [];
-					var j = 0;
-					for (var c = 0; c < data.d.results.length; c++) {
-						for (var i = 0; i < data.d.results.length; i++) {
-							if ($.inArray(data.d.results[i]["TCISeries"], arr) < 0) {
-								arr[j] = data.d.results[i]["TCISeries"];
-								j++;
+					// var arr = [];
+					// var j = 0;
+					// for (var c = 0; c < data.d.results.length; c++) {
+					// 	for (var i = 0; i < data.d.results.length; i++) {
+					// 		if ($.inArray(data.d.results[i]["Zzseries"], arr) < 0) {
+					// 			arr[j] = data.d.results[i]["Zzseries"];
+					// 			j++;
 
-							}
-						}
-					}
+					// 		}
+					// 	}
+					// }
 
-					oModel.setData(arr);
+					oModel.setData(data.d.results);
 					RSOS_controller.getView().setModel(oModel, "seriesModel");
 					// console.log(RSOA_controller.getView().getModel("seriesModel").getData());
 
-					var oModel2 = new sap.ui.model.json.JSONModel();
+					// var oModel2 = new sap.ui.model.json.JSONModel();
 
-					var arr2 = [''];
-					var k = 0;
-					for (var q = 0; q < data.d.results.length; q++) {
-						for (var i = 0; i < data.d.results.length; i++) {
-							if ($.inArray(data.d.results[i]["suffix"], arr2) < 0) {
-								arr2[k] = data.d.results[i]["suffix"];
-								k++;
-							}
-						}
-					}
-					// console.log(arr2);
-					oModel2.setData(arr2);
-					RSOS_controller.getView().setModel(oModel2, "suffix_Model");
+					// var arr2 = [''];
+					// var k = 0;
+					// for (var q = 0; q < data.d.results.length; q++) {
+					// 	for (var i = 0; i < data.d.results.length; i++) {
+					// 		if ($.inArray(data.d.results[i]["suffix"], arr2) < 0) {
+					// 			arr2[k] = data.d.results[i]["suffix"];
+					// 			k++;
+					// 		}
+					// 	}
+					// }
+					// // console.log(arr2);
+					// oModel2.setData(arr2);
+					// RSOS_controller.getView().setModel(oModel2, "suffix_Model");
 
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -142,11 +148,11 @@ sap.ui.define([
 			//-----------------Series-----------------
 			var Sfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
-				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getText()));
+				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey()));
 			}
 			var filter_series = new Filter(Sfilter, false);
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_series,filter_sstatus], true);
+			var filter_all = new Filter([filter_series, filter_sstatus, new Filter("FleetReference", FilterOperator.EQ, '')], true);
 			var items = this.getView().byId("table_RSOS").getBinding('rows');
 			items.filter(filter_all);
 

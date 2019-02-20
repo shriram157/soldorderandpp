@@ -16,7 +16,7 @@ sap.ui.define([
 			RSOA_controller.getBrowserLanguage();
 			var today = new Date();
 			var day1 = new Date();
-			day1.setDate(today.getDate() + 1);
+			day1.setDate(today.getDate());//+ 1
 			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(day1);
 			// RSOA_controller._newService1();
 			// RSOA_controller._newService2();
@@ -308,7 +308,9 @@ sap.ui.define([
 			var dataString = JSON.stringify(
 				_data
 			);
-			//Checking if there is no Token , it will refresh to get another one 
+			//--------------------------------------------------------------------------
+			//----Checking if there is no Token , it will refresh to get another one---- 
+			//---------------------------------------------------------------------------
 			if (!RSOA_controller.getView().getModel('mainservices').getSecurityToken()) {
 				RSOA_controller.getView().getModel('mainservices').refreshSecurityToken();
 			}
@@ -566,9 +568,9 @@ sap.ui.define([
 			} else if (flag1 == true && flag2 == true) {
 				var errForm = formatter.formatErrorType("SO00003");
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				var errForm2 = formatter.formatErrorType("SO00004");
-				errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
-				var errMsg3 = errMsg + "\n" + errMsg2;
+				// var errForm2 = formatter.formatErrorType("SO00004");
+				// errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				var errMsg3 = errMsg;// + "\n" + errMsg2;
 				sap.m.MessageBox.show(errMsg3, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
