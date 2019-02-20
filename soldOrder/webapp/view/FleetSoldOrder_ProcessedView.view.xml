@@ -200,67 +200,68 @@
 						</t:columns>
 					</t:Table>
 					<Label text="{i18n>allocVeh}" class="marginCorners fontsize"></Label>
-					<t:Table id="tble_FSO_PV" selectionMode="None" rows="{/ProductCollection}" enableColumnReordering="false" alternateRowColors="true"
+					<t:Table id="tble_FSO_PV" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>soldOrderNumber}" class="TableLabel"/>
 								<t:template>
-									<Link text="{Quantity}" press="_navToSoldOrder"/>
+									<Link text="{mainservices>ZzsoReqNo}" press="_navToSoldOrder"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{mainservices>Zzvtn}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{mainservices>Zzmoyr}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{mainservices>Zzseries}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{mainservices>Zzmodel}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{mainservices>Zzsuffix}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text text="{mainservices>Zzapx}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+								<Text text="{mainservices>Zzextcol}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+								<Text text="{path:'mainservices>ZzreqEtaFrom',type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
-									<Text text="{Category}"/>
+									<Text
+										text="{path:'mainservices>ZzreqEtaTo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
 						</t:columns>

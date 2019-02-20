@@ -59,7 +59,7 @@
 									<f:SimpleForm columnsL="2" columnsM="2" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="3" labelSpanM="3"
 										layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
 										<f:content>
-											<VBox>
+											<VBox visible="false">
 												<Label text="{i18n>series}" class="TableLabel">
 													<!--<layoutData>
 											<l:GridData span="L2 M12 S12"/>
@@ -97,56 +97,56 @@
 									</f:SimpleForm>
 								</items>
 							</VBox>
-							<t:Table id="tbl_FSOD" selectionMode="None" rows="{mainservices>/ZVMS_SO_FLEET_ISet}" enableColumnReordering="false"
+							<t:Table id="tbl_FSOD" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false"
 								alternateRowColors="true" enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
 									<t:Column width="8.3%" sortProperty="Category" resizable="false">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
-											<Link text="{mainservices>FleetSONo}" press="_navToRSO"/>
+											<Link text="{mainservices>ZzsoReqNo}" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text id="tbl_val_dealer_FSOD" visible="false" text="{path:'mainservices>'}"/>
+											<Text id="tbl_val_dealer_FSOD" visible="false" text="{path:'mainservices>ZzdealerCode'}"/>
 											<!--, formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'-->
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Model}"/>
+											<Text text="{mainservices>Zzmodel}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>Suffix}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Suffix}"/>
+											<Text text="{mainservices>Zzsuffix}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>APX}" class="TableLabel"/>
 										<t:template>
-										<Text text="{mainservices>APX}"/>
+										<Text text="{mainservices>Zzapx}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>colour}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>ExteriorColourCode}"/>
+											<Text text="{mainservices>Zzextcol}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>ZsoFltStatus}"/>
+											<Text text="{mainservices>ZzsoStatus}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>audit}" class="TableLabel"/>
 										<t:template>
-											<Text text="{Category}"/>
+											<Text text="{mainservices>ZzAuditStatus}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
@@ -158,20 +158,20 @@
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
-											<Text text="{path:'mainservices>ReqEtaFrom',type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+											<Text text="{path:'mainservices>ZzreqEtaFrom',type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>ETATime}" class="TableLabel"/>
 										<t:template>
 											<Text
-										text="{path:'mainservices>ReqEtaTo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+										text="{path:'mainservices>ZzreqEtaTo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 										<t:template>
-											<Button text="{i18n>linkVehicle}" id="btn_linkVeh_FSOD" press="onLinkVehicle"/>
+											<Button text="{i18n>linkVehicle}" visible="{path:'mainservices>Zzvtn',formatter:'.formatter.linkvehicle'}" id="btn_linkVeh_FSOD" press="onLinkVehicle"/>
 										</t:template>
 									</t:Column>
 								</t:columns>

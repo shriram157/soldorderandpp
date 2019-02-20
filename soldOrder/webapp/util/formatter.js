@@ -83,5 +83,17 @@ toyota.ca.SoldOrder.util.formatter = {
 		} else {
 			return;
 		}
+	},
+	linkvehicle:function(vehicle)
+	{
+		if(vehicle)
+		{
+			return false;
+		}else
+		{
+			return true;
+		}
+			
+	
 	}
 };
