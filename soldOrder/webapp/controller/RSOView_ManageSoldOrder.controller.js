@@ -217,7 +217,6 @@ sap.ui.define([
 		},
 
 		_approvePriceProtectionDetails: function () {
-
 		},
 
 		_rejectPriceProtectionDetails: function () {
