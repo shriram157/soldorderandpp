@@ -18,7 +18,7 @@
 							<Label wrapping="true" text="{i18n>PONumber}"/>
 							<Text text="{mainservices>ZpoNumber}"/>
 							<Label wrapping="true" text="{i18n>orderType}"/>
-							<ComboBox enabled="false" id="orderType_FSOZA" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }" required="true">
+							<ComboBox enabled="true" id="orderType_FSOZA" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }" required="true">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>status}"/>
@@ -206,9 +206,9 @@
 					</t:Table>
 					<HBox class="cssShift marginCornersBottom marginCornersRight">
 						<items>
-							<Button id="btn_approve_FSOZA" text="{i18n>approve}" visible="false" press="_approveFleetSoldRequest"></Button>
-							<Button id="btn_reject_FSOZA" text="{i18n>reject}" visible="false" press="_rejectFleetSoldRequest" class="sapUiSmallMarginBegin"></Button>
-							<Button id="btn_back_FSOZA" text="{i18n>back}" visible="false" class="sapUiSmallMarginBegin"></Button>
+							<Button id="btn_approve_FSOZA" text="{i18n>approve}" visible="true" press="_approveFleetSoldRequest"></Button>
+							<Button id="btn_reject_FSOZA" text="{i18n>reject}" visible="true" press="_rejectFleetSoldRequest" class="sapUiSmallMarginBegin"></Button>
+							<Button id="btn_back_FSOZA" text="{i18n>back}" visible="true" class="sapUiSmallMarginBegin"></Button>
 						</items>
 					</HBox>
 				</content>

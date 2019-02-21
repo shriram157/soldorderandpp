@@ -45,6 +45,7 @@ sap.ui.define([
 				model: "mainservices",
 				events: {
 					change: function (oEvent) {
+						RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 						// Filter for Display Data Sold Order
 						sap.ui.getCore().setModel(new JSONModel({
 							model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
@@ -217,10 +218,64 @@ sap.ui.define([
 		},
 
 		_approvePriceProtectionDetails: function () {
+			if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
+				//alert("MEDHAT Yes");
+
+				RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Approve_Price_Details", {
+					method: "POST",
+					urlParameters: {
+						ZzsoReqNo: zrequest,
+						comment: RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue()
+					}, // function import parameters
+					success: function (oData, response) {
+						if (oData.Type == 'E') {
+							// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
+							var sMsg = oData.Message;
+							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "ERROR", sap
+								.m.MessageBox.Action.OK, null, null);
+						} else {
+							var sMsg = oData.Message;
+							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
+								.m.MessageBox.Action.OK, null, null);
+						}
+
+					},
+					error: function (oError) {
+
+					}
+				});
+			} else {
+				var sMsg = "This Order is Not Eligible To Price Protection Approval";
+				sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			}
 		},
 
 		_rejectPriceProtectionDetails: function () {
-			AppController.flgPriceProtectionStatus = "Rejected";
+			//AppController.flgPriceProtectionStatus = "Rejected";
+			RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Reject_Price_Details", {
+				method: "POST",
+				urlParameters: {
+					ZzsoReqNo: zrequest,
+					comment: RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue()
+				}, // function import parameters
+				success: function (oData, response) {
+				if (oData.Type == 'E') {
+							// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
+							var sMsg = oData.Message;
+							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "ERROR", sap
+								.m.MessageBox.Action.OK, null, null);
+						} else {
+							var sMsg = oData.Message;
+							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
+								.m.MessageBox.Action.OK, null, null);
+						}
+
+				},
+				error: function (oError) {
+
+				}
+			});
 		},
 
 		_getVehiclesToFillSoldOrderRequest: function () {

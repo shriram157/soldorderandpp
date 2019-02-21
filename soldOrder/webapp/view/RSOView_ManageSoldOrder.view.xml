@@ -177,7 +177,7 @@
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>PriceProtectionDetails}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>Eligibility}"/>
-							<Text text="{mainservices>Eligilibity}"/>
+							<Text text="{mainservices>Eligilibity}" id="RSO_PRC_Eligilibity"/>
 							<Label wrapping="true" text="{i18n>Status}"/>
 							<Text text="{mainservices>PriceStatus}"/>
 							<Label wrapping="true" text="{i18n>CreditMemo}"/>
@@ -305,12 +305,12 @@
 								<l:GridData span="L2 M3 S6" indent="L4 M1"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_ApprPriceProt_RSO_MSO" enabled="false" visible="false" text="{i18n>ApprPriceProt}" press="_approvePriceProtectionDetails">
+						<Button id="btn_ApprPriceProt_RSO_MSO" enabled="true" visible="true" text="{i18n>ApprPriceProt}" press="_approvePriceProtectionDetails">
 							<layoutData>
 								<l:GridData span="L3 M4 S6"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_RejPriceProt_RSO_MSO" enabled="false" visible="false" text="{i18n>RejPriceProt}" press="_rejectPriceProtectionDetails">
+						<Button id="btn_RejPriceProt_RSO_MSO" enabled="true" visible="true" text="{i18n>RejPriceProt}" press="_rejectPriceProtectionDetails">
 							<layoutData>
 								<l:GridData span="L3 M4 S12"/>
 							</layoutData>
