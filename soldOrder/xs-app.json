@@ -1,11 +1,11 @@
 {
-	"welcomeFile": "/soldOrder/index.html",
+	"welcomeFile": "/soldorderandpp/index.html",
 	"authenticationMethod": "route",
 	"logout": {
 		"logoutEndpoint": "/do/logout"
 	},
 	"routes": [{
-		"source": "^/soldOrder/(.*)$",
+		"source": "^/soldorderandpp/(.*)$",
 		"target": "$1",
 		"localDir": "webapp",
 		"authenticationType": "none"

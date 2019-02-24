@@ -9,7 +9,7 @@ modules:
   path: retailSoldOrder_Node
   parameters:
      disk-quota: 256M
-     host: soldOrder_Node
+     host: tci-dev-soldorderandpp-node
      memory: 256M
      register-service-url: true
      service-name: soldOrder_Node
@@ -29,7 +29,7 @@ modules:
   type: html5
   path: soldOrder
   parameters:
-     host: soldOrder
+     host: tci-dev-soldorderandpp
      disk-quota: 256M
      memory: 256M
      service-name: soldOrder
