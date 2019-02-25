@@ -84,8 +84,9 @@ sap.ui.define([
 						//----------------------------------------------------------
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
-							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?customerNumber=" +
-								zcustomerNumber;
+							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
+							//?customerNumber=" +
+
 							$.ajax({
 								url: url,
 								headers: {
@@ -231,12 +232,32 @@ sap.ui.define([
 						if (oData.Type == 'E') {
 							// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
 							var sMsg = oData.Message;
-							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "ERROR", sap
-								.m.MessageBox.Action.OK, null, null);
+							//	sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "ERROR", sap.m.MessageBox.Action.OK, null, null);
+
+							sap.m.MessageBox.show(sMsg, {
+								icon: sap.m.MessageBox.Icon.ERROR,
+								title: "ERROR",
+								actions: [sap.m.MessageBox.Action.OK],
+								onClose: function (oAction) {
+									RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+								}
+							});
+
 						} else {
 							var sMsg = oData.Message;
-							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
-								.m.MessageBox.Action.OK, null, null);
+							sap.m.MessageBox.show(sMsg, {
+								icon: sap.m.MessageBox.Icon.SUCCESS,
+								title: "SUCCESS",
+								actions: [sap.m.MessageBox.Action.OK],
+								onClose: function (oAction) {
+									RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+								}
+							});
+
+							// sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
+							// 	.m.MessageBox.Action.OK, null, null);
+
+							// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
 						}
 
 					},
@@ -260,16 +281,32 @@ sap.ui.define([
 					comment: RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue()
 				}, // function import parameters
 				success: function (oData, response) {
-				if (oData.Type == 'E') {
-							// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
-							var sMsg = oData.Message;
-							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "ERROR", sap
-								.m.MessageBox.Action.OK, null, null);
-						} else {
-							var sMsg = oData.Message;
-							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
-								.m.MessageBox.Action.OK, null, null);
-						}
+					if (oData.Type == 'E') {
+						// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
+						var sMsg = oData.Message;
+
+						sap.m.MessageBox.show(sMsg, {
+							icon: sap.m.MessageBox.Icon.ERROR,
+							title: "ERROR",
+							actions: [sap.m.MessageBox.Action.OK],
+							onClose: function (oAction) {
+								RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+							}
+						});
+
+					} else {
+						var sMsg = oData.Message;
+
+						sap.m.MessageBox.show(sMsg, {
+							icon: sap.m.MessageBox.Icon.SUCCESS,
+							title: "SUCCESS",
+							actions: [sap.m.MessageBox.Action.OK],
+							onClose: function (oAction) {
+								RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+							}
+						});
+
+					}
 
 				},
 				error: function (oError) {

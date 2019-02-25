@@ -1,5 +1,6 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form" controllerName="toyota.ca.SoldOrder.controller.PriceProtectionDetails_Dealer" xmlns:html="http://www.w3.org/1999/xhtml">
+	xmlns:f="sap.ui.layout.form" controllerName="toyota.ca.SoldOrder.controller.PriceProtectionDetails_Dealer"
+	xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
 			<Page showHeader="false">
@@ -12,7 +13,7 @@
 							<VBox class="marginCorners VBox_color">
 								<items>
 									<f:SimpleForm columnsL="3" columnsM="3" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="4" labelSpanM="4"
-										layout="ResponsiveGridLayout" >
+										layout="ResponsiveGridLayout">
 										<f:content>
 											<VBox>
 												<Label text="{i18n>status}" class="TableLabel">
@@ -48,7 +49,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_dealer_PPD_D" selectionChange="_refresh" items="{ path: 'modelDealerDrpDwn>/', sorter: { path: '' } }" class="sapUiMediumMarginEnd">
+												<MultiComboBox id="mcb_dealer_PPD_D" selectionChange="_refresh" items="{ path: 'modelDealerDrpDwn>/', sorter: { path: '' } }"
+													class="sapUiMediumMarginEnd">
 													<core:Item key="{modelDealerDrpDwn>dealer_code}" text="{modelDealerDrpDwn>dealer_name}"/>
 													<layoutData>
 														<l:GridData span="L4 M12 S12"/>
@@ -57,64 +59,63 @@
 											</VBox>
 										</f:content>
 									</f:SimpleForm>
-								
 								</items>
 							</VBox>
-						<t:Table id="table_PPD_Dealer" selectionMode="None" rows="{modelTbl_PPD_Dealer>/}" enableColumnReordering="false" alternateRowColors="true"
-								enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
+							<t:Table id="table_PPD_Dealer" selectionMode="None" rows="{mainservices>/ZVMS_CDS_PRC_PRTC_Eligible}" enableColumnReordering="false"
+								alternateRowColors="true" enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>orderNum}"/>
 										<t:template>
-											<Link text="{modelTbl_PPD_Dealer>item}" press="_navToRSO"/>
+											<Link text="{mainservices>dealer_ord}" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>orderType}"/>
 										<t:template>
-											<Text text="{ }"/>
+											<Text text="{mainservices>zadd1}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>series}"/>
 										<t:template>
-											<Text text="{modelTbl_PPD_Dealer>veh_series}"/>
+											<Text text="{mainservices>zzseries}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>modelYear}"/>
 										<t:template>
-											<Text text="{modelTbl_PPD_Dealer>model_year}"/>
+											<Text text="{mainservices>zzmoyr}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>model}"/>
 										<t:template>
-											<Text text="{ }"/>
+											<Text text="{mainservices>zzmodel}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>suffix}"/>
 										<t:template>
-											<Text text="{ }"/>
+											<Text text="{mainservices>zzsuffix}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>status}"/>
 										<t:template>
-											<Text text="{ }"/>
+											<Text text="{mainservices>status}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>OwnershipUploaded}"/>
 										<t:template>
-											<Text text="{ }"/>
+											<Text text="{mainservices>ownership_doc}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>CreditMemo}"/>
 										<t:template>
-											<Text text="{ }"/>
+											<Text text="{mainservices>credit_memo_doc}"/>
 										</t:template>
 									</t:Column>
 								</t:columns>

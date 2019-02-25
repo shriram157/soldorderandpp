@@ -420,7 +420,7 @@ sap.ui.define([
 				contentType: "text/xml; charset=\"utf-8\"",
 				success: function (data, textStatus, jqXHR) {
 					if (data.customers[0]) {
-						Zcustomer_No = data.customers[0].customerNumber;
+						Zcustomer_No = data.customers[0].partyID;//customerNumber;
 					}
 				},
 				error: function (request, errorText, errorCode) {
@@ -472,7 +472,7 @@ sap.ui.define([
 						data: zdataString,
 						success: function (data, textStatus, jqXHR) {
 							if (data.customer) {
-								Zcustomer_No = data.customer.customerNumber;
+								Zcustomer_No = data.customer.partyID;//customerNumber;
 							}
 						},
 						error: function (request, errorText, errorCode) {

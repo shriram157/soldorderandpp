@@ -1,78 +1,84 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
-	"toyota/ca/SoldOrder/util/formatter"
-], function (BaseController, formatter) {
+	"toyota/ca/SoldOrder/util/formatter",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-var PPD_DealerCont;
+	var PPD_DealerCont;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.PriceProtectionDetails_Dealer", {
 		formatter: formatter,
 
 		onInit: function () {
-			PPD_DealerCont =  this;
-			 PPD_DealerCont.getBrowserLanguage();
-			var sLocation = window.location.host;
-			var sLocation_conf = sLocation.search("webide");
-			if (sLocation_conf == 0) {
-				 PPD_DealerCont.sPrefix = "/soldorder_node";
-			} else {
-				 PPD_DealerCont.sPrefix = "";
-			}
-			 PPD_DealerCont.nodeJsUrl =  PPD_DealerCont.sPrefix + "/node";
-			$.ajax({
-				//	url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?sap-client=200&$format=json",
-				url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/ZC_HEADER", //?sap-client=200&$format=json",
-				method: 'GET',
-				async: false,
-				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
-					console.log("Data from ZC_HEADER is as follows in next line");
-					console.log(data);
-					var oModel1 = new sap.ui.model.json.JSONModel(data.d.results);
-					PPD_DealerCont.getView().setModel(oModel1, "modelDealerDrpDwn");
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-				}
-			});
-			$.ajax({
-				//	url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?sap-client=200&$format=json",
-				url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_item", //?sap-client=200&$format=json",
-				method: 'GET',
-				async: false,
-				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
-					console.log("Data from zc_item is as follows in next line");
-					console.log(data);
-					var oTable = PPD_DealerCont.getView().byId("table_PPD_Dealer");
-					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
-					PPD_DealerCont.getView().setModel(oModel, "modelTbl_PPD_Dealer");
-					var mode = PPD_DealerCont.getView().getModel("modelTbl_PPD_Dealer");
-				//	oTable.setModel(mode);
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-				}
-			});
-				$.ajax({
-				url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?sap-client=200&$format=json",
-				method: 'GET',
-				async: false,
-				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
-					console.log("Data from zc_campaign_pricing is as follows in next line");
-					console.log(data);
-					var oModel1 = new sap.ui.model.json.JSONModel(data.d.results);
-					PPD_DealerCont.getView().setModel(oModel1, "model_campaign_pricing");
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-				}
-			});
+			PPD_DealerCont = this;
+			PPD_DealerCont.getBrowserLanguage();
+			// var sLocation = window.location.host;
+			// var sLocation_conf = sLocation.search("webide");
+			// if (sLocation_conf == 0) {
+			// 	PPD_DealerCont.sPrefix = "/soldorder_node";
+			// } else {
+			// 	PPD_DealerCont.sPrefix = "";
+			// }
+			// PPD_DealerCont.nodeJsUrl = PPD_DealerCont.sPrefix + "/node";
+
+			// var Model = this.getOwnerComponent().getModel("mainService");
+			// debugger;
+			//PPD_DealerCont.getView().setModel("mainService");
+			// $.ajax({
+			// 	//	url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?sap-client=200&$format=json",
+			// 	url: PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/ZC_HEADER", //?sap-client=200&$format=json",
+			// 	method: 'GET',
+			// 	async: false,
+			// 	dataType: 'json',
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		console.log("Data from ZC_HEADER is as follows in next line");
+			// 		console.log(data);
+			// 		var oModel1 = new sap.ui.model.json.JSONModel(data.d.results);
+			// 		PPD_DealerCont.getView().setModel(oModel1, "modelDealerDrpDwn");
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
+			// 		sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+			// 			.m.MessageBox.Action.OK, null, null);
+			// 	}
+			// });
+			// $.ajax({
+			// 	//	url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?sap-client=200&$format=json",
+			// 	url: PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_item", //?sap-client=200&$format=json",
+			// 	method: 'GET',
+			// 	async: false,
+			// 	dataType: 'json',
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		console.log("Data from zc_item is as follows in next line");
+			// 		console.log(data);
+			// 		var oTable = PPD_DealerCont.getView().byId("table_PPD_Dealer");
+			// 		var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+			// 		PPD_DealerCont.getView().setModel(oModel, "modelTbl_PPD_Dealer");
+			// 		var mode = PPD_DealerCont.getView().getModel("modelTbl_PPD_Dealer");
+			// 		//	oTable.setModel(mode);
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
+			// 		sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+			// 			.m.MessageBox.Action.OK, null, null);
+			// 	}
+			// });
+			// $.ajax({
+			// 	url: PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing", //?sap-client=200&$format=json",
+			// 	method: 'GET',
+			// 	async: false,
+			// 	dataType: 'json',
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		console.log("Data from zc_campaign_pricing is as follows in next line");
+			// 		console.log(data);
+			// 		var oModel1 = new sap.ui.model.json.JSONModel(data.d.results);
+			// 		PPD_DealerCont.getView().setModel(oModel1, "model_campaign_pricing");
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
+			// 		sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+			// 			.m.MessageBox.Action.OK, null, null);
+			// 	}
+			// });
 		},
-		
+
 		onAfterRendering: function () {
 			var mcb_status_PPD_D = PPD_DealerCont.getView().byId("mcb_status_PPD_D");
 			var mcb_ordTyp_PPD_D = PPD_DealerCont.getView().byId("mcb_ordTyp_PPD_D");
@@ -81,32 +87,47 @@ var PPD_DealerCont;
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
 		},
-		
+
 		_refresh: function () {
+
+			var items = PPD_DealerCont.getView().byId("table_PPD_Dealer").getBinding("rows");
+
+			var statFilter = [];
+
+			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+				statFilter.push(new Filter("status", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
+			}
+			var filter_sstatus = new Filter(statFilter, false);
+
+			items.filter(filter_sstatus);
+			debugger;
 
 		},
 		_navToRSO: function (evt) {
-				console.log(evt.getSource());
-				console.log(evt.getSource().mProperties);
-				console.log(evt.getSource().mProperties.text);
-				console.log(evt.getSource().getBindingContext());
-				console.log(evt.getSource().getBindingContext().getPath());
-				var sPath = evt.getSource().getBindingContext().sPath;
-				var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-				console.log(sPath);
-				var s =  PPD_DealerCont.getView().byId("table_PPD_Dealer").getModel().getData().ProductCollection[oIndex].num;
-				console.log(s);
+			// console.log(evt.getSource());
+			// console.log(evt.getSource().mProperties);
+			// console.log(evt.getSource().mProperties.text);
+			// console.log(evt.getSource().getBindingContext());
+			// console.log(evt.getSource().getBindingContext().getPath());
+			// var sPath = evt.getSource().getBindingContext().sPath;
+			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+			// console.log(sPath);
+			// var s = PPD_DealerCont.getView().byId("table_PPD_Dealer").getModel().getData().ProductCollection[oIndex].num;
+			// console.log(s);
 
-				var n = s.indexOf("NAT");
-				if (n > -1) {
-					 PPD_DealerCont.getRouter().navTo("NationalFleetSoldOrderView", {}, true); //page3
-				}
-				var n2 = s.indexOf("SO");
-				if (n2 > -1) {
-					 PPD_DealerCont.getRouter().navTo("RSOView_ManageSoldOrder", {}, true); //page3
-				}
-			}
-			
+			// var n = s.indexOf("NAT");
+			// if (n > -1) {
+			// 	PPD_DealerCont.getRouter().navTo("NationalFleetSoldOrderView", {}, true); //page3
+			// }
+			// var n2 = s.indexOf("SO");
+			// if (n2 > -1) {
+			// 	PPD_DealerCont.getRouter().navTo("RSOView_ManageSoldOrder", {}, true); //page3
+			// }
+			PPD_DealerCont.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+				Soreq: evt.getSource().getText()
+			}, true);
+		}
+
 	});
 
 });

@@ -62,10 +62,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize"
-		]
+		"supportedThemes": ["sap_hcb", "sap_belize"]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -141,11 +138,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -160,121 +155,106 @@
 					"target": "notFound"
 				}
 			},
-			"routes": [
-				{
-					"name": "RouteView1",
-					"pattern": "",
-					"target": "home1"
-				},
-				{
-					"pattern": "page2/{modelyear}/{modelkey}/{serieskey}/{suffixkey}/{apxkey}/{colorkey}/{vtnn}/{fromdate}/{todate}",
-					"name": "RetailSoldOrderB",
-					"target": "home2",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page3/{Soreq}",
-					"name": "RSOView_ManageSoldOrder",
-					"target": "home3",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page4/{Soreq}",
-					"name": "vehicleSelection_NationalStock",
-					"target": "home4",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page5/{Soreq}",
-					"name": "vehicleSelection_DealerInventory",
-					"target": "home5",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page6/{Soreq}",
-					"name": "RetailSoldOrderCancelRequest",
-					"target": "home6",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page7/{Soreq}",
-					"name": "SoldOrderChangeReason",
-					"target": "home7",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page8/{Soreq}",
-					"name": "ChangeSoldOrderRequest",
-					"target": "home8",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page9",
-					"name": "RSO_ChangeVehicleSelection",
-					"target": "home9",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page10",
-					"name": "RetailSoldOrderSummary",
-					"target": "home10",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page11",
-					"name": "CreateFleetSoldOrder",
-					"target": "home11",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page12",
-					"name": "InventoryVehicleSelection",
-					"target": "home12",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page13/{Soreq}",
-					"name": "FleetSoldOrder_ZoneApproval",
-					"target": "home13",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page14/{Soreq}",
-					"name": "FleetSoldOrder_ProcessedView",
-					"target": "home14",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page15",
-					"name": "FleetSoldOrderSummary",
-					"target": "home15",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page16",
-					"name": "FleetSoldOrderDetails",
-					"target": "home16",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page17",
-					"name": "PriceProtectionDetails_Dealer",
-					"target": "home17",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page18",
-					"name": "PriceProtectionDetails_Zone_PPD",
-					"target": "home18",
-					"clearTarget": "true"
-				},
-				{
-					"pattern": "page19",
-					"name": "NationalFleetSoldOrderView",
-					"target": "home19",
-					"clearTarget": "true"
-				}
-			],
+			"routes": [{
+				"name": "RouteView1",
+				"pattern": "",
+				"target": "home1"
+			}, {
+				"pattern": "page2/{modelyear}/{modelkey}/{serieskey}/{suffixkey}/{apxkey}/{colorkey}/{vtnn}/{fromdate}/{todate}",
+				"name": "RetailSoldOrderB",
+				"target": "home2",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page3/{Soreq}",
+				"name": "RSOView_ManageSoldOrder",
+				"target": "home3",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page4/{Soreq}",
+				"name": "vehicleSelection_NationalStock",
+				"target": "home4",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page5/{Soreq}",
+				"name": "vehicleSelection_DealerInventory",
+				"target": "home5",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page6/{Soreq}",
+				"name": "RetailSoldOrderCancelRequest",
+				"target": "home6",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page7/{Soreq}",
+				"name": "SoldOrderChangeReason",
+				"target": "home7",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page8/{Soreq}",
+				"name": "ChangeSoldOrderRequest",
+				"target": "home8",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page9",
+				"name": "RSO_ChangeVehicleSelection",
+				"target": "home9",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page10",
+				"name": "RetailSoldOrderSummary",
+				"target": "home10",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page11",
+				"name": "CreateFleetSoldOrder",
+				"target": "home11",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page12",
+				"name": "InventoryVehicleSelection",
+				"target": "home12",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page13/{Soreq}",
+				"name": "FleetSoldOrder_ZoneApproval",
+				"target": "home13",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page14/{Soreq}",
+				"name": "FleetSoldOrder_ProcessedView",
+				"target": "home14",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page15",
+				"name": "FleetSoldOrderSummary",
+				"target": "home15",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page16",
+				"name": "FleetSoldOrderDetails",
+				"target": "home16",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page17",
+				"name": "PriceProtectionDetails_Dealer",
+				"target": "home17",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page18",
+				"name": "PriceProtectionDetails_Zone_PPD",
+				"target": "home18",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page19",
+				"name": "NationalFleetSoldOrderView",
+				"target": "home19",
+				"clearTarget": "true"
+			}, {
+				"pattern": "page17",
+				"name": "ToPriceProtectionSummary",
+				"target": "home17",
+				"clearTarget": "true"
+			}],
 			"targets": {
 				"home1": {
 					"targetAggregation": "content",

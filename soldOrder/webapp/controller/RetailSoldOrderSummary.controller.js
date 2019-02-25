@@ -140,8 +140,8 @@ sap.ui.define([
 		_refresh: function (oEvent) {
 			//-----------------Sold Order Status-----------------
 			var afilter = [];
-			for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
-				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getText()));
+			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
 			}
 			var filter_sstatus = new Filter(afilter, false);
 			//---------------------------------------------------------------
@@ -163,6 +163,10 @@ sap.ui.define([
 			// var sPath = evt.getSource().getBindingContext().sPath;
 			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 			// var model = oTable.getModel();
+			
+			
+			
+
 
 			RSOS_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 				Soreq: evt.getSource().getText()
