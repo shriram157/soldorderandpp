@@ -128,7 +128,7 @@
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Input id="License_RSOA" value="{Customer>/DriveLic}" required="true"/>
 							<Label wrapping="true" text=""/>
-							<Button text="{i18n>valCust}" press="onValidateCustomer">
+							<Button text="{i18n>valCust}" press="onValidateCustomer" >
 								<layoutData>
 									<l:GridData span="L4 M4 S12" indent="L4 M4"/>
 								</layoutData>

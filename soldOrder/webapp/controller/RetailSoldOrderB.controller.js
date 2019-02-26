@@ -142,6 +142,8 @@ sap.ui.define([
 			// });
 		},
 		onValidateCustomer: function () {
+				var CustModel = RSOB_controller.getView().getModel('Customer').getData();
+			if (CustModel.Name != '' && CustModel.Phone != '' && CustModel.City != '' && CustModel.Province != '' && CustModel.Address != '') {
 			var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error1");
 			var title = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
 			var icon = new sap.ui.core.Icon({
@@ -156,7 +158,7 @@ sap.ui.define([
 			//---------------------------------------------------
 			//----Customer API-----------------------------------
 			//--------------------------------------------------
-			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
+		
 			var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?phone=" + CustModel.Phone;
 			
 			//lastName=" + CustModel.Name;
@@ -248,6 +250,10 @@ sap.ui.define([
 				contentWidth: "10rem"
 			});
 			RSOB_controller.validateFlagB = true;
+			}else{
+					sap.m.MessageBox.show("Please Fill all Customer Fields", sap.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			}
 		},
 
 		_onSubmit: function () {
