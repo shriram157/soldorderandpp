@@ -245,14 +245,9 @@
 				"target": "home18",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page19",
+				"pattern": "page19/{Soreq}",
 				"name": "NationalFleetSoldOrderView",
 				"target": "home19",
-				"clearTarget": "true"
-			}, {
-				"pattern": "page17",
-				"name": "ToPriceProtectionSummary",
-				"target": "home17",
 				"clearTarget": "true"
 			}],
 			"targets": {

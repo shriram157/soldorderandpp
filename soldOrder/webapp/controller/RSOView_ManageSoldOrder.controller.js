@@ -27,6 +27,16 @@ sap.ui.define([
 			RSO_MSO_controller.getSO(requestid);
 		},
 		getSO: function (req) {
+			//"""""""""""""""""""""""""""""""""""""""
+			//Medhat
+	
+			var ppdFlages = sap.ui.getCore().getModel("ppdFlages");
+			if (ppdFlages) {
+				RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
+				RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setVisible(true);
+			}
+
+			//"""""""""""""""""""""""""""""""""""""""
 			var host = RSO_MSO_controller.host();
 			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?sap-client=200&$format=json";
 			//attachPatternMatched

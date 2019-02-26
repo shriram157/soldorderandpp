@@ -100,7 +100,6 @@ sap.ui.define([
 			var filter_sstatus = new Filter(statFilter, false);
 
 			items.filter(filter_sstatus);
-			debugger;
 
 		},
 		_navToRSO: function (evt) {
@@ -123,9 +122,39 @@ sap.ui.define([
 			// if (n2 > -1) {
 			// 	PPD_DealerCont.getRouter().navTo("RSOView_ManageSoldOrder", {}, true); //page3
 			// }
+
+			var Flags = {
+				openCommentBox: "X"
+			};
+			var oFlagsModel = new sap.ui.model.json.JSONModel(Flags); // created a JSON model       
+			sap.ui.getCore().setModel(oFlagsModel, "ppdFlages");
+
+			var selectedRow = evt.getSource().getBindingContext("mainservices").getObject();
+
 			PPD_DealerCont.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 				Soreq: evt.getSource().getText()
 			}, true);
+
+			if (selectedRow.zzso_type == "SO") {
+				// PPD_DealerCont.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+				// 	Soreq: evt.getSource().getText()
+				// }, true);
+
+				// 	PPD_DealerCont.getOwnerComponent().getRouter().navTo("NationalFleetSoldOrderView", {
+				// 	Soreq: evt.getSource().getText()
+				// }, true);
+
+			} else {
+				// PPD_DealerCont.getOwnerComponent().getRouter().navTo("NationalFleetSoldOrderView", {
+				// 	Soreq: evt.getSource().getText()
+				// }, true);
+
+				// 				PPD_DealerCont.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+				// 	Soreq: evt.getSource().getText()
+				// }, true);
+
+			}
+
 		}
 
 	});

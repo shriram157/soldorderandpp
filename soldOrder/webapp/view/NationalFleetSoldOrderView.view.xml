@@ -6,7 +6,7 @@
 			<Page showHeader="false">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
-					<Label id="NationalFleetSoldOrderViewid" text="{i18n>NationalFleetSoldOrderViewtitle}"
+					<Label id="NationalFleetSoldOrderViewid" text=""
 						class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiTinyMarginBottom fontsize"></Label>
 					<MessageStrip text="{i18n>VehicleInformation}" class=" msgStripCss2 marginCornersLeft marginCornersRight "></MessageStrip >
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"
@@ -15,18 +15,18 @@
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<Label wrapping="true"  text="{i18n>modelYear}"/>
-							<Text text="1980"/>
+							<Text text="{mainservices>Zzmoyr}"/>
 							<Label wrapping="true"  text="{i18n>Series}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{mainservices>Zzseries}"/>
 							<Label wrapping="true"  text="{i18n>Model}"/>
-							<Text text="1980"/>
+							<Text text="{mainservices>Zzmodel}"/>
 							<core:Title text="" class="titleFontSize"/>
 							<Label wrapping="true"  text="{i18n>suffix}"/>
-							<Text text="1980"/>
+							<Text text=""/>
 							<Label wrapping="true"  text="{i18n>APX}"/>
-							<Text text="1980"/>
+							<Text text=""/>
 							<Label wrapping="true"  text="{i18n>Colour}"/>
-							<Text text="red"/>
+							<Text text=""/>
 							<core:Title text="" class="titleFontSize"/>
 							<Label wrapping="true"  text="{i18n>VehTrackNo}"/>
 							<Text text="1980"/>
