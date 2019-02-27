@@ -3,9 +3,8 @@
 
 "use strict";
 
-module.exports = function () {
+module.exports = function (log) {
 	var express = require("express");
-	var log = require("cf-nodejs-logging-support");
 	var request = require("request");
 	var xsenv = require("@sap/xsenv");
 
@@ -142,15 +141,15 @@ module.exports = function () {
 					}
 
 					if (toCustomerAttr1 === "01") {
-            // Toyota dealer
+						// Toyota dealer
 						bpAttributes.Division = "10";
 						bpAttributes.Attribute = "01";
 					} else if (toCustomerAttr1 === "02") {
-            // Lexus dealer
+						// Lexus dealer
 						bpAttributes.Division = "20";
 						bpAttributes.Attribute = "02";
 					} else if (toCustomerAttr1 === "03") {
-            // Dual (Toyota + Lexus) dealer
+						// Dual (Toyota + Lexus) dealer
 						bpAttributes.Division = "Dual";
 						bpAttributes.Attribute = "03";
 					} else if (toCustomerAttr1 === "04") {

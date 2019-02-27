@@ -6,8 +6,7 @@
 var apiProxy = require("./routes/api-proxy");
 var userDetails = require("./routes/user-details");
 
-module.exports = (app, server) => {
-	app.use("/node", apiProxy());
-	
-	app.use("/userDetails", userDetails());
+module.exports = (app, log) => {
+	app.use("/node", apiProxy(log));
+	app.use("/userDetails", userDetails(log));
 };
