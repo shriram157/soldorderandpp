@@ -393,8 +393,8 @@ sap.ui.define([
 
 		onValidateCustomer: function () {
 			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
-			if (CustModel.Name != '' && CustModel.Name && CustModel.Phone != '' && CustModel.Phone && CustModel.City != '' && CustModel.City
-			&& CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address) {
+			if (CustModel.Name != '' && CustModel.Name && CustModel.Phone != '' && CustModel.Phone && CustModel.City != '' && CustModel.City &&
+				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address) {
 
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error1");
 				var title = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
@@ -671,14 +671,17 @@ sap.ui.define([
 			var model = this.getView().byId('model_RSOA').getSelectedKey();
 			if (model && modelyear && suffix) {
 				this.getView().byId('Apx_RSOA').bindItems({
-					path: 'VechileModel>/ZC_PIO_DIO',
+					// path: 'VechileModel>/ZC_PIO_DIO',
+					path: 'mainservices>/ZVMS_CDS_APX',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>zzapx}",
-						text: "{VechileModel>zzapx}"
+						// key: "{VechileModel>zzapx}",
+						key: "{mainservices>zzapx}",
+						// text: "{VechileModel>zzapx}"
+						text: "{mainservices>zzapx}"
 					})
 				});
 				// var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');

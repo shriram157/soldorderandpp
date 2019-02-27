@@ -207,14 +207,14 @@ sap.ui.define([
 				// 	text: "{mode_Model>zzapx}"
 				// }));
 				this.getView().byId('apx_CSOR').bindItems({
-					path: 'VechileModel>/ZC_PIO_DIO',
+					path: 'mainservices>/ZVMS_CDS_APX',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>zzapx}",
-						text: "{VechileModel>zzapx}"
+						key: "{mainservices>zzapx}",
+						text: "{mainservices>zzapx}"
 					})
 				});
 				// var items_binding = this.getView().byId('apx_CSOR').getBinding('items');
