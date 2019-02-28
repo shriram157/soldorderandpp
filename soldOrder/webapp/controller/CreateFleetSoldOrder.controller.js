@@ -324,7 +324,7 @@ sap.ui.define([
 					APX: _Table_Data1[i].APX,
 					ReqEtaFrom: zdateFormat.parse(_Table_Data1[i].ETAFrom),
 					ReqEtaTo: zdateFormat.parse(_Table_Data1[i].ETATo),
-					Zzvtn:_Table_Data1[i].ZZVTN
+					Zzvtn: _Table_Data1[i].ZZVTN
 				});
 			}
 			var length = _Table_Data1.length;
@@ -622,6 +622,18 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
+
+		},
+		handleSearchFan: function (oEvent) {
+
+			var searchString = oEvent.getParameter("value");
+			var filters = [];
+			if (searchString && searchString.length > 0) {
+				// filters = new sap.ui.model.Filter([new sap.ui.model.Filter("BuSort2", sap.ui.model.FilterOperator.Contains, searchString),
+				// 	new sap.ui.model.Filter("Partner", sap.ui.model.FilterOperator.Contains, searchString)
+				// ], false);
+			}
+			oEvent.getSource().getBinding("items").filter(new sap.ui.model.Filter("Partner", sap.ui.model.FilterOperator.Contains, searchString));
 
 		}
 
