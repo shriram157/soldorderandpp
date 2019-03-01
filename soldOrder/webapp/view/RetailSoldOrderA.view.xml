@@ -63,14 +63,16 @@
 								<items>
 									<HBox>
 										<items>
+											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
 											<DatePicker id="etaFrom_RSOA" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="MMMM d, y" placeholder="dd/MMM/yy" change="_handleToDateChange"></DatePicker>
-											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
+											
 										</items>
 									</HBox>
 									<HBox>
 										<items>
+											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
 											<DatePicker id="etaTo_RSOA" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="MMMM d, y" placeholder="dd/MMM/yy"></DatePicker>
-											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
+											
 										</items>
 									</HBox>
 								</items>
@@ -90,7 +92,7 @@
 							<Label wrapping="true" text="{i18n>salesManName}"/>
 							<Input id="salesMan_RSOA" value="{address>/ZIPCode}"/>
 							<Label wrapping="true" id="tradeInModelYr_RSOA" text="{i18n>tradeInModelYr}"/>
-							<Input id="trademodelYear_RSOAid"  showValueHelp="true" valueHelpRequest="select_year"></Input>
+							<Input id="trademodelYear_RSOAid"  showValueHelp="true" valueHelpRequest="select_year1"></Input>
 							<!--<ComboBox id="trademodelYear_RSOAid" items="{ path: 'mode_Model>/'}" required="true">-->
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
@@ -136,7 +138,7 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea id="Comment" value="{address>/Name}"/>
+							<TextArea id="Comment" value="{address>/Name}" height="15rem"/>
 						</f:content>
 					</f:SimpleForm>
 				</content>

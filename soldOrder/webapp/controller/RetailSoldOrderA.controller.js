@@ -425,7 +425,7 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						if (data.customers[0]) {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
-							Zcustomer_No = Zcustomer_No.toString(); 
+							Zcustomer_No = Zcustomer_No.toString();
 						}
 					},
 					error: function (request, errorText, errorCode) {
@@ -613,7 +613,7 @@ sap.ui.define([
 			this._oPopover.close();
 		},
 		initailyear: function (oEvent) {
-			
+
 			oEvent.getSource().getContent()[0].setDate(new Date());
 		},
 		onpreviousyears: function (oEvent) {
@@ -621,6 +621,26 @@ sap.ui.define([
 		},
 		onnextyears: function (oEvent) {
 			this._oPopover.getContent()[0].nextPage();
+		},
+		select_year1: function (Oevent) {
+
+			if (!this._oPopover1) {
+				this._oPopover1 = sap.ui.xmlfragment("YearPopup2", "toyota.ca.SoldOrder.view.fragments.YearPopup2", this);
+				this.getView().addDependent(this._oPopover1);
+			}
+			this._oPopover1.openBy(Oevent.getSource());
+			input_ref = Oevent.getSource();
+
+		},
+		handleSelectYearPress1: function (Oevent) {
+			input_ref.setValue(Oevent.getSource().getYear()); //this._oPopover.getContent()[0].getYear()
+			// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+			//  items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
+			this._oPopover1.close();
+		},
+		initailyear1: function (oEvent) {
+
+			oEvent.getSource().getContent()[0].setDate(new Date());
 		},
 		//---------------------------------------
 		//--------Handling Filter---------------

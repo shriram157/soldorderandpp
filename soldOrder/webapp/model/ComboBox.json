@@ -80,8 +80,8 @@
 		"text": "Yukon Territory"
 	}],
 	"Trademake": [{
-		"key": "Accura",
-		"text": "Accura"
+		"key": "Acura",
+		"text": "Acura"
 	}, {
 		"key": "Nissan",
 		"text": "Nissan"
@@ -92,8 +92,8 @@
 		"key": "Mazda",
 		"text": "Mazda"
 	}, {
-		"key": "Mistbushi",
-		"text": "Mistbushi"
+		"key": "Mitsubishi",
+		"text": "Mitsubishi"
 	},{
 		"key": "Subaru",
 		"text": "Subaru"
@@ -133,7 +133,43 @@
 	},{
 		"key": "Maserati",
 		"text": "Maserati"
+	},
+	{
+		"key": "Honda",
+		"text": "Honda"
+	},
+	{
+		"key": "GM",
+		"text": "GM"
+	},
+	{
+		"key": "Ford",
+		"text": "Ford"
+	},
+	{
+		"key": "General Motors",
+		"text": "General Motors"
+	},
+	{
+		"key": "Lincoln",
+		"text": "Lincoln"
+	},
+	{
+		"key": "Ford Canada",
+		"text": "Ford Canada"
+	},
+	{
+		"key": "FCA Canada",
+		"text": "FCA Canada"
 	},{
+		"key": "Cadillac",
+		"text": "Cadillac"
+	},
+	{
+		"key": "Jaguar",
+		"text": "Jaguar"
+	}
+	,{
 		"key": "Porsche",
 		"text": "Porsche"
 	},{
