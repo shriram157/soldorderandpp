@@ -178,6 +178,7 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					if (data.customers[0]) {
 						Zcustomer_No = data.customers[0].partyID;//customerNumber;
+						Zcustomer_No = Zcustomer_No.toString(); 
 					}
 				},
 				error: function (request, errorText, errorCode) {

@@ -425,6 +425,7 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						if (data.customers[0]) {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
+							Zcustomer_No = Zcustomer_No.toString(); 
 						}
 					},
 					error: function (request, errorText, errorCode) {
@@ -612,6 +613,7 @@ sap.ui.define([
 			this._oPopover.close();
 		},
 		initailyear: function (oEvent) {
+			
 			oEvent.getSource().getContent()[0].setDate(new Date());
 		},
 		onpreviousyears: function (oEvent) {
