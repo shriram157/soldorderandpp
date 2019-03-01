@@ -55,8 +55,8 @@ sap.ui.define([
 							for (var i = 0; i < items2.getLength(); i++) {
 								vehicle_no2 = vehicle_no2 + parseInt(items2.getContexts()[i].getProperty('FltSOQty'), 10);
 							}
-                            vehicle_no1 = vehicle_no1 + vehicle_no2; 
-							FSO_PVController.getView().byId('vechilecounter').setText(vehicle_no1.toString());
+                            vehicle_no2 = vehicle_no1 + vehicle_no2; 
+							FSO_PVController.getView().byId('vechilecounter').setText(vehicle_no2.toString());
 
 						});
 						items2.filter([new Filter("WithVtn", FilterOperator.EQ, '')]);
