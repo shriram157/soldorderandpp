@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator"
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-	var FSO_PVController, zrequest, vehicle_no;
+	var FSO_PVController, zrequest, vehicle_no1,vehicle_no2;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.FleetSoldOrder_ProcessedView", {
 		formatter: formatter,
 
@@ -38,21 +38,25 @@ sap.ui.define([
 				model: "mainservices",
 				events: {
 					change: function (oEvent) {
-						vehicle_no = 0;
+						FSO_PVController.getView().getElementBinding('mainservices').refresh();
+						vehicle_no1 = 0;
+						vehicle_no2 = 0;
 						var table1 = FSO_PVController.getView().byId('table1');
 						var items1 = table1.getBinding('rows');
 						items1.attachChange(function (sReason) {
-							vehicle_no = vehicle_no + items1.getLength();
+							vehicle_no1 = 0;
+							vehicle_no1 = vehicle_no1 + items1.getLength();
 						});
 						items1.filter([new Filter("WithVtn", FilterOperator.EQ, 'X')]);
 						var table2 = FSO_PVController.getView().byId('table2');
 						var items2 = table2.getBinding('rows');
 						items2.attachChange(function (sReason) {
+							vehicle_no2 = 0;
 							for (var i = 0; i < items2.getLength(); i++) {
-								vehicle_no = vehicle_no + parseInt(items2.getContexts()[i].getProperty('FltSOQty'), 10);
+								vehicle_no2 = vehicle_no2 + parseInt(items2.getContexts()[i].getProperty('FltSOQty'), 10);
 							}
-
-							FSO_PVController.getView().byId('vechilecounter').setText(vehicle_no.toString());
+                            vehicle_no1 = vehicle_no1 + vehicle_no2; 
+							FSO_PVController.getView().byId('vechilecounter').setText(vehicle_no1.toString());
 
 						});
 						items2.filter([new Filter("WithVtn", FilterOperator.EQ, '')]);

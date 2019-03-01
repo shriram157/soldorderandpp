@@ -8,12 +8,12 @@
 	afterOpen="initailyear"
 			initialFocus="Ok">
 	<beginButton>
-	<Button icon="sap-icon://navigation-left-arrow" press="onpreviousyears"></Button>	
+	<Button icon="sap-icon://navigation-left-arrow" press="onpreviousyears" visible="false"></Button>	
 	</beginButton>
 	<endButton>
-			<Button icon="sap-icon://navigation-right-arrow" press="onnextyears"></Button>	
+			<Button icon="sap-icon://navigation-right-arrow" press="onnextyears" visible="false"></Button>	
 	</endButton>
 	<!--<Input id='control_id' value='' visible='false'></Input>-->
-	 <Y:YearPicker  value=""  select="handleSelectYearPress" ></Y:YearPicker>
+	 <Y:YearPicker  value=""  select="handleSelectYearPress" years='3' ></Y:YearPicker>
 	</Popover>
 </core:FragmentDefinition>

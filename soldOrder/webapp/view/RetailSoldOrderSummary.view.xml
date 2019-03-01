@@ -89,7 +89,7 @@
 										<t:template>
 											<!--<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"-->
 											<!--	wrapping="true"/>-->
-											<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{mainservices>ZzdealerCode}"
+											<Text visible="true" id="tbl_lbl_dealer_RSOS" text="{mainservices>ZzdealerCode}"
 												wrapping="true"/>
 										</t:template>
 									</t:Column>

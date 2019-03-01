@@ -9,6 +9,11 @@ sap.ui.define([
 		onInit: function () {
 			AppController = this;
 			AppController.ResetFlag();
+			//========================================================
+			//======Get the Dealer and user type===============
+			//=======================================================
+			// this.getDealer();
+			
 			AppController.getView().addEventDelegate({
 				onAfterRendering: function () {
 					var m = AppController.getOwnerComponent().getModel();

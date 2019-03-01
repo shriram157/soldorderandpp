@@ -56,8 +56,8 @@ sap.ui.define([
 								// data: soapMessage,
 								contentType: "text/xml; charset=\"utf-8\"",
 								success: function (data, textStatus, jqXHR) {
-									if (data.customers[0]) {
-										zcustomerModel.setData(data.customers[0]);
+									if (data.customer) {
+										zcustomerModel.setData(data.customer);
 									}
 								},
 								error: function (request, errorText, errorCode) {}

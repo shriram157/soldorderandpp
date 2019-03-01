@@ -633,7 +633,7 @@ sap.ui.define([
 				// 	new sap.ui.model.Filter("Partner", sap.ui.model.FilterOperator.Contains, searchString)
 				// ], false);
 			}
-			oEvent.getSource().getBinding("items").filter(new sap.ui.model.Filter("Partner", sap.ui.model.FilterOperator.Contains, searchString));
+			oEvent.getSource().getBinding("items").filter(new sap.ui.model.Filter("BuSort2", sap.ui.model.FilterOperator.Contains, searchString));
 
 		}
 

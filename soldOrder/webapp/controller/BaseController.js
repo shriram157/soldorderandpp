@@ -21,6 +21,7 @@ sap.ui.define([
 				var name = evt.getParameter('name');
 				jQuery.sap.log.info("Route name is : " + name);
 			});
+			
 		},
 
 		host: function () {
@@ -61,8 +62,7 @@ sap.ui.define([
 			// } 
 			else if (oGetText === this.oBundle.getText("menu5")) {
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
-			} 
-			else if (oGetText === this.oBundle.getText("menu9")) {
+			} else if (oGetText === this.oBundle.getText("menu9")) {
 				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer"); //page 16
 			}
 			// else if (oGetText === this.oBundle.getText("menu6")) {
@@ -201,7 +201,106 @@ sap.ui.define([
 				basCont.getRouter().navTo("RetailSoldOrderA", {}, true); // has the value true and makes sure that the
 				//	hash is replaced /*no history
 			}
-		}
+		},
+		getDealer: function () {
+			var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			var sPrefix;
+			if (sLocation_conf == 0) {
+			sPrefix = "/soldorder_node"; //ecpSales_node_secured
+				this.attributeUrl = "/user-details/attributesforlocaltesting";
+			} else {
+				sPrefix = "";
+				this.attributeUrl = "/user-details/attributes";
+			}
+
+			//======================================================================================================================//			
+			//  on init method,  get the token attributes and authentication details to the UI from node layer.  - begin
+			//======================================================================================================================//		
+			//  get the Scopes to the UI 
+			//this.sPrefix ="";
+			var that = this;
+			$.ajax({
+				url: sPrefix + "/user-details/currentScopesForUser",
+				type: "GET",
+				dataType: "json",
+				success: function (oData) {
+					// var userScopes = oData;
+					// userScopes.forEach(function (data) {
+
+					var userType = oData.loggedUserType[0];
+					switch (userType) {
+					case "Dealer_Parts_Admin":
+						// console.log("Dealer Parts");
+
+						break;
+					case "Dealer_Services_Admin":
+
+						// console.log("Dealer_Services_Admin");
+						break;
+
+					case "Dealer_User":
+						// console.log("Dealer_User");
+
+						break;
+					case "TCI_Admin":
+						// console.log("TCI_Admin");
+						break;
+					case "TCI_User":
+						// console.log("TCI_User");
+						break;
+
+					case "Zone_User":
+						// console.log("Zone_User");
+						break;
+					default:
+						// raise a message, because this should not be allowed. 
+
+					}
+				}
+
+				// if (data === "ecpSales!t1188.Manage_ECP_Application") {
+				// 	that.getView().getModel("oDateModel").setProperty("/oCreateButton", true);
+				// 	that.getModel("LocalDataModel").setProperty("/newAppLink", true);
+				// } 
+
+			});
+
+			// get the attributes and BP Details  Copyied from Minkashi 
+			$.ajax({
+				url: sPrefix + this.attributeUrl,
+				type: "GET",
+				dataType: "json",
+
+				success: function (oData) {
+					var BpDealer = [];
+					var userAttributes = [];
+
+					$.each(oData.attributes, function (i, item) {
+						var BpLength = item.BusinessPartner.length;
+
+						BpDealer.push({
+							"BusinessPartnerKey": item.BusinessPartnerKey,
+							"BusinessPartner": item.BusinessPartner, //.substring(5, BpLength),
+							"BusinessPartnerName": item.BusinessPartnerName, //item.OrganizationBPName1 //item.BusinessPartnerFullName
+							"Division": item.Division,
+							"BusinessPartnerType": item.BusinessPartnerType,
+							"searchTermReceivedDealerName": item.SearchTerm2
+						});
+
+					});
+					that.getModel().setProperty("/BpDealerModel", BpDealer);
+
+				}.bind(this),
+				error: function (response) {
+					sap.ui.core.BusyIndicator.hide();
+				}
+			}).done(function (data, textStatus, jqXHR) {
+
+				that.getModel().setProperty("/BPDealerDetails", data.attributes[0]);
+			});
+
+		},
 
 	});
 });

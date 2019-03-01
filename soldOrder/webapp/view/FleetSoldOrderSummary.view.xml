@@ -71,11 +71,11 @@
 											<Link text="{mainservices>ZsoFltReqNo}" press="_navToSoldOrder"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false" sortProperty="/Products/0/Name">
-										<Label id="tbl_lbl_dealer_FSOS" visible="false" text="{i18n>dealer}" class="TableLabel"/>
+									<t:Column width="11.11%" resizable="false" >
+										<Label id="tbl_lbl_dealer_FSOS" visible="true" text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
 											<!--,{path:'/Products/0/Category'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}-->
-											<Text id="tbl_val_dealer_FSOS" visible="false" text="{path:'mainservices>ZzdealerCode'}"/>
+											<Text id="tbl_val_dealer_FSOS" visible="true" text="{path:'mainservices>ZzdealerCode'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
@@ -111,7 +111,7 @@
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>zoneAppNumber}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>ZpriceApproval}"/>
+											<Text text="{mainservices>ZzoneApproval}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
