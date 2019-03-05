@@ -119,10 +119,10 @@ sap.ui.define([
 					},
 					dataReceived: function (oData) {
 						//filteration
-						if (oData.getParameters().data.Zzmodel) {
-							var model_CSOR_items = RSO_MSO_controller.getView().byId("model_CSOR").getBinding("items");
-							model_CSOR_items.filter([new Filter("Model", FilterOperator.EQ, oData.getParameters().data.Zzmodel)]);
-						}
+						// if (oData.getParameters().data.Zzmodel) {
+						// 	var model_CSOR_items = RSO_MSO_controller.getView().byId("model_CSOR").getBinding("items");
+						// 	model_CSOR_items.filter([new Filter("model", FilterOperator.EQ, oData.getParameters().data.Zzmodel)]);
+						// }
 					}
 				}
 			});
