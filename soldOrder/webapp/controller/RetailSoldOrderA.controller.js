@@ -649,14 +649,18 @@ sap.ui.define([
 
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
+			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			var series = oEvent.getSource().getSelectedKey();
-			if (series) {
+			if (series && modelyear) {
 				this.getView().byId('model_RSOA').bindItems({
-					path: "VechileModel>/zc_model",
-					filters: new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series),
+					// path: "VechileModel>/zc_model",
+					path: "mainservices>/ZVMS_CDS_Model",
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>Model}",
-						text: "{parts: [{path:'VechileModel>Model'},{path:'VechileModel>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+						key: "{mainservices>model}",
+						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 					})
 				});
 				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');

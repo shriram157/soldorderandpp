@@ -23,8 +23,8 @@
 							<!--<Label wrapping="true" text="{i18n>colour}"/>-->
 							<!--<Text wrapping="true"-->
 							<!--	text="{parts: [{path:'mainservices>Zzextcol'},{path:'mainservices>Zzextcol'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
-							<ComboBox id="model_CSOR" items="{VechileModel>/zc_model}" editable="false" selectedKey="{mainservices>Zzmodel}">
-								<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel&gt;ModelDescriptionEN}"/>
+							<ComboBox id="model_CSOR" items="{mainservices>/ZVMS_CDS_Model}" editable="false" selectedKey="{mainservices>Zzmodel}">
+								<core:Item key="{mainservices>model}" text="{mainservices>model}-{mainservices>model_desc_en}"/>
 							</ComboBox>
 							<Label text="{i18n>Suffix}"/>
 							<ComboBox id="suffix_CSOR" items="{VechileModel>/zc_configuration}" editable="false" selectedKey="{mainservices>Zzsuffix}">

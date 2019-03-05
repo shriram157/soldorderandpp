@@ -148,18 +148,21 @@ sap.ui.define([
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
 
-			if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')) {
+			if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')&&this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
+				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				// this.getView().byId('model_CSOR').bindItems("oModel3>/", new sap.ui.core.ListItem({
 				// 	key: "{oModel3>Model}",
 				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 				// }));
 				this.getView().byId('model_CSOR').bindItems({
-					path: "VechileModel>/zc_model",
-					filters: new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series),
+					path: "mainservices>/ZVMS_CDS_Model",
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>Model}",
-						text: "{parts: [{path:'VechileModel>Model'},{path:'VechileModel>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+						key: "{mainservices>model}",
+						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 					})
 				});
 				// var items_binding = this.getView().byId('model_CSOR').getBinding('items');
@@ -229,15 +232,17 @@ sap.ui.define([
 				// 	key: "{oModel2>ExteriorColorCode}",
 				// 	text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 				// }));
-				this.getView().byId('colour_CSOR').bindItems({path:'VechileModel>/zc_exterior_trim',
-				filters:new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-					new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
-					new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-				], true),
-				template:new sap.ui.core.ListItem({
-					key: "{VechileModel>ExteriorColorCode}",
-					text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
-				})});
+				this.getView().byId('colour_CSOR').bindItems({
+					path: 'VechileModel>/zc_exterior_trim',
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+						new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
+						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
+					template: new sap.ui.core.ListItem({
+						key: "{VechileModel>ExteriorColorCode}",
+						text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+					})
+				});
 				// var items_binding = this.getView().byId('colour_CSOR').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),

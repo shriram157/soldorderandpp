@@ -68,7 +68,7 @@ sap.ui.define([
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel')) {
 							var model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel');
 							var model_CSOR_items = RSO_MSO_controller.getView().byId("model_CSOR").getBinding("items");
-							model_CSOR_items.filter([new Filter("Model", FilterOperator.EQ, model)]);
+							model_CSOR_items.filter([new Filter("model", FilterOperator.EQ, model)]);
 						}
 						// Suffix
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix')) {
