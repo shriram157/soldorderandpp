@@ -737,6 +737,17 @@ sap.ui.define([
 				// ], true));
 
 			}
+		},
+		stype_change: function (Oevent) {
+			if (Oevent.getParameters().selectedItem.getKey() == "1") {
+				RSOA_controller.getView().byId("tcciNo_RSOA").setValue("N/A");
+				RSOA_controller.getView().byId("tcciNo_RSOA").setEnabled(false);
+				// tcciNo_RSOA
+			} else {
+				RSOA_controller.getView().byId("tcciNo_RSOA").setValue("");
+				RSOA_controller.getView().byId("tcciNo_RSOA").setEnabled(true);
+			}
+
 		}
 
 	});

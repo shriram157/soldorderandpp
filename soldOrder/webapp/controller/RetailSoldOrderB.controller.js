@@ -470,6 +470,17 @@ sap.ui.define([
 
 			oEvent.getSource().getContent()[0].setDate(new Date());
 		},
+			stype_change: function (Oevent) {
+			if (Oevent.getParameters().selectedItem.getKey() == "1") {
+				RSOB_controller.getView().byId("tcciNo_RSOB").setValue("N/A");
+				RSOB_controller.getView().byId("tcciNo_RSOB").setEnabled(false);
+				// tcciNo_RSOA
+			} else {
+				RSOB_controller.getView().byId("tcciNo_RSOB").setValue("");
+				RSOB_controller.getView().byId("tcciNo_RSOB").setEnabled(true);
+			}
+
+		}
 
 	});
 
