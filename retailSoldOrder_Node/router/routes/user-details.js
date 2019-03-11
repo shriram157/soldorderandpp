@@ -242,7 +242,7 @@ module.exports = function (appContext) {
 				viewFleetSoldOrder = true;
 			} else if (scopes[i] === xsAppName + ".View_Price_Protection") {
 				viewPriceProtection = true;
-			} else if (scopes[i] === xsAppName + ".viewRetailSoldOrder") {
+			} else if (scopes[i] === xsAppName + ".View_Retail_Sold_Order") {
 				viewRetailSoldOrder = true;
 			} else {
 				tracer.warning("Unrecognized scope: %s", scopes[i]);
