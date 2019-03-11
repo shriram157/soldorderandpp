@@ -101,9 +101,9 @@ sap.ui.define([
 				dialog.close();
 			},*/
 		_navToRSO: function (evt) {
-			FSOD_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-				Soreq: evt.getSource().getText()
-			}, true);
+			// FSOD_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+			// 	Soreq: evt.getSource().getText()
+			// }, true);
 		},
 		_refresh: function (oEvent) {
 			//-----------------Sold Order Status-----------------
