@@ -52,10 +52,12 @@ module.exports = function (appContext) {
 		}
 
 		var resBody = {
+			"attributes": [],
 			"userProfile": userProfile,
 			"samlAttributes": userAttributes,
 			legacyDealer: "",
-			legacyDealerName: ""
+			legacyDealerName: "",
+			"sales": []
 		};
 
 		var userType = userAttributes.UserType[0];
@@ -92,14 +94,15 @@ module.exports = function (appContext) {
 			}
 
 			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer/to_CustomerSalesArea&$filter=BusinessPartnerType eq 'Z001' and zstatus ne 'X'" +
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004')" +
 				"&$orderby=BusinessPartner asc";
 		}
 
 		// National user (TCI user)
 		else {
 			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer&$filter=BusinessPartnerType eq 'Z001' and zstatus ne 'X'&$orderby=BusinessPartner asc";
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004')" +
+				"&$orderby=BusinessPartner asc";
 		}
 
 		tracer.debug("BP URL: %s", bpReqUrl);
@@ -133,8 +136,38 @@ module.exports = function (appContext) {
 						}
 						for (var i = 0; i < customerSalesArea.results.length; i++) {
 							if (customerSalesArea.results[i].SalesOffice === bpZone) {
+								if ((customerSalesArea.results[i].SalesOrganization == "6000" && customerSalesArea.results[i].DistributionChannel == "10")) {
+									if (customerSalesArea.results[i].Customer !== "2400500000") {
+										resBody.sales.push(customerSalesArea.results[i]); //to fetch sales data
+									}
+								}
 								return true;
 							}
+						}
+						return false;
+					});
+				}
+				if (userType === "National") {
+					bpResults = bpResults.filter(o => {
+						if (!o.to_Customer) {
+							return false;
+						}
+						var customerSalesArea = o.to_Customer.to_CustomerSalesArea;
+						if (!customerSalesArea) {
+							return false;
+						}
+						for (var i = 0; i < customerSalesArea.results.length; i++) {
+							if (customerSalesArea.results[i].SalesOffice == "1000" || customerSalesArea.results[i].SalesOffice == "2000" ||
+								customerSalesArea.results[i].SalesOffice == "3000" || customerSalesArea.results[i].SalesOffice == "4000" ||
+								customerSalesArea.results[i].SalesOffice == "5000" || customerSalesArea.results[i].SalesOffice == "7000" ||
+								customerSalesArea.results[i].SalesOffice == "9000") {
+								// if (bpZone) {
+								if ((customerSalesArea.results[i].SalesOrganization == "6000") && (customerSalesArea.results[i].DistributionChannel == "10")) {
+									resBody.sales.push(customerSalesArea.results[i]); //to fetch sales data
+								}
+							}
+							return true;
+							// }
 						}
 						return false;
 					});
@@ -153,30 +186,6 @@ module.exports = function (appContext) {
 						toCustomerAttr1 = bpResults[i].to_Customer.Attribute1;
 					} catch (e) {
 						req.logMessage("info", "The Data is sent without Attribute value for the BP", bpResults[i].BusinessPartner);
-					}
-
-					if (toCustomerAttr1 === "01") {
-						// Toyota dealer
-						bpAttributes.Division = "10";
-						bpAttributes.Attribute = "01";
-					} else if (toCustomerAttr1 === "02") {
-						// Lexus dealer
-						bpAttributes.Division = "20";
-						bpAttributes.Attribute = "02";
-					} else if (toCustomerAttr1 === "03") {
-						// Dual (Toyota + Lexus) dealer
-						bpAttributes.Division = "Dual";
-						bpAttributes.Attribute = "03";
-					} else if (toCustomerAttr1 === "04") {
-						bpAttributes.Division = "10";
-						bpAttributes.Attribute = "04";
-					} else if (toCustomerAttr1 === "05") {
-						bpAttributes.Division = "Dual";
-						bpAttributes.Attribute = "05";
-					} else {
-						// Set as Toyota dealer as fallback
-						bpAttributes.Division = "10";
-						bpAttributes.Attribute = "01";
 					}
 
 					if (userType === "Dealer") {
