@@ -222,6 +222,7 @@ module.exports = function (appContext) {
 
 		var role = "Unknown";
 		var approveFleetSoldOrder = false;
+		var approvePriceProtection = false;
 		var manageFleetSoldOrder = false;
 		var manageRetailSoldOrder = false;
 		var viewFleetSoldOrder = false;
@@ -231,6 +232,8 @@ module.exports = function (appContext) {
 		for (var i = 0; i < scopes.length; i++) {
 			if (scopes[i] === xsAppName + ".Approve_Fleet_Sold_Order") {
 				approveFleetSoldOrder = true;
+			} else if (scopes[i] === xsAppName + ".Approve_Price_Protection") {
+				approvePriceProtection = true;
 			} else if (scopes[i] === xsAppName + ".Manage_Fleet_Sold_Order") {
 				manageFleetSoldOrder = true;
 			} else if (scopes[i] === xsAppName + ".Manage_Retail_Sold_Order") {
@@ -247,6 +250,7 @@ module.exports = function (appContext) {
 		}
 
 		var scopeLogMessage = "approveFleetSoldOrder: " + approveFleetSoldOrder + "\n";
+		scopeLogMessage += "approvePriceProtection: " + approvePriceProtection + "\n";
 		scopeLogMessage += "manageFleetSoldOrder: " + manageFleetSoldOrder + "\n";
 		scopeLogMessage += "manageRetailSoldOrder: " + manageRetailSoldOrder + "\n";
 		scopeLogMessage += "viewFleetSoldOrder: " + viewFleetSoldOrder + "\n";
@@ -254,12 +258,15 @@ module.exports = function (appContext) {
 		scopeLogMessage += "viewRetailSoldOrder: " + viewRetailSoldOrder + "\n";
 		tracer.debug(scopeLogMessage);
 
-		if (!approveFleetSoldOrder && manageFleetSoldOrder && manageRetailSoldOrder && !viewFleetSoldOrder && viewPriceProtection &&
+		if (!approveFleetSoldOrder && !approvePriceProtection && manageFleetSoldOrder && manageRetailSoldOrder && !viewFleetSoldOrder && viewPriceProtection &&
 			!viewRetailSoldOrder) {
 			role = "Dealer_User";
-		} else if (approveFleetSoldOrder && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder && viewPriceProtection &&
+		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder && viewPriceProtection &&
 			viewRetailSoldOrder) {
-			role = userAttributes.Zone ? "TCI_Zone_User" : "TCI_User";
+			role = "TCI_User";
+		} else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder && viewPriceProtection &&
+			viewRetailSoldOrder) {
+			role = "TCI_Zone_User";
 		}
 		tracer.debug("role: %s", role);
 

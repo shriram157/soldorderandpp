@@ -6,6 +6,9 @@
 		"name": "$XSAPPNAME.Approve_Fleet_Sold_Order",
 		"description": "Approve fleet sold order"
 	}, {
+		"name": "$XSAPPNAME.Approve_Price_Protection",
+		"description": "Approve price protection"
+	}, {
 		"name": "$XSAPPNAME.Manage_Fleet_Sold_Order",
 		"description": "Manage fleet sold order"
 	}, {
@@ -56,6 +59,7 @@
 		"description": "TCI User",
 		"scope-references": [
 			"$XSAPPNAME.Approve_Fleet_Sold_Order",
+			"$XSAPPNAME.Approve_Price_Protection",
 			"$XSAPPNAME.View_Fleet_Sold_Order",
 			"$XSAPPNAME.View_Retail_Sold_Order",
 			"$XSAPPNAME.View_Price_Protection"
