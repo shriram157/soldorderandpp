@@ -36,11 +36,23 @@ module.exports = function (appContext) {
 	router.get("/attributes", (req, res) => {
 		var logger = req.loggingContext.getLogger("/Application/Route/UserDetails/Attributes");
 		var tracer = req.loggingContext.getTracer(__filename);
+		var userProfile = req.user;
 		var userAttributes = req.authInfo.userAttributes;
+		tracer.debug("User profile from JWT: %s", JSON.stringify(userProfile));
 		tracer.debug("User attributes from JWT: %s", JSON.stringify(userAttributes));
 
+		// If there is no user type, it is most probably a call from Neo, in which case we can fake the data as a dealer with code 42120
+		if (!userAttributes.UserType) {
+			userAttributes = {
+				DealerCode: ["42120"],
+				Language: ["English"],
+				UserType: ["National"]
+			};
+			tracer.debug("JWT likely refers to a development user from Neo, switch to mock user attributes: %s", JSON.stringify(userAttributes));
+		}
+
 		var resBody = {
-			"attributes": [],
+			"userProfile": userProfile,
 			"samlAttributes": userAttributes,
 			legacyDealer: "",
 			legacyDealerName: ""
