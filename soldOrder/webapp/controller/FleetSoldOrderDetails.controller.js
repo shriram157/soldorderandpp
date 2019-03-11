@@ -100,8 +100,10 @@ sap.ui.define([
 				var dialog = FSOD_controller.getView().byId("VTNDialog_FSOD");
 				dialog.close();
 			},*/
-		_navToRSO: function () {
-			FSOD_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {}, true);
+		_navToRSO: function (evt) {
+			FSOD_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+				Soreq: evt.getSource().getText()
+			}, true);
 		},
 		_refresh: function (oEvent) {
 			//-----------------Sold Order Status-----------------

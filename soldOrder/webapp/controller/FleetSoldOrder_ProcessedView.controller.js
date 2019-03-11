@@ -86,9 +86,10 @@ sap.ui.define([
 		},
 		_navToSoldOrder: function (evt) {
 			var sPath = evt.getSource().getBindingContext().sPath;
-			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+		//	var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 			FSO_PVController.getView().byId("tble_FSO_PV").getModel().getData();
-			FSO_PVController.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {}, true); //page3
+			FSO_PVController.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+				Soreq: evt.getSource().getText() }, true);
 			// console.log(FSO_PVController.getView().byId("tble_FSO_PV").getModel().getData().ProductCollection[oIndex]);
 			// console.log(FSO_PVController.getView().byId("tble_FSO_PV").getModel().getData().ProductCollection[oIndex].Category);
 		},

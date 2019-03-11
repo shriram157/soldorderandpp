@@ -30,11 +30,11 @@
 		<!--		<OverflowToolbarLayoutData priority="High"/>-->
 		<!--	</layoutData>-->
 		<!--</Button>-->
-		<Button text="{i18n>menu7}" id="idmenu7" press="handleBaseLinkPress" type="Transparent">
-			<layoutData>
-				<OverflowToolbarLayoutData priority="High"/>
-			</layoutData>
-		</Button>
+		<!--<Button text="{i18n>menu7}" id="idmenu7" press="handleBaseLinkPress" type="Transparent">-->
+		<!--	<layoutData>-->
+		<!--		<OverflowToolbarLayoutData priority="High"/>-->
+		<!--	</layoutData>-->
+		<!--</Button>-->
 		<!--<Button text="{i18n>menu8}" id="idmenu8" press="handleBaseLinkPress" type="Transparent">-->
 		<!--	<layoutData>-->
 		<!--		<OverflowToolbarLayoutData priority="High"/>-->

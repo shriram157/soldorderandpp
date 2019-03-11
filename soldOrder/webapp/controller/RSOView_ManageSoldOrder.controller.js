@@ -249,7 +249,8 @@ sap.ui.define([
 								title: "ERROR",
 								actions: [sap.m.MessageBox.Action.OK],
 								onClose: function (oAction) {
-									RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+									RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
+									
 								}
 							});
 
@@ -260,7 +261,7 @@ sap.ui.define([
 								title: "SUCCESS",
 								actions: [sap.m.MessageBox.Action.OK],
 								onClose: function (oAction) {
-									RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+									RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
 								}
 							});
 
@@ -300,7 +301,7 @@ sap.ui.define([
 							title: "ERROR",
 							actions: [sap.m.MessageBox.Action.OK],
 							onClose: function (oAction) {
-								RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+								RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
 							}
 						});
 
@@ -312,7 +313,7 @@ sap.ui.define([
 							title: "SUCCESS",
 							actions: [sap.m.MessageBox.Action.OK],
 							onClose: function (oAction) {
-								RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+								RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
 							}
 						});
 
