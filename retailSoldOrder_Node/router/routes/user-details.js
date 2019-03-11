@@ -245,7 +245,7 @@ module.exports = function (appContext) {
 			} else if (scopes[i] === xsAppName + ".viewRetailSoldOrder") {
 				viewRetailSoldOrder = true;
 			} else {
-				req.logMessage("warn", "Unrecognized scope: %s", scopes[i]);
+				tracer.warning("Unrecognized scope: %s", scopes[i]);
 			}
 		}
 
