@@ -9,6 +9,7 @@ sap.ui.define([
 	"use strict";
 	var RSO_MSO_controller;
 	var zrequest;
+	var ppdFlages;
 	var zcustomerModel;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder", {
 		formatter: formatter,
@@ -30,7 +31,7 @@ sap.ui.define([
 			//"""""""""""""""""""""""""""""""""""""""
 			//Medhat
 
-			var ppdFlages = sap.ui.getCore().getModel("ppdFlages");
+			ppdFlages = sap.ui.getCore().getModel("ppdFlages");
 			if (ppdFlages) {
 				RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
 				RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setVisible(true);
@@ -64,7 +65,7 @@ sap.ui.define([
 							color: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'),
 							series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')
 						}), 'Vehicle_Selection');
-							//Filter Data Sold Order
+						//Filter Data Sold Order
 						RSO_MSO_controller.series_selected();
 						RSO_MSO_controller.model_selected();
 						RSO_MSO_controller.suffix_selected();
@@ -730,7 +731,11 @@ sap.ui.define([
 			return a;
 		},
 		onNavBack: function (Oevent) {
-			RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {}, true);
+			if (ppdFlages) {
+				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {}, true);
+			} else {
+				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {}, true);
+			}
 		},
 		//---------------------------------------
 		//--------Handling Filter---------------
