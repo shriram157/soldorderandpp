@@ -33,8 +33,10 @@ sap.ui.define([
 
 			ppdFlages = sap.ui.getCore().getModel("ppdFlages");
 			if (ppdFlages) {
-				RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
-				RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setVisible(true);
+				if (ppdFlages.getData().openCommentBox == 'X') {
+					RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
+					RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setVisible(true);
+				}
 			}
 
 			//"""""""""""""""""""""""""""""""""""""""
@@ -732,7 +734,13 @@ sap.ui.define([
 		},
 		onNavBack: function (Oevent) {
 			if (ppdFlages) {
-				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {}, true);
+				if (ppdFlages.getData().openCommentBox == 'X') {
+					ppdFlages.getData().openCommentBox = '';
+					sap.ui.getCore().setModel(ppdFlages, "ppdFlages");
+					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {}, true);
+				} else {
+					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {}, true);
+				}
 			} else {
 				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {}, true);
 			}
