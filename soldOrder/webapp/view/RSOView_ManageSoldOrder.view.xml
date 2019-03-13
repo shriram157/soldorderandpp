@@ -43,23 +43,23 @@
 							<!--	<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>-->
 							<!--</ComboBox>-->
 							<!--items="{ path: 'VechileModel>/zc_model' }"-->
-							<ComboBox id="model_CSOR"  required="true" selectedKey="{mainservices>Zzmodel}">
+							<ComboBox id="model_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzmodel}">
 								<!--<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Suffix}"/>
 							<!--items="{ path: 'VechileModel>/zc_configuration'}"-->
-							<ComboBox id="suffix_CSOR"  required="true" selectedKey="{mainservices>Zzsuffix}">
+							<ComboBox id="suffix_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzsuffix}">
 								<!--<core:Item key="{VechileModel>Suffix}"-->
 								<!--	text="{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							</ComboBox>
 							<Label text="{i18n>APX}"/>
 							<!--items="{path: 'VechileModel>/ZC_PIO_DIO'}"-->
-							<ComboBox id="apx_CSOR" required="true" selectedKey="{mainservices>Zzapx}">
+							<ComboBox id="apx_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzapx}">
 								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Colour}"/>
 							<!--items="{ path: 'VechileModel>/zc_exterior_trim'}"-->
-							<ComboBox id="colour_CSOR" required="true" selectedKey="{mainservices>Zzextcol}">
+							<ComboBox id="colour_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzextcol}">
 								<!--<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
