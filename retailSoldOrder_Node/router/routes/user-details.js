@@ -185,7 +185,7 @@ module.exports = function (appContext) {
 					try {
 						toCustomerAttr1 = bpResults[i].to_Customer.Attribute1;
 					} catch (e) {
-						req.logMessage("info", "The Data is sent without Attribute value for the BP", bpResults[i].BusinessPartner);
+						logger.error("The Data is sent without Attribute value for the BP: %s", bpResults[i].BusinessPartner);
 					}
 
 					if (userType === "Dealer") {
