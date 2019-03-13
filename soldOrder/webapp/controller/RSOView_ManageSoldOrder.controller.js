@@ -29,7 +29,7 @@ sap.ui.define([
 		getSO: function (req) {
 			//"""""""""""""""""""""""""""""""""""""""
 			//Medhat
-	
+
 			var ppdFlages = sap.ui.getCore().getModel("ppdFlages");
 			if (ppdFlages) {
 				RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
@@ -64,30 +64,34 @@ sap.ui.define([
 							color: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'),
 							series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')
 						}), 'Vehicle_Selection');
-						// Model
-						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel')) {
-							var model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel');
-							var model_CSOR_items = RSO_MSO_controller.getView().byId("model_CSOR").getBinding("items");
-							model_CSOR_items.filter([new Filter("model", FilterOperator.EQ, model)]);
-						}
-						// Suffix
-						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix')) {
-							var suffix = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix');
-							var suffix_CSOR_items = RSO_MSO_controller.getView().byId("suffix_CSOR").getBinding("items");
-							suffix_CSOR_items.filter([new Filter("Suffix", FilterOperator.EQ, suffix)]);
-						}
-						// APX
-						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx')) {
-							var apx = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx');
-							var apx_CSOR_items = RSO_MSO_controller.getView().byId("apx_CSOR").getBinding("items");
-							apx_CSOR_items.filter([new Filter("zzapx", FilterOperator.EQ, apx)]);
-						}
-						// Color
-						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol')) {
-							var color = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol');
-							var color_CSOR_items = RSO_MSO_controller.getView().byId("colour_CSOR").getBinding("items");
-							color_CSOR_items.filter([new Filter("ExteriorColorCode", FilterOperator.EQ, color)]);
-						}
+							//Filter Data Sold Order
+						RSO_MSO_controller.series_selected();
+						RSO_MSO_controller.model_selected();
+						RSO_MSO_controller.suffix_selected();
+						// // Model
+						// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel')) {
+						// 	var model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel');
+						// 	var model_CSOR_items = RSO_MSO_controller.getView().byId("model_CSOR").getBinding("items");
+						// 	model_CSOR_items.filter([new Filter("model", FilterOperator.EQ, model)]);
+						// }
+						// // Suffix
+						// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix')) {
+						// 	var suffix = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix');
+						// 	var suffix_CSOR_items = RSO_MSO_controller.getView().byId("suffix_CSOR").getBinding("items");
+						// 	suffix_CSOR_items.filter([new Filter("Suffix", FilterOperator.EQ, suffix)]);
+						// }
+						// // APX
+						// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx')) {
+						// 	var apx = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx');
+						// 	var apx_CSOR_items = RSO_MSO_controller.getView().byId("apx_CSOR").getBinding("items");
+						// 	apx_CSOR_items.filter([new Filter("zzapx", FilterOperator.EQ, apx)]);
+						// }
+						// // Color
+						// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol')) {
+						// 	var color = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol');
+						// 	var color_CSOR_items = RSO_MSO_controller.getView().byId("colour_CSOR").getBinding("items");
+						// 	color_CSOR_items.filter([new Filter("ExteriorColorCode", FilterOperator.EQ, color)]);
+						// }
 						//----------------------------------------------------------
 						// Get Customer Details by Customer No From API
 						//	var x = 'W27687139';
@@ -250,7 +254,7 @@ sap.ui.define([
 								actions: [sap.m.MessageBox.Action.OK],
 								onClose: function (oAction) {
 									RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
-									
+
 								}
 							});
 
@@ -727,6 +731,118 @@ sap.ui.define([
 		},
 		onNavBack: function (Oevent) {
 			RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {}, true);
+		},
+		//---------------------------------------
+		//--------Handling Filter---------------
+		//----------------------------------
+		series_selected: function (oEvent) {
+
+			// var year = this.getView().byId('modelYr_RSOA').getValue();
+			// items="{ path: 'oModel3>/'}"
+
+			if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries') && this.getView().getElementBinding(
+					'mainservices').getBoundContext().getProperty('Zzmoyr')) {
+				var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
+				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+				// this.getView().byId('model_CSOR').bindItems("oModel3>/", new sap.ui.core.ListItem({
+				// 	key: "{oModel3>Model}",
+				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+				// }));
+				this.getView().byId('model_CSOR').bindItems({
+					path: "mainservices>/ZVMS_CDS_Model",
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
+					template: new sap.ui.core.ListItem({
+						key: "{mainservices>model}",
+						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+					})
+				});
+				// var items_binding = this.getView().byId('model_CSOR').getBinding('items');
+				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
+			}
+		},
+		model_selected: function (oEvent) {
+			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
+			var model = this.getView().byId('model_CSOR').getSelectedKey();
+
+			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
+				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+				// this.getView().byId('suffix_CSOR').bindItems('oModel1>/', new sap.ui.core.ListItem({
+				// 	key: "{oModel1>Suffix}",
+				// 	text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel2>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
+				// }));
+				this.getView().byId('suffix_CSOR').bindItems({
+					path: 'VechileModel>/zc_configuration',
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
+					template: new sap.ui.core.ListItem({
+						key: "{VechileModel>Suffix}",
+						text: "{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
+					})
+				});
+				// var items_binding = this.getView().byId('suffix_CSOR').getBinding('items');
+				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+				// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+				// ], true));
+			}
+		},
+		suffix_selected: function (oEvent) {
+			//-----------------
+			//----APX---------
+			//----------------
+			//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
+			var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+
+			var model = this.getView().byId('model_CSOR').getSelectedKey();
+			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
+				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+				// this.getView().byId('apx_CSOR').bindItems('mode_Model>/', new sap.ui.core.ListItem({
+				// 	key: "{mode_Model>zzapx}",
+				// 	text: "{mode_Model>zzapx}"
+				// }));
+				this.getView().byId('apx_CSOR').bindItems({
+					path: 'mainservices>/ZVMS_CDS_APX',
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
+						new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
+						new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
+					template: new sap.ui.core.ListItem({
+						key: "{mainservices>zzapx}",
+						text: "{mainservices>zzapx}"
+					})
+				});
+				// var items_binding = this.getView().byId('apx_CSOR').getBinding('items');
+				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
+				// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
+				// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
+				// ], true));
+				//-----------------
+				//----Color---------
+				//----------------
+				// this.getView().byId('colour_CSOR').bindItems('oModel2>/', new sap.ui.core.ListItem({
+				// 	key: "{oModel2>ExteriorColorCode}",
+				// 	text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+				// }));
+				this.getView().byId('colour_CSOR').bindItems({
+					path: 'VechileModel>/zc_exterior_trim',
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+						new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
+						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
+					template: new sap.ui.core.ListItem({
+						key: "{VechileModel>ExteriorColorCode}",
+						text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+					})
+				});
+				// var items_binding = this.getView().byId('colour_CSOR').getBinding('items');
+				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
+				// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+				// ], true));
+
+			}
 		}
 	});
 });

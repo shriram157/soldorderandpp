@@ -1,11 +1,15 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder">
 	<App>
 		<pages>
 			<Page showHeader="false">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
 					<Label id="label_MangSoldOrderid" text="" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"/>
-					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false">
+					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
+						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "/>
@@ -23,28 +27,48 @@
 							<!--<Label wrapping="true" text="{i18n>colour}"/>-->
 							<!--<Text wrapping="true"-->
 							<!--	text="{parts: [{path:'mainservices>Zzextcol'},{path:'mainservices>Zzextcol'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
-							<ComboBox id="model_CSOR" items="{mainservices>/ZVMS_CDS_Model}" editable="false" selectedKey="{mainservices>Zzmodel}">
-								<core:Item key="{mainservices>model}" text="{mainservices>model}-{mainservices>model_desc_en}"/>
+							<!--<ComboBox id="model_CSOR" items="{mainservices>/ZVMS_CDS_Model}" editable="false" selectedKey="{mainservices>Zzmodel}">-->
+							<!--	<core:Item key="{mainservices>model}" text="{mainservices>model}-{mainservices>model_desc_en}"/>-->
+							<!--</ComboBox>-->
+							<!--<Label text="{i18n>Suffix}"/>-->
+							<!--<ComboBox id="suffix_CSOR" items="{VechileModel>/zc_configuration}" editable="false" selectedKey="{mainservices>Zzsuffix}">-->
+							<!--	<core:Item key="{VechileModel>Suffix}" text="{VechileModel>SuffixDescriptionEN}"/>-->
+							<!--</ComboBox>-->
+							<!--<Label text="{i18n>APX}"/>-->
+							<!--<ComboBox id="apx_CSOR" items="{path: 'VechileModel>/ZC_PIO_DIO'}" editable="false" selectedKey="{mainservices>Zzapx}">-->
+							<!--	<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
+							<!--</ComboBox>-->
+							<!--<Label text="{i18n>Colour}"/>-->
+							<!--<ComboBox id="colour_CSOR" items="{ path: 'VechileModel>/zc_exterior_trim'}" editable="false" selectedKey="{mainservices>Zzextcol}">-->
+							<!--	<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>-->
+							<!--</ComboBox>-->
+							<!--items="{ path: 'VechileModel>/zc_model' }"-->
+							<ComboBox id="model_CSOR"  required="true" selectedKey="{mainservices>Zzmodel}">
+								<!--<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Suffix}"/>
-							<ComboBox id="suffix_CSOR" items="{VechileModel>/zc_configuration}" editable="false" selectedKey="{mainservices>Zzsuffix}">
-								<core:Item key="{VechileModel>Suffix}" text="{VechileModel>SuffixDescriptionEN}"/>
+							<!--items="{ path: 'VechileModel>/zc_configuration'}"-->
+							<ComboBox id="suffix_CSOR"  required="true" selectedKey="{mainservices>Zzsuffix}">
+								<!--<core:Item key="{VechileModel>Suffix}"-->
+								<!--	text="{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							</ComboBox>
 							<Label text="{i18n>APX}"/>
-							<ComboBox id="apx_CSOR" items="{path: 'VechileModel>/ZC_PIO_DIO'}" editable="false" selectedKey="{mainservices>Zzapx}">
-								<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>
+							<!--items="{path: 'VechileModel>/ZC_PIO_DIO'}"-->
+							<ComboBox id="apx_CSOR" required="true" selectedKey="{mainservices>Zzapx}">
+								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Colour}"/>
-							<ComboBox id="colour_CSOR" items="{ path: 'VechileModel>/zc_exterior_trim'}" editable="false" selectedKey="{mainservices>Zzextcol}">
-								<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>
+							<!--items="{ path: 'VechileModel>/zc_exterior_trim'}"-->
+							<ComboBox id="colour_CSOR" required="true" selectedKey="{mainservices>Zzextcol}">
+								<!--<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
-							<Text text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+							<Text
+								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>SalesType}"/>
 							<ComboBox id="salestype_CSOR" items="{ path: '/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
-
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<VBox>
 								<items>
@@ -52,14 +76,16 @@
 										<items>
 											<Text/>
 											<Label wrapping="true" text="{i18n>from}:-" class="sapUiSmallMarginTop"/>
-											<Text text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+											<Text
+												text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Text/>
 											<Label wrapping="true" text="{i18n>to}:-" class="sapUiSmallMarginTop"/>
-											<Text text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+											<Text
+												text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</items>
 									</HBox>
 								</items>
@@ -79,11 +105,10 @@
 							<Label wrapping="true" text="{i18n>TradeInModel}"/>
 							<Text text="{mainservices>ZtradeModel}"/>
 							<Label wrapping="true" text="{i18n>SoldOrdStatus}"/>
-								<Text text="{mainservices>ZzsoStatus}"/>
+							<Text text="{mainservices>ZzsoStatus}"/>
 							<!--	<ComboBox id="soldostatus_CSOR" items="{ path: '/SoldOrderStatus'}" editable="false" selectedKey="{mainservices>ZzsoStatus}">-->
 							<!--	<core:Item key="{key}" text="{text}"/>-->
 							<!--</ComboBox>-->
-						
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="150" value="{mainservices>Comment}"/>
 							<core:Title text="" class="titleFontSize"/>
@@ -136,7 +161,9 @@
 							<TextArea id="RSOV_MSO_comment2" value="{mainservices>ZzcancelComment}" editable="false" enabled="false" maxLength="150"/>
 						</f:content>
 					</f:SimpleForm>
-					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false">
+					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
+						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoTitle}" class="msgStripFormat msgStripCss "/>
@@ -158,7 +185,7 @@
 							<Text text=""/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>
-								<Label wrapping="true" text="{i18n>CustName}"/>
+							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{mainservices>ZzendcuName}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Text text="{mainservices>ZzendcuAddress}"/>
@@ -193,7 +220,8 @@
 						</f:content>
 					</f:SimpleForm>
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss2"/>
-					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{mainservices>AttachmentSet}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount="2">
+					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{mainservices>AttachmentSet}" enableColumnReordering="false"
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount="2">
 						<t:columns>
 							<t:Column width="33.33%" resizable="false">
 								<Label text=""/>
@@ -205,7 +233,9 @@
 								<Label text="{i18n>File}" class="TableLabel"/>
 								<t:template>
 									<!--,AttacheComment='{mainservices>AttacheComment}'-->
-									<Link href="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZsoReqNo}')/AttachmentSet(Filename='{mainservices>Filename}',ZsoReqNo='{mainservices>ZsoReqNo}')/$value" text="{mainservices>Filename}" wrapping="false"/>
+									<Link
+										href="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZsoReqNo}')/AttachmentSet(Filename='{mainservices>Filename}',ZsoReqNo='{mainservices>ZsoReqNo}')/$value"
+										text="{mainservices>Filename}" wrapping="false"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="33.33%" resizable="false">
@@ -232,7 +262,8 @@
 								<l:GridData span="L1 M2 S12" indent="L3 M3"/>
 							</layoutData>
 						</Label>
-						<u:FileUploader id="idRSOV_MSO_fileUpl" useMultipart="false" uploadUrl="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet" uploadComplete="handleUploadComplete"/>
+						<u:FileUploader id="idRSOV_MSO_fileUpl" useMultipart="false"
+							uploadUrl="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet" uploadComplete="handleUploadComplete"/>
 						<HBox>
 							<items>
 								<Label text="{i18n>Comments}" wrapping="true" class="sapUiSmallMarginTop sapUiSmallMarginEnd" required="true">
@@ -271,7 +302,8 @@
 								<l:GridData span="L2 M4 S6" indent="L2 M3"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" enabled="false" visible="false" press="_getVehiclesToFillSoldOrderRequest" class="sapUiMediumMarginBegin">
+						<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" enabled="false" visible="false" press="_getVehiclesToFillSoldOrderRequest"
+							class="sapUiMediumMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>

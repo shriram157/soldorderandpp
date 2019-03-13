@@ -394,7 +394,7 @@ sap.ui.define([
 		onValidateCustomer: function () {
 			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
 			if (CustModel.Name != '' && CustModel.Name && CustModel.Phone != '' && CustModel.Phone && CustModel.City != '' && CustModel.City &&
-				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address) {
+				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' && CustModel.PostCode) {
 
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error1");
 				var title = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
