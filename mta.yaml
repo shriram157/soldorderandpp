@@ -9,7 +9,7 @@ modules:
    path: retailSoldOrder_Node
    parameters:
       host: tci-dev-soldorderandpp-node
-      disk-quota: 256M
+      disk-quota: 512M
       memory: 256M
    properties:
       XS_APP_LOG_LEVEL: info
@@ -31,7 +31,7 @@ modules:
    path: soldOrder
    parameters:
       host: tci-dev-soldorderandpp
-      disk-quota: 256M
+      disk-quota: 512M
       memory: 256M
    properties:
       XS_APP_LOG_LEVEL: info
@@ -44,25 +44,25 @@ modules:
       group: destinations
       properties:
          name: retailSoldOrder-node-backend
+         url: ~{url}
          forwardAuthToken: true
          timeout: 60000
-         url: '~{url}'
 
 resources:
  - name: application-logs_retailSoldOrder
+   type: org.cloudfoundry.managed-service
    parameters:
       service: application-logs
       service-plan: lite
-   type: org.cloudfoundry.managed-service
 
  - name: uaa_retailSoldOrder
+   type: org.cloudfoundry.managed-service
    parameters:
-      path: ./xs-security.json
       service: xsuaa
       service-plan: application
-   type: org.cloudfoundry.managed-service
+      path: ./xs-security.json
 
  - name: RETAIL_SOLD_ORDER_APIM_CUPS
+   type: org.cloudfoundry.existing-service
    parameters:
       service-name: RETAIL_SOLD_ORDER_APIM_CUPS
-   type: org.cloudfoundry.existing-service
