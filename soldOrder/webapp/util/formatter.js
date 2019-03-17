@@ -25,7 +25,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	formatSuffix1: function (Suffix,Option,SuffixDescriptionEN) {
-		// "Suffix - " +  
+		// "Suffix - " + dd 
 		var text = Suffix + "/ " + Option + "/ " + SuffixDescriptionEN ;//InteriorColourDescription;
 		if (Suffix) {
 			return text;
