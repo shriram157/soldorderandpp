@@ -54,7 +54,7 @@
 							</ComboBox>
 							<Label text="{i18n>APX}"/>
 							<!--items="{path: 'VechileModel>/ZC_PIO_DIO'}"-->
-							<ComboBox id="apx_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzapx}">
+							<ComboBox id="apx_CSOR"  editable="false" required="true" selectedKey="{mainservices>Zzapx}">
 								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Colour}"/>

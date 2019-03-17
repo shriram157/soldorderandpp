@@ -23,8 +23,9 @@
 							<!--<Text-->
 							<!--	text="{parts: [{path:'RSOB_Model>/Zzmodel'},{path:'RSOB_Model>/Zzmodel'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>-->
 							<Label wrapping="true" text="{i18n>Suffix}"/>
-							<ComboBox id="suffix_RSOB" items="{VechileModel>/zc_configuration}" editable="false" selectedKey="{RSOB_Model>/suffixkey}">
-								<core:Item key="{VechileModel>Suffix}" text="{VechileModel>SuffixDescriptionEN}"/>
+							<ComboBox id="suffix_RSOB" items="{mainservices>/ZVMS_CDS_SUFFIX}" editable="false" selectedKey="{RSOB_Model>/suffixkey}">
+								<core:Item key="{mainservices>suffix}"
+									text="{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"/>
 							</ComboBox>
 							<!--<Text-->
 							<!--	text="{parts: [{path:'RSOB_Model>/Zzsuffix'},{path:'RSOB_Model>/Zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
@@ -47,7 +48,8 @@
 										<items>
 											<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
 											<!--<Text text="{path:'RSOB_Model>/fromdate'}"/>-->
-											<DatePicker id="etaFrom_CSOR" placeholder="dd/MMM/yy" displayFormat="MMMM d, y"  editable="false" dateValue="{RSOB_Model>/fromdate}" change="_handleChangeDate"></DatePicker>
+											<DatePicker id="etaFrom_CSOR" placeholder="dd/MMM/yy" displayFormat="yyyy-MM-dd" editable="false" dateValue="{RSOB_Model>/fromdate}"
+												change="_handleChangeDate"></DatePicker>
 										</items>
 									</HBox>
 									<HBox>
@@ -55,7 +57,7 @@
 											<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
 											<!--<Text
 												text="{path:'RSOB_Model>/todate'}"/>-->
-											<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy" displayFormat="MMMM d, y"  editable="false" dateValue="{RSOB_Model>/todate}"></DatePicker>
+											<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy" displayFormat="yyyy-MM-dd" editable="false" dateValue="{RSOB_Model>/todate}"></DatePicker>
 										</items>
 									</HBox>
 								</items>
@@ -63,7 +65,7 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>contractDate}"/>
-							<DatePicker id="ContractDate_RSOB" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="MMMM d, y"  placeholder="dd/MMM/yy" required="true"></DatePicker>
+							<DatePicker id="ContractDate_RSOB" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="yyyy-MM-dd" placeholder="yyyy-MM-dd" required="true"></DatePicker>
 							<Label wrapping="true" text="{i18n>salesType}"/>
 							<ComboBox id="SalesType_RSOB" items="{ path: '/SalesType', sorter: { path: 'key' } }" required="true" selectionChange="stype_change">
 								<core:Item key="{key}" text="{text}"/>
@@ -119,7 +121,7 @@
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Input id="License_RSOB" value="" required="true"/>
 							<Label wrapping="true" text=""/>
-							<Button text="{i18n>valCust}" press="onValidateCustomer" >
+							<Button text="{i18n>valCust}" press="onValidateCustomer">
 								<layoutData>
 									<l:GridData span="L4 M8 S12" indent="L4 M4"/>
 								</layoutData>
@@ -127,7 +129,7 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea id="Comment"  height="15rem"/>
+							<TextArea id="Comment" height="15rem"/>
 						</f:content>
 					</f:SimpleForm>
 				</content>

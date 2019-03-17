@@ -539,13 +539,13 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
 			if (model && modelyear) {
 				this.getView().byId('suffix_CFSO').bindItems({
-					path: 'VechileModel>/zc_configuration',
-					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+						path: 'mainservices>/ZVMS_CDS_SUFFIX',
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>Suffix}",
-						text: "{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
+						key: "{mainservices>suffix}",
+						text: "{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
 					})
 				});
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');

@@ -394,7 +394,8 @@ sap.ui.define([
 		onValidateCustomer: function () {
 			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
 			if (CustModel.Name != '' && CustModel.Name && CustModel.Phone != '' && CustModel.Phone && CustModel.City != '' && CustModel.City &&
-				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' && CustModel.PostCode) {
+				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
+				CustModel.PostCode) {
 
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error1");
 				var title = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
@@ -673,13 +674,14 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			if (model && modelyear) {
 				this.getView().byId('Suffix_RSOA').bindItems({
-					path: 'VechileModel>/zc_configuration',
-					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+					// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
+					path: 'mainservices>/ZVMS_CDS_SUFFIX',
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>Suffix}",
-						text: "{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
+						key: "{mainservices>suffix}",
+						text: "{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
 					})
 				});
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');

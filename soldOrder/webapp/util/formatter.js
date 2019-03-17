@@ -24,6 +24,13 @@ toyota.ca.SoldOrder.util.formatter = {
 			return text;
 		}
 	},
+	formatSuffix1: function (Suffix,Option,SuffixDescriptionEN) {
+		// "Suffix - " +  
+		var text = Suffix + "/ " + Option + "/ " + SuffixDescriptionEN ;//InteriorColourDescription;
+		if (Suffix) {
+			return text;
+		}
+	},
 	formatColour: function (ColorCode, ColourDescription) {
 
 		if (ColorCode) {

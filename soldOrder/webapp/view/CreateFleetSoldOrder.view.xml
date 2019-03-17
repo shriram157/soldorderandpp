@@ -124,7 +124,7 @@
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
-							<DatePicker id="etaFrom_CFSO" placeholder="MMM DD, YY">
+							<DatePicker id="etaFrom_CFSO" placeholder="yyyy-MM-dd" displayFormat="yyyy-MM-dd">
 								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
@@ -135,7 +135,7 @@
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
-							<DatePicker id="etaTo_CFSO" navigate="_handleChange" change="_handleChange" placeholder="MMM DD, YY">
+							<DatePicker id="etaTo_CFSO" navigate="_handleChange" change="_handleChange" placeholder="yyyy-MM-dd" displayFormat="yyyy-MM-dd">
 								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
@@ -192,13 +192,13 @@
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
-									<Text text="{path:'SecondTable>ETAFrom' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+									<Text text="{path:'SecondTable>ETAFrom' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
-									<Text text="{path:'SecondTable>ETATime' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+									<Text text="{path:'SecondTable>ETATime' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
