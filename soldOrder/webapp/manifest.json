@@ -22,8 +22,11 @@
 				"uri": "model/Errors.json",
 				"type": "JSON"
 			},
+			"Userss": {
+				"type": "JSON"
+			},
 			"mainService": {
-				"uri": "/node/ZVMS_SOLD_ORDER_SRV/",
+				"uri": "/soldorder_node/node/ZVMS_SOLD_ORDER_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
@@ -31,14 +34,14 @@
 				}
 			},
 			"VechileS": {
-				"uri": "/node/Z_VEHICLE_CATALOGUE_SRV/",
+				"uri": "/soldorder_node/node/Z_VEHICLE_CATALOGUE_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0"
 				}
 			},
 			"ZPIPELINE_ETA_INVENT_SUMMARY_SRV": {
-				"uri": "/node/ZPIPELINE_ETA_INVENT_SUMMARY_SRV/",
+				"uri": "/soldorder_node/node/ZPIPELINE_ETA_INVENT_SUMMARY_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
@@ -102,6 +105,13 @@
 			"errorModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"dataSource": "errorTypeData",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"LoginUserModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "Userss",
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}

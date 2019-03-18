@@ -208,6 +208,7 @@ sap.ui.define([
 		getDealer: function () {
 			var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
+			
 			var sPrefix;
 			if (sLocation_conf == 0) {
 			sPrefix = "/soldorder_node"; //ecpSales_node_secured
@@ -224,8 +225,8 @@ sap.ui.define([
 			//this.sPrefix ="";
 			
 			var that = this;
-			var zjson = new JSONModel();
-		    sap.ui.getCore().setModel(zjson,"LoginUserModel");
+			// var zjson = new JSONModel();
+		    // sap.ui.getCore().setModel(zjson,"LoginUserModel");
 			$.ajax({
 				url: sPrefix + "/userDetails/currentScopesForUser",
 				type: "GET",
@@ -235,7 +236,7 @@ sap.ui.define([
 					// userScopes.forEach(function (data) {
 
 					var userType = oData.loggedUserType[0];
-					sap.ui.getCore().getModel("LoginUserModel").setProperty("/UserType",oData.loggedUserType[0]);
+					that.getView().getModel("LoginUserModel").setProperty("/UserType",oData.loggedUserType[0]);
 					switch (userType) {
 					case "Dealer_Parts_Admin":
 						// console.log("Dealer Parts");
@@ -296,7 +297,7 @@ sap.ui.define([
 						});
 
 					});
-					sap.ui.getCore().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
+					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 
 				}.bind(this),
 				error: function (response) {
@@ -304,7 +305,7 @@ sap.ui.define([
 				}
 			}).done(function (data, textStatus, jqXHR) {
 
-				sap.ui.getCore().getModel("LoginUserModel").setProperty("/BPDealerDetails", data.attributes[0]);
+				that.getView().getModel("LoginUserModel").setProperty("/BPDealerDetails", data.attributes[0]);
 			});
 
 		},
