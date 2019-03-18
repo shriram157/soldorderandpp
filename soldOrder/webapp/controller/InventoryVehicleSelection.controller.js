@@ -17,11 +17,12 @@ sap.ui.define([
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
 			var indiceArray = oTable.getSelectedIndices();
 			var Model = sap.ui.getCore().getModel('FirstTable');
-			Model.setData([]);
+			// Model.setData();
+			var zitems = [];
 			for (var i = 0; i < indiceArray.length; i++) {
 				var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray[i]];
 				var data = oTable.getModel('mainservices').getProperty(binded.sPath);
-				var zitems = Model.getData().items;
+			
 				zitems.push({
 					APX: data.APX,
 					AssignVehicle: data.AssignVehicle,
@@ -62,6 +63,7 @@ sap.ui.define([
 					ZZVTN: data.ZZVTN
 				});
 			}
+			Model.setData({items:zitems});
 			Model.refresh();
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
 			/*	if (oTable.setSelectedIndex(-1) == true) {
