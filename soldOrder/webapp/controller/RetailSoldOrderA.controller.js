@@ -24,6 +24,7 @@ sap.ui.define([
 			// RSOA_controller._handleServiceModel_ModelYear();
 			// RSOA_controller._handleServiceSuffix_Series();
 			// RSOA_controller._handleRSADropDown();
+			this.getDealer();
 			var model = new JSONModel({});
 			RSOA_controller.getView().setModel(model, 'Customer');
 		},

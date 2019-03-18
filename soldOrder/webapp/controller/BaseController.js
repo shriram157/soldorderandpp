@@ -22,6 +22,7 @@ sap.ui.define([
 				jQuery.sap.log.info("Route name is : " + name);
 			});
 			
+			
 		},
 
 		host: function () {
@@ -38,6 +39,7 @@ sap.ui.define([
 
 		handleBaseLinkPress: function (oEvent) {
 			this.oBundle = this.getView().getModel("i18n").getResourceBundle();
+			this.getDealer();
 			var oGetText = oEvent.getSource().getText();
 			if (oGetText === this.oBundle.getText("menu1")) {
 				this.getOwnerComponent().getRouter().navTo("RouteView1", {}, true); //page 1
@@ -208,10 +210,10 @@ sap.ui.define([
 			var sPrefix;
 			if (sLocation_conf == 0) {
 			sPrefix = "/soldorder_node"; //ecpSales_node_secured
-				this.attributeUrl = "/user-details/attributesforlocaltesting";
+				this.attributeUrl = "/userDetails/attributes";//"/userDetails/attributesforlocaltesting";
 			} else {
 				sPrefix = "";
-				this.attributeUrl = "/user-details/attributes";
+				this.attributeUrl = "/userDetails/attributes";
 			}
 
 			//======================================================================================================================//			
@@ -221,7 +223,7 @@ sap.ui.define([
 			//this.sPrefix ="";
 			var that = this;
 			$.ajax({
-				url: sPrefix + "/user-details/currentScopesForUser",
+				url: sPrefix + "/userDetails/currentScopesForUser",
 				type: "GET",
 				dataType: "json",
 				success: function (oData) {
