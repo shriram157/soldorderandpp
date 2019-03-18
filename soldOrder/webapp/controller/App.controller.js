@@ -1,11 +1,13 @@
 var AppController;
 sap.ui.define([
-	"toyota/ca/SoldOrder/controller/BaseController"
-], function (BaseController) {
+	"toyota/ca/SoldOrder/controller/BaseController",
+	"toyota/ca/SoldOrder/util/formatter"
+], function (BaseController,formatter) {
 	"use strict";
 
 
 	return BaseController.extend("toyota.ca.SoldOrder.controller.App", {
+		formatter:formatter,
 		onInit: function () {
 			AppController = this;
 			AppController.ResetFlag();
