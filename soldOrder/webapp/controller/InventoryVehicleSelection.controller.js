@@ -15,50 +15,53 @@ sap.ui.define([
 		},
 		_onSelect: function () {
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
-			var indiceArray = oTable.getSelectedIndex();
+			var indiceArray = oTable.getSelectedIndices();
 			var Model = sap.ui.getCore().getModel('FirstTable');
-			var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray];
-			var data = oTable.getModel('mainservices').getProperty(binded.sPath);
-			var zitems = Model.getData().items;
-			zitems.push({
-				APX: data.APX,
-				AssignVehicle: data.AssignVehicle,
-				Dealer: data.Dealer,
-				DropShip: data.DropShip,
-				ETA: data.ETA,
-				ETAFrom: data.ETAFrom,
-				ETATo: data.ETATo,
-				EXTCOL_DESC_EN: data.EXTCOL_DESC_EN,
-				EXTCOL_DESC_FR: data.EXTCOL_DESC_FR,
-				ExteriorColorCode: data.ExteriorColorCode,
-				INTCOL: data.INTCOL,
-				INTCOL_DESC_EN: data.INTCOL_DESC_EN,
-				INTCOL_DESC_FR: data.INTCOL_DESC_FR,
-				MATRIX: data.MATRIX,
-				MODEL_DESC_EN: data.MODEL_DESC_EN,
-				MODEL_DESC_FR: data.MODEL_DESC_FR,
-				Model: data.Model,
-				Modelyear: data.Modelyear,
-				ORDERTYPE_DESC_EN: data.ORDERTYPE_DESC_EN,
-				SERIES_DESC_EN: data.SERIES_DESC_EN,
-				SERIES_DESC_FR: data.SERIES_DESC_FR,
-				SPART: data.SPART,
-				SUFFIX_DESC_EN: data.SUFFIX_DESC_EN,
-				SUFFIX_DESC_FR: data.SUFFIX_DESC_FR,
-				Suffix: data.Suffix,
-				TCISeries: data.TCISeries,
-				UserType: data.UserType,
-				VGUID: data.VGUID,
-				VHCLE: data.VHCLE,
-				VHVIN: data.VHVIN,
-				VKBUR: data.VKBUR,
-				VKORG: data.VKORG,
-				VTWEG: data.VTWEG,
-				ZMMSTA: data.ZMMSTA,
-				ZZDLR_REF_NO: data.ZZDLR_REF_NO,
-				ZZORDERTYPE: data.ZZORDERTYPE,
-				ZZVTN: data.ZZVTN
-			});
+			Model.setData([]);
+			for (var i = 0; i < indiceArray.length; i++) {
+				var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray[i]];
+				var data = oTable.getModel('mainservices').getProperty(binded.sPath);
+				var zitems = Model.getData().items;
+				zitems.push({
+					APX: data.APX,
+					AssignVehicle: data.AssignVehicle,
+					Dealer: data.Dealer,
+					DropShip: data.DropShip,
+					ETA: data.ETA,
+					ETAFrom: data.ETAFrom,
+					ETATo: data.ETATo,
+					EXTCOL_DESC_EN: data.EXTCOL_DESC_EN,
+					EXTCOL_DESC_FR: data.EXTCOL_DESC_FR,
+					ExteriorColorCode: data.ExteriorColorCode,
+					INTCOL: data.INTCOL,
+					INTCOL_DESC_EN: data.INTCOL_DESC_EN,
+					INTCOL_DESC_FR: data.INTCOL_DESC_FR,
+					MATRIX: data.MATRIX,
+					MODEL_DESC_EN: data.MODEL_DESC_EN,
+					MODEL_DESC_FR: data.MODEL_DESC_FR,
+					Model: data.Model,
+					Modelyear: data.Modelyear,
+					ORDERTYPE_DESC_EN: data.ORDERTYPE_DESC_EN,
+					SERIES_DESC_EN: data.SERIES_DESC_EN,
+					SERIES_DESC_FR: data.SERIES_DESC_FR,
+					SPART: data.SPART,
+					SUFFIX_DESC_EN: data.SUFFIX_DESC_EN,
+					SUFFIX_DESC_FR: data.SUFFIX_DESC_FR,
+					Suffix: data.Suffix,
+					TCISeries: data.TCISeries,
+					UserType: data.UserType,
+					VGUID: data.VGUID,
+					VHCLE: data.VHCLE,
+					VHVIN: data.VHVIN,
+					VKBUR: data.VKBUR,
+					VKORG: data.VKORG,
+					VTWEG: data.VTWEG,
+					ZMMSTA: data.ZMMSTA,
+					ZZDLR_REF_NO: data.ZZDLR_REF_NO,
+					ZZORDERTYPE: data.ZZORDERTYPE,
+					ZZVTN: data.ZZVTN
+				});
+			}
 			Model.refresh();
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
 			/*	if (oTable.setSelectedIndex(-1) == true) {
