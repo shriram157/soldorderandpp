@@ -109,6 +109,13 @@ toyota.ca.SoldOrder.util.formatter = {
 		{return true;}else{
 		return false;	
 		}
+	},
+	Tciusertype:function(Usertypevalue)
+	{
+		if(Usertypevalue == 'TCI_User')
+		{return true;}else{
+		return false;	
+		}
 	}
 	
 };

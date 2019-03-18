@@ -21,13 +21,14 @@ sap.ui.define([
 		},
 		filter_change: function (Oevent) {
 			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
+				var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 			if (Oevent.getSource().getSelectedKey() == '1') {
             
 				vechile_items.filter([new Filter([
 					new Filter("MATRIX", FilterOperator.EQ, "A205"),
-					new Filter("Dealer", FilterOperator.EQ, "2400001003"),
+					new Filter("Dealer", FilterOperator.EQ, dealer_no),
 					new Filter("Model", FilterOperator.EQ, vehicle.model),
 					new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
 					new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),

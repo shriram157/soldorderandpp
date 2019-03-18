@@ -80,12 +80,13 @@ sap.ui.define([
 		},
 		filter_change: function (Oevent) {
 			var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
+			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			if (Oevent.getSource().getSelectedKey() == '1') {
 
 				vechile_items.filter([new Filter([
 					new Filter("MATRIX", FilterOperator.EQ, "A205"),
-					new Filter("Dealer", FilterOperator.EQ, "2400001132")
+					new Filter("Dealer", FilterOperator.EQ, dealer_no)
 					// new Filter("Model", FilterOperator.EQ, "YZ3DCT"),
 					// new Filter("Modelyear", FilterOperator.EQ, "2018"),
 					// new Filter("Suffix", FilterOperator.EQ, "AL"),

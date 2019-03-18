@@ -101,6 +101,11 @@ sap.ui.define([
 		},
 		onNavback: function (Oevent) {
 			FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary", {}, true);
+		},
+		onApprove:function(Oevent)
+		{
+			FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ZoneApproval", {
+				Soreq: zrequest }, true);	
 		}
 	});
 

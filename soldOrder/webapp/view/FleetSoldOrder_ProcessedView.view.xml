@@ -266,6 +266,7 @@
 							</t:Column>
 						</t:columns>
 					</t:Table>
+					<Button text="{i18n>approvalpage}" press="onApprove" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" class="cssShift marginCornersBottom marginCornersRight"></Button>
 					<Button text="{i18n>back}" press="onNavback" class="cssShift marginCornersBottom marginCornersRight"></Button>
 				</content>
 			</Page>

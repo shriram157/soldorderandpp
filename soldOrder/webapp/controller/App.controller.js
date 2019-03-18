@@ -15,7 +15,7 @@ sap.ui.define([
 			//======Get the Dealer and user type===============
 			//=======================================================
 			 this.getDealer();
-			
+			this._setTheLogo();
 			AppController.getView().addEventDelegate({
 				onAfterRendering: function () {
 					var m = AppController.getOwnerComponent().getModel();
@@ -148,7 +148,27 @@ sap.ui.define([
 			AppController.flgSoldOrderReqStatus = "";
 			AppController.flgPriceProtectionStatus = "";
 			AppController.flgOwnershipUploaded = "false";
-		}
+		},
+			_setTheLogo: function (oEvent) {
+
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+
+				if (this.sDivision == '10') // set the toyoto logo
+				{
+					var currentImageSource = this.getView().byId("idLexusLogo");
+					currentImageSource.setProperty("src", "Images/toyota_logo_colour.png");
+
+				} else { // set the lexus logo
+					var currentImageSource = this.getView().byId("idLexusLogo");
+					currentImageSource.setProperty("src", "Images/i_lexus_black_full.png");
+
+					// }
+				}
+			}
+
+		},
 
 	});
 
