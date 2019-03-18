@@ -1,10 +1,10 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	/*"sap/ui/model/json/JSONModel",
-	"sap/ui/model/odata/oDataModel",*/
+	"sap/ui/model/json/JSONModel",
+	/*"sap/ui/model/odata/oDataModel",*/
 	"/sap/ui/model/resource/ResourceModel",
 	"sap/ui/core/routing/History"
-], function (Controller, ResourceModel, History) {
+], function (Controller, ResourceModel, History,JSONModel) {
 	"use strict";
 	var basCont;
 	return Controller.extend("toyota.ca.SoldOrder.controller.BaseController", {
@@ -39,7 +39,7 @@ sap.ui.define([
 
 		handleBaseLinkPress: function (oEvent) {
 			this.oBundle = this.getView().getModel("i18n").getResourceBundle();
-			this.getDealer();
+			// this.getDealer();
 			var oGetText = oEvent.getSource().getText();
 			if (oGetText === this.oBundle.getText("menu1")) {
 				this.getOwnerComponent().getRouter().navTo("RouteView1", {}, true); //page 1
@@ -221,7 +221,10 @@ sap.ui.define([
 			//======================================================================================================================//		
 			//  get the Scopes to the UI 
 			//this.sPrefix ="";
+			
 			var that = this;
+			var zjson = new JSONModel();
+			sap.ui.getCore().setModel("LoginUserModel",zjson);
 			$.ajax({
 				url: sPrefix + "/userDetails/currentScopesForUser",
 				type: "GET",
@@ -231,6 +234,7 @@ sap.ui.define([
 					// userScopes.forEach(function (data) {
 
 					var userType = oData.loggedUserType[0];
+					sap.ui.getCore().getModel("LoginUserModel").setProperty("/UserType",oData.loggedUserType[0]);
 					switch (userType) {
 					case "Dealer_Parts_Admin":
 						// console.log("Dealer Parts");
@@ -291,7 +295,7 @@ sap.ui.define([
 						});
 
 					});
-					that.getModel().setProperty("/BpDealerModel", BpDealer);
+					sap.ui.getCore().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 
 				}.bind(this),
 				error: function (response) {
@@ -299,7 +303,7 @@ sap.ui.define([
 				}
 			}).done(function (data, textStatus, jqXHR) {
 
-				that.getModel().setProperty("/BPDealerDetails", data.attributes[0]);
+				sap.ui.getCore().getModel("LoginUserModel").setProperty("/BPDealerDetails", data.attributes[0]);
 			});
 
 		},

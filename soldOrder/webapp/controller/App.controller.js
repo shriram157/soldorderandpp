@@ -12,7 +12,7 @@ sap.ui.define([
 			//========================================================
 			//======Get the Dealer and user type===============
 			//=======================================================
-			// this.getDealer();
+			 this.getDealer();
 			
 			AppController.getView().addEventDelegate({
 				onAfterRendering: function () {
