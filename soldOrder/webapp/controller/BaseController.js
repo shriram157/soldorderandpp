@@ -225,7 +225,7 @@ sap.ui.define([
 			
 			var that = this;
 			var zjson = new JSONModel();
-			sap.ui.getCore().setModel("LoginUserModel",zjson);
+		    sap.ui.getCore().setModel(zjson,"LoginUserModel");
 			$.ajax({
 				url: sPrefix + "/userDetails/currentScopesForUser",
 				type: "GET",
