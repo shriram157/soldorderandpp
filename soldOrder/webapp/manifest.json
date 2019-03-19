@@ -168,7 +168,7 @@
 			},
 			"routes": [{
 				"name": "RouteView1",
-				"pattern": "",
+				"pattern": "page10",
 				"target": "home1"
 			}, {
 				"pattern": "page2/{modelyear}/{modelkey}/{serieskey}/{suffixkey}/{apxkey}/{colorkey}/{vtnn}/{fromdate}/{todate}",
@@ -211,7 +211,7 @@
 				"target": "home9",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page10",
+				"pattern": "",
 				"name": "RetailSoldOrderSummary",
 				"target": "home10",
 				"clearTarget": "true"

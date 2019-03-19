@@ -2,20 +2,19 @@ var AppController;
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"toyota/ca/SoldOrder/util/formatter"
-], function (BaseController,formatter) {
+], function (BaseController, formatter) {
 	"use strict";
 
-
 	return BaseController.extend("toyota.ca.SoldOrder.controller.App", {
-		formatter:formatter,
+		formatter: formatter,
 		onInit: function () {
 			AppController = this;
 			AppController.ResetFlag();
+			var that = this;
 			//========================================================
 			//======Get the Dealer and user type===============
 			//=======================================================
-			 this.getDealer();
-			this._setTheLogo();
+
 			AppController.getView().addEventDelegate({
 				onAfterRendering: function () {
 					var m = AppController.getOwnerComponent().getModel();
@@ -23,17 +22,18 @@ sap.ui.define([
 						var data = m.getProperty("/Users");
 						AppController.listOfUsers = data;
 						AppController._user();
+						that.getDealer();
+						that._setTheLogo();
 					});
 
 				}
 			});
 		},
-		
-		
+
 		_user: function () {
 			var user = AppController.listOfUsers;
 			var selUser = AppController.getView().byId("AppInputId").getValue();
-		
+
 			if (selUser === user[0].key) {
 				AppController.flagPPDUser = true;
 				AppController.flagNationalSIPUser = false;
@@ -107,7 +107,7 @@ sap.ui.define([
 				AppController.flagDealerUser = false;
 				AppController.flagZoneUser = false;
 				AppController.flagTCINationalUser = false;
-				AppController.flagSIPUser = true ;
+				AppController.flagSIPUser = true;
 				AppController.flagNationalUser = false;
 				AppController.flagOrderingDealer = false;
 			}
@@ -118,7 +118,7 @@ sap.ui.define([
 				AppController.flagDealerUser = false;
 				AppController.flagZoneUser = false;
 				AppController.flagTCINationalUser = false;
-				AppController.flagSIPUser = false ;
+				AppController.flagSIPUser = false;
 				AppController.flagNationalUser = true;
 				AppController.flagOrderingDealer = false;
 			}
@@ -129,7 +129,7 @@ sap.ui.define([
 				AppController.flagDealerUser = false;
 				AppController.flagZoneUser = false;
 				AppController.flagTCINationalUser = false;
-				AppController.flagSIPUser = false ;
+				AppController.flagSIPUser = false;
 				AppController.flagNationalUser = false;
 				AppController.flagOrderingDealer = true;
 			}
@@ -149,7 +149,7 @@ sap.ui.define([
 			AppController.flgPriceProtectionStatus = "";
 			AppController.flgOwnershipUploaded = "false";
 		},
-			_setTheLogo: function (oEvent) {
+		_setTheLogo: function (oEvent) {
 
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 			if (isDivisionSent) {
