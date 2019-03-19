@@ -22,6 +22,10 @@
 				"uri": "model/Errors.json",
 				"type": "JSON"
 			},
+			"Users": {
+				"uri": "",
+				"type": "JSON"
+			},
 			"mainService": {
 				"uri": "/node/ZVMS_SOLD_ORDER_SRV/",
 				"type": "OData",
@@ -110,7 +114,8 @@
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"defaultBindingMode": "TwoWay"
-				}
+				},
+				"dataSource":"Users"
 			},
 			"mainservices": {
 				"type": "sap.ui.model.odata.v2.ODataModel",
