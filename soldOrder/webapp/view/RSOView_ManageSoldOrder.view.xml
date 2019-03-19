@@ -312,14 +312,14 @@
 						</Button>
 						<Button id="btn_orderChange_RSO_MSO" text="{i18n>OrderChange}"
 							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navToRSOrderChange"
-							enabled="false" class="sapUiLargeMarginBegin">
+						 class="sapUiLargeMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6" indent="M1"/>
 							</layoutData>
 						</Button>
 						<Button id="btn_cancelOrder_RSO_MSO" text="{i18n>CancelOrder}"
 							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder"
-							enabled="false" class="sapUiMediumMarginBegin">
+						class="sapUiMediumMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>
