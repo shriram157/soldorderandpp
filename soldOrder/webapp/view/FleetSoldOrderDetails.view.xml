@@ -75,7 +75,7 @@
 											</VBox>
 											<VBox>
 												<Label text="{i18n>dealer}" id="lbl_dealer_FSOD" visible="false" class="TableLabel"></Label>
-												<MultiComboBox id="mcb_dealer_FSOD" visible="false" selectionChange="_refresh" items="{ path:'/', sorter: { path: 'key' } }">
+												<MultiComboBox  visible="false" selectionChange="_refresh" items="{ path:'/', sorter: { path: 'key' } }">
 													<core:Item key="{key}"
 														text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
 													<layoutData>
@@ -83,11 +83,10 @@
 													</layoutData>
 												</MultiComboBox>
 											</VBox>
-											<VBox visible="false">
+											<VBox visible="true">
 												<Label text="{i18n>dealer}" class="TableLabel"></Label>
-												<MultiComboBox width="" selectionChange="_refresh" items="{ path: '/', sorter: { path: 'key' } }">
-													<core:Item key="{key}"
-														text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
+												<MultiComboBox width="" id="mcb_dealer_FSOD" visible="true" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{LoginUserModel>BusinessPartnerName}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -109,7 +108,7 @@
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text id="tbl_val_dealer_FSOD" visible="false" text="{path:'mainservices>ZzdealerCode'}"/>
+											<Text id="tbl_val_dealer_FSOD" visible="true" text="{mainservices>ZzdealerCode}"/>
 											<!--, formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'-->
 										</t:template>
 									</t:Column>
@@ -128,7 +127,7 @@
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>APX}" class="TableLabel"/>
 										<t:template>
-										<Text text="{mainservices>Zzapx}"/>
+											<Text text="{mainservices>Zzapx}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
@@ -158,20 +157,23 @@
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
-											<Text text="{path:'mainservices>ZzreqEtaFrom',type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
+											<Text
+												text="{path:'mainservices>ZzreqEtaFrom',type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>ETATime}" class="TableLabel"/>
 										<t:template>
 											<Text
-										text="{path:'mainservices>ZzreqEtaTo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
+												text="{path:'mainservices>ZzreqEtaTo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 										<t:template>
-											<Button text="{i18n>linkVehicle}" visible="{path:'mainservices>Zzvtn',formatter:'.formatter.linkvehicle'}" id="btn_linkVeh_FSOD" press="onLinkVehicle"/>
+											<Button text="{i18n>linkVehicle}" visible="{path:'mainservices>Zzvtn',formatter:'.formatter.linkvehicle'}"
+												enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" id="btn_linkVeh_FSOD"
+												press="onLinkVehicle"/>
 										</t:template>
 									</t:Column>
 								</t:columns>

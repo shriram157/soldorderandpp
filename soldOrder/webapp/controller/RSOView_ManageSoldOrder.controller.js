@@ -182,48 +182,48 @@ sap.ui.define([
 				var sMsg = oBundle.getText("mangSoldOrder", [sRecipient]);
 				RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);*/
 
-			if (AppController.flagOrderingDealer == true) {
-				RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(true);
-				//RSO_MSO_controller.getView().byId("idRSOV_MSO_delButton").setEnabled(true);
-				RSO_MSO_controller.getView().byId("idRSOV_MSO_fileUpl").setEnabled(true);
-				RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(true);
-				RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(true);
-				RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(true);
-				RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(true);
-				RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(true);
-				var oTbl = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
-				var data = oTbl.getModel().getData().ProductCollection;
-				var len = data.length;
-				// for (var i = 0; i < len; i++) {
-				// 	var Id = "idRSOV_MSO_delButton-__clone" + (i * 3);
+			// if (AppController.flagOrderingDealer == true) {
+			// 	RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(true);
+			// 	//RSO_MSO_controller.getView().byId("idRSOV_MSO_delButton").setEnabled(true);
+			// 	RSO_MSO_controller.getView().byId("idRSOV_MSO_fileUpl").setEnabled(true);
+			// 	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(true);
+			// 	RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(true);
+			// 	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(true);
+			// 	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(true);
+			// 	RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(true);
+			// 	var oTbl = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
+			// 	var data = oTbl.getModel().getData().ProductCollection;
+			// 	var len = data.length;
+			// 	// for (var i = 0; i < len; i++) {
+			// 	// 	var Id = "idRSOV_MSO_delButton-__clone" + (i * 3);
 
-				// 	RSO_MSO_controller.getView().byId(Id).setEnabled(true);
-				// }
-			}
-			if (AppController.flagNationalUser == true) {
-				RSO_MSO_controller.getView().byId("RSOV_MSO_comment2").setEnabled(true);
-			}
-			if (AppController.flagPPDUser == true) {
-				RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
-			}
-			if (AppController.flagNationalPPDUser == true) {
-				RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
-				RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setVisible(true);
-				RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
-				RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setVisible(true);
-			}
-			if (AppController.flagSIPUser == true) {
-				RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO").setVisible(true);
-			}
-			if (AppController.flgSoldOrderReqStatus = "In Progress") {
-				RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setVisible(true);
-			}
-			if (AppController.flgSoldOrderReqStatus = "Audit - In Progress") {
-				RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO").setEnabled(true);
-			}
-			if (AppController.flgPriceProtectionStatus = "In Progress") {
-				RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setVisible(true);
-			}
+			// 	// 	RSO_MSO_controller.getView().byId(Id).setEnabled(true);
+			// 	// }
+			// }
+			// if (AppController.flagNationalUser == true) {
+			// 	RSO_MSO_controller.getView().byId("RSOV_MSO_comment2").setEnabled(true);
+			// }
+			// if (AppController.flagPPDUser == true) {
+			// 	RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
+			// }
+			// if (AppController.flagNationalPPDUser == true) {
+			// 	RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
+			// 	RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setVisible(true);
+			// 	RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
+			// 	RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setVisible(true);
+			// }
+			// if (AppController.flagSIPUser == true) {
+			// 	RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO").setVisible(true);
+			// }
+			// if (AppController.flgSoldOrderReqStatus = "In Progress") {
+			// 	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setVisible(true);
+			// }
+			// if (AppController.flgSoldOrderReqStatus = "Audit - In Progress") {
+			// 	RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO").setEnabled(true);
+			// }
+			// if (AppController.flgPriceProtectionStatus = "In Progress") {
+			// 	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setVisible(true);
+			// }
 
 		},
 

@@ -49,11 +49,11 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_dealer_FSOS"  visible="true" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
-													<!--<core:Item key="{ProductId}" text="{Category}"/>-->
-													<!--<layoutData>-->
-													<!--	<l:GridData span="L1 M6 S12"/>-->
-													<!--</layoutData>-->
+												<MultiComboBox id="mcb_dealer_FSOS"  visible="true" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{LoginUserModel>BusinessPartnerName}"/>
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
 												</MultiComboBox>
 											</VBox>
 										</f:content>

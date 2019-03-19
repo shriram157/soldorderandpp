@@ -47,43 +47,54 @@ sap.ui.define([
 			//	mcb_ordTyp_FSOD.setSelectedKey("4");
 			// console.log(mcb_series_FSOD.getItems());
 			// console.log(mcb_series_FSOD.getSelectedItems());
-
-			if (AppController.flagZoneUser == true) {
-				FSOD_controller.getView().byId("lbl_dealer_FSOD").setVisible(true);
-				//FSOD_controller.getView().byId("mcb_dealer_FSOD").setVisible(true);
-				var oTbl = FSOD_controller.getView().byId("tbl_FSOD");
-				var data = oTbl.getModel().getData().ProductCollection;
-				var len = data.length;
-				for (var i = 1; i <= len; i++) {
-					var Id = "tbl_val_dealer_FSOD-__clone" + (i + 11 * (i - 1));
-					FSOD_controller.getView().byId(Id).setVisible(true);
-				}
-				FSOD_controller.getView().byId(Id).setVisible(true);
+			//=======================================================================================================
+			//==================Start Binidng By Dealer=========================================================
+            //=====================================================================================================
+           	var dfilter = [];
+			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
+				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
 			}
-			if (AppController.flagNationalUser == true) {
-				FSOD_controller.getView().byId("lbl_dealer_FSOD").setVisible(true);
-				//	FSOD_controller.getView().byId("mcb_dealer_FSOD").setVisible(true);
-				var oTbl = FSOD_controller.getView().byId("tbl_FSOD");
-				var data = oTbl.getModel().getData().ProductCollection;
-				var len = data.length;
-				for (var i = 1; i <= len; i++) {
-					var Id = "tbl_val_dealer_FSOD-__clone" + (i + 11 * (i - 1));
-					FSOD_controller.getView().byId(Id).setVisible(true);
-				}
-				FSOD_controller.getView().byId(Id).setVisible(true);
-			}
-			if (AppController.flagTCINationalUser == true) {
-				FSOD_controller.getView().byId("lbl_dealer_FSOD").setVisible(true);
-				//	FSOD_controller.getView().byId("mcb_dealer_FSOD").setVisible(true);
-				var oTbl = FSOD_controller.getView().byId("tbl_FSOD");
-				var data = oTbl.getModel().getData().ProductCollection;
-				var len = data.length;
-				for (var i = 1; i <= len; i++) {
-					var Id = "tbl_val_dealer_FSOD-__clone" + (i + 11 * (i - 1));
-					FSOD_controller.getView().byId(Id).setVisible(true);
-				}
-				FSOD_controller.getView().byId(Id).setVisible(true);
-			}
+			var filter_dealers = new Filter(dfilter, false);
+			//---------------------------------------------------------------
+			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
+			items.filter(filter_dealers);
+            //=====================================================================
+			// if (AppController.flagZoneUser == true) {
+			// 	FSOD_controller.getView().byId("lbl_dealer_FSOD").setVisible(true);
+			// 	//FSOD_controller.getView().byId("mcb_dealer_FSOD").setVisible(true);
+			// 	var oTbl = FSOD_controller.getView().byId("tbl_FSOD");
+			// 	var data = oTbl.getModel().getData().ProductCollection;
+			// 	var len = data.length;
+			// 	for (var i = 1; i <= len; i++) {
+			// 		var Id = "tbl_val_dealer_FSOD-__clone" + (i + 11 * (i - 1));
+			// 		FSOD_controller.getView().byId(Id).setVisible(true);
+			// 	}
+			// 	FSOD_controller.getView().byId(Id).setVisible(true);
+			// }
+			// if (AppController.flagNationalUser == true) {
+			// 	FSOD_controller.getView().byId("lbl_dealer_FSOD").setVisible(true);
+			// 	//	FSOD_controller.getView().byId("mcb_dealer_FSOD").setVisible(true);
+			// 	var oTbl = FSOD_controller.getView().byId("tbl_FSOD");
+			// 	var data = oTbl.getModel().getData().ProductCollection;
+			// 	var len = data.length;
+			// 	for (var i = 1; i <= len; i++) {
+			// 		var Id = "tbl_val_dealer_FSOD-__clone" + (i + 11 * (i - 1));
+			// 		FSOD_controller.getView().byId(Id).setVisible(true);
+			// 	}
+			// 	FSOD_controller.getView().byId(Id).setVisible(true);
+			// }
+			// if (AppController.flagTCINationalUser == true) {
+			// 	FSOD_controller.getView().byId("lbl_dealer_FSOD").setVisible(true);
+			// 	//	FSOD_controller.getView().byId("mcb_dealer_FSOD").setVisible(true);
+			// 	var oTbl = FSOD_controller.getView().byId("tbl_FSOD");
+			// 	var data = oTbl.getModel().getData().ProductCollection;
+			// 	var len = data.length;
+			// 	for (var i = 1; i <= len; i++) {
+			// 		var Id = "tbl_val_dealer_FSOD-__clone" + (i + 11 * (i - 1));
+			// 		FSOD_controller.getView().byId(Id).setVisible(true);
+			// 	}
+			// 	FSOD_controller.getView().byId(Id).setVisible(true);
+			// }
 		},
 		/*	_sipUserToTrue: function () {
 			FSOD_controller.requestStatus = "Pending Fulfilment";
@@ -120,7 +131,14 @@ sap.ui.define([
 			// }
 			// var filter_series = new Filter(Sfilter, false);
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_sstatus, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
+			//-----------------Dealers-----------------
+			var dfilter = [];
+			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
+				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
+			}
+			var filter_dealers = new Filter(dfilter, false);
+			//---------------------------------------------------------------
+			var filter_all = new Filter([filter_sstatus,filter_dealers, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
 			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
 			items.filter(filter_all);
 

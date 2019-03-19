@@ -80,7 +80,7 @@ sap.ui.define([
 		},
 		filter_change: function (Oevent) {
 			var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
-			var dealer_no = that.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			if (Oevent.getSource().getSelectedKey() == '1') {
 

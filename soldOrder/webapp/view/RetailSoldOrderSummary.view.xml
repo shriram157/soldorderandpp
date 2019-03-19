@@ -63,8 +63,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_dealer_RSOS" width="300px" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
-													<!--<core:Item key="" text=""/>-->
+												<MultiComboBox  id="mcb_dealer_RSOS" width="300px" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{LoginUserModel>BusinessPartnerName}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>

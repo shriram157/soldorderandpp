@@ -21,7 +21,7 @@ sap.ui.define([
 		},
 		filter_change: function (Oevent) {
 			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
-				var dealer_no = that.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+				var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 			if (Oevent.getSource().getSelectedKey() == '1') {
