@@ -1,9 +1,9 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"toyota/ca/SoldOrder/util/formatter",
-		"sap/ui/model/Filter",
+	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
-], function (Controller, formatter,Filter,FilterOperator) {
+], function (Controller, formatter, Filter, FilterOperator) {
 	"use strict";
 	var FSOS_controller;
 	return Controller.extend("toyota.ca.SoldOrder.controller.FleetSoldOrderSummary", {
@@ -37,22 +37,24 @@ sap.ui.define([
 			mcb_dealer_FSOS.setSelectedItems(mcb_dealer_FSOS.getItems());
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
-            //=====================================================================================================
-           	var dfilter = [];
+			//=====================================================================================================
+			var dfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey()));
 			}
-			var filter_dealers = new Filter(dfilter, false);
-			//---------------------------------------------------------------
-			var items = this.getView().byId("tbl_FSOS").getBinding('rows');
-			items.filter(filter_dealers);
-            //==================================================================================================
+			if (dfilter.length > 0) {
+				var filter_dealers = new Filter(dfilter, false);
+				//---------------------------------------------------------------
+				var items = this.getView().byId("tbl_FSOS").getBinding('rows');
+				items.filter(filter_dealers);
+			}
+			//==================================================================================================
 			// if (AppController.flagZoneUser == true) {
 			// 	FSOS_controller.getView().byId("lbl_dealer_FSOS").setVisible(true);
 			// 	FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
 			// 	FSOS_controller.getView().byId("tbl_lbl_dealer_FSOS").setVisible(true);
 			// 	//	FSOS_controller.getView().byId("tbl_val_dealer_FSOS").setVisible(true);
-              
+
 			// 	var len = data.length;
 			// 	for (var i = 1; i <= len; i++) {
 			// 		var Id = "tbl_val_dealer_FSOS-__clone" + (i + 8 * (i - 1));
@@ -135,7 +137,7 @@ sap.ui.define([
 			}
 			var filter_dealers = new Filter(dfilter, false);
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_ordertype, filter_sstatus,filter_dealers], true);
+			var filter_all = new Filter([filter_ordertype, filter_sstatus, filter_dealers], true);
 			var items = this.getView().byId("tbl_FSOS").getBinding('rows');
 			items.filter(filter_all);
 

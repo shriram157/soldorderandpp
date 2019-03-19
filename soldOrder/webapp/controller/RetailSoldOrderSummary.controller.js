@@ -35,16 +35,18 @@ sap.ui.define([
 			mcb_dealer_RSOS.setSelectedItems(mcb_dealer_RSOS.getItems());
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
-            //=====================================================================================================
-           	var dfilter = [];
+			//=====================================================================================================
+			var dfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey()));
 			}
-			var filter_dealers = new Filter(dfilter, false);
-			//---------------------------------------------------------------
-			var items = this.getView().byId("table_RSOS").getBinding('rows');
-			items.filter(filter_dealers);
-            //================================================================================================== 
+			if (dfilter.length > 0) {
+				var filter_dealers = new Filter(dfilter, false);
+				//---------------------------------------------------------------
+				var items = this.getView().byId("table_RSOS").getBinding('rows');
+				items.filter(filter_dealers);
+			}
+			//================================================================================================== 
 			// if (AppController.flagDealerUser == true) {
 			// 	RSOS_controller.getView().byId("idBtn_RSOS_new").setVisible(true);
 			// 	var len = data.length;
@@ -162,7 +164,7 @@ sap.ui.define([
 				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey()));
 			}
 			var filter_series = new Filter(Sfilter, false);
-		    //---------------------------------------------------------------
+			//---------------------------------------------------------------
 			//-----------------Dealers-----------------
 			var dfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
@@ -170,11 +172,11 @@ sap.ui.define([
 			}
 			var filter_dealers = new Filter(dfilter, false);
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_series, filter_sstatus,filter_dealers, new Filter("FleetReference", FilterOperator.EQ, '')], true);
+			var filter_all = new Filter([filter_series, filter_sstatus, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, '')],
+				true);
 			var items = this.getView().byId("table_RSOS").getBinding('rows');
 			items.filter(filter_all);
 
-          
 		},
 
 		_dispalySoldOrderDetails: function (evt) {
@@ -182,10 +184,6 @@ sap.ui.define([
 			// var sPath = evt.getSource().getBindingContext().sPath;
 			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 			// var model = oTable.getModel();
-			
-			
-			
-
 
 			RSOS_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 				Soreq: evt.getSource().getText()

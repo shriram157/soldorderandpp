@@ -86,6 +86,19 @@ sap.ui.define([
 			mcb_status_PPD_D.setSelectedItems(mcb_status_PPD_D.getItems());
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
+			//=======================================================================================================
+			//==================Start Binidng By Dealer=========================================================
+			//=====================================================================================================
+			var dfilter = [];
+			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
+				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
+			}
+			if (dfilter.length > 0) {
+				var filter_dealers = new Filter(dfilter, false);
+				//---------------------------------------------------------------
+				var items = this.getView().byId("table_PPD_Dealer").getBinding('rows');
+				items.filter(filter_dealers);
+			}
 		},
 
 		_refresh: function () {
@@ -98,8 +111,17 @@ sap.ui.define([
 				statFilter.push(new Filter("status", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
 			}
 			var filter_sstatus = new Filter(statFilter, false);
-
-			items.filter(filter_sstatus);
+           	//=======================================================================================================
+			//==================Start Binidng By Dealer=========================================================
+			//=====================================================================================================
+			var dfilter = [];
+			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
+				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
+			}
+			
+			var filter_dealers = new Filter(dfilter, false);
+			
+			items.filter(new Filter([filter_sstatus,filter_dealers],true));
 
 		},
 		_navToRSO: function (evt) {

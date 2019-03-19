@@ -231,6 +231,7 @@ sap.ui.define([
 				url: sPrefix + "/userDetails/currentScopesForUser",
 				type: "GET",
 				dataType: "json",
+				async: false,
 				success: function (oData) {
 					// var userScopes = oData;
 					// userScopes.forEach(function (data) {
@@ -279,7 +280,7 @@ sap.ui.define([
 				url: sPrefix + this.attributeUrl,
 				type: "GET",
 				dataType: "json",
-
+                async: false,
 				success: function (oData) {
 					var BpDealer = [];
 					var userAttributes = [];

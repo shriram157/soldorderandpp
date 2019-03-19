@@ -49,16 +49,18 @@ sap.ui.define([
 			// console.log(mcb_series_FSOD.getSelectedItems());
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
-            //=====================================================================================================
-           	var dfilter = [];
+			//=====================================================================================================
+			var dfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
 			}
-			var filter_dealers = new Filter(dfilter, false);
-			//---------------------------------------------------------------
-			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
-			items.filter(filter_dealers);
-            //=====================================================================
+			if (dfilter.length > 0) {
+				var filter_dealers = new Filter(dfilter, false);
+				//---------------------------------------------------------------
+				var items = this.getView().byId("tbl_FSOD").getBinding('rows');
+				items.filter(filter_dealers);
+			}
+			//=====================================================================
 			// if (AppController.flagZoneUser == true) {
 			// 	FSOD_controller.getView().byId("lbl_dealer_FSOD").setVisible(true);
 			// 	//FSOD_controller.getView().byId("mcb_dealer_FSOD").setVisible(true);
@@ -138,16 +140,16 @@ sap.ui.define([
 			}
 			var filter_dealers = new Filter(dfilter, false);
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_sstatus,filter_dealers, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
+			var filter_all = new Filter([filter_sstatus, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
 			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
 			items.filter(filter_all);
 
 		},
 		onLinkVehicle: function (evt) {
-			 zrequest = evt.getSource().getBindingContext('mainservices').getProperty('ZzsoReqNo');
+			zrequest = evt.getSource().getBindingContext('mainservices').getProperty('ZzsoReqNo');
 			var d = new sap.ui.jsfragment(FSOD_controller.createId("idFrag_FSOD"), "toyota.ca.SoldOrder.view.fragments.VtinDialog",
 				FSOD_controller);
-				
+
 			FSOD_controller.getView().addDependent(d);
 			// console.log(d);
 			d.open();
@@ -163,7 +165,7 @@ sap.ui.define([
 				} else {
 					if (vinVal !== "") {
 						V_No = vinVal;
-					}else{
+					} else {
 						V_No = vtinVal;
 					}
 					FSOD_controller.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {

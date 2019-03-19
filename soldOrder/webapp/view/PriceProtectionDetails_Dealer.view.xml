@@ -49,11 +49,10 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_dealer_PPD_D" selectionChange="_refresh" items="{ path: 'modelDealerDrpDwn>/', sorter: { path: '' } }"
-													class="sapUiMediumMarginEnd">
-													<core:Item key="{modelDealerDrpDwn>dealer_code}" text="{modelDealerDrpDwn>dealer_name}"/>
+												<MultiComboBox id="mcb_dealer_PPD_D" selectionChange="_refresh" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{LoginUserModel>BusinessPartnerName}"/>
 													<layoutData>
-														<l:GridData span="L4 M12 S12"/>
+														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
 											</VBox>
