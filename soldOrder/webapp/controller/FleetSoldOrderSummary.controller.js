@@ -151,7 +151,7 @@ sap.ui.define([
 			allfilter.push(filter_dealers);
 			}
 			//---------------------------------------------------------------
-			var filter_all = new Filter(allfilter, true);
+			var filter_all = new Filter([filter_sstatus,filter_dealers], true);
 			var items = this.getView().byId("tbl_FSOS").getBinding('rows');
 			items.filter(filter_all);
 

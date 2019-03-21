@@ -185,7 +185,7 @@ sap.ui.define([
 				allfilter.push(filter_dealers);
 			}
 			//---------------------------------------------------------------
-			var filter_all = new Filter([allfilter, new Filter("FleetReference", FilterOperator.EQ, '')],
+			var filter_all = new Filter([filter_sstatus,filter_series,filter_dealers, new Filter("FleetReference", FilterOperator.EQ, '')],
 				true);
 			var items = this.getView().byId("table_RSOS").getBinding('rows');
 			items.filter(filter_all);

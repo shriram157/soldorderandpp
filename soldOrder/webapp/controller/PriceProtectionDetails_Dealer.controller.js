@@ -126,7 +126,7 @@ sap.ui.define([
 			allfilter.push(filter_dealers);
 			}
 			
-			items.filter(new Filter(allfilter,true));
+			items.filter(new Filter([filter_sstatus,filter_dealers],true));
 
 		},
 		_navToRSO: function (evt) {

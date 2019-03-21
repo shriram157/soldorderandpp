@@ -154,7 +154,7 @@ sap.ui.define([
 			}
 			//---------------------------------------------------------------
 		
-			var filter_all = new Filter([allfilter, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
+			var filter_all = new Filter([filter_sstatus,filter_audit,filter_dealers, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
 			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
 			items.filter(filter_all);
 		
