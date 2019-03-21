@@ -346,6 +346,8 @@ sap.ui.define([
 
 			}
 			this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
+			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			this.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
 			this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
 				success: function (oData, oResponse) {
 					if (oData.ZsoFltReqNo) {
@@ -516,7 +518,7 @@ sap.ui.define([
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
 			var series = oEvent.getSource().getSelectedKey();
-				var modelyear = this.getView().byId('modelYr_CFSO').getValue();
+			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
 			if (series && modelyear) {
 				this.getView().byId("modelCode_CFSO").bindItems({
 					// path: "VechileModel>/zc_model",
@@ -539,7 +541,7 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
 			if (model && modelyear) {
 				this.getView().byId('suffix_CFSO').bindItems({
-						path: 'mainservices>/ZVMS_CDS_SUFFIX',
+					path: 'mainservices>/ZVMS_CDS_SUFFIX',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),

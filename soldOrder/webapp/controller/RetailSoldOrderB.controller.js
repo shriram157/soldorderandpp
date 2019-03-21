@@ -320,8 +320,10 @@ sap.ui.define([
 				var ZtradeMake = RSOB_controller.getView().byId("tradeInMakeYear_RSOBid").getSelectedKey();
 				var comment = RSOB_controller.getView().byId("Comment").getValue();
 				var host = RSOB_controller.host();
+			
 				// SOcreateSet;
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
+					var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 				var _data = {
 					// "ZzsoReqNo": "",
 					// "Zzmodel": "YZ3DCT",
@@ -357,6 +359,7 @@ sap.ui.define([
 					"ZtradeModel": ZtradeModel,
 					"ZtradeMake": ZtradeMake, // ""
 					"Comment": comment,
+					"ZzdealerCode":dealer_no,
 					"Zzendcu": Zcustomer_No
 				};
 				var dataString = JSON.stringify(
