@@ -36,15 +36,18 @@ sap.ui.define([
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
-			var dfilter = [];
-			for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
-				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey()));
-			}
-			if (dfilter.length > 0) {
-				var filter_dealers = new Filter(dfilter, false);
-				//---------------------------------------------------------------
-				var items = this.getView().byId("table_RSOS").getBinding('rows');
-				items.filter(filter_dealers);
+			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			if (x != "TCI_User") {
+				var dfilter = [];
+				for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
+					dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey()));
+				}
+				if (dfilter.length > 0) {
+					var filter_dealers = new Filter(dfilter, false);
+					//---------------------------------------------------------------
+					var items = this.getView().byId("table_RSOS").getBinding('rows');
+					items.filter(filter_dealers);
+				}
 			}
 			//================================================================================================== 
 			// if (AppController.flagDealerUser == true) {

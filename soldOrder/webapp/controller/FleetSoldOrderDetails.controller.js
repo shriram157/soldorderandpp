@@ -51,6 +51,9 @@ sap.ui.define([
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
 			var dfilter = [];
+			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			if(x != "TCI_User")
+			{
 			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
 			}
@@ -59,6 +62,7 @@ sap.ui.define([
 				//---------------------------------------------------------------
 				var items = this.getView().byId("tbl_FSOD").getBinding('rows');
 				items.filter(filter_dealers);
+			}
 			}
 			//=====================================================================
 			// if (AppController.flagZoneUser == true) {
@@ -126,12 +130,12 @@ sap.ui.define([
 			}
 			var filter_sstatus = new Filter(afilter, false);
 			//---------------------------------------------------------------
-			//-----------------Series-----------------
-			// var Sfilter = [];
-			// for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
-			// 	Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey()));
-			// }
-			// var filter_series = new Filter(Sfilter, false);
+			//-----------------Audit-----------------
+			var Sfilter = [];
+			for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
+				Sfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey()));
+			}
+			var filter_audit = new Filter(Sfilter, false);
 			//---------------------------------------------------------------
 			//-----------------Dealers-----------------
 			var dfilter = [];
@@ -140,7 +144,7 @@ sap.ui.define([
 			}
 			var filter_dealers = new Filter(dfilter, false);
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_sstatus, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
+			var filter_all = new Filter([filter_sstatus, filter_dealers,filter_audit, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
 			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
 			items.filter(filter_all);
 

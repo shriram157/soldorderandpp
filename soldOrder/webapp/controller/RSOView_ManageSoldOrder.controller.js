@@ -235,7 +235,7 @@ sap.ui.define([
 				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Update_Audit_Status", {
 					method: "POST",
 					urlParameters: {
-						ZZ_AUDIT_STATUS: 'COMPLETED',
+						ZZ_AUDIT_STATUS: 'COMPLETE',
 						ZzsoReqNo: zrequest
 					}, // function import parameters
 					success: function (oData, response) {

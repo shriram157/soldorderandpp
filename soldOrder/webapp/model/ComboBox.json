@@ -276,25 +276,25 @@
 	}],
 
 	"FSODetails_Status": [{
-		"key": "1",
+		"key": "AUDIT-COMPLETED",
 		"text": "Audit - Completed"
 	}, {
-		"key": "2",
+		"key": "PENDING FULFILLMENT",
 		"text": "Pending Fulfillment "
 	}, {
-		"key": "3",
+		"key": "FAILED",
 		"text": "Failed"
 	}, {
-		"key": "4",
+		"key": "FILLED",
 		"text": "Filled"
 	}, {
-		"key": "5",
+		"key": "AUDIT-IN PROGRESS",
 		"text": "Audit - In Progress"
 	}, {
-		"key": "6",
+		"key": "REGISTERED",
 		"text": "Registered"
 	}, {
-		"key": "7",
+		"key": "CANCELLED",
 		"text": "Cancelled"
 	}],
 
@@ -313,10 +313,10 @@
 	}],
 
 	"FSODetail_AuditStatus": [{
-		"key": "IN PROGRESS",
+		"key": "IN-PROGRESS",
 		"text": "In Progress"
 	}, {
-		"key": "COMPLETED",
+		"key": "COMPLETE",
 		"text": "Completed"
 	}],
 	"PriceProtectionStatus": [{
