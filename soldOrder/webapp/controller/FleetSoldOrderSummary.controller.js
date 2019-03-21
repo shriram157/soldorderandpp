@@ -39,6 +39,9 @@ sap.ui.define([
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
 			var dfilter = [];
+			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			if(x != "TCI_User")
+			{
 			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey()));
 			}
@@ -47,6 +50,7 @@ sap.ui.define([
 				//---------------------------------------------------------------
 				var items = this.getView().byId("tbl_FSOS").getBinding('rows');
 				items.filter(filter_dealers);
+			}
 			}
 			//==================================================================================================
 			// if (AppController.flagZoneUser == true) {
