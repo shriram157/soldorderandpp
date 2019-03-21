@@ -338,7 +338,7 @@
 						</items>
 					</HBox>-->
 					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12" class="marginCornersBottom">
-						<Button id="btn_AuditComp_RSO_MSO" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" text="{i18n>AuditComp}" press="_updateAuditSoldOrderRequest">
+						<Button id="btn_AuditComp_RSO_MSO" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" text="{i18n>AuditComp}" press="_updateAuditSoldOrderRequest">
 							<layoutData>
 								<l:GridData span="L2 M3 S6" indent="L4 M1"/>
 							</layoutData>

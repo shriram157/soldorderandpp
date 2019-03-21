@@ -285,7 +285,7 @@ sap.ui.define([
 			} else {
 				for (var i = aContexts.length - 1; i >= 0; i--) {
 					var index = aContexts[i];
-					_Table_Data1.splice(index, 1);
+					oModel2.getData().items.splice(index, 1);
 				}
 				oModel2.refresh();
 			}
@@ -303,7 +303,7 @@ sap.ui.define([
 			} else {
 				for (var i = aContexts.length - 1; i >= 0; i--) {
 					var index = aContexts[i];
-					_Table_Data2.splice(index, 1);
+					oModel2.getData().items.splice(index, 1);
 				}
 				oModel2.refresh();
 			}
