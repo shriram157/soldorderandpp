@@ -51,7 +51,7 @@
 												</Label>
 												<MultiComboBox id="mcb_dealer_PPD_D" selectionChange="_refresh" items="{LoginUserModel>/BpDealerModel}" 
 													class="sapUiMediumMarginEnd">
-													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{LoginUserModel>BusinessPartnerName}"/>
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{LoginUserModel>BusinessPartnerKey}-{LoginUserModel>BusinessPartnerName}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>

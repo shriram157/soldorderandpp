@@ -313,14 +313,11 @@
 	}],
 
 	"FSODetail_AuditStatus": [{
-		"key": "1",
+		"key": "IN PROGRESS",
 		"text": "In Progress"
 	}, {
-		"key": "2",
+		"key": "COMPLETED",
 		"text": "Completed"
-	}, {
-		"key": "3",
-		"text": " "
 	}],
 	"PriceProtectionStatus": [{
 		"key": "1",

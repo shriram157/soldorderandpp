@@ -86,7 +86,7 @@
 											<VBox visible="true">
 												<Label text="{i18n>dealer}" class="TableLabel"></Label>
 												<MultiComboBox width="" id="mcb_dealer_FSOD" visible="true" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
-													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{LoginUserModel>BusinessPartnerName}"/>
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{LoginUserModel>BusinessPartnerKey}-{LoginUserModel>BusinessPartnerName}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
