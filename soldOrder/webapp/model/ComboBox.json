@@ -246,30 +246,33 @@
 	}],
 
 	"FSOSummary_Status": [{
-		"key": "1",
-		"text": "Requested"
+		"key": "IN-PROGRESS",
+		"text": "In-Progress"
 	}, {
-		"key": "2",
-		"text": "Pending Fulfillment "
+		"key": "PENDING FULFILMENT",
+		"text": "Pending Fulfillment"
 	}, {
-		"key": "3",
-		"text": "Approved"
-	}, {
-		"key": "4",
+		"key": "FILLED",
 		"text": "Filled"
 	}, {
-		"key": "5",
-		"text": "Rejected"
+		"key": "REGISTERED",
+		"text": "Registered"
 	}, {
-		"key": "6",
-		"text": "Completed"
-	}, {
-		"key": "7",
+		"key": "CANCELLED",
 		"text": "Cancelled"
 	},
 	{
-		"key": "8",
-		"text": "In-Progress"
+		"key": "REQUESTED",
+		"text": "Requested"
+	},{
+		"key": "APPROVED",
+		"text": "Approved"
+	}, {
+		"key": "REJECTED",
+		"text": "Rejected"
+	},{
+		"key": "COMPLETED",
+		"text": "Completed"
 	}],
 
 	"FSODetails_Status": [{
