@@ -102,7 +102,7 @@ sap.ui.define([
 		},
 
 		_refresh: function () {
-
+            var allfilter = [];
 			var items = PPD_DealerCont.getView().byId("table_PPD_Dealer").getBinding("rows");
 
 			var statFilter = [];
@@ -110,7 +110,10 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 				statFilter.push(new Filter("status", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
 			}
+			if(statFilter.length > 0){
 			var filter_sstatus = new Filter(statFilter, false);
+			allfilter.push(filter_sstatus);
+			}
            	//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
@@ -118,10 +121,12 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
 			}
-			
+			if(dfilter.length > 0){
 			var filter_dealers = new Filter(dfilter, false);
+			allfilter.push(filter_dealers);
+			}
 			
-			items.filter(new Filter([filter_sstatus,filter_dealers],true));
+			items.filter(new Filter(allfilter,true));
 
 		},
 		_navToRSO: function (evt) {

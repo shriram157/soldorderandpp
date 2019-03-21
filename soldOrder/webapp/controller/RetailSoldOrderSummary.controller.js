@@ -154,28 +154,38 @@ sap.ui.define([
 		},
 
 		_refresh: function (oEvent) {
+			var allfilter = [];
 			//-----------------Sold Order Status-----------------
 			var afilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()));
 			}
-			var filter_sstatus = new Filter(afilter, false);
+			if (afilter.length > 0) {
+				var filter_sstatus = new Filter(afilter, false);
+				allfilter.push(filter_sstatus);
+			}
 			//---------------------------------------------------------------
 			//-----------------Series-----------------
 			var Sfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
 				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey()));
 			}
-			var filter_series = new Filter(Sfilter, false);
+			if (Sfilter.length > 0) {
+				var filter_series = new Filter(Sfilter, false);
+				allfilter.push(filter_series);
+			}
 			//---------------------------------------------------------------
 			//-----------------Dealers-----------------
 			var dfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey()));
 			}
-			var filter_dealers = new Filter(dfilter, false);
+			if (dfilter.length > 0) {
+				var filter_dealers = new Filter(dfilter, false);
+				allfilter.push(filter_dealers);
+			}
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_series, filter_sstatus, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, '')],
+			var filter_all = new Filter([allfilter, new Filter("FleetReference", FilterOperator.EQ, '')],
 				true);
 			var items = this.getView().byId("table_RSOS").getBinding('rows');
 			items.filter(filter_all);

@@ -116,6 +116,13 @@ toyota.ca.SoldOrder.util.formatter = {
 		{return true;}else{
 		return false;	
 		}
+	},
+	Tciuseraudit:function(status)
+	{
+		if(status == "IN PROGRESS")
+		{return true;}else{
+		return false;	
+		}
 	}
 	
 };

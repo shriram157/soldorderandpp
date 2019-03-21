@@ -52,17 +52,16 @@ sap.ui.define([
 			//=====================================================================================================
 			var dfilter = [];
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
-			if(x != "TCI_User")
-			{
-			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
-				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
-			}
-			if (dfilter.length > 0) {
-				var filter_dealers = new Filter(dfilter, false);
-				//---------------------------------------------------------------
-				var items = this.getView().byId("tbl_FSOD").getBinding('rows');
-				items.filter(filter_dealers);
-			}
+			if (x != "TCI_User") {
+				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
+					dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
+				}
+				if (dfilter.length > 0) {
+					var filter_dealers = new Filter(dfilter, false);
+					//---------------------------------------------------------------
+					var items = this.getView().byId("tbl_FSOD").getBinding('rows');
+					items.filter(filter_dealers);
+				}
 			}
 			//=====================================================================
 			// if (AppController.flagZoneUser == true) {
@@ -123,30 +122,43 @@ sap.ui.define([
 			// }, true);
 		},
 		_refresh: function (oEvent) {
+			var allfilter = [];
 			//-----------------Sold Order Status-----------------
 			var afilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey()));
 			}
-			var filter_sstatus = new Filter(afilter, false);
+			if (afilter.length > 0) {
+				var filter_sstatus = new Filter(afilter, false);
+				allfilter.push(filter_sstatus);
+			}
 			//---------------------------------------------------------------
 			//-----------------Audit-----------------
 			var Sfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
 				Sfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey()));
 			}
-			var filter_audit = new Filter(Sfilter, false);
+			if (Sfilter.length > 0) {
+				var filter_audit = new Filter(Sfilter, false);
+				allfilter.push(filter_audit);
+			}
 			//---------------------------------------------------------------
 			//-----------------Dealers-----------------
 			var dfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
 			}
-			var filter_dealers = new Filter(dfilter, false);
+			if (dfilter.length > 0) {
+				var filter_dealers = new Filter(dfilter, false);
+				allfilter.push(filter_dealers);
+			}
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_sstatus, filter_dealers,filter_audit, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
+		
+			var filter_all = new Filter([allfilter, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
 			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
 			items.filter(filter_all);
+		
+			
 
 		},
 		onLinkVehicle: function (evt) {
