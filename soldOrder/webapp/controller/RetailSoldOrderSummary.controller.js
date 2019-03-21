@@ -154,7 +154,7 @@ sap.ui.define([
 			//-----------------Sold Order Status-----------------
 			var afilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
-				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getText()));
+				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()));
 			}
 			var filter_sstatus = new Filter(afilter, false);
 			//---------------------------------------------------------------

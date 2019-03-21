@@ -177,30 +177,27 @@
 		"text": "Landrover"
 	}],
 	"SoldOrderStatus": [{
-		"key": "1",
+		"key": "IN-PROGRESS",
 		"text": "In-Progress"
 	}, {
-		"key": "2",
+		"key": "PENDING FULFILMENT",
 		"text": "Pending Fulfillment"
 	}, {
-		"key": "3",
+		"key": "FILLED",
 		"text": "Filled"
 	}, {
-		"key": "4",
+		"key": "REGISTERED",
 		"text": "Registered"
 	}, {
-		"key": "5",
+		"key": "CANCELLED",
 		"text": "Cancelled"
 	}],
 
 	"AuditStatus": [{
-		"key": "1",
-		"text": "Blank"
-	}, {
-		"key": "2",
+		"key": "IN-PROGRESS",
 		"text": "In Progress"
 	}, {
-		"key": "3",
+		"key": "COMPLETE",
 		"text": "Complete"
 	}],
 
