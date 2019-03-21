@@ -232,7 +232,20 @@ sap.ui.define([
 		},
 
 		_updateAuditSoldOrderRequest: function () {
-			AppController.flgSoldOrderReqStatus = "Audit - Complete";
+				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Update_Audit_Status", {
+					method: "POST",
+					urlParameters: {
+						ZZ_AUDIT_STATUS: 'COMPLETED',
+						ZzsoReqNo: zrequest
+					}, // function import parameters
+					success: function (oData, response) {
+					
+					},
+					error: function (oError) {
+
+					}
+				});
+			// AppController.flgSoldOrderReqStatus = "Audit - Complete";
 		},
 
 		_approvePriceProtectionDetails: function () {

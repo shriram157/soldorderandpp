@@ -345,7 +345,7 @@ sap.ui.define([
 				});
 
 			}
-			this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
+			// this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
 			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			this.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
 			this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {

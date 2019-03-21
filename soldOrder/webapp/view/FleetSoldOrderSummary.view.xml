@@ -117,7 +117,7 @@
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>totalVehicles}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Zadd1}"/>
+											<Text text="{mainservices>ZtotalVehQty}"/>
 										</t:template>
 									</t:Column>
 								</t:columns>
