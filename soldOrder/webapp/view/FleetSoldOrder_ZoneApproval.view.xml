@@ -208,7 +208,7 @@
 						<items>
 							<Button id="btn_approve_FSOZA" text="{i18n>approve}" visible="true" press="_approveFleetSoldRequest"></Button>
 							<Button id="btn_reject_FSOZA" text="{i18n>reject}" visible="true" press="_rejectFleetSoldRequest" class="sapUiSmallMarginBegin"></Button>
-							<Button id="btn_back_FSOZA" text="{i18n>back}" visible="true" class="sapUiSmallMarginBegin"></Button>
+							<Button id="btn_back_FSOZA" text="{i18n>back}" visible="true" class="sapUiSmallMarginBegin" press="_back"></Button>
 						</items>
 					</HBox>
 				</content>

@@ -103,6 +103,12 @@ sap.ui.define([
 				FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
 			}
 
+		},
+		_back:function(oEvent)
+		{
+				FSO_Z_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
+				Soreq: zrequest
+			}, true);
 		}
 
 	});
