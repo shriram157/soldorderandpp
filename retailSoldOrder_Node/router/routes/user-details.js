@@ -93,14 +93,14 @@ module.exports = function (appContext) {
 			}
 
 			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004')" +
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X'" +
 				"&$orderby=BusinessPartner asc";
 		}
 
 		// National user (TCI user)
 		else {
 			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004')" +
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X'" +
 				"&$orderby=BusinessPartner asc";
 		}
 
@@ -257,13 +257,16 @@ module.exports = function (appContext) {
 		scopeLogMessage += "viewRetailSoldOrder: " + viewRetailSoldOrder + "\n";
 		tracer.debug(scopeLogMessage);
 
-		if (!approveFleetSoldOrder && !approvePriceProtection && manageFleetSoldOrder && manageRetailSoldOrder && !viewFleetSoldOrder && viewPriceProtection &&
+		if (!approveFleetSoldOrder && !approvePriceProtection && manageFleetSoldOrder && manageRetailSoldOrder && !viewFleetSoldOrder &&
+			viewPriceProtection &&
 			!viewRetailSoldOrder) {
 			role = "Dealer_User";
-		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder && viewPriceProtection &&
+		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
+			viewPriceProtection &&
 			viewRetailSoldOrder) {
 			role = "TCI_User";
-		} else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder && viewPriceProtection &&
+		} else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
+			viewPriceProtection &&
 			viewRetailSoldOrder) {
 			role = "TCI_Zone_User";
 		}
