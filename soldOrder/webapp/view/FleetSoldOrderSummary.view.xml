@@ -105,7 +105,7 @@
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>orderType}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Zzordtypedesc}"/>
+											<Text text="{mainservices>Zadd1}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">

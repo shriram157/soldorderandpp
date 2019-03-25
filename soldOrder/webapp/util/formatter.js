@@ -19,14 +19,14 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	formatSuffix: function (Suffix, SuffixDescriptionEN) {
 		// "Suffix - " +  
-		var text = Suffix + "/ " + SuffixDescriptionEN ;//InteriorColourDescription;
+		var text = Suffix + "/ " + SuffixDescriptionEN; //InteriorColourDescription;
 		if (Suffix) {
 			return text;
 		}
 	},
-	formatSuffix1: function (Suffix,Option,SuffixDescriptionEN) {
+	formatSuffix1: function (Suffix, Option, SuffixDescriptionEN) {
 		// "Suffix - " + dd 
-		var text = Suffix + "/ " + Option + "/ " + SuffixDescriptionEN ;//InteriorColourDescription;
+		var text = Suffix + "/ " + Option + "/ " + SuffixDescriptionEN; //InteriorColourDescription;
 		if (Suffix) {
 			return text;
 		}
@@ -91,47 +91,41 @@ toyota.ca.SoldOrder.util.formatter = {
 			return;
 		}
 	},
-	linkvehicle:function(vehicle)
-	{
-		if(vehicle)
-		{
+	linkvehicle: function (vehicle) {
+		if (vehicle) {
 			return false;
-		}else
-		{
+		} else {
 			return true;
 		}
-			
-	
+
 	},
-	Dealerusertype:function(Usertypevalue)
-	{
-		if(Usertypevalue == 'Dealer_User')
-		{return true;}else{
-		return false;	
+	Dealerusertype: function (Usertypevalue) {
+		if (Usertypevalue == 'Dealer_User') {
+			return true;
+		} else {
+			return false;
 		}
 	},
-	Tciusertype:function(Usertypevalue)
-	{
-		if(Usertypevalue == 'TCI_User')
-		{return true;}else{
-		return false;	
+	Tciusertype: function (Usertypevalue) {
+		if (Usertypevalue == 'TCI_User') {
+			return true;
+		} else {
+			return false;
 		}
 	},
-	Tciuseraudit:function(status)
-	{
-		if(status == "IN PROGRESS")
-		{return true;}else{
-		return false;	
+	Tciuseraudit: function (status) {
+		if (status == "IN PROGRESS") {
+			return true;
+		} else {
+			return false;
 		}
 	},
-	TciApprove:function(svalue)
-{
-if ( (svalue == 'APPROVED') || (svalue == 'REJECTED'))
-{
-return false;
-}else{
-return true;
-}
-}
-	
+	TciApprove: function (svalue) {
+		if ((svalue == 'APPROVED') || (svalue == 'REJECTED')) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 };
