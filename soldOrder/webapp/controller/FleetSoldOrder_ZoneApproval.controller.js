@@ -89,7 +89,7 @@ sap.ui.define([
 				method: "POST",
 				urlParameters: {
 					ZSO_FLT_REQ_NO: zrequest,
-					ZZORDER_TYPE: FSO_Z_controller.getView().byId('sorderType_FSOZA').getSelectedKey(),
+					ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey(),
 					ZSO_FLT_STATUS: 'APPROVED',
 					ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
 				}, // function import parameters  
@@ -109,7 +109,7 @@ sap.ui.define([
 				method: "POST",
 				urlParameters: {
 					ZSO_FLT_REQ_NO: zrequest,
-					ZZORDER_TYPE: FSO_Z_controller.getView().byId('sorderType_FSOZA').getSelectedKey(),
+					ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey(),
 					ZSO_FLT_STATUS: 'REJECTED',
 					ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
 				}, // function import parameter 

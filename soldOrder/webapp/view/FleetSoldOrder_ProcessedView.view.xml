@@ -18,7 +18,10 @@
 							<Label wrapping="true" text="{i18n>PONumber}"/>
 							<Text text="{mainservices>ZpoNumber}"/>
 							<Label wrapping="true" text="{i18n>orderType}"/>
-							<Text text="{mainservices>Zzordtypedesc}"/>
+							<ComboBox editable="false" id="orderType_FSOZA" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }"  selectedKey="{mainservices>Zadd1}">
+								<core:Item key="{key}" text="{text}"/>
+							</ComboBox>
+							<!--<Text text=""/>-->
 							<Label wrapping="true" text="{i18n>status}"/>
 							<Text text="{mainservices>ZsoFltStatus}"/>
 							<Label wrapping="true" text="{i18n>zoneAppNumber}"/>
@@ -266,7 +269,7 @@
 							</t:Column>
 						</t:columns>
 					</t:Table>
-					<Button text="{i18n>approvalpage}" press="onApprove" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" class="cssShift marginCornersBottom marginCornersRight"></Button>
+					<Button text="{i18n>approvalpage}" press="onApprove" enabled="{path:'mainservices>ZsoFltStatus',formatter:'toyota.ca.SoldOrder.util.formatter.TciApprove'}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" class="cssShift marginCornersBottom marginCornersRight"></Button>
 					<Button text="{i18n>back}" press="onNavback" class="cssShift marginCornersBottom marginCornersRight"></Button>
 				</content>
 			</Page>

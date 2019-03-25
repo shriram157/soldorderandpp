@@ -123,6 +123,15 @@ toyota.ca.SoldOrder.util.formatter = {
 		{return true;}else{
 		return false;	
 		}
-	}
+	},
+	TciApprove:function(svalue)
+{
+if ( (svalue == 'APPROVED') || (svalue == 'REJECTED'))
+{
+return false;
+}else{
+return true;
+}
+}
 	
 };
