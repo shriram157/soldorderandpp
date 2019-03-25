@@ -24,7 +24,7 @@
 							<Label wrapping="true" text="{i18n>status}"/>
 							<Text text="{mainservices>ZsoFltStatus}"/>
 							<Label wrapping="true" text="{i18n>zoneAppNumber}"/>
-							<Input value="{mainservices>ZzoneApproval}"/>
+							<Input value="{mainservices>ZzoneApproval}" id="zoneapproval"/>
 							<Label wrapping="true" text="{i18n>totalVehicles}"/>
 							<Text text="" id="vechilecounter"/>
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>

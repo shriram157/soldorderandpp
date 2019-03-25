@@ -85,10 +85,43 @@ sap.ui.define([
 			FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
 		},*/
 		_approveFleetSoldRequest: function () {
+			FSO_Z_controller.getView().getModel('mainservices').callFunction("/Approve_Fleet_Order", {
+				method: "POST",
+				urlParameters: {
+					ZSO_FLT_REQ_NO: zrequest,
+					ZZORDER_TYPE: FSO_Z_controller.getView().byId('sorderType_FSOZA').getSelectedKey(),
+					ZSO_FLT_STATUS: 'APPROVED',
+					ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
+				}, // function import parameters  
+				// 
+				success: function (oData, response) {
+					FSO_Z_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
+						Soreq: zrequest
+					}, true);
+				},
+				error: function (oError) {
 
+				}
+			});
 		},
 		_rejectFleetSoldRequest: function () {
+			FSO_Z_controller.getView().getModel('mainservices').callFunction("/Approve_Fleet_Order", {
+				method: "POST",
+				urlParameters: {
+					ZSO_FLT_REQ_NO: zrequest,
+					ZZORDER_TYPE: FSO_Z_controller.getView().byId('sorderType_FSOZA').getSelectedKey(),
+					ZSO_FLT_STATUS: 'REJECTED',
+					ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
+				}, // function import parameter 
+				success: function (oData, response) {
+					FSO_Z_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
+						Soreq: zrequest
+					}, true);
+				},
+				error: function (oError) {
 
+				}
+			});
 		},
 		onAfterRendering: function () {
 			// var oBundle = FSO_Z_controller.getView().getModel("i18n").getResourceBundle();
@@ -96,17 +129,16 @@ sap.ui.define([
 			// var sMsg = oBundle.getText("zoneApprovalTitle", [sRecipient]);
 			// FSO_Z_controller.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg);
 
-			if (AppController.flagZoneUser == true) {
+			// if (AppController.flagZoneUser == true) {
 				FSO_Z_controller.getView().byId("btn_approve_FSOZA").setVisible(true);
 				FSO_Z_controller.getView().byId("btn_reject_FSOZA").setVisible(true);
 				FSO_Z_controller.getView().byId("btn_back_FSOZA").setVisible(true);
 				FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
-			}
+			// }
 
 		},
-		_back:function(oEvent)
-		{
-				FSO_Z_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
+		_back: function (oEvent) {
+			FSO_Z_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
 				Soreq: zrequest
 			}, true);
 		}

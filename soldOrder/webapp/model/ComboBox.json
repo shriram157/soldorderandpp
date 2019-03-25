@@ -221,13 +221,13 @@
 	}],
 
 	"FSO_OrderType": [{
-		"key": "1",
-		"text": " Dealer RAC"
+		"key": "R",
+		"text": "Dealer RAC"
 	}, {
-		"key": "2",
+		"key": "E&T",
 		"text": "Fleet - Dealer Elite"
 	}, {
-		"key": "3",
+		"key": "M",
 		"text": "Dealer Mobility"
 	}],
 
