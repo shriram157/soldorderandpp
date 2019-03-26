@@ -26,7 +26,7 @@ sap.ui.define([
 		},
 		_handleRSADropDown: function () {
 			var host = RSOB_controller.host();
-			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_PIO_DIO?sap-client=200&$format=json";
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_PIO_DIO?$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
@@ -92,7 +92,7 @@ sap.ui.define([
 		},
 		getSO: function () {
 			var host = RSOB_controller.host();
-			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?sap-client=200&$format=json";
+			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$format=json";
 			//---------------------------------------------------------------------------------------------------------
 			//--------------Mock Data for Vechile Information till make integration with PipeLine App------------------
 			//---------------------------------------------------------------------------------------------------------

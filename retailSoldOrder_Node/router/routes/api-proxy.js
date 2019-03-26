@@ -6,6 +6,9 @@
 module.exports = function (appContext) {
 	var express = require("express");
 	var request = require("request");
+	var {
+		URL
+	} = require("url");
 	var xsenv = require("@sap/xsenv");
 
 	var router = express.Router();
@@ -21,9 +24,9 @@ module.exports = function (appContext) {
 	}));
 	routerTracer.debug("Properties of APIM user-provided service '%s' : %s", apimServiceName, JSON.stringify(options));
 
-	var url = options.apim.host;
-	if (url.endsWith("/")) {
-		url = url.slice(0, -1);
+	var apimUrl = options.apim.host;
+	if (apimUrl.endsWith("/")) {
+		apimUrl = apimUrl.slice(0, -1);
 	}
 	var APIKey = options.apim.APIKey;
 	var s4Client = options.apim.client;
@@ -40,7 +43,7 @@ module.exports = function (appContext) {
 			"APIKey": APIKey,
 			"Content-Type": req.get("Content-Type")
 		};
-		var proxiedUrl = url + req.url;
+		var proxiedUrl = apimUrl + req.url;
 
 		// Proxied call is to IBM APIC
 		if (req.url.startsWith("/tci/internal")) {
@@ -69,6 +72,12 @@ module.exports = function (appContext) {
 
 		// Proxied call is to S4/HANA
 		else {
+			// Add/update sap-client query parameter with UPS value in the proxied URL
+			var proxiedUrlObj = new URL(proxiedUrl);
+			proxiedUrlObj.searchParams.delete("sap-client");
+			proxiedUrlObj.searchParams.set("sap-client", s4Client);
+			proxiedUrl = proxiedUrlObj.href;
+
 			proxiedReqHeaders.Authorization = "Basic " + new Buffer(s4User + ":" + s4Password).toString("base64");
 
 			// Pass through x-csrf-token from request to proxied request to S4/HANA

@@ -20,10 +20,10 @@ sap.ui.define([
 			}
 			PPD_Zone_controller.nodeJsUrl = PPD_Zone_controller.sPrefix + "/node";
 			$.ajax({
-				//https://tcid1gwapp1.tci.internal.toyota.ca:44300/sap/opu/odata/sap/ZPRICE_PROTECTION_SRV/zc_item?sap-client=200&$format=json
-				//	url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?sap-client=200&$format=json",
-				//url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/ZC_HEADER",//?sap-client=200&$format=json",
-				url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_item",//?sap-client=200&$format=json",
+				//https://tcid1gwapp1.tci.internal.toyota.ca:44300/sap/opu/odata/sap/ZPRICE_PROTECTION_SRV/zc_item?$format=json
+				//	url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?$format=json",
+				//url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/ZC_HEADER",//?$format=json",
+				url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_item",//?$format=json",
 				method: 'GET',
 				async: false,
 				dataType: 'json',

@@ -86,7 +86,7 @@ sap.ui.define([
 		},
 		_handleServiceSuffix_Series: function () {
 			var host = RSOS_controller.host();
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?sap-client=200&$format=json";
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',

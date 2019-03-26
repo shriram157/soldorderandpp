@@ -26,8 +26,8 @@ sap.ui.define([
 			// debugger;
 			//PPD_DealerCont.getView().setModel("mainService");
 			// $.ajax({
-			// 	//	url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?sap-client=200&$format=json",
-			// 	url: PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/ZC_HEADER", //?sap-client=200&$format=json",
+			// 	//	url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?$format=json",
+			// 	url: PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/ZC_HEADER", //?$format=json",
 			// 	method: 'GET',
 			// 	async: false,
 			// 	dataType: 'json',
@@ -43,8 +43,8 @@ sap.ui.define([
 			// 	}
 			// });
 			// $.ajax({
-			// 	//	url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?sap-client=200&$format=json",
-			// 	url: PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_item", //?sap-client=200&$format=json",
+			// 	//	url:  PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?$format=json",
+			// 	url: PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_item", //?$format=json",
 			// 	method: 'GET',
 			// 	async: false,
 			// 	dataType: 'json',
@@ -63,7 +63,7 @@ sap.ui.define([
 			// 	}
 			// });
 			// $.ajax({
-			// 	url: PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing", //?sap-client=200&$format=json",
+			// 	url: PPD_DealerCont.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing", //?$format=json",
 			// 	method: 'GET',
 			// 	async: false,
 			// 	dataType: 'json',
@@ -186,7 +186,7 @@ sap.ui.define([
 		},
 			_handleServiceSuffix_Series: function () {
 			var host = PPD_DealerCont.host();
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?sap-client=200&$format=json";
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',

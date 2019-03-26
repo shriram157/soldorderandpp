@@ -64,7 +64,7 @@ sap.ui.define([
 			if (evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN')) {
 				var V_No = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
 				// var host = VehSel_DealerInv_controller.host();
-				// var oUrl = host + "/Z_VEHICLE_MASTER_SRV/zc_exterior_trim?sap-client=200&$format=json";
+				// var oUrl = host + "/Z_VEHICLE_MASTER_SRV/zc_exterior_trim?$format=json";
 				// $.ajax({
 				// 	url: oUrl,
 				// 	method: 'GET',

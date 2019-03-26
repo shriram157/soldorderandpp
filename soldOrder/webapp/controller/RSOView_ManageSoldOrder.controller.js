@@ -41,7 +41,7 @@ sap.ui.define([
 
 			//"""""""""""""""""""""""""""""""""""""""
 			var host = RSO_MSO_controller.host();
-			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?sap-client=200&$format=json";
+			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$format=json";
 			//attachPatternMatched
 
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";

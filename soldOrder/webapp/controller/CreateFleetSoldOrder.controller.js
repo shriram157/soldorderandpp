@@ -59,7 +59,7 @@ sap.ui.define([
 		//3)Color Code , Colour Description :  :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  ExteriorColorCode: "0218"ExteriorDescriptionEN: "BLACK"
 		_newService1: function () {
 			var host = CFSO_controller.host();
-			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_configuration?sap-client=200&$format=json";
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_configuration?$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
@@ -79,7 +79,7 @@ sap.ui.define([
 		},
 		_newService2: function () {
 			var host = CFSO_controller.host();
-			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim?sap-client=200&$format=json";
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim?$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
@@ -100,7 +100,7 @@ sap.ui.define([
 		_newService3: function () {
 			var host = CFSO_controller.host();
 			// ZC_BRAND_MODEL_DETAIL
-			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_model?sap-client=200&$format=json";
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_model?$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
@@ -121,7 +121,7 @@ sap.ui.define([
 		},
 		_handleRSADropDown: function () {
 			var host = CFSO_controller.host();
-			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_PIO_DIO?sap-client=200&$format=json";
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_PIO_DIO?$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
@@ -141,7 +141,7 @@ sap.ui.define([
 		},
 		_handleServiceSuffix_Series: function () {
 			var host = CFSO_controller.host();
-			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_MODEL_DETAILS?sap-client=200&$format=json";
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_MODEL_DETAILS?$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',

@@ -13,7 +13,7 @@ formatter:formatter,
 		},
 			getSO: function () {
 			var host = VehSel_NatStock_Controller.host();
-			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?sap-client=200&$format=json";
+			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$format=json";
 		//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$filter=ZzsoReqNo eq 'SO0000000009'&$format=json";
 			$.ajax({
 				type: 'GET',
