@@ -129,11 +129,15 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	formatdealers:function(dealerno,dealername)
 	{
+		if(dealerno){
 		return dealerno.slice(-5) + "-" + dealername;
+		}
 	},
 	formatdealerno:function(dealerno)
 	{
+		if(dealerno){
 		return dealerno.slice(-5);
+		}
 	}
 
 };
