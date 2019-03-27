@@ -93,64 +93,15 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-
-					// console.log("Result from ZC_MODEL_DETAILS ");
-					// console.log(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
-
-					// var arr = [];
-					// var j = 0;
-					// for (var c = 0; c < data.d.results.length; c++) {
-					// 	for (var i = 0; i < data.d.results.length; i++) {
-					// 		if ($.inArray(data.d.results[i]["Zzseries"], arr) < 0) {
-					// 			arr[j] = data.d.results[i]["Zzseries"];
-					// 			j++;
-
-					// 		}
-					// 	}
-					// }
-
 					oModel.setData(data.d.results);
 					RSOS_controller.getView().setModel(oModel, "seriesModel");
-					// console.log(RSOA_controller.getView().getModel("seriesModel").getData());
-
-					// var oModel2 = new sap.ui.model.json.JSONModel();
-
-					// var arr2 = [''];
-					// var k = 0;
-					// for (var q = 0; q < data.d.results.length; q++) {
-					// 	for (var i = 0; i < data.d.results.length; i++) {
-					// 		if ($.inArray(data.d.results[i]["suffix"], arr2) < 0) {
-					// 			arr2[k] = data.d.results[i]["suffix"];
-					// 			k++;
-					// 		}
-					// 	}
-					// }
-					// // console.log(arr2);
-					// oModel2.setData(arr2);
-					// RSOS_controller.getView().setModel(oModel2, "suffix_Model");
-
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
-			/*var oToken = XMLHttpRequest.getResponseHeader('X-CSRF-Token');
-			var oHeaders = {
-				"x-csrf-token": oToken,
-			};*/
-
-			/*	
-				Zzmoyr= RSOA_controller.getView().byId("modelYr_RSOA").getValue();
-				Zzmodel= RSOA_controller.getView().byId("model_RSOA").getValue();
-				Zzsuffix= RSOA_controller.getView().byId("Suffix_RSOA").getValue();
-				Zzextcol= RSOA_controller.getView().byId("Colour_RSOA").getValue();
-				Zzapx=RSOA_controller.getView().byId("Apx_RSOA").getValue();
-				ZzreqEtaFrom:= RSOA_controller.getView().byId("etaFrom_RSOA").getValue();
-				ZzreqEtaTo= RSOA_controller.getView().byId("etaTo_RSOA").getValue();
-			};*/
-
 		},
 
 		_refresh: function (oEvent) {

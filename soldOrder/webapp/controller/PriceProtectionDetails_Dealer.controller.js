@@ -12,6 +12,7 @@ sap.ui.define([
 		onInit: function () {
 			PPD_DealerCont = this;
 			PPD_DealerCont.getBrowserLanguage();
+			PPD_DealerCont._handleServiceSuffix_Series();
 			// var sLocation = window.location.host;
 			// var sLocation_conf = sLocation.search("webide");
 			// if (sLocation_conf == 0) {
@@ -182,7 +183,26 @@ sap.ui.define([
 
 			}
 
-		}
+		},
+			_handleServiceSuffix_Series: function () {
+			var host = PPD_DealerCont.host();
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?sap-client=200&$format=json";
+			$.ajax({
+				url: oUrl,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+					oModel.setData(data.d.results);
+					PPD_DealerCont.getView().setModel(oModel, "seriesModel");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+		},
 
 	});
 
