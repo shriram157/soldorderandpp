@@ -86,7 +86,7 @@ sap.ui.define([
 			var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
 			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
-			if (Oevent.getSource().getSelectedKey() == '1') {
+			// if (Oevent.getSource().getSelectedKey() == '1') {
 
 				vechile_items.filter([new Filter([
 					new Filter("MATRIX", FilterOperator.EQ, "A205"),
@@ -100,21 +100,21 @@ sap.ui.define([
 					// new Filter("ETA", FilterOperator.EQ, ""),
 					// new Filter("APX", FilterOperator.EQ, ""),
 				], true)]);
-			} else if (Oevent.getSource().getSelectedKey() == '2') //National Stock
-			{
-				vechile_items.filter([new Filter([
-					new Filter("MATRIX", FilterOperator.EQ, "A205"),
-					new Filter("Dealer", FilterOperator.EQ, "2400500000")
-					// new Filter("Model", FilterOperator.EQ, "YZ3DCT"),
-					// new Filter("Modelyear", FilterOperator.EQ, "2018"),
-					// new Filter("Suffix", FilterOperator.EQ, "AL"),
-					// new Filter("ExteriorColorCode", FilterOperator.EQ, "01D6"),
-					// new Filter("INTCOL", FilterOperator.EQ, "42")
-					// new Filter("TCISeries", FilterOperator.EQ, ""),
-					// new Filter("ETA", FilterOperator.EQ, ""),
-					// new Filter("APX", FilterOperator.EQ, ""),
-				], true)]);
-			}
+			// } else if (Oevent.getSource().getSelectedKey() == '2') //National Stock
+			// {
+			// 	vechile_items.filter([new Filter([
+			// 		new Filter("MATRIX", FilterOperator.EQ, "A205"),
+			// 		new Filter("Dealer", FilterOperator.EQ, "2400500000")
+			// 		// new Filter("Model", FilterOperator.EQ, "YZ3DCT"),
+			// 		// new Filter("Modelyear", FilterOperator.EQ, "2018"),
+			// 		// new Filter("Suffix", FilterOperator.EQ, "AL"),
+			// 		// new Filter("ExteriorColorCode", FilterOperator.EQ, "01D6"),
+			// 		// new Filter("INTCOL", FilterOperator.EQ, "42")
+			// 		// new Filter("TCISeries", FilterOperator.EQ, ""),
+			// 		// new Filter("ETA", FilterOperator.EQ, ""),
+			// 		// new Filter("APX", FilterOperator.EQ, ""),
+			// 	], true)]);
+			// }
 		}
 
 	});
