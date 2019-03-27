@@ -12,7 +12,10 @@ sap.ui.define([
 		onInit: function () {
 			InvVehSel_controller = this;
 			InvVehSel_controller.getBrowserLanguage();
-			InvVehSel_controller.filter_change();	
+				
+		},
+		onAfterRendering: function () {
+			InvVehSel_controller.filter_change();
 		},
 		_onSelect: function () {
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");

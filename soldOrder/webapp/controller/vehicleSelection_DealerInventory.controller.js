@@ -15,11 +15,14 @@ sap.ui.define([
 			VehSel_DealerInv_controller.getBrowserLanguage();
 			this.getOwnerComponent().getRouter().getRoute("vehicleSelection_DealerInventory").attachPatternMatched(this._getattachRouteMatched,
 				this);
-			VehSel_DealerInv_controller.filter_change();	
+				
 		},
 		_getattachRouteMatched: function (parameters) {
 			zrequest = parameters.getParameters().arguments.Soreq;
 			
+		},
+		onAfterRendering: function () {
+			VehSel_DealerInv_controller.filter_change();
 		},
 		filter_change: function (Oevent) {
 			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
