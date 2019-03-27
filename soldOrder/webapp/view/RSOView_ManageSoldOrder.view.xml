@@ -16,7 +16,7 @@
 							<Label wrapping="true" text="{i18n>modelYear}"/>
 							<Text text="{mainservices>Zzmoyr}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
-								<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
+								<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}"  selectedKey="{mainservices>Zzseries}"
 								modelContextChange="onSeriesnum">
 								<items>
 									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
