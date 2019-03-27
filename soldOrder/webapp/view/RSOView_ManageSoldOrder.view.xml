@@ -16,7 +16,13 @@
 							<Label wrapping="true" text="{i18n>modelYear}"/>
 							<Text text="{mainservices>Zzmoyr}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<Text text="{mainservices>Zzseries}"/>
+								<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
+								modelContextChange="onSeriesnum">
+								<items>
+									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
+								</items>
+							</ComboBox>
+							<!--<Text text="{mainservices>Zzseries}"/>-->
 							<Label wrapping="true" text="{i18n>Model}"/>
 							<!--<Text text="{path:'mainservices>Zzmodel',filters: [{ path: 'Zzmodel', operator: 'EQ', value1: 'mainservices>Zzmodel']}}"/>-->
 							<!--<Label wrapping="true" text="{i18n>Suffix}"/>-->

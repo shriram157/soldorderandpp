@@ -17,6 +17,7 @@ sap.ui.define([
 		onInit: function (OEvent) {
 			RSO_MSO_controller = this;
 			RSO_MSO_controller.getBrowserLanguage();
+			RSO_MSO_controller._handleServiceSuffix_Series();
 			RSO_MSO_controller._oBusyDialog = new sap.m.BusyDialog();
 			zcustomerModel = new JSONModel({});
 			this.getView().setModel(zcustomerModel, 'Customer');
@@ -869,6 +870,25 @@ sap.ui.define([
 				// ], true));
 
 			}
-		}
+		},
+			_handleServiceSuffix_Series: function () {
+			var host = RSO_MSO_controller.host();
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
+			$.ajax({
+				url: oUrl,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+					oModel.setData(data.d.results);
+					RSO_MSO_controller.getView().setModel(oModel, "seriesModel");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+		},
 	});
 });
