@@ -56,7 +56,13 @@
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>series}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>TCISeries}"/>
+										<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{FirstTable>TCISeries}"
+												modelContextChange="onSeriesnum">
+												<items>
+													<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
+												</items>
+											</ComboBox>
+									<!--<Text text="{FirstTable>TCISeries}"/>-->
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">

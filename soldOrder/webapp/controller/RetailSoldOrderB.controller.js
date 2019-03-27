@@ -15,6 +15,7 @@ sap.ui.define([
 			RSOB_controller.getBrowserLanguage();
 			RSOB_controller.validateFlagB = false;
 			var model = new JSONModel({});
+			RSOB_controller._handleServiceSuffix_Series();
 			RSOB_controller.getView().setModel(model, 'Customer');
 			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderB").attachPatternMatched(this._getattachRouteMatched, this);
 			// RSOB_controller._handleRSADropDown();
@@ -487,7 +488,26 @@ sap.ui.define([
 				RSOB_controller.getView().byId("tcciNo_RSOB").setEnabled(true);
 			}
 
-		}
+		},
+			_handleServiceSuffix_Series: function () {
+			var host = RSOB_controller.host();
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
+			$.ajax({
+				url: oUrl,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+					oModel.setData(data.d.results);
+					RSOB_controller.getView().setModel(oModel, "seriesModel");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+		},
 
 	});
 

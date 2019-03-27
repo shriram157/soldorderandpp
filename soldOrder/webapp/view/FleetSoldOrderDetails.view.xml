@@ -108,7 +108,7 @@
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text id="tbl_val_dealer_FSOD" visible="true" text="{mainservices>ZzdealerCode}"/>
+											<Text id="tbl_val_dealer_FSOD" visible="true" text="{path:'mainservices>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}"/>
 											<!--, formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'-->
 										</t:template>
 									</t:Column>

@@ -15,7 +15,13 @@
 							<Label wrapping="true" text="{i18n>modelYear}"/>
 							<Text text="{RSOB_Model>/modelyear}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<Text text="{RSOB_Model>/serieskey}"/>
+							<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{RSOB_Model>/serieskey}"
+								modelContextChange="onSeriesnum">
+								<items>
+									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
+								</items>
+							</ComboBox>
+							<!--<Text text="{RSOB_Model>/serieskey}"/>-->
 							<Label wrapping="true" text="{i18n>Model}"/>
 							<ComboBox id="model_RSOB" items="{VechileModel>/zc_model}" editable="false" selectedKey="{RSOB_Model>/modelkey}">
 								<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>

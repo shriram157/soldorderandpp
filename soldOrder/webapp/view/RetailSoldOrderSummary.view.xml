@@ -5,7 +5,7 @@
 		<pages>
 			<Page showHeader="false">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
-			<!--	<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.VtinDialog" type="JS"/>-->
+				<!--	<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.VtinDialog" type="JS"/>-->
 				<content>
 					<VBox>
 						<items>
@@ -22,9 +22,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'seriesModel>/'}"
-													class="sapUiMediumMarginEnd">
-													<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>Zzseries}/{seriesModel>ZzseriesDescEn}"/>
+												<MultiComboBox id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'seriesModel>/'}" class="sapUiMediumMarginEnd">
+													<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -36,8 +35,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: '/FSOSummary_Status', sorter: { path: 'key' } }"
-													class="sapUiMediumMarginEnd">
+												<MultiComboBox id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh"
+													items="{ path: '/FSOSummary_Status', sorter: { path: 'key' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{key}" text="{text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -50,7 +49,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_auditStatus_RSOS" items="{ path:'/AuditStatus'}" width="300px" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+												<MultiComboBox id="mcb_auditStatus_RSOS" items="{ path:'/AuditStatus'}" width="300px" selectionChange="_refresh"
+													class="sapUiMediumMarginEnd">
 													<core:Item key="{key}" text="{text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -63,8 +63,10 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_dealer_RSOS" width="300px" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
-													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
+												<MultiComboBox id="mcb_dealer_RSOS" width="300px" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"
+													class="sapUiMediumMarginEnd">
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
+														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -75,8 +77,8 @@
 								</items>
 							</VBox>
 							<Button text="{i18n>new}" id="idBtn_RSOS_new" class="cssShift marginCornersRight" visible="false" press="_createNewOrder"></Button>
-							<t:Table id="table_RSOS" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" 
-							alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners marginCornersBottom">
+							<t:Table id="table_RSOS" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false"
+								alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners marginCornersBottom">
 								<t:columns>
 									<t:Column width="11.11%" resizable="false">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
@@ -89,8 +91,8 @@
 										<t:template>
 											<!--<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"-->
 											<!--	wrapping="true"/>-->
-											<Text visible="true" id="tbl_lbl_dealer_RSOS" text="{mainservices>ZzdealerCode}"
-												wrapping="true"/>
+											<Text visible="true" id="tbl_lbl_dealer_RSOS"
+												text="{path:'mainservices>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false">
@@ -103,11 +105,11 @@
 										<Label text="{i18n>series}" class="TableLabel"/>
 										<t:template>
 											<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
-											modelContextChange="onSeriesnum">
-											<items>
-												<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
-											</items>
-										</ComboBox>
+												modelContextChange="onSeriesnum">
+												<items>
+													<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
+												</items>
+											</ComboBox>
 											<!--<Text text="{mainservices>Zzseries}" wrapping="true"/>-->
 										</t:template>
 									</t:Column>
@@ -116,8 +118,7 @@
 										<t:template>
 											<!--<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"-->
 											<!--	wrapping="true"/>-->
-												<Text text="{mainservices>Zzmodel}"
-												wrapping="true"/>
+											<Text text="{mainservices>Zzmodel}" wrapping="true"/>
 										</t:template>
 									</t:Column >
 									<t:Column width="11.11%" sortProperty="Category" resizable="false">
@@ -125,8 +126,7 @@
 										<t:template>
 											<!--<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"-->
 											<!--	wrapping="true"/>-->
-												<Text text="{mainservices>Zzsuffix}"
-												wrapping="true"/>
+											<Text text="{mainservices>Zzsuffix}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" sortProperty="Category" resizable="false">

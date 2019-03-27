@@ -130,6 +130,10 @@ toyota.ca.SoldOrder.util.formatter = {
 	formatdealers:function(dealerno,dealername)
 	{
 		return dealerno.slice(-5) + "-" + dealername;
+	},
+	formatdealerno:function(dealerno)
+	{
+		return dealerno.slice(-5);
 	}
 
 };

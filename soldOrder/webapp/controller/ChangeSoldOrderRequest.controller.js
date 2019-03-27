@@ -17,6 +17,7 @@ sap.ui.define([
 		onInit: function () {
 			CSOR_controller = this;
 			CSOR_controller.getBrowserLanguage();
+			CSOR_controller._handleServiceSuffix_Series();
 			// var today = new Date();
 			// var day1 = new Date();
 			// day1.setDate(today.getDate() + 1);
@@ -148,7 +149,8 @@ sap.ui.define([
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
 
-			if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')&&this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
+			if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries') && this.getView().getElementBinding(
+					'mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				// this.getView().byId('model_CSOR').bindItems("oModel3>/", new sap.ui.core.ListItem({
@@ -250,7 +252,26 @@ sap.ui.define([
 				// ], true));
 
 			}
-		}
+		},
+		_handleServiceSuffix_Series: function () {
+			var host = CSOR_controller.host();
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
+			$.ajax({
+				url: oUrl,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+					oModel.setData(data.d.results);
+					CSOR_controller.getView().setModel(oModel, "seriesModel");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+		},
 
 	});
 

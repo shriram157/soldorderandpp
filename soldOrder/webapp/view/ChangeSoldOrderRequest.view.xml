@@ -15,7 +15,13 @@
 							<Label text="{i18n>modelYear}"/>
 							<Text text="{mainservices>Zzmoyr}"/>
 							<Label text="{i18n>Series}"/>
-							<Text text="{mainservices>Zzseries}"/>
+								<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
+								modelContextChange="onSeriesnum">
+								<items>
+									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
+								</items>
+							</ComboBox>
+							<!--<Text text="{mainservices>Zzseries}"/>-->
 							<Label text="{i18n>Model}"/>
 							<!--items="{ path: 'VechileModel>/zc_model' }"-->
 							<ComboBox id="model_CSOR"  selectionChange="model_selected"   required="true" selectedKey="{mainservices>Zzmodel}">
