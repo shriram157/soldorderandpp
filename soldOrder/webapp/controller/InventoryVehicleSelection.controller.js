@@ -15,7 +15,15 @@ sap.ui.define([
 				
 		},
 		onAfterRendering: function () {
-			InvVehSel_controller.filter_change();
+			var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
+			var dealer_no = "0";
+			//Dealer Inventory
+			// if (Oevent.getSource().getSelectedKey() == '1') {
+
+				vechile_items.filter([new Filter([
+					new Filter("MATRIX", FilterOperator.EQ, "A205"),
+					new Filter("Dealer", FilterOperator.EQ, dealer_no)
+				], true)]);
 		},
 		_onSelect: function () {
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");

@@ -22,7 +22,24 @@ sap.ui.define([
 			
 		},
 		onAfterRendering: function () {
-			VehSel_DealerInv_controller.filter_change();
+			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
+				var dealer_no = "0";
+			//Dealer Inventory
+			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
+			// if (Oevent.getSource().getSelectedKey() == '1') {
+            
+				vechile_items.filter([new Filter([
+					new Filter("MATRIX", FilterOperator.EQ, "A205"),
+					new Filter("Dealer", FilterOperator.EQ, dealer_no),
+					// new Filter("Model", FilterOperator.EQ, vehicle.model),
+					// new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
+					// new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
+					// new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
+					// // new Filter("INTCOL", FilterOperator.EQ, "42")
+					// new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
+					// new Filter("ETA", FilterOperator.EQ, ""),
+					// new Filter("APX", FilterOperator.EQ, ""),
+				], true)]);
 		},
 		filter_change: function (Oevent) {
 			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
