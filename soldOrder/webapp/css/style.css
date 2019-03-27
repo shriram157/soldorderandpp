@@ -160,3 +160,13 @@
 .sapMPageWithFooter>section {
     bottom: 6rem !important;
 }
+.readonlycombo
+{
+	background-color: #ffffff !important;
+    border: 0px solid #bfbfbf;
+    
+    /*margin: 0.25rem 0;*/
+    /*height: 2.5rem;*/
+}
+.readonlycombo input
+{background-color: white !important;}
