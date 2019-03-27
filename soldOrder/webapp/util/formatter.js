@@ -126,6 +126,10 @@ toyota.ca.SoldOrder.util.formatter = {
 		} else {
 			return true;
 		}
+	},
+	formatdealers:function(dealerno,dealername)
+	{
+		return dealerno.slice(-5) + "-" + dealername;
 	}
 
 };
