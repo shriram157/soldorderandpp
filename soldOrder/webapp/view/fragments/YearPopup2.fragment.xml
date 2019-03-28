@@ -14,6 +14,6 @@
 			<Button icon="sap-icon://navigation-right-arrow" press="onnextyears" visible="false"></Button>	
 	</endButton>
 	<!--<Input id='control_id' value='' visible='false'></Input>-->
-	 <Y:YearPicker  value=""  select="handleSelectYearPress1" ></Y:YearPicker>
+	 <Y:YearPicker  value=""  select="handleSelectYearPress1" years="10" ></Y:YearPicker>
 	</Popover>
 </core:FragmentDefinition>

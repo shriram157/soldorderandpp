@@ -287,7 +287,7 @@ sap.ui.define([
 				// "Zsalesmanager": "",
 				// "ZtradeModelYr": "",
 				// "ZtradeMake": ""
-				
+
 				"ZzsoReqNo": "SO",
 				"Zzmodel": Zzmodel, //"YZ3DCT",
 				"Zzmoyr": Zzmoyr, //"2018",
@@ -306,7 +306,7 @@ sap.ui.define([
 				"ZtradeModel": ZtradeModel,
 				"ZtradeMake": ZtradeMake, // ""
 				"Comment": comment,
-				"ZzdealerCode":dealer_no,
+				"ZzdealerCode": dealer_no,
 				"Zzendcu": Zcustomer_No
 			};
 			var dataString = JSON.stringify(
@@ -644,7 +644,7 @@ sap.ui.define([
 			this._oPopover1.close();
 		},
 		initailyear1: function (oEvent) {
-
+			oEvent.getSource().getContent()[0]._oMaxDate._oUDate.oDate = new Date();
 			oEvent.getSource().getContent()[0].setDate(new Date());
 		},
 		//---------------------------------------

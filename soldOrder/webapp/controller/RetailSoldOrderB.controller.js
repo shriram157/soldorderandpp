@@ -475,7 +475,7 @@ sap.ui.define([
 			this._oPopover1.close();
 		},
 		initailyear1: function (oEvent) {
-
+            	oEvent.getSource().getContent()[0]._oMaxDate._oUDate.oDate = new Date();
 			oEvent.getSource().getContent()[0].setDate(new Date());
 		},
 		stype_change: function (Oevent) {
