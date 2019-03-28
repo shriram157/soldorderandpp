@@ -155,8 +155,16 @@
 		"text": "Lincoln"
 	},
 	{
-		"key": "Ford Canada",
-		"text": "Ford Canada"
+		"key": "Toyota",
+		"text": "Toyota"
+	},
+	{
+		"key": "Lexus",
+		"text": "Lexus"
+	},
+	{
+		"key": "Other",
+		"text": "Other"
 	},
 	{
 		"key": "FCA Canada",

@@ -130,7 +130,7 @@
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
-							<DatePicker id="etaFrom_CFSO" placeholder="yyyy-MM-dd" displayFormat="yyyy-MM-dd">
+							<DatePicker id="etaFrom_CFSO" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd">
 								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
@@ -141,7 +141,7 @@
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
-							<DatePicker id="etaTo_CFSO" navigate="_handleChange" change="_handleChange" placeholder="yyyy-MM-dd" displayFormat="yyyy-MM-dd">
+							<DatePicker id="etaTo_CFSO" navigate="_handleChange" change="_handleChange" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd">
 								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
