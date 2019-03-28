@@ -91,7 +91,7 @@
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>tradeInMake}"/>
-							<ComboBox id="tradeInMakeYear_RSOBid" items="{/Trademake}">
+							<ComboBox id="tradeInMakeYear_RSOBid" items="{path:'/Trademake', sorter: {path: 'key'}}">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInModel}"/>
