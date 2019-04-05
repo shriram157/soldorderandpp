@@ -114,7 +114,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	Tciuseraudit: function (status) {
-		if (status == "IN PROGRESS") {
+		if (status == "IN-PROGRESS") {
 			return true;
 		} else {
 			return false;
