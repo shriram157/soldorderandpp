@@ -192,7 +192,7 @@
 							<Label wrapping="true" text="{i18n>email}"/>
 							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
-							<Text text=""/>
+							<Text text="{mainservices>ZdriverLiNum}"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>CustName}"/>

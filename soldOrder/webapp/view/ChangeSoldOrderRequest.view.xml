@@ -109,7 +109,7 @@
 							<Label text="{i18n>email}"/>
 							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label text="{i18n>driverLic}"/>
-							<Text text="{address>/Name}"/>
+							<Text text="{mainservices>ZdriverLiNum}"/>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"></MessageStrip >
 							<Label text="{i18n>PreSoldOrder}"/>

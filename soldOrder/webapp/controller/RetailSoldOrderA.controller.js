@@ -242,6 +242,7 @@ sap.ui.define([
 		submitSO: function () {
 			// Ayad editing to handle the creation method
 			// ="yyyy-MM-ddTHH:mm:ss"
+			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
 			var Zzmoyr = RSOA_controller.getView().byId("modelYr_RSOA").getValue();
 			var Zzseries = RSOA_controller.getView().byId("series_RSOA").getSelectedKey();
 			var Zzmodel = RSOA_controller.getView().byId("model_RSOA").getSelectedKey();
@@ -267,6 +268,7 @@ sap.ui.define([
 			var ZtradeModel = RSOA_controller.getView().byId("trademodel_RSOAid").getValue();
 			var ZtradeMake = RSOA_controller.getView().byId("tradeInMakeYear_RSOAid").getSelectedKey();
 			var comment = RSOA_controller.getView().byId("Comment").getValue();
+		
 			var host = RSOA_controller.host();
 			// SOcreateSet;
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
@@ -307,7 +309,8 @@ sap.ui.define([
 				"ZtradeMake": ZtradeMake, // ""
 				"Comment": comment,
 				"ZzdealerCode": dealer_no,
-				"Zzendcu": Zcustomer_No
+				"Zzendcu": Zcustomer_No,
+				"ZdriverLiNum": CustModel.DriveLic
 			};
 			var dataString = JSON.stringify(
 				_data

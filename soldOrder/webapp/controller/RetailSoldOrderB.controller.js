@@ -265,7 +265,7 @@ sap.ui.define([
 											textDirection: sap.ui.core.TextDirection.Inherit,
 											contentWidth: "10rem"
 										});
-									}else{
+									} else {
 										sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
 											icon: sap.m.MessageBox.Icon.ERROR,
 											actions: sap.m.MessageBox.Action.OK,
@@ -274,7 +274,7 @@ sap.ui.define([
 											initialFocus: null,
 											textDirection: sap.ui.core.TextDirection.Inherit,
 											contentWidth: "10rem"
-										});	
+										});
 									}
 
 								}
@@ -314,6 +314,7 @@ sap.ui.define([
 			var valPostalCode = RSOB_controller.getView().byId("PostalCode_RSOB").getValue();
 			var valLicense = RSOB_controller.getView().byId("License_RSOB").getValue();
 			var valCustName = RSOB_controller.getView().byId("CustName_RSOB").getValue();
+			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
 			if (valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
 				valProvince == "" || valPostalCode == "" || valLicense == "" || valCustName == "") {
 				flag1 = true;
@@ -398,7 +399,8 @@ sap.ui.define([
 					"ZtradeMake": ZtradeMake, // ""
 					"Comment": comment,
 					"ZzdealerCode": dealer_no,
-					"Zzendcu": Zcustomer_No
+					"Zzendcu": Zcustomer_No,
+					"ZdriverLiNum": CustModel.DriveLic
 				};
 				var dataString = JSON.stringify(
 					_data
