@@ -11,11 +11,11 @@
 						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss " />
+							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "/>
 							<Label text="{i18n>modelYear}"/>
 							<Text text="{mainservices>Zzmoyr}"/>
 							<Label text="{i18n>Series}"/>
-								<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
+							<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
 								modelContextChange="onSeriesnum">
 								<items>
 									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
@@ -24,23 +24,23 @@
 							<!--<Text text="{mainservices>Zzseries}"/>-->
 							<Label text="{i18n>Model}"/>
 							<!--items="{ path: 'VechileModel>/zc_model' }"-->
-							<ComboBox id="model_CSOR"  selectionChange="model_selected"   required="true" selectedKey="{mainservices>Zzmodel}">
+							<ComboBox id="model_CSOR" selectionChange="model_selected" required="true" selectedKey="{mainservices>Zzmodel}">
 								<!--<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Suffix}"/>
 							<!--items="{ path: 'VechileModel>/zc_configuration'}"-->
-							<ComboBox id="suffix_CSOR"  selectionChange="suffix_selected" required="true" selectedKey="{mainservices>Zzsuffix}">
+							<ComboBox id="suffix_CSOR" selectionChange="suffix_selected" required="true" selectedKey="{mainservices>Zzsuffix}">
 								<!--<core:Item key="{VechileModel>Suffix}"-->
 								<!--	text="{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							</ComboBox>
 							<Label text="{i18n>APX}"/>
 							<!--items="{path: 'VechileModel>/ZC_PIO_DIO'}"-->
-							<ComboBox id="apx_CSOR"  required="true" selectedKey="{mainservices>Zzapx}">
+							<ComboBox id="apx_CSOR" required="true" selectedKey="{mainservices>Zzapx}">
 								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Colour}"/>
 							<!--items="{ path: 'VechileModel>/zc_exterior_trim'}"-->
-							<ComboBox id="colour_CSOR"  required="true" selectedKey="{mainservices>Zzextcol}">
+							<ComboBox id="colour_CSOR" required="true" selectedKey="{mainservices>Zzextcol}">
 								<!--<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>-->
 							</ComboBox>
 							<Label text="{i18n>ETA}" required="true"/>
@@ -49,7 +49,8 @@
 									<HBox>
 										<items>
 											<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-											<DatePicker id="etaFrom_CSOR" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" dateValue="{mainservices>ZzreqEtaFrom}" change="_handleChangeDate"></DatePicker>
+											<DatePicker id="etaFrom_CSOR" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" dateValue="{mainservices>ZzreqEtaFrom}"
+												change="_handleChangeDate"></DatePicker>
 										</items>
 									</HBox>
 									<HBox>
@@ -61,7 +62,7 @@
 								</items>
 							</VBox>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss" />
+							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss"/>
 							<!--<Label text="{i18n>custname}"/>-->
 							<Label text="{i18n>contractDate}"/>
 							<Text
@@ -88,9 +89,13 @@
 						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text=""/>
-							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss" />
-							<Label text="{i18n>CustName}"/>
-							<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>
+							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"/>
+							<!--<Label text="{i18n>CustName}"/>-->
+							<!--<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>-->
+							<Label wrapping="true" text="{i18n>fcustname}"/>
+							<Text text="{Customer>/person/firstName}"/>
+							<Label wrapping="true" text="{i18n>scustname}"/>
+							<Text text="{Customer>/person/familyName}"/>
 							<Label text="{i18n>address}"/>
 							<Text text="{Customer>/addresses/0/line1}"/>
 							<Label text="{i18n>city}"/>

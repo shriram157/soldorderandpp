@@ -104,8 +104,12 @@
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"/>
-							<Label wrapping="true" text="{i18n>custname}"/>
-							<Input id="CustName_RSOB" value="{Customer>/Name}" required="true"/>
+							<!--<Label wrapping="true" text="{i18n>custname}"/>-->
+							<!--<Input id="CustName_RSOB" value="{Customer>/Name}" required="true"/>-->
+							<Label wrapping="true" text="{i18n>fcustname}"/>
+							<Input id="CustName_RSOA" value="{Customer>/FirstName}" required="true"/>
+							<Label wrapping="true" text="{i18n>scustname}"/>
+							<Input id="CustName_SSOA" value="{Customer>/SecondName}" required="true"/>
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Input id="Address_RSOB" value="{Customer>/Address}" required="true"/>
 							<Label wrapping="true" text="{i18n>city}"/>

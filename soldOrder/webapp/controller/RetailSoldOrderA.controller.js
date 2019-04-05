@@ -397,7 +397,8 @@ sap.ui.define([
 
 		onValidateCustomer: function () {
 			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
-			if (CustModel.Name != '' && CustModel.Name && CustModel.Phone != '' && CustModel.Phone && CustModel.City != '' && CustModel.City &&
+			if (CustModel.FirstName != '' && CustModel.SecondName != '' && CustModel.FirstName && CustModel.SecondName && CustModel.Phone != '' &&
+				CustModel.Phone && CustModel.City != '' && CustModel.City &&
 				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
 				CustModel.PostCode) {
 
@@ -413,8 +414,10 @@ sap.ui.define([
 					})]
 				});
 
-				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?phone=" + CustModel.Phone;
+				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+					"&lastName=" + CustModel.SecondName;
 				//lastName=" + CustModel.Name;
+                var msg1 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("msgcustomer1");
 				//+ "&phone=" +CustModel.Phone;
 				$.ajax({
 					url: url,
@@ -431,6 +434,17 @@ sap.ui.define([
 						if (data.customers[0]) {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
 							Zcustomer_No = Zcustomer_No.toString();
+						
+							sap.m.MessageBox.show(msg1 + Zcustomer_No, {
+							//	icon: sap.m.MessageBox.Icon.WARNING,
+							title: title,
+							actions: sap.m.MessageBox.Action.OK,
+							onClose: null,
+							styleClass: "",
+							initialFocus: null,
+							textDirection: sap.ui.core.TextDirection.Inherit,
+							contentWidth: "10rem"
+						});
 						}
 					},
 					error: function (request, errorText, errorCode) {
@@ -443,8 +457,8 @@ sap.ui.define([
 							"type": "NewProfile",
 							"customer": {
 								"person": {
-									"firstName": CustModel.Name,
-									"familyName": CustModel.Name
+									"firstName": CustModel.FirstName,
+									"familyName": CustModel.SecondName
 								},
 								"addresses": [{
 									"line1": CustModel.Address,
@@ -493,16 +507,16 @@ sap.ui.define([
 					}
 
 				});
-				sap.m.MessageBox.show(msg, {
-					//	icon: sap.m.MessageBox.Icon.WARNING,
-					title: title,
-					actions: sap.m.MessageBox.Action.OK,
-					onClose: null,
-					styleClass: "",
-					initialFocus: null,
-					textDirection: sap.ui.core.TextDirection.Inherit,
-					contentWidth: "10rem"
-				});
+				// sap.m.MessageBox.show(msg, {
+				// 	//	icon: sap.m.MessageBox.Icon.WARNING,
+				// 	title: title,
+				// 	actions: sap.m.MessageBox.Action.OK,
+				// 	onClose: null,
+				// 	styleClass: "",
+				// 	initialFocus: null,
+				// 	textDirection: sap.ui.core.TextDirection.Inherit,
+				// 	contentWidth: "10rem"
+				// });
 				validateFlagA = true;
 			} else {
 				sap.m.MessageBox.show("Please Fill all Customer Fields", sap.m.MessageBox.Icon.ERROR, "Error", sap

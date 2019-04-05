@@ -64,7 +64,8 @@ sap.ui.define([
 			if (parameters.getParameters().arguments.suffixkey) {
 				values.suffixkey = parameters.getParameters().arguments.suffixkey;
 				var suffix_RSOB_items = RSOB_controller.getView().byId("suffix_RSOB").getBinding("items");
-				var filter = new Filter([new Filter("model_year", FilterOperator.EQ, values.modelyear), new Filter("model", FilterOperator.EQ, values.modelkey),
+				var filter = new Filter([new Filter("model_year", FilterOperator.EQ, values.modelyear), new Filter("model", FilterOperator.EQ,
+						values.modelkey),
 					new Filter("suffix", FilterOperator.EQ, values.suffixkey)
 				], true);
 				suffix_RSOB_items.filter(filter);
@@ -165,8 +166,9 @@ sap.ui.define([
 				//----Customer API-----------------------------------
 				//--------------------------------------------------
 
-				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?phone=" + CustModel.Phone;
-
+				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+					"&lastName=" + CustModel.SecondName;
+				var msg1 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("msgcustomer1");
 				//lastName=" + CustModel.Name;
 				//+ "&phone=" +CustModel.Phone;
 				$.ajax({
@@ -184,6 +186,16 @@ sap.ui.define([
 						if (data.customers[0]) {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
 							Zcustomer_No = Zcustomer_No.toString();
+							sap.m.MessageBox.show(msg1 + Zcustomer_No, {
+								//	icon: sap.m.MessageBox.Icon.WARNING,
+								title: title,
+								actions: sap.m.MessageBox.Action.OK,
+								onClose: null,
+								styleClass: "",
+								initialFocus: null,
+								textDirection: sap.ui.core.TextDirection.Inherit,
+								contentWidth: "10rem"
+							});
 						}
 					},
 					error: function (request, errorText, errorCode) {
@@ -196,8 +208,8 @@ sap.ui.define([
 							"type": "NewProfile",
 							"customer": {
 								"person": {
-									"firstName": CustModel.Name,
-									"familyName": CustModel.Name
+									"firstName": CustModel.FirstName,
+									"familyName": CustModel.SecondName
 								},
 								"addresses": [{
 									"line1": CustModel.Address,
@@ -247,16 +259,16 @@ sap.ui.define([
 
 				});
 
-				sap.m.MessageBox.show(msg, {
-					//	icon: sap.m.MessageBox.Icon.WARNING,
-					title: title,
-					actions: sap.m.MessageBox.Action.OK,
-					onClose: null,
-					styleClass: "",
-					initialFocus: null,
-					textDirection: sap.ui.core.TextDirection.Inherit,
-					contentWidth: "10rem"
-				});
+				// sap.m.MessageBox.show(msg, {
+				// 	//	icon: sap.m.MessageBox.Icon.WARNING,
+				// 	title: title,
+				// 	actions: sap.m.MessageBox.Action.OK,
+				// 	onClose: null,
+				// 	styleClass: "",
+				// 	initialFocus: null,
+				// 	textDirection: sap.ui.core.TextDirection.Inherit,
+				// 	contentWidth: "10rem"
+				// });
 				RSOB_controller.validateFlagB = true;
 			} else {
 				sap.m.MessageBox.show("Please Fill all Customer Fields", sap.m.MessageBox.Icon.ERROR, "Error", sap
@@ -321,10 +333,10 @@ sap.ui.define([
 				var ZtradeMake = RSOB_controller.getView().byId("tradeInMakeYear_RSOBid").getSelectedKey();
 				var comment = RSOB_controller.getView().byId("Comment").getValue();
 				var host = RSOB_controller.host();
-			
+
 				// SOcreateSet;
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
-					var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 				var _data = {
 					// "ZzsoReqNo": "",
 					// "Zzmodel": "YZ3DCT",
@@ -360,7 +372,7 @@ sap.ui.define([
 					"ZtradeModel": ZtradeModel,
 					"ZtradeMake": ZtradeMake, // ""
 					"Comment": comment,
-					"ZzdealerCode":dealer_no,
+					"ZzdealerCode": dealer_no,
 					"Zzendcu": Zcustomer_No
 				};
 				var dataString = JSON.stringify(
@@ -475,7 +487,7 @@ sap.ui.define([
 			this._oPopover1.close();
 		},
 		initailyear1: function (oEvent) {
-            	oEvent.getSource().getContent()[0]._oMaxDate._oUDate.oDate = new Date();
+			oEvent.getSource().getContent()[0]._oMaxDate._oUDate.oDate = new Date();
 			oEvent.getSource().getContent()[0].setDate(new Date());
 		},
 		stype_change: function (Oevent) {
@@ -489,7 +501,7 @@ sap.ui.define([
 			}
 
 		},
-			_handleServiceSuffix_Series: function () {
+		_handleServiceSuffix_Series: function () {
 			var host = RSOB_controller.host();
 			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
 			$.ajax({
