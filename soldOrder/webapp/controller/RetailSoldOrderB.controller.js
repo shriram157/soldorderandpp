@@ -186,7 +186,7 @@ sap.ui.define([
 						if (data.customers[0]) {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
 							Zcustomer_No = Zcustomer_No.toString();
-							sap.m.MessageBox.show(msg1 + Zcustomer_No, {
+							sap.m.MessageBox.show(msg1 + data.customers[0].customerNumber, {
 								//	icon: sap.m.MessageBox.Icon.WARNING,
 								title: title,
 								actions: sap.m.MessageBox.Action.OK,
@@ -225,9 +225,10 @@ sap.ui.define([
 									"useCode": "WORK"
 								}],
 								"preferredLanguageCode": "en-CA",
-								"suspendMail": {
-									"suspendMailReason": CustModel.Email
-								}
+								"electronicAddresses": [{
+									"uriID": CustModel.Email,
+									useCode: "PERSONAL"
+								}]
 							},
 							"source": "OICC"
 						};
@@ -252,7 +253,31 @@ sap.ui.define([
 								}
 							},
 							error: function (request, errorText, errorCode) {
-								var x = errorCode;
+								if (request.responseJSON.errors.length > 0) {
+									if (request.responseJSON.errors[1]) {
+										sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
+											icon: sap.m.MessageBox.Icon.ERROR,
+											title: request.responseJSON.errors[1].httpMessage,
+											actions: sap.m.MessageBox.Action.OK,
+											onClose: null,
+											styleClass: "",
+											initialFocus: null,
+											textDirection: sap.ui.core.TextDirection.Inherit,
+											contentWidth: "10rem"
+										});
+									}else{
+										sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
+											icon: sap.m.MessageBox.Icon.ERROR,
+											actions: sap.m.MessageBox.Action.OK,
+											onClose: null,
+											styleClass: "",
+											initialFocus: null,
+											textDirection: sap.ui.core.TextDirection.Inherit,
+											contentWidth: "10rem"
+										});	
+									}
+
+								}
 							}
 						});
 					}
