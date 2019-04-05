@@ -255,15 +255,15 @@ sap.ui.define([
 							error: function (request, errorText, errorCode) {
 								if (request.responseJSON.errors.length > 0) {
 									if (request.responseJSON.errors[1]) {
-										sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
+										sap.m.MessageBox.show(request.responseJSON.errors[1].httpMessage, {
 											icon: sap.m.MessageBox.Icon.ERROR,
-											title: request.responseJSON.errors[1].httpMessage,
+											title: request.responseJSON.errors[0].httpMessage,
 											actions: sap.m.MessageBox.Action.OK,
 											onClose: null,
 											styleClass: "",
 											initialFocus: null,
 											textDirection: sap.ui.core.TextDirection.Inherit,
-											contentWidth: "10rem"
+											contentWidth: "20rem"
 										});
 									} else {
 										sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
@@ -273,7 +273,7 @@ sap.ui.define([
 											styleClass: "",
 											initialFocus: null,
 											textDirection: sap.ui.core.TextDirection.Inherit,
-											contentWidth: "10rem"
+											contentWidth: "20rem"
 										});
 									}
 
