@@ -262,8 +262,8 @@ sap.ui.define([
 											onClose: null,
 											styleClass: "",
 											initialFocus: null,
-											textDirection: sap.ui.core.TextDirection.Inherit,
-											contentWidth: "20rem"
+											textDirection: sap.ui.core.TextDirection.Inherit
+											// contentWidth: "20rem"
 										});
 									} else {
 										sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
@@ -272,8 +272,8 @@ sap.ui.define([
 											onClose: null,
 											styleClass: "",
 											initialFocus: null,
-											textDirection: sap.ui.core.TextDirection.Inherit,
-											contentWidth: "20rem"
+											textDirection: sap.ui.core.TextDirection.Inherit
+											// contentWidth: "20rem"
 										});
 									}
 
