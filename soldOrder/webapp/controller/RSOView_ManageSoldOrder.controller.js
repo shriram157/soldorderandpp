@@ -474,15 +474,15 @@ sap.ui.define([
 		_addAttachment: function () {
 			var com = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").getValue();
 			var textArea = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
-			if (com == "") {
-				textArea.setValueState("Error");
-				textArea.setValueStateText("Fill the comments");
-				var errForm = formatter.formatErrorType("SO000012");
-				var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
-					.m.MessageBox.Action.OK, null, null);
-			} else {
+			// if (com == "") {
+			// 	textArea.setValueState("Error");
+			// 	textArea.setValueStateText("Fill the comments");
+			// 	var errForm = formatter.formatErrorType("SO000012");
+			// 	var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+			// 	sap.m.MessageBox.show(errMsg, sap
+			// 		.m.MessageBox.Icon.ERROR, "Error", sap
+			// 		.m.MessageBox.Action.OK, null, null);
+			// } else {
 				// AppController.flgOwnershipUploaded = true;
 				var oFileUploader = RSO_MSO_controller.getView().byId("idRSOV_MSO_fileUpl");
 				var zcomment = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
@@ -500,7 +500,7 @@ sap.ui.define([
 				oFileUploader.setSendXHR(true);
 				oFileUploader.upload();
 
-			}
+			// }
 		},
 
 		_navToRSOrderChange: function () {
