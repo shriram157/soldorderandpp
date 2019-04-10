@@ -28,9 +28,10 @@ sap.ui.define([
 			var indiceArray = oTable.getSelectedIndices();
 			var Model = sap.ui.getCore().getModel('FirstTable');
 			// Model.setData();
-			if (Model.getData().items) {
-				var zitems = Model.getData().items;
-			}
+			var zitems = [];
+			// if (Model.getData().items) {
+			// 	 zitems = Model.getData().items;
+			// }
 			for (var i = 0; i < indiceArray.length; i++) {
 				var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray[i]];
 				var data = oTable.getModel('mainservices').getProperty(binded.sPath);
