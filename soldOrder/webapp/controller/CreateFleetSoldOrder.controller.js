@@ -313,6 +313,7 @@ sap.ui.define([
 			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 				pattern: "yyyy-MM-ddTHH:mm:ss"
 			});
+			_Table_Data1 = this.getView().getModel('FirstTable').getData().items;
 			for (var i = 0; i < _Table_Data1.length; i++) {
 				_all_data.push({
 					FleetSONo: 'FSO',
