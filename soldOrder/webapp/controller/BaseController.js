@@ -1,11 +1,11 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	
+
 	/*"sap/ui/model/odata/oDataModel",*/
 	"/sap/ui/model/resource/ResourceModel",
 	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel"
-], function (Controller, ResourceModel, History,JSONModel) {
+], function (Controller, ResourceModel, History, JSONModel) {
 	"use strict";
 	var basCont;
 	return Controller.extend("toyota.ca.SoldOrder.controller.BaseController", {
@@ -22,8 +22,7 @@ sap.ui.define([
 				var name = evt.getParameter('name');
 				jQuery.sap.log.info("Route name is : " + name);
 			});
-			
-			
+
 		},
 
 		host: function () {
@@ -43,13 +42,21 @@ sap.ui.define([
 			// this.getDealer();
 			var oGetText = oEvent.getSource().getText();
 			if (oGetText === this.oBundle.getText("menu1")) {
+				
 				this.getOwnerComponent().getRouter().navTo("RouteView1", {}, true); //page 1
+				
 			} else if (oGetText === this.oBundle.getText("menu2")) {
+				
 				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary"); //page 10
+				
 			} else if (oGetText === this.oBundle.getText("menu3")) {
+			
 				this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
+				
 			} else if (oGetText === this.oBundle.getText("menu4")) { //dicey sol, check it again 
+				
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary");
+			
 			}
 			//REquired More Clarification 
 			//---------------------------------------------------------------------
@@ -65,8 +72,11 @@ sap.ui.define([
 			// } 
 			else if (oGetText === this.oBundle.getText("menu5")) {
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
+				
 			} else if (oGetText === this.oBundle.getText("menu9")) {
+				
 				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer"); //page 16
+			
 			}
 			// else if (oGetText === this.oBundle.getText("menu6")) {
 			// 	this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
@@ -208,11 +218,11 @@ sap.ui.define([
 		getDealer: function () {
 			var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
-			
+
 			var sPrefix;
 			if (sLocation_conf == 0) {
-			sPrefix = "/soldorder_node"; //ecpSales_node_secured
-				this.attributeUrl = "/userDetails/attributes";//"/userDetails/attributesforlocaltesting";
+				sPrefix = "/soldorder_node"; //ecpSales_node_secured
+				this.attributeUrl = "/userDetails/attributes"; //"/userDetails/attributesforlocaltesting";
 			} else {
 				sPrefix = "";
 				this.attributeUrl = "/userDetails/attributes";
@@ -223,10 +233,10 @@ sap.ui.define([
 			//======================================================================================================================//		
 			//  get the Scopes to the UI 
 			//this.sPrefix ="";
-			
+
 			var that = this;
 			// var zjson = new JSONModel();
-		    // sap.ui.getCore().setModel(zjson,"LoginUserModel");
+			// sap.ui.getCore().setModel(zjson,"LoginUserModel");
 			$.ajax({
 				url: sPrefix + "/userDetails/currentScopesForUser",
 				type: "GET",
@@ -237,7 +247,7 @@ sap.ui.define([
 					// userScopes.forEach(function (data) {
 
 					var userType = oData.loggedUserType[0];
-					that.getView().getModel("LoginUserModel").setProperty("/UserType",oData.loggedUserType[0]);
+					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					switch (userType) {
 					case "Dealer_Parts_Admin":
 						// console.log("Dealer Parts");
@@ -280,7 +290,7 @@ sap.ui.define([
 				url: sPrefix + this.attributeUrl,
 				type: "GET",
 				dataType: "json",
-                async: false,
+				async: false,
 				success: function (oData) {
 					var BpDealer = [];
 					var userAttributes = [];

@@ -49,15 +49,23 @@ sap.ui.define([
 			this._data2.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
 			this.getView().setModel(this._data2, 'FirstTable');
 			sap.ui.getCore().setModel(this._data2, 'FirstTable');
+			this.getOwnerComponent().getRouter().getRoute("CreateFleetSoldOrder").attachPatternMatched(this._onObjectMatched, this);
 		},
-
-		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
+		_onObjectMatched: function (oEvent) {
+				this.getView().byId("idmenu1").setType('Transparent');
+				this.getView().byId("idmenu2").setType('Transparent');
+				this.getView().byId("idmenu3").setType('Emphasized');
+				this.getView().byId("idmenu4").setType('Transparent');
+				this.getView().byId("idmenu5").setType('Transparent');
+				this.getView().byId("idmenu9").setType('Transparent');
+			},
+			//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
 		//2) Suffix  and  Suffix Description : Z_VEHICLE_CATALOGUE_SRV/zc_configuration SuffixDescriptionEN, Suffix
 		//     Interior Colour Description     :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  TrimInteriorColor    
 
 		//3)Color Code , Colour Description :  :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  ExteriorColorCode: "0218"ExteriorDescriptionEN: "BLACK"
-		_newService1: function () {
+			_newService1: function () {
 			var host = CFSO_controller.host();
 			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_configuration?$format=json";
 			$.ajax({
@@ -338,7 +346,7 @@ sap.ui.define([
 					Modelyear: _Table_Data2[i].modelYear,
 					Suffix: _Table_Data2[i].suffix,
 					ExteriorColourCode: _Table_Data2[i].colour,
-				    APX:_Table_Data2[i].apx,
+					APX: _Table_Data2[i].apx,
 					ReqEtaFrom: _Table_Data2[i].ETAFrom,
 					ReqEtaTo: _Table_Data2[i].ETATime,
 					FltSOQty: _Table_Data2[i].quantity

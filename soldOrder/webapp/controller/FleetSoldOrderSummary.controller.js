@@ -13,6 +13,15 @@ sap.ui.define([
 			FSOS_controller.getBrowserLanguage();
 			/*	FSOS_controller.flagSipUser = false;
 				FSOS_controller.requestStatus = "";*/
+			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
+		},
+		_onObjectMatched: function (oEvent) {
+			this.getView().byId("idmenu1").setType('Transparent');
+			this.getView().byId("idmenu2").setType('Transparent');
+			this.getView().byId("idmenu3").setType('Transparent');
+			this.getView().byId("idmenu4").setType('Emphasized');
+			this.getView().byId("idmenu5").setType('Transparent');
+			this.getView().byId("idmenu9").setType('Transparent');
 		},
 		onBeforeRendering: function () {
 			if (AppController.flagZoneUser == true) {
@@ -40,17 +49,16 @@ sap.ui.define([
 			//=====================================================================================================
 			var dfilter = [];
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
-			if(x != "TCI_User")
-			{
-			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
-				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey()));
-			}
-			if (dfilter.length > 0) {
-				var filter_dealers = new Filter(dfilter, false);
-				//---------------------------------------------------------------
-				var items = this.getView().byId("tbl_FSOS").getBinding('rows');
-				items.filter(filter_dealers);
-			}
+			if (x != "TCI_User") {
+				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
+					dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey()));
+				}
+				if (dfilter.length > 0) {
+					var filter_dealers = new Filter(dfilter, false);
+					//---------------------------------------------------------------
+					var items = this.getView().byId("tbl_FSOS").getBinding('rows');
+					items.filter(filter_dealers);
+				}
 			}
 			//==================================================================================================
 			// if (AppController.flagZoneUser == true) {
@@ -120,15 +128,15 @@ sap.ui.define([
 
 		},
 		_refresh: function (oEvent) {
-				var allfilter = [];
+			var allfilter = [];
 			//-----------------Sold Order Status-----------------
 			var afilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey()));
 			}
-			if(afilter.length > 0){
-			var filter_sstatus = new Filter(afilter, false);
-			allfilter.push(filter_sstatus);
+			if (afilter.length > 0) {
+				var filter_sstatus = new Filter(afilter, false);
+				allfilter.push(filter_sstatus);
 			}
 			//---------------------------------------------------------------
 			//-----------------Order Type-----------------
@@ -136,9 +144,9 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
 				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getText()));
 			}
-			if(Sfilter.length > 0){
-			var filter_ordertype = new Filter(Sfilter, false);
-			allfilter.push(filter_ordertype);
+			if (Sfilter.length > 0) {
+				var filter_ordertype = new Filter(Sfilter, false);
+				allfilter.push(filter_ordertype);
 			}
 			//---------------------------------------------------------------
 			//-----------------Dealers-----------------
@@ -146,12 +154,12 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey()));
 			}
-			if(dfilter.length > 0){
-			var filter_dealers = new Filter(dfilter, false);
-			allfilter.push(filter_dealers);
+			if (dfilter.length > 0) {
+				var filter_dealers = new Filter(dfilter, false);
+				allfilter.push(filter_dealers);
 			}
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_sstatus,filter_dealers,filter_ordertype], true);
+			var filter_all = new Filter([filter_sstatus, filter_dealers, filter_ordertype], true);
 			var items = this.getView().byId("tbl_FSOS").getBinding('rows');
 			items.filter(filter_all);
 

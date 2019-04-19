@@ -11,6 +11,15 @@ sap.ui.define([
 		onInit: function () {
 			FSOD_controller = this;
 			FSOD_controller.getBrowserLanguage();
+			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrderDetails").attachPatternMatched(this._onObjectMatched, this);
+		},
+		_onObjectMatched: function (oEvent) {
+			this.getView().byId("idmenu1").setType('Transparent');
+			this.getView().byId("idmenu2").setType('Transparent');
+			this.getView().byId("idmenu3").setType('Transparent');
+			this.getView().byId("idmenu4").setType('Transparent');
+			this.getView().byId("idmenu5").setType('Emphasized');
+			this.getView().byId("idmenu9").setType('Transparent');
 		},
 
 		onBeforeRendering: function () {
@@ -153,12 +162,11 @@ sap.ui.define([
 				allfilter.push(filter_dealers);
 			}
 			//---------------------------------------------------------------
-		
-			var filter_all = new Filter([filter_sstatus,filter_audit,filter_dealers, new Filter("FleetReference", FilterOperator.EQ, 'X')], true);
+
+			var filter_all = new Filter([filter_sstatus, filter_audit, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, 'X')],
+				true);
 			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
 			items.filter(filter_all);
-		
-			
 
 		},
 		onLinkVehicle: function (evt) {

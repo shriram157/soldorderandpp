@@ -13,7 +13,15 @@ sap.ui.define([
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
 			RSOS_controller._handleServiceSuffix_Series();
-
+			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
+		},
+		_onObjectMatched: function (oEvent) {
+			this.getView().byId("idmenu1").setType('Transparent');
+			this.getView().byId("idmenu2").setType('Emphasized');
+			this.getView().byId("idmenu3").setType('Transparent');
+			this.getView().byId("idmenu4").setType('Transparent');
+			this.getView().byId("idmenu5").setType('Transparent');
+			this.getView().byId("idmenu9").setType('Transparent');
 		},
 		onAfterRendering: function () {
 			var oTbl = RSOS_controller.getView().byId("table_RSOS");
@@ -136,7 +144,7 @@ sap.ui.define([
 				allfilter.push(filter_dealers);
 			}
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_sstatus,filter_series,filter_dealers, new Filter("FleetReference", FilterOperator.EQ, '')],
+			var filter_all = new Filter([filter_sstatus, filter_series, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, '')],
 				true);
 			var items = this.getView().byId("table_RSOS").getBinding('rows');
 			items.filter(filter_all);

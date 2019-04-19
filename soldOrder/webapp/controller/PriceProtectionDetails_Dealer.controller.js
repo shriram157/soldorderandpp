@@ -78,6 +78,15 @@ sap.ui.define([
 			// 			.m.MessageBox.Action.OK, null, null);
 			// 	}
 			// });
+			this.getOwnerComponent().getRouter().getRoute("PriceProtectionDetails_Dealer").attachPatternMatched(this._onObjectMatched, this);
+		},
+		_onObjectMatched: function (oEvent) {
+			this.getView().byId("idmenu1").setType('Transparent');
+			this.getView().byId("idmenu2").setType('Transparent');
+			this.getView().byId("idmenu3").setType('Transparent');
+			this.getView().byId("idmenu4").setType('Transparent');
+			this.getView().byId("idmenu5").setType('Transparent');
+			this.getView().byId("idmenu9").setType('Emphasized');
 		},
 
 		onAfterRendering: function () {
@@ -103,7 +112,7 @@ sap.ui.define([
 		},
 
 		_refresh: function () {
-            var allfilter = [];
+			var allfilter = [];
 			var items = PPD_DealerCont.getView().byId("table_PPD_Dealer").getBinding("rows");
 
 			var statFilter = [];
@@ -111,23 +120,23 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 				statFilter.push(new Filter("status", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
 			}
-			if(statFilter.length > 0){
-			var filter_sstatus = new Filter(statFilter, false);
-			allfilter.push(filter_sstatus);
+			if (statFilter.length > 0) {
+				var filter_sstatus = new Filter(statFilter, false);
+				allfilter.push(filter_sstatus);
 			}
-           	//=======================================================================================================
+			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
 			var dfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
 			}
-			if(dfilter.length > 0){
-			var filter_dealers = new Filter(dfilter, false);
-			allfilter.push(filter_dealers);
+			if (dfilter.length > 0) {
+				var filter_dealers = new Filter(dfilter, false);
+				allfilter.push(filter_dealers);
 			}
-			
-			items.filter(new Filter([filter_sstatus,filter_dealers],true));
+
+			items.filter(new Filter([filter_sstatus, filter_dealers], true));
 
 		},
 		_navToRSO: function (evt) {
@@ -184,7 +193,7 @@ sap.ui.define([
 			}
 
 		},
-			_handleServiceSuffix_Series: function () {
+		_handleServiceSuffix_Series: function () {
 			var host = PPD_DealerCont.host();
 			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
 			$.ajax({

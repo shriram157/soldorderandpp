@@ -25,17 +25,25 @@ sap.ui.define([
 			// RSOA_controller._handleServiceSuffix_Series();
 			// RSOA_controller._handleRSADropDown();
 			// this.getDealer();
+			this.getOwnerComponent().getRouter().getRoute("RouteView1").attachPatternMatched(this._onObjectMatched, this);
 			var model = new JSONModel({});
 			RSOA_controller.getView().setModel(model, 'Customer');
 		},
-
-		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
+		_onObjectMatched: function (oEvent) {
+				this.getView().byId("idmenu1").setType('Emphasized');
+				this.getView().byId("idmenu2").setType('Transparent');
+				this.getView().byId("idmenu3").setType('Transparent');
+				this.getView().byId("idmenu4").setType('Transparent');
+				this.getView().byId("idmenu5").setType('Transparent');
+				this.getView().byId("idmenu9").setType('Transparent');
+			},
+			//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
 		//2) Suffix  and  Suffix Description : Z_VEHICLE_CATALOGUE_SRV/zc_configuration SuffixDescriptionEN, Suffix
 		//     Interior Colour Description     :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  TrimInteriorColor    
 
 		//3)Color Code , Colour Description :  :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  ExteriorColorCode: "0218"ExteriorDescriptionEN: "BLACK"
-		_newService1: function () {
+			_newService1: function () {
 			var host = RSOA_controller.host();
 			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_configuration?$format=json";
 			$.ajax({

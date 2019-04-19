@@ -17,6 +17,12 @@ sap.ui.define([
 		},
 		_getattachRouteMatched: function (parameters) {
 			var requestid = parameters.getParameters().arguments.Soreq;
+			this.getView().byId("idmenu1").setType('Transparent');
+			this.getView().byId("idmenu2").setType('Transparent');
+			this.getView().byId("idmenu3").setType('Transparent');
+			this.getView().byId("idmenu4").setType('Emphasized');
+			this.getView().byId("idmenu5").setType('Transparent');
+			this.getView().byId("idmenu9").setType('Transparent');
 			FSO_PVController.getSO(requestid);
 		},
 		getSO: function (req) {
