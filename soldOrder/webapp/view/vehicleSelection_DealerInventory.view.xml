@@ -8,11 +8,11 @@
 					<m:VBox>
 						<m:items>
 							<!--<m:Label  id="selectlabel" text="{i18n>filtertype}" class="sapUiTinyMarginTop sapUiLargeMarginBegin fontsizeIn"></m:Label>-->
-							<m:ComboBox placeholder="{i18n>placeholder_select}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" selectionChange="filter_change"
-								width="30%" >
-								<core:Item key="1" text="{i18n>inventorys}" />
+							<!--<m:ComboBox placeholder="{i18n>placeholder_select}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" selectionChange="filter_change"-->
+							<!--	width="30%" >-->
+							<!--	<core:Item key="1" text="{i18n>inventorys}" />-->
 								<!--<core:Item key="2" text="{i18n>nationals}"/>-->
-							</m:ComboBox>
+							<!--</m:ComboBox>-->
 							<m:Label text="{i18n>RSOVehicleSel}" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></m:Label>
 							<m:Label text="{i18n>myStockPipeline}" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiTinyMarginBegin fontsize"></m:Label>
 							<m:Label text="{i18n>disclaimer}" class="sapUiTinyMarginTop sapUiLargeMarginBegin fontsizeIn"></m:Label>

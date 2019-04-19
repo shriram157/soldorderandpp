@@ -268,7 +268,7 @@ sap.ui.define([
 			var ZtradeModel = RSOA_controller.getView().byId("trademodel_RSOAid").getValue();
 			var ZtradeMake = RSOA_controller.getView().byId("tradeInMakeYear_RSOAid").getSelectedKey();
 			var comment = RSOA_controller.getView().byId("Comment").getValue();
-		
+
 			var host = RSOA_controller.host();
 			// SOcreateSet;
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
@@ -437,9 +437,8 @@ sap.ui.define([
 						if (data.customers[0]) {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
 							Zcustomer_No = Zcustomer_No.toString();
-
-							sap.m.MessageBox.show(msg1 + data.customers[0].customerNumber, {
-								//	icon: sap.m.MessageBox.Icon.WARNING,
+							sap.m.MessageBox.show(msg, {
+								icon: sap.m.MessageBox.Icon.WARNING,
 								title: title,
 								actions: sap.m.MessageBox.Action.OK,
 								onClose: null,
@@ -448,6 +447,17 @@ sap.ui.define([
 								textDirection: sap.ui.core.TextDirection.Inherit,
 								contentWidth: "10rem"
 							});
+
+							// sap.m.MessageBox.show(msg1 + data.customers[0].customerNumber, {
+							// 	//	icon: sap.m.MessageBox.Icon.WARNING,
+							// 	title: title,
+							// 	actions: sap.m.MessageBox.Action.OK,
+							// 	onClose: null,
+							// 	styleClass: "",
+							// 	initialFocus: null,
+							// 	textDirection: sap.ui.core.TextDirection.Inherit,
+							// 	contentWidth: "10rem"
+							// });
 						}
 					},
 					error: function (request, errorText, errorCode) {
@@ -515,9 +525,9 @@ sap.ui.define([
 											styleClass: "",
 											initialFocus: null,
 											textDirection: sap.ui.core.TextDirection.Inherit
-											// contentWidth: "20rem"
+												// contentWidth: "20rem"
 										});
-									}else{
+									} else {
 										sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
 											icon: sap.m.MessageBox.Icon.ERROR,
 											actions: sap.m.MessageBox.Action.OK,
@@ -525,8 +535,8 @@ sap.ui.define([
 											styleClass: "",
 											initialFocus: null,
 											textDirection: sap.ui.core.TextDirection.Inherit
-											// contentWidth: "20rem"
-										});	
+												// contentWidth: "20rem"
+										});
 									}
 
 								}
@@ -727,9 +737,10 @@ sap.ui.define([
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
-						text: "{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
+						text: "{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
 					})
 				});
+				// ,{path:'mainservices>int_trim_desc_en'}		
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)

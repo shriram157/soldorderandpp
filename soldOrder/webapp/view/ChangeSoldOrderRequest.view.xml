@@ -33,16 +33,17 @@
 								<!--<core:Item key="{VechileModel>Suffix}"-->
 								<!--	text="{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							</ComboBox>
-							<Label text="{i18n>APX}"/>
-							<!--items="{path: 'VechileModel>/ZC_PIO_DIO'}"-->
-							<ComboBox id="apx_CSOR" required="true" selectedKey="{mainservices>Zzapx}">
-								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
-							</ComboBox>
 							<Label text="{i18n>Colour}"/>
 							<!--items="{ path: 'VechileModel>/zc_exterior_trim'}"-->
 							<ComboBox id="colour_CSOR" required="true" selectedKey="{mainservices>Zzextcol}">
 								<!--<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>-->
 							</ComboBox>
+							<Label text="{i18n>APX}"/>
+							<!--items="{path: 'VechileModel>/ZC_PIO_DIO'}"-->
+							<ComboBox id="apx_CSOR" required="true" selectedKey="{mainservices>Zzapx}">
+								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
+							</ComboBox>
+							
 							<Label text="{i18n>ETA}" required="true"/>
 							<VBox>
 								<items>

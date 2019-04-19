@@ -48,16 +48,17 @@
 								<!--	text="{parts: [{path:'oModel1>SuffixDescriptionEN'},{path:'oModel2>TrimInteriorColor'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 								<!--	<core:ListItem   text="{=${SeriesData>SPRAS}==='English' ? ${SeriesData>TCISeriesDescriptionEN}:${SeriesData>TCISeriesDescriptionFR} }" key="{SeriesData>TCISeries}" />-->
 							</ComboBox>
-							<Label wrapping="true" text="{i18n>APX}"/>
-							<ComboBox id="Apx_RSOA" required="true">
-								<!--<core:Item key="{mode_Model>zzapx}" text="{mode_Model>zzapx}"/>-->
-							</ComboBox>
 							<Label wrapping="true" text="{i18n>Colour}"/>
 							<ComboBox id="Colour_RSOA"  required="true">
 								<!--<core:Item key="{key}" text="{text}"></core:Item>-->
 								<!--<core:Item key="{oModel2>ExteriorColorCode}"-->
 								<!--	text="{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
 							</ComboBox>
+							<Label wrapping="true" text="{i18n>APX}"/>
+							<ComboBox id="Apx_RSOA" required="true">
+								<!--<core:Item key="{mode_Model>zzapx}" text="{mode_Model>zzapx}"/>-->
+							</ComboBox>
+						
 							<Label wrapping="true" text="{i18n>ETA}" required="true"/>
 							<VBox>
 								<items>
@@ -86,7 +87,7 @@
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>approvalNumber}"/>
-							<Input id="tcciNo_RSOA" value="{address>/Street}"/>
+							<Input id="tcciNo_RSOA" value="{address>/Street}" maxLength="12"/>
 							<Label wrapping="true" text="{i18n>salesPerName}"/>
 							<Input id="salesperson_RSOA" value="{address>/HouseNumber}"/>
 							<Label wrapping="true" text="{i18n>salesManName}"/>

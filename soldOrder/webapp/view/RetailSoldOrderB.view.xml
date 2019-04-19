@@ -33,17 +33,18 @@
 								<core:Item key="{mainservices>suffix}"
 									text="{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"/>
 							</ComboBox>
+								<!--<Text text="{RSOB_Model>/Zzapx}"/>-->
+							<Label wrapping="true" text="{i18n>Color}"/>
+							<ComboBox id="colour_RSOB" items="{ path: 'VechileModel>/zc_exterior_trim'}" editable="false" selectedKey="{RSOB_Model>/colorkey}">
+								<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>
+							</ComboBox>
 							<!--<Text-->
 							<!--	text="{parts: [{path:'RSOB_Model>/Zzsuffix'},{path:'RSOB_Model>/Zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							<Label wrapping="true" text="{i18n>APX}"/>
 							<ComboBox id="apx_RSOB" items="{path: 'VechileModel>/ZC_PIO_DIO'}" editable="false" selectedKey="{RSOB_Model>/apxkey}">
 								<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>
 							</ComboBox>
-							<!--<Text text="{RSOB_Model>/Zzapx}"/>-->
-							<Label wrapping="true" text="{i18n>Color}"/>
-							<ComboBox id="colour_RSOB" items="{ path: 'VechileModel>/zc_exterior_trim'}" editable="false" selectedKey="{RSOB_Model>/colorkey}">
-								<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>
-							</ComboBox>
+						
 							<!--<Text text="{RSOB_Model>/Zzextcol}"/>-->
 							<Label wrapping="true" text="{i18n>vtn}" required="true"/>
 							<Text text="{RSOB_Model>/vtnn}"/>
@@ -77,7 +78,7 @@
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>approvalNumber}"/>
-							<Input id="tcciNo_RSOB" value="{address>/Street}"/>
+							<Input id="tcciNo_RSOB" value="{address>/Street}" maxLength="12"/>
 							<Label wrapping="true" text="{i18n>salesPerName}"/>
 							<Input id="salesperson_RSOB" value="{address>/HouseNumber}"/>
 							<Label wrapping="true" text="{i18n>salesManName}"/>

@@ -19,7 +19,7 @@
 							<Input value="{Data>/ZpoNumber}"/>
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
-							<Text text="{Customer/NameFirst}{Customer/NameLast}"/>
+							<Text text="{Customer>/NameFirst}{Customer>/NameLast}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Text text="{Customer>/HouseNum1}{Customer>/Street}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
@@ -78,15 +78,15 @@
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
-								<Label wrapping="true" text="{i18n>APX}" class="TableLabel"/>
-								<t:template>
-									<Text text="{FirstTable>APX}"/>
-								</t:template>
-							</t:Column>
-							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<Text text="{FirstTable>ExteriorColorCode}"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="14.2%" resizable="false">
+								<Label wrapping="true" text="{i18n>APX}" class="TableLabel"/>
+								<t:template>
+									<Text text="{FirstTable>APX}"/>
 								</t:template>
 							</t:Column>
 						</t:columns>
@@ -122,6 +122,11 @@
 								<!--<core:Item key="{ProductId}"-->
 								<!--	text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
 							</ComboBox>
+							<Label wrapping="true" text="{i18n>APX}"/>
+							<ComboBox id="Apx_CFSO" required="true">
+								<!--<core:Item key="{mode_Model>zzapx}" text="{mode_Model>zzapx}"/>-->
+							</ComboBox>
+							<!--//APX-->
 							<Label wrapping="true" text="{i18n>quantity}"/>
 							<Input id="quantity_CFSO"></Input>
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>

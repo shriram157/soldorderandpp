@@ -338,7 +338,7 @@ sap.ui.define([
 					Modelyear: _Table_Data2[i].modelYear,
 					Suffix: _Table_Data2[i].suffix,
 					ExteriorColourCode: _Table_Data2[i].colour,
-					// APX:_Table_Data1[i].APX,
+				    APX:_Table_Data2[i].apx,
 					ReqEtaFrom: _Table_Data2[i].ETAFrom,
 					ReqEtaTo: _Table_Data2[i].ETATime,
 					FltSOQty: _Table_Data2[i].quantity
@@ -401,6 +401,7 @@ sap.ui.define([
 					series: valSeries,
 					model: valModelCode,
 					colour: CFSO_controller.getView().byId("color_CFSO").getSelectedKey(),
+					apx: CFSO_controller.getView().byId("APX_CFSO").getSelectedKey(),
 					ETAFrom: CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue(),
 					ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
 					quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
@@ -636,11 +637,11 @@ sap.ui.define([
 			var searchString = oEvent.getParameter("value");
 			var filters = [];
 			if (searchString && searchString.length > 0) {
-				// filters = new sap.ui.model.Filter([new sap.ui.model.Filter("BuSort2", sap.ui.model.FilterOperator.Contains, searchString),
-				// 	new sap.ui.model.Filter("Partner", sap.ui.model.FilterOperator.Contains, searchString)
-				// ], false);
+				filters = new sap.ui.model.Filter([new sap.ui.model.Filter("BuSort2", sap.ui.model.FilterOperator.Contains, searchString),
+					new sap.ui.model.Filter("Partner", sap.ui.model.FilterOperator.Contains, searchString)
+				], false);
 			}
-			oEvent.getSource().getBinding("items").filter(new sap.ui.model.Filter("BuSort2", sap.ui.model.FilterOperator.Contains, searchString));
+			oEvent.getSource().getBinding("items").filter(filters);
 
 		},
 		_handleServiceSuffix_Series: function () {

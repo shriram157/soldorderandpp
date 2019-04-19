@@ -2,9 +2,9 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
     <SelectDialog
-        noDataText="No Fan No Found"
+        noDataText="No Data Found"
         multiSelect="false"
-        title="Select Fan Number"
+        title="{i18n>selectfan}"
         search="handleSearchFan"
         liveChange="handleSearchFan"
         rememberSelections="true"

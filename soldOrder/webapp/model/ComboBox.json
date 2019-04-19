@@ -251,6 +251,18 @@
 	}, {
 		"key": "4",
 		"text": "All"
+	},{
+		"key": "F1",
+		"text": "DLR RAC"
+	}, {
+		"key": "F2",
+		"text": "DLR ELITE"
+	}, {
+		"key": "F3",
+		"text": "NAT RAC"
+	},{
+		"key": "F4",
+		"text": "Mobility"
 	}],
 
 	"FSOSummary_Status": [{

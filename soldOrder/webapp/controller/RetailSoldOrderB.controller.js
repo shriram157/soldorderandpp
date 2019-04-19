@@ -186,8 +186,18 @@ sap.ui.define([
 						if (data.customers[0]) {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
 							Zcustomer_No = Zcustomer_No.toString();
-							sap.m.MessageBox.show(msg1 + data.customers[0].customerNumber, {
-								//	icon: sap.m.MessageBox.Icon.WARNING,
+							// sap.m.MessageBox.show(msg1 + data.customers[0].customerNumber, {
+							// 	//	icon: sap.m.MessageBox.Icon.WARNING,
+							// 	title: title,
+							// 	actions: sap.m.MessageBox.Action.OK,
+							// 	onClose: null,
+							// 	styleClass: "",
+							// 	initialFocus: null,
+							// 	textDirection: sap.ui.core.TextDirection.Inherit,
+							// 	contentWidth: "10rem"
+							// });
+							sap.m.MessageBox.show(msg, {
+								icon: sap.m.MessageBox.Icon.WARNING,
 								title: title,
 								actions: sap.m.MessageBox.Action.OK,
 								onClose: null,
@@ -263,7 +273,7 @@ sap.ui.define([
 											styleClass: "",
 											initialFocus: null,
 											textDirection: sap.ui.core.TextDirection.Inherit
-											// contentWidth: "20rem"
+												// contentWidth: "20rem"
 										});
 									} else {
 										sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
@@ -273,7 +283,7 @@ sap.ui.define([
 											styleClass: "",
 											initialFocus: null,
 											textDirection: sap.ui.core.TextDirection.Inherit
-											// contentWidth: "20rem"
+												// contentWidth: "20rem"
 										});
 									}
 
