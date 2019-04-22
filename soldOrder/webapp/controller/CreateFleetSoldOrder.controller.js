@@ -346,7 +346,7 @@ sap.ui.define([
 					Modelyear: _Table_Data2[i].modelYear,
 					Suffix: _Table_Data2[i].suffix,
 					ExteriorColourCode: _Table_Data2[i].colour,
-					APX: _Table_Data2[i].apx,
+					APX: _Table_Data2[i].APX,
 					ReqEtaFrom: _Table_Data2[i].ETAFrom,
 					ReqEtaTo: _Table_Data2[i].ETATime,
 					FltSOQty: _Table_Data2[i].quantity

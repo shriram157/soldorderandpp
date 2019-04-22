@@ -209,7 +209,7 @@
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
-									<Text text="{SecondTable>Apx}"/>
+									<Text text="{SecondTable>APX}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
