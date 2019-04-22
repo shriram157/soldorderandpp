@@ -207,6 +207,12 @@
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
+								<Label text="{i18n>APX}" class="TableLabel"/>
+								<t:template>
+									<Text text="{SecondTable>Apx}"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
 									<Text text="{path:'SecondTable>ETAFrom' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>

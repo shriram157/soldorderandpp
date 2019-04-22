@@ -22,7 +22,7 @@ sap.ui.define([
 			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
 				var dealer_no = "0";
 			//Dealer Inventory
-			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
+		//	vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 		 
 				vechile_items.filter([new Filter([
 				new Filter("MATRIX", FilterOperator.EQ, "A205"),

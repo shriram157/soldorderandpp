@@ -52,20 +52,20 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().getRoute("CreateFleetSoldOrder").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
-				this.getView().byId("idmenu1").setType('Transparent');
-				this.getView().byId("idmenu2").setType('Transparent');
-				this.getView().byId("idmenu3").setType('Emphasized');
-				this.getView().byId("idmenu4").setType('Transparent');
-				this.getView().byId("idmenu5").setType('Transparent');
-				this.getView().byId("idmenu9").setType('Transparent');
-			},
-			//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
+			this.getView().byId("idmenu1").setType('Transparent');
+			this.getView().byId("idmenu2").setType('Transparent');
+			this.getView().byId("idmenu3").setType('Emphasized');
+			this.getView().byId("idmenu4").setType('Transparent');
+			this.getView().byId("idmenu5").setType('Transparent');
+			this.getView().byId("idmenu9").setType('Transparent');
+		},
+		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
 		//2) Suffix  and  Suffix Description : Z_VEHICLE_CATALOGUE_SRV/zc_configuration SuffixDescriptionEN, Suffix
 		//     Interior Colour Description     :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  TrimInteriorColor    
 
 		//3)Color Code , Colour Description :  :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  ExteriorColorCode: "0218"ExteriorDescriptionEN: "BLACK"
-			_newService1: function () {
+		_newService1: function () {
 			var host = CFSO_controller.host();
 			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_configuration?$format=json";
 			$.ajax({
@@ -575,15 +575,19 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
 			var model = this.getView().byId('modelCode_CFSO').getSelectedKey();
 			if (model && modelyear && suffix) {
-				// this.getView().byId('Apx_RSOA').bindItems({path:'VechileModel>/ZC_PIO_DIO',
-				// filters:new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
-				// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
-				// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-				// ], true),
-				// template:new sap.ui.core.ListItem({
-				// 	key: "{VechileModel>zzapx}",
-				// 	text: "{VechileModel>zzapx}"
-				// })});
+				this.getView().byId('Apx_CFSO').bindItems({
+					path: 'mainservices>/ZVMS_CDS_APX',
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
+						new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
+						new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
+					template: new sap.ui.core.ListItem({
+						// key: "{VechileModel>zzapx}",
+						key: "{mainservices>zzapx}",
+						// text: "{VechileModel>zzapx}"
+						text: "{mainservices>zzapx}"
+					})
+				});
 				// var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
