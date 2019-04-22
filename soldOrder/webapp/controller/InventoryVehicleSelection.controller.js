@@ -25,15 +25,17 @@ sap.ui.define([
 				new Filter("MATRIX", FilterOperator.EQ, "A205"),
 				new Filter("Dealer", FilterOperator.EQ, dealer_no)
 			], true)]);
+			vechile_items.refresh();
 		},
 		onAfterRendering: function () {
-			var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
-			var dealer_no = "0";
-			//Dealer Inventory
-			vechile_items.filter([new Filter([
-				new Filter("MATRIX", FilterOperator.EQ, "A205"),
-				new Filter("Dealer", FilterOperator.EQ, dealer_no)
-			], true)]);
+			// var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
+			// var dealer_no = "0";
+			// //Dealer Inventory
+			// vechile_items.filter([new Filter([
+			// 	new Filter("MATRIX", FilterOperator.EQ, "A205"),
+			// 	new Filter("Dealer", FilterOperator.EQ, dealer_no)
+			// ], true)]);
+			// vechile_items.refresh();
 		},
 		_onSelect: function () {
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
