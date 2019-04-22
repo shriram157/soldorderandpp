@@ -12,16 +12,28 @@ sap.ui.define([
 		onInit: function () {
 			InvVehSel_controller = this;
 			InvVehSel_controller.getBrowserLanguage();
-				
+
+			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
+				this);
+
+		},
+		_getattachRouteMatched: function (parameters) {
+			var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
+			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			//Dealer Inventory
+			vechile_items.filter([new Filter([
+				new Filter("MATRIX", FilterOperator.EQ, "A205"),
+				new Filter("Dealer", FilterOperator.EQ, dealer_no)
+			], true)]);
 		},
 		onAfterRendering: function () {
 			var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
 			var dealer_no = "0";
 			//Dealer Inventory
-				vechile_items.filter([new Filter([
-					new Filter("MATRIX", FilterOperator.EQ, "A205"),
-					new Filter("Dealer", FilterOperator.EQ, dealer_no)
-				], true)]);
+			vechile_items.filter([new Filter([
+				new Filter("MATRIX", FilterOperator.EQ, "A205"),
+				new Filter("Dealer", FilterOperator.EQ, dealer_no)
+			], true)]);
 		},
 		_onSelect: function () {
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
