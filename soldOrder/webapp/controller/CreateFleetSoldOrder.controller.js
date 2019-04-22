@@ -409,7 +409,7 @@ sap.ui.define([
 					series: valSeries,
 					model: valModelCode,
 					colour: CFSO_controller.getView().byId("color_CFSO").getSelectedKey(),
-					apx: CFSO_controller.getView().byId("APX_CFSO").getSelectedKey(),
+					apx: CFSO_controller.getView().byId("Apx_CFSO").getSelectedKey(),
 					ETAFrom: CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue(),
 					ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
 					quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
