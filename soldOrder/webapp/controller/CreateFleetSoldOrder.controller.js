@@ -16,8 +16,9 @@ sap.ui.define([
 			CFSO_controller.getBrowserLanguage();
 			var today = new Date();
 			var day30 = new Date();
-			day30.setDate(today.getDate() + 30);
-			CFSO_controller.getView().byId("etaFrom_CFSO").setMinDate(day30);
+			//day30.setDate(today.getDate() + 30);
+			
+			CFSO_controller.getView().byId("etaFrom_CFSO").setMinDate(new Date());
 			// CFSO_controller._newService1();
 			// CFSO_controller._newService2();
 			// CFSO_controller._newService3();
