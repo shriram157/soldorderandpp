@@ -262,6 +262,9 @@
 		"text": "NAT RAC"
 	},{
 		"key": "F4",
+		"text": "NAT ELITE"
+	},{
+		"key": "F5",
 		"text": "Mobility"
 	}],
 
