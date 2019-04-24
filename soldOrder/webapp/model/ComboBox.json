@@ -228,7 +228,8 @@
 		"text": "Select Vehicle from my Inventory"
 	}],
 
-	"FSO_OrderType": [{
+	"FSO_OrderType": [
+	{
 		"key": "R",
 		"text": "Dealer RAC"
 	}, {
@@ -237,20 +238,33 @@
 	}, {
 		"key": "M",
 		"text": "Dealer Mobility"
+	},{
+		"key": "F1",
+		"text": "DLR RAC"
+	}, {
+		"key": "F2",
+		"text": "DLR ELITE"
+	}, {
+		"key": "F3",
+		"text": "NAT RAC"
+	},{
+		"key": "F4",
+		"text": "NAT ELITE"
+	},{
+		"key": "F5",
+		"text": "Mobility"
 	}],
 
-	"FSOSummary_OrderType": [{
-		"key": "1",
-		"text": " Dealer RAC"
+	"FSOSummary_OrderType": [
+	{
+		"key": "R",
+		"text": "Dealer RAC"
 	}, {
-		"key": "2",
+		"key": "E&T",
 		"text": "Fleet - Dealer Elite"
 	}, {
-		"key": "3",
+		"key": "M",
 		"text": "Dealer Mobility"
-	}, {
-		"key": "4",
-		"text": "All"
 	},{
 		"key": "F1",
 		"text": "DLR RAC"
