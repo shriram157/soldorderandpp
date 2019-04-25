@@ -18,6 +18,7 @@ sap.ui.define([
 
 		},
 		_getattachRouteMatched: function (parameters) {
+			this.zrequest = parameters.getParameters().arguments.Soreq;
 			var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
 			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
@@ -140,6 +141,9 @@ sap.ui.define([
 					// new Filter("APX", FilterOperator.EQ, ""),
 				], true)]);
 			}
+		},
+		onback: function (oEvent) {
+			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 3		
 		}
 
 	});
