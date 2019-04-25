@@ -86,6 +86,7 @@ sap.ui.define([
 
 					}
 					oModel.setData(arr);
+					
 					RSOA_controller.getView().setModel(oModel, "seriesdropDownModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {

@@ -36,7 +36,7 @@
 							<Label wrapping="true" text="{i18n>Series}"/>
 							<ComboBox id="series_RSOA" items=" {path:'seriesdropDownModel>/', templateShareable:true}" required="true" selectionChange="series_selected">
 								<!--<core:Item key="{mainservices>Zzseries}" text="{mainservices>ZzseriesDescEn}"/>-->
-								<core:Item text="{seriesdropDownModel>}" key="{seriesdropDownModel>}"/>
+								<core:Item text="{seriesdropDownModel>}" key="{seriesdropDownModel>}" />
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Model}"/>
 							<ComboBox id="model_RSOA"  required="true" selectionChange="model_selected">
