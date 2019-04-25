@@ -1,23 +1,25 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified"
-	xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml"
-	controllerName="toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder">
 	<App>
 		<pages>
 			<Page showHeader="false">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
 					<Label id="label_MangSoldOrderid" text="" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"/>
-					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
-						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
-						singleContainerFullSize="false">
+					<Button xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="{i18n>Back}" press="onNavBack" class="sapUiMediumMarginBegin" id="button2">
+					    <layoutData>
+					        <l:GridData xmlns:l="sap.ui.layout" span="L2 M3 S6" id="data67"/>
+					        
+					    </layoutData>
+					    
+					</Button>
+					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false">
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>modelYear}"/>
 							<Text text="{mainservices>Zzmoyr}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" selectedKey="{mainservices>Zzseries}"
-								modelContextChange="onSeriesnum">
+							<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" selectedKey="{mainservices>Zzseries}" modelContextChange="onSeriesnum">
 								<items>
 									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
 								</items>
@@ -69,8 +71,7 @@
 								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
-							<Text
-								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+							<Text text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>SalesType}"/>
 							<ComboBox id="salestype_CSOR" items="{ path: '/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
 								<core:Item key="{key}" text="{text}"/>
@@ -82,16 +83,14 @@
 										<items>
 											<Text/>
 											<Label wrapping="true" text="{i18n>from}:-" class="sapUiSmallMarginTop"/>
-											<Text
-												text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+											<Text text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Text/>
 											<Label wrapping="true" text="{i18n>to}:-" class="sapUiSmallMarginTop"/>
-											<Text
-												text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+											<Text text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</items>
 									</HBox>
 								</items>
@@ -167,14 +166,12 @@
 							<TextArea id="RSOV_MSO_comment2" value="{mainservices>ZzcancelComment}" editable="false" enabled="false" maxLength="150"/>
 						</f:content>
 					</f:SimpleForm>
-					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
-						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
-						singleContainerFullSize="false">
+					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false">
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoTitle}" class="msgStripFormat msgStripCss "/>
 							<!--<Label wrapping="true" text="{i18n>CustName}"/>-->
-							<!--<Text text="{Customer>/person/firstName}{Customer&gt;/person/familyName}"/>-->
+							<!--<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>-->
 							<Label wrapping="true" text="{i18n>fcustname}"/>
 							<Text text="{Customer>/person/firstName}"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
@@ -230,23 +227,19 @@
 						</f:content>
 					</f:SimpleForm>
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss2"/>
-					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{mainservices>AttachmentSet}" enableColumnReordering="false"
-						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount="2">
+					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{mainservices>AttachmentSet}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount="2">
 						<t:columns>
 							<t:Column width="33.33%" resizable="false">
 								<Label text=""/>
 								<t:template>
-									<Button enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" id="idRSOV_MSO_delButton"
-										text="{i18n>DeleteAttachment}" press="_onDeleteAttachment"/>
+									<Button enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" id="idRSOV_MSO_delButton" text="{i18n>DeleteAttachment}" press="_onDeleteAttachment"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="33.33%" resizable="false">
 								<Label text="{i18n>File}" class="TableLabel"/>
 								<t:template>
 									<!--,AttacheComment='{mainservices>AttacheComment}'-->
-									<Link
-										href="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZsoReqNo}')/AttachmentSet(Filename='{mainservices>Filename}',ZsoReqNo='{mainservices>ZsoReqNo}')/$value"
-										text="{mainservices>Filename}" wrapping="false"/>
+									<Link href="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZsoReqNo}')/AttachmentSet(Filename='{mainservices>Filename}',ZsoReqNo='{mainservices>ZsoReqNo}')/$value" text="{mainservices>Filename}" wrapping="false"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="33.33%" resizable="false">
@@ -273,8 +266,7 @@
 								<l:GridData span="L1 M2 S12" indent="L3 M3"/>
 							</layoutData>
 						</Label>
-						<u:FileUploader id="idRSOV_MSO_fileUpl" useMultipart="false"
-							uploadUrl="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet" uploadComplete="handleUploadComplete"/>
+						<u:FileUploader id="idRSOV_MSO_fileUpl" useMultipart="false" uploadUrl="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet" uploadComplete="handleUploadComplete"/>
 						<HBox>
 							<items>
 								<Label text="{i18n>Comments}" wrapping="true" class="sapUiSmallMarginTop sapUiSmallMarginEnd">
@@ -282,8 +274,7 @@
 										<l:GridData span="L1 M3 S6"/>
 									</layoutData>
 								</Label>
-								<TextArea id="idComments_TA_RSO_ManageSO"
-									enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" maxLength="30">
+								<TextArea id="idComments_TA_RSO_ManageSO" enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" maxLength="30">
 									<layoutData>
 										<l:GridData span="L2 M3 S6"/>
 									</layoutData>
@@ -293,8 +284,7 @@
 								<l:GridData indent="M3"/>
 							</layoutData>
 						</HBox>
-						<Button id="btn_addAttach_RSO_MSO" enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}"
-							text="{i18n>AddAttach}" press="_addAttachment">
+						<Button id="btn_addAttach_RSO_MSO" enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" text="{i18n>AddAttach}" press="_addAttachment">
 							<layoutData>
 								<l:GridData span="L2 M3 S6"/>
 							</layoutData>
@@ -310,36 +300,24 @@
 						</items>
 					</HBox>-->
 					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12">
-						<Button text="{i18n>Update}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}"
-							press="_updateSoldOrderRequest">
+						<Button text="{i18n>Update}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_updateSoldOrderRequest">
 							<layoutData>
 								<l:GridData span="L2 M4 S6" indent="L2 M3"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}"
-							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}"
-							press="_getVehiclesToFillSoldOrderRequest" class="sapUiMediumMarginBegin">
+						<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_getVehiclesToFillSoldOrderRequest" class="sapUiMediumMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_orderChange_RSO_MSO" text="{i18n>OrderChange}"
-							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navToRSOrderChange"
-							class="sapUiLargeMarginBegin">
+						<Button id="btn_orderChange_RSO_MSO" text="{i18n>OrderChange}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navToRSOrderChange" class="sapUiLargeMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6" indent="M1"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_cancelOrder_RSO_MSO" text="{i18n>CancelOrder}"
-							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder"
-							class="sapUiMediumMarginBegin">
+						<Button id="btn_cancelOrder_RSO_MSO" text="{i18n>CancelOrder}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder" class="sapUiMediumMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>
-							</layoutData>
-						</Button>
-						<Button text="{i18n>Back}" press="onNavBack" class="sapUiMediumMarginBegin">
-							<layoutData>
-								<l:GridData span="L2 M3 S6"/>
 							</layoutData>
 						</Button>
 					</l:Grid>
@@ -351,23 +329,17 @@
 						</items>
 					</HBox>-->
 					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12" class="marginCornersBottom">
-						<Button id="btn_AuditComp_RSO_MSO" enabled="{path:'mainservices>ZzAuditStatus',formatter:'toyota.ca.SoldOrder.util.formatter.Tciuseraudit'}"
-							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" text="{i18n>AuditComp}"
-							press="_updateAuditSoldOrderRequest">
+						<Button id="btn_AuditComp_RSO_MSO" enabled="{path:'mainservices>ZzAuditStatus',formatter:'toyota.ca.SoldOrder.util.formatter.Tciuseraudit'}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" text="{i18n>AuditComp}" press="_updateAuditSoldOrderRequest">
 							<layoutData>
 								<l:GridData span="L2 M3 S6" indent="L4 M1"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_ApprPriceProt_RSO_MSO" enabled="true"
-							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" text="{i18n>ApprPriceProt}"
-							press="_approvePriceProtectionDetails">
+						<Button id="btn_ApprPriceProt_RSO_MSO" enabled="true" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" text="{i18n>ApprPriceProt}" press="_approvePriceProtectionDetails">
 							<layoutData>
 								<l:GridData span="L3 M4 S6"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_RejPriceProt_RSO_MSO" enabled="true"
-							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" text="{i18n>RejPriceProt}"
-							press="_rejectPriceProtectionDetails">
+						<Button id="btn_RejPriceProt_RSO_MSO" enabled="true" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusertype'}" text="{i18n>RejPriceProt}" press="_rejectPriceProtectionDetails">
 							<layoutData>
 								<l:GridData span="L3 M4 S12"/>
 							</layoutData>
