@@ -13,7 +13,7 @@ sap.ui.define([
 
 		onInit: function () {
 			RSOA_controller = this;
-			RSOA_controller.getBrowserLanguage();
+			var language = RSOA_controller.getBrowserLanguage();
 			var today = new Date();
 			var day1 = new Date();
 			day1.setDate(today.getDate()); //+ 1
@@ -27,7 +27,73 @@ sap.ui.define([
 			// this.getDealer();
 			this.getOwnerComponent().getRouter().getRoute("RouteView1").attachPatternMatched(this._onObjectMatched, this);
 			var model = new JSONModel({});
+			var seriesCB = RSOA_controller.getView().byId("series_RSOA");
 			RSOA_controller.getView().setModel(model, 'Customer');
+						var host = RSOA_controller.host();
+	var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+	var brand;
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+
+				if (this.sDivision == '10') // set the toyoto logo
+				{
+					brand = "TOYOTA";
+
+				} else { // set the lexus logo
+					brand = "LEXUS";
+
+					// }
+				}
+			}
+						var url = host +
+				"/Z_VEHICLE_CATALOGUE_SRV/ZC_TABLE_DATA?$filter=Brand eq '"+brand+"'";
+			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
+			$.ajax({
+				url: url,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					if (seriesCB.getValue() !== "") {
+						//seriesCB.setValue(" ");
+						seriesCB.setSelectedKey(null);
+					}
+					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					var oModel = new sap.ui.model.json.JSONModel();
+
+					var arr = [];
+					var j = 0; //TCISeries_fr
+					if (language == "FR") {
+						for (var c = 0; c < data.d.results.length; c++) {
+							for (var i = 0; i < data.d.results.length; i++) {
+								if ($.inArray(data.d.results[i]["TCISeries_fr"], arr) < 0) {
+									arr[j] = data.d.results[i]["TCISeries_fr"];
+									j++;
+
+								}
+							}
+						}
+					} else { //if (language == "EN") {
+						for (var c = 0; c < data.d.results.length; c++) {
+							for (var i = 0; i < data.d.results.length; i++) {
+								if ($.inArray(data.d.results[i]["TCISeries"], arr) < 0) {
+									arr[j] = data.d.results[i]["TCISeries"];
+									j++;
+
+								}
+							}
+						}
+
+					}
+					oModel.setData(arr);
+					RSOA_controller.getView().setModel(oModel, "seriesdropDownModel");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
 		},
 		_onObjectMatched: function (oEvent) {
 				this.getView().byId("idmenu1").setType('Emphasized');
