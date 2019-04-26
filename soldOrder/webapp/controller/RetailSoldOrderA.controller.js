@@ -802,7 +802,15 @@ sap.ui.define([
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = oEvent.getSource().getSelectedKey();
+			var language = RSOA_controller.getBrowserLanguage();
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+		if (language === "FR") {
+			
+			}
+			else
+			{
+				
+			}
 			if (model && modelyear) {
 				this.getView().byId('Suffix_RSOA').bindItems({
 					// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
@@ -860,8 +868,9 @@ sap.ui.define([
 						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>ExteriorColorCode}",
-						text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+						key: "{VechileModel>MarketingTrimInteriorDescEN}",
+						text: "{VechileModel>MarketingTrimInteriorDescEN}",
+						// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 					})
 				});
 				// var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
