@@ -66,8 +66,8 @@ sap.ui.define([
 					if (language == "FR") {
 						for (var c = 0; c < data.d.results.length; c++) {
 							for (var i = 0; i < data.d.results.length; i++) {
-								if ($.inArray(data.d.results[i]["TCISeries_fr"], arr) < 0) {
-									arr[j] = data.d.results[i]["TCISeries_fr"];
+								if ($.inArray(data.d.results[i]["TCISeriesDescriptionFR"], arr) < 0) {
+									arr[j] = data.d.results[i]["TCISeriesDescriptionFR"];
 									j++;
 
 								}
@@ -76,8 +76,8 @@ sap.ui.define([
 					} else { //if (language == "EN") {
 						for (var c = 0; c < data.d.results.length; c++) {
 							for (var i = 0; i < data.d.results.length; i++) {
-								if ($.inArray(data.d.results[i]["TCISeries"], arr) < 0) {
-									arr[j] = data.d.results[i]["TCISeries"];
+								if ($.inArray(data.d.results[i]["TCISeriesDescriptionEN"], arr) < 0) {
+									arr[j] = data.d.results[i]["TCISeriesDescriptionEN"];
 									j++;
 
 								}
