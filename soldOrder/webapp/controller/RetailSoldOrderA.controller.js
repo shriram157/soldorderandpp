@@ -804,12 +804,15 @@ sap.ui.define([
 			var model = oEvent.getSource().getSelectedKey();
 			var language = RSOA_controller.getBrowserLanguage();
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+		var suf;
 		if (language === "FR") {
-			
+						suf = "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+
 			}
 			else
 			{
-				
+							suf = "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+
 			}
 			if (model && modelyear) {
 				this.getView().byId('Suffix_RSOA').bindItems({
@@ -820,7 +823,7 @@ sap.ui.define([
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
-						text: "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
+						text: suf
 					})
 				});
 				// ,{path:'mainservices>int_trim_desc_en'}		
@@ -861,6 +864,16 @@ sap.ui.define([
 				//-----------------
 				//----Color---------
 				//----------------
+				var color;
+				var language = RSOA_controller.getBrowserLanguage();
+				if (language === "FR") 
+					{
+						color = "{VechileModel>MarketingTrimInteriorDescFR}";
+					}
+					else
+					{
+				color = "{VechileModel>MarketingTrimInteriorDescEN}";
+					}
 				this.getView().byId('Colour_RSOA').bindItems({
 					path: 'VechileModel>/zc_exterior_trim',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
@@ -868,8 +881,8 @@ sap.ui.define([
 						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>MarketingTrimInteriorDescEN}",
-						text: "{VechileModel>MarketingTrimInteriorDescEN}",
+						key: color,
+						text: color
 						// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 					})
 				});
