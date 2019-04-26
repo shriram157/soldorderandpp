@@ -651,7 +651,7 @@ sap.ui.define([
 			var filters = [];
 			if (searchString && searchString.length > 0) {
 				filters = new sap.ui.model.Filter([new sap.ui.model.Filter("BuSort2", sap.ui.model.FilterOperator.Contains, searchString),
-					new sap.ui.model.Filter("Partner", sap.ui.model.FilterOperator.Contains, searchString)
+					new sap.ui.model.Filter("NameOrg1", sap.ui.model.FilterOperator.Contains, searchString)
 				], false);
 			}
 			oEvent.getSource().getBinding("items").filter(filters);
