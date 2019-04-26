@@ -12,7 +12,7 @@
         items="{mainservices>/ZvmsFleetSoFanNumberShSet}" >
         <StandardListItem
             title="{mainservices>BuSort2}"
-            description="{mainservices>Partner}"
+            description="{mainservices>NameOrg1}"
             type="Active"/>
     </SelectDialog>
 </core:FragmentDefinition>
