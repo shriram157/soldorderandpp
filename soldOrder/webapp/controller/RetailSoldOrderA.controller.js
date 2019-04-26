@@ -45,8 +45,7 @@ sap.ui.define([
 					// }
 				}
 			}
-						var url = host +
-				"/Z_VEHICLE_CATALOGUE_SRV/ZC_TABLE_DATA?/ZC_SERIES?$filter=Division eq '"+brand+"'" &$orderby=zzzadddata4 ;
+						var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_TABLE_DATA?/ZC_SERIES?$filter=Division eq '" + brand + "' & $orderby = zzzadddata4";
 			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
 			$.ajax({
 				url: url,
