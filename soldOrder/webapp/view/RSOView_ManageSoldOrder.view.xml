@@ -274,7 +274,7 @@
 										<l:GridData span="L1 M3 S6"/>
 									</layoutData>
 								</Label>
-								<TextArea id="idComments_TA_RSO_ManageSO" enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" maxLength="30">
+								<TextArea id="idComments_TA_RSO_ManageSO" editable="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" maxLength="30">
 									<layoutData>
 										<l:GridData span="L2 M3 S6"/>
 									</layoutData>
@@ -284,7 +284,7 @@
 								<l:GridData indent="M3"/>
 							</layoutData>
 						</HBox>
-						<Button id="btn_addAttach_RSO_MSO" enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" text="{i18n>AddAttach}" press="_addAttachment">
+						<Button id="btn_addAttach_RSO_MSO" visible="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" text="{i18n>AddAttach}" press="_addAttachment">
 							<layoutData>
 								<l:GridData span="L2 M3 S6"/>
 							</layoutData>
@@ -300,22 +300,22 @@
 						</items>
 					</HBox>-->
 					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12">
-						<Button text="{i18n>Update}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_updateSoldOrderRequest">
+						<Button text="{i18n>Update}" enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_updateSoldOrderRequest">
 							<layoutData>
 								<l:GridData span="L2 M4 S6" indent="L2 M3"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_selectVehicle_RSO_MSO" text="{i18n>SelVeh}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_getVehiclesToFillSoldOrderRequest" class="sapUiMediumMarginBegin">
+						<Button id="btn_selectVehicle_RSO_MSO" enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" text="{i18n>SelVeh}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_getVehiclesToFillSoldOrderRequest" class="sapUiMediumMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_orderChange_RSO_MSO" text="{i18n>OrderChange}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navToRSOrderChange" class="sapUiLargeMarginBegin">
+						<Button id="btn_orderChange_RSO_MSO" enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" text="{i18n>OrderChange}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navToRSOrderChange" class="sapUiLargeMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6" indent="M1"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_cancelOrder_RSO_MSO" text="{i18n>CancelOrder}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder" class="sapUiMediumMarginBegin">
+						<Button id="btn_cancelOrder_RSO_MSO" enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" text="{i18n>CancelOrder}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder" class="sapUiMediumMarginBegin">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>

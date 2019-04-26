@@ -19,7 +19,7 @@
 						</m:items>
 					</m:VBox>
 					<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"
-						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" showNoData="{i18n>novehicletable}">
 						<columns>
 							<Column width="10%" resizable="false">
 								<m:Label text=""/>

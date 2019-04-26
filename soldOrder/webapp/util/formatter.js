@@ -138,6 +138,14 @@ toyota.ca.SoldOrder.util.formatter = {
 		if(dealerno){
 		return dealerno.slice(-5);
 		}
+	},
+	ordercancelled:function(orderstatus)
+	{
+			if (status == "CANCELLED") {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 };
