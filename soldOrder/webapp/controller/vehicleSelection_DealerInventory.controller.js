@@ -18,6 +18,9 @@ sap.ui.define([
 				
 		},
 		_getattachRouteMatched: function (parameters) {
+			var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
+			var Msg = oBundle.getText("novehicletable");
+			VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").setNoData(Msg);
 			zrequest = parameters.getParameters().arguments.Soreq;
 			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
 				var dealer_no = "0";
