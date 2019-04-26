@@ -39,6 +39,7 @@ sap.ui.define([
 				{
 					brand = "TOY";
 
+
 				} else { // set the lexus logo
 					brand = "LEX";
 
