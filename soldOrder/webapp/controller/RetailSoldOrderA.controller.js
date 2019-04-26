@@ -37,15 +37,15 @@ sap.ui.define([
 
 				if (this.sDivision == '10') // set the toyoto logo
 				{
-					brand = "TOYOTA";
+					brand = "TOY";
 
 				} else { // set the lexus logo
-					brand = "LEXUS";
+					brand = "LEX";
 
 					// }
 				}
 			}
-						var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_TABLE_DATA?$filter=Brand eq '" + brand + "' & $orderby = zzzadddata4";
+						var url = host + "/Z_VEHICLE_CATALOGUE_SRV/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq " + brand + " &$orderby=zzzadddata4";
 			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
 			$.ajax({
 				url: url,
