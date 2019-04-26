@@ -10,6 +10,7 @@ sap.ui.define([
 		onInit: function () {
 			AppController = this;
 			AppController.ResetFlag();
+			AppController.getBrowserLanguage();
 			var that = this;
 			//========================================================
 			//======Get the Dealer and user type===============
