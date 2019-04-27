@@ -175,7 +175,7 @@ sap.ui.define([
 				this.sCurrentLocale = 'EN';
 			}
 			return this.sCurrentLocale;
-		}
+		},
 		/*var i18nModel;
 		var sLocale;
 		var oI18nModel = new sap.ui.model.resource.ResourceModel({
