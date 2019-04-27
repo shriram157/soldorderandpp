@@ -142,6 +142,40 @@ sap.ui.define([
 				this.sCurrentLocale = 'EN';
 			}
 		},
+			returnBrowserLanguage: function () {
+			var oI18nModel = new sap.ui.model.resource.ResourceModel({
+				bundleUrl: "i18n/i18n.properties"
+			});
+			this.getView().setModel(oI18nModel, "i18n");
+
+			var isLocaleSent = window.location.search.match(/language=([^&]*)/i);
+			console.log(isLocaleSent);
+			if (isLocaleSent) {
+				var sSelectedLocale = window.location.search.match(/language=([^&]*)/i)[1];
+			} else {
+				var sSelectedLocale = "EN"; // default is english 
+			}
+			console.log(sSelectedLocale);
+			//selected language. 
+			// if (window.location.search == "?language=fr") {
+			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/"|| sSelectedLocale == "FR"|| sSelectedLocale == "FR/") {
+				var i18nModel = new sap.ui.model.resource.ResourceModel({
+					bundleUrl: "i18n/i18n.properties",
+					bundleLocale: ("fr")
+				});
+				this.getView().setModel(i18nModel, "i18n");
+				this.sCurrentLocale = 'FR';
+
+			} else {
+				var i18nModel = new sap.ui.model.resource.ResourceModel({
+					bundleUrl: "i18n/i18n.properties",
+					bundleLocale: ("en")
+				});
+				this.getView().setModel(i18nModel, "i18n");
+				this.sCurrentLocale = 'EN';
+			}
+			return this.sCurrentLocale;
+		}
 		/*var i18nModel;
 		var sLocale;
 		var oI18nModel = new sap.ui.model.resource.ResourceModel({

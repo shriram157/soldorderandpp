@@ -802,7 +802,7 @@ sap.ui.define([
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = oEvent.getSource().getSelectedKey();
-			var language = RSOA_controller.getBrowserLanguage();
+			var language = RSOA_controller.returnBrowserLanguage();
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 		var suf;
 		if (language === "FR") {
@@ -865,7 +865,7 @@ sap.ui.define([
 				//----Color---------
 				//----------------
 				var color;
-				var language = RSOA_controller.getBrowserLanguage();
+				var language = RSOA_controller.returnBrowserLanguage();
 				if (language === "FR") 
 					{
 						color = "{VechileModel>MarketingTrimInteriorDescFR}";

@@ -1,7 +1,6 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
 	<tnt:ToolHeader>
-		<Button text="{i18n>menu1}" id="idmenu1" press="handleBaseLinkPress" type="Transparent"
-			visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}">
+		<Button text="{i18n>menu1}" id="idmenu1" press="handleBaseLinkPress" type="Transparent" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}">
 			<layoutData>
 				<OverflowToolbarLayoutData priority="High"/>
 			</layoutData>
@@ -11,8 +10,7 @@
 				<OverflowToolbarLayoutData priority="High"/>
 			</layoutData>
 		</Button>
-		<Button text="{i18n>menu3}" id="idmenu3" press="handleBaseLinkPress" type="Transparent"
-			visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}">
+		<Button text="{i18n>menu3}" id="idmenu3" press="handleBaseLinkPress" type="Transparent" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}">
 			<layoutData>
 				<OverflowToolbarLayoutData priority="High"/>
 			</layoutData>
@@ -47,6 +45,18 @@
 				<OverflowToolbarLayoutData priority="High"/>
 			</layoutData>
 		</Button>
+		
+	
 		<tnt:ToolHeaderUtilitySeparator/>
+	<tnt:content>
+	    <ToolbarSpacer xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt" id="spacer0"/>
+	</tnt:content>
+	<Button xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns="sap.m" text="{i18n>Back}" id="idmenu10" press="onNavBack" type="Transparent">
+	    <layoutData>
+	        <OverflowToolbarLayoutData priority="High" id="data10"/>
+	        
+	    </layoutData>
+	    
+	</Button>
 	</tnt:ToolHeader>
 </core:FragmentDefinition>
