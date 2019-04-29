@@ -679,11 +679,11 @@ sap.ui.define([
 				var language = RSOA_controller.returnBrowserLanguage();
 				if (language === "FR") 
 					{
-						color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescEN}";
+						color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescFR}";
 					}
 					else
 					{
-				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescFR}";
+				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescEN}";
 					}
 				this.getView().byId('color_CFSO').bindItems({
 					path: 'VechileModel>/zc_exterior_trim',
