@@ -14,6 +14,7 @@ sap.ui.define([
 		onInit: function () {
 			CFSO_controller = this;
 			CFSO_controller.getBrowserLanguage();
+			var language = CFSO_controller.returnBrowserLanguage();
 			var today = new Date();
 			var day30 = new Date();
 			//day30.setDate(today.getDate() + 30);
@@ -51,6 +52,74 @@ sap.ui.define([
 			this.getView().setModel(this._data2, 'FirstTable');
 			sap.ui.getCore().setModel(this._data2, 'FirstTable');
 			this.getOwnerComponent().getRouter().getRoute("CreateFleetSoldOrder").attachPatternMatched(this._onObjectMatched, this);
+		var seriesCB = CFSO_controller.getView().byId("series_CFSO");
+			
+						var host = CFSO_controller.host();
+	var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+	var brand;
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+
+				if (this.sDivision == '10') // set the toyoto logo
+				{
+					brand = "TOY";
+
+
+				} else { // set the lexus logo
+					brand = "LEX";
+
+					// }
+				}
+			}
+						var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand + "' and zzzadddata2 eq 'X'&$orderby=zzzadddata4 asc";
+			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
+			$.ajax({
+				url: url,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					if (seriesCB.getValue() !== "") {
+						//seriesCB.setValue(" ");
+						seriesCB.setSelectedKey(null);
+					}
+					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					var oModel = new sap.ui.model.json.JSONModel();
+
+					var arr = [];
+					var j = 0; //TCISeries_fr
+					if (language == "FR") {
+						for (var c = 0; c < data.d.results.length; c++) {
+							for (var i = 0; i < data.d.results.length; i++) {
+								if ($.inArray(data.d.results[i]["TCISeriesDescriptionFR"], arr) < 0) {
+									arr[j] = data.d.results[i]["TCISeriesDescriptionFR"];
+									j++;
+
+								}
+							}
+						}
+					} else { //if (language == "EN") {
+						for (var c = 0; c < data.d.results.length; c++) {
+							for (var i = 0; i < data.d.results.length; i++) {
+								if ($.inArray(data.d.results[i]["TCISeriesDescriptionEN"], arr) < 0) {
+									arr[j] = data.d.results[i]["TCISeriesDescriptionEN"];
+									j++;
+
+								}
+							}
+						}
+
+					}
+					oModel.setData(arr);
+					
+					CFSO_controller..getView().setModel(oModel, "seriesdropDownModel");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
 		},
 		_onObjectMatched: function (oEvent) {
 			this.getView().byId("idmenu1").setType('Transparent');
@@ -550,6 +619,17 @@ sap.ui.define([
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = oEvent.getSource().getSelectedKey();
 			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
+			var language = CFSO_controller.returnBrowserLanguage();
+			var suf;
+				if (language === "FR") {
+						suf = "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+
+			}
+			else
+			{
+							suf = "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+
+			}
 			if (model && modelyear) {
 				this.getView().byId('suffix_CFSO').bindItems({
 					path: 'mainservices>/ZVMS_CDS_SUFFIX',
@@ -558,7 +638,7 @@ sap.ui.define([
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
-						text: "{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
+						text: suf
 					})
 				});
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
@@ -597,6 +677,16 @@ sap.ui.define([
 				//-----------------
 				//----Color---------
 				//----------------
+					var color;
+				var language = CFSO_controller.returnBrowserLanguage();
+				if (language === "FR") 
+					{
+						color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescFR}";
+					}
+					else
+					{
+				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescEN}";
+					}
 				this.getView().byId('color_CFSO').bindItems({
 					path: 'VechileModel>/zc_exterior_trim',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
@@ -605,7 +695,7 @@ sap.ui.define([
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{VechileModel>ExteriorColorCode}",
-						text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+						text: color
 					})
 				});
 				// var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
