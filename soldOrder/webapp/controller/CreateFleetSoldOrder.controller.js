@@ -112,10 +112,10 @@ sap.ui.define([
 					}
 					oModel.setData(arr);
 					
-					CFSO_controller..getView().setModel(oModel, "seriesdropDownModel");
+					CFSO_controller.getView().setModel(oModel, "seriesdropDownModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+					var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				}
