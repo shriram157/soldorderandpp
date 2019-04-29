@@ -13,7 +13,8 @@ sap.ui.define([
 
 		onInit: function () {
 			RSOA_controller = this;
-			var language = RSOA_controller.getBrowserLanguage();
+			RSOA_controller.getBrowserLanguage();
+			var language = RSOA_controller.returnBrowserLanguage();
 			var today = new Date();
 			var day1 = new Date();
 			day1.setDate(today.getDate()); //+ 1
@@ -46,7 +47,7 @@ sap.ui.define([
 					// }
 				}
 			}
-						var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand + "'&$orderby=zzzadddata4";
+						var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand + "' and zzzadddata2 eq 'X'&$orderby=zzzadddata4 asc";
 			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
 			$.ajax({
 				url: url,
@@ -868,11 +869,11 @@ sap.ui.define([
 				var language = RSOA_controller.returnBrowserLanguage();
 				if (language === "FR") 
 					{
-						color = "{VechileModel>MarketingTrimInteriorDescFR}";
+						color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescEN}";
 					}
 					else
 					{
-				color = "{VechileModel>MarketingTrimInteriorDescEN}";
+				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescFR}";
 					}
 				this.getView().byId('Colour_RSOA').bindItems({
 					path: 'VechileModel>/zc_exterior_trim',
