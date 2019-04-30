@@ -71,14 +71,12 @@ sap.ui.define([
 							for (var i = 0; i < data.d.results.length; i++) {
 								if ($.inArray(data.d.results[i]["TCISeriesDescriptionFR"], arr) < 0) {
 									arr[j] = data.d.results[i]["TCISeriesDescriptionFR"];
-									j++;
-
-								}
-									if ($.inArray(data.d.results[i]["ModelSeriesNo"], arr1) < 0) {
 									arr1[j] = data.d.results[i]["ModelSeriesNo"];
-									j++;
 
+j++;
 								}
+								
+								
 							}
 						}
 					} else { //if (language == "EN") {
@@ -86,13 +84,13 @@ sap.ui.define([
 							for (var i = 0; i < data.d.results.length; i++) {
 								if ($.inArray(data.d.results[i]["TCISeriesDescriptionEN"], arr) < 0) {
 									arr[j] = data.d.results[i]["TCISeriesDescriptionEN"];
-									j++;
-
-								}
-									if ($.inArray(data.d.results[i]["ModelSeriesNo"], arr1) < 0) {
 									arr1[j] = data.d.results[i]["ModelSeriesNo"];
-									j++;
-							}
+
+j++;
+								}
+
+							
+							
 						}
 
 					}
@@ -825,7 +823,7 @@ sap.ui.define([
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
-			var series = oEvent.getSource().getSelectedKey();
+			var series = this.getView().byId('series_RSOA').getValue();
 			if (series && modelyear) {
 					var modelCB = this.getView().byId("model_RSOA");
 			var suffixCB = this.getView().byId("Suffix_RSOA");
