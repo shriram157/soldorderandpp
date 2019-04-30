@@ -96,6 +96,7 @@ sap.ui.define([
 						}
 
 					}
+					}
 					oModel.setData(arr);
 					keyModel.setData(arr1);
 					RSOA_controller.getView().setModel(oModel, "seriesdropDownModel");
