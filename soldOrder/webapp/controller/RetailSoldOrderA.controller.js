@@ -743,6 +743,36 @@ sap.ui.define([
 			input_ref.setValue(Oevent.getSource().getYear()); //this._oPopover.getContent()[0].getYear()
 			// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
 			//  items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
+				var series = this.getView().byId('series_RSOA').getSelectedKey();
+			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+			
+			if (series && modelyear) {
+						var modelCB = this.getView().byId("model_RSOA");
+			var suffixCB = this.getView().byId("Suffix_RSOA");
+			var apxCB = this.getView().byId("Apx_RSOA");
+			var colorCB = this.getView().byId("Colour_RSOA");
+					modelCB.setSelectedKey(null);
+			modelCB.destroyItems();
+			suffixCB.setSelectedKey(null);
+			suffixCB.destroyItems();
+			apxCB.setSelectedKey(null);
+			apxCB.destroyItems();
+			colorCB.setSelectedKey(null);
+			colorCB.destroyItems();
+				modelCB.bindItems({
+					// path: "VechileModel>/zc_model",
+					path: "mainservices>/ZVMS_CDS_Model",
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+					], true),
+					template: new sap.ui.core.ListItem({
+						key: "{mainservices>model}",
+						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+					})
+				});
+				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
+			}
 			this._oPopover.close();
 		},
 		initailyear: function (oEvent) {
@@ -785,7 +815,19 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			var series = oEvent.getSource().getSelectedKey();
 			if (series && modelyear) {
-				this.getView().byId('model_RSOA').bindItems({
+					var modelCB = this.getView().byId("model_RSOA");
+			var suffixCB = this.getView().byId("Suffix_RSOA");
+			var apxCB = this.getView().byId("Apx_RSOA");
+			var colorCB = this.getView().byId("Colour_RSOA");
+					modelCB.setSelectedKey(null);
+			modelCB.destroyItems();
+			suffixCB.setSelectedKey(null);
+			suffixCB.destroyItems();
+			apxCB.setSelectedKey(null);
+			apxCB.destroyItems();
+			colorCB.setSelectedKey(null);
+			colorCB.destroyItems();
+				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_CDS_Model",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
@@ -816,7 +858,18 @@ sap.ui.define([
 
 			}
 			if (model && modelyear) {
-				this.getView().byId('Suffix_RSOA').bindItems({
+					var suffixCB = this.getView().byId("Suffix_RSOA");
+			var apxCB = this.getView().byId("Apx_RSOA");
+			var colorCB = this.getView().byId("Colour_RSOA");
+			// 		modelCB.setSelectedKey(null);
+			// modelCB.destroyItems();
+			suffixCB.setSelectedKey(null);
+			suffixCB.destroyItems();
+			apxCB.setSelectedKey(null);
+			apxCB.destroyItems();
+			colorCB.setSelectedKey(null);
+			colorCB.destroyItems();
+				suffixCB.bindItems({
 					// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
 					path: 'mainservices>/ZVMS_CDS_SUFFIX',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
@@ -843,7 +896,17 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			var model = this.getView().byId('model_RSOA').getSelectedKey();
 			if (model && modelyear && suffix) {
-				this.getView().byId('Apx_RSOA').bindItems({
+					var apxCB = this.getView().byId("Apx_RSOA");
+			var colorCB = this.getView().byId("Colour_RSOA");
+			// 		modelCB.setSelectedKey(null);
+			// modelCB.destroyItems();
+			// suffixCB.setSelectedKey(null);
+			// suffixCB.destroyItems();
+			apxCB.setSelectedKey(null);
+			apxCB.destroyItems();
+			colorCB.setSelectedKey(null);
+			colorCB.destroyItems();
+				apxCB.bindItems({
 					// path: 'VechileModel>/ZC_PIO_DIO',
 					path: 'mainservices>/ZVMS_CDS_APX',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
