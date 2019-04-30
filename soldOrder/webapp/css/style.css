@@ -11,7 +11,10 @@
     color: #2f3c48;
     text-shadow: none;
 }
-
+html.sap-desktop .sapMBtn:focus > .sapMFocusable {
+    outline: 0px dotted transparent !important;
+    outline-offset: -3px;
+}
 .sapContrastPlus.clCustomHeaderBg .sapMBtnInner {
     color: #2f3c48;
     text-shadow: none;
