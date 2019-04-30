@@ -61,10 +61,10 @@ sap.ui.define([
 					}
 					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
-					// var keyModel = new sap.ui.model.json.JSONModel();
+					var keyModel = new sap.ui.model.json.JSONModel();
 
 					var arr = [];
-					// var arr1 = [];
+					var arr1 = [];
 					var j = 0; //TCISeries_fr
 					if (language == "FR") {
 						for (var c = 0; c < data.d.results.length; c++) {
@@ -74,11 +74,11 @@ sap.ui.define([
 									j++;
 
 								}
-								// 	if ($.inArray(data.d.results[i]["ModelSeriesNo"], arr1) < 0) {
-								// 	arr1[j] = data.d.results[i]["ModelSeriesNo"];
-								// 	j++;
+									if ($.inArray(data.d.results[i]["ModelSeriesNo"], arr1) < 0) {
+									arr1[j] = data.d.results[i]["ModelSeriesNo"];
+									j++;
 
-								// }
+								}
 							}
 						}
 					} else { //if (language == "EN") {
@@ -89,16 +89,16 @@ sap.ui.define([
 									j++;
 
 								}
-							// 		if ($.inArray(data.d.results[i]["ModelSeriesNo"], arr1) < 0) {
-							// 		arr1[j] = data.d.results[i]["ModelSeriesNo"];
-							// 		j++;
-							// }
+									if ($.inArray(data.d.results[i]["ModelSeriesNo"], arr1) < 0) {
+									arr1[j] = data.d.results[i]["ModelSeriesNo"];
+									j++;
+							}
 						}
 
 					}
 					}
 					oModel.setData(arr);
-					// keyModel.setData(arr1);
+					keyModel.setData(arr1);
 					RSOA_controller.getView().setModel(oModel, "seriesdropDownModel");
 					RSOA_controller.getView().setModel(keyModel, "seriesdropDownModelKey");
 				},
