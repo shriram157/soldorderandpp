@@ -1,0 +1,11 @@
+_schema-version: "3.1"
+ID: retailSoldOrder.dev
+extends: retailSoldOrder
+
+modules:
+ - name: retailSoldOrder_Node
+   parameters:
+      host: tci-dev-soldorderandpp-node
+ - name: soldOrder
+   parameters:
+      host: tci-dev-soldorderandpp
