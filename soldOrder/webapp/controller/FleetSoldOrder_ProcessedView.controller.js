@@ -105,7 +105,7 @@ sap.ui.define([
 			// var sMsg = oBundle.getText("procViewTitle", [sRecipient]);
 			// FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg);
 		},
-		onNavback: function (Oevent) {
+		onNavBack: function (Oevent) {
 			FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary", {}, true);
 		},
 		onApprove:function(Oevent)

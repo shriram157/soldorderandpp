@@ -137,7 +137,7 @@ sap.ui.define([
 			// }
 
 		},
-		_back: function (oEvent) {
+		onNavBack: function (oEvent) {
 			FSO_Z_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
 				Soreq: zrequest
 			}, true);

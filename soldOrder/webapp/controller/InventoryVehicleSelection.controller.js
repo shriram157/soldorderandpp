@@ -142,7 +142,7 @@ sap.ui.define([
 				], true)]);
 			}
 		},
-		onback: function (oEvent) {
+		onNavBack: function (oEvent) {
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 3		
 		}
 

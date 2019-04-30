@@ -243,7 +243,15 @@ sap.ui.define([
 			console.log(sPreviousHash);
 			console.log(window.history);
 			if (sPreviousHash !== undefined) {
+				if(sPreviousHash == "page11")
+				{
+									this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
+
+				}
+				else
+				{
 				window.history.go(-1);
+				}
 			} else {
 				basCont.getRouter().navTo("RetailSoldOrderA", {}, true); // has the value true and makes sure that the
 				//	hash is replaced /*no history

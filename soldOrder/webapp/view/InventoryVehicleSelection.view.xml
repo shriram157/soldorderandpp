@@ -88,7 +88,7 @@
 					<footer class="sitefooter">
 					<Toolbar>
 						<ToolbarSpacer/>
-						<Button text="{i18n>Back}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" type="Emphasized" press="onback"></Button>
+						<!--<Button text="{i18n>Back}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" type="Emphasized" press="onback"></Button>-->
 					</Toolbar>
 				</footer>
 				</Page>

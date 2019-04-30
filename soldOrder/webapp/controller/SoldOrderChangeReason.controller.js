@@ -60,7 +60,7 @@ sap.ui.define([
 
 			}
 		},
-		onback:function()
+		onNavBack:function()
 		{
 				SOCR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 							Soreq: requestid

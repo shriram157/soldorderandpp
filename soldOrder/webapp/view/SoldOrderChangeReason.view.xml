@@ -23,7 +23,7 @@
 							</ComboBox>
 							<Label text=""/>
 							<Button text="{i18n>submit}" type="Emphasized" press="UpdateSoldOrderRequest"></Button>
-							<Button text="{i18n>Back}" press="onback"></Button>
+							<!--<Button text="{i18n>Back}" press="onback"></Button>-->
 						</f:content>
 					</f:SimpleForm>
 						</items>

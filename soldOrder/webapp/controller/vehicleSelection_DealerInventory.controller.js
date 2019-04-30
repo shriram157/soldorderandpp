@@ -152,7 +152,7 @@ sap.ui.define([
 		_GetCustomer: function () {
 
 		},
-		onback: function (oEvent) {
+		onNavBack: function (oEvent) {
 			VehSel_DealerInv_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 				Soreq: zrequest
 			}, true); //page 3		

@@ -19,7 +19,7 @@
 							<TextArea id="comm_CancelSO" maxLength="150"/>
 							<Label text=""/>
 							<Button text="{i18n>submit}" press="UpdateSoldOrderRequest"></Button>
-							<Button text="{i18n>Back}" press="onNavBack"></Button>
+							<!--<Button text="{i18n>Back}" press="onNavBack"></Button>-->
 						</f:content>
 					</f:SimpleForm>		
 						</items>
