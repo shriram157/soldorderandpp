@@ -33,7 +33,7 @@ sap.ui.define([
 		UpdateSoldOrderRequest: function () {
 			var resonCancelId_val = SOCR_controller.getView().byId("resonCancelId").getValue();
 			var comment_ch_res = SOCR_controller.getView().byId("comment_ch_res").getValue;
-			var reqTypeId_SOCR_val = SOCR_controller.getView().byId("reqTypeId_SOCR").getValue();
+			// var reqTypeId_SOCR_val = SOCR_controller.getView().byId("reqTypeId_SOCR").getValue();
 			var cbVal = SOCR_controller.getView().byId("resonCancelId").getSelectedKey();
 			// if (cbVal == 2) {
 			// 	SOCR_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
@@ -45,7 +45,7 @@ sap.ui.define([
 					urlParameters: {
 						Reason: resonCancelId_val,
 						Reason_comment: comment_ch_res,
-						Request_Type: reqTypeId_SOCR_val,
+						// Request_Type: reqTypeId_SOCR_val,
 						ZzsoReqNo: requestid
 					}, // function import parameters
 					success: function (oData, response) {
