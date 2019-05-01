@@ -17,10 +17,10 @@
 							</ComboBox>
 							<Label text="{i18n>Comments}"/>
 							<TextArea id='comment_ch_res' maxLength="150"/>
-							<Label text="{i18n>ReqType}"/>
-							<ComboBox id="reqTypeId_SOCR" items="{ path: '/RequestType', sorter: { path: 'key' } }" required="true">
-								<core:Item key="{key}" text="{text}"/>
-							</ComboBox>
+							<!--<Label text="{i18n>ReqType}"/>-->
+							<!--<ComboBox id="reqTypeId_SOCR" items="{ path: '/RequestType', sorter: { path: 'key' } }" required="true">-->
+							<!--	<core:Item key="{key}" text="{text}"/>-->
+							<!--</ComboBox>-->
 							<Label text=""/>
 							<Button text="{i18n>submit}" type="Emphasized" press="UpdateSoldOrderRequest"></Button>
 							<!--<Button text="{i18n>Back}" press="onback"></Button>-->
