@@ -61,44 +61,9 @@ sap.ui.define([
 					}
 					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
-					var keyModel = new sap.ui.model.json.JSONModel();
-
-					var arr = [];
-					var arr1 = [];
-					var j = 0; //TCISeries_fr
-					if (language == "FR") {
-						for (var c = 0; c < data.d.results.length; c++) {
-							for (var i = 0; i < data.d.results.length; i++) {
-								if ($.inArray(data.d.results[i]["TCISeriesDescriptionFR"], arr) < 0) {
-									arr[j] = data.d.results[i]["TCISeriesDescriptionFR"];
-									arr1[j] = data.d.results[i]["ModelSeriesNo"];
-
-j++;
-								}
-								
-								
-							}
-						}
-					} else { //if (language == "EN") {
-						for (var c = 0; c < data.d.results.length; c++) {
-							for (var i = 0; i < data.d.results.length; i++) {
-								if ($.inArray(data.d.results[i]["TCISeriesDescriptionEN"], arr) < 0) {
-									arr[j] = data.d.results[i]["TCISeriesDescriptionEN"];
-									arr1[j] = data.d.results[i]["ModelSeriesNo"];
-
-j++;
-								}
-
-							
-							
-						}
-
-					}
-					}
-					oModel.setData(arr);
-					keyModel.setData(arr1);
-					RSOA_controller.getView().setModel(oModel, "seriesdropDownModel");
-					RSOA_controller.getView().setModel(keyModel, "seriesdropDownModelKey");
+					oModel.setData(data.d.results);
+					RSOA_controller.getView().setModel(oModel, "seriesModel");
+					
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
