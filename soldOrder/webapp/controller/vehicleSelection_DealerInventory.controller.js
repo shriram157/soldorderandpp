@@ -23,7 +23,7 @@ sap.ui.define([
 			VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").setNoData(Msg);
 			zrequest = parameters.getParameters().arguments.Soreq;
 			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
-				var dealer_no = "0";
+				var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 	    	vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 		 
