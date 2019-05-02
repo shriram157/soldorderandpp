@@ -23,6 +23,7 @@ sap.ui.define([
 			this.getView().setModel(zcustomerModel, 'Customer');
 			this.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(this._getattachRouteMatched, this);
 
+
 		},
 		_getattachRouteMatched: function (parameters) {
 			var requestid = parameters.getParameters().arguments.Soreq;
@@ -39,6 +40,12 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setVisible(true);
 				}
 			}
+var user = this .getView().getModel("LoginUserModel").getProperty("/UserType");
+if(user=="Dealer_User")
+{
+					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(true);
+
+}
 
 			//"""""""""""""""""""""""""""""""""""""""
 			var host = RSO_MSO_controller.host();
@@ -102,9 +109,12 @@ sap.ui.define([
 						//----------------------------------------------------------
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
+							// var regFlag = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('CustAtReg');
+							
 							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 							//?customerNumber=" +
-
+// if(regFlag === "X")
+// {
 							$.ajax({
 								url: url,
 								headers: {
@@ -123,6 +133,7 @@ sap.ui.define([
 								},
 								error: function (request, errorText, errorCode) {}
 							});
+						
 						}
 					},
 					dataReceived: function (oData) {
