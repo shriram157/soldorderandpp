@@ -29,7 +29,7 @@
 								<core:Item key="{suffix_Model>}" text="{parts: [{path:'suffix_Model>'},{path:'suffix_Model>'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 							</ComboBox>-->
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Input id="modelYr_RSOA"  showValueHelp="true" valueHelpRequest="select_year"></Input>
+							<Input id="modelYr_RSOA"  showValueHelp="true" required="true" valueHelpRequest="select_year"></Input>
 							<!--<ComboBox id="modelYr_RSOA" items="{ path: 'mode_Model>/'}" required="true">-->
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
@@ -128,9 +128,9 @@
 							<Label wrapping="true" text="{i18n>postalcode}"/>
 							<Input id="PostalCode_RSOA" value="{Customer>/PostCode}" required="true" maxLength="6"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Input value="{Customer>/Phone}"  placeholder='xxxxxxxxxx' maxLength="10"/>
+							<Input value="{Customer>/Phone}"  placeholder='xxxxxxxxxx' required="true" maxLength="10"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Input value="{Customer>/Email}"/>
+							<Input value="{Customer>/Email}" required="true"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Input id="License_RSOA" value="{Customer>/DriveLic}" required="true"/>
 							<Label wrapping="true" text=""/>
