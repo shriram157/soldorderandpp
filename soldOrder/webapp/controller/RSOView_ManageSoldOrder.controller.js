@@ -41,13 +41,24 @@ sap.ui.define([
 				}
 			}
 var user = this .getView().getModel("LoginUserModel").getProperty("/UserType");
-if(user=="Dealer_User")
+var status = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
+if(user=="Dealer_User" && status !="Cancelled")
 {
 					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEditable(true);
 					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(true);
 
 }
 
+if(status ==="Cancelled")
+{
+	RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
+	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
+	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
+	RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
+	RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
+	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
+	RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
+}
 			//"""""""""""""""""""""""""""""""""""""""
 			var host = RSO_MSO_controller.host();
 			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$format=json";

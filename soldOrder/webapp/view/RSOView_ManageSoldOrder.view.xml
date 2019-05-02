@@ -301,7 +301,7 @@
 						</items>
 					</HBox>-->
 					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12">
-						<Button text="{i18n>Update}" enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_updateSoldOrderRequest">
+						<Button id = "btn_update" text="{i18n>Update}" enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_updateSoldOrderRequest">
 							<layoutData>
 								<l:GridData span="L2 M4 S6" indent="L2 M3"/>
 							</layoutData>
