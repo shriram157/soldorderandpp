@@ -43,7 +43,7 @@ sap.ui.define([
 var user = this .getView().getModel("LoginUserModel").getProperty("/UserType");
 if(user=="Dealer_User")
 {
-					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(true);
+					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEditable(true);
 
 }
 
