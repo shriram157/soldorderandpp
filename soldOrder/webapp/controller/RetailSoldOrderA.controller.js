@@ -30,9 +30,9 @@ sap.ui.define([
 			var model = new JSONModel({});
 			var seriesCB = RSOA_controller.getView().byId("series_RSOA");
 			RSOA_controller.getView().setModel(model, 'Customer');
-						var host = RSOA_controller.host();
-	var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-	var brand;
+			var host = RSOA_controller.host();
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			var brand;
 			if (isDivisionSent) {
 				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 
@@ -40,14 +40,14 @@ sap.ui.define([
 				{
 					brand = "TOY";
 
-
 				} else { // set the lexus logo
 					brand = "LEX";
 
 					// }
 				}
 			}
-						var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand + "' and zzzadddata2 eq 'X'&$orderby=zzzadddata4 asc";
+			var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+				"' and zzzadddata2 eq 'X'&$orderby=zzzadddata4 asc";
 			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
 			$.ajax({
 				url: url,
@@ -63,7 +63,7 @@ sap.ui.define([
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
 					RSOA_controller.getView().setModel(oModel, "seriesModel");
-					
+
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
@@ -73,20 +73,20 @@ sap.ui.define([
 			});
 		},
 		_onObjectMatched: function (oEvent) {
-				this.getView().byId("idmenu1").setType('Emphasized');
-				this.getView().byId("idmenu2").setType('Transparent');
-				this.getView().byId("idmenu3").setType('Transparent');
-				this.getView().byId("idmenu4").setType('Transparent');
-				this.getView().byId("idmenu5").setType('Transparent');
-				this.getView().byId("idmenu9").setType('Transparent');
-			},
-			//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
+			this.getView().byId("idmenu1").setType('Emphasized');
+			this.getView().byId("idmenu2").setType('Transparent');
+			this.getView().byId("idmenu3").setType('Transparent');
+			this.getView().byId("idmenu4").setType('Transparent');
+			this.getView().byId("idmenu5").setType('Transparent');
+			this.getView().byId("idmenu9").setType('Transparent');
+		},
+		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
 		//2) Suffix  and  Suffix Description : Z_VEHICLE_CATALOGUE_SRV/zc_configuration SuffixDescriptionEN, Suffix
 		//     Interior Colour Description     :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  TrimInteriorColor    
 
 		//3)Color Code , Colour Description :  :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  ExteriorColorCode: "0218"ExteriorDescriptionEN: "BLACK"
-			_newService1: function () {
+		_newService1: function () {
 			var host = RSOA_controller.host();
 			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_configuration?$format=json";
 			$.ajax({
@@ -485,7 +485,37 @@ sap.ui.define([
 					// data: soapMessage,
 					contentType: "text/xml; charset=\"utf-8\"",
 					success: function (data, textStatus, jqXHR) {
-						if (data.customers[0]) {
+						var phone = '';
+						//Looping on all customers that we got to match b phone and first name
+						for (var i = 0; i < data.customers.length; i++) {
+							// Check the First Name first
+							if (data.customers[i].person.firstName.toLowerCase() == CustModel.FirstName.toLowerCase()) {
+								for (var z = 0; z < data.customers[i].phones.length; z++) {
+									phone = data.customers[i].phones[z].areaCode + data.customers[i].phones[z].localNumber;
+									// Check Phone No 
+									if (phone == CustModel.Phone) {
+										Zcustomer_No = data.customers[i].partyID; //customerNumber;
+										Zcustomer_No = Zcustomer_No.toString();
+										sap.m.MessageBox.show(msg, {
+											icon: sap.m.MessageBox.Icon.WARNING,
+											title: title,
+											actions: sap.m.MessageBox.Action.OK,
+											onClose: null,
+											styleClass: "",
+											initialFocus: null,
+											textDirection: sap.ui.core.TextDirection.Inherit,
+											contentWidth: "10rem"
+										});
+										break;
+									}
+								}
+							}
+							if (Zcustomer_No && Zcustomer_No != '') {
+								break;
+							}
+						}
+						// If no one of the fetched customer matching the searching criteria select hte first one.
+						if (!Zcustomer_No || Zcustomer_No == '') {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
 							Zcustomer_No = Zcustomer_No.toString();
 							sap.m.MessageBox.show(msg, {
@@ -498,17 +528,6 @@ sap.ui.define([
 								textDirection: sap.ui.core.TextDirection.Inherit,
 								contentWidth: "10rem"
 							});
-
-							// sap.m.MessageBox.show(msg1 + data.customers[0].customerNumber, {
-							// 	//	icon: sap.m.MessageBox.Icon.WARNING,
-							// 	title: title,
-							// 	actions: sap.m.MessageBox.Action.OK,
-							// 	onClose: null,
-							// 	styleClass: "",
-							// 	initialFocus: null,
-							// 	textDirection: sap.ui.core.TextDirection.Inherit,
-							// 	contentWidth: "10rem"
-							// });
 						}
 					},
 					error: function (request, errorText, errorCode) {
@@ -718,22 +737,22 @@ sap.ui.define([
 			input_ref.setValue(Oevent.getSource().getYear()); //this._oPopover.getContent()[0].getYear()
 			// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
 			//  items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
-				var series = this.getView().byId('series_RSOA').getSelectedKey();
+			var series = this.getView().byId('series_RSOA').getSelectedKey();
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
-			
+
 			if (series && modelyear) {
-						var modelCB = this.getView().byId("model_RSOA");
-			var suffixCB = this.getView().byId("Suffix_RSOA");
-			var apxCB = this.getView().byId("Apx_RSOA");
-			var colorCB = this.getView().byId("Colour_RSOA");
-					modelCB.setSelectedKey(null);
-			modelCB.destroyItems();
-			suffixCB.setSelectedKey(null);
-			suffixCB.destroyItems();
-			apxCB.setSelectedKey(null);
-			apxCB.destroyItems();
-			colorCB.setSelectedKey(null);
-			colorCB.destroyItems();
+				var modelCB = this.getView().byId("model_RSOA");
+				var suffixCB = this.getView().byId("Suffix_RSOA");
+				var apxCB = this.getView().byId("Apx_RSOA");
+				var colorCB = this.getView().byId("Colour_RSOA");
+				modelCB.setSelectedKey(null);
+				modelCB.destroyItems();
+				suffixCB.setSelectedKey(null);
+				suffixCB.destroyItems();
+				apxCB.setSelectedKey(null);
+				apxCB.destroyItems();
+				colorCB.setSelectedKey(null);
+				colorCB.destroyItems();
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_CDS_Model",
@@ -790,18 +809,18 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			var series = this.getView().byId('series_RSOA').getValue();
 			if (series && modelyear) {
-					var modelCB = this.getView().byId("model_RSOA");
-			var suffixCB = this.getView().byId("Suffix_RSOA");
-			var apxCB = this.getView().byId("Apx_RSOA");
-			var colorCB = this.getView().byId("Colour_RSOA");
-					modelCB.setSelectedKey(null);
-			modelCB.destroyItems();
-			suffixCB.setSelectedKey(null);
-			suffixCB.destroyItems();
-			apxCB.setSelectedKey(null);
-			apxCB.destroyItems();
-			colorCB.setSelectedKey(null);
-			colorCB.destroyItems();
+				var modelCB = this.getView().byId("model_RSOA");
+				var suffixCB = this.getView().byId("Suffix_RSOA");
+				var apxCB = this.getView().byId("Apx_RSOA");
+				var colorCB = this.getView().byId("Colour_RSOA");
+				modelCB.setSelectedKey(null);
+				modelCB.destroyItems();
+				suffixCB.setSelectedKey(null);
+				suffixCB.destroyItems();
+				apxCB.setSelectedKey(null);
+				apxCB.destroyItems();
+				colorCB.setSelectedKey(null);
+				colorCB.destroyItems();
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_CDS_Model",
@@ -822,28 +841,28 @@ sap.ui.define([
 			var model = oEvent.getSource().getSelectedKey();
 			var language = RSOA_controller.returnBrowserLanguage();
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
-		var suf;
-		if (language === "FR") {
-						suf = "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+			var suf;
+			if (language === "FR") {
+				suf =
+					"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
 
-			}
-			else
-			{
-							suf = "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+			} else {
+				suf =
+					"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
 
 			}
 			if (model && modelyear) {
-					var suffixCB = this.getView().byId("Suffix_RSOA");
-			var apxCB = this.getView().byId("Apx_RSOA");
-			var colorCB = this.getView().byId("Colour_RSOA");
-			// 		modelCB.setSelectedKey(null);
-			// modelCB.destroyItems();
-			suffixCB.setSelectedKey(null);
-			suffixCB.destroyItems();
-			apxCB.setSelectedKey(null);
-			apxCB.destroyItems();
-			colorCB.setSelectedKey(null);
-			colorCB.destroyItems();
+				var suffixCB = this.getView().byId("Suffix_RSOA");
+				var apxCB = this.getView().byId("Apx_RSOA");
+				var colorCB = this.getView().byId("Colour_RSOA");
+				// 		modelCB.setSelectedKey(null);
+				// modelCB.destroyItems();
+				suffixCB.setSelectedKey(null);
+				suffixCB.destroyItems();
+				apxCB.setSelectedKey(null);
+				apxCB.destroyItems();
+				colorCB.setSelectedKey(null);
+				colorCB.destroyItems();
 				suffixCB.bindItems({
 					// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
 					path: 'mainservices>/ZVMS_CDS_SUFFIX',
@@ -871,16 +890,16 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			var model = this.getView().byId('model_RSOA').getSelectedKey();
 			if (model && modelyear && suffix) {
-					var apxCB = this.getView().byId("Apx_RSOA");
-			var colorCB = this.getView().byId("Colour_RSOA");
-			// 		modelCB.setSelectedKey(null);
-			// modelCB.destroyItems();
-			// suffixCB.setSelectedKey(null);
-			// suffixCB.destroyItems();
-			apxCB.setSelectedKey(null);
-			apxCB.destroyItems();
-			colorCB.setSelectedKey(null);
-			colorCB.destroyItems();
+				var apxCB = this.getView().byId("Apx_RSOA");
+				var colorCB = this.getView().byId("Colour_RSOA");
+				// 		modelCB.setSelectedKey(null);
+				// modelCB.destroyItems();
+				// suffixCB.setSelectedKey(null);
+				// suffixCB.destroyItems();
+				apxCB.setSelectedKey(null);
+				apxCB.destroyItems();
+				colorCB.setSelectedKey(null);
+				colorCB.destroyItems();
 				apxCB.bindItems({
 					// path: 'VechileModel>/ZC_PIO_DIO',
 					path: 'mainservices>/ZVMS_CDS_APX',
@@ -905,14 +924,11 @@ sap.ui.define([
 				//----------------
 				var color;
 				var language = RSOA_controller.returnBrowserLanguage();
-				if (language === "FR") 
-					{
-						color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescFR}";
-					}
-					else
-					{
-				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescEN}";
-					}
+				if (language === "FR") {
+					color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescFR}";
+				} else {
+					color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescEN}";
+				}
 				this.getView().byId('Colour_RSOA').bindItems({
 					path: 'VechileModel>/zc_exterior_trim',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
@@ -922,7 +938,7 @@ sap.ui.define([
 					template: new sap.ui.core.ListItem({
 						key: "{VechileModel>ExteriorColorCode}",
 						text: color
-						// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+							// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 					})
 				});
 				// var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
