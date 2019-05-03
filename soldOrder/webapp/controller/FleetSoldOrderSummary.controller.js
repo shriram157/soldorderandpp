@@ -132,7 +132,7 @@ sap.ui.define([
 			//-----------------Sold Order Status-----------------
 			var afilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
-				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey()));
+				afilter.push(new Filter("ZsoFltStatus", FilterOperator.EQ, this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey()));
 			}
 			if (afilter.length > 0) {
 				var filter_sstatus = new Filter(afilter, false);
@@ -142,7 +142,7 @@ sap.ui.define([
 			//-----------------Order Type-----------------
 			var Sfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
-				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getText()));
+				Sfilter.push(new Filter("Zzordtypedesc", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getText()));
 			}
 			if (Sfilter.length > 0) {
 				var filter_ordertype = new Filter(Sfilter, false);

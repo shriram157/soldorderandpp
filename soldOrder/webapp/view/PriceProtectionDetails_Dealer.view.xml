@@ -73,7 +73,7 @@
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>orderType}"/>
 										<t:template>
-											<Text text="{mainservices>zadd1}"/>
+											<Text text="{{parts: {path:'mainservices>zzso_type'},formatter: 'toyota.ca.SoldOrder.util.formatter.formatOrderType'}}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.1%" resizable="false">
