@@ -89,17 +89,20 @@ module.exports = function (appContext) {
 				logger.warning("Unrecognized zone ID: %s", zone);
 				return res.type("plain/text").status(400).send("Unknown zone ID.");
 			}
-
-			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X'" +
-				"&$orderby=BusinessPartner asc";
+bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(SalesGroup eq 'T01')&$orderby=BusinessPartner asc";
+			// bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
+			// 	"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X'" +
+			// 	"&$orderby=BusinessPartner asc";
 		}
 		//"and SalesGroup ne 'T99'" +
 		// National user (TCI user)
 		else {
-			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X'" +
-				"&$orderby=BusinessPartner asc";
+			// bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
+			// 	"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X'" +
+			// 	"&$orderby=BusinessPartner asc";
+			bpReqUrl =  url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(SalesGroup eq 'T01')&$orderby=BusinessPartner asc";
 		}
 
 		tracer.debug("BP URL: %s", bpReqUrl);

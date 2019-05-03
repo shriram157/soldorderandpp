@@ -25,7 +25,7 @@ sap.ui.define([
 		},
 		onBeforeRendering: function () {
 			if (AppController.flagZoneUser == true) {
-				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true)
+				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
 			}
 			if (AppController.flagNationalUser == true) {
 				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);

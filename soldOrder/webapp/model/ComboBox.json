@@ -231,13 +231,13 @@
 	"FSO_OrderType": [
 	{
 		"key": "R",
-		"text": "Dealer RAC"
+		"text": "DEALER RAC"
 	}, {
 		"key": "E&T",
-		"text": "Fleet - Dealer Elite"
+		"text": "FLEET - DEALER ELITE"
 	}, {
 		"key": "M",
-		"text": "Dealer Mobility"
+		"text": "DEALER MOBILITY"
 	},{
 		"key": "F1",
 		"text": "DLR RAC"
@@ -252,19 +252,19 @@
 		"text": "NAT ELITE"
 	},{
 		"key": "F5",
-		"text": "Mobility"
+		"text": "MOBILITY"
 	}],
 
 	"FSOSummary_OrderType": [
 	{
 		"key": "R",
-		"text": "Dealer RAC"
+		"text": "DEALER RAC"
 	}, {
 		"key": "E&T",
-		"text": "Fleet - Dealer Elite"
+		"text": "FLEET - DEALER ELITE"
 	}, {
 		"key": "M",
-		"text": "Dealer Mobility"
+		"text": "DEALER MOBILITY"
 	},{
 		"key": "F1",
 		"text": "DLR RAC"
@@ -279,7 +279,7 @@
 		"text": "NAT ELITE"
 	},{
 		"key": "F5",
-		"text": "Mobility"
+		"text": "MOBILITY"
 	}],
 
 	"FSOSummary_Status": [{
