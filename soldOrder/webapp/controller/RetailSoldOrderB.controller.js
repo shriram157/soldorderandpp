@@ -183,19 +183,39 @@ sap.ui.define([
 					// data: soapMessage,
 					contentType: "text/xml; charset=\"utf-8\"",
 					success: function (data, textStatus, jqXHR) {
-						if (data.customers[0]) {
+							var phone = '';
+						//Looping on all customers that we got to match b phone and first name
+						for (var i = 0; i < data.customers.length; i++) {
+							// Check the First Name first
+							if (data.customers[i].person.firstName.toLowerCase() == CustModel.FirstName.toLowerCase()) {
+								for (var z = 0; z < data.customers[i].phones.length; z++) {
+									phone = data.customers[i].phones[z].areaCode + data.customers[i].phones[z].localNumber;
+									// Check Phone No 
+									if (phone == CustModel.Phone) {
+										Zcustomer_No = data.customers[i].partyID; //customerNumber;
+										Zcustomer_No = Zcustomer_No.toString();
+										sap.m.MessageBox.show(msg, {
+											icon: sap.m.MessageBox.Icon.WARNING,
+											title: title,
+											actions: sap.m.MessageBox.Action.OK,
+											onClose: null,
+											styleClass: "",
+											initialFocus: null,
+											textDirection: sap.ui.core.TextDirection.Inherit,
+											contentWidth: "10rem"
+										});
+										break;
+									}
+								}
+							}
+							if (Zcustomer_No && Zcustomer_No != '') {
+								break;
+							}
+						}
+						// If no one of the fetched customer matching the searching criteria select hte first one.
+						if (!Zcustomer_No || Zcustomer_No == '') {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
 							Zcustomer_No = Zcustomer_No.toString();
-							// sap.m.MessageBox.show(msg1 + data.customers[0].customerNumber, {
-							// 	//	icon: sap.m.MessageBox.Icon.WARNING,
-							// 	title: title,
-							// 	actions: sap.m.MessageBox.Action.OK,
-							// 	onClose: null,
-							// 	styleClass: "",
-							// 	initialFocus: null,
-							// 	textDirection: sap.ui.core.TextDirection.Inherit,
-							// 	contentWidth: "10rem"
-							// });
 							sap.m.MessageBox.show(msg, {
 								icon: sap.m.MessageBox.Icon.WARNING,
 								title: title,
@@ -207,6 +227,30 @@ sap.ui.define([
 								contentWidth: "10rem"
 							});
 						}
+						// if (data.customers[0]) {
+						// 	Zcustomer_No = data.customers[0].partyID; //customerNumber;
+						// 	Zcustomer_No = Zcustomer_No.toString();
+						// 	// sap.m.MessageBox.show(msg1 + data.customers[0].customerNumber, {
+						// 	// 	//	icon: sap.m.MessageBox.Icon.WARNING,
+						// 	// 	title: title,
+						// 	// 	actions: sap.m.MessageBox.Action.OK,
+						// 	// 	onClose: null,
+						// 	// 	styleClass: "",
+						// 	// 	initialFocus: null,
+						// 	// 	textDirection: sap.ui.core.TextDirection.Inherit,
+						// 	// 	contentWidth: "10rem"
+						// 	// });
+						// 	sap.m.MessageBox.show(msg, {
+						// 		icon: sap.m.MessageBox.Icon.WARNING,
+						// 		title: title,
+						// 		actions: sap.m.MessageBox.Action.OK,
+						// 		onClose: null,
+						// 		styleClass: "",
+						// 		initialFocus: null,
+						// 		textDirection: sap.ui.core.TextDirection.Inherit,
+						// 		contentWidth: "10rem"
+						// 	});
+						// }
 					},
 					error: function (request, errorText, errorCode) {
 						var soapMessage = {
