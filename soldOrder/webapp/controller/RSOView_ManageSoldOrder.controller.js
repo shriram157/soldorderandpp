@@ -111,7 +111,8 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 						//	var x = 'W27687139';
 						//----------------------------------------------------------
 						 var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
-					// if(status ==="Cancelled")
+			
+					if(status ==="Cancelled")
 {
 	RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
 	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
