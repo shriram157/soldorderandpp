@@ -41,24 +41,23 @@ sap.ui.define([
 				}
 			}
 var user = this .getView().getModel("LoginUserModel").getProperty("/UserType");
-var status = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
-if(user=="Dealer_User" && status !="Cancelled")
+// var status = this.getView().getModel('mainservices').getData().ZzsoStatus;
+if(user=="Dealer_User" )//&& status !="Cancelled"
 {
 					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEditable(true);
 					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(true);
 
 }
 
-if(status ==="Cancelled")
-{
-	RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
-	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
-	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
-	RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
-	RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
-	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
-	RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
-}
+// if(status ==="Cancelled")
+// {
+// 	RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
+// 	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
+// 	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
+// 	RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
+// 	RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
+// 	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
+// }
 			//"""""""""""""""""""""""""""""""""""""""
 			var host = RSO_MSO_controller.host();
 			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$format=json";
@@ -119,6 +118,7 @@ if(status ==="Cancelled")
 						// Get Customer Details by Customer No From API
 						//	var x = 'W27687139';
 						//----------------------------------------------------------
+						 var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
 							// var regFlag = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('CustAtReg');
