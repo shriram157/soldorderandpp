@@ -49,15 +49,7 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 
 }
 
-// if(status ==="Cancelled")
-// {
-// 	RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
-// 	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
-// 	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
-// 	RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
-// 	RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
-// 	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
-// }
+
 			//"""""""""""""""""""""""""""""""""""""""
 			var host = RSO_MSO_controller.host();
 			//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$format=json";
@@ -119,6 +111,15 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 						//	var x = 'W27687139';
 						//----------------------------------------------------------
 						 var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
+					// if(status ==="Cancelled")
+{
+	RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
+	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
+	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
+	RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
+	RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
+	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
+}
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
 							// var regFlag = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('CustAtReg');
@@ -275,7 +276,50 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 		_approvePriceProtectionDetails: function () {
 			if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
 				//alert("MEDHAT Yes");
+// RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Protection_Ownership_Doc", {
+// 					method: "POST",
+// 					urlParameters: {
+// 						ZzsoReqNo: zrequest,
+// 						OwnerShip: "X"
+// 					}, // function import parameters
+// 					success: function (oData, response) {
+// 						if (oData.Type == 'E') {
+// 							// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
+// 							var sMsg = oData.Message;
+// 							//	sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "ERROR", sap.m.MessageBox.Action.OK, null, null);
 
+// 							// sap.m.MessageBox.show(sMsg, {
+// 							// 	icon: sap.m.MessageBox.Icon.ERROR,
+// 							// 	title: "ERROR",
+// 							// 	actions: [sap.m.MessageBox.Action.OK],
+// 							// 	onClose: function (oAction) {
+// 							// 		// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
+
+// 							// 	}
+// 							// });
+
+// 						} else {
+// 							var sMsg = oData.Message;
+// 							// sap.m.MessageBox.show(sMsg, {
+// 							// 	icon: sap.m.MessageBox.Icon.SUCCESS,
+// 							// 	title: "SUCCESS",
+// 							// 	actions: [sap.m.MessageBox.Action.OK],
+// 							// 	onClose: function (oAction) {
+// 							// 		RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
+// 							// 	}
+// 							// });
+
+// 							// sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
+// 							// 	.m.MessageBox.Action.OK, null, null);
+
+// 							// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+// 						}
+
+// 					},
+// 					error: function (oError) {
+
+// 					}
+// },
 				RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Approve_Price_Details", {
 					method: "POST",
 					urlParameters: {
@@ -714,6 +758,53 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 			},*/
 
 		handleUploadComplete: function (c) {
+				if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
+				//alert("MEDHAT Yes");
+RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Protection_Ownership_Doc", {
+					method: "POST",
+					urlParameters: {
+						ZzsoReqNo: zrequest,
+						OwnerShip: "X"
+					}, // function import parameters
+					success: function (oData, response) {
+						if (oData.Type == 'E') {
+							// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
+							var sMsg = oData.Message;
+							//	sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "ERROR", sap.m.MessageBox.Action.OK, null, null);
+
+							// sap.m.MessageBox.show(sMsg, {
+							// 	icon: sap.m.MessageBox.Icon.ERROR,
+							// 	title: "ERROR",
+							// 	actions: [sap.m.MessageBox.Action.OK],
+							// 	onClose: function (oAction) {
+							// 		// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
+
+							// 	}
+							// });
+
+						} else {
+							var sMsg = oData.Message;
+							// sap.m.MessageBox.show(sMsg, {
+							// 	icon: sap.m.MessageBox.Icon.SUCCESS,
+							// 	title: "SUCCESS",
+							// 	actions: [sap.m.MessageBox.Action.OK],
+							// 	onClose: function (oAction) {
+							// 		RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
+							// 	}
+							// });
+
+							// sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
+							// 	.m.MessageBox.Action.OK, null, null);
+
+							// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+						}
+
+					},
+					error: function (oError) {
+
+					}
+});
+}
 			sap.m.MessageBox.show("File Uploaded on Request No:-" + zrequest, sap.m.MessageBox.Icon.SUCCESS, "Success", sap
 				.m.MessageBox.Action.OK, null, null);
 			RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
