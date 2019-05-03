@@ -63,7 +63,7 @@
 							</VBox>
 							
 							<t:Table id="tbl_FSOS" selectionMode="None" rows="{mainservices>/SO_FLEET_HeaderSet}" enableColumnReordering="false" alternateRowColors="true"
-								enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
+								enableColumnFreeze="false" class="marginCorners" visibleRowCount="10">
 								<t:columns>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
