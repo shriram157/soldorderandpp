@@ -762,7 +762,7 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 		handleUploadComplete: function (c) {
 				if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
 				//alert("MEDHAT Yes");
-RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Protection_Ownership_Doc", {
+RSO_MSO_controller.getView().getModel("mainservices").callFunction("Price_Protection_Ownership_Doc", {
 					method: "POST",
 					urlParameters: {
 						ZzsoReqNo: zrequest,
