@@ -925,9 +925,9 @@ sap.ui.define([
 				var color;
 				var language = RSOA_controller.returnBrowserLanguage();
 				if (language === "FR") {
-					color = "{mainservices>/ext}/{mainservices>MarktgIntDescFR}";
+					color = "{mainservices>/ext}/{mainservices>mktg_desc_fr}";
 				} else {
-					color = "{mainservices>/ext}/{mainservices>MarktgIntDescEN}";
+					color = "{mainservices>/ext}/{mainservices>mktg_desc_en}";
 				}
 				this.getView().byId('Colour_RSOA').bindItems({
 					path: 'mainservices>/ZVMS_CDS_Colour',
