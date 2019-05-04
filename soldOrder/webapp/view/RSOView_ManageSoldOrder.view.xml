@@ -194,7 +194,7 @@
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>CustName}" />
-							<Text text="{parts:[{path:'Customer>/person/firstName'},{path:'Customer>/person/familyName'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatName'}"  />
+							<Text text="{parts:[{path:'Customer>/person/firstName'},{path:'Customer>/person/familyName'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatName'}"  />
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Text text="{parts:[{path:'Customer>/addresses/0/line1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>city}"/>

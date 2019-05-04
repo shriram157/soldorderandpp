@@ -37,10 +37,14 @@ toyota.ca.SoldOrder.util.formatter = {
 			return ColorCode + " - " + ColourDescription;
 		}
 	},
-	formatName: function (firstName, famName) {
+	formatName: function (firstName, famName, custReg) {
 			
-			return firstName + " " + famName;
-		
+			var name = firstName + " " + famName;
+			if (custReg == 'X') {
+			return name;
+		} else {
+			return "";
+		}
 	},
 	formatOrderType: function (Code) {
 		if (Code === "SO") {
