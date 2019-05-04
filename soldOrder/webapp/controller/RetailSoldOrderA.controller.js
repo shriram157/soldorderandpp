@@ -930,7 +930,7 @@ sap.ui.define([
 					color = "{mainservices>/ext}/{mainservices>MarktgIntDescEN}";
 				}
 				this.getView().byId('Colour_RSOA').bindItems({
-					path: 'mainservices>/ZVMS_CDS_COLOUR',
+					path: 'mainservices>/ZVMS_CDS_Colour',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
