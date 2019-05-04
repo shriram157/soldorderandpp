@@ -105,11 +105,11 @@ toyota.ca.SoldOrder.util.formatter = {
 
 	},
 	
-	RegCustomer: function (regvalue) {
+	RegCustomer: function (cust, regvalue) {
 		if (regvalue == 'X') {
-			return true;
+			return cust;
 		} else {
-			return false;
+			return "";
 		}
 	},
 	Dealerusertype: function (Usertypevalue) {
