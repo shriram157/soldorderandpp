@@ -37,6 +37,11 @@ toyota.ca.SoldOrder.util.formatter = {
 			return ColorCode + " - " + ColourDescription;
 		}
 	},
+	formatName: function (firstName, famName) {
+			
+			return firstName + " " + famName;
+		
+	},
 	formatOrderType: function (Code) {
 		if (Code === "SO") {
 			return "STOCK Restricted";
@@ -99,6 +104,14 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 
 	},
+	
+	RegCustomer: function (regvalue) {
+		if (regvalue == 'X') {
+			return true;
+		} else {
+			return false;
+		}
+	},
 	Dealerusertype: function (Usertypevalue) {
 		if (Usertypevalue == 'Dealer_User') {
 			return true;
@@ -127,6 +140,7 @@ toyota.ca.SoldOrder.util.formatter = {
 			return true;
 		}
 	},
+		
 	formatdealers:function(dealerno,dealername)
 	{
 		if(dealerno){

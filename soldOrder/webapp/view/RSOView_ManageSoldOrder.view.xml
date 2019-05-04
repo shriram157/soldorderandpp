@@ -193,20 +193,20 @@
 							<Text text="{mainservices>ZdriverLiNum}"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>
-							<Label wrapping="true" text="{i18n>CustName}"/>
-							<Text text="{mainservices>ZzendcuName}"/>
+							<Label wrapping="true" text="{i18n>CustName}" />
+							<Text text="{parts:[{path:'Customer>/person/firstName'},{path:'Customer>/person/familyName'}],formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}"  />
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Text text="{mainservices>ZzendcuAddress}"/>
+							<Text text="{Customer>/addresses/0/line1}" visible="{path:'mainservices>CustAtReg',formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Text text="{mainservices>ZzendcuCity}"/>
+							<Text text="{Customer>/addresses/0/city}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Text text="{mainservices>ZzendcuProvincy}"/>
+							<Text text="{Customer>/addresses/0/provinceCode}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text text="{mainservices>ZzendcuPostCode}"/>
+							<Text text="{Customer>/addresses/0/postalCode}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{mainservices>ZzendcuTelNumber}"/>
+							<Text text="{Customer>/phones/0/localNumber}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Text text="{mainservices>ZzendcuEmail}"/>
+							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Text text="{mainservices>ZzendcuLicense}"/>
 							<core:Title text="" class="titleFontSize"/>
