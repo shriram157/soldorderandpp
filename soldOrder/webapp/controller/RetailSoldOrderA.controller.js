@@ -925,9 +925,9 @@ sap.ui.define([
 				var color;
 				var language = RSOA_controller.returnBrowserLanguage();
 				if (language === "FR") {
-					color = "{mainservices>/ext}/{mainservices>mktg_desc_fr}";
+					color = "{mainservices>ext}/{mainservices>mktg_desc_fr}";
 				} else {
-					color = "{mainservices>/ext}/{mainservices>mktg_desc_en}";
+					color = "{mainservices>ext}/{mainservices>mktg_desc_en}";
 				}
 				this.getView().byId('Colour_RSOA').bindItems({
 					path: 'mainservices>/ZVMS_CDS_Colour',
@@ -936,7 +936,7 @@ sap.ui.define([
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{mainservices>/ext}",
+						key: "{mainservices>ext}",
 						text: color
 							// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 					})
