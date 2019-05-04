@@ -766,7 +766,7 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 					method: "POST",
 					urlParameters: {
 						ZzsoReqNo: zrequest,
-						OwnerShip: "X"
+						OwnerShip: 'X'
 					}, // function import parameters
 					success: function (oData, response) {
 						if (oData.Type == 'E') {
