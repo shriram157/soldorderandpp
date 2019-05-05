@@ -260,26 +260,39 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 				"Comment": comment
 			
 			};
+			var host = RSO_MSO_controller.host();
+			var url = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + zrequest + "')"
 			var dataString = JSON.stringify(
 				_data
 			);
 			//--------------------------------------------------------------------------
 			//----Checking if there is no Token , it will refresh to get another one---- 
 			//---------------------------------------------------------------------------
+		
 			if (!RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken()) {
 				RSO_MSO_controller.getView().getModel('mainservices').refreshSecurityToken();
 			}
-		
-			RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Retail_Sold_OrderSet", {
-					method: "PUT",
-					urlParameters: {
-						ZzsoReqNo: zrequest
-					}, // function import parameters
-					data: dataString,
+			$.ajax({
+									type: 'PUT',
+									url: url,
+									data: _data,
+									dataType: 'json',
+									// beforeSend: function (xhr) {
+									// 	xhr.setRequestHeader('X-CSRF-Token', token);
+									// 	xhr.setRequestHeader('Content-Type',"application/pdf");
+										
+									// },
+			// RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Retail_Sold_OrderSet", {
+			// 		method: "PUT",
+			// 		urlParameters: {
+			// 			ZzsoReqNo: zrequest
+			// 		}, // function import parameters
+			// 		data: dataString,
 					success: function (oData, response) {
-					
+					console.log(oData);
 					},
 					error: function (oError) {
+					console.log(oError);
 
 					}
 				});
