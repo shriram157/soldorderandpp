@@ -255,6 +255,34 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 		},
 
 		_updateSoldOrderRequest: function () {
+				var comment= RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").getValue();
+				var _data = {
+				"Comment": comment
+			
+			};
+			var dataString = JSON.stringify(
+				_data
+			);
+			//--------------------------------------------------------------------------
+			//----Checking if there is no Token , it will refresh to get another one---- 
+			//---------------------------------------------------------------------------
+			if (!RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken()) {
+				RSO_MSO_controller.getView().getModel('mainservices').refreshSecurityToken();
+			}
+		
+			RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Retail_Sold_OrderSet", {
+					method: "PUT",
+					urlParameters: {
+						ZzsoReqNo: zrequest
+					}, // function import parameters
+					data: dataString,
+					success: function (oData, response) {
+					
+					},
+					error: function (oError) {
+
+					}
+				});
 			window.location.reload();
 		},
 
