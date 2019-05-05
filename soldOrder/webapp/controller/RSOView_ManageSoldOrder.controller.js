@@ -298,7 +298,7 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 
 					}
 				});
-			window.location.reload();
+			// window.location.reload();
 		},
 
 		_updateAuditSoldOrderRequest: function () {
