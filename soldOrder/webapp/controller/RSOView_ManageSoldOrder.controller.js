@@ -272,16 +272,18 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 			if (!RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken()) {
 				RSO_MSO_controller.getView().getModel('mainservices').refreshSecurityToken();
 			}
+						var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
+
 			$.ajax({
 									type: 'PUT',
 									url: url,
-									data: _data,
+									data: dataString,
 									dataType: 'json',
-									// beforeSend: function (xhr) {
-									// 	xhr.setRequestHeader('X-CSRF-Token', token);
-									// 	xhr.setRequestHeader('Content-Type',"application/pdf");
+									beforeSend: function (xhr) {
+										xhr.setRequestHeader('X-CSRF-Token', token);
+										xhr.setRequestHeader('Content-Type',"application/json");
 										
-									// },
+									},
 			// RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Retail_Sold_OrderSet", {
 			// 		method: "PUT",
 			// 		urlParameters: {
