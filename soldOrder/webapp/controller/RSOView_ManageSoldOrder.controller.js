@@ -261,7 +261,7 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
 			var moyr = this.getView().byId('moyr_CSOR').getValue();
 			var color = this.getView().byId('colour_CSOR').getSelectedKey();
-			var apx = this.getView().byId('apx_CSOR').getapx_CSOR();
+			var apx = this.getView().byId('apx_CSOR').getapx_CSOR().getSelectedKey();
 				var _data = {
 				
 				"Comment": comment,
