@@ -16,9 +16,9 @@
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Text text="{mainservices>Zzmoyr}"/>
+							<Text id = "moyr_CSOR" text="{mainservices>Zzmoyr}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" selectedKey="{mainservices>Zzseries}" modelContextChange="onSeriesnum">
+							<ComboBox id = "series_CSOR" editable="false" width="100%" items="{ path: 'seriesModel>/'}" selectedKey="{mainservices>Zzseries}" modelContextChange="onSeriesnum">
 								<items>
 									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
 								</items>
