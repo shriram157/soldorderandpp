@@ -256,16 +256,30 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 
 		_updateSoldOrderRequest: function () {
 				var comment= RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").getValue();
-			// 	var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
 
-			// var model = this.getView().byId('model_CSOR').getSelectedKey();
-			// var moyr = this.getView().byId('moyr_CSOR').getValue();
-			// var color = this.getView().byId('colour_CSOR').getSelectedKey();
-			// var apx = this.getView().byId('apx_CSOR').getapx_CSOR().getSelectedKey();
+			var model = this.getView().byId('model_CSOR').getSelectedKey();
+			var moyr = this.getView().byId('moyr_CSOR').getValue();
+			var color = this.getView().byId('colour_CSOR').getSelectedKey();
+			var apx = this.getView().byId('apx_CSOR').getSelectedKey();
+			var eligible = this.getView().byId('RSO_PRC_Eligilibity').getValue();
 				var _data = {
-				
-				"Comment": comment,
-				"ZzsoReqNo" : zrequest,
+			
+    "Eligilibity" : eligible,
+    
+    "Zzmodel" : model,
+    
+    "Zzmoyr" : moyr,
+    
+    "Zzsuffix" : suffix,
+   
+    "Zzextcol" : color,
+    "Zzapx" : apx,
+    
+   
+   
+	"Comment": comment,
+	"ZzsoReqNo" : zrequest
 				// "Zzmodel" : model,
 				// "Zzmoyr" : moyr,
     // 			"Zzsuffix" : suffix,
@@ -274,7 +288,7 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 			
 			};
 			var host = RSO_MSO_controller.host();
-			var url = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + zrequest + "')"
+			var url = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + zrequest + "')";
 			var dataString = JSON.stringify(
 				_data
 			);
