@@ -193,8 +193,12 @@
 							<Text text="{mainservices>ZdriverLiNum}"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>
-							<Label wrapping="true" text="{i18n>CustName}" />
-							<Text text="{parts:[{path:'Customer>/person/firstName'},{path:'Customer>/person/familyName'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatName'}"  />
+							<!--<Label wrapping="true" text="{i18n>CustName}" />-->
+							<!--<Text text="{parts:[{path:'Customer>/person/firstName'},{path:'Customer>/person/familyName'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatName'}"  />-->
+							<Label wrapping="true" text="{i18n>fcustname}"/>
+							<Text text="{parts:[{path:'Customer>/person/firstName'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Label wrapping="true" text="{i18n>scustname}"/>
+							<Text text="{parts:[{path:'Customer>/person/familyName'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Text text="{parts:[{path:'Customer>/addresses/0/line1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
