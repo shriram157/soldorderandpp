@@ -256,26 +256,26 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 
 		_updateSoldOrderRequest: function () {
 				var comment= RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").getValue();
-				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+				// var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
 
-			var model = this.getView().byId('model_CSOR').getSelectedKey();
-			var moyr = this.getView().byId('moyr_CSOR').getValue();
-			var color = this.getView().byId('colour_CSOR').getSelectedKey();
-			var apx = this.getView().byId('apx_CSOR').getSelectedKey();
-			var eligible = this.getView().byId('RSO_PRC_Eligilibity').getValue();
-				var series = this.getView().byId('series_CSOR').getSelectedKey();
+			// var model = this.getView().byId('model_CSOR').getSelectedKey();
+			// var moyr = this.getView().byId('moyr_CSOR').getValue();
+			// var color = this.getView().byId('colour_CSOR').getSelectedKey();
+			// var apx = this.getView().byId('apx_CSOR').getSelectedKey();
+			// var eligible = this.getView().byId('RSO_PRC_Eligilibity').getValue();
+				// var series = this.getView().byId('series_CSOR').getSelectedKey();
 				var _data = {
 			
-    "Eligilibity" : eligible,
+    // "Eligilibity" : eligible,
     
-    "Zzmodel" : model,
+    // "Zzmodel" : model,
     
-    "Zzmoyr" : moyr,
+    // "Zzmoyr" : moyr,
     
-    "Zzsuffix" : suffix,
-   "Zzseries" : series,
-    "Zzextcol" : color,
-    "Zzapx" : apx,
+    // "Zzsuffix" : suffix,
+   //"Zzseries" : series,
+    // "Zzextcol" : color,
+    // "Zzapx" : apx,
     
    
    
