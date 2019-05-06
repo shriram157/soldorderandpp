@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-	var RSOS_controller;
+	var RSOS_controller,zrequest;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderSummary", {
 		formatter: formatter,
 
@@ -166,6 +166,7 @@ sap.ui.define([
 			RSOS_controller.getOwnerComponent().getRouter().navto("RetailSoldOrderA", {}, true);
 		},
 		onLinkVehicle: function (evt) {
+			zrequest = evt.getSource().getBindingContext('mainservices').getProperty('ZzsoReqNo');
 			var d = new sap.ui.jsfragment(RSOS_controller.createId("idFrag_RSOS"), "toyota.ca.SoldOrder.view.fragments.VtinDialog",
 				RSOS_controller);
 			RSOS_controller.getView().addDependent(d);
@@ -175,11 +176,48 @@ sap.ui.define([
 		_searchNLink: function (evt) {
 			var vinVal = RSOS_controller.byId("idFrag_RSOS--VinIdFrag").getValue();
 			var vtinVal = RSOS_controller.byId("idFrag_RSOS--VtinIdFrag").getValue();
+			var V_No;
 			if (vinVal == "" && vtinVal == "") {
 				var errForm = formatter.formatErrorType("SO000010");
 				var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			}
+			else {
+					if (vinVal !== "") {
+						V_No = vinVal;
+					} else {
+						V_No = vtinVal;
+					}
+					RSOS_controller.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
+						method: "POST",
+						urlParameters: {
+							Zzvtn: V_No,
+							ZzsoReqNo: zrequest
+								//	Endcustomer:
+						}, // function import parameters
+						success: function (oData, response) {
+							if (oData.Type == 'E') {
+								var oBundle = RSOS_controller.getView().getModel("i18n").getResourceBundle();
+								var sMsg = oBundle.getText("SO000013", [zrequest]);
+								sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+									.m.MessageBox.Action.OK, null, null);
+							} else {
+								var oBundle = RSOS_controller.getView().getModel("i18n").getResourceBundle();
+								var sMsg = oBundle.getText("SO000014", [zrequest]);
+								sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "Success", sap
+									.m.MessageBox.Action.OK, null, null);
+								var oTbl = RSOS_controller.getView().byId("tbl_FSOD");
+								var items = oTbl.getBinding('rows');
+								items.refresh();
+							}
+
+						},
+						error: function (oError) {
+
+						}
+					});
+
+				}
 		},
 		closeDialog: function () {
 			//var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.VinDialog", RSOS_controller);

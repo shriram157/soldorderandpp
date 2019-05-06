@@ -263,6 +263,7 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 			var color = this.getView().byId('colour_CSOR').getSelectedKey();
 			var apx = this.getView().byId('apx_CSOR').getSelectedKey();
 			var eligible = this.getView().byId('RSO_PRC_Eligilibity').getValue();
+				var series = this.getView().byId('series_CSOR').getSelectedKey();
 				var _data = {
 			
     "Eligilibity" : eligible,
@@ -272,7 +273,7 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
     "Zzmoyr" : moyr,
     
     "Zzsuffix" : suffix,
-   
+   "Zzseries" : series,
     "Zzextcol" : color,
     "Zzapx" : apx,
     
