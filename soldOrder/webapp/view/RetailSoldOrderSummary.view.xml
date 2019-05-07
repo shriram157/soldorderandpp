@@ -144,7 +144,7 @@
 										<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 										<t:template>
-											<Button text="{i18n>linkVehicle}" visible="{path:'mainservices>Zzvtn',formatter:'.formatter.linkvehicle'}"
+											<Button text="{i18n>linkVehicle}" visible="{path:['mainservices>Zzvtn','mainservices>ZzsoStatus'],formatter:'.formatter.linkvehicleRetail'}"
 												enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" id="btn_linkVeh_RSOS"
 												press="onLinkVehicle"/>
 										</t:template>
