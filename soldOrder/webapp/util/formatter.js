@@ -126,9 +126,9 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	Dealerusertype: function (Usertypevalue) {
 		if (Usertypevalue == 'Dealer_User') {
-			return true;
-		} else {
 			return false;
+		} else {
+			return true;
 		}
 	},
 	Tciusertype: function (Usertypevalue) {
