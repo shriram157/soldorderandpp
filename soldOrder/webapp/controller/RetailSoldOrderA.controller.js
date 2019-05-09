@@ -15,24 +15,24 @@ sap.ui.define([
 			RSOA_controller = this;
 			RSOA_controller.getBrowserLanguage();
 			var language = RSOA_controller.returnBrowserLanguage();
-			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-				pattern: "yyyy-MM-ddTHH:mm:ss"
-			});
-			var today = new Date();
-			var day1 = new Date();
+			// var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+			// 	pattern: "yyyy-MM-ddTHH:mm:ss"
+			// });
+			// var today = new Date();
+			// var day1 = new Date();
 			var num = 0;
 			var endDate = new Date();
 			var day5 = new Date();
-			day1.setDate(today.getDate()); //+ 1
-			var cDate = zdateFormat.parse(day1);
+			// day1.setDate(today.getDate()); //+ 1
+			// var cDate = zdateFormat.parse(day1);
 			while(num < 5){
-				endDate = new Date(cDate.setDate(cDate.getDate() + 1));
+				endDate = new Date(day5.setDate(day5.getDate() + 1));
     if(endDate.getDay() != 0 && endDate.getDay() != 6){
        //Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
        num++;
     }
 }
-			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(cDate);
+			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(day5);
 			// RSOA_controller._newService1();
 			// RSOA_controller._newService2();
 			// RSOA_controller._newService3();
