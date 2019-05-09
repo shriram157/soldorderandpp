@@ -19,9 +19,9 @@ sap.ui.define([
 			var today = new Date();
 			var day1 = new Date();
 			var num = 0;
-			var endDate;
+			var endDate = new Date();
 			day1.setDate(today.getDate()); //+ 1
-			var day5;
+			var day5 = new Date();
 			while(num < 5){
     endDate = new Date(day5.setDate(day1 + 1));
     if(endDate.getDay() != 0 && endDate.getDay() != 6){
@@ -437,7 +437,7 @@ sap.ui.define([
 			});
 			var etaFrom = RSOA_controller.getView().byId("etaFrom_RSOA").getValue();
 			var count = 0;
-			var endDate;
+			var endDate = new Date();
 			var CDate = zdateFormat.parse(etaFrom);
 			var day5 = new Date();
 			if (etaFrom !== "") {
