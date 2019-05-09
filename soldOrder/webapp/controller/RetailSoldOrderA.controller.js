@@ -24,9 +24,9 @@ sap.ui.define([
 			var endDate = new Date();
 			var day5 = new Date();
 			day1.setDate(today.getDate()); //+ 1
-			var cDate = zdateFormat.parse(day1);;
+			var cDate = zdateFormat.parse(day1);
 			while(num < 5){
-    endDate = new Date(cDate.setDate(cDate.getDate() + 1);
+				endDate = new Date(cDate.setDate(cDate.getDate() + 1));
     if(endDate.getDay() != 0 && endDate.getDay() != 6){
        //Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
        num++;
