@@ -130,9 +130,9 @@
 							<Label wrapping="true" text="{i18n>phnNo}"/>
 							<Input value="{Customer>/Phone}"  placeholder='xxxxxxxxxx' required="true" maxLength="10"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Input value="{Customer>/Email}" required="true"/>
+							<Input value="{Customer>/Email}" />
 							<Label wrapping="true" text="{i18n>driverLic}"/>
-							<Input id="License_RSOA" value="{Customer>/DriveLic}" required="true"/>
+							<Input id="License_RSOA" value="{Customer>/DriveLic}" />
 							<Label wrapping="true" text=""/>
 							<Button text="{i18n>valCust}" press="onValidateCustomer" >
 								<layoutData>
