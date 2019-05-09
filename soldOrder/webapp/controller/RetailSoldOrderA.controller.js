@@ -15,21 +15,24 @@ sap.ui.define([
 			RSOA_controller = this;
 			RSOA_controller.getBrowserLanguage();
 			var language = RSOA_controller.returnBrowserLanguage();
-			
+			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+				pattern: "yyyy-MM-ddTHH:mm:ss"
+			});
 			var today = new Date();
 			var day1 = new Date();
 			var num = 0;
 			var endDate = new Date();
-			day1.setDate(today.getDate()); //+ 1
 			var day5 = new Date();
+			day1.setDate(today.getDate()); //+ 1
+			var cDate = zdateFormat.parse(day1);;
 			while(num < 5){
-    endDate = new Date(day5.setDate(day1 + 1));
+    endDate = new Date(cDate.setDate(cDate.getDate() + 1);
     if(endDate.getDay() != 0 && endDate.getDay() != 6){
        //Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
        num++;
     }
 }
-			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(day5);
+			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(cDate);
 			// RSOA_controller._newService1();
 			// RSOA_controller._newService2();
 			// RSOA_controller._newService3();
@@ -442,7 +445,7 @@ sap.ui.define([
 			var day5 = new Date();
 			if (etaFrom !== "") {
 				while(count < 5){
-    endDate = new Date(day5.setDate(CDate.getDate() + 1));
+    endDate = new Date(CDate.setDate(CDate.getDate() + 1));
     if(endDate.getDay() != 0 && endDate.getDay() != 6){
        //Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
        count++;
@@ -450,7 +453,7 @@ sap.ui.define([
 }
 			
 				
-				RSOA_controller.getView().byId("etaTo_RSOA").setMinDate(day5);
+				RSOA_controller.getView().byId("etaTo_RSOA").setMinDate(CDate);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
