@@ -224,11 +224,11 @@
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment3" enabled="false" maxLength="150"/>
 							<Label wrapping="true" text="{i18n>App/RejDate}"/>
-							<Text text="{address>/City}"/>
+							<Text text="{mainservices>AppRejDate}"/>
 							<Label wrapping="true" text="{i18n>PayDate}"/>
 							<Text text="{address>/City}"/>
 							<Label wrapping="true" text="{i18n>PayAmount}"/>
-							<Text text="{address>/City}"/>
+							<Text text="{mainservices>PaymentAmmount}"/>
 						</f:content>
 					</f:SimpleForm>
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss2"/>
