@@ -144,19 +144,20 @@
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="{mainservices>ETAFrom}"/>
+											<Text text="{path:'mainservices>ETAFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+											
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="{mainservices>ETATo}"/>
+											<Text text="{path:'mainservices>ETATo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</items>
 									</HBox>
 								</items>
 							</VBox>
 							<Label wrapping="true" text="{i18n>VehDelDate}"/>
-							<Text text="{mainservices>/VDelDate}"/>
+							<Text text="{path:'mainservices>VDelDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>OrderType}"/>
 							<Text text="{address>/City}"/>
 							<Label wrapping="true" text="{i18n>CancellationReason}"/>
@@ -224,7 +225,7 @@
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment3" enabled="false" maxLength="150"/>
 							<Label wrapping="true" text="{i18n>App/RejDate}"/>
-							<Text text="{mainservices>AppRejDate}"/>
+							<Text text="{path:'mainservices>AppRejDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>PayDate}"/>
 							<Text text="{address>/City}"/>
 							<Label wrapping="true" text="{i18n>PayAmount}"/>
