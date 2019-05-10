@@ -144,19 +144,19 @@
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text=""/>
+											<Text text="{mainservices>ETAFrom}"/>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text=""/>
+											<Text text="{mainservices>ETATo}"/>
 										</items>
 									</HBox>
 								</items>
 							</VBox>
 							<Label wrapping="true" text="{i18n>VehDelDate}"/>
-							<Text text="{address>/City}"/>
+							<Text text="{mainservices>/VDelDate}"/>
 							<Label wrapping="true" text="{i18n>OrderType}"/>
 							<Text text="{address>/City}"/>
 							<Label wrapping="true" text="{i18n>CancellationReason}"/>
