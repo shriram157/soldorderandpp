@@ -94,7 +94,8 @@ sap.ui.define([
 		},
 		_handleServiceSuffix_Series: function () {
 			var host = RSOS_controller.host();
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+				"' and zzzadddata2 eq 'X'&$orderby=zzzadddata4 asc";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
