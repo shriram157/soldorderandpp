@@ -272,7 +272,7 @@
 								<l:GridData span="L1 M2 S12" indent="L3 M3"/>
 							</layoutData>
 						</Label>
-						<u:FileUploader id="idRSOV_MSO_fileUpl" useMultipart="false" uploadUrl="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet" uploadComplete="handleUploadComplete"/>
+						<u:FileUploader id="idRSOV_MSO_fileUpl" buttonText="{i18n>browseText}" useMultipart="false" uploadUrl="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet" uploadComplete="handleUploadComplete"/>
 						<HBox>
 							<items>
 								<Label text="{i18n>Comments}" wrapping="true" class="sapUiSmallMarginTop sapUiSmallMarginEnd">
