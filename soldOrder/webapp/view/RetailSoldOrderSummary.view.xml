@@ -104,12 +104,13 @@
 									<t:Column width="11.11%" sortProperty="Category" resizable="false">
 										<Label text="{i18n>series}" class="TableLabel"/>
 										<t:template>
-											<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
-												modelContextChange="onSeriesnum">
-												<items>
-													<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>
-												</items>
-											</ComboBox>
+												<Text text="{seriesModel>TCISeriesDescriptionEN}" wrapping="true"/>
+											<!--<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"-->
+											<!--	modelContextChange="onSeriesnum">-->
+											<!--	<items>-->
+											<!--		<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>-->
+											<!--	</items>-->
+											<!--</ComboBox>-->
 											<!--<Text text="{mainservices>Zzseries}" wrapping="true"/>-->
 										</t:template>
 									</t:Column>
