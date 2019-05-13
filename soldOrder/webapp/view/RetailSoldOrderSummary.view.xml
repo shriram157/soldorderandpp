@@ -104,7 +104,7 @@
 									<t:Column width="11.11%" sortProperty="Category" resizable="false">
 										<Label text="{i18n>series}" class="TableLabel"/>
 										<t:template>
-												<Text text="{seriesModel>TCISeriesDescriptionEN}" wrapping="true"/>
+												<Text text="{mainservices>Zzseries}" wrapping="true"/>
 											<!--<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"-->
 											<!--	modelContextChange="onSeriesnum">-->
 											<!--	<items>-->
