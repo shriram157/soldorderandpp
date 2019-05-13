@@ -119,6 +119,13 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
+					// if (oModel.length > 0) {
+						
+          //oModel.getData().ZC_SERIES.unshift({
+          //  "{seriesModel>ModelSeriesNo}": "All",
+          //  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+          //})
+        // }
 					RSOS_controller.getView().setModel(oModel, "seriesModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
