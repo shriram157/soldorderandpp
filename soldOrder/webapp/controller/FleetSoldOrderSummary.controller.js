@@ -142,7 +142,7 @@ sap.ui.define([
 			//-----------------Order Type-----------------
 			var Sfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
-				Sfilter.push(new Filter("Zzordtypedesc", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getText()));
+				Sfilter.push(new Filter("Zadd1", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey()));
 			}
 			if (Sfilter.length > 0) {
 				var filter_ordertype = new Filter(Sfilter, false);
