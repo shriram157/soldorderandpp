@@ -20,8 +20,9 @@ sap.ui.define([
 			RSO_MSO_controller._handleServiceSuffix_Series();
 			RSO_MSO_controller._oBusyDialog = new sap.m.BusyDialog();
 			zcustomerModel = new JSONModel({});
+			zinventoryModel= new JSONModel({});
 			this.getView().setModel(zcustomerModel, 'Customer');
-			this.getView().setModel(zcustomerModel, 'Inventory');
+			this.getView().setModel(zinventoryModel, 'Inventory');
 			this.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(this._getattachRouteMatched, this);
 
 
@@ -123,31 +124,51 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
 	RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
 }
-var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-				var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
+				// var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
-	this.getView().byId('idETAFrm').bindItems({
-					path: 'mainservices>/InventoryDetailsSet',
-					filters: new sap.ui.model.Filter([
-				new Filter("MATRIX", FilterOperator.EQ, "A205"),
-					new Filter("Dealer", FilterOperator.EQ, dealer_no),
-					new Filter("Model", FilterOperator.EQ, vehicle.model),
-					new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
-					new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
-					new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
-					// new Filter("INTCOL", FilterOperator.EQ, "42")
-					new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
-					new Filter("RSO_NUM", FilterOperator.EQ, zrequest),
+					var zvtn =RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')		
+					var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq "+zvtn+")";
+	$.ajax({
+								url: url,
+								headers: {
+									accept: 'application/json'
+										// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
+										// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
+								},
+								type: "GET",
+								dataType: "json",
+								// data: soapMessage,
+								contentType: "text/xml; charset=\"utf-8\"",
+								success: function (data, textStatus, jqXHR) {
+									
+										zinventoryModel.setData(data.results);
+									
+								},
+								error: function (request, errorText, errorCode) {}
+							});
+	// this.getView().byId('idETAFrm').bindItems({
+	// 				path: 'mainservices>/InventoryDetailsSet',
+	// 			// 	filters: new sap.ui.model.Filter([
+	// 			// new Filter("MATRIX", FilterOperator.EQ, "A205"),
+	// 			// 	new Filter("Dealer", FilterOperator.EQ, dealer_no),
+	// 			// 	new Filter("Model", FilterOperator.EQ, vehicle.model),
+	// 			// 	new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
+	// 			// 	new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
+	// 			// 	new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
+	// 			// 	// new Filter("INTCOL", FilterOperator.EQ, "42")
+	// 			// 	new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
+	// 			// 	new Filter("RSO_NUM", FilterOperator.EQ, zrequest),
 					
-					// new Filter("ETA", FilterOperator.EQ, ""),
-					// new Filter("APX", FilterOperator.EQ, ""),
-				], true),
-					template: new sap.m.Text({
-						key: "{mainservices>ETAFrom}",
-						text: "{mainservices>ETAFrom}"
-					})
-				});
+	// 			// 	// new Filter("ETA", FilterOperator.EQ, ""),
+	// 			// 	// new Filter("APX", FilterOperator.EQ, ""),
+	// 			// ], true),
+	// 				template: new sap.ui.core.ListItem({
+	// 					key: "{mainservices>ETAFrom}",
+	// 					text: "{mainservices>ETAFrom}"
+	// 				})
+	// 			});
 						
 			// var vechile_items = RSO_MSO_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
 				// var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;

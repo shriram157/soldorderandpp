@@ -127,13 +127,13 @@
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text id = "idETAFrm" text="{parts:[{path:'mainservices>ETAFrom'},{path:'mainservices>Zzvtn'}],formatter:'toyota.ca.SoldOrder.util.formatter.VTNDate'}"/>
+											<Text id = "idETAFrm" text="{parts:[{path:'Inventory>ETAFrom'},{path:'mainservices>Zzvtn'}],formatter:'toyota.ca.SoldOrder.util.formatter.VTNDate'}"/>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="{parts:[{path:'mainservices>ETATo'},{path:'mainservices>Zzvtn'}],formatter:'toyota.ca.SoldOrder.util.formatter.VTNDate'}"/>
+											<Text text="{parts:[{path:'Inventory>ETATo'},{path:'mainservices>Zzvtn'}],formatter:'toyota.ca.SoldOrder.util.formatter.VTNDate'}"/>
 										</items>
 									</HBox>
 								</items>
