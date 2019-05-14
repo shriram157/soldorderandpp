@@ -128,7 +128,7 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 				// var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
-					var zvtn =RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')		
+					var zvtn =RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');	
 					var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq "+zvtn+")";
 	$.ajax({
 								url: url,
