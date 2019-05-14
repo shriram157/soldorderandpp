@@ -117,7 +117,7 @@ toyota.ca.SoldOrder.util.formatter = {
 
 	},
 	linkvehicleRetail: function (vehicle,status) {
-		if ((!vehicle) && (status==="Pending Fulfillment")) {
+		if ((!vehicle) && ((status==="Pending Fulfillment")||(status==="PENDING FULFILLMENT"))) {
 			return true;
 		} else {
 			return false;
