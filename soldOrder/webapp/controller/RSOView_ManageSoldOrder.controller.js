@@ -122,6 +122,50 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
 	RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
 }
+						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
+	this.getView().byId('idETAFrm').bindItems({
+					path: 'mainservices>/InventoryDetailsSet',
+					filters: new sap.ui.model.Filter(
+				new Filter("MATRIX", FilterOperator.EQ, "A205"),
+					new Filter("Dealer", FilterOperator.EQ, dealer_no),
+					new Filter("Model", FilterOperator.EQ, vehicle.model),
+					new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
+					new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
+					new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
+					// new Filter("INTCOL", FilterOperator.EQ, "42")
+					new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
+					new Filter("RSO_NUM", FilterOperator.EQ, zrequest),
+					
+					// new Filter("ETA", FilterOperator.EQ, ""),
+					// new Filter("APX", FilterOperator.EQ, ""),
+				, true),
+					template: new sap.ui.core.ListItem({
+						key: "{mainservices>ETAFrom}",
+						text: "{mainservices>ETAFrom}"
+					})
+				});
+						
+			// var vechile_items = RSO_MSO_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
+				// var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			//Dealer Inventory
+	   // var	vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
+		 
+				// vechile_items.filter([new Filter([
+				// new Filter("MATRIX", FilterOperator.EQ, "A205"),
+				// 	new Filter("Dealer", FilterOperator.EQ, dealer_no),
+				// 	new Filter("Model", FilterOperator.EQ, vehicle.model),
+				// 	new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
+				// 	new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
+				// 	new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
+				// 	// new Filter("INTCOL", FilterOperator.EQ, "42")
+				// 	new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
+				// 	new Filter("RSO_NUM", FilterOperator.EQ, zrequest),
+					
+				// 	// new Filter("ETA", FilterOperator.EQ, ""),
+				// 	// new Filter("APX", FilterOperator.EQ, ""),
+				// ], true)]);
+							
+						}
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
 							var regFlag = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('CustAtReg');
