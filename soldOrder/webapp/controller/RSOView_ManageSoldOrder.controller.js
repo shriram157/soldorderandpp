@@ -10,7 +10,7 @@ sap.ui.define([
 	var RSO_MSO_controller;
 	var zrequest;
 	var ppdFlages;
-	var zcustomerModel;
+	var zcustomerModel, zinventoryModel;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder", {
 		formatter: formatter,
 
@@ -21,6 +21,7 @@ sap.ui.define([
 			RSO_MSO_controller._oBusyDialog = new sap.m.BusyDialog();
 			zcustomerModel = new JSONModel({});
 			this.getView().setModel(zcustomerModel, 'Customer');
+			this.getView().setModel(zcustomerModel, 'Inventory');
 			this.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(this._getattachRouteMatched, this);
 
 
@@ -122,10 +123,13 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
 	RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
 }
+var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
+				var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
 	this.getView().byId('idETAFrm').bindItems({
 					path: 'mainservices>/InventoryDetailsSet',
-					filters: new sap.ui.model.Filter(
+					filters: new sap.ui.model.Filter([
 				new Filter("MATRIX", FilterOperator.EQ, "A205"),
 					new Filter("Dealer", FilterOperator.EQ, dealer_no),
 					new Filter("Model", FilterOperator.EQ, vehicle.model),
@@ -138,8 +142,8 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 					
 					// new Filter("ETA", FilterOperator.EQ, ""),
 					// new Filter("APX", FilterOperator.EQ, ""),
-				, true),
-					template: new sap.ui.core.ListItem({
+				], true),
+					template: new sap.m.Text({
 						key: "{mainservices>ETAFrom}",
 						text: "{mainservices>ETAFrom}"
 					})
