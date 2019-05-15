@@ -26,7 +26,7 @@ sap.ui.define([
 				var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 	    	vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-		 
+		 vechile_items.Sorter("ETAFrom", false);
 				vechile_items.filter([new Filter([
 				new Filter("MATRIX", FilterOperator.EQ, "A205"),
 					new Filter("Dealer", FilterOperator.EQ, dealer_no),
