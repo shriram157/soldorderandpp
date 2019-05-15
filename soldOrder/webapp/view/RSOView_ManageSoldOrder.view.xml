@@ -138,24 +138,24 @@
 									</HBox>
 								</items>
 							</VBox>
-							<Label wrapping="true" text="{i18n>CurrrentETA}"/>
-							<VBox>
-								<items>
-									<HBox>
-										<items>
-											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="{path:'mainservices>ETAFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+							<!--<Label wrapping="true" text="{i18n>CurrrentETA}"/>-->
+							<!--<VBox>-->
+							<!--	<items>-->
+							<!--		<HBox>-->
+							<!--			<items>-->
+							<!--				<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>-->
+							<!--				<Text text="{path:'mainservices>ETAFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>-->
 											
-										</items>
-									</HBox>
-									<HBox>
-										<items>
-											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="{path:'mainservices>ETATo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
-										</items>
-									</HBox>
-								</items>
-							</VBox>
+							<!--			</items>-->
+							<!--		</HBox>-->
+							<!--		<HBox>-->
+							<!--			<items>-->
+							<!--				<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>-->
+							<!--				<Text text="{path:'mainservices>ETATo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>-->
+							<!--			</items>-->
+							<!--		</HBox>-->
+							<!--	</items>-->
+							<!--</VBox>-->
 							<Label wrapping="true" text="{i18n>VehDelDate}"/>
 							<Text text="{path:'mainservices>VDelDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>OrderType}"/>
