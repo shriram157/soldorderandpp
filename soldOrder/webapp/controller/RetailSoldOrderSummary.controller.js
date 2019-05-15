@@ -13,14 +13,14 @@ sap.ui.define([
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
 			RSOS_controller._handleServiceSuffix_Series();
-				var oTbl = RSOS_controller.getView().byId("table_RSOS");
-			//-----------------------------------------------------------
-			//-----Binding without Fleet Reference----------------------
-			//----------------------------------------------------------
-			var items = oTbl.getBinding('rows');
-			items.filter([new Filter("FleetReference", FilterOperator.EQ, '')]);
+			// 	var oTbl = RSOS_controller.getView().byId("table_RSOS");
+			// //-----------------------------------------------------------
+			// //-----Binding without Fleet Reference----------------------
+			// //----------------------------------------------------------
+			// var items = oTbl.getBinding('rows');
+			// items.filter([new Filter("FleetReference", FilterOperator.EQ, '')]);
 			//-------------------------------------------------------------------------------
-			var data = oTbl.getModel().getData().ProductCollection;
+			// var data = oTbl.getModel().getData().ProductCollection;
 			var mcb_series_RSOS = RSOS_controller.getView().byId("mcb_series_RSOS");
 			var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
 			var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
@@ -42,8 +42,8 @@ sap.ui.define([
 				if (dfilter.length > 0) {
 					var filter_dealers = new Filter(dfilter, false);
 					//---------------------------------------------------------------
-					var items = this.getView().byId("table_RSOS").getBinding('rows');
-					items.filter(filter_dealers);
+					var items1 = this.getView().byId("table_RSOS").getBinding('rows');
+					items1.filter(filter_dealers);
 				}
 			}
 			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
