@@ -13,18 +13,7 @@ sap.ui.define([
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
 			RSOS_controller._handleServiceSuffix_Series();
-			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
-		},
-		_onObjectMatched: function (oEvent) {
-			this.getView().byId("idmenu1").setType('Transparent');
-			this.getView().byId("idmenu2").setType('Emphasized');
-			this.getView().byId("idmenu3").setType('Transparent');
-			this.getView().byId("idmenu4").setType('Transparent');
-			this.getView().byId("idmenu5").setType('Transparent');
-			this.getView().byId("idmenu9").setType('Transparent');
-		},
-		onAfterRendering: function () {
-			var oTbl = RSOS_controller.getView().byId("table_RSOS");
+				var oTbl = RSOS_controller.getView().byId("table_RSOS");
 			//-----------------------------------------------------------
 			//-----Binding without Fleet Reference----------------------
 			//----------------------------------------------------------
@@ -57,6 +46,18 @@ sap.ui.define([
 					items.filter(filter_dealers);
 				}
 			}
+			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
+		},
+		_onObjectMatched: function (oEvent) {
+			this.getView().byId("idmenu1").setType('Transparent');
+			this.getView().byId("idmenu2").setType('Emphasized');
+			this.getView().byId("idmenu3").setType('Transparent');
+			this.getView().byId("idmenu4").setType('Transparent');
+			this.getView().byId("idmenu5").setType('Transparent');
+			this.getView().byId("idmenu9").setType('Transparent');
+		},
+		onAfterRendering: function () {
+		
 			//================================================================================================== 
 			// if (AppController.flagDealerUser == true) {
 			// 	RSOS_controller.getView().byId("idBtn_RSOS_new").setVisible(true);
