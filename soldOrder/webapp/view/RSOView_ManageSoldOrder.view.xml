@@ -227,7 +227,7 @@
 							<Label wrapping="true" text="{i18n>App/RejDate}"/>
 							<Text text="{path:'mainservices>AppRejDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>PayDate}"/>
-							<Text text="{address>/City}"/>
+							<Text text="{mainservices>PaymentDate}"/>
 							<Label wrapping="true" text="{i18n>PayAmount}"/>
 							<Text text="{mainservices>PaymentAmmount}"/>
 						</f:content>
