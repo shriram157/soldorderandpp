@@ -21,6 +21,18 @@ sap.ui.define([
 			// items.filter([new Filter("FleetReference", FilterOperator.EQ, '')]);
 			//-------------------------------------------------------------------------------
 			// var data = oTbl.getModel().getData().ProductCollection;
+		
+			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
+		},
+		_onObjectMatched: function (oEvent) {
+			this.getView().byId("idmenu1").setType('Transparent');
+			this.getView().byId("idmenu2").setType('Emphasized');
+			this.getView().byId("idmenu3").setType('Transparent');
+			this.getView().byId("idmenu4").setType('Transparent');
+			this.getView().byId("idmenu5").setType('Transparent');
+			this.getView().byId("idmenu9").setType('Transparent');
+		},
+		onAfterRendering: function () {
 			var mcb_series_RSOS = RSOS_controller.getView().byId("mcb_series_RSOS");
 			var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
 			var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
@@ -46,18 +58,6 @@ sap.ui.define([
 					items1.filter(filter_dealers);
 				}
 			}
-			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
-		},
-		_onObjectMatched: function (oEvent) {
-			this.getView().byId("idmenu1").setType('Transparent');
-			this.getView().byId("idmenu2").setType('Emphasized');
-			this.getView().byId("idmenu3").setType('Transparent');
-			this.getView().byId("idmenu4").setType('Transparent');
-			this.getView().byId("idmenu5").setType('Transparent');
-			this.getView().byId("idmenu9").setType('Transparent');
-		},
-		onAfterRendering: function () {
-		
 			//================================================================================================== 
 			// if (AppController.flagDealerUser == true) {
 			// 	RSOS_controller.getView().byId("idBtn_RSOS_new").setVisible(true);
