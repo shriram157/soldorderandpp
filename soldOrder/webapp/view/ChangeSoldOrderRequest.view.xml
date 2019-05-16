@@ -105,8 +105,8 @@
 							<Text id = "province" text="{Customer>/addresses/0/provinceCode}"/>
 							<Label text="{i18n>postalcode}"/>
 							<Text id = "postalCode" text="{Customer>/addresses/0/postalCode}"/>
-							<Label text="{i18n>phid = "firstName"nNo}"/>
-							<Text id = "phone" text="{Customer>/phones/0/localNumber}"/>
+							<Label text="{i18n>phnNo}"/>
+							<Text id = "phone" text = "{Customer>/phones/0/localNumber}"/>
 							<Label text="{i18n>email}"/>
 							<Text id = "email" text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label text="{i18n>driverLic}"/>
