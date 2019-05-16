@@ -140,10 +140,10 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 		NationalorZonalusertype: function (Usertypevalue) {
-		if (Usertypevalue == 'Dealer_User') {
-			return false;
-		} else {
+		if (Usertypevalue === "National") {
 			return true;
+		} else {
+			return false;
 		}
 	},
 	Tciusertype: function (Usertypevalue) {
