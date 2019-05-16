@@ -13,9 +13,9 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "/>
 							<Label text="{i18n>modelYear}"/>
-							<Text text="{mainservices>Zzmoyr}"/>
+							<Text id = "moyr_CSOR" text="{mainservices>Zzmoyr}"/>
 							<Label text="{i18n>Series}"/>
-							<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
+							<ComboBox id = "series_CSOR" editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
 								modelContextChange="onSeriesnum">
 								<items>
 									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
@@ -67,21 +67,21 @@
 							<!--<Label text="{i18n>custname}"/>-->
 							<Label text="{i18n>contractDate}"/>
 							<Text
-								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
+								id = "conDate_CSOR" text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
 							<Label text="{i18n>salesType}"/>
 							<ComboBox id="salestype_CSOR" items="{ path: '/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<!--<Text text="{mainservices>ZsalesType}"/>-->
-							<Label text="{i18n>salesPerName}"/>
+							<Label id = "salesPerson_CSOR" text="{i18n>salesPerName}"/>
 							<Text text="{mainservices>Zsalesperson}"/>
-							<Label text="{i18n>salesManName}"/>
+							<Label id = "salesManager_CSOR" text="{i18n>salesManName}"/>
 							<Text text="{mainservices>Zsalesmanager}"/>
-							<Label text="{i18n>tradeInModelYr}"/>
+							<Label id = "tradeyr_CSOR" text="{i18n>tradeInModelYr}"/>
 							<Text text="{mainservices>ZtradeModelYr}"/>
-							<Label text="{i18n>tradeInMake}"/>
+							<Label id = "trademake_CSOR" text="{i18n>tradeInMake}"/>
 							<Text text="{mainservices>ZtradeMake}"/>
-							<Label text="{i18n>tradeInModel}"/>
+							<Label id = "trademodel_CSOR" text="{i18n>tradeInModel}"/>
 							<Text text="{mainservices>ZtradeModel}"/>
 						</f:content>
 					</f:SimpleForm>
@@ -94,23 +94,23 @@
 							<!--<Label text="{i18n>CustName}"/>-->
 							<!--<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>-->
 							<Label wrapping="true" text="{i18n>fcustname}"/>
-							<Text text="{Customer>/person/firstName}"/>
+							<Text id = "firstName" text="{Customer>/person/firstName}"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
-							<Text text="{Customer>/person/familyName}"/>
+							<Text id = "lastName" text="{Customer>/person/familyName}"/>
 							<Label text="{i18n>address}"/>
-							<Text text="{Customer>/addresses/0/line1}"/>
+							<Text id = "address" text="{Customer>/addresses/0/line1}"/>
 							<Label text="{i18n>city}"/>
-							<Text text="{Customer>/addresses/0/city}"/>
+							<Text id = "city" text="{Customer>/addresses/0/city}"/>
 							<Label text="{i18n>province}"/>
-							<Text text="{Customer>/addresses/0/provinceCode}"/>
+							<Text id = "province" text="{Customer>/addresses/0/provinceCode}"/>
 							<Label text="{i18n>postalcode}"/>
-							<Text text="{Customer>/addresses/0/postalCode}"/>
-							<Label text="{i18n>phnNo}"/>
-							<Text text="{Customer>/phones/0/localNumber}"/>
+							<Text id = "postalCode" text="{Customer>/addresses/0/postalCode}"/>
+							<Label text="{i18n>phid = "firstName"nNo}"/>
+							<Text id = "phone" text="{Customer>/phones/0/localNumber}"/>
 							<Label text="{i18n>email}"/>
-							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
+							<Text id = "email" text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label text="{i18n>driverLic}"/>
-							<Text text="{mainservices>ZdriverLiNum}"/>
+							<Text id = "drivelicense" text="{mainservices>ZdriverLiNum}"/>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"></MessageStrip >
 							<Label text="{i18n>PreSoldOrder}"/>

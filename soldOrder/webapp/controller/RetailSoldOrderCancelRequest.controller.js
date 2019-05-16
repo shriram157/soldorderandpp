@@ -57,6 +57,9 @@ sap.ui.define([
 					},
 					error: function (oError) {
 
+					sap.m.MessageBox.show(oError, sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				
 					}
 				});
 

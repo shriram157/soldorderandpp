@@ -103,6 +103,34 @@ sap.ui.define([
 			var valColour = CSOR_controller.getView().byId("colour_CSOR").getValue();
 			var valFrom = CSOR_controller.getView().byId("etaFrom_CSOR").getValue();
 			var valTo = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
+			var Zzmoyr = CSOR_controller.getView().byId("moyr_CSOR").getValue();
+			var Zzseries = CSOR_controller.getView().byId("series_CSOR").getValue();
+			var ZcontractDate1 = CSOR_controller.getView().byId("conDate_CSOR").getValue();
+			var ZsalesType = CSOR_controller.getView().byId("salestype_CSOR").getValue();
+			// var ZtcciNum = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
+			var Zsalesperson = CSOR_controller.getView().byId("salesPerson_CSOR").getValue();
+			var Zsalesmanager = CSOR_controller.getView().byId("salesManager_CSOR").getValue();
+			var ZtradeModelYr = CSOR_controller.getView().byId("tradeyr_CSOR").getValue();
+			var ZtradeModel = CSOR_controller.getView().byId("trademodel_CSOR").getValue();
+			var ZtradeMake = CSOR_controller.getView().byId("trademake_CSOR").getValue();
+			var comment = CSOR_controller.getView().byId("Comment").getValue();
+			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			var Zcustomer_fname = CSOR_controller.getView().byId("firstName").getValue();
+				var Zcustomer_lname = CSOR_controller.getView().byId("lastName").getValue();
+			var Zcustomer_address = CSOR_controller.getView().byId("address").getValue();
+			var Zcustomer_city = CSOR_controller.getView().byId("city").getValue();
+			var Zcustomer_province = CSOR_controller.getView().byId("province").getValue();
+			var Zcustomer_postalcode = CSOR_controller.getView().byId("postalCode").getValue();
+			var Zcustomer_phone = CSOR_controller.getView().byId("phone").getValue();
+			var Zcustomer_email = CSOR_controller.getView().byId("email").getValue();
+			// var Zcustomer_fname = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
+		
+			
+			
+			
+			var valDrive = CSOR_controller.getView().byId("drivelicense").getValue();
+			
+			
 			if (valModel == "" || valSuffix == "" || valApx == "" || valColour == "" || valFrom == "" || valTo == "") {
 				var errForm = formatter.formatErrorType("SO00003");
 				var errMsg = CSOR_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
@@ -119,13 +147,47 @@ sap.ui.define([
 					if (zdata.__metadata) {
 						delete zdata.__metadata;
 					}
-					var URI = "/Retail_Sold_OrderSet('" + zdata.ZzsoReqNo + "')";
+					zdata = {
+				
+
+				"ZzsoReqNo": "SO",
+				"Zzmodel": valModel, //"YZ3DCT",
+				"Zzmoyr": Zzmoyr, //"2018",
+				"Zzseries": Zzseries,
+				"Zzsuffix": valSuffix, //"ML",
+				"Zzextcol": valColour, //"01D6",
+				"Zzapx": valApx, // "00",
+				"ZzreqEtaFrom": valFrom, //null,
+				"ZzreqEtaTo": valTo, //null,
+				"ZcontractDate": ZcontractDate1, //null,
+				"ZsalesType": ZsalesType, // "",
+				// "ZtcciNum": ZtcciNum, // "",
+				"Zsalesperson": Zsalesperson, // "",
+				"Zsalesmanager": Zsalesmanager, //"",
+				"ZtradeModelYr": ZtradeModelYr, // "",
+				"ZtradeModel": ZtradeModel,
+				"ZtradeMake": ZtradeMake, // ""
+				"Comment": comment,
+				"ZzdealerCode": dealer_no,
+				"NameFirst": Zcustomer_fname,
+"NameLast": Zcustomer_lname,
+"Street": Zcustomer_address,
+"City1":Zcustomer_city,
+"Region":Zcustomer_province,
+"PostCode1":Zcustomer_postalcode,
+"TelNumber":Zcustomer_phone,
+"SmtpAddr": Zcustomer_email,
+"Qausp":valDrive
+				// "Zzendcu": Zcustomer_No,
+				// "ZdriverLiNum": valDrive
+			};
+					var URI = "/Retail_Sold_OrderSet";
 					//	CSOR_controller.getView().getModel('mainservices').refreshSecurityToken();
 					//Checking if there is no Token , it will refresh to get another one 
 					if (!CSOR_controller.getView().getModel('mainservices').getSecurityToken()) {
 						CSOR_controller.getView().getModel('mainservices').refreshSecurityToken();
 					}
-					CSOR_controller.getView().getModel('mainservices').update(URI, zdata, {
+					CSOR_controller.getView().getModel('mainservices').create(URI, zdata, {
 						success: function (data) {
 							// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",
 							// 	sap.m.MessageBox.Action.OK, null, null);
