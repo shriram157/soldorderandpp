@@ -316,8 +316,24 @@ sap.ui.define([
 			}
 		},
 		_handleServiceSuffix_Series: function () {
+				var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			var brand;
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+
+				if (this.sDivision == '10') // set the toyoto logo
+				{
+					brand = "TOY";
+
+				} else { // set the lexus logo
+					brand = "LEX";
+
+					// }
+				}
+			}
 			var host = CSOR_controller.host();
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
+			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+				"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',

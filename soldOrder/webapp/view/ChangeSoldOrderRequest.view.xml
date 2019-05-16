@@ -18,7 +18,7 @@
 							<ComboBox id = "series_CSOR" editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
 								modelContextChange="onSeriesnum">
 								<items>
-									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
+									<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>
 								</items>
 							</ComboBox>
 							<!--<Text text="{mainservices>Zzseries}"/>-->
