@@ -97,14 +97,14 @@ sap.ui.define([
 			// }
 		},
 		_onSubmit: function () {
-					var valModel = CSOR_controller.getView().byId("model_CSOR").getValue();
-			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getValue();
-			var valApx = CSOR_controller.getView().byId("apx_CSOR").getValue();
-			var valColour = CSOR_controller.getView().byId("colour_CSOR").getValue();
+					var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
+			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getSelectedKey();
+			var valApx = CSOR_controller.getView().byId("apx_CSOR").getSelectedKey();
+			var valColour = CSOR_controller.getView().byId("colour_CSOR").getSelectedKey();
 			var valFrom = CSOR_controller.getView().byId("etaFrom_CSOR").getValue();
 			var valTo = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
 			var Zzmoyr = CSOR_controller.getView().byId("moyr_CSOR").getText();
-			var Zzseries = CSOR_controller.getView().byId("series_CSOR").getValue();
+			var Zzseries = CSOR_controller.getView().byId("series_CSOR").getSelectedKey();
 			var ZcontractDate1 = CSOR_controller.getView().byId("conDate_CSOR").getText();
 			var ZsalesType = CSOR_controller.getView().byId("salestype_CSOR").getSelectedKey();
 			// var ZtcciNum = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
