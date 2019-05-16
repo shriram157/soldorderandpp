@@ -97,38 +97,38 @@ sap.ui.define([
 			// }
 		},
 		_onSubmit: function () {
-			var valModel = CSOR_controller.getView().byId("model_CSOR").getValue();
+					var valModel = CSOR_controller.getView().byId("model_CSOR").getValue();
 			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getValue();
 			var valApx = CSOR_controller.getView().byId("apx_CSOR").getValue();
 			var valColour = CSOR_controller.getView().byId("colour_CSOR").getValue();
 			var valFrom = CSOR_controller.getView().byId("etaFrom_CSOR").getValue();
 			var valTo = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
-			var Zzmoyr = CSOR_controller.getView().byId("moyr_CSOR").getValue();
+			var Zzmoyr = CSOR_controller.getView().byId("moyr_CSOR").getText();
 			var Zzseries = CSOR_controller.getView().byId("series_CSOR").getValue();
-			var ZcontractDate1 = CSOR_controller.getView().byId("conDate_CSOR").getValue();
-			var ZsalesType = CSOR_controller.getView().byId("salestype_CSOR").getValue();
+			var ZcontractDate1 = CSOR_controller.getView().byId("conDate_CSOR").getText();
+			var ZsalesType = CSOR_controller.getView().byId("salestype_CSOR").getSelectedKey();
 			// var ZtcciNum = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
-			var Zsalesperson = CSOR_controller.getView().byId("salesPerson_CSOR").getValue();
-			var Zsalesmanager = CSOR_controller.getView().byId("salesManager_CSOR").getValue();
-			var ZtradeModelYr = CSOR_controller.getView().byId("tradeyr_CSOR").getValue();
-			var ZtradeModel = CSOR_controller.getView().byId("trademodel_CSOR").getValue();
-			var ZtradeMake = CSOR_controller.getView().byId("trademake_CSOR").getValue();
+			var Zsalesperson = CSOR_controller.getView().byId("salesPerson_CSOR").getText();
+			var Zsalesmanager = CSOR_controller.getView().byId("salesManager_CSOR").getText();
+			var ZtradeModelYr = CSOR_controller.getView().byId("tradeyr_CSOR").getText();
+			var ZtradeModel = CSOR_controller.getView().byId("trademodel_CSOR").getText();
+			var ZtradeMake = CSOR_controller.getView().byId("trademake_CSOR").getText();
 			var comment = CSOR_controller.getView().byId("Comment").getValue();
 			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
-			var Zcustomer_fname = CSOR_controller.getView().byId("firstName").getValue();
-				var Zcustomer_lname = CSOR_controller.getView().byId("lastName").getValue();
-			var Zcustomer_address = CSOR_controller.getView().byId("address").getValue();
-			var Zcustomer_city = CSOR_controller.getView().byId("city").getValue();
-			var Zcustomer_province = CSOR_controller.getView().byId("province").getValue();
-			var Zcustomer_postalcode = CSOR_controller.getView().byId("postalCode").getValue();
-			var Zcustomer_phone = CSOR_controller.getView().byId("phone").getValue();
-			var Zcustomer_email = CSOR_controller.getView().byId("email").getValue();
+			var Zcustomer_fname = CSOR_controller.getView().byId("firstName").getText();
+				var Zcustomer_lname = CSOR_controller.getView().byId("lastName").getText();
+			var Zcustomer_address = CSOR_controller.getView().byId("address").getText();
+			var Zcustomer_city = CSOR_controller.getView().byId("city").getText();
+			var Zcustomer_province = CSOR_controller.getView().byId("province").getText();
+			var Zcustomer_postalcode = CSOR_controller.getView().byId("postalCode").getText();
+			var Zcustomer_phone = CSOR_controller.getView().byId("phone").getText();
+			var Zcustomer_email = CSOR_controller.getView().byId("email").getText();
 			// var Zcustomer_fname = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
 		
 			
 			
 			
-			var valDrive = CSOR_controller.getView().byId("drivelicense").getValue();
+			var valDrive = CSOR_controller.getView().byId("drivelicense").getText();
 			
 			
 			if (valModel == "" || valSuffix == "" || valApx == "" || valColour == "" || valFrom == "" || valTo == "") {
