@@ -852,7 +852,7 @@ sap.ui.define([
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
-			var series = this.getView().byId('series_RSOA').getValue();
+			var series = this.getView().byId('series_RSOA').getKey();
 			if (series && modelyear) {
 				var modelCB = this.getView().byId("model_RSOA");
 				var suffixCB = this.getView().byId("Suffix_RSOA");
