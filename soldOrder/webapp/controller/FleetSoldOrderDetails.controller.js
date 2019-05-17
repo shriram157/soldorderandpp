@@ -152,14 +152,14 @@ sap.ui.define([
 				allfilter.push(filter_audit);
 			}
 				//-----------------Order Type-----------------
-			var Ofilter = [];
-			for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length; i++) {
-				Ofilter.push(new Filter("Zadd1", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems()[i].getKey()));
-			}
-			if (Ofilter.length > 0) {
-				var filter_ordertype = new Filter(Ofilter, false);
-				allfilter.push(filter_ordertype);
-			}
+			// var Ofilter = [];
+			// for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length; i++) {
+			// 	Ofilter.push(new Filter("Zadd1", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems()[i].getKey()));
+			// }
+			// if (Ofilter.length > 0) {
+			// 	var filter_ordertype = new Filter(Ofilter, false);
+			// 	allfilter.push(filter_ordertype);
+			// }
 			//---------------------------------------------------------------
 			//-----------------Dealers-----------------
 			var dfilter = [];
@@ -172,7 +172,7 @@ sap.ui.define([
 			}
 			//---------------------------------------------------------------
 
-			var filter_all = new Filter([filter_sstatus, filter_audit, filter_dealers, filter_ordertype, new Filter("FleetReference", FilterOperator.EQ, 'X')],
+			var filter_all = new Filter([filter_sstatus, filter_audit, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, 'X')],
 				true);
 			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
 			items.filter(filter_all);

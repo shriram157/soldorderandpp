@@ -27,19 +27,7 @@
 													</layoutData>
 												</MultiComboBox>
 											</VBox>
-											<VBox>
-												<Label text="{i18n>OrderType}" class="TableLabel">
-													<!--<layoutData>
-											<l:GridData span="L2 M12 S12"/>
-										</layoutData>-->
-												</Label>
-												<MultiComboBox id="mcb_ordTyp_FSOD" width="" selectionChange="_refresh" items="{ path: '/FSODetail_OrderType', sorter: { path: 'key' } }">
-													<core:Item key="{key}" text="{text}"/>
-													<layoutData>
-														<l:GridData span="L2 M12 S12"/>
-													</layoutData>
-												</MultiComboBox>
-											</VBox>
+									
 											<VBox>
 												<Label text="{i18n>auditStatus}" class="TableLabel">
 													<!--<layoutData>
@@ -54,36 +42,7 @@
 													</layoutData>
 												</MultiComboBox>
 											</VBox>
-										</f:content>
-									</f:SimpleForm>
-									<f:SimpleForm columnsL="2" columnsM="2" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="3" labelSpanM="3"
-										layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
-										<f:content>
-											<VBox visible="false">
-												<Label text="{i18n>series}" class="TableLabel">
-													<!--<layoutData>
-											<l:GridData span="L2 M12 S12"/>
-										</layoutData>-->
-												</Label>
-												<MultiComboBox id="mcb_series_FSOD" width="" selectionChange="_refresh" items="{ path: '/Products', sorter: { path: 'key' } }"
-													required="true">
-													<core:Item key="{key}" text="{Category}"/>
-													<layoutData>
-														<l:GridData span="L2 M12 S12"/>
-													</layoutData>
-												</MultiComboBox>
-											</VBox>
-											<VBox>
-												<Label text="{i18n>dealer}" id="lbl_dealer_FSOD" visible="false" class="TableLabel"></Label>
-												<MultiComboBox  visible="false" selectionChange="_refresh" items="{ path:'/', sorter: { path: 'key' } }">
-													<core:Item key="{key}"
-														text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
-													<layoutData>
-														<l:GridData span="L2 M12 S12"/>
-													</layoutData>
-												</MultiComboBox>
-											</VBox>
-											<VBox visible="true">
+												<VBox visible="true">
 												<Label text="{i18n>dealer}" class="TableLabel"></Label>
 												<MultiComboBox width="" id="mcb_dealer_FSOD" visible="true" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
@@ -94,6 +53,7 @@
 											</VBox>
 										</f:content>
 									</f:SimpleForm>
+								
 								</items>
 							</VBox>
 							<t:Table id="tbl_FSOD" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false"
