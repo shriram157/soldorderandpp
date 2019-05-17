@@ -102,7 +102,7 @@ sap.ui.define([
 			var valApx = CSOR_controller.getView().byId("apx_CSOR").getSelectedKey();
 			var valColour = CSOR_controller.getView().byId("colour_CSOR").getSelectedKey();
 			var valFrom = CSOR_controller.getView().byId("etaFrom_CSOR").getValue();
-			var valTo = CSOR_controller.getView().byId("etaTo_CSOR").getvalue();
+			var valTo = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
 			var Zzmoyr = CSOR_controller.getView().byId("moyr_CSOR").getText();
 			var Zzseries = CSOR_controller.getView().byId("series_CSOR").getSelectedKey();
 			var ZcontractDate1 = CSOR_controller.getView().byId("conDate_CSOR").getText();
