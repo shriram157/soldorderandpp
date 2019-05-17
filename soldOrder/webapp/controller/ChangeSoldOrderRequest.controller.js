@@ -191,9 +191,11 @@ sap.ui.define([
 						success: function (data) {
 							// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",
 							// 	sap.m.MessageBox.Action.OK, null, null);
-							CSOR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-								Soreq: requestid
-							}, true);
+								if (data.ZzsoReqNo) {
+						CSOR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+							Soreq: data.ZzsoReqNo
+						}, true);
+					}
 						},
 						error: function (data) {
 							sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
