@@ -96,17 +96,22 @@ module.exports = function (appContext) {
 				logger.warning("Unrecognized zone ID: %s", zone);
 				return res.type("plain/text").status(400).send("Unknown zone ID.");
 			}
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			var brand;
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+}
 // bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
 // 				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(SalesGroup eq 'T01')&$orderby=BusinessPartner asc";
 			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X'" +
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X' and SalesOffice eq "+bpZone+" and Division eq "+this.sDivision+" and SalesGroup ne 'T99'" +
 				"&$orderby=BusinessPartner asc";
 		}
 		//"and SalesGroup ne 'T99'" +
 		// National user (TCI user)
 		else {
 			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X'" +
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X' and Division eq "+this.sDivision+" and SalesGroup ne 'T99'" +
 				"&$orderby=BusinessPartner asc";
 			// bpReqUrl =  url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
 			// 	"&$expand=to_Customer/to_CustomerSalesArea&$filter=(SalesGroup eq 'T01')&$orderby=BusinessPartner asc";
@@ -144,7 +149,7 @@ module.exports = function (appContext) {
 						for (var i = 0; i < customerSalesArea.results.length; i++) {
 							if (customerSalesArea.results[i].SalesOffice === bpZone) {
 								if ((customerSalesArea.results[i].SalesOrganization == "6000" && customerSalesArea.results[i].DistributionChannel == "10")) {
-									if (customerSalesArea.results[i].Customer !== "2400500000" && (customerSalesArea.results[i].SalesArea  !== "T99")) {
+									if (customerSalesArea.results[i].Customer !== "2400500000") {
 										resBody.sales.push(customerSalesArea.results[i]); //to fetch sales data
 									}
 								}
@@ -169,7 +174,7 @@ module.exports = function (appContext) {
 								customerSalesArea.results[i].SalesOffice == "5000" || customerSalesArea.results[i].SalesOffice == "7000" ||
 								customerSalesArea.results[i].SalesOffice == "9000") {
 								// if (bpZone) {
-								if ((customerSalesArea.results[i].SalesOrganization == "6000") && (customerSalesArea.results[i].DistributionChannel == "10")&& (customerSalesArea.results[i].SalesArea  !== "T99")) {
+								if ((customerSalesArea.results[i].SalesOrganization == "6000") && (customerSalesArea.results[i].DistributionChannel == "10")) {
 									resBody.sales.push(customerSalesArea.results[i]); //to fetch sales data
 								}
 							}
