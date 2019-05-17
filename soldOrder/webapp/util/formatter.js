@@ -140,7 +140,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 		NationalorZonalusertype: function (Usertypevalue) {
-		if (Usertypevalue === "National") {
+		if ((Usertypevalue === "National") ||(Usertypevalue === "TCI_User") ) {
 			return true;
 		} else {
 			return false;
