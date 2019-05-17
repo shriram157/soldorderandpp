@@ -73,16 +73,16 @@
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<!--<Text text="{mainservices>ZsalesType}"/>-->
-							<Label id = "salesPerson_CSOR" text="{i18n>salesPerName}"/>
-							<Text text="{mainservices>Zsalesperson}"/>
-							<Label id = "salesManager_CSOR" text="{i18n>salesManName}"/>
-							<Text text="{mainservices>Zsalesmanager}"/>
-							<Label id = "tradeyr_CSOR" text="{i18n>tradeInModelYr}"/>
-							<Text text="{mainservices>ZtradeModelYr}"/>
-							<Label id = "trademake_CSOR" text="{i18n>tradeInMake}"/>
-							<Text text="{mainservices>ZtradeMake}"/>
-							<Label id = "trademodel_CSOR" text="{i18n>tradeInModel}"/>
-							<Text text="{mainservices>ZtradeModel}"/>
+							<Label  text="{i18n>salesPerName}"/>
+							<Text id = "salesPerson_CSOR" text="{mainservices>Zsalesperson}"/>
+							<Label text="{i18n>salesManName}"/>
+							<Text id = "salesManager_CSOR" text="{mainservices>Zsalesmanager}"/>
+							<Label  text="{i18n>tradeInModelYr}"/>
+							<Text id = "tradeyr_CSOR" text="{mainservices>ZtradeModelYr}"/>
+							<Label  text="{i18n>tradeInMake}"/>
+							<Text id = "trademake_CSOR" text="{mainservices>ZtradeMake}"/>
+							<Label  text="{i18n>tradeInModel}"/>
+							<Text id = "trademodel_CSOR" text="{mainservices>ZtradeModel}"/>
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
