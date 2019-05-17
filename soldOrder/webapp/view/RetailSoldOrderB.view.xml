@@ -126,11 +126,11 @@
 							<Label wrapping="true" text="{i18n>postalcode}"/>
 							<Input id="PostalCode_RSOB" value="{Customer>/PostCode}" required="true" maxLength="6"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Input value="{Customer>/Phone}" placeholder="xxxxxxxxxx" maxLength="10"/>
+							<Input value="{Customer>/Phone}" placeholder="xxxxxxxxxx" required="true"  maxLength="10"/>
 							<Label wrapping="true" text="{i18n>email}"/>
 							<Input value="{Customer>/Email}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
-							<Input id="License_RSOB" value="" required="true"/>
+							<Input id="License_RSOB" value=""/>
 							<Label wrapping="true" text=""/>
 							<Button text="{i18n>valCust}" press="onValidateCustomer">
 								<layoutData>
