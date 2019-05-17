@@ -67,7 +67,7 @@
 							<!--<Label text="{i18n>custname}"/>-->
 							<Label text="{i18n>contractDate}"/>
 							<Text
-								id = "conDate_CSOR" text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-ddTHH:mm:ss', strictParsing: false, relative: false }}"/>
+								id = "conDate_CSOR" text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label text="{i18n>salesType}"/>
 							<ComboBox id="salestype_CSOR" items="{ path: '/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
 								<core:Item key="{key}" text="{text}"/>

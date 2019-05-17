@@ -355,7 +355,7 @@ sap.ui.define([
 				// "ZtradeModelYr": "",
 				// "ZtradeMake": ""
 
-				"ZzsoReqNo": "SO",
+				"ZzsoReqNo": "RS",
 				"Zzmodel": Zzmodel, //"YZ3DCT",
 				"Zzmoyr": Zzmoyr, //"2018",
 				"Zzseries": Zzseries,
