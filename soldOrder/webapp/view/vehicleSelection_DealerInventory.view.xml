@@ -19,7 +19,7 @@
 						</m:items>
 					</m:VBox>
 					<!--<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"-->
-									<Table id="table_RSOVehicleDealer" selectionMode="None" items = "{path:'InventoryModel>/', templateShareable:true}" enableColumnReordering="false"	alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" >
+									<Table id="table_RSOVehicleDealer"  items="{path:'InventoryModel>/', templateShareable:true}" selectionMode="None" enableColumnReordering="false"	alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" >
 						<columns>
 							<Column width="10%" resizable="false">
 								<m:Label text=""/>
