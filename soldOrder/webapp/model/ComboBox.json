@@ -350,8 +350,8 @@
 	}],
 
 	"FSODetail_AuditStatus": [{
-		"key": "IN PROGRESS",
-		"text": "In Progress"
+		"key": "IN-PROGRESS",
+		"text": "In-Progress"
 	}, {
 		"key": "COMPLETE",
 		"text": "Completed"
