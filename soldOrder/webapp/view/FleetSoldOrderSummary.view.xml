@@ -93,7 +93,7 @@
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">
 										<Label text="{i18n>CustName}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Zendcu}"/>
+											<Text text="{mainservices>ZzendcuName}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" sortProperty="Category">

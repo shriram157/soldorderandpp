@@ -129,14 +129,14 @@
 							</ComboBox>
 							<!--//APX-->
 							<Label wrapping="true" text="{i18n>quantity}"/>
-							<Input id="quantity_CFSO"></Input>
+							<Input id="quantity_CFSO" required="true"></Input>
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<Text text="{i18n>from}">
 								<layoutData>
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
-							<DatePicker id="etaFrom_CFSO" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd">
+							<DatePicker id="etaFrom_CFSO" required="true" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd">
 								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
@@ -147,7 +147,7 @@
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
-							<DatePicker id="etaTo_CFSO" navigate="_handleChange" change="_handleChange" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd">
+							<DatePicker id="etaTo_CFSO" required="true" navigate="_handleChange" change="_handleChange" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd">
 								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>

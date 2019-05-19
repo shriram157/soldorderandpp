@@ -18,7 +18,7 @@
 							<Label wrapping="true" text="{i18n>PONumber}"/>
 							<Text text="{mainservices>ZpoNumber}"/>
 							<Label wrapping="true" text="{i18n>orderType}"/>
-							<ComboBox enabled="true" id="orderType_FSOZA" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }" required="true">
+							<ComboBox enabled="true" id="orderType_FSOZA" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }" required="true" selectedKey="{mainservices>/Zadd1}">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>status}"/>

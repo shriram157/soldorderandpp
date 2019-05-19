@@ -96,7 +96,7 @@
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInModel}"/>
-							<Input id="trademodel_RSOBid" value="" maxLength='7'/>
+							<Input id="trademodel_RSOBid" value="" />
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" id="form2_RSOB" title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
@@ -140,7 +140,7 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea id="Comment" height="15rem"/>
+							<TextArea id="Comment" height="15rem" maxLength="40"/>
 						</f:content>
 					</f:SimpleForm>
 				</content>
