@@ -142,7 +142,7 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea id="Comment" value="{address>/Name}" maxLength="40" height="15rem"/>
+							<TextArea id="Comment" maxLength="200" height="15rem"/>
 						</f:content>
 					</f:SimpleForm>
 				</content>

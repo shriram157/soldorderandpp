@@ -59,7 +59,7 @@
 										<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{FirstTable>TCISeries}"
 												modelContextChange="onSeriesnum">
 												<items>
-													<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
+													<core:Item key="seriesModel>ModelSeriesNo" text="{seriesModel>TCISeriesDescriptionEN}"/>
 												</items>
 											</ComboBox>
 									<!--<Text text="{FirstTable>TCISeries}"/>-->

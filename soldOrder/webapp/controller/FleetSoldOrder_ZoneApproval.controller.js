@@ -85,11 +85,24 @@ sap.ui.define([
 			FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
 		},*/
 		_approveFleetSoldRequest: function () {
+			if(FSO_Z_controller.getView().byId('orderType_FSOZA').getValue()=="" || FSO_Z_controller.getView().byId('zoneapproval').getValue()=="")
+			{
+				var	errForm = formatter.formatErrorType("SO00003");
+			var	errMsg = FSO_Z_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				// var errForm2 = formatter.formatErrorType("SO00004");
+				// errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				var errMsg3 = errMsg; // + "\n" + errMsg2;
+				sap.m.MessageBox.show(errMsg3, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			}
+			else
+			{
 			FSO_Z_controller.getView().getModel('mainservices').callFunction("/Approve_Fleet_Order", {
 				method: "POST",
 				urlParameters: {
 					ZSO_FLT_REQ_NO: zrequest,
-					ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey(),
+					ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getValue(),
 					ZSO_FLT_STATUS: 'APPROVED',
 					ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
 				}, // function import parameters  
@@ -103,13 +116,27 @@ sap.ui.define([
 
 				}
 			});
+			}
 		},
 		_rejectFleetSoldRequest: function () {
+				if(FSO_Z_controller.getView().byId('orderType_FSOZA').getValue()=="" || FSO_Z_controller.getView().byId('zoneapproval').getValue()=="")
+			{
+				var	errForm = formatter.formatErrorType("SO00003");
+			var	errMsg = FSO_Z_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				// var errForm2 = formatter.formatErrorType("SO00004");
+				// errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				var errMsg3 = errMsg; // + "\n" + errMsg2;
+				sap.m.MessageBox.show(errMsg3, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+			}
+			else
+			{
 			FSO_Z_controller.getView().getModel('mainservices').callFunction("/Approve_Fleet_Order", {
 				method: "POST",
 				urlParameters: {
 					ZSO_FLT_REQ_NO: zrequest,
-					ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey(),
+					ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getValue(),
 					ZSO_FLT_STATUS: 'REJECTED',
 					ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
 				}, // function import parameter 
@@ -122,6 +149,7 @@ sap.ui.define([
 
 				}
 			});
+			}
 		},
 		onAfterRendering: function () {
 			// var oBundle = FSO_Z_controller.getView().getModel("i18n").getResourceBundle();

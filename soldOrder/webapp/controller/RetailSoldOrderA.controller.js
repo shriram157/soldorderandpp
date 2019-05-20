@@ -734,13 +734,90 @@ sap.ui.define([
 			if (validateFlagA == false) {
 				flag2 = true;
 			}
-
+var errForm; 
 			if (flag1 == true && flag2 == false) {
-				var errForm = formatter.formatErrorType("SO00003");
+				if(valModelYr == "" )
+				{
+						errForm = formatter.formatErrorType("SO000015");
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					
+					sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+					
+				}
+					else if(valSeries == "")
+				{
+						errForm = formatter.formatErrorType("SO000016");
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					
+					sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+				}
+					else if(valModel == "")
+				{
+						errForm = formatter.formatErrorType("SO000017");
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					
+					sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+				}	
+				else if(valSuffix == "")
+				{
+						errForm = formatter.formatErrorType("SO000018");
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					
+					sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+				}
+					else if(valColour == "")
+				{
+						errForm = formatter.formatErrorType("SO000019");
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					
+					sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+				}
+					else if( valApx == "")
+				{
+						 errForm = formatter.formatErrorType("SO000020");
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					
+					sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+				}
+					else if(valETATo == "" || valETAFrom == "")
+				{
+						errForm = formatter.formatErrorType("SO000021");
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					
+					sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+				}
+						else if(valSalesType == "" || valContractDate == "")
+				{
+						 errForm = formatter.formatErrorType("SO000022");
+				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					
+					sap.m.MessageBox.show(errMsg, sap
+					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Action.OK, null, null);
+				}
+				 
+				else
+				{
+				 errForm = formatter.formatErrorType("SO00003");
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
+				}
 			} else if (flag1 == false && flag2 == true) {
 				var errForm2 = formatter.formatErrorType("SO00004");
 				errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
@@ -748,7 +825,7 @@ sap.ui.define([
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			} else if (flag1 == true && flag2 == true) {
-				var errForm = formatter.formatErrorType("SO00003");
+				errForm = formatter.formatErrorType("SO00003");
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				// var errForm2 = formatter.formatErrorType("SO00004");
 				// errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
