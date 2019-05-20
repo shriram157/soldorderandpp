@@ -48,11 +48,11 @@ sap.ui.define([
 			var mcb_auditStatus_FSOD = FSOD_controller.getView().byId("mcb_auditStatus_FSOD");
 			var mcb_dealer_FSOD = FSOD_controller.getView().byId("mcb_dealer_FSOD");
 
-			mcb_series_FSOD.setSelectedItems(mcb_series_FSOD.getItems());
+			// mcb_series_FSOD.setSelectedItems(mcb_series_FSOD.getItems());
 			mcb_status_FSOD.setSelectedItems(mcb_status_FSOD.getItems());
 			mcb_auditStatus_FSOD.setSelectedItems(mcb_auditStatus_FSOD.getItems());
 			mcb_dealer_FSOD.setSelectedItems(mcb_dealer_FSOD.getItems());
-			mcb_ordTyp_FSOD.setSelectedItems(mcb_ordTyp_FSOD.getItems());
+			// mcb_ordTyp_FSOD.setSelectedItems(mcb_ordTyp_FSOD.getItems());
 			//	mcb_ordTyp_FSOD.setSelectedKey("4");
 			// console.log(mcb_series_FSOD.getItems());
 			// console.log(mcb_series_FSOD.getSelectedItems());

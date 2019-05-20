@@ -366,11 +366,11 @@ sap.ui.define([
 			var valCity = RSOB_controller.getView().byId("City_RSOB").getValue();
 			var valProvince = RSOB_controller.getView().byId("Province_RSOB").getValue();
 			var valPostalCode = RSOB_controller.getView().byId("PostalCode_RSOB").getValue();
-			var valLicense = RSOB_controller.getView().byId("License_RSOB").getValue();
+			// var valLicense = RSOB_controller.getView().byId("License_RSOB").getValue();
 			var valCustName = RSOB_controller.getView().byId("CustName_RSOB").getValue();
-			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
+			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
 			if (valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
-				valProvince == "" || valPostalCode == "" || valLicense == "" || valCustName == "") {
+				valProvince == "" || valPostalCode == "" || valCustName == "") {
 				flag1 = true;
 
 			}
