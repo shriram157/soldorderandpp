@@ -943,11 +943,13 @@ var errForm;
 				apxCB.destroyItems();
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
+				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BusinessPartner");
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
-					path: "mainservices>/ZVMS_CDS_Model",
+					path: "mainservices>/ZVMS_Model_EXCLSet",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
-						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
