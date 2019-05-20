@@ -104,7 +104,29 @@ toyota.ca.SoldOrder.util.formatter = {
 			return "SO000011"; //"Invalid FAN Number. Enter correct FAN Number";
 		} else if (Code === "SO000012") {
 			return "SO000012"; //"Comments not filled";
-		} else {
+		}
+		else if (Code === "SO000013") {
+			return "SO000012"; //"Comments not filled";
+		}else if (Code === "SO000014") {
+			return "SO000012"; //"Comments not filled";
+		}else if (Code === "SO000015") {
+			return "SO000012"; //"Comments not filled";
+		}else if (Code === "SO000016") {
+			return "SO000012"; //"Comments not filled";
+		}else if (Code === "SO000017") {
+			return "SO000012"; //"Comments not filled";
+		}else if (Code === "SO000018") {
+			return "SO000012"; //"Comments not filled";
+		}else if (Code === "SO000019") {
+			return "SO000012"; //"Comments not filled";
+		}else if (Code === "SO000020") {
+			return "SO000012"; //"Comments not filled";
+		}
+		else if (Code === "SO000021") {
+			return "SO000012"; //"Comments not filled";
+		}else if (Code === "SO000022") {
+			return "SO000012"; //"Comments not filled";
+		}else {
 			return;
 		}
 	},
