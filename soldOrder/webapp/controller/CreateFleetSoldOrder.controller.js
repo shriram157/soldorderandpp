@@ -466,8 +466,13 @@ sap.ui.define([
 			var valSuffix = CFSO_controller.getView().byId("suffix_CFSO").getSelectedKey();
 			var valSeries = CFSO_controller.getView().byId("series_CFSO").getSelectedKey();
 			var valModelCode = CFSO_controller.getView().byId("modelCode_CFSO").getSelectedKey();
+			var	colour = CFSO_controller.getView().byId("color_CFSO").getSelectedKey();
+					var apx = CFSO_controller.getView().byId("Apx_CFSO").getSelectedKey();
+					var etaFrom = CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue();
+					var etaTo = CFSO_controller.getView().byId("etaTo_CFSO").getDateValue();
+					var quantity = CFSO_controller.getView().byId("quantity_CFSO").getValue();
 
-			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "") {
+			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" || etaFrom == "" || etaTo == "" || quantity == "") {
 				var errForm = formatter.formatErrorType("SO00003");
 				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
