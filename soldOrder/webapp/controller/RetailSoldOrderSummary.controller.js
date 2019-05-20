@@ -42,9 +42,44 @@ sap.ui.define([
 			mcb_rsStatus_RSOS.setSelectedItems(mcb_rsStatus_RSOS.getItems());
 			mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
 			mcb_dealer_RSOS.setSelectedItems(mcb_dealer_RSOS.getItems());
+				var host = RSOS_controller.host();
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+
+	
+			}
+			var salesOffice = this.getView().getModel("LoginUserModel").getProperty("/Zone");
+		
+				var url = host + "/ZVMS_SOLD_ORDER_SRV/ZCDS_CONSOLEDATED_DLR?$filter=SalesOffice eq '"+salesOffice+"' and Division eq '"+this.sDivision+"'";
+			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
+			$.ajax({
+				url: url,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					if (mcb_dealer_RSOS.getValue() !== "") {
+						//seriesCB.setValue(" ");
+						mcb_dealer_RSOS.setSelectedKey(null);
+					}
+					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					var oModel = new sap.ui.model.json.JSONModel();
+					oModel.setData(data.d.results);
+					RSOS_controller.getView().setModel(oModel, "dealerModel");
+
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
+		
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
 				var dfilter = [];

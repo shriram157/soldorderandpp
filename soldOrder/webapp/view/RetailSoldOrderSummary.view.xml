@@ -63,14 +63,22 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_dealer_RSOS" width="300px" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"
+												<MultiComboBox id="mcb_dealer_RSOS" width="300px" items="{ path: 'dealerModel>/'}" selectionChange="_refresh"
 													class="sapUiMediumMarginEnd">
-													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
-														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
+													<core:Item key="{LoginUserModel>BusinessPartner}"
+														text="{parts: [{path:'dealerModel>BusinessPartner'},{path:'dealerModel>name_org1'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
+												<!--<MultiComboBox id="mcb_dealer_RSOS" width="300px" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"-->
+												<!--	class="sapUiMediumMarginEnd">-->
+												<!--	<core:Item key="{LoginUserModel>BusinessPartnerKey}"-->
+												<!--		text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>-->
+												<!--	<layoutData>-->
+												<!--		<l:GridData span="L2 M12 S12"/>-->
+												<!--	</layoutData>-->
+												<!--</MultiComboBox>-->
 											</VBox>
 										</f:content>
 									</f:SimpleForm>
