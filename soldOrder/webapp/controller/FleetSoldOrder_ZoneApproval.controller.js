@@ -161,7 +161,7 @@ sap.ui.define([
 				FSO_Z_controller.getView().byId("btn_approve_FSOZA").setVisible(true);
 				FSO_Z_controller.getView().byId("btn_reject_FSOZA").setVisible(true);
 				FSO_Z_controller.getView().byId("btn_back_FSOZA").setVisible(true);
-				FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
+				// FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
 			// }
 
 		},
