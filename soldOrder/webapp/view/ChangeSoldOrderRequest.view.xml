@@ -66,8 +66,10 @@
 							<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripFormat msgStripCss"/>
 							<!--<Label text="{i18n>custname}"/>-->
 							<Label text="{i18n>contractDate}"/>
-							<Text
-								id = "conDate_CSOR" text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+							<!--<Text-->
+							<!--	id = "conDate_CSOR" valueFormat="yyyy-MM-ddTHH:mm:ss" text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>-->
+							<DatePicker id="conDate_CSOR" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" dateValue="{mainservices>ZcontractDate}" editable="false" ></DatePicker>
+
 							<Label text="{i18n>salesType}"/>
 							<ComboBox id="salestype_CSOR" items="{ path: '/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
 								<core:Item key="{key}" text="{text}"/>
