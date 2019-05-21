@@ -86,34 +86,9 @@ sap.ui.define([
 					}
 					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
-
-					var arr = [];
-					var j = 0; //TCISeries_fr
-					if (language == "FR") {
-						for (var c = 0; c < data.d.results.length; c++) {
-							for (var i = 0; i < data.d.results.length; i++) {
-								if ($.inArray(data.d.results[i]["TCISeriesDescriptionFR"], arr) < 0) {
-									arr[j] = data.d.results[i]["TCISeriesDescriptionFR"];
-									j++;
-
-								}
-							}
-						}
-					} else { //if (language == "EN") {
-						for (var c = 0; c < data.d.results.length; c++) {
-							for (var i = 0; i < data.d.results.length; i++) {
-								if ($.inArray(data.d.results[i]["TCISeriesDescriptionEN"], arr) < 0) {
-									arr[j] = data.d.results[i]["TCISeriesDescriptionEN"];
-									j++;
-
-								}
-							}
-						}
-
-					}
-					oModel.setData(arr);
+					oModel.setData(data.d.results);
+					CFSO_controller.getView().setModel(oModel, "seriesModel");
 					
-					CFSO_controller.getView().setModel(oModel, "seriesdropDownModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
