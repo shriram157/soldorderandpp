@@ -71,7 +71,7 @@ sap.ui.define([
 
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -185,7 +185,7 @@ sap.ui.define([
 			//-----------------Audit Status-----------------
 				var asfilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
-				asfilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()));
+				asfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()));
 			}
 			if (asfilter.length > 0) {
 				var filter_asstatus = new Filter(asfilter, false);
