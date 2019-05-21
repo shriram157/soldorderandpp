@@ -189,7 +189,13 @@ toyota.ca.SoldOrder.util.formatter = {
 			return true;
 		}
 	},
-		
+		formatAmount: function (svalue) {
+		if(svalue !="")
+		{
+			var amount = "$"+svalue;
+			return amount;
+		}
+	},
 	formatdealers:function(dealerno,dealername)
 	{
 		if(dealerno){
