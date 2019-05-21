@@ -182,6 +182,15 @@ sap.ui.define([
 				var filter_sstatus = new Filter(afilter, false);
 				allfilter.push(filter_sstatus);
 			}
+			//-----------------Audit Status-----------------
+				var asfilter = [];
+			for (var i = 0; i < this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
+				asfilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()));
+			}
+			if (asfilter.length > 0) {
+				var filter_asstatus = new Filter(asfilter, false);
+				allfilter.push(filter_asstatus);
+			}
 			//---------------------------------------------------------------
 			//-----------------Series-----------------
 			var Sfilter = [];
@@ -203,7 +212,7 @@ sap.ui.define([
 				allfilter.push(filter_dealers);
 			}
 			//---------------------------------------------------------------
-			var filter_all = new Filter([filter_sstatus, filter_series, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, '')],
+			var filter_all = new Filter([filter_sstatus, filter_asstatus, filter_series, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, '')],
 				true);
 			var items = this.getView().byId("table_RSOS").getBinding('rows');
 			items.filter(filter_all);
