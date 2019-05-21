@@ -289,6 +289,7 @@ sap.ui.define([
 					// userScopes.forEach(function (data) {
 
 					var userType = oData.loggedUserType[0];
+					that.getView().getModel("LoginUserModel").setSizeLimit(500);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					switch (userType) {
 					case "Dealer_Parts_Admin":
