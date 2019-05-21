@@ -187,7 +187,7 @@
 							<Label wrapping="true" text="{i18n>postalcode}"/>
 							<Text text="{Customer>/addresses/0/postalCode}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{Customer>/phones/0/localNumber}"/>
+							<Text text="{Customer>/phones/0/areaCode}{Customer>/phones/0/localNumber}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
 							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>

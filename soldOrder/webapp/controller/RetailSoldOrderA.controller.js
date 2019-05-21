@@ -542,27 +542,7 @@ sap.ui.define([
 						if (!Zcustomer_No || Zcustomer_No == '') {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
 							Zcustomer_No = Zcustomer_No.toString();
-							var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("success1");
-							var title = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
-							var icon = new sap.ui.core.Icon({
-								src: "sap-icon://alert",
-								size: "2rem"
-							});
-							var msg1 = new sap.m.HBox({
-								items: [icon, new sap.m.Text({
-								text: errMsg
-							})]
-						});
-							sap.m.MessageBox.show(msg1, {
-								icon: sap.m.MessageBox.Icon.SUCCESS,
-								title: title,
-								actions: sap.m.MessageBox.Action.OK,
-								onClose: null,
-								styleClass: "",
-								initialFocus: null,
-								textDirection: sap.ui.core.TextDirection.Inherit,
-								contentWidth: "10rem"
-							});
+						
 						}
 					},
 					error: function (request, errorText, errorCode) {
@@ -617,7 +597,18 @@ sap.ui.define([
 								if (data.customer) {
 									Zcustomer_No = data.customer.partyID; //customerNumber;
 									Zcustomer_No = Zcustomer_No.toString();
-									sap.m.MessageBox.show(msg, {
+										var errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("success1");
+							title = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
+							icon = new sap.ui.core.Icon({
+								src: "sap-icon://success",
+								size: "2rem"
+							});
+							var msg2 = new sap.m.HBox({
+								items: [icon, new sap.m.Text({
+								text: errMsg2
+							})]
+						});
+							sap.m.MessageBox.show(msg2, {
 								icon: sap.m.MessageBox.Icon.SUCCESS,
 								title: title,
 								actions: sap.m.MessageBox.Action.OK,
@@ -627,6 +618,7 @@ sap.ui.define([
 								textDirection: sap.ui.core.TextDirection.Inherit,
 								contentWidth: "10rem"
 							});
+							
 								}
 							},
 							error: function (request, errorText, errorCode) {

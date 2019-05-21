@@ -346,6 +346,27 @@ sap.ui.define([
 								if (data.customer) {
 									Zcustomer_No = data.customer.partyID; //customerNumber;
 									Zcustomer_No = Zcustomer_No.toString();
+										var errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("success1");
+							title = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
+							icon = new sap.ui.core.Icon({
+								src: "sap-icon://success",
+								size: "2rem"
+							});
+							var msg2 = new sap.m.HBox({
+								items: [icon, new sap.m.Text({
+								text: errMsg2
+							})]
+						});
+							sap.m.MessageBox.show(msg2, {
+								icon: sap.m.MessageBox.Icon.SUCCESS,
+								title: title,
+								actions: sap.m.MessageBox.Action.OK,
+								onClose: null,
+								styleClass: "",
+								initialFocus: null,
+								textDirection: sap.ui.core.TextDirection.Inherit,
+								contentWidth: "10rem"
+							});
 								}
 							},
 							error: function (request, errorText, errorCode) {
