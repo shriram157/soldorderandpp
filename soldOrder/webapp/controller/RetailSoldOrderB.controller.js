@@ -402,12 +402,12 @@ sap.ui.define([
 			var flag2 = false;
 			var errMsg2;
 			var errMsg;
-			var Zzmoyr = RSOB_controller.getView().byId("modelYr_RSOA").getValue();
-			var Zzseries = RSOB_controller.getView().byId("series_RSOA").getSelectedKey();
-			var Zzmodel = RSOB_controller.getView().byId("model_RSOA").getSelectedKey();
-			var Zzsuffix = RSOB_controller.getView().byId("Suffix_RSOA").getSelectedKey();
-			var Zzapx = RSOB_controller.getView().byId("Apx_RSOA").getSelectedKey();
-			var Zzextcol = RSOB_controller.getView().byId("Colour_RSOA").getSelectedKey();
+			var Zzmoyr = RSOB_controller.getView().byId("modelYr_RSOB").getValue();
+			var Zzseries = RSOB_controller.getView().byId("series_RSOB").getSelectedKey();
+			var Zzmodel = RSOB_controller.getView().byId("model_RSOB").getSelectedKey();
+			var Zzsuffix = RSOB_controller.getView().byId("Suffix_RSOB").getSelectedKey();
+			var Zzapx = RSOB_controller.getView().byId("Apx_RSOB").getSelectedKey();
+			var Zzextcol = RSOB_controller.getView().byId("Colour_RSOB").getSelectedKey();
 			var valSalesType = RSOB_controller.getView().byId("SalesType_RSOB").getValue();
 			var valContractDate = RSOB_controller.getView().byId("ContractDate_RSOB").getValue();
 			var valAddress = RSOB_controller.getView().byId("Address_RSOB").getValue();
