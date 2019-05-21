@@ -105,7 +105,7 @@ sap.ui.define([
 			var valTo = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
 			var Zzmoyr = CSOR_controller.getView().byId("moyr_CSOR").getText();
 			var Zzseries = CSOR_controller.getView().byId("series_CSOR").getSelectedKey();
-			var ZcontractDate1 = CSOR_controller.getView().byId("conDate_CSOR").getText();
+			var ZcontractDate1 = CSOR_controller.getView().byId("conDate_CSOR").getValue();
 			var ZsalesType = CSOR_controller.getView().byId("salestype_CSOR").getSelectedKey();
 			// var ZtcciNum = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
 			var Zsalesperson = CSOR_controller.getView().byId("salesPerson_CSOR").getText();
