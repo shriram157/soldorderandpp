@@ -25,6 +25,7 @@ sap.ui.define([
 			vechile_items.filter([new Filter([
 				new Filter("MATRIX", FilterOperator.EQ, "A205"),
 				new Filter("Dealer", FilterOperator.EQ, dealer_no)
+				new Filter("source", FilterOperator.EQ, "FLT")
 			], true)]);
 			vechile_items.refresh();
 		},

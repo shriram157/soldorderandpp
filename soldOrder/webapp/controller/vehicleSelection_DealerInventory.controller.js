@@ -71,7 +71,7 @@ sap.ui.define([
 					// new Filter("INTCOL", FilterOperator.EQ, "42")
 					new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
 					new Filter("RSO_NUM", FilterOperator.EQ, zrequest),
-					
+					new Filter("source", FilterOperator.EQ, "RSO"),
 					// new Filter("ETA", FilterOperator.EQ, ""),
 					// new Filter("APX", FilterOperator.EQ, ""),
 				], true)]);

@@ -225,6 +225,11 @@
 				"name": "InventoryVehicleSelection",
 				"target": "home12",
 				"clearTarget": "true"
+			},{
+				"pattern": "page12new",
+				"name": "InventoryVehicleSelection",
+				"target": "home12new",
+				"clearTarget": "true"
 			}, {
 				"pattern": "page13/{Soreq}",
 				"name": "FleetSoldOrder_ZoneApproval",
@@ -438,6 +443,21 @@
 					}
 				},
 				"home12": {
+					"targetAggregation": "content",
+					"clearTarget": true,
+					"viewType": "XML",
+					"viewName": "InventoryVehicleSelection",
+					"routerClass": "sap.m.routing.Router",
+					"async": true,
+					"viewPath": "toyota.ca.SoldOrder.view",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"clearControlAggregation": false,
+					"bypassed": {
+						"target": "notFound"
+					}
+				},
+					"home12new": {
 					"targetAggregation": "content",
 					"clearTarget": true,
 					"viewType": "XML",
