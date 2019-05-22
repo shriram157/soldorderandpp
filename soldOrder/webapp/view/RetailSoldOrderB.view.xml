@@ -13,49 +13,37 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Input id="modelYr_RSOB" value="{RSOB_Model>/modelyear}" showValueHelp="true" required="true" valueHelpRequest="select_year"></Input>
-							<!--<Text text="{RSOB_Model>/modelyear}"/>-->
+							<Text text="{RSOB_Model>/modelyear}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<!--<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{RSOB_Model>/serieskey}"-->
-							<!--	modelContextChange="onSeriesnum">-->
-							<!--	<items>-->
-							<!--		<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>-->
-							<!--	</items>-->
-							<!--</ComboBox>-->
-							<ComboBox id="series_RSOB" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected" selectedKey="{RSOB_Model>/serieskey}">
-								<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>
+							<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{RSOB_Model>/serieskey}"
+								modelContextChange="onSeriesnum">
+								<items>
+									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
+								</items>
 							</ComboBox>
 							<!--<Text text="{RSOB_Model>/serieskey}"/>-->
 							<Label wrapping="true" text="{i18n>Model}"/>
-								<ComboBox id="model_RSOB"  required="true" selectionChange="model_selected" selectedKey="{RSOB_Model>/modelkey}">
+							<ComboBox id="model_RSOB" items="{VechileModel>/zc_model}" editable="false" selectedKey="{RSOB_Model>/modelkey}">
+								<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>
 							</ComboBox>
-							<!--<ComboBox id="model_RSOB" items="{VechileModel>/zc_model}" editable="false" selectedKey="{RSOB_Model>/modelkey}">-->
-							<!--	<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>-->
-							<!--</ComboBox>-->
 							<!--<Text-->
 							<!--	text="{parts: [{path:'RSOB_Model>/Zzmodel'},{path:'RSOB_Model>/Zzmodel'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>-->
 							<Label wrapping="true" text="{i18n>Suffix}"/>
-								<ComboBox id="Suffix_RSOB"  required="true" selectionChange="suffix_selected" selectedKey="{RSOB_Model>/suffixkey}"></ComboBox>
-							
-							<!--<ComboBox id="suffix_RSOB" items="{mainservices>/ZVMS_CDS_SUFFIX}" editable="false" selectedKey="{RSOB_Model>/suffixkey}">-->
-							<!--	<core:Item key="{mainservices>suffix}"-->
-							<!--		text="{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"/>-->
-							<!--</ComboBox>-->
+							<ComboBox id="suffix_RSOB" items="{mainservices>/ZVMS_CDS_SUFFIX}" editable="false" selectedKey="{RSOB_Model>/suffixkey}">
+								<core:Item key="{mainservices>suffix}"
+									text="{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"/>
+							</ComboBox>
 								<!--<Text text="{RSOB_Model>/Zzapx}"/>-->
 							<Label wrapping="true" text="{i18n>Color}"/>
-								<ComboBox id="Colour_RSOB"  required="true" selectedKey="{RSOB_Model>/colorkey}">
-								</ComboBox>
-							<!--<ComboBox id="colour_RSOB" items="{ path: 'VechileModel>/zc_exterior_trim'}" editable="false" selectedKey="{RSOB_Model>/colorkey}">-->
-							<!--	<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>-->
-							<!--</ComboBox>-->
+							<ComboBox id="colour_RSOB" items="{ path: 'VechileModel>/zc_exterior_trim'}" editable="false" selectedKey="{RSOB_Model>/colorkey}">
+								<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>
+							</ComboBox>
 							<!--<Text-->
 							<!--	text="{parts: [{path:'RSOB_Model>/Zzsuffix'},{path:'RSOB_Model>/Zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							<Label wrapping="true" text="{i18n>APX}"/>
-								<ComboBox id="Apx_RSOB" required="true" selectedKey="{RSOB_Model>/apxkey}">
-								</ComboBox>
-							<!--<ComboBox id="apx_RSOB" items="{path: 'VechileModel>/ZC_PIO_DIO'}" editable="false" selectedKey="{RSOB_Model>/apxkey}">-->
-							<!--	<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
-							<!--</ComboBox>-->
+							<ComboBox id="apx_RSOB" items="{path: 'VechileModel>/ZC_PIO_DIO'}" editable="false" selectedKey="{RSOB_Model>/apxkey}">
+								<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>
+							</ComboBox>
 						
 							<!--<Text text="{RSOB_Model>/Zzextcol}"/>-->
 							<Label wrapping="true" text="{i18n>vtn}" required="true"/>
@@ -152,7 +140,7 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea id="Comment" height="15rem" maxLength="200"/>
+							<TextArea id="Comment" height="15rem" maxLength="40"/>
 						</f:content>
 					</f:SimpleForm>
 				</content>
