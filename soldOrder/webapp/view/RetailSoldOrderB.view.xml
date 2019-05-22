@@ -31,12 +31,12 @@
 							<Label wrapping="true" text="{i18n>Suffix}"/>
 							<ComboBox id="suffix_RSOB" items="{mainservices>/ZVMS_CDS_SUFFIX}" editable="false" selectedKey="{RSOB_Model>/suffixkey}">
 								<core:Item key="{mainservices>suffix}"
-									text="{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"/>
+									text="{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"/>
 							</ComboBox>
 								<!--<Text text="{RSOB_Model>/Zzapx}"/>-->
 							<Label wrapping="true" text="{i18n>Color}"/>
 							<ComboBox id="colour_RSOB" items="{ path: 'VechileModel>/zc_exterior_trim'}" editable="false" selectedKey="{RSOB_Model>/colorkey}">
-								<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>
+								<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>MarktgIntDescEN'}"/>
 							</ComboBox>
 							<!--<Text-->
 							<!--	text="{parts: [{path:'RSOB_Model>/Zzsuffix'},{path:'RSOB_Model>/Zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->

@@ -613,7 +613,7 @@ sap.ui.define([
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
 	
-			var series = oEvent.getSource().getSelectedKey();
+			var series = this.getView().byId('series_CFSO').getSelectedKey();
 			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
 			
 			if (series && modelyear) {
@@ -803,25 +803,25 @@ sap.ui.define([
 			oEvent.getSource().getBinding("items").filter(filters);
 
 		},
-		_handleServiceSuffix_Series: function () {
-			var host = CFSO_controller.host();
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
-			$.ajax({
-				url: oUrl,
-				method: 'GET',
-				async: false,
-				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
-					var oModel = new sap.ui.model.json.JSONModel();
-					oModel.setData(data.d.results);
-					CFSO_controller.getView().setModel(oModel, "seriesModel");
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-				}
-			});
-		},
+		// _handleServiceSuffix_Series: function () {
+		// 	var host = CFSO_controller.host();
+		// 	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
+		// 	$.ajax({
+		// 		url: oUrl,
+		// 		method: 'GET',
+		// 		async: false,
+		// 		dataType: 'json',
+		// 		success: function (data, textStatus, jqXHR) {
+		// 			var oModel = new sap.ui.model.json.JSONModel();
+		// 			oModel.setData(data.d.results);
+		// 			CFSO_controller.getView().setModel(oModel, "seriesModel");
+		// 		},
+		// 		error: function (jqXHR, textStatus, errorThrown) {
+		// 			sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+		// 				.m.MessageBox.Action.OK, null, null);
+		// 		}
+		// 	});
+		// },
 
 	});
 
