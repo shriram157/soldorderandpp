@@ -23,7 +23,7 @@ sap.ui.define([
 			// CFSO_controller._newService1();
 			// CFSO_controller._newService2();
 			// CFSO_controller._newService3();
-			CFSO_controller._handleServiceSuffix_Series();
+			// CFSO_controller._handleServiceSuffix_Series();
 			// CFSO_controller._handleRSADropDown();
 			this._alldata = new JSONModel({
 				ZsoFltReqNo: 'FSO',
