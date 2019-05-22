@@ -55,6 +55,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 				afilter.push(new Filter("ZsoFltStatus", FilterOperator.EQ, this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey()));
 			}
+				afilter.push(new Filter("ZsoFltStatus", FilterOperator.EQ, ""));
+
 			if (afilter.length > 0) {
 				var filter_sstatus = new Filter(afilter, false);
 				allfilter.push(filter_sstatus);
@@ -65,6 +67,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
 				Sfilter.push(new Filter("Zadd1", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey()));
 			}
+				Sfilter.push(new Filter("Zadd1", FilterOperator.EQ, ""));
+
 			if (Sfilter.length > 0) {
 				var filter_ordertype = new Filter(Sfilter, false);
 				allfilter.push(filter_ordertype);
@@ -72,6 +76,8 @@ sap.ui.define([
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 					dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey()));
 				}
+				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, ""));
+
 				if (dfilter.length > 0) {
 					var filter_dealers = new Filter(dfilter, false);
 					allfilter.push(filter_dealers);
@@ -156,6 +162,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 				afilter.push(new Filter("ZsoFltStatus", FilterOperator.EQ, this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey()));
 			}
+				afilter.push(new Filter("ZsoFltStatus", FilterOperator.EQ, ""));
+
 			if (afilter.length > 0) {
 				var filter_sstatus = new Filter(afilter, false);
 				allfilter.push(filter_sstatus);
@@ -166,6 +174,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
 				Sfilter.push(new Filter("Zadd1", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey()));
 			}
+				Sfilter.push(new Filter("Zadd1", FilterOperator.EQ, ""));
+
 			if (Sfilter.length > 0) {
 				var filter_ordertype = new Filter(Sfilter, false);
 				allfilter.push(filter_ordertype);
@@ -176,6 +186,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey()));
 			}
+				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, ""));
+
 			if (dfilter.length > 0) {
 				var filter_dealers = new Filter(dfilter, false);
 				allfilter.push(filter_dealers);
