@@ -192,7 +192,11 @@ toyota.ca.SoldOrder.util.formatter = {
 		formatAmount: function (svalue) {
 		if(svalue !="")
 		{
-			var amount = "$"+svalue;
+			var pos = svalue.indexOf('.');
+			var integer = svalue.substring(0,pos);
+        var decimals = svalue.substring(pos+1, pos+3);
+        var new_Value = integer+'.'+decimals;
+			var amount = "$"+new_Value;
 			return amount;
 		}
 	},
