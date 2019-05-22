@@ -178,6 +178,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()));
 			}
+				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, ""));
+
 			if (afilter.length > 0) {
 				var filter_sstatus = new Filter(afilter, false);
 				allfilter.push(filter_sstatus);
@@ -187,6 +189,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
 				asfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()));
 			}
+				asfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, ""));
+
 			if (asfilter.length > 0) {
 				var filter_asstatus = new Filter(asfilter, false);
 				allfilter.push(filter_asstatus);
@@ -197,6 +201,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
 				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey()));
 			}
+				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, ""));
+
 			if (Sfilter.length > 0) {
 				var filter_series = new Filter(Sfilter, false);
 				allfilter.push(filter_series);

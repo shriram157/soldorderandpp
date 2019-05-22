@@ -65,6 +65,7 @@ sap.ui.define([
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
 					dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
 				}
+				
 				if (dfilter.length > 0) {
 					var filter_dealers = new Filter(dfilter, false);
 					//---------------------------------------------------------------
@@ -137,6 +138,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey()));
 			}
+				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, ""));
+
 			if (afilter.length > 0) {
 				var filter_sstatus = new Filter(afilter, false);
 				allfilter.push(filter_sstatus);
@@ -147,6 +150,8 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
 				Sfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey()));
 			}
+				Sfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, ""));
+
 			if (Sfilter.length > 0) {
 				var filter_audit = new Filter(Sfilter, false);
 				allfilter.push(filter_audit);

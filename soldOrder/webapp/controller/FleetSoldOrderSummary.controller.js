@@ -76,7 +76,7 @@ sap.ui.define([
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 					dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey()));
 				}
-				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, ""));
+			
 
 				if (dfilter.length > 0) {
 					var filter_dealers = new Filter(dfilter, false);
@@ -186,7 +186,7 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey()));
 			}
-				dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, ""));
+				
 
 			if (dfilter.length > 0) {
 				var filter_dealers = new Filter(dfilter, false);
