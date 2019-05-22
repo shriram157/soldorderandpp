@@ -436,7 +436,7 @@ sap.ui.define([
 			var valProvince = RSOB_controller.getView().byId("Province_RSOB").getValue();
 			var valPostalCode = RSOB_controller.getView().byId("PostalCode_RSOB").getValue();
 			// var valLicense = RSOB_controller.getView().byId("License_RSOB").getValue();
-			var valCustName = RSOB_controller.getView().byId("CustName_RSOB").getValue();
+			var valCustName = RSOB_controller.getView().byId("CustName_RSOA").getValue();
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
 			if ( valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
 				valProvince == "" || valPostalCode == "" || valCustName == "") {

@@ -100,9 +100,9 @@
 							<Label wrapping="true" text="{i18n>modelYear}"/>
 							<Input id="modelYr_CFSO" value="" width="" showValueHelp="true" valueHelpRequest="select_year"></Input>
 							<Label wrapping="true" text="{i18n>series}"/>
-							<ComboBox id="series_CFSO" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
+							<ComboBox id="series_CFSO" items="{path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
 								<!--<core:Item key="{mainservices>Zzseries}" text="{mainservices>ZzseriesDescEn}"/>-->
-								<core:Item text="{seriesModel>ModelSeriesNo>}" key="{seriesModel>TCISeriesDescriptionEN}"/>
+								<core:Item key="{seriesModel>ModelSeriesNo>}" text="{seriesModel>TCISeriesDescriptionEN}"/>
 							</ComboBox>
 							<!--<ComboBox id="series_CFSO" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">-->
 							<!--<core:Item key="{seriesModel>}" text="{seriesModel>}"/>-->
