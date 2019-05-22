@@ -190,7 +190,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 		formatAmount: function (svalue) {
-		if((svalue != "") ||(svalue !== null) )
+		if((svalue != "") && (svalue !== null) )
 		{
 			var pos = svalue.indexOf('.');
 			var integer = svalue.substring(0,pos);
