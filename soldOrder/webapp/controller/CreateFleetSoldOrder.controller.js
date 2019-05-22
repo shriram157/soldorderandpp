@@ -625,6 +625,8 @@ sap.ui.define([
 			apxCB.destroyItems();
 			colorCB.setSelectedKey(null);
 			colorCB.destroyItems();
+			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
