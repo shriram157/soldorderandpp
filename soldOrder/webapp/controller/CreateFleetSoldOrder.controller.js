@@ -747,7 +747,7 @@ sap.ui.define([
 					path: 'mainservices>/ZVMS_CDS_Colour',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
-						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+						new sap.ui.model.Filter("Model_Year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>ext}",
