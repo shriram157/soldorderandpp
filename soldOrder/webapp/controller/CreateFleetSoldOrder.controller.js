@@ -773,6 +773,15 @@ sap.ui.define([
 			// this._addNewFanPage.setModel(this.getView().getModel());
 			this._addNewFanPage.open();
 		},
+			isNumberKey: function (evt)
+      {
+      	 evt = (evt) ? evt : window.event;
+         var charCode = (evt.which) ? evt.which : evt.keyCode
+         if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      },
 		onCloseDialogFan: function (Oevent) {
 			var Fan = this.getView().byId("FanNo_CFSO");
 			var key = Oevent.getParameter("selectedContexts")[0].getProperty('Partner');

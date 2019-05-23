@@ -17,6 +17,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		var text = DealerCode + "-" + DealerName;
 		return text;
 	},
+
 	VTNDate: function (value, vtn) {
 		if (vtn) {
 			return value;
