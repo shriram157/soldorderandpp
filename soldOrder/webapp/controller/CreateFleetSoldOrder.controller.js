@@ -446,7 +446,19 @@ sap.ui.define([
 					var etaFrom = CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue();
 					var etaTo = CFSO_controller.getView().byId("etaTo_CFSO").getDateValue();
 					var quantity = CFSO_controller.getView().byId("quantity_CFSO").getValue();
-
+if(quantity.length >0)
+{
+	for(var i= 0; i<quantity.length;i++)
+	{
+// 		var charCode =quantity[i].keycode;
+		    if (isNaN(quantity[i]))
+      {
+      		sap.m.MessageBox.show("Please enter a numeric value", sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+            
+		}
+	}
+}
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" || etaFrom == "" || etaTo == "" || quantity == "") {
 				var errForm = formatter.formatErrorType("SO00003");
 				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
