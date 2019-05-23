@@ -59,7 +59,7 @@
 							<t:Table id="tbl_FSOD" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false"
 								alternateRowColors="true" enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
-									<t:Column width="8.3%" sortProperty="Category" resizable="false">
+									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{mainservices>ZzsoReqNo}" press="_navToRSO"/>
