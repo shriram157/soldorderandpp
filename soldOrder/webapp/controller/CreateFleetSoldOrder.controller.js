@@ -459,7 +459,7 @@ if(quantity.length >0)
 		}
 	}
 }
-			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" || etaFrom == "" || etaTo == "" || quantity == "") {
+			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" || etaFrom === null || etaTo === null || quantity == "") {
 				var errForm = formatter.formatErrorType("SO00003");
 				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
