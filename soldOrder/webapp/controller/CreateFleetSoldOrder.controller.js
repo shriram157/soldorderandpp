@@ -737,11 +737,11 @@ sap.ui.define([
 				var language = CFSO_controller.returnBrowserLanguage();
 				if (language === "FR") 
 					{
-						color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescFR}";
+						color = "{mainservices>ext}/{mainservices>mktg_desc_fr}";
 					}
 					else
 					{
-				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarktgIntDescEN}";
+				color = "{mainservices>ext}/{mainservices>mktg_desc_en}";
 					}
 				colorCB.bindItems({
 					path: 'VechileModel>/zc_exterior_trim',
@@ -750,7 +750,7 @@ sap.ui.define([
 						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>ExteriorColorCode}",
+						key: "{mainservices>ext}",
 						text: color
 					})
 				});
