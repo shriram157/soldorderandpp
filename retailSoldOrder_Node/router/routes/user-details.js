@@ -96,10 +96,10 @@ module.exports = function (appContext) {
 				logger.warning("Unrecognized zone ID: %s", zone);
 				return res.type("plain/text").status(400).send("Unknown zone ID.");
 			}
-			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-			var brand;
-			if (isDivisionSent) {
-				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+			// var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			// var brand;
+			// if (isDivisionSent) {
+			// 	this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 }
 // bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
 // 				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(SalesGroup eq 'T01')&$orderby=BusinessPartner asc";
