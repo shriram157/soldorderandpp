@@ -744,7 +744,7 @@ sap.ui.define([
 				color = "{mainservices>ext}/{mainservices>mktg_desc_en}";
 					}
 				colorCB.bindItems({
-					path: 'VechileModel>/zc_exterior_trim',
+					path: 'mainservices>/ZVMS_CDS_Colour',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
