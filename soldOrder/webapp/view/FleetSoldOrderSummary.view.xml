@@ -93,7 +93,7 @@
 									<t:Column width="11.11%" resizable="false" >
 										<Label text="{i18n>CustName}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>ZzendcuName}"/>
+											<Text text="{mainservices>NameOrg1}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="11.11%" resizable="false" >
