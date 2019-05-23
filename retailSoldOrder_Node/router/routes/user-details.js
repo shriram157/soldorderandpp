@@ -100,7 +100,7 @@ module.exports = function (appContext) {
 			// var brand;
 			// if (isDivisionSent) {
 			// 	this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
-}
+// }
 // bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
 // 				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(SalesGroup eq 'T01')&$orderby=BusinessPartner asc";
 			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
