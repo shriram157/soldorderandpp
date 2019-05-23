@@ -453,7 +453,7 @@ if(quantity.length >0)
 // 		var charCode =quantity[i].keycode;
 		    if (isNaN(quantity[i]))
       {
-      		sap.m.MessageBox.show("Please enter a numeric value", sap.m.MessageBox.Icon.ERROR, "Error", sap
+      		sap.m.MessageBox.show("Please enter a numeric value for quantity", sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
             
 		}
