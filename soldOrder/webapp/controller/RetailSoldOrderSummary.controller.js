@@ -23,6 +23,34 @@ sap.ui.define([
 			// var data = oTbl.getModel().getData().ProductCollection;
 		
 			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
+		
+			// 	var host = RSOS_controller.host();
+		
+			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
+			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
+			// $.ajax({
+			// 	url: url,
+			// 	method: 'GET',
+			// 	async: false,
+			// 	dataType: 'json',
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		if (seriesCB.getValue() !== "") {
+			// 			//seriesCB.setValue(" ");
+			// 			seriesCB.setSelectedKey(null);
+			// 		}
+			// 		//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+			// 		var oModel = new sap.ui.model.json.JSONModel();
+			// 		oModel.setData(data.d.results);
+			// 		RSOA_controller.getView().setModel(oModel, "seriesModel");
+
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
+			// 		var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+			// 			.m.MessageBox.Action.OK, null, null);
+			// 	}
+			// });
 		},
 		_onObjectMatched: function (oEvent) {
 			this.getView().byId("idmenu1").setType('Transparent');
@@ -86,12 +114,12 @@ sap.ui.define([
 				for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
 					dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey()));
 				}
-				if (dfilter.length > 0) {
+				// if (dfilter.length > 0) {
 					var filter_dealers = new Filter(dfilter, false);
 					//---------------------------------------------------------------
 					var items1 = this.getView().byId("table_RSOS").getBinding('rows');
 					items1.filter(filter_dealers);
-				}
+				// }
 			}
 			//================================================================================================== 
 			// if (AppController.flagDealerUser == true) {
