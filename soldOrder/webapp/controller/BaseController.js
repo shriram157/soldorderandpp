@@ -337,7 +337,13 @@ sap.ui.define([
 				success: function (oData) {
 					var BpDealer = [];
 					var userAttributes = [];
+	var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			var brand;
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 
+			
+			}
 					$.each(oData.attributes, function (i, item) {
 						var BpLength = item.BusinessPartner.length;
 
@@ -345,7 +351,7 @@ sap.ui.define([
 							"BusinessPartnerKey": item.BusinessPartnerKey,
 							"BusinessPartner": item.BusinessPartner, //.substring(5, BpLength),
 							"BusinessPartnerName": item.BusinessPartnerName, //item.OrganizationBPName1 //item.BusinessPartnerFullName
-							"Division": item.Division,
+							"Division": this.sDivision,
 							"BusinessPartnerType": item.BusinessPartnerType,
 							"searchTermReceivedDealerName": item.SearchTerm2
 						});
