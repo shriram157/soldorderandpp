@@ -332,6 +332,7 @@ sap.ui.define([
 				dataType: "json",
 				async: false,
 				success: function (oData) {
+					console.log("initial BP load", oData);
 					var BpDealer = [];
 					var userAttributes = [];
 					var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
@@ -355,8 +356,10 @@ sap.ui.define([
 							"BusinessPartnerType": item.BusinessPartnerType,
 							"searchTermReceivedDealerName": item.SearchTerm2
 						});
+						console.log("BpDealer", BpDealer);
 
 					});
+					
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 
 				}.bind(this),
