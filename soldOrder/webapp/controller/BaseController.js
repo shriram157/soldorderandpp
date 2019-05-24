@@ -333,7 +333,8 @@ sap.ui.define([
 				async: false,
 				success: function (oData) {
 					console.log("initial BP load", oData);
-					var BpDealer = [];
+					var BpDealerArr = [], BpDealer = [];
+					
 					var userAttributes = [];
 					var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 					if (isDivisionSent) {
@@ -348,7 +349,7 @@ sap.ui.define([
 						var BpLength = item.BusinessPartner.length;
 						console.log("Div",that.Div);
 						if (item.BPDivision == that.Div) {
-							BpDealer.push({
+							BpDealerArr.push({
 								"BusinessPartnerKey": item.BusinessPartnerKey,
 								"BusinessPartner": item.BusinessPartner, //.substring(5, BpLength),
 								"BusinessPartnerName": item.BusinessPartnerName, //item.OrganizationBPName1 //item.BusinessPartnerFullName
@@ -357,8 +358,23 @@ sap.ui.define([
 								"searchTermReceivedDealerName": item.SearchTerm2
 							});
 						}
-
 					});
+					if (oData.samlAttributes.UserType[0] == "Dealer") {
+                        BpDealer= BpDealerArr;
+                    } else {
+					var aBusinessPartnerKey = oData.sales.reduce(function (obj, hash) {
+                            obj[hash.Customer] = true;
+                            return obj;
+                        }, {});
+                        for (var i = 0; i < BpDealerArr.length; i++) {
+                            if (aBusinessPartnerKey[BpDealerArr[i].BusinessPartnerKey]) {
+                                BpDealer.push(BpDealerArr[i]);
+                            }
+                        }
+                    }
+
+
+                    	
 					console.log("BpDealer", BpDealer);
 
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
