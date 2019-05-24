@@ -339,27 +339,28 @@ sap.ui.define([
 					if (isDivisionSent) {
 						this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 					}
+					if (this.sDivision == "10") {
+						this.Div = "01";
+					} else if (this.sDivision == "20") {
+						this.Div = "02";
+					}
 					$.each(oData.attributes, function (i, item) {
 						var BpLength = item.BusinessPartner.length;
-						if(this.sDivision == "10"){
-							this.Div = "01";
+						console.log("Div",that.Div);
+						if (item.BPDivision == that.Div) {
+							BpDealer.push({
+								"BusinessPartnerKey": item.BusinessPartnerKey,
+								"BusinessPartner": item.BusinessPartner, //.substring(5, BpLength),
+								"BusinessPartnerName": item.BusinessPartnerName, //item.OrganizationBPName1 //item.BusinessPartnerFullName
+								"BPDivision": item.BPDivision,
+								"BusinessPartnerType": item.BusinessPartnerType,
+								"searchTermReceivedDealerName": item.SearchTerm2
+							});
 						}
-						else if(this.sDivision == "20"){
-							this.Div = "02";
-						}
-
-						BpDealer.push({
-							"BusinessPartnerKey": item.BusinessPartnerKey,
-							"BusinessPartner": item.BusinessPartner, //.substring(5, BpLength),
-							"BusinessPartnerName": item.BusinessPartnerName, //item.OrganizationBPName1 //item.BusinessPartnerFullName
-							"BPDivision": this.Div,
-							"BusinessPartnerType": item.BusinessPartnerType,
-							"searchTermReceivedDealerName": item.SearchTerm2
-						});
-						console.log("BpDealer", BpDealer);
 
 					});
-					
+					console.log("BpDealer", BpDealer);
+
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 
 				}.bind(this),
