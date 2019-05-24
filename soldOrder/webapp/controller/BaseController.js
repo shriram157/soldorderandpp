@@ -335,19 +335,23 @@ sap.ui.define([
 					var BpDealer = [];
 					var userAttributes = [];
 					var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-
 					if (isDivisionSent) {
 						this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
-
 					}
 					$.each(oData.attributes, function (i, item) {
 						var BpLength = item.BusinessPartner.length;
+						if(this.sDivision == "10"){
+							this.Div = "01";
+						}
+						else if(this.sDivision == "20"){
+							this.Div = "02";
+						}
 
 						BpDealer.push({
 							"BusinessPartnerKey": item.BusinessPartnerKey,
 							"BusinessPartner": item.BusinessPartner, //.substring(5, BpLength),
 							"BusinessPartnerName": item.BusinessPartnerName, //item.OrganizationBPName1 //item.BusinessPartnerFullName
-							"BPDivision": this.sDivision,
+							"BPDivision": this.Div,
 							"BusinessPartnerType": item.BusinessPartnerType,
 							"searchTermReceivedDealerName": item.SearchTerm2
 						});
