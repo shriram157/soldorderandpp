@@ -42,21 +42,21 @@ sap.ui.define([
 			// this.getDealer();
 			var oGetText = oEvent.getSource().getText();
 			if (oGetText === this.oBundle.getText("menu1")) {
-				
+
 				this.getOwnerComponent().getRouter().navTo("RouteView1", {}, true); //page 1
-				
+
 			} else if (oGetText === this.oBundle.getText("menu2")) {
-				
+
 				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary"); //page 10
-				
+
 			} else if (oGetText === this.oBundle.getText("menu3")) {
-			
+
 				this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
-				
+
 			} else if (oGetText === this.oBundle.getText("menu4")) { //dicey sol, check it again 
-				
+
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary");
-			
+
 			}
 			//REquired More Clarification 
 			//---------------------------------------------------------------------
@@ -72,11 +72,11 @@ sap.ui.define([
 			// } 
 			else if (oGetText === this.oBundle.getText("menu5")) {
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
-				
+
 			} else if (oGetText === this.oBundle.getText("menu9")) {
-				
+
 				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer"); //page 16
-			
+
 			}
 			// else if (oGetText === this.oBundle.getText("menu6")) {
 			// 	this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
@@ -142,7 +142,7 @@ sap.ui.define([
 				this.sCurrentLocale = 'EN';
 			}
 		},
-			returnBrowserLanguage: function () {
+		returnBrowserLanguage: function () {
 			var oI18nModel = new sap.ui.model.resource.ResourceModel({
 				bundleUrl: "i18n/i18n.properties"
 			});
@@ -158,7 +158,7 @@ sap.ui.define([
 			console.log(sSelectedLocale);
 			//selected language. 
 			// if (window.location.search == "?language=fr") {
-			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/"|| sSelectedLocale == "FR"|| sSelectedLocale == "FR/") {
+			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/" || sSelectedLocale == "FR" || sSelectedLocale == "FR/") {
 				var i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
 					bundleLocale: ("fr")
@@ -243,14 +243,11 @@ sap.ui.define([
 			console.log(sPreviousHash);
 			console.log(window.history);
 			if (sPreviousHash !== undefined) {
-				if(sPreviousHash == "page11")
-				{
-									this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
+				if (sPreviousHash == "page11") {
+					this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
 
-				}
-				else
-				{
-				window.history.go(-1);
+				} else {
+					window.history.go(-1);
 				}
 			} else {
 				basCont.getRouter().navTo("RetailSoldOrderA", {}, true); // has the value true and makes sure that the
@@ -337,13 +334,12 @@ sap.ui.define([
 				success: function (oData) {
 					var BpDealer = [];
 					var userAttributes = [];
-	var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-			var brand;
-			if (isDivisionSent) {
-				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+					var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 
-			
-			}
+					if (isDivisionSent) {
+						this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+
+					}
 					$.each(oData.attributes, function (i, item) {
 						var BpLength = item.BusinessPartner.length;
 
@@ -351,7 +347,7 @@ sap.ui.define([
 							"BusinessPartnerKey": item.BusinessPartnerKey,
 							"BusinessPartner": item.BusinessPartner, //.substring(5, BpLength),
 							"BusinessPartnerName": item.BusinessPartnerName, //item.OrganizationBPName1 //item.BusinessPartnerFullName
-							"Division": this.sDivision,
+							"BPDivision": this.sDivision,
 							"BusinessPartnerType": item.BusinessPartnerType,
 							"searchTermReceivedDealerName": item.SearchTerm2
 						});

@@ -190,7 +190,8 @@ module.exports = function (appContext) {
 						BusinessPartnerKey: bpResults[i].BusinessPartner,
 						BusinessPartner: bpResults[i].BusinessPartner.substring(5, bpLength),
 						BusinessPartnerType: bpResults[i].BusinessPartnerType,
-						SearchTerm2: bpResults[i].SearchTerm2
+						SearchTerm2: bpResults[i].SearchTerm2,
+						BPDivision: bpResults[i].to_Customer.Attribute1
 					};
 					try {
 						toCustomerAttr1 = bpResults[i].to_Customer.Attribute1;
