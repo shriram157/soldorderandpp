@@ -1031,10 +1031,14 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 				// 	key: "{oModel3>Model}",
 				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 				// }));
+				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+
 				this.getView().byId('model_CSOR').bindItems({
-					path: "mainservices>/ZVMS_CDS_Model",
+					path: "mainservices>/ZVMS_Model_EXCLSet",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
-						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
@@ -1048,7 +1052,17 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
+						var language = RSO_MSO_controller.returnBrowserLanguage();
+			var suf;
+	if (language === "FR") {
+				suf =
+					"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
 
+			} else {
+				suf =
+					"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+
+			}
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				// this.getView().byId('suffix_CSOR').bindItems('oModel1>/', new sap.ui.core.ListItem({
@@ -1062,7 +1076,7 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
-						text: "{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
+						text: suf
 					})
 				});
 				// var items_binding = this.getView().byId('suffix_CSOR').getBinding('items');
@@ -1108,15 +1122,22 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 				// 	key: "{oModel2>ExteriorColorCode}",
 				// 	text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 				// }));
+				var color;
+				var language = RSO_MSO_controller.returnBrowserLanguage();
+				if (language === "FR") {
+					color = "{mainservices>ext}/{mainservices>mktg_desc_fr}";
+				} else {
+					color = "{mainservices>ext}/{mainservices>mktg_desc_en}";
+				}
 				this.getView().byId('colour_CSOR').bindItems({
-					path: 'VechileModel>/zc_exterior_trim',
+					path: 'mainservices>/ZVMS_CDS_Colour',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
-						key: "{VechileModel>ExteriorColorCode}",
-						text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+						key: "{mainservices>ext}",
+						text: color
 					})
 				});
 				// var items_binding = this.getView().byId('colour_CSOR').getBinding('items');

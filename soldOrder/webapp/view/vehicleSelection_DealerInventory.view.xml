@@ -29,7 +29,7 @@
 							<Column width="10%" resizable="false">
 								<m:Label text=""/>
 								<template>
-									<m:Link text="Select" press="_onSelect" wrapping="false"/>
+									<m:Link text="{i18n>Select}" press="_onSelect" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false" sortProperty="Category">
