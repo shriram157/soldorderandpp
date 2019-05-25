@@ -129,7 +129,7 @@
 							</ComboBox>
 							<!--//APX-->
 							<Label wrapping="true" text="{i18n>quantity}"/>
-							<Input id="quantity_CFSO" required="true"></Input>
+							<Input id="quantity_CFSO" required="true" maxLength="2"></Input>
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<Text text="{i18n>from}">
 								<layoutData>
