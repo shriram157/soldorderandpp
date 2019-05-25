@@ -1131,9 +1131,9 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 				}
 				this.getView().byId('colour_CSOR').bindItems({
 					path: 'mainservices>/ZVMS_CDS_Colour',
-					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-						new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
-						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
+						new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>ext}",
