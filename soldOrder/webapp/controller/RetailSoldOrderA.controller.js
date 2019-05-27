@@ -15,6 +15,44 @@ sap.ui.define([
 			RSOA_controller = this;
 			RSOA_controller.getBrowserLanguage();
 			var language = RSOA_controller.returnBrowserLanguage();
+			
+			var salesTypeModel = new sap.ui.model.json.JSONModel();
+			var Obj;
+			if(language== "EN"){
+			Obj = {
+				"SalesType": [{
+		"key": "1",
+		"text": "CASH"
+	}, {
+		"key": "2",
+		"text": "LEASE"
+	}, {
+		"key": "3",
+		"text": "FINANCE"
+	}],
+			};}
+			else{
+				Obj = {
+				
+				"SalesType": [{
+		"key": "1",
+		"text": "ENCAISSER"
+	}, {
+		"key": "2",
+		"text": "BAIL"
+	}, {
+		"key": "3",
+		"text": "LA FINANCE"
+	}],
+			
+};
+			}
+			
+			salesTypeModel.setData(Obj);
+			salesTypeModel.updateBindings(true);
+			sap.ui.getCore().setModel(salesTypeModel, "salesTypeModel");
+			this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"),"salesTypeModel");
+			console.log(sap.ui.getCore().getModel("salesTypeModel"));
 			// var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 			// 	pattern: "yyyy-MM-ddTHH:mm:ss"
 			// });

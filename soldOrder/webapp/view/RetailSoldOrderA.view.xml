@@ -84,8 +84,8 @@
 							<Label wrapping="true" text="{i18n>contractDate}"/>
 							<DatePicker id="ContractDate_RSOA" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD" required="true"></DatePicker>
 							<Label wrapping="true" text="{i18n>salesType}"/>
-							<ComboBox id="SalesType_RSOA" items="{path: '/SalesType', sorter: {path: 'text'}}" required="true" selectionChange="stype_change">
-								<core:Item key="{key}" text="{text}"/>
+							<ComboBox id="SalesType_RSOA" items="{path: 'salesTypeModel>/SalesType', sorter: {path: 'text'}}" required="true" selectionChange="stype_change">
+								<core:Item key="{salesTypeModel>key}" text="{salesTypeModel>text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>approvalNumber}"/>
 							<Input id="tcciNo_RSOA" value="{address>/Street}" maxLength="12"/>

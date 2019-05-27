@@ -12,8 +12,8 @@
 					<f:SimpleForm class="marginCorners" editable="true" width="90%" layout="ResponsiveLayout">
 						<f:content>
 							<Label text="{i18n>ReasonCanc}"/>
-							<ComboBox id="resonCancelId" items="{ path: '/CancellationReason', sorter: { path: 'text' } }" required="true">
-								<core:Item key="{key}" text="{text}"/>
+							<ComboBox id="resonCancelId" items="{ path: 'cancelReasonModel>/CancellationReason', sorter: { path: 'text' } }" required="true">
+								<core:Item key="{cancelReasonModel>key}" text="{cancelReasonModel>text}"/>
 							</ComboBox>
 							<Label text="{i18n>Comments}"/>
 							<TextArea id="comm_CancelSO" maxLength="150"/>

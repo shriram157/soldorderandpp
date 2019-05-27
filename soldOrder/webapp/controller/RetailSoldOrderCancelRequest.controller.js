@@ -15,7 +15,46 @@ sap.ui.define([
 			RSOCancel_controller.getBrowserLanguage();
 			RSOCancel_controller.getOwnerComponent().getRouter().getRoute("RetailSoldOrderCancelRequest").attachPatternMatched(this._getattachRouteMatched,
 				this);
+			var cancelReasonModel = new sap.ui.model.json.JSONModel();
+			var Obj;
+			if(language== "EN"){
+			Obj = {
+				
+					"CancellationReason": [{
+		"key": "1",
+		"text": "Customer Cancelled"
+	}, {
+		"key": "2",
+		"text": "Customer Changed Vehicle"
+	}, {
+		"key": "3",
+		"text": "Others"
+	}],
 
+			};}
+			else{
+				Obj = {
+				
+				"CancellationReason": [{
+		"key": "1",
+		"text": "Client annulé"
+	}, {
+		"key": "2",
+		"text": "Véhicule changé par le client"
+	}, {
+		"key": "3",
+		"text": "Autres"
+	}],
+
+			
+};
+			}
+			
+			cancelReasonModel.setData(Obj);
+			cancelReasonModel.updateBindings(true);
+			sap.ui.getCore().setModel(cancelReasonModel, "cancelReasonModel");
+			this.getView().setModel(sap.ui.getCore().getModel("cancelReasonModel"),"cancelReasonModel");
+			console.log(sap.ui.getCore().getModel("cancelReasonModel"));
 		},
 		_getattachRouteMatched: function (parameters) {
 			requestid = parameters.getParameters().arguments.Soreq;
