@@ -159,7 +159,7 @@
 							<Label wrapping="true" text="{i18n>VehDelDate}"/>
 							<Text text="{path:'mainservices>VDelDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>OrderType}"/>
-							<Text text="{parts:[{path:'mainservices>ZzsoType'},{path:'mainservices>Zzvtn'}], formatter:'toyota.ca.SoldOrder.util.formatter.formatOrderTypewithVTN'}"/>
+							<Text text="{parts:[{path:'mainservices>Zzordtypedesc'},{path:'mainservices>Zzvtn'}], formatter:'toyota.ca.SoldOrder.util.formatter.formatOrderTypewithVTN'}"/>
 							<Label wrapping="true" text="{i18n>CancellationReason}"/>
 							<Text text="{mainservices>ZzcancelRsn}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>

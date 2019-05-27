@@ -58,29 +58,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		formatOrderTypewithVTN: function (Code, Vtn) {
 			if(Vtn)
 			{
-		if (Code === "SO") {
-			return "STOCK Restricted";
-		} else if (Code === "DM") {
-			return "DEMO";
-		} else if (Code === "BA") {
-			return "BANK ALLOC";
-		} else if (Code === "LS") {
-			return "LAUNCH Stock";
-		} else if (Code === "RS") {
-			return "RETAIL SOLD";
-		} else if (Code === "F1") {
-			return "DLR RAC";
-		} else if (Code === "F2") {
-			return "DLR ELITE";
-		} else if (Code === "F3") {
-			return "NAT RAC";
-		} else if (Code === "F4") {
-			return "NAT ELITE";
-		} else if (Code === "F5") {
-			return "MOBILITY";
-		} else {
-			return;
-		}
+				return Code;
 			}
 			else
 			{
