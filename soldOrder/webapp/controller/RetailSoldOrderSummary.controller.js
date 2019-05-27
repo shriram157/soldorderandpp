@@ -53,6 +53,81 @@ sap.ui.define([
 			// });
 		},
 		_onObjectMatched: function (oEvent) {
+			this.SelectedLang= "FR";
+			var globalComboModel = new sap.ui.model.json.JSONModel();
+			var Obj;
+			if(this.SelectedLang== "EN"){
+			Obj = {
+				"FSOSummary_Status": [{
+					"key": "IN-PROGRESS",
+					"text": "In-Progress"
+				}, {
+					"key": "PENDING FULFILMENT",
+					"text": "Pending Fulfillment"
+				}, {
+					"key": "FILLED",
+					"text": "Filled"
+				}, {
+					"key": "REGISTERED",
+					"text": "Registered"
+				}, {
+					"key": "CANCELLED",
+					"text": "Cancelled"
+				}, {
+					"key": "REQUESTED",
+					"text": "Requested"
+				}, {
+					"key": "APPROVED",
+					"text": "Approved"
+				}, {
+					"key": "REJECTED",
+					"text": "Rejected"
+				}, {
+					"key": "COMPLETED",
+					"text": "Completed"
+				}]
+			};}
+			else{
+				Obj = {
+				"FSOSummary_Status": [{
+					"key": "IN-PROGRESS",
+					"text": "In-ProgressFR"
+				}, {
+					"key": "PENDING FULFILMENT",
+					"text": "Pending FulfillmentFR"
+				}, {
+					"key": "FILLED",
+					"text": "FilledFR"
+				}, {
+					"key": "REGISTERED",
+					"text": "Registered"
+				}, {
+					"key": "CANCELLED",
+					"text": "Cancelled"
+				}, {
+					"key": "REQUESTED",
+					"text": "Requested"
+				}, {
+					"key": "APPROVED",
+					"text": "Approved"
+				}, {
+					"key": "REJECTED",
+					"text": "Rejected"
+				}, {
+					"key": "COMPLETED",
+					"text": "Completed"
+				}]
+			};
+			
+
+			}
+			
+			globalComboModel.setData(Obj);
+			globalComboModel.updateBindings(true);
+			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
+			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
+			console.log(sap.ui.getCore().getModel("globalComboModel"));
+			console.log(sap.ui.getCore().getModel("globalComboModel"));
 			this.getView().byId("idmenu1").setType('Transparent');
 			this.getView().byId("idmenu2").setType('Emphasized');
 			this.getView().byId("idmenu3").setType('Transparent');
@@ -61,6 +136,7 @@ sap.ui.define([
 			this.getView().byId("idmenu9").setType('Transparent');
 		},
 		onAfterRendering: function () {
+			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
 			var mcb_series_RSOS = RSOS_controller.getView().byId("mcb_series_RSOS");
 			var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
 			var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
@@ -78,32 +154,32 @@ sap.ui.define([
 
 	
 			}
-			var salesOffice = this.getView().getModel("LoginUserModel").getProperty("/Zone");
+			// var salesOffice = this.getView().getModel("LoginUserModel").getProperty("/Zone");
 		
-				var url = host + "/ZVMS_SOLD_ORDER_SRV/ZCDS_CONSOLEDATED_DLR?$filter=SalesOffice eq '"+salesOffice+"' and Division eq '"+this.sDivision+"'";
-			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
-			$.ajax({
-				url: url,
-				method: 'GET',
-				async: false,
-				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
-					if (mcb_dealer_RSOS.getValue() !== "") {
-						//seriesCB.setValue(" ");
-						mcb_dealer_RSOS.setSelectedKey(null);
-					}
-					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
-					var oModel = new sap.ui.model.json.JSONModel();
-					oModel.setData(data.d.results);
-					RSOS_controller.getView().setModel(oModel, "dealerModel");
+			// 	var url = host + "/ZVMS_SOLD_ORDER_SRV/ZCDS_CONSOLEDATED_DLR?$filter=SalesOffice eq '"+salesOffice+"' and Division eq '"+this.sDivision+"'";
+			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
+			// $.ajax({
+			// 	url: url,
+			// 	method: 'GET',
+			// 	async: false,
+			// 	dataType: 'json',
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		if (mcb_dealer_RSOS.getValue() !== "") {
+			// 			//seriesCB.setValue(" ");
+			// 			mcb_dealer_RSOS.setSelectedKey(null);
+			// 		}
+			// 		//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+			// 		var oModel = new sap.ui.model.json.JSONModel();
+			// 		oModel.setData(data.d.results);
+			// 		RSOS_controller.getView().setModel(oModel, "dealerModel");
 
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-				}
-			});
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
+			// 		var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+			// 			.m.MessageBox.Action.OK, null, null);
+			// 	}
+			// });
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================

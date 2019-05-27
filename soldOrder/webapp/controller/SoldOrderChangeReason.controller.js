@@ -17,7 +17,47 @@ sap.ui.define([
 			SOCR_controller.getBrowserLanguage();
 			SOCR_controller.getOwnerComponent().getRouter().getRoute("SoldOrderChangeReason").attachPatternMatched(this._getattachRouteMatched,
 				this);
+				var Obj;
+				var changeReasonModel = new sap.ui.model.json.JSONModel();
+	var language = SOCR_controller.returnBrowserLanguage();
+			if(language== "EN"){
+			Obj = {
+				
+					"CancellationReason": [{
+		"key": "1",
+		"text": "Customer Cancelled"
+	}, {
+		"key": "2",
+		"text": "Customer Changed Vehicle"
+	}, {
+		"key": "3",
+		"text": "Others"
+	}],
 
+			};}
+			else{
+				Obj = {
+				
+				"CancellationReason": [{
+		"key": "1",
+		"text": "Client annulé"
+	}, {
+		"key": "2",
+		"text": "Véhicule changé par le client"
+	}, {
+		"key": "3",
+		"text": "Autres"
+	}],
+
+			
+};
+			}
+			
+			changeReasonModel.setData(Obj);
+			changeReasonModel.updateBindings(true);
+			sap.ui.getCore().setModel(changeReasonModel, "changeReasonModel");
+			this.getView().setModel(sap.ui.getCore().getModel("changeReasonModel"),"changeReasonModel");
+			console.log(sap.ui.getCore().getModel("changeReasonModel"));
 		},
 		_getattachRouteMatched: function (parameters) {
 			requestid = parameters.getParameters().arguments.Soreq;

@@ -17,6 +17,7 @@ sap.ui.define([
 				this);
 			var cancelReasonModel = new sap.ui.model.json.JSONModel();
 			var Obj;
+				var language = RSOCancel_controller.returnBrowserLanguage();
 			if(language== "EN"){
 			Obj = {
 				
