@@ -55,13 +55,18 @@
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 								<!--	<Text text="{Category}"/>-->
-									<Text text="{parts: [{path:'mainservices>Model'},{path:'mainservices>MODEL_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
+									<!--<Text text="{parts: [{path:'mainservices>Model'},{path:'mainservices>MODEL_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>-->
+								<ComboBox id="model_CSOR" editable="false" maxWidth = "100%" selectedKey="{mainservices>Zzmodel}">
+							</ComboBox>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" sortProperty="Category" resizable="false">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
-									<Text text="{parts: [{path:'mainservices>Suffix'},{path:'mainservices>SUFFIX_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
+									<ComboBox id="suffix_CSOR" editable="false" maxWidth = "100%"  selectedKey="{mainservices>Zzsuffix}">
+																</ComboBox>
+
+									<!--<Text text="{parts: [{path:'mainservices>Suffix'},{path:'mainservices>SUFFIX_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 								</t:template>
 							</t:Column>
 								<t:Column width="9.11%" resizable="false">
@@ -73,7 +78,10 @@
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
-									<Text text="{parts: [{path:'mainservices>ExteriorColorCode'},{path:'mainservices>INTCOL_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
+								<ComboBox id="colour_CSOR" editable="false" maxWidth = "100%"  selectedKey="{mainservices>Zzextcol}">
+								<!--<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>-->
+							</ComboBox>
+									<!--<Text text="{parts: [{path:'mainservices>ExteriorColorCode'},{path:'mainservices>INTCOL_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
