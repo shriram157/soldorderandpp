@@ -72,8 +72,8 @@
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
 							<Text text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>SalesType}"/>
-							<ComboBox id="salestype_CSOR" items="{ path: '/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
-								<core:Item key="{key}" text="{text}"/>
+							<ComboBox id="salestype_CSOR" items="{ path: 'salesTypeModel>/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
+								<core:Item key="{salesTypeModel>key}" text="{salesTypeModel>text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<VBox>

@@ -24,7 +24,45 @@ sap.ui.define([
 			this.getView().setModel(zcustomerModel, 'Customer');
 			this.getView().setModel(zinventoryModel, 'Inventory');
 			this.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(this._getattachRouteMatched, this);
-
+		var language = RSOA_controller.returnBrowserLanguage();
+			
+			var salesTypeModel = new sap.ui.model.json.JSONModel();
+			var Obj;
+			if(language== "EN"){
+			Obj = {
+				"SalesType": [{
+		"key": "1",
+		"text": "CASH"
+	}, {
+		"key": "2",
+		"text": "LEASE"
+	}, {
+		"key": "3",
+		"text": "FINANCE"
+	}],
+			};}
+			else{
+				Obj = {
+				
+				"SalesType": [{
+		"key": "1",
+		"text": "ENCAISSER"
+	}, {
+		"key": "2",
+		"text": "BAIL"
+	}, {
+		"key": "3",
+		"text": "LA FINANCE"
+	}],
+			
+};
+			}
+			
+			salesTypeModel.setData(Obj);
+			salesTypeModel.updateBindings(true);
+			sap.ui.getCore().setModel(salesTypeModel, "salesTypeModel");
+			this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"),"salesTypeModel");
+			console.log(sap.ui.getCore().getModel("salesTypeModel"));
 
 		},
 		_getattachRouteMatched: function (parameters) {
