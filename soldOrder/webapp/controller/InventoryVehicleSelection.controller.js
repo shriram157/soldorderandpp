@@ -15,9 +15,9 @@ sap.ui.define([
 
 			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
 				this);
-	InvVehSel_controller.series_selected();
-	InvVehSel_controller.model_selected();
-	InvVehSel_controller.suffix_selected();
+	// InvVehSel_controller.series_selected();
+	// InvVehSel_controller.model_selected();
+	// InvVehSel_controller.suffix_selected();
 		},
 		_getattachRouteMatched: function (parameters) {
 			this.zrequest = parameters.getParameters().arguments.Soreq;
