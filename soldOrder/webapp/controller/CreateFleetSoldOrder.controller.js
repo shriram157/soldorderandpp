@@ -666,6 +666,23 @@ if(quantity.length >0)
 			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
 			var language = CFSO_controller.returnBrowserLanguage();
 			var suf;
+				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+
+				var brand;
+				var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+
+				if (this.sDivision == '10') // set the toyoto logo
+				{
+					brand = "TOYOTA";
+
+				} else { // set the lexus logo
+					brand = "LEXUS";
+
+					// }
+				}
+			}
 				if (language === "FR") {
 						suf = "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
 
@@ -691,7 +708,9 @@ if(quantity.length >0)
 				suffixCB.bindItems({
 					path: 'mainservices>/ZVMS_CDS_SUFFIX',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+						new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, brand),
+						new sap.ui.model.Filter("DLR", sap.ui.model.FilterOperator.EQ, dealer)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
