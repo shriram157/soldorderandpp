@@ -57,7 +57,7 @@
 								<!--	<Text text="{Category}"/>-->
 									<!--<Text text="{parts: [{path:'mainservices>Model'},{path:'mainservices>MODEL_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>-->
 									<Text text="{mainservices>Model}" wrapping="false"/>
-							</ComboBox>
+							<!--</ComboBox>-->
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" sortProperty="Category" resizable="false">
@@ -80,7 +80,7 @@
 							<!--	<ComboBox id="colour_CSOR" editable="false" maxWidth = "100%"  selectedKey="{mainservices>Zzextcol}">-->
 								<!--<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>-->
 							<!--</ComboBox>-->
-								<m:Text text="{mainservices>ExteriorColorCode}" wrapping="false"/>
+								<Text text="{mainservices>ExteriorColorCode}" wrapping="false"/>
 									<!--<Text text="{parts: [{path:'mainservices>ExteriorColorCode'},{path:'mainservices>INTCOL_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
 								</t:template>
 							</t:Column>
