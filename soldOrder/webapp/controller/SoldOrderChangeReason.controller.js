@@ -88,13 +88,13 @@ sap.ui.define([
 						// Request_Type: reqTypeId_SOCR_val,
 						ZzsoReqNo: requestid
 					}, // function import parameters
-					success: function (oData, response) {
+					success: function (data, response) {
 						SOCR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
 							Soreq: requestid
 						}, true); //page8
 					},
-					error: function (request, errorText, errorCode) {
-					sap.m.MessageBox.show(errorText, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+					error: function (oData, oResponse) {
+					sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
 						.MessageBox.Action.OK, null, null);
 					}
 				});

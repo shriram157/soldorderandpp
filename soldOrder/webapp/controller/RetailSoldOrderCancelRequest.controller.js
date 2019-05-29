@@ -90,14 +90,14 @@ sap.ui.define([
 						Reason: comboInput.getValue(),
 						ZzsoReqNo: requestid
 					}, // function import parameters
-					success: function (oData, response) {
+					success: function (data, response) {
 						RSOCancel_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 							Soreq: requestid
 						}, true); //page 3
 					},
-					error: function (request, errorText, errorCode) {
+					error: function (oData, response) {
 
-					sap.m.MessageBox.show(errorText, sap.m.MessageBox.Icon.ERROR, "Error", sap
+					sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				
 					}
