@@ -12,6 +12,101 @@ sap.ui.define([
 			FSOD_controller = this;
 			FSOD_controller.getBrowserLanguage();
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrderDetails").attachPatternMatched(this._onObjectMatched, this);
+			var language = FSOD_controller.returnBrowserLanguage();
+			var globalComboModel = new sap.ui.model.json.JSONModel();
+			var Obj;
+			if(language== "EN"){
+			Obj = {
+				"FSODetails_Status": [{
+		"key": "AUDIT-COMPLETED",
+		"text": "Audit - Completed"
+	}, {
+		"key": "PENDING FULFILLMENT",
+		"text": "Pending Fulfillment "
+	}, {
+		"key": "FAILED",
+		"text": "Failed"
+	}, {
+		"key": "FILLED",
+		"text": "Filled"
+	}, {
+		"key": "AUDIT-IN PROGRESS",
+		"text": "Audit - In Progress"
+	}, {
+		"key": "REGISTERED",
+		"text": "Registered"
+	}, {
+		"key": "CANCELLED",
+		"text": "Cancelled"
+	}]
+			};}
+			else{
+				Obj = {
+				"FSODetails_Status": [{
+		"key": "AUDIT-COMPLETED",
+		"text": "Audit - Completed"
+	}, {
+		"key": "PENDING FULFILLMENT",
+		"text": "Pending Fulfillment "
+	}, {
+		"key": "FAILED",
+		"text": "Failed"
+	}, {
+		"key": "FILLED",
+		"text": "Filled"
+	}, {
+		"key": "AUDIT-IN PROGRESS",
+		"text": "Audit - In Progress"
+	}, {
+		"key": "REGISTERED",
+		"text": "Registered"
+	}, {
+		"key": "CANCELLED",
+		"text": "Cancelled"
+	}]
+			};
+			
+
+			}
+			
+			globalComboModel.setData(Obj);
+			globalComboModel.updateBindings(true);
+			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
+			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
+			console.log(sap.ui.getCore().getModel("globalComboModel"));
+			
+			
+			var AuditModel = new sap.ui.model.json.JSONModel();
+			var Object;
+			if(language== "EN"){
+		Object = {"FSODetail_AuditStatus": [{
+		"key": "IN-PROGRESS",
+		"text": "In-Progress"
+	}, {
+		"key": "COMPLETE",
+		"text": "Completed"
+	}],
+			
+		};
+				
+			}
+			else{
+				Object = {"FSODetail_AuditStatus": [{
+		"key": "IN-PROGRESS",
+		"text": "In-Progress"
+	}, {
+		"key": "COMPLETE",
+		"text": "Completed"
+	}],};
+			
+
+			}
+			
+			AuditModel.setData(Object);
+			AuditModel.updateBindings(true);
+			sap.ui.getCore().setModel(AuditModel, "AuditModel");
+			this.getView().setModel(sap.ui.getCore().getModel("AuditModel"),"AuditModel");
+			console.log(sap.ui.getCore().getModel("AuditModel"));
 		},
 		_onObjectMatched: function (oEvent) {
 			this.getView().byId("idmenu1").setType('Transparent');

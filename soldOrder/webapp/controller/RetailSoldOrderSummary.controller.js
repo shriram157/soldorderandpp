@@ -13,6 +13,124 @@ sap.ui.define([
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
 			RSOS_controller._handleServiceSuffix_Series();
+					var language = RSOS_controller.returnBrowserLanguage();
+			var globalComboModel = new sap.ui.model.json.JSONModel();
+			var Obj;
+			if(language== "EN"){
+			Obj = {
+				"FSOSummary_Status": [
+					
+					{
+					"key": "IN-PROGRESS",
+					"text": "In-Progress"
+				}, {
+					"key": "PENDING FULFILMENT",
+					"text": "Pending Fulfillment"
+				}, {
+					"key": "FILLED",
+					"text": "Filled"
+				}, {
+					"key": "REGISTERED",
+					"text": "Registered"
+				}, {
+					"key": "CANCELLED",
+					"text": "Cancelled"
+				}, {
+					"key": "REQUESTED",
+					"text": "Requested"
+				}, {
+					"key": "APPROVED",
+					"text": "Approved"
+				}, {
+					"key": "REJECTED",
+					"text": "Rejected"
+				}, {
+					"key": "COMPLETED",
+					"text": "Completed"
+				}]
+			};}
+			else{
+				Obj = {
+				"FSOSummary_Status": [
+					{
+					"key": "ALL",
+					"text": "SELECT ALL"
+					},
+					{
+					"key": "IN-PROGRESS",
+					"text": "In-Progress"
+				}, {
+					"key": "PENDING FULFILMENT",
+					"text": "Pending Fulfillment"
+				}, {
+					"key": "FILLED",
+					"text": "Filled"
+				}, {
+					"key": "REGISTERED",
+					"text": "Registered"
+				}, {
+					"key": "CANCELLED",
+					"text": "Cancelled"
+				}, {
+					"key": "REQUESTED",
+					"text": "Requested"
+				}, {
+					"key": "APPROVED",
+					"text": "Approved"
+				}, {
+					"key": "REJECTED",
+					"text": "Rejected"
+				}, {
+					"key": "COMPLETED",
+					"text": "Completed"
+				}]
+			};
+			
+
+			}
+			
+			globalComboModel.setData(Obj);
+			globalComboModel.updateBindings(true);
+			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
+			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
+			console.log(sap.ui.getCore().getModel("globalComboModel"));
+			
+			
+			var AuditModel = new sap.ui.model.json.JSONModel();
+			var Object;
+			if(language== "EN"){
+		Object = {	
+				"AuditStatus": [{
+		"key": "IN-PROGRESS",
+		"text": "In-Progress"
+	}, {
+		"key": "COMPLETE",
+		"text": "Complete"
+	}]
+
+			};
+				
+			}
+			else{
+				Object = {
+				"AuditStatus": [{
+		"key": "IN-PROGRESS",
+		"text": "In-Progress"
+	}, {
+		"key": "COMPLETE",
+		"text": "Complete"
+	}]
+
+			};
+			
+
+			}
+			
+			AuditModel.setData(Object);
+			AuditModel.updateBindings(true);
+			sap.ui.getCore().setModel(AuditModel, "AuditModel");
+			this.getView().setModel(sap.ui.getCore().getModel("AuditModel"),"AuditModel");
+			console.log(sap.ui.getCore().getModel("AuditModel"));
 			// 	var oTbl = RSOS_controller.getView().byId("table_RSOS");
 			// //-----------------------------------------------------------
 			// //-----Binding without Fleet Reference----------------------
@@ -53,81 +171,7 @@ sap.ui.define([
 			// });
 		},
 		_onObjectMatched: function (oEvent) {
-			this.SelectedLang= "FR";
-			var globalComboModel = new sap.ui.model.json.JSONModel();
-			var Obj;
-			if(this.SelectedLang== "EN"){
-			Obj = {
-				"FSOSummary_Status": [{
-					"key": "IN-PROGRESS",
-					"text": "In-Progress"
-				}, {
-					"key": "PENDING FULFILMENT",
-					"text": "Pending Fulfillment"
-				}, {
-					"key": "FILLED",
-					"text": "Filled"
-				}, {
-					"key": "REGISTERED",
-					"text": "Registered"
-				}, {
-					"key": "CANCELLED",
-					"text": "Cancelled"
-				}, {
-					"key": "REQUESTED",
-					"text": "Requested"
-				}, {
-					"key": "APPROVED",
-					"text": "Approved"
-				}, {
-					"key": "REJECTED",
-					"text": "Rejected"
-				}, {
-					"key": "COMPLETED",
-					"text": "Completed"
-				}]
-			};}
-			else{
-				Obj = {
-				"FSOSummary_Status": [{
-					"key": "IN-PROGRESS",
-					"text": "In-ProgressFR"
-				}, {
-					"key": "PENDING FULFILMENT",
-					"text": "Pending FulfillmentFR"
-				}, {
-					"key": "FILLED",
-					"text": "FilledFR"
-				}, {
-					"key": "REGISTERED",
-					"text": "Registered"
-				}, {
-					"key": "CANCELLED",
-					"text": "Cancelled"
-				}, {
-					"key": "REQUESTED",
-					"text": "Requested"
-				}, {
-					"key": "APPROVED",
-					"text": "Approved"
-				}, {
-					"key": "REJECTED",
-					"text": "Rejected"
-				}, {
-					"key": "COMPLETED",
-					"text": "Completed"
-				}]
-			};
-			
 
-			}
-			
-			globalComboModel.setData(Obj);
-			globalComboModel.updateBindings(true);
-			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
-			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
-			console.log(sap.ui.getCore().getModel("globalComboModel"));
-			console.log(sap.ui.getCore().getModel("globalComboModel"));
 			this.getView().byId("idmenu1").setType('Transparent');
 			this.getView().byId("idmenu2").setType('Emphasized');
 			this.getView().byId("idmenu3").setType('Transparent');
@@ -136,7 +180,7 @@ sap.ui.define([
 			this.getView().byId("idmenu9").setType('Transparent');
 		},
 		onAfterRendering: function () {
-			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
+			// this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
 			var mcb_series_RSOS = RSOS_controller.getView().byId("mcb_series_RSOS");
 			var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
 			var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
@@ -279,7 +323,25 @@ sap.ui.define([
 			var allfilter = [];
 			//-----------------Sold Order Status-----------------
 			var afilter = [];
+			// var status_all = false;
+			// 	var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
+			// var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
+			// for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
+			// 	if(this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()==="ALL")
+			// 	{
+			// 			mcb_rsStatus_RSOS.setSelectedItems(mcb_rsStatus_RSOS.getItems());
+			// 			status_all = true;
+
+			// 			break;
+			// 	}
+			// }
+			// if(status_all ==false)
+			// {
+			// 			mcb_rsStatus_RSOS.setSelectedItems(null);
+
+			// }
 			for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
+			
 				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()));
 			}
 				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, ""));
@@ -290,7 +352,29 @@ sap.ui.define([
 			}
 			//-----------------Audit Status-----------------
 				var asfilter = [];
+				// var audit_all =false;
+			// 	for (var i = 0; i < this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
+				
+			// 		if(this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()==="ALL")
+			// 	{
+			// 			mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
+			// 			audit_all = true;
+
+			// 			break;		
+			// 	}
+			// }
+			// if(audit_all == false)
+			// {
+			// 	mcb_auditStatus_RSOS.setSelectedItems(null);
+			// }
 			for (var i = 0; i < this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
+				// 	if(this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()==="ALL")
+				// {
+				// 		mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
+	
+
+				// 		break;		
+				// }
 				asfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()));
 			}
 				asfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, ""));

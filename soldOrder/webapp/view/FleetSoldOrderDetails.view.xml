@@ -20,8 +20,8 @@
 											<l:GridData span="L2 M12 S12"/>
 										</layoutData>-->
 												</Label>
-												<MultiComboBox width="" id="mcb_status_FSOD" selectionChange="_refresh" items="{ path: '/FSODetails_Status', sorter: { path: 'key' } }">
-													<core:Item key="{key}" text="{text}"/>
+												<MultiComboBox width="" id="mcb_status_FSOD" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSODetails_Status', sorter: { path: 'key' } }">
+													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -35,8 +35,8 @@
 										</layoutData>-->
 												</Label>
 												<MultiComboBox id="mcb_auditStatus_FSOD" width="" selectionChange="_refresh"
-													items="{ path: '/FSODetail_AuditStatus', sorter: { path: 'key' } }">
-													<core:Item key="{key}" text="{text}"/>
+													items="{ path: 'AuditModel>/FSODetail_AuditStatus', sorter: { path: 'key' } }">
+													<core:Item key="{AuditModel>key}" text="{AuditModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>

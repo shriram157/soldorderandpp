@@ -49,9 +49,9 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_auditStatus_RSOS" items="{ path:'/AuditStatus'}" width="300px" selectionChange="_refresh"
+												<MultiComboBox id="mcb_auditStatus_RSOS" items="{ path:'AuditModel>/AuditStatus'}" width="300px" selectionChange="_refresh"
 													class="sapUiMediumMarginEnd">
-													<core:Item key="{key}" text="{text}"/>
+													<core:Item key="{AuditModel>key}" text="{AuditModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>

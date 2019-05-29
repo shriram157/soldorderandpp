@@ -11,6 +11,126 @@ sap.ui.define([
 		onInit: function () {
 			FSOS_controller = this;
 			FSOS_controller.getBrowserLanguage();
+			var language = FSOS_controller.returnBrowserLanguage();
+			var globalComboModel = new sap.ui.model.json.JSONModel();
+			var Obj;
+			if(language== "EN"){
+			Obj = {
+				"FSOSummary_Status": [
+					
+					{
+					"key": "IN-PROGRESS",
+					"text": "In-Progress"
+				}, {
+					"key": "PENDING FULFILMENT",
+					"text": "Pending Fulfillment"
+				}, {
+					"key": "FILLED",
+					"text": "Filled"
+				}, {
+					"key": "REGISTERED",
+					"text": "Registered"
+				}, {
+					"key": "CANCELLED",
+					"text": "Cancelled"
+				}, {
+					"key": "REQUESTED",
+					"text": "Requested"
+				}, {
+					"key": "APPROVED",
+					"text": "Approved"
+				}, {
+					"key": "REJECTED",
+					"text": "Rejected"
+				}, {
+					"key": "COMPLETED",
+					"text": "Completed"
+				}]
+			};}
+			else{
+				Obj = {
+				"FSOSummary_Status": [
+					{
+					"key": "ALL",
+					"text": "SELECT ALL"
+					},
+					{
+					"key": "IN-PROGRESS",
+					"text": "In-Progress"
+				}, {
+					"key": "PENDING FULFILMENT",
+					"text": "Pending Fulfillment"
+				}, {
+					"key": "FILLED",
+					"text": "Filled"
+				}, {
+					"key": "REGISTERED",
+					"text": "Registered"
+				}, {
+					"key": "CANCELLED",
+					"text": "Cancelled"
+				}, {
+					"key": "REQUESTED",
+					"text": "Requested"
+				}, {
+					"key": "APPROVED",
+					"text": "Approved"
+				}, {
+					"key": "REJECTED",
+					"text": "Rejected"
+				}, {
+					"key": "COMPLETED",
+					"text": "Completed"
+				}]
+			};
+			
+
+			}
+			
+			globalComboModel.setData(Obj);
+			globalComboModel.updateBindings(true);
+			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
+			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
+			console.log(sap.ui.getCore().getModel("globalComboModel"));
+			
+			
+			var OrderTypeModel = new sap.ui.model.json.JSONModel();
+			var Object;
+			if(language== "EN"){
+		Object = {"FSOSummary_OrderType": [
+{
+		"key": "F1",
+		"text": "DLR RAC"
+	}, {
+		"key": "F2",
+		"text": "DLR ELITE"
+	}, {
+		"key": "F5",
+		"text": "MOBILITY"
+	}],};
+				
+			}
+			else{
+				Object = {"FSOSummary_OrderType": [
+{
+		"key": "F1",
+		"text": "DLR RAC"
+	}, {
+		"key": "F2",
+		"text": "DLR ELITE"
+	}, {
+		"key": "F5",
+		"text": "MOBILITY"
+	}],};
+			
+
+			}
+			
+			OrderTypeModel.setData(Object);
+			OrderTypeModel.updateBindings(true);
+			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
+			this.getView().setModel(sap.ui.getCore().getModel("OrderTypeModel"),"OrderTypeModel");
+			console.log(sap.ui.getCore().getModel("OrderTypeModel"));
 			/*	FSOS_controller.flagSipUser = false;
 				FSOS_controller.requestStatus = "";*/
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
