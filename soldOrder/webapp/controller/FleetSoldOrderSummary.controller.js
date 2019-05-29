@@ -10,6 +10,7 @@ sap.ui.define([
 		formatter: formatter,
 		onInit: function () {
 			FSOS_controller = this;
+			FSOS_controller.getDealer();
 			FSOS_controller.getBrowserLanguage();
 			var language = FSOS_controller.returnBrowserLanguage();
 			var globalComboModel = new sap.ui.model.json.JSONModel();

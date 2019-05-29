@@ -12,6 +12,7 @@ sap.ui.define([
 		onInit: function () {
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
+			RSOS_controller.getDealer();
 			RSOS_controller._handleServiceSuffix_Series();
 					var language = RSOS_controller.returnBrowserLanguage();
 			var globalComboModel = new sap.ui.model.json.JSONModel();
