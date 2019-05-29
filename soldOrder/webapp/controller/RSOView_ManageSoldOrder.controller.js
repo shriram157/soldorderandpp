@@ -1066,6 +1066,17 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 					'mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+				var language = RSO_MSO_controller.returnBrowserLanguage();
+			var model;
+	if (language === "FR") {
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			} else {
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
 				// this.getView().byId('model_CSOR').bindItems("oModel3>/", new sap.ui.core.ListItem({
 				// 	key: "{oModel3>Model}",
 				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
@@ -1081,7 +1092,7 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
-						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+						text: model
 					})
 				});
 				// var items_binding = this.getView().byId('model_CSOR').getBinding('items');
