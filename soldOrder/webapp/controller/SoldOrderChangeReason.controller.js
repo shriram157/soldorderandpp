@@ -93,8 +93,8 @@ sap.ui.define([
 							Soreq: requestid
 						}, true); //page8
 					},
-					error: function (oError) {
-					sap.m.MessageBox.show("Error occurred while sending data. Please try again later."+oError, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+					error: function (request, errorText, errorCode) {
+					sap.m.MessageBox.show(errorText, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
 						.MessageBox.Action.OK, null, null);
 					}
 				});
