@@ -18,8 +18,8 @@
 							<Label wrapping="true" text="{i18n>PONumber}"/>
 							<Text text="{mainservices>ZpoNumber}"/>
 							<Label wrapping="true" text="{i18n>orderType}"/>
-							<ComboBox editable="false" id="orderType_FSOZA" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }"  selectedKey="{mainservices>Zadd1}">
-								<core:Item key="{key}" text="{text}"/>
+									<ComboBox enabled="true" editable = "false" id="orderType_FSOZA" items="{ path: 'OrderTypeModel>/FSO_OrderType' }" selectedKey="{mainservices>/Zadd1}">
+								<core:Item key="{OrderTypeModel>key}" text="{OrderTypeModel>text}"/>
 							</ComboBox>
 							<!--<Text text=""/>-->
 							<Label wrapping="true" text="{i18n>status}"/>
