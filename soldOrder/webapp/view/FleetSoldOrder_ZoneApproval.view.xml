@@ -17,10 +17,10 @@
 							<Text text="{mainservices>ZfanNo}"/>
 							<Label wrapping="true" text="{i18n>PONumber}"/>
 							<Text text="{mainservices>ZpoNumber}"/>
-							<Label wrapping="true" required="true" text="{i18n>orderType}"/>
+							<Label wrapping="true" text="{i18n>orderType}"/>
 							<!--<Text id="orderType_FSOZA" text="{path: 'mainservices>Zadd1', formatter:'toyota.ca.SoldOrder.util.formatter.formatOrderType'}"/>-->
-							<ComboBox enabled="true" editable = "false" id="orderType_FSOZA" items="{ path: 'OrderTypeModel>/FSO_OrderType' }" selectedKey="{mainservices>/Zadd1}">
-								<core:Item key="{OrderTypeModel>key}" text="{OrderTypeModel>text}"/>
+							<ComboBox editable="false" id="orderType_FSOZA" items="{ path: '/FSO_OrderType', sorter: { path: 'key' } }"  selectedKey="{mainservices>Zadd1}">
+								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>status}"/>
 							<Text text="{mainservices>ZsoFltStatus}"/>
