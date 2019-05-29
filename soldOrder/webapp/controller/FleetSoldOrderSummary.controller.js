@@ -106,6 +106,13 @@ sap.ui.define([
 		"key": "F2",
 		"text": "DLR ELITE"
 	}, {
+		"key": "F3",
+		"text": "NAT RAC"
+	},
+	{
+		"key": "F4",
+		"text": "NAT ELITE"
+	},{
 		"key": "F5",
 		"text": "MOBILITY"
 	}],};
@@ -120,6 +127,13 @@ sap.ui.define([
 		"key": "F2",
 		"text": "DLR ELITE"
 	}, {
+		"key": "F3",
+		"text": "NAT RAC"
+	},
+	{
+		"key": "F4",
+		"text": "NAT ELITE"
+	},{
 		"key": "F5",
 		"text": "MOBILITY"
 	}],};

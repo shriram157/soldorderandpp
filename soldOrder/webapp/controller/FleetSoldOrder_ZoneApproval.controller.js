@@ -14,6 +14,58 @@ sap.ui.define([
 			FSO_Z_controller.getBrowserLanguage();
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrder_ZoneApproval").attachPatternMatched(this._getattachRouteMatched,
 				this);
+					var OrderTypeModel = new sap.ui.model.json.JSONModel();
+			var Object;
+			var language = FSO_Z_controller.returnBrowserLanguage();
+			if(language== "EN"){
+		Object = {"FSOSummary_OrderType": [
+{
+		"key": "F1",
+		"text": "DLR RAC"
+	}, {
+		"key": "F2",
+		"text": "DLR ELITE"
+	}, {
+		"key": "F3",
+		"text": "NAT RAC"
+	},
+	{
+		"key": "F4",
+		"text": "NAT ELITE"
+	},    {
+		"key": "F5",
+		"text": "MOBILITY"
+	}],};
+				
+			}
+			else{
+				Object = {"FSOSummary_OrderType": [
+{
+		"key": "F1",
+		"text": "DLR RAC"
+	}, {
+		"key": "F2",
+		"text": "DLR ELITE"
+	}, {
+		"key": "F3",
+		"text": "NAT RAC"
+	},
+	{
+		"key": "F4",
+		"text": "NAT ELITE"
+	},{
+		"key": "F5",
+		"text": "MOBILITY"
+	}],};
+			
+
+			}
+			
+			OrderTypeModel.setData(Object);
+			OrderTypeModel.updateBindings(true);
+			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
+			this.getView().setModel(sap.ui.getCore().getModel("OrderTypeModel"),"OrderTypeModel");
+			console.log(sap.ui.getCore().getModel("OrderTypeModel"));
 			// FSO_Z_controller.flagZoneUser=false;
 			// FSO_Z_controller.zoneUserToTrue();
 		},
