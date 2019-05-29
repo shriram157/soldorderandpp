@@ -1113,6 +1113,8 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 					"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
 
 			}
+			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				// this.getView().byId('suffix_CSOR').bindItems('oModel1>/', new sap.ui.core.ListItem({
@@ -1120,7 +1122,7 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 				// 	text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel2>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
 				// }));
 				this.getView().byId('suffix_CSOR').bindItems({
-					path: 'mainservices>/ZVMS_CDS_SUFFIX',
+					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='"+dealer+"')/Set",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
