@@ -1047,11 +1047,10 @@ var errForm;
 				colorCB.destroyItems();
 				suffixCB.bindItems({
 					// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
-					path: 'mainservices>/ZVMS_CDS_SUFFIX',
+					path: 'mainservices>/ZVMS_CDS_SUFFIX(DLR='+dealer+')/Set',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-						new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, brand),
-						new sap.ui.model.Filter("DLR", sap.ui.model.FilterOperator.EQ, dealer)
+						new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, brand)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
