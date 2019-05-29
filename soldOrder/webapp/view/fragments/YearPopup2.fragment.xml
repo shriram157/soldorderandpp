@@ -3,7 +3,7 @@
 	xmlns:Y="sap.ui.unified.calendar"
 	xmlns:core="sap.ui.core">
 	<Popover
-		title="Select Year"
+		title="{i18n>selectyear}"
 		placement="Bottom"
 	afterOpen="initailyear1"
 			initialFocus="Ok">
