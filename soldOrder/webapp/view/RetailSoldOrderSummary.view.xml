@@ -36,7 +36,7 @@
 													</layoutData>
 												</Label>
 												<MultiComboBox id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh"
-													items="{ path: 'globalComboModel>/FSOSummary_Status', sorter: { path: 'globalComboModel>key' } }" class="sapUiMediumMarginEnd">
+													items="{ path: 'globalComboModel>/FSOSummary_Status' }" class="sapUiMediumMarginEnd">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>

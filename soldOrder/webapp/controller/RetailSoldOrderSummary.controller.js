@@ -12,7 +12,8 @@ sap.ui.define([
 		onInit: function () {
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
-			RSOS_controller.getDealer();
+			
+		AppController.getDealer();
 			RSOS_controller._handleServiceSuffix_Series();
 					var language = RSOS_controller.returnBrowserLanguage();
 			var globalComboModel = new sap.ui.model.json.JSONModel();
@@ -482,6 +483,7 @@ sap.ui.define([
 
 				}
 		},
+
 		closeDialog: function () {
 			//var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.VinDialog", RSOS_controller);
 			//	RSOS_controller.oDialogBox.close();

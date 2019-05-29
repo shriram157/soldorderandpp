@@ -11,7 +11,7 @@ sap.ui.define([
 		onInit: function () {
 			FSOD_controller = this;
 			FSOD_controller.getBrowserLanguage();
-			FSOD_controller.getDealer();
+			AppController.getDealer();
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrderDetails").attachPatternMatched(this._onObjectMatched, this);
 			var language = FSOD_controller.returnBrowserLanguage();
 			var globalComboModel = new sap.ui.model.json.JSONModel();
