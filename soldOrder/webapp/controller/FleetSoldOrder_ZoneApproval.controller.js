@@ -137,7 +137,7 @@ sap.ui.define([
 			FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
 		},*/
 		_approveFleetSoldRequest: function () {
-			if(FSO_Z_controller.getView().byId('orderType_FSOZA').getKey()=="" || FSO_Z_controller.getView().byId('zoneapproval').getValue()=="")
+			if(FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey()=="" || FSO_Z_controller.getView().byId('zoneapproval').getValue()=="")
 			{
 				var	errForm = formatter.formatErrorType("SO00003");
 			var	errMsg = FSO_Z_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
@@ -171,7 +171,7 @@ sap.ui.define([
 			}
 		},
 		_rejectFleetSoldRequest: function () {
-				if(FSO_Z_controller.getView().byId('orderType_FSOZA').getKey()=="" || FSO_Z_controller.getView().byId('zoneapproval').getValue()=="")
+				if(FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey()=="" || FSO_Z_controller.getView().byId('zoneapproval').getValue()=="")
 			{
 				var	errForm = formatter.formatErrorType("SO00003");
 			var	errMsg = FSO_Z_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
