@@ -95,9 +95,9 @@ sap.ui.define([
 							Soreq: requestid
 						}, true); //page 3
 					},
-					error: function (oError) {
+					error: function (request, errorText, errorCode) {
 
-					sap.m.MessageBox.show(oError, sap.m.MessageBox.Icon.ERROR, "Error", sap
+					sap.m.MessageBox.show(errorText, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				
 					}
