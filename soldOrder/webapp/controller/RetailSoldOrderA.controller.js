@@ -912,7 +912,18 @@ var errForm;
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
 				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+	var model;
+			var language = RSOA_controller.returnBrowserLanguage();
 
+			if (language === "FR") {
+						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
+			else
+			{
+							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
@@ -923,7 +934,7 @@ var errForm;
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
-						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+						text: model
 					})
 				});
 				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
@@ -969,6 +980,18 @@ var errForm;
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+			var model;
+			var language = RSOA_controller.returnBrowserLanguage();
+
+			if (language === "FR") {
+						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
+			else
+			{
+							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
 			var series = this.getView().byId('series_RSOA').getSelectedKey();
 			if (series && modelyear) {
 				var modelCB = this.getView().byId("model_RSOA");
@@ -994,7 +1017,7 @@ var errForm;
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
-						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+						text: model
 					})
 				});
 				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');

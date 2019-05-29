@@ -518,6 +518,18 @@ if(quantity.length >0)
 			apxCB.destroyItems();
 			colorCB.setSelectedKey(null);
 			colorCB.destroyItems();
+			var model;
+			var language = CFSO_controller.returnBrowserLanguage();
+
+			if (language === "FR") {
+						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
+			else
+			{
+							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
 			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 				modelCB.bindItems({
@@ -530,7 +542,7 @@ if(quantity.length >0)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
-						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+						text: model
 					})
 				});
 				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
@@ -641,8 +653,18 @@ if(quantity.length >0)
 			apxCB.destroyItems();
 			colorCB.setSelectedKey(null);
 			colorCB.destroyItems();
+			var model;
+			var language = CFSO_controller.returnBrowserLanguage();
 			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+	if (language === "FR") {
+						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
+			}
+			else
+			{
+							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
@@ -653,7 +675,7 @@ if(quantity.length >0)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
-						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+						text: model
 					})
 				});
 				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
