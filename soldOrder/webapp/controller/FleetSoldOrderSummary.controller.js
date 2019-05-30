@@ -182,6 +182,8 @@ sap.ui.define([
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
+		var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			if (x != "TCI_User") {
 		var allfilter = [];
 			var dfilter = [];
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
@@ -221,7 +223,7 @@ sap.ui.define([
 					var filter_all = new Filter([filter_sstatus, filter_dealers, filter_ordertype], true);
 					var items = this.getView().byId("tbl_FSOS").getBinding('rows');
 					items.filter(filter_all);
-				
+			}
 			
 			//==================================================================================================
 			// if (AppController.flagZoneUser == true) {
