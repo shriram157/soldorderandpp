@@ -185,7 +185,7 @@ sap.ui.define([
 		var allfilter = [];
 			var dfilter = [];
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			
 					var afilter = [];
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 				afilter.push(new Filter("ZsoFltStatus", FilterOperator.EQ, this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey()));
@@ -222,7 +222,7 @@ sap.ui.define([
 					var items = this.getView().byId("tbl_FSOS").getBinding('rows');
 					items.filter(filter_all);
 				
-			}
+			
 			//==================================================================================================
 			// if (AppController.flagZoneUser == true) {
 			// 	FSOS_controller.getView().byId("lbl_dealer_FSOS").setVisible(true);
