@@ -89,9 +89,17 @@ sap.ui.define([
 						ZzsoReqNo: requestid
 					}, // function import parameters
 					success: function (data, response) {
+						if(data.Type=='E')
+						{
+							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+						.MessageBox.Action.OK, null, null);
+						}
+						else
+						{
 						SOCR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
 							Soreq: requestid
 						}, true); //page8
+						}
 					},
 					error: function (oData, oResponse) {
 					sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m

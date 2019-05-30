@@ -91,9 +91,17 @@ sap.ui.define([
 						ZzsoReqNo: requestid
 					}, // function import parameters
 					success: function (data, response) {
+						if(data.Type == 'E')
+						{
+							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+						}
+						else
+						{
 						RSOCancel_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 							Soreq: requestid
 						}, true); //page 3
+						}
 					},
 					error: function (oData, response) {
 
