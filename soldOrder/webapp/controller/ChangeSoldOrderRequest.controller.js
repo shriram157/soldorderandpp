@@ -212,6 +212,19 @@ sap.ui.define([
 
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
+					var model;
+			var language = CSOR_controller.returnBrowserLanguage();
+
+			if (language === "FR") {
+						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
+			else
+			{
+							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			}
+			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 			if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries') && this.getView().getElementBinding(
 					'mainservices').getBoundContext().getProperty('Zzmoyr')) {
@@ -222,13 +235,15 @@ sap.ui.define([
 				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 				// }));
 				this.getView().byId('model_CSOR').bindItems({
-					path: "mainservices>/ZVMS_CDS_Model",
+					path: "mainservices>/ZVMS_Model_EXCLSet",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
-						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
-						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+						text: model
 					})
 				});
 				// var items_binding = this.getView().byId('model_CSOR').getBinding('items');
