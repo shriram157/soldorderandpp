@@ -238,6 +238,7 @@ sap.ui.define([
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
+			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
@@ -246,7 +247,7 @@ sap.ui.define([
 				// 	text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel2>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
 				// }));
 				this.getView().byId('suffix_CSOR').bindItems({
-					path: 'mainservices>/ZVMS_CDS_SUFFIX',
+					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='"+dealer+"')/Set",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
