@@ -487,7 +487,12 @@ sap.ui.define([
 				var ZtradeMake = RSOB_controller.getView().byId("tradeInMakeYear_RSOBid").getSelectedKey();
 				var comment = RSOB_controller.getView().byId("Comment").getValue();
 				var host = RSOB_controller.host();
-
+	var Zzmoyr = RSOB_controller.getView().byId("modelYr_RSOA").getValue();
+			var Zzseries = RSOB_controller.getView().byId("series_RSOA").getSelectedKey();
+			var Zzmodel = RSOB_controller.getView().byId("model_RSOA").getSelectedKey();
+			var Zzsuffix = RSOB_controller.getView().byId("Suffix_RSOA").getSelectedKey();
+			var Zzapx = RSOB_controller.getView().byId("Apx_RSOA").getSelectedKey();
+			var Zzextcol = RSOB_controller.getView().byId("Colour_RSOA").getSelectedKey();
 				// SOcreateSet;
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
 				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
@@ -514,12 +519,12 @@ sap.ui.define([
 				// "Zzsuffix": Zzsuffix, //"ML",
 				// "Zzextcol": Zzextcol, //"01D6",
 				// "Zzapx": Zzapx, // "00",
-					"Zzmodel": zvechile_model.modelkey, //"YZ3DCT",
-					"Zzmoyr": zvechile_model.modelyear, //"2018",
-					"Zzseries": zvechile_model.serieskey,
-					"Zzsuffix": zvechile_model.suffixkey, //"ML",
-					"Zzextcol": zvechile_model.colorkey, //"01D6",
-					"Zzapx": zvechile_model.apxkey, // "00",
+					"Zzmodel": Zzmodel, //"YZ3DCT",
+					"Zzmoyr": Zzmoyr, //"2018",
+					"Zzseries": Zzseries,
+					"Zzsuffix": Zzsuffix, //"ML",
+					"Zzextcol": Zzextcol, //"01D6",
+					"Zzapx": Zzapx, // "00",
 					"ZzreqEtaFrom": zdateFormat.format(zvechile_model.fromdate), //null,
 					"ZzreqEtaTo": zdateFormat.format(zvechile_model.todate), //null,
 					"Zzvtn": zvechile_model.vtnn,
@@ -768,7 +773,7 @@ sap.ui.define([
 		},
 			model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
-			var model = this.getView().byId('model_CSOR').getSelectedKey();
+			var model = this.getView().byId('model_RSOB').getSelectedKey();
 						var language = RSOB_controller.returnBrowserLanguage();
 			var suf;
 	if (language === "FR") {
