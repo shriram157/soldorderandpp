@@ -119,7 +119,8 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -154,8 +155,8 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -176,8 +177,8 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -200,8 +201,8 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -222,8 +223,8 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -277,8 +278,8 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -332,8 +333,8 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -447,8 +448,8 @@ sap.ui.define([
 				},
 				error: function (oData, oResponse) {
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -509,7 +510,8 @@ sap.ui.define([
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
 				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+				var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap.m.MessageBox.Action.OK, null, null);
 			}
 
 			// var etaFrom = RSOA_controller.getView().byId("etaFrom_RSOA").getValue();
@@ -722,7 +724,8 @@ var oBusyDialog = new sap.m.BusyDialog({
 				// });
 				validateFlagA = true;
 			} else {
-				sap.m.MessageBox.show("Please Fill all Customer Fields", sap.m.MessageBox.Icon.ERROR, "Error", sap
+				var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+				sap.m.MessageBox.show("Please Fill all Customer Fields", sap.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			}
 		},
@@ -790,9 +793,9 @@ var errForm;
 				{
 						errForm = formatter.formatErrorType("SO000015");
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-					
+					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 					
 				}
@@ -800,9 +803,8 @@ var errForm;
 				{
 						errForm = formatter.formatErrorType("SO000016");
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-					
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 				}
 					else if(valModel == "")
@@ -811,7 +813,7 @@ var errForm;
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 					
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 				}	
 				else if(valSuffix == "")
@@ -820,7 +822,7 @@ var errForm;
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 					
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 				}
 					else if(valColour == "")
@@ -829,7 +831,7 @@ var errForm;
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 					
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 				}
 					else if( valApx == "")
@@ -838,7 +840,7 @@ var errForm;
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 					
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 				}
 					else if(valETATo == "" || valETAFrom == "")
@@ -847,7 +849,7 @@ var errForm;
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 					
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 				}
 						else if(valSalesType == "" || valContractDate == "")
@@ -856,7 +858,7 @@ var errForm;
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 					
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 				}
 				 
@@ -865,14 +867,14 @@ var errForm;
 				 errForm = formatter.formatErrorType("SO00003");
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 				}
 			} else if (flag1 == false && flag2 == true) {
 				var errForm2 = formatter.formatErrorType("SO00004");
 				errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				sap.m.MessageBox.show(errMsg2, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			} else if (flag1 == true && flag2 == true) {
 				errForm = formatter.formatErrorType("SO00003");
@@ -881,7 +883,7 @@ var errForm;
 				// errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				var errMsg3 = errMsg; // + "\n" + errMsg2;
 				sap.m.MessageBox.show(errMsg3, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			} else {
 				RSOA_controller.submitSO();

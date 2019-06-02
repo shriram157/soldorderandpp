@@ -85,8 +85,9 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -420,8 +421,9 @@ sap.ui.define([
 				// 	contentWidth: "10rem"
 				// });
 				RSOB_controller.validateFlagB = true;
-			} else {
-				sap.m.MessageBox.show("Please Fill all Customer Fields", sap.m.MessageBox.Icon.ERROR, "Error", sap
+			} else {					var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+
+				sap.m.MessageBox.show("Please Fill all Customer Fields", sap.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			}
 		},
@@ -457,14 +459,16 @@ sap.ui.define([
 			if (flag1 == true && flag2 == false) {
 				var errForm = formatter.formatErrorType("SO00003");
 				errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+									var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+
 				sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			} else if (flag1 == false && flag2 == true) {
 				var errForm2 = formatter.formatErrorType("SO00004");
 				errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				sap.m.MessageBox.show(errMsg2, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			} else if (flag1 == true && flag2 == true) {
 				var errForm = formatter.formatErrorType("SO00003");
@@ -473,7 +477,7 @@ sap.ui.define([
 				// errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				var errMsg3 = errMsg; //+ "\n" + errMsg2;
 				sap.m.MessageBox.show(errMsg3, sap
-					.m.MessageBox.Icon.ERROR, "Error", sap
+					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			} else {
 				var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
@@ -566,9 +570,10 @@ sap.ui.define([
 							if (JSON.parse(oData.responseText).error.innererror.errordetails) {
 								message = JSON.parse(oData.responseText).error.innererror.errordetails;
 							}
+
 							sap.m.MessageBox.show(JSON.parse(oData.responseText).error.message.value, {
 								icon: sap.m.MessageBox.Icon.ERROR,
-								title: "Error",
+								title: errTitle,
 								actions: [sap.m.MessageBox.Action.CLOSE],
 								details: message
 
@@ -759,8 +764,9 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 				var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
