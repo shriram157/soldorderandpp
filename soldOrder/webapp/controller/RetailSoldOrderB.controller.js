@@ -102,30 +102,30 @@ sap.ui.define([
 			}
 			if (parameters.getParameters().arguments.modelkey) {
 				values.modelkey = parameters.getParameters().arguments.modelkey;
-				var model_RSOB_items = RSOB_controller.getView().byId("model_RSOB").getBinding("items");
-				model_RSOB_items.filter([new Filter("Model", FilterOperator.EQ, values.modelkey)]);
+				// var model_RSOB_items = RSOB_controller.getView().byId("model_RSOB").getBinding("items");
+				// model_RSOB_items.filter([new Filter("Model", FilterOperator.EQ, values.modelkey)]);
 			}
 			if (parameters.getParameters().arguments.serieskey) {
 				values.serieskey = parameters.getParameters().arguments.serieskey;
 			}
 			if (parameters.getParameters().arguments.suffixkey) {
 				values.suffixkey = parameters.getParameters().arguments.suffixkey;
-				var suffix_CSOR_items = RSOB_controller.getView().byId("suffix_CSOR").getBinding("items");
-				var filter = new Filter([new Filter("model_year", FilterOperator.EQ, values.modelyear), new Filter("model", FilterOperator.EQ,
-						values.modelkey),
-					new Filter("suffix", FilterOperator.EQ, values.suffixkey)
-				], true);
-				suffix_CSOR_items.filter(filter);
+				// var suffix_CSOR_items = RSOB_controller.getView().byId("suffix_CSOR").getBinding("items");
+				// var filter = new Filter([new Filter("model_year", FilterOperator.EQ, values.modelyear), new Filter("model", FilterOperator.EQ,
+				// 		values.modelkey),
+				// 	new Filter("suffix", FilterOperator.EQ, values.suffixkey)
+				// ], true);
+				// suffix_CSOR_items.filter(filter);
 			}
 			if (parameters.getParameters().arguments.apxkey) {
 				values.apxkey = parameters.getParameters().arguments.apxkey;
-				var apx_RSOB_items = RSOB_controller.getView().byId("apx_RSOB").getBinding("items");
-				apx_RSOB_items.filter([new Filter("zzapx", FilterOperator.EQ, values.apxkey)]);
+				// var apx_RSOB_items = RSOB_controller.getView().byId("apx_RSOB").getBinding("items");
+				// apx_RSOB_items.filter([new Filter("zzapx", FilterOperator.EQ, values.apxkey)]);
 			}
 			if (parameters.getParameters().arguments.colorkey) {
 				values.colorkey = parameters.getParameters().arguments.colorkey;
-				var color_RSOB_items = RSOB_controller.getView().byId("colour_RSOB").getBinding("items");
-				color_RSOB_items.filter([new Filter("ExteriorColorCode", FilterOperator.EQ, values.colorkey)]);
+				// var color_RSOB_items = RSOB_controller.getView().byId("colour_RSOB").getBinding("items");
+				// color_RSOB_items.filter([new Filter("ExteriorColorCode", FilterOperator.EQ, values.colorkey)]);
 			}
 			if (parameters.getParameters().arguments.vtnn) {
 				values.vtnn = parameters.getParameters().arguments.vtnn;
