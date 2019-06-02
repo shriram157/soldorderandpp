@@ -18,9 +18,7 @@ sap.ui.define([
 			RSOB_controller._handleServiceSuffix_Series();
 			RSOB_controller.getView().setModel(model, 'Customer');
 			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderB").attachPatternMatched(this._getattachRouteMatched, this);
-			RSOB_controller.model_selected();
-			RSOB_controller.series_selected();
-			RSOB_controller.suffix_selected();
+			
 			// RSOB_controller._handleRSADropDown();
 			// 	var host = RSOB_controller.host();
 			// var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
@@ -137,6 +135,10 @@ sap.ui.define([
 				values.todate = zdateFormat.parse(parameters.getParameters().arguments.todate);
 			}
 			RSOB_controller.getView().setModel(new JSONModel(values), "RSOB_Model");
+			RSOB_controller.series_selected();
+			RSOB_controller.model_selected();
+			
+			RSOB_controller.suffix_selected();
 
 		},
 		getSO: function () {
@@ -681,17 +683,8 @@ sap.ui.define([
 			var series = this.getView().byId('series_RSOB').getSelectedKey();
 			if (series && modelyear) {
 				var modelCB = this.getView().byId("model_RSOB");
-				var suffixCB = this.getView().byId("Suffix_CSOR");
-				var apxCB = this.getView().byId("Apx_RSOB");
-				var colorCB = this.getView().byId("Colour_RSOB");
-				modelCB.setSelectedKey(null);
-				modelCB.destroyItems();
-				suffixCB.setSelectedKey(null);
-				suffixCB.destroyItems();
-				apxCB.setSelectedKey(null);
-				apxCB.destroyItems();
-				colorCB.setSelectedKey(null);
-				colorCB.destroyItems();
+				
+			
 			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
