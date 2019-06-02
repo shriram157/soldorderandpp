@@ -197,7 +197,7 @@ sap.ui.define([
 		},
 		onValidateCustomer: function () {
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
-			if (CustModel.Name != '' && CustModel.Name && CustModel.Phone != '' && CustModel.Phone && CustModel.City != '' && CustModel.City &&
+			if (CustModel.FirstName != '' && CustModel.SecondName != '' && CustModel.FirstName && CustModel.SecondName && CustModel.Phone != '' && CustModel.Phone && CustModel.City != '' && CustModel.City &&
 				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
 				CustModel.PostCode) {
 				var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error1");
@@ -489,12 +489,12 @@ sap.ui.define([
 				var ZtradeMake = RSOB_controller.getView().byId("tradeInMakeYear_RSOBid").getSelectedKey();
 				var comment = RSOB_controller.getView().byId("Comment").getValue();
 				var host = RSOB_controller.host();
-	var Zzmoyr = RSOB_controller.getView().byId("modelYr_RSOB").getValue();
+	var Zzmoyr = RSOB_controller.getView().byId("modelYr_RSOB").getText();
 			var Zzseries = RSOB_controller.getView().byId("series_RSOB").getSelectedKey();
 			var Zzmodel = RSOB_controller.getView().byId("model_RSOB").getSelectedKey();
-			var Zzsuffix = RSOB_controller.getView().byId("Suffix_CSOR").getSelectedKey();
-			var Zzapx = RSOB_controller.getView().byId("Apx_RSOB").getSelectedKey();
-			var Zzextcol = RSOB_controller.getView().byId("Colour_RSOB").getSelectedKey();
+			var Zzsuffix = RSOB_controller.getView().byId("suffix_CSOR").getSelectedKey();
+			var Zzapx = RSOB_controller.getView().byId("apx_RSOB").getSelectedKey();
+			var Zzextcol = RSOB_controller.getView().byId("colour_RSOB").getSelectedKey();
 				// SOcreateSet;
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
 				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
