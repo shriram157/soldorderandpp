@@ -768,6 +768,7 @@ sap.ui.define([
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_RSOB').getSelectedKey();
 						var language = RSOB_controller.returnBrowserLanguage();
+		var modelyear = this.getView().byId('modelYr_RSOB').getText();
 			var suf;
 	if (language === "FR") {
 				suf =
@@ -780,8 +781,10 @@ sap.ui.define([
 			}
 			// var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
-			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
-				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+			if (model && modelyear) {
+				// var suffixCB = this.getView().byId("Suffix_CSO");
+
+				// var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				// this.getView().byId('suffix_CSOR').bindItems('oModel1>/', new sap.ui.core.ListItem({
 				// 	key: "{oModel1>Suffix}",
 				// 	text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel2>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
@@ -808,10 +811,11 @@ sap.ui.define([
 			//----------------
 			//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
 			var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+		var modelyear = this.getView().byId('modelYr_RSOB').getText();
 
 			var model = this.getView().byId('model_RSOB').getSelectedKey();
-			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
-				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+			if (model && modelyear && suffix) {
+				// var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				// this.getView().byId('apx_CSOR').bindItems('mode_Model>/', new sap.ui.core.ListItem({
 				// 	key: "{mode_Model>zzapx}",
 				// 	text: "{mode_Model>zzapx}"
