@@ -12,10 +12,10 @@
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss"/>
-							<Label id = "modelYr_RSOB" wrapping="true" text="{i18n>modelYear}"/>
-							<Text text="{RSOB_Model>/modelyear}"/>
+							<Label  wrapping="true" text="{i18n>modelYear}"/>
+							<Text id = "modelYr_RSOB" text="{RSOB_Model>/modelyear}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{RSOB_Model>/serieskey}"
+							<ComboBox id = "series_RSOB" editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{RSOB_Model>/serieskey}"
 								modelContextChange="onSeriesnum">
 								<items>
 									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
