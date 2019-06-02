@@ -665,7 +665,7 @@ sap.ui.define([
 
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
-			var modelyear = this.getView().byId('modelYr_RSOB').getValue();
+			var modelyear = this.getView().byId('modelYr_RSOB').getText();
 			var model;
 			var language = RSOB_controller.returnBrowserLanguage();
 
@@ -678,12 +678,12 @@ sap.ui.define([
 							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 			}
-			var series = this.getView().byId('series_RSOA').getSelectedKey();
+			var series = this.getView().byId('series_RSOB').getSelectedKey();
 			if (series && modelyear) {
-				var modelCB = this.getView().byId("model_RSOA");
-				var suffixCB = this.getView().byId("Suffix_RSOA");
-				var apxCB = this.getView().byId("Apx_RSOA");
-				var colorCB = this.getView().byId("Colour_RSOA");
+				var modelCB = this.getView().byId("model_RSOB");
+				var suffixCB = this.getView().byId("Suffix_CSOR");
+				var apxCB = this.getView().byId("Apx_RSOB");
+				var colorCB = this.getView().byId("Colour_RSOB");
 				modelCB.setSelectedKey(null);
 				modelCB.destroyItems();
 				suffixCB.setSelectedKey(null);
