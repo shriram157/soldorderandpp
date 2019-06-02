@@ -82,7 +82,9 @@ sap.ui.define([
 					RSOB_controller.getView().setModel(oModel, "mode_Model");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -705,7 +707,9 @@ sap.ui.define([
 					RSOB_controller.getView().setModel(oModel, "seriesModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+				var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});

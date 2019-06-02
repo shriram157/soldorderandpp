@@ -1214,7 +1214,9 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 					RSO_MSO_controller.getView().setModel(oModel, "seriesModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+					var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
