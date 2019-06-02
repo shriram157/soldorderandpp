@@ -12,7 +12,7 @@
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss"/>
-							<Label wrapping="true" text="{i18n>modelYear}"/>
+							<Label id = "modelYr_RSOB" wrapping="true" text="{i18n>modelYear}"/>
 							<Text text="{RSOB_Model>/modelyear}"/>
 							<Label wrapping="true" text="{i18n>Series}"/>
 							<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{RSOB_Model>/serieskey}"

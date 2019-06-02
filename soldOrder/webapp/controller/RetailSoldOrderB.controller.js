@@ -487,12 +487,12 @@ sap.ui.define([
 				var ZtradeMake = RSOB_controller.getView().byId("tradeInMakeYear_RSOBid").getSelectedKey();
 				var comment = RSOB_controller.getView().byId("Comment").getValue();
 				var host = RSOB_controller.host();
-	var Zzmoyr = RSOB_controller.getView().byId("modelYr_RSOA").getValue();
-			var Zzseries = RSOB_controller.getView().byId("series_RSOA").getSelectedKey();
-			var Zzmodel = RSOB_controller.getView().byId("model_RSOA").getSelectedKey();
-			var Zzsuffix = RSOB_controller.getView().byId("Suffix_RSOA").getSelectedKey();
-			var Zzapx = RSOB_controller.getView().byId("Apx_RSOA").getSelectedKey();
-			var Zzextcol = RSOB_controller.getView().byId("Colour_RSOA").getSelectedKey();
+	var Zzmoyr = RSOB_controller.getView().byId("modelYr_RSOB").getValue();
+			var Zzseries = RSOB_controller.getView().byId("series_RSOB").getSelectedKey();
+			var Zzmodel = RSOB_controller.getView().byId("model_RSOB").getSelectedKey();
+			var Zzsuffix = RSOB_controller.getView().byId("Suffix_CSOR").getSelectedKey();
+			var Zzapx = RSOB_controller.getView().byId("Apx_RSOB").getSelectedKey();
+			var Zzextcol = RSOB_controller.getView().byId("Colour_RSOB").getSelectedKey();
 				// SOcreateSet;
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
 				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
@@ -665,9 +665,9 @@ sap.ui.define([
 
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
-			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+			var modelyear = this.getView().byId('modelYr_RSOB').getValue();
 			var model;
-			var language = RSOA_controller.returnBrowserLanguage();
+			var language = RSOB_controller.returnBrowserLanguage();
 
 			if (language === "FR") {
 						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
