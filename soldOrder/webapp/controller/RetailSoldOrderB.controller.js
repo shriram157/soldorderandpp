@@ -15,6 +15,7 @@ sap.ui.define([
 			RSOB_controller.getBrowserLanguage();
 			RSOB_controller.validateFlagB = false;
 			var model = new JSONModel({});
+			AppController.getDealer();
 			RSOB_controller._handleServiceSuffix_Series();
 			RSOB_controller.getView().setModel(model, 'Customer');
 			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderB").attachPatternMatched(this._getattachRouteMatched, this);
@@ -692,7 +693,7 @@ sap.ui.define([
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'RSO')
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'PIP')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
