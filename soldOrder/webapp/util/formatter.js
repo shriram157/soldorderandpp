@@ -137,7 +137,10 @@ toyota.ca.SoldOrder.util.formatter = {
 			return "SO000021"; //"Comments not filled";
 		}else if (Code === "SO000022") {
 			return "SO000022"; //"Comments not filled";
-		}else {
+		}else if (Code === "SO000023") {
+			return "SO000023"; //"Comments not filled";
+		}
+		else {
 			return;
 		}
 	},

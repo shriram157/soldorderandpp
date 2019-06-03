@@ -422,8 +422,9 @@ sap.ui.define([
 				// });
 				RSOB_controller.validateFlagB = true;
 			} else {					var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
-
-				sap.m.MessageBox.show("Please Fill all Customer Fields", sap.m.MessageBox.Icon.ERROR, errTitle, sap
+	var	errForm = formatter.formatErrorType("SO000023");
+				errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			}
 		},
