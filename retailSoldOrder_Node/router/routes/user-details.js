@@ -96,23 +96,17 @@ module.exports = function (appContext) {
 				logger.warning("Unrecognized zone ID: %s", zone);
 				return res.type("plain/text").status(400).send("Unknown zone ID.");
 			}
-			// var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-			// var brand;
-			// if (isDivisionSent) {
-			// 	this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
-// }
-// bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-// 				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(SalesGroup eq 'T01')&$orderby=BusinessPartner asc";
+
 			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X' &$orderby=BusinessPartner asc";
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004')" +
+				"and zstatus ne 'X' &$orderby=BusinessPartner asc &$select=BusinessPartner,BusinessPartnerName,BusinessPartnerType,OrganizationBPName1,SearchTerm2,to_Customer/Attribute1,to_Customer/to_CustomerSalesArea/SalesOffice,to_Customer/to_CustomerSalesArea/Customer,to_Customer/to_CustomerSalesArea/SalesOrganization,to_Customer/to_CustomerSalesArea/DistributionChannel,to_Customer/to_CustomerSalesArea/Division,to_Customer/to_CustomerSalesArea/SalesGroup";
 		}
-		//"and SalesGroup ne 'T99'" +
+
 		// National user (TCI user)
 		else {
 			bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004'or BusinessPartnerType eq 'Z005') and zstatus ne 'X' &$orderby=BusinessPartner asc";
-			// bpReqUrl =  url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-			// 	"&$expand=to_Customer/to_CustomerSalesArea&$filter=(SalesGroup eq 'T01')&$orderby=BusinessPartner asc";
+				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004')" +
+				"and zstatus ne 'X' &$orderby=BusinessPartner asc &$select=BusinessPartner,BusinessPartnerName,BusinessPartnerType,OrganizationBPName1,SearchTerm2,to_Customer/Attribute1,to_Customer/to_CustomerSalesArea/SalesOffice,to_Customer/to_CustomerSalesArea/Customer,to_Customer/to_CustomerSalesArea/SalesOrganization,to_Customer/to_CustomerSalesArea/DistributionChannel,to_Customer/to_CustomerSalesArea/Division,to_Customer/to_CustomerSalesArea/SalesGroup";
 		}
 
 		tracer.debug("BP URL: %s", bpReqUrl);
@@ -133,54 +127,53 @@ module.exports = function (appContext) {
 			if (!bpErr && bpRes.statusCode === 200) {
 				var bpResBody = JSON.parse(bpResBodyStr);
 				var bpResults = bpResBody.d.results;
-
-				// Filter BP results by sales area for zone user
-		if (userType === "Zone") {
-                    bpResults = bpResults.filter(o => {
-                        if (!o.to_Customer) {
-                            return false;
-                        }
-                        var customerSalesArea = o.to_Customer.to_CustomerSalesArea;
-                        if (!customerSalesArea) {
-                            return false;
-                        }
-                        var filtered = false;
-                        for (var i = 0; i < customerSalesArea.results.length; i++) {
-                            if (customerSalesArea.results[i].SalesOffice === bpZone) {
-                                filtered = true;
-                                if (customerSalesArea.results[i].SalesOrganization == "6000" && customerSalesArea.results[i].DistributionChannel == "10" &&
-                                    customerSalesArea.results[i].SalesGroup != "T99" && customerSalesArea.results[i].Customer !== "2400500000") {
-                                    resBody.sales.push(customerSalesArea.results[i]); //to fetch sales data
-                                }
-                            }
-                        }
-                        return filtered;
-                    });
-                }
-                if (userType === "National") {
-                    bpResults = bpResults.filter(o => {
-                        if (!o.to_Customer) {
-                            return false;
-                        }
-                        var customerSalesArea = o.to_Customer.to_CustomerSalesArea;
-                        if (!customerSalesArea) {
-                            return false;
-                        }
-                        var filtered = false;
-                        for (var i = 0; i < customerSalesArea.results.length; i++) {
-                            if ((customerSalesArea.results[i].SalesOffice === "1000" || customerSalesArea.results[i].SalesOffice === "2000" ||
-                                    customerSalesArea.results[i].SalesOffice === "3000" || customerSalesArea.results[i].SalesOffice === "4000" ||
-                                    customerSalesArea.results[i].SalesOffice === "5000" || customerSalesArea.results[i].SalesOffice === "7000" ||
-                                    customerSalesArea.results[i].SalesOffice === "9000" || customerSalesArea.results[i].SalesOffice === "8000") && ((
-                                    customerSalesArea.results[i].SalesOrganization == "6000") && (customerSalesArea.results[i].DistributionChannel == "10" &&
-                                    customerSalesArea.results[i].SalesGroup != "T99"))) {
-                                filtered = true;
-                                resBody.sales.push(customerSalesArea.results[i]); //to fetch sales data
-                            }
-                        }
-                        return filtered;
-                    });
-                }
+				
+				if (userType === "Zone") {
+					bpResults = bpResults.filter(o => {
+						if (!o.to_Customer) {
+							return false;
+						}
+						var customerSalesArea = o.to_Customer.to_CustomerSalesArea;
+						if (!customerSalesArea) {
+							return false;
+						}
+						var filtered = false;
+						for (var i = 0; i < customerSalesArea.results.length; i++) {
+							if (customerSalesArea.results[i].SalesOffice === bpZone) {
+								filtered = true;
+								if (customerSalesArea.results[i].SalesOrganization == "6000" && customerSalesArea.results[i].DistributionChannel == "10" &&
+									customerSalesArea.results[i].SalesGroup != "T99" && customerSalesArea.results[i].Customer !== "2400500000") {
+									resBody.sales.push(customerSalesArea.results[i]); //to fetch sales data
+								}
+							}
+						}
+						return filtered;
+					});
+				}
+				if (userType === "National") {
+					bpResults = bpResults.filter(o => {
+						if (!o.to_Customer) {
+							return false;
+						}
+						var customerSalesArea = o.to_Customer.to_CustomerSalesArea;
+						if (!customerSalesArea) {
+							return false;
+						}
+						var filtered = false;
+						for (var i = 0; i < customerSalesArea.results.length; i++) {
+							if ((customerSalesArea.results[i].SalesOffice === "1000" || customerSalesArea.results[i].SalesOffice === "2000" ||
+									customerSalesArea.results[i].SalesOffice === "3000" || customerSalesArea.results[i].SalesOffice === "4000" ||
+									customerSalesArea.results[i].SalesOffice === "5000" || customerSalesArea.results[i].SalesOffice === "7000" ||
+									customerSalesArea.results[i].SalesOffice === "9000" || customerSalesArea.results[i].SalesOffice === "8000") && ((
+									customerSalesArea.results[i].SalesOrganization == "6000") && (customerSalesArea.results[i].DistributionChannel == "10" &&
+									customerSalesArea.results[i].SalesGroup != "T99"))) {
+								filtered = true;
+								resBody.sales.push(customerSalesArea.results[i]); //to fetch sales data
+							}
+						}
+						return filtered;
+					});
+				}
 
 				for (var i = 0; i < bpResults.length; i++) {
 					var bpLength = bpResults[i].BusinessPartner.length;
