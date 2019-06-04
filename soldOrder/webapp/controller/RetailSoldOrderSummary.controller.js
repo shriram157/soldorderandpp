@@ -108,6 +108,9 @@ sap.ui.define([
 	}, {
 		"key": "COMPLETE",
 		"text": "Complete"
+	}, {
+		"key": "",
+		"text": "Blank"
 	}]
 
 			};
@@ -121,6 +124,9 @@ sap.ui.define([
 	}, {
 		"key": "COMPLETE",
 		"text": "Complete"
+	}, {
+		"key": "",
+		"text": "Blank"
 	}]
 
 			};
@@ -350,7 +356,7 @@ sap.ui.define([
 			
 				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()));
 			}
-				afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, ""));
+			
 
 			if (afilter.length > 0) {
 				var filter_sstatus = new Filter(afilter, false);
@@ -383,7 +389,7 @@ sap.ui.define([
 				// }
 				asfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()));
 			}
-				asfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, ""));
+				
 
 			if (asfilter.length > 0) {
 				var filter_asstatus = new Filter(asfilter, false);
@@ -395,7 +401,7 @@ sap.ui.define([
 			for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
 				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey()));
 			}
-				Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, ""));
+			
 
 			if (Sfilter.length > 0) {
 				var filter_series = new Filter(Sfilter, false);
