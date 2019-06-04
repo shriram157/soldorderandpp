@@ -110,7 +110,7 @@ sap.ui.define([
 		"text": "Complete"
 	}, {
 		"key": "",
-		"text": "Blank"
+		"text": "ALL"
 	}]
 
 			};
@@ -126,7 +126,7 @@ sap.ui.define([
 		"text": "Complete"
 	}, {
 		"key": "",
-		"text": "Blank"
+		"text": "ALL"
 	}]
 
 			};
