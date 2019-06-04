@@ -136,7 +136,7 @@
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
-							<DatePicker id="etaFrom_CFSO" required="true" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd">
+							<DatePicker id="etaFrom_CFSO" required="true" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" change="_handleToDateChange">
 								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
