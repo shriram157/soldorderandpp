@@ -1028,7 +1028,7 @@ var errForm;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
-					sorter:{path:'text'},
+					sorter:{path:'mainservices>model'},
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
@@ -1090,6 +1090,7 @@ var errForm;
 				suffixCB.bindItems({
 					// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
 					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='"+dealer+"')/Set",
+					sorter:{path:'mainservices>suffix'},
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, brand)
@@ -1128,6 +1129,7 @@ var errForm;
 				apxCB.bindItems({
 					// path: 'VechileModel>/ZC_PIO_DIO',
 					path: 'mainservices>/ZVMS_CDS_APX',
+					sorter:{path:'mainservices>zzapx'},
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
@@ -1156,6 +1158,7 @@ var errForm;
 				}
 				this.getView().byId('Colour_RSOA').bindItems({
 					path: 'mainservices>/ZVMS_CDS_Colour',
+					sorter:{path:'mainservices>ext'},
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
