@@ -1024,11 +1024,12 @@ var errForm;
 				apxCB.destroyItems();
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
+				var oSorter = new sap.ui.model.Sorter('mainservices>model');
 			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
-					sorter:{path:'mainservices>model'},
+					sorter: oSorter,
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
@@ -1159,6 +1160,7 @@ var errForm;
 				this.getView().byId('Colour_RSOA').bindItems({
 					path: 'mainservices>/ZVMS_CDS_Colour',
 					sorter:{path:'mainservices>ext'},
+					
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)

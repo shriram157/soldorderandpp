@@ -34,7 +34,7 @@
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>Series}"/>
-							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/', sorter: { path: 'seriesModel>TCISeriesDescriptionEN'}}" required="true" selectionChange="series_selected">
+							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
 								<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>
 							<!--<core:Item text="{seriesdropDownModel>}" key="{seriesdropDownModelKey>}"/>-->
 							</ComboBox>
