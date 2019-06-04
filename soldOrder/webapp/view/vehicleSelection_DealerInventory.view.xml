@@ -77,7 +77,8 @@
 							<Column width="10%" resizable="false" id="apx">
 								<m:Label text="{i18n>status}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>ZMMSTA}" wrapping="false"/>
+									<m:Text text="{mainservices>Status}" wrapping="false"/>
+									<!--<m:Text text="{mainservices>ZMMSTA}" wrapping="false"/>-->
 								</template>
 							</Column>
 						</columns>

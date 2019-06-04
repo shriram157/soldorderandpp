@@ -1028,6 +1028,7 @@ var errForm;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
+					sorter:{path:'text'},
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),

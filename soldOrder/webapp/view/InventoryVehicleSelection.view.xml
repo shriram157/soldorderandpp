@@ -87,7 +87,7 @@
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>status}" class="TableLabel"/>
 								<t:template>
-									<Text text="{mainservices>ZMMSTA}"/>
+									<Text text="{mainservices>Status}"/>
 								</t:template>
 							</t:Column>
 								</t:columns>

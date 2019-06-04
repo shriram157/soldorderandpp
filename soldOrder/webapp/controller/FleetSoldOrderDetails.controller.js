@@ -158,16 +158,17 @@ sap.ui.define([
 			var dfilter = [];
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
-				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
-					dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
-				}
+			FSOD_controller._refresh();
+				// for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
+				// 	dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey()));
+				// }
 				
-				if (dfilter.length > 0) {
-					var filter_dealers = new Filter(dfilter, false);
-					//---------------------------------------------------------------
-					var items = this.getView().byId("tbl_FSOD").getBinding('rows');
-					items.filter(filter_dealers);
-				}
+				// if (dfilter.length > 0) {
+				// 	var filter_dealers = new Filter(dfilter, false);
+				// 	//---------------------------------------------------------------
+				// 	var items = this.getView().byId("tbl_FSOD").getBinding('rows');
+				// 	items.filter(filter_dealers);
+				// }
 			}
 			//=====================================================================
 			// if (AppController.flagZoneUser == true) {
