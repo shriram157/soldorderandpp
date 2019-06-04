@@ -360,17 +360,44 @@ sap.ui.define([
 
 		},
 		_handleChange: function () {
+			// Handle th Validation Date "YYYYMMdd"
+			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+				pattern: "yyyy-MM-ddTHH:mm:ss"
+			});
 			var etaFrom = CFSO_controller.getView().byId("etaFrom_CFSO").getValue();
+			var count = 0;
+			var endDate = new Date();
+			var CDate = zdateFormat.parse(etaFrom);
+			var day5 = new Date();
 			if (etaFrom !== "") {
-				var CDate = new Date(etaFrom);
-				var day5 = CDate;
-				day5.setDate(CDate.getDate() + 5);
-				CFSO_controller.getView().byId("etaTo_CFSO").setMinDate(day5);
+				while(count < 5){
+    endDate = new Date(CDate.setDate(CDate.getDate() + 1));
+    if(endDate.getDay() != 0 && endDate.getDay() != 6){
+       //Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
+       count++;
+    }
+}
+			
+				
+				CFSO_controller.getView().byId("etaTo_CFSO").setMinDate(CDate);
 			} else {
-				var errForm = formatter.formatErrorType("SO00009");
+				var errForm = formatter.formatErrorType("SO00002");
 				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+				var errTitle = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap.m.MessageBox.Action.OK, null, null);
 			}
+
+			// var etaFrom = RSOA_controller.getView().byId("etaFrom_RSOA").getValue();
+			// if (etaFrom !== "") {
+			// 	var CDate = new Date(etaFrom);
+			// 	var day5 = CDate;
+			// 	day5.setDate(CDate.getDate() + 5);
+			// 	RSOA_controller.getView().byId("etaTo_RSOA").setMinDate(day5);
+			// } else {
+			// 	var errForm = formatter.formatErrorType("SO00002");
+			// 	var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+			// 	sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			// }
 		},
 		onColumnResize: function (oEvent) {
 			oEvent.preventDefault();
