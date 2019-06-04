@@ -11,6 +11,118 @@ sap.ui.define([
 
 		onInit: function () {
 			PPD_DealerCont = this;
+			AppController.getDealer();
+				var language = PPD_DealerCont.returnBrowserLanguage();
+			var globalComboModel = new sap.ui.model.json.JSONModel();
+			var Obj;
+			if(language== "EN"){
+			Obj = {
+				"PriceProtectionStatus": [{
+		"key": "1",
+		"text": " Open"
+	}, {
+		"key": "2",
+		"text": "In Progress"
+	}, {
+		"key": "3",
+		"text": "Pre-Approved"
+	}, {
+		"key": "4",
+		"text": "Under Review"
+	}, {
+		"key": "5",
+		"text": "Approved"
+	}, {
+		"key": "6",
+		"text": "Rejected"
+	}]
+			};}
+			else{
+				Obj = {
+			"PriceProtectionStatus": [{
+		"key": "1",
+		"text": " Open"
+	}, {
+		"key": "2",
+		"text": "In Progress"
+	}, {
+		"key": "3",
+		"text": "Pre-Approved"
+	}, {
+		"key": "4",
+		"text": "Under Review"
+	}, {
+		"key": "5",
+		"text": "Approved"
+	}, {
+		"key": "6",
+		"text": "Rejected"
+	}],
+			};
+			
+
+			}
+			
+				globalComboModel.setData(Obj);
+			globalComboModel.updateBindings(true);
+			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
+			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
+			console.log(sap.ui.getCore().getModel("globalComboModel"));
+			
+			
+			var OrderTypeModel = new sap.ui.model.json.JSONModel();
+			var Object;
+			if(language== "EN"){
+		Object = { "PriceProtection_OrderType": [{
+		"key": "2",
+		"text": " Fleet- Dealer RAC"
+	}, {
+		"key": "3",
+		"text": "Dealer Elite"
+	}, {
+		"key": "4",
+		"text": "Fleet- Dealer Mobility"
+	}, {
+		"key": "5",
+		"text": "Fleet- National RAC"
+	}, {
+		"key": "6",
+		"text": "Fleet- National Elite"
+	}, {
+		"key": "1",
+		"text": "All"
+	}],};
+				
+			}
+			else{
+				Object = { "PriceProtection_OrderType": [{
+		"key": "2",
+		"text": " Fleet- Dealer RAC"
+	}, {
+		"key": "3",
+		"text": "Dealer Elite"
+	}, {
+		"key": "4",
+		"text": "Fleet- Dealer Mobility"
+	}, {
+		"key": "5",
+		"text": "Fleet- National RAC"
+	}, {
+		"key": "6",
+		"text": "Fleet- National Elite"
+	}, {
+		"key": "1",
+		"text": "All"
+	}],};
+			
+
+			}
+			
+			OrderTypeModel.setData(Object);
+			OrderTypeModel.updateBindings(true);
+			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
+			this.getView().setModel(sap.ui.getCore().getModel("OrderTypeModel"),"OrderTypeModel");
+			console.log(sap.ui.getCore().getModel("OrderTypeModel"));
 			PPD_DealerCont.getBrowserLanguage();
 			PPD_DealerCont._handleServiceSuffix_Series();
 			// var sLocation = window.location.host;
@@ -90,25 +202,29 @@ sap.ui.define([
 		},
 
 		onAfterRendering: function () {
+			
 			var mcb_status_PPD_D = PPD_DealerCont.getView().byId("mcb_status_PPD_D");
 			var mcb_ordTyp_PPD_D = PPD_DealerCont.getView().byId("mcb_ordTyp_PPD_D");
 			var mcb_dealer_PPD_D = PPD_DealerCont.getView().byId("mcb_dealer_PPD_D");
 			mcb_status_PPD_D.setSelectedItems(mcb_status_PPD_D.getItems());
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
+			
+			PPD_DealerCont._refresh();
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
-			var dfilter = [];
-			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
-				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
-			}
-			if (dfilter.length > 0) {
-				var filter_dealers = new Filter(dfilter, false);
-				//---------------------------------------------------------------
-				var items = this.getView().byId("table_PPD_Dealer").getBinding('rows');
-				items.filter(filter_dealers);
-			}
+			// var dfilter = [];
+			// for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
+			// 	dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
+			// }
+			// if (dfilter.length > 0) {
+			// 	var filter_dealers = new Filter(dfilter, false);
+			// 	//---------------------------------------------------------------
+			// 	var items = this.getView().byId("table_PPD_Dealer").getBinding('rows');
+			// 	items.filter(filter_dealers);
+			// }
+			
 		},
 
 		_refresh: function () {
@@ -124,6 +240,16 @@ sap.ui.define([
 				var filter_sstatus = new Filter(statFilter, false);
 				allfilter.push(filter_sstatus);
 			}
+			
+				var ordFilter = [];
+
+			for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+				ordFilter.push(new Filter("zzso_type", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey()));
+			}
+			if (statFilter.length > 0) {
+				var filter_ord = new Filter(ordFilter, false);
+				allfilter.push(filter_ord);
+			}
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
@@ -136,7 +262,7 @@ sap.ui.define([
 				allfilter.push(filter_dealers);
 			}
 
-			items.filter(new Filter([filter_sstatus, filter_dealers], true));
+			items.filter(new Filter([filter_sstatus,filter_ord, filter_dealers], true));
 
 		},
 		_navToRSO: function (evt) {

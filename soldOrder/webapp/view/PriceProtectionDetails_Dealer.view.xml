@@ -21,9 +21,9 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_status_PPD_D" selectionChange="_refresh" items="{ path: '/PriceProtectionStatus', sorter: { path: 'key' } }"
+												<MultiComboBox id="mcb_status_PPD_D" selectionChange="_refresh" items="{ path: 'globalComboModel>/PriceProtectionStatus', sorter: { path: 'key' } }"
 													class="sapUiMediumMarginEnd">
-													<core:Item key="{key}" text="{text}"/>
+													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
 														<l:GridData span="L4 M12 S12"/>
 													</layoutData>
@@ -35,9 +35,9 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_ordTyp_PPD_D" selectionChange="_refresh" items="{ path: '/PriceProtection_OrderType', sorter: { path: 'key' } }"
+												<MultiComboBox id="mcb_ordTyp_PPD_D" selectionChange="_refresh" items="{ path: 'OrderTypeModel>/PriceProtection_OrderType', sorter: { path: 'key' } }"
 													class="sapUiMediumMarginEnd">
-													<core:Item key="{key}" text="{text}"/>
+													<core:Item key="{OrderTypeModel>key}" text="{OrderTypeModel>text}"/>
 													<layoutData>
 														<l:GridData span="L4 M12 S12"/>
 													</layoutData>
