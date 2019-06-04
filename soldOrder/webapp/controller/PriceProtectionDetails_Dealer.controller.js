@@ -19,44 +19,44 @@ sap.ui.define([
 			Obj = {
 				"PriceProtectionStatus": [{
 		"key": "1",
-		"text": " Open"
+		"text": " OPEN"
 	}, {
 		"key": "2",
-		"text": "In Progress"
+		"text": "IN PROGRESS"
 	}, {
 		"key": "3",
-		"text": "Pre-Approved"
+		"text": "PRE-APPROVED"
 	}, {
 		"key": "4",
-		"text": "Under Review"
+		"text": "UNDER REVIEW"
 	}, {
 		"key": "5",
-		"text": "Approved"
+		"text": "APPROVED"
 	}, {
 		"key": "6",
-		"text": "Rejected"
+		"text": "REJECTED"
 	}]
 			};}
 			else{
 				Obj = {
-			"PriceProtectionStatus": [{
+		"PriceProtectionStatus": [{
 		"key": "1",
-		"text": " Open"
+		"text": " OPEN"
 	}, {
 		"key": "2",
-		"text": "In Progress"
+		"text": "IN PROGRESS"
 	}, {
 		"key": "3",
-		"text": "Pre-Approved"
+		"text": "PRE-APPROVED"
 	}, {
 		"key": "4",
-		"text": "Under Review"
+		"text": "UNDER REVIEW"
 	}, {
 		"key": "5",
-		"text": "Approved"
+		"text": "APPROVED"
 	}, {
 		"key": "6",
-		"text": "Rejected"
+		"text": "REJECTED"
 	}],
 			};
 			
@@ -241,15 +241,15 @@ sap.ui.define([
 				allfilter.push(filter_sstatus);
 			}
 			
-				var ordFilter = [];
+			// 	var ordFilter = [];
 
-			for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-				ordFilter.push(new Filter("zzso_type", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey()));
-			}
-			if (statFilter.length > 0) {
-				var filter_ord = new Filter(ordFilter, false);
-				allfilter.push(filter_ord);
-			}
+			// for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+			// 	ordFilter.push(new Filter("zzso_type", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey()));
+			// }
+			// if (statFilter.length > 0) {
+			// 	var filter_ord = new Filter(ordFilter, false);
+			// 	allfilter.push(filter_ord);
+			// }
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
@@ -262,7 +262,7 @@ sap.ui.define([
 				allfilter.push(filter_dealers);
 			}
 
-			items.filter(new Filter([filter_sstatus,filter_ord, filter_dealers], true));
+			items.filter(new Filter([filter_sstatus, filter_dealers], true));
 
 		},
 		_navToRSO: function (evt) {
