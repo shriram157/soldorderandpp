@@ -942,6 +942,7 @@ var errForm;
 							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 			}
+				var oSorter = new sap.ui.model.Sorter('model');
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
@@ -954,7 +955,7 @@ var errForm;
 						key: "{mainservices>model}",
 						text: model
 					})
-				});
+				}).sort(oSorter);
 				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
@@ -1024,12 +1025,12 @@ var errForm;
 				apxCB.destroyItems();
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
-				var oSorter = new sap.ui.model.Sorter('mainservices>model');
+				var oSorter = new sap.ui.model.Sorter('model');
 			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
-					sorter: oSorter,
+					
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
@@ -1039,7 +1040,7 @@ var errForm;
 						key: "{mainservices>model}",
 						text: model
 					})
-				});
+				}).sort(oSorter);
 				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
