@@ -74,46 +74,47 @@ sap.ui.define([
 			var Object;
 			if(language== "EN"){
 		Object = { "PriceProtection_OrderType": [{
-		"key": "2",
-		"text": " Fleet- Dealer RAC"
+		"key": "F1",
+		"text": "DLR RAC"
 	}, {
-		"key": "3",
-		"text": "Dealer Elite"
+		"key": "F2",
+		"text": "DLR ELITE"
 	}, {
-		"key": "4",
-		"text": "Fleet- Dealer Mobility"
-	}, {
-		"key": "5",
-		"text": "Fleet- National RAC"
-	}, {
-		"key": "6",
-		"text": "Fleet- National Elite"
-	}, {
-		"key": "1",
-		"text": "All"
+		"key": "F3",
+		"text": "NAT RAC"
+	},
+	{
+		"key": "F4",
+		"text": "NAT ELITE"
+	},{
+		"key": "F5",
+		"text": "MOBILITY"
 	}],};
 				
 			}
 			else{
 				Object = { "PriceProtection_OrderType": [{
-		"key": "2",
-		"text": " Fleet- Dealer RAC"
+		"key": "F1",
+		"text": "DLR RAC"
 	}, {
-		"key": "3",
-		"text": "Dealer Elite"
+		"key": "F2",
+		"text": "DLR ELITE"
 	}, {
-		"key": "4",
-		"text": "Fleet- Dealer Mobility"
-	}, {
-		"key": "5",
-		"text": "Fleet- National RAC"
-	}, {
-		"key": "6",
-		"text": "Fleet- National Elite"
-	}, {
-		"key": "1",
-		"text": "All"
-	}],};
+		"key": "F3",
+		"text": "NAT RAC"
+	},
+	{
+		"key": "F4",
+		"text": "NAT ELITE"
+	},{
+		"key": "F5",
+		"text": "MOBILITY"
+	},{
+		"key": "RS",
+		"text": "RETAIL SOLD"
+	}
+	
+	],};
 			
 
 			}
