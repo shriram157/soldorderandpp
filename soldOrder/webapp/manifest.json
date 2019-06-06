@@ -158,6 +158,9 @@
 			}
 		},
 		"resources": {
+			"js": [{
+               "uri": "lib/changeFabicon.js"
+            }],
 			"css": [{
 				"uri": "css/style.css"
 			}]
