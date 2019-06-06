@@ -300,8 +300,8 @@ module.exports = function (appContext) {
 		};
 
 		var bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-			"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z002')" +
-			"and zstatus ne 'X' &$orderby=BusinessPartner asc &$select=BusinessPartner,BusinessPartnerName,BusinessPartnerType,OrganizationBPName1,SearchTerm2,to_Customer/Attribute1,to_Customer/to_CustomerSalesArea/SalesOffice,to_Customer/to_CustomerSalesArea/Customer,to_Customer/to_CustomerSalesArea/SalesOrganization,to_Customer/to_CustomerSalesArea/DistributionChannel,to_Customer/to_CustomerSalesArea/Division,to_Customer/to_CustomerSalesArea/SalesGroup";
+			"&$expand=to_Customer&$filter=(BusinessPartnerType eq 'Z001' && BusinessPartnerType eq 'Z002')" +
+			"and zstatus ne 'X' &$orderby=BusinessPartner asc &$select=BusinessPartner,BusinessPartnerName,BusinessPartnerType,OrganizationBPName1,SearchTerm2,to_Customer/Attribute1,to_Customer/CustomerAccountGroup";
 
 		tracer.debug("BP URL: %s", bpReqUrl);
 		var bpReqHeaders = {
@@ -323,25 +323,7 @@ module.exports = function (appContext) {
 				var bpResults = bpResBody.d.results;
 				
 				bpResults = bpResults.filter(o => {
-					if (!o.to_Customer) {
-						return false;
-					}
-					var customerSalesArea = o.to_Customer.to_CustomerSalesArea;
-					if (!customerSalesArea) {
-						return false;
-					}
-					var filtered = false;
-					for (var i = 0; i < customerSalesArea.results.length; i++) {
-						if ((customerSalesArea.results[i].SalesOffice === "1000" || customerSalesArea.results[i].SalesOffice === "2000" ||
-								customerSalesArea.results[i].SalesOffice === "3000" || customerSalesArea.results[i].SalesOffice === "4000" ||
-								customerSalesArea.results[i].SalesOffice === "5000" || customerSalesArea.results[i].SalesOffice === "7000" ||
-								customerSalesArea.results[i].SalesOffice === "9000") && ((
-								customerSalesArea.results[i].SalesOrganization == "6000") && (customerSalesArea.results[i].DistributionChannel == "10" &&
-								customerSalesArea.results[i].SalesGroup != "T99"))) {
-							filtered = true;
-						}
-					}
-					return filtered;
+					return (o.to_Customer && o.to_Customer.CustomerAccountGroup === "Z007");
 				});
 
 				for (var i = 0; i < bpResults.length; i++) {
