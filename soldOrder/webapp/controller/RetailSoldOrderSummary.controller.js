@@ -26,8 +26,8 @@ sap.ui.define([
 					"key": "IN-PROGRESS",
 					"text": "IN-PROGRESS"
 				}, {
-					"key": "PENDING FULFILMENT",
-					"text": "PENDING FULFILMENT"
+					"key": "PENDING FULFILLMENT",
+					"text": "PENDING FULFILLMENT"
 				}, {
 					"key": "FILLED",
 					"text": "FILLED"
@@ -59,8 +59,8 @@ sap.ui.define([
 					"key": "IN-PROGRESS",
 					"text": "IN-PROGRESS"
 				}, {
-					"key": "PENDING FULFILMENT",
-					"text": "PENDING FULFILMENT"
+					"key": "PENDING FULFILLMENT",
+					"text": "PENDING FULFILLMENT"
 				}, {
 					"key": "FILLED",
 					"text": "FILLED"
