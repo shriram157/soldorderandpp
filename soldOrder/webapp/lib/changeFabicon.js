@@ -18,22 +18,22 @@ function changeFavicon(src) {
 
  }
 
-var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+// var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 
-if (isDivisionSent) {
-	this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+// if (isDivisionSent) {
+// 	this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 
-	if (this.sDivision == "10") {
-		changeFavicon("images/favicon-16x16.png");
-	} else if (this.sDivision == "20") {
-		changeFavicon("images/faviconL-32x32.png");
-	} else {
-		changeFavicon("images/favicon-16x16.png");
-	}
+// 	if (this.sDivision == "10") {
+// 		changeFavicon("images/favicon-16x16.png");
+// 	} else if (this.sDivision == "20") {
+// 		changeFavicon("images/faviconL-32x32.png");
+// 	} else {
+// 		changeFavicon("images/favicon-16x16.png");
+// 	}
 
-} else {
-	changeFavicon("images/favicon-16x16.png");
-}
+// } else {
+// 	changeFavicon("images/favicon-16x16.png");
+// }
 
 var isLanguageSent = window.location.search.match(/language=([^&]*)/i);
 if (isLanguageSent) {
