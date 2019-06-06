@@ -190,7 +190,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	Tciusernzonetype: function (Usertypevalue){
-		if ((Usertypevalue === 'TCI_User') || (Usertypevalue === "Zone"))
+		if ((Usertypevalue === 'TCI_User') || (Usertypevalue === "TCI_Zone_User"))
 		{
 			return true;
 		}else {

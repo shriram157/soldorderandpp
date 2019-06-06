@@ -89,7 +89,12 @@ sap.ui.define([
 	},{
 		"key": "F5",
 		"text": "MOBILITY"
-	}],};
+	},
+	{
+		"key": "RETAIL SOLD",
+		"text": "RETAIL SOLD"
+	}
+	],};
 				
 			}
 			else{
@@ -109,8 +114,9 @@ sap.ui.define([
 	},{
 		"key": "F5",
 		"text": "MOBILITY"
-	},{
-		"key": "RS",
+	},
+	{
+		"key": "RETAIL SOLD",
 		"text": "RETAIL SOLD"
 	}
 	
@@ -242,15 +248,15 @@ sap.ui.define([
 				allfilter.push(filter_sstatus);
 			}
 			
-			// 	var ordFilter = [];
+				var ordFilter = [];
 
-			// for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-			// 	ordFilter.push(new Filter("zzso_type", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey()));
-			// }
-			// if (statFilter.length > 0) {
-			// 	var filter_ord = new Filter(ordFilter, false);
-			// 	allfilter.push(filter_ord);
-			// }
+			for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+				ordFilter.push(new Filter("zzordtypedesc", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText()));
+			}
+			if (ordFilter.length > 0) {
+				var filter_ord = new Filter(ordFilter, false);
+				allfilter.push(filter_ord);
+			}
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
@@ -263,7 +269,7 @@ sap.ui.define([
 				allfilter.push(filter_dealers);
 			}
 
-			items.filter(new Filter([filter_sstatus, filter_dealers], true));
+			items.filter(new Filter([filter_sstatus, filter_ord, filter_dealers], true));
 
 		},
 		_navToRSO: function (evt) {
