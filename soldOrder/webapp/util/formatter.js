@@ -189,6 +189,15 @@ toyota.ca.SoldOrder.util.formatter = {
 			return false;
 		}
 	},
+	Tciusernzonetype: function (Usertypevalue){
+		if ((Usertypevalue === 'TCI_User') || (userType === "Zone"))
+		{
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 	Tciuseraudit: function (status) {
 		if (status == "IN-PROGRESS") {
 			return true;
