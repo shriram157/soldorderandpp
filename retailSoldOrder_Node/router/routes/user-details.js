@@ -300,8 +300,8 @@ module.exports = function (appContext) {
 		};
 
 		var bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-			"&$expand=to_Customer&$filter=(BusinessPartnerType eq 'Z001' && BusinessPartnerType eq 'Z002')" +
-			"and zstatus ne 'X' &$orderby=BusinessPartner asc &$select=BusinessPartner,BusinessPartnerName,BusinessPartnerType,OrganizationBPName1,SearchTerm2,to_Customer/Attribute1,to_Customer/CustomerAccountGroup";
+			"&$expand=to_Customer&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z002')" +
+			"and zstatus ne 'X'&$orderby=BusinessPartner asc &$select=BusinessPartner,BusinessPartnerName,BusinessPartnerType,OrganizationBPName1,SearchTerm2,to_Customer/Attribute1,to_Customer/CustomerAccountGroup";
 
 		tracer.debug("BP URL: %s", bpReqUrl);
 		var bpReqHeaders = {
