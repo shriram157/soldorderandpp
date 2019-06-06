@@ -19,7 +19,7 @@ sap.ui.define([
 			Obj = {
 				"PriceProtectionStatus": [{
 		"key": "1",
-		"text": " OPEN"
+		"text": "OPEN"
 	}, {
 		"key": "2",
 		"text": "IN PROGRESS"
@@ -41,7 +41,7 @@ sap.ui.define([
 				Obj = {
 		"PriceProtectionStatus": [{
 		"key": "1",
-		"text": " OPEN"
+		"text": "OPEN"
 	}, {
 		"key": "2",
 		"text": "IN PROGRESS"
