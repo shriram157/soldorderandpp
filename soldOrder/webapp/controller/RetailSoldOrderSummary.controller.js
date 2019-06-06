@@ -24,67 +24,64 @@ sap.ui.define([
 					
 					{
 					"key": "IN-PROGRESS",
-					"text": "In-Progress"
+					"text": "IN-PROGRESS"
 				}, {
 					"key": "PENDING FULFILMENT",
-					"text": "Pending Fulfillment"
+					"text": "PENDING FULFILMENT"
 				}, {
 					"key": "FILLED",
-					"text": "Filled"
+					"text": "FILLED"
 				}, {
 					"key": "REGISTERED",
-					"text": "Registered"
+					"text": "REGISTERED"
 				}, {
 					"key": "CANCELLED",
-					"text": "Cancelled"
+					"text": "CANCELLED"
 				}, {
 					"key": "REQUESTED",
-					"text": "Requested"
+					"text": "REQUESTED"
 				}, {
 					"key": "APPROVED",
-					"text": "Approved"
+					"text": "APPROVED"
 				}, {
 					"key": "REJECTED",
-					"text": "Rejected"
+					"text": "REJECTED"
 				}, {
 					"key": "COMPLETED",
-					"text": "Completed"
+					"text": "COMPLETED"
 				}]
 			};}
 			else{
 				Obj = {
 				"FSOSummary_Status": [
-					{
-					"key": "ALL",
-					"text": "SELECT ALL"
-					},
+					
 					{
 					"key": "IN-PROGRESS",
-					"text": "In-Progress"
+					"text": "IN-PROGRESS"
 				}, {
 					"key": "PENDING FULFILMENT",
-					"text": "Pending Fulfillment"
+					"text": "PENDING FULFILMENT"
 				}, {
 					"key": "FILLED",
-					"text": "Filled"
+					"text": "FILLED"
 				}, {
 					"key": "REGISTERED",
-					"text": "Registered"
+					"text": "REGISTERED"
 				}, {
 					"key": "CANCELLED",
-					"text": "Cancelled"
+					"text": "CANCELLED"
 				}, {
 					"key": "REQUESTED",
-					"text": "Requested"
+					"text": "REQUESTED"
 				}, {
 					"key": "APPROVED",
-					"text": "Approved"
+					"text": "APPROVED"
 				}, {
 					"key": "REJECTED",
-					"text": "Rejected"
+					"text": "REJECTED"
 				}, {
 					"key": "COMPLETED",
-					"text": "Completed"
+					"text": "COMPLETED"
 				}]
 			};
 			
@@ -104,10 +101,10 @@ sap.ui.define([
 		Object = {	
 				"AuditStatus": [{
 		"key": "IN-PROGRESS",
-		"text": "In-Progress"
+		"text": "IN-PROGRESS"
 	}, {
 		"key": "COMPLETE",
-		"text": "Complete"
+		"text": "COMPLETE"
 	}, {
 		"key": "",
 		"text": "ALL"
@@ -120,10 +117,10 @@ sap.ui.define([
 				Object = {
 				"AuditStatus": [{
 		"key": "IN-PROGRESS",
-		"text": "In-Progress"
+		"text": "IN-PROGRESS"
 	}, {
 		"key": "COMPLETE",
-		"text": "Complete"
+		"text": "COMPLETE"
 	}, {
 		"key": "",
 		"text": "ALL"

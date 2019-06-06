@@ -20,50 +20,50 @@ sap.ui.define([
 			Obj = {
 				"FSODetails_Status": [{
 		"key": "AUDIT-COMPLETED",
-		"text": "Audit - Completed"
+		"text": "AUDIT-COMPLETED"
 	}, {
 		"key": "PENDING FULFILLMENT",
-		"text": "Pending Fulfillment "
+		"text": "PENDING FULFILLMENT"
 	}, {
 		"key": "FAILED",
-		"text": "Failed"
+		"text": "FAILED"
 	}, {
 		"key": "FILLED",
-		"text": "Filled"
+		"text": "FILLED"
 	}, {
 		"key": "AUDIT-IN PROGRESS",
-		"text": "Audit - In Progress"
+		"text": "AUDIT-IN PROGRESS"
 	}, {
 		"key": "REGISTERED",
-		"text": "Registered"
+		"text": "REGISTERED"
 	}, {
 		"key": "CANCELLED",
-		"text": "Cancelled"
+		"text": "CANCELLED"
 	}]
 			};}
 			else{
 				Obj = {
 				"FSODetails_Status": [{
 		"key": "AUDIT-COMPLETED",
-		"text": "Audit - Completed"
+		"text": "AUDIT-COMPLETED"
 	}, {
 		"key": "PENDING FULFILLMENT",
-		"text": "Pending Fulfillment "
+		"text": "PENDING FULFILLMENT"
 	}, {
 		"key": "FAILED",
-		"text": "Failed"
+		"text": "FAILED"
 	}, {
 		"key": "FILLED",
-		"text": "Filled"
+		"text": "FILLED"
 	}, {
 		"key": "AUDIT-IN PROGRESS",
-		"text": "Audit - In Progress"
+		"text": "AUDIT-IN PROGRESS"
 	}, {
 		"key": "REGISTERED",
-		"text": "Registered"
+		"text": "REGISTERED"
 	}, {
 		"key": "CANCELLED",
-		"text": "Cancelled"
+		"text": "CANCELLED"
 	}]
 			};
 			
@@ -82,10 +82,10 @@ sap.ui.define([
 			if(language== "EN"){
 		Object = {"FSODetail_AuditStatus": [{
 		"key": "IN-PROGRESS",
-		"text": "In-Progress"
+		"text": "IN-PROGRESS"
 	}, {
 		"key": "COMPLETE",
-		"text": "Completed"
+		"text": "COMPLETE"
 	}],
 			
 		};
@@ -94,10 +94,10 @@ sap.ui.define([
 			else{
 				Object = {"FSODetail_AuditStatus": [{
 		"key": "IN-PROGRESS",
-		"text": "In-Progress"
+		"text": "IN-PROGRESS"
 	}, {
 		"key": "COMPLETE",
-		"text": "Completed"
+		"text": "COMPLETE"
 	}],};
 			
 

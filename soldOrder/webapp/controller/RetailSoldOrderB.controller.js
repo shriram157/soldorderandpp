@@ -216,12 +216,16 @@ sap.ui.define([
 				//---------------------------------------------------
 				//----Customer API-----------------------------------
 				//--------------------------------------------------
-
+var oBusyDialog = new sap.m.BusyDialog({
+				showCancelButton: false
+			});
+			
 				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 					"&lastName=" + CustModel.SecondName;
 				var msg1 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("msgcustomer1");
 				//lastName=" + CustModel.Name;
 				//+ "&phone=" +CustModel.Phone;
+				oBusyDialog.open();
 				$.ajax({
 					url: url,
 					headers: {
@@ -234,6 +238,7 @@ sap.ui.define([
 					// data: soapMessage,
 					contentType: "text/xml; charset=\"utf-8\"",
 					success: function (data, textStatus, jqXHR) {
+						oBusyDialog.close();
 							var phone = '';
 						//Looping on all customers that we got to match b phone and first name
 						for (var i = 0; i < data.customers.length; i++) {
@@ -304,6 +309,7 @@ sap.ui.define([
 						// }
 					},
 					error: function (request, errorText, errorCode) {
+						
 						var soapMessage = {
 							"requestHeader": {
 								"source": "Toyota",
@@ -352,6 +358,7 @@ sap.ui.define([
 							dataType: "json",
 							data: zdataString,
 							success: function (data, textStatus, jqXHR) {
+								oBusyDialog.close();
 								if (data.customer) {
 									Zcustomer_No = data.customer.partyID; //customerNumber;
 									Zcustomer_No = Zcustomer_No.toString();
@@ -379,6 +386,7 @@ sap.ui.define([
 								}
 							},
 							error: function (request, errorText, errorCode) {
+								oBusyDialog.close();
 								if (request.responseJSON.errors.length > 0) {
 									if (request.responseJSON.errors[1]) {
 										sap.m.MessageBox.show(request.responseJSON.errors[1].httpMessage, {
