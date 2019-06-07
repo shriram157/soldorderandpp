@@ -273,12 +273,13 @@ sap.ui.define([
 				allfilter.push(filter_dealers);
 			}
 			//---------------------------------------------------------------
+			var oSorter = new sap.ui.model.Sorter({path:"ZzsoReqNo", descending:true});
 
 			var filter_all = new Filter([filter_sstatus, filter_audit, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, 'X')],
 				true);
 			var items = this.getView().byId("tbl_FSOD").getBinding('rows');
 			items.filter(filter_all);
-
+			items.sort(oSorter);
 		},
 		onLinkVehicle: function (evt) {
 			zrequest = evt.getSource().getBindingContext('mainservices').getProperty('ZzsoReqNo');

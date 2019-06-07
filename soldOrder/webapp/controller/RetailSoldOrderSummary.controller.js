@@ -415,11 +415,12 @@ sap.ui.define([
 				allfilter.push(filter_dealers);
 			}
 			//---------------------------------------------------------------
+			var oSorter = new sap.ui.model.Sorter({path:"ZzsoReqNo", descending:true});
 			var filter_all = new Filter([filter_sstatus, filter_asstatus, filter_series, filter_dealers, new Filter("FleetReference", FilterOperator.EQ, '')],
 				true);
 			var items = this.getView().byId("table_RSOS").getBinding('rows');
 			items.filter(filter_all);
-
+			items.sort(oSorter);
 		},
 
 		_dispalySoldOrderDetails: function (evt) {

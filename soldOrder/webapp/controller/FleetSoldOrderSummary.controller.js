@@ -216,10 +216,13 @@ sap.ui.define([
 					var filter_dealers = new Filter(dfilter, false);
 					allfilter.push(filter_dealers);
 				}
+				var oSorter = new sap.ui.model.Sorter({path:'ZsoFltReqNo', descending:true});
+
 					//---------------------------------------------------------------
 					var filter_all = new Filter([filter_sstatus, filter_dealers, filter_ordertype], true);
 					var items = this.getView().byId("tbl_FSOS").getBinding('rows');
 					items.filter(filter_all);
+					items.sort(oSorter);
 			}
 			
 			//==================================================================================================

@@ -268,9 +268,10 @@ sap.ui.define([
 				var filter_dealers = new Filter(dfilter, false);
 				allfilter.push(filter_dealers);
 			}
+				var oSorter = new sap.ui.model.Sorter({path:'dealer_ord', descending:true});
 
 			items.filter(new Filter([filter_sstatus, filter_ord, filter_dealers], true));
-
+items.sort(oSorter);
 		},
 		_navToRSO: function (evt) {
 			// console.log(evt.getSource());
