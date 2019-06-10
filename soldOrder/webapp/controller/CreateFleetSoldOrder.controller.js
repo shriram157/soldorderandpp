@@ -358,7 +358,7 @@ getFleetCustomer:function()
 				type: "GET",
 				dataType: "json",
 				async: false,
-				success: function (data, textStatus, jqXHR) {
+				success: function (oData) {
 						var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(oData.attributes);
 					CFSO_controller.getView().setModel(oModel, "fleetModel");
