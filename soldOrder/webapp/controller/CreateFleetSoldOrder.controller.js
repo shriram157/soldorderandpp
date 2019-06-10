@@ -17,6 +17,7 @@ sap.ui.define([
 			var language = CFSO_controller.returnBrowserLanguage();
 			var today = new Date();
 			var day30 = new Date();
+			CFSO_controller.getFleetCustomer();
 			//day30.setDate(today.getDate() + 30);
 					var num = 0;
 			var endDate = new Date();
