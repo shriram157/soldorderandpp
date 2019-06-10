@@ -9,10 +9,11 @@
         liveChange="handleSearchFan"
         rememberSelections="true"
         confirm="onCloseDialogFan"
-        items="{mainservices>/ZvmsFleetSoFanNumberShSet}" >
+        items="{fleetModel}" >
+    	<!--items="{mainservices>/ZvmsFleetSoFanNumberShSet}" >-->
         <StandardListItem
-            title="{mainservices>BuSort2}"
-            description="{mainservices>NameOrg1}"
+            title="{fleetModel>BusinessPartner}"
+            description="{fleetModel>BusinessPartnerName}"
             type="Active"/>
     </SelectDialog>
 </core:FragmentDefinition>
