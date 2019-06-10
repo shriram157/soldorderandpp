@@ -175,7 +175,9 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					// console.log("Result from ZC_BRAND_MODEL_DETAIL");
 					// console.log(data.d.results);
+					
 					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					oModel.setData(data.d.results);
 					//	CFSO_controller.getView().byId("model_RSOA").setSizeLimit(oModel.getData().length);
 					CFSO_controller.getView().setModel(oModel, "oModel3");
 				},
@@ -356,7 +358,7 @@ getFleetCustomer:function()
 				type: "GET",
 				dataType: "json",
 				async: false,
-				success: function (oData) {
+				success: function (data, textStatus, jqXHR) {
 						var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
 					CFSO_controller.getView().setModel(oModel, "fleetModel");
