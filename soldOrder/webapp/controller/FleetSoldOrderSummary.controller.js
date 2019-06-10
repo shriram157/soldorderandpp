@@ -18,34 +18,19 @@ sap.ui.define([
 			if(language== "EN"){
 			Obj = {
 				"FSOSummary_Status": [
-					
-					{
-					"key": "IN-PROGRESS",
-					"text": "IN-PROGRESS"
-				}, {
-					"key": "PENDING FULFILLMENT",
-					"text": "PENDING FULFILLMENT"
-				}, {
-					"key": "FILLED",
-					"text": "FILLED"
-				}, {
-					"key": "REGISTERED",
-					"text": "REGISTERED"
-				}, {
-					"key": "CANCELLED",
-					"text": "CANCELLED"
-				}, {
+				{
 					"key": "REQUESTED",
 					"text": "REQUESTED"
-				}, {
+				},	
+				  {
 					"key": "APPROVED",
 					"text": "APPROVED"
 				}, {
 					"key": "REJECTED",
 					"text": "REJECTED"
-				}, {
-					"key": "COMPLETED",
-					"text": "COMPLETED"
+				},{
+					"key": "PROCESSED",
+					"text": "PROCESSED"
 				}]
 			};}
 			else{
@@ -53,32 +38,18 @@ sap.ui.define([
 				"FSOSummary_Status": [
 				
 					{
-					"key": "IN-PROGRESS",
-					"text": "IN-PROGRESS"
-				}, {
-					"key": "PENDING FULFILLMENT",
-					"text": "PENDING FULFILLMENT"
-				}, {
-					"key": "FILLED",
-					"text": "FILLED"
-				}, {
-					"key": "REGISTERED",
-					"text": "REGISTERED"
-				}, {
-					"key": "CANCELLED",
-					"text": "CANCELLED"
-				}, {
 					"key": "REQUESTED",
 					"text": "REQUESTED"
-				}, {
+				},	
+				  {
 					"key": "APPROVED",
 					"text": "APPROVED"
 				}, {
 					"key": "REJECTED",
 					"text": "REJECTED"
-				}, {
-					"key": "COMPLETED",
-					"text": "COMPLETED"
+				},{
+					"key": "PROCESSED",
+					"text": "PROCESSED"
 				}]
 			};
 			
