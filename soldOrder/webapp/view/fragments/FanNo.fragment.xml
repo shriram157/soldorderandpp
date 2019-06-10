@@ -9,7 +9,7 @@
         liveChange="handleSearchFan"
         rememberSelections="true"
         confirm="onCloseDialogFan"
-        items="{fleetModel}" >
+        items="{fleetModel>/}" >
     	<!--items="{mainservices>/ZvmsFleetSoFanNumberShSet}" >-->
         <StandardListItem
             title="{fleetModel>BusinessPartner}"
