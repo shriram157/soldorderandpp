@@ -360,7 +360,7 @@ getFleetCustomer:function()
 				async: false,
 				success: function (data, textStatus, jqXHR) {
 						var oModel = new sap.ui.model.json.JSONModel();
-					oModel.setData(data.d.results);
+					oModel.setData(oData.attributes);
 					CFSO_controller.getView().setModel(oModel, "fleetModel");
 					
 				},
