@@ -12,7 +12,7 @@
         items="{fleetModel>/}" >
     	<!--items="{mainservices>/ZvmsFleetSoFanNumberShSet}" >-->
         <StandardListItem
-            title="{fleetModel>BusinessPartner}"
+            title="{fleetModel>SearchTerm2}"
             description="{fleetModel>BusinessPartnerName}"
             type="Active"/>
     </SelectDialog>

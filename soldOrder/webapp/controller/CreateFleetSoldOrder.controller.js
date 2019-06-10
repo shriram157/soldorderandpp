@@ -961,7 +961,7 @@ if(quantity.length >0)
 		onCloseDialogFan: function (Oevent) {
 			var Fan = this.getView().byId("FanNo_CFSO");
 			var key = Oevent.getParameter("selectedContexts")[0].getProperty('BusinessPartnerKey');
-			var text = Oevent.getParameter("selectedContexts")[0].getProperty('BusinessPartner');
+			var text = Oevent.getParameter("selectedContexts")[0].getProperty('SearchTerm2');
 			CFSO_controller.getView().getModel('mainservices').read("/Customer_infoSet('" + key + "')", {
 				success: function (data, textStatus, jqXHR) {
 					var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
