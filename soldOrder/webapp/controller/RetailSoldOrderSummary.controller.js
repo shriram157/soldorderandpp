@@ -348,12 +348,12 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
-						if(oModel.length==undefined)
+						if(data.d.results.length==undefined)
 					{
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(oModel.length<110)
+					}else if(data.d.results.length<110)
 					{
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
@@ -645,12 +645,12 @@ sap.ui.define([
 					//  "{seriesModel>ModelSeriesNo}": "All",
 					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
 					//})
-					if(oModel.length==undefined)
+					if(data.d.results.length==undefined)
 					{
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(oModel.length<110)
+					}else if(data.d.results.length<110)
 					{
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
