@@ -333,7 +333,7 @@ sap.ui.define([
 			oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
 			if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
 				{
-					oUrl= oUrl+") and (FleetReference eq '')";
+					oUrl= oUrl+") and (FleetReference eq '')&$orderby=ZzsoReqNo desc";
 				}
 				else
 				{
@@ -625,7 +625,7 @@ sap.ui.define([
 			oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
 			if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
 				{
-					oUrl= oUrl+") and (FleetReference eq '')";
+					oUrl= oUrl+") and (FleetReference eq '')&$orderby=ZzsoReqNo desc";
 				}
 				else
 				{
