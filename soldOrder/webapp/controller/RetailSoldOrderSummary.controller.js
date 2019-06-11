@@ -209,7 +209,7 @@ sap.ui.define([
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
-			// if (x != "TCI_User") {
+			if (x != "TCI_User") {
 				// var dfilter = [];
 				// for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
 				// 	dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey()));
@@ -220,6 +220,48 @@ sap.ui.define([
 				// 	var items1 = this.getView().byId("table_RSOS").getBinding('rows');
 				// 	items1.filter(filter_dealers);
 				RSOS_controller._refresh(); // }
+			}
+			else
+			{
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip=0";
+					$.ajax({
+				url: oUrl,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+			
+					oModel.setData(data.d.results);
+						if(data.d.results.length==undefined)
+					{
+						
+					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+					}else if(data.d.results.length<110)
+					{
+					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+			   			 RSOS_controller.getView().setModel(oModel, "retailsumModel");
+					}else{
+					// if (oModel.length > 0) {
+					//oModel.getData().ZC_SERIES.unshift({
+					//  "{seriesModel>ModelSeriesNo}": "All",
+					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+					//})
+					// }
+					RSOS_controller.getView().setModel(oModel, "retailsumModel");
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					
+					
+					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			
+				}
+			});
+			}
 			// } //================================================================================================== 
 			// if (AppController.flagDealerUser == true) {
 			// 	RSOS_controller.getView().byId("idBtn_RSOS_new").setVisible(true);
@@ -591,6 +633,8 @@ sap.ui.define([
 		},
 		data:function (oEvent){
 				var host = RSOS_controller.host();
+					var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			if (x != "TCI_User") {
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip="+num+"&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
@@ -681,6 +725,53 @@ sap.ui.define([
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 				}
 			});
+			}
+			else
+			{
+				
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip="+num;
+					$.ajax({
+				url: oUrl,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					var page=clicks+1;
+			RSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
+					var oModel = new sap.ui.model.json.JSONModel();
+			
+					oModel.setData(data.d.results);
+						if(data.d.results.length==undefined)
+					{
+						
+					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+					}else if(data.d.results.length<110)
+					{
+					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+			   			 RSOS_controller.getView().setModel(oModel, "retailsumModel");
+					}else{
+					// if (oModel.length > 0) {
+					//oModel.getData().ZC_SERIES.unshift({
+					//  "{seriesModel>ModelSeriesNo}": "All",
+					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+					//})
+					// }
+					RSOS_controller.getView().setModel(oModel, "retailsumModel");
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					var page=clicks+1;
+			RSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
+					
+					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			
+				}
+			});
+			
+			}
 		}
 	});
 });
