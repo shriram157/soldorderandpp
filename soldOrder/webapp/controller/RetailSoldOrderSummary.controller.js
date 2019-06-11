@@ -348,6 +348,17 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
+						if(oModel.length==undefined)
+					{
+						
+					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+					}else if(oModel.length<110)
+					{
+					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+			   			 RSOS_controller.getView().setModel(oModel, "retailsumModel");
+					}else{
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",
@@ -355,10 +366,12 @@ sap.ui.define([
 					//})
 					// }
 					RSOS_controller.getView().setModel(oModel, "retailsumModel");
+					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			
 				}
 			});
 			clicks=0;
@@ -632,12 +645,18 @@ sap.ui.define([
 					//  "{seriesModel>ModelSeriesNo}": "All",
 					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
 					//})
-					if(oModel.length==undefined ||oModel.length<110)
+					if(oModel.length==undefined)
 					{
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else
+					}else if(oModel.length<110)
+					{
+					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+			   			 RSOS_controller.getView().setModel(oModel, "retailsumModel");
+					}
+					else
 					{
 					
 					RSOS_controller.getView().setModel(oModel, "retailsumModel");
