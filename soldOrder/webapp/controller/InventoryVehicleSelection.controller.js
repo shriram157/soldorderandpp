@@ -467,7 +467,7 @@ sap.ui.define([
 			//Dealer Inventory	var host = RSOS_controller.host();
 						var host = InvVehSel_controller.host();
 
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=110&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=110&$skip="+num+"&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
 				$.ajax({
 				url: oUrl,
 				method: "GET",
