@@ -402,7 +402,8 @@ sap.ui.define([
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<110)
+					}
+					else if(data.d.results.length<110)
 					{
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
@@ -459,7 +460,7 @@ sap.ui.define([
 			oUrl=oUrl+"(Zzseries eq '" +series+"')";
 			if(i==((this.getView().byId("mcb_series_RSOS").getSelectedItems().length)-1))
 				{
-					oUrl= oUrl+") and (FleetReference eq '')&$orderby=ZzsoReqNo desc;
+					oUrl= oUrl+") and (FleetReference eq '')&$orderby=ZzsoReqNo desc";
 				}
 				else
 				{
@@ -491,12 +492,12 @@ sap.ui.define([
 					{
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
+			  			 BtnNext.setEnabled(false);
 					}else if(data.d.results.length<110)
 					{
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
-			   			 RSOS_controller.getView().setModel(oModel, "retailsumModel");
+			  			 BtnNext.setEnabled(false);
+			  			 RSOS_controller.getView().setModel(oModel, "retailsumModel");
 					}else{
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
