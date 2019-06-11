@@ -164,8 +164,8 @@
 							</t:Table>
 							<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L2 M4 S8" class="marginCornersBottom">
 
-							<Button xmlns="sap.m" text="Previous" id="buttonPrev" press="onActionPrevious"/>
-							<Button xmlns="sap.m" text="Next" id="buttonNext" press="onActionNext"/>
+							<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>
+							<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
 								</l:Grid>
 						</items>
 					</VBox>
