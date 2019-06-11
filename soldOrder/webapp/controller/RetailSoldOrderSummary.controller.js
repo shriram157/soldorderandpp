@@ -9,6 +9,7 @@ sap.ui.define([
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderSummary", {
 		formatter: formatter,
 		onInit: function () {
+			
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
 			AppController.getDealer();
@@ -173,6 +174,9 @@ sap.ui.define([
 			mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
 			mcb_dealer_RSOS.setSelectedItems(mcb_dealer_RSOS.getItems());
 			var host = RSOS_controller.host();
+			var page=0;
+			page=clicks+1;
+			RSOS_controller.getView().byId("txtPageNum").setText("Page"+page);
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 			if (isDivisionSent) {
 				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
@@ -347,6 +351,7 @@ sap.ui.define([
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
 					var oModel = new sap.ui.model.json.JSONModel();
+			
 					oModel.setData(data.d.results);
 						if(data.d.results.length==undefined)
 					{
@@ -369,6 +374,8 @@ sap.ui.define([
 					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
+					
+					
 					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			
@@ -376,6 +383,8 @@ sap.ui.define([
 			});
 			clicks=0;
 			num=0;
+			var page=clicks+1;
+			RSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
 			 var BtnPrev = this.getView().byId("buttonPrev");
 			   			 BtnPrev.setEnabled(false);	
 			// var allfilter = [];
@@ -661,9 +670,13 @@ sap.ui.define([
 					
 					RSOS_controller.getView().setModel(oModel, "retailsumModel");
 					}
-					
+					var page=clicks+1;
+			RSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
+				
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
+					var page=clicks+1;
+			RSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
 					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 				}
