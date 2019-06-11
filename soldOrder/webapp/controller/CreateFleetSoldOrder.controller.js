@@ -981,7 +981,7 @@ if(quantity.length >0)
 			var searchString = oEvent.getParameter("value");
 			var filters = [];
 			if (searchString && searchString.length > 0) {
-				filters = new sap.ui.model.Filter([new sap.ui.model.Filter("BusinessPartner", sap.ui.model.FilterOperator.Contains, searchString),
+				filters = new sap.ui.model.Filter([new sap.ui.model.Filter("SearchTerm2", sap.ui.model.FilterOperator.Contains, searchString),
 					new sap.ui.model.Filter("BusinessPartnerName", sap.ui.model.FilterOperator.Contains, searchString)
 				], false);
 			}

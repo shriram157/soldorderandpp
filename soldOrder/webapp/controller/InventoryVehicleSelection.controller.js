@@ -22,7 +22,19 @@ sap.ui.define([
 		_getattachRouteMatched: function (parameters) {
 			this.zrequest = parameters.getParameters().arguments.Soreq;
 			// var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
-			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+		
+				
+				
+			
+			// vechile_items.filter([new Filter([
+			// 	new Filter("MATRIX", FilterOperator.EQ, "A205"),
+			// 	new Filter("Dealer", FilterOperator.EQ, dealer_no),
+			// 	new Filter("source", FilterOperator.EQ, "FLT")
+			// ], true)]);
+			// vechile_items.refresh();
+		},
+		onAfterRendering: function () {
+				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory	var host = RSOS_controller.host();
 						var host = InvVehSel_controller.host();
 
@@ -64,17 +76,6 @@ sap.ui.define([
 			
 				}
 			});
-				
-				
-			
-			// vechile_items.filter([new Filter([
-			// 	new Filter("MATRIX", FilterOperator.EQ, "A205"),
-			// 	new Filter("Dealer", FilterOperator.EQ, dealer_no),
-			// 	new Filter("source", FilterOperator.EQ, "FLT")
-			// ], true)]);
-			// vechile_items.refresh();
-		},
-		onAfterRendering: function () {
 				clicks=0;
 			num=0;
 			var page=clicks+1;
