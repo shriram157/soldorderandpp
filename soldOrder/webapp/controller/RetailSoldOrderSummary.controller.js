@@ -205,7 +205,7 @@ sap.ui.define([
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			// if (x != "TCI_User") {
 				// var dfilter = [];
 				// for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
 				// 	dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey()));
@@ -216,7 +216,7 @@ sap.ui.define([
 				// 	var items1 = this.getView().byId("table_RSOS").getBinding('rows');
 				// 	items1.filter(filter_dealers);
 				RSOS_controller._refresh(); // }
-			} //================================================================================================== 
+			// } //================================================================================================== 
 			// if (AppController.flagDealerUser == true) {
 			// 	RSOS_controller.getView().byId("idBtn_RSOS_new").setVisible(true);
 			// 	var len = data.length;
@@ -540,7 +540,7 @@ sap.ui.define([
 			   		    var BtnPrev = this.getView().byId("buttonPrev");
 			   			 BtnPrev.setEnabled(true);			   			
 				}	
-				
+				RSOS_controller.data();
 		},
 		/**
 		 *@memberOf toyota.ca.SoldOrder.controller.RetailSoldOrderSummary
@@ -564,7 +564,8 @@ sap.ui.define([
    			{
    		     var Btn = this.getView().byId("buttonPrev");
    			 Btn.setEnabled(false);
-   			}   			
+   			}   
+   			RSOS_controller.data();
 		},
 		data:function (oEvent){
 				var host = RSOS_controller.host();
@@ -631,8 +632,17 @@ sap.ui.define([
 					//  "{seriesModel>ModelSeriesNo}": "All",
 					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
 					//})
-					// }
+					if(oModel.length==undefined ||oModel.length<110)
+					{
+						
+					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+					}else
+					{
+					
 					RSOS_controller.getView().setModel(oModel, "retailsumModel");
+					}
+					
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
