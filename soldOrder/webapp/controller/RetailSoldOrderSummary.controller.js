@@ -223,7 +223,7 @@ sap.ui.define([
 			}
 			else
 			{
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip=0";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip=0&$filter=(FleetReference eq '')&$orderby=ZzsoReqNo desc";
 					$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -729,7 +729,7 @@ sap.ui.define([
 			else
 			{
 				
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip="+num;
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip="+num+"&$filter=(FleetReference eq '')&$orderby=ZzsoReqNo desc";
 					$.ajax({
 				url: oUrl,
 				method: "GET",
