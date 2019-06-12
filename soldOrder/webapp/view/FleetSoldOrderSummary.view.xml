@@ -44,7 +44,7 @@
 												</MultiComboBox>
 											</VBox>
 											<VBox id="vbx_dealer_FSOS">
-												<Label id="lbl_dealer_FSOS" visible="true" text="{i18n>dealer}" class="TableLabel">
+												<Label visible="false" id="lbl_dealer_FSOS" visible="true" text="{i18n>dealer}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>

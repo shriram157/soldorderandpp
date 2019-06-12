@@ -309,6 +309,8 @@ sap.ui.define([
 					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
 					//})
 					// }
+					var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
 					}
 				},
@@ -325,10 +327,10 @@ sap.ui.define([
 			else
 			{
 					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(";
-				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
-					var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
+				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
+					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
 				oUrl=oUrl+"(ZzsoStatus eq '"+status+"')";
-				if(i==((this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length)-1))
+				if(i==((this.getView().byId("mcb_status_FSOD").getSelectedItems().length)-1))
 				{
 					oUrl= oUrl+") and (";
 				}
@@ -394,6 +396,8 @@ sap.ui.define([
 			  			 BtnNext.setEnabled(false);
 			  			 FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
 					}else{
+						var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",
@@ -655,6 +659,8 @@ sap.ui.define([
 					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
 					//})
 					// }
+					var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
 					}
 				},
@@ -742,6 +748,8 @@ sap.ui.define([
 			  			 BtnNext.setEnabled(false);
 			  			 FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
 					}else{
+						var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",

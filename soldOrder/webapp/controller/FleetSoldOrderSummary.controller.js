@@ -213,6 +213,8 @@ sap.ui.define([
 			   			 BtnNext.setEnabled(false);
 			   			 FSOS_controller.getView().setModel(oModel, "fleetsumModel");
 					}else{
+						 var BtnNext = FSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",
@@ -294,6 +296,8 @@ sap.ui.define([
 			   			 BtnNext.setEnabled(false);
 			   			 FSOS_controller.getView().setModel(oModel, "fleetsumModel");
 					}else{
+						 var BtnNext = FSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",
@@ -588,6 +592,8 @@ sap.ui.define([
 			   			 BtnNext.setEnabled(false);
 			   			 FSOS_controller.getView().setModel(oModel, "fleetsumModel");
 					}else{
+						 var BtnNext = FSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",
@@ -672,6 +678,8 @@ sap.ui.define([
 			   			 BtnNext.setEnabled(false);
 			   			 FSOS_controller.getView().setModel(oModel, "fleetsumModel");
 					}else{
+						 var BtnNext = FSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",
