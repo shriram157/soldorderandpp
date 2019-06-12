@@ -79,7 +79,7 @@ sap.ui.define([
 				clicks=0;
 			num=0;
 			var page=clicks+1;
-			InvVehSel_controller.getView().byId("txtPageNum").setText("Page "+page);
+			// InvVehSel_controller.getView().byId("txtPageNum").setText("Page "+page);
 			 var BtnPrev = this.getView().byId("buttonPrev");
 			   			 BtnPrev.setEnabled(false);
 			// var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
