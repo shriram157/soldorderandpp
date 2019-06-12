@@ -270,10 +270,10 @@ sap.ui.define([
 					oUrl= oUrl+" or ";
 				}
 			}
-				for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
-			var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
+				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
+			var dealer = this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey();
 			oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
-			if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
+			if(i==((this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length)-1))
 				{
 					oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
 				}
@@ -620,10 +620,10 @@ sap.ui.define([
 					oUrl= oUrl+" or ";
 				}
 			}
-				for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
-			var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
+				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
+			var dealer = this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey();
 			oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
-			if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
+			if(i==((this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length)-1))
 				{
 					oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
 				}
@@ -677,10 +677,10 @@ sap.ui.define([
 			else
 			{
 					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip="+num+"&$filter=(";
-				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
-					var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
+				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
+					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
 				oUrl=oUrl+"(ZzsoStatus eq '"+status+"')";
-				if(i==((this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length)-1))
+				if(i==((this.getView().byId("mcb_status_FSOD").getSelectedItems().length)-1))
 				{
 					oUrl= oUrl+") and (";
 				}
