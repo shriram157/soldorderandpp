@@ -44,12 +44,12 @@
 												</MultiComboBox>
 											</VBox>
 											<VBox id="vbx_dealer_FSOS">
-												<Label visible="false" id="lbl_dealer_FSOS" visible="true" text="{i18n>dealer}" class="TableLabel">
+												<Label visible="false" id="lbl_dealer_FSOS"  text="{i18n>dealer}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_dealer_FSOS"  visible="true" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
+												<MultiComboBox id="mcb_dealer_FSOS"  visible="false" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh"  class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
