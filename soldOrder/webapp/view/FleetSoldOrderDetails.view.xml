@@ -56,88 +56,96 @@
 								
 								</items>
 							</VBox>
-							<t:Table id="tbl_FSOD" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false"
+							<t:Table id="tbl_FSOD" selectionMode="None" rows="{fleetdetailsModel>/}" enableColumnReordering="false"
 								alternateRowColors="true" enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
-											<Link text="{mainservices>ZzsoReqNo}" press="_navToRSO"/>
+											<Link text="{fleetdetailsModel>ZzsoReqNo}" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text id="tbl_val_dealer_FSOD" visible="true" text="{path:'mainservices>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}"/>
+											<Text id="tbl_val_dealer_FSOD" visible="true" text="{path:'fleetdetailsModel>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}"/>
 											<!--, formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'-->
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Zzmodel}"/>
+											<Text text="{fleetdetailsModel>Zzmodel}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>Suffix}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Zzsuffix}"/>
+											<Text text="{fleetdetailsModel>Zzsuffix}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>APX}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Zzapx}"/>
+											<Text text="{fleetdetailsModel>Zzapx}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>colour}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Zzextcol}"/>
+											<Text text="{fleetdetailsModel>Zzextcol}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>ZzsoStatus}"/>
+											<Text text="{fleetdetailsModel>ZzsoStatus}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>audit}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>ZzAuditStatus}"/>
+											<Text text="{fleetdetailsModel>ZzAuditStatus}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>VehTrackNo}" class="TableLabel"/>
 										<t:template>
-											<Text text="{mainservices>Zzvtn}"/>
+											<Text text="{fleetdetailsModel>Zzvtn}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
 											<Text
-												text="{path:'mainservices>ZzreqEtaFrom',type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
+												text="{path:'fleetdetailsModel>ZzreqEtaFrom',type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>ETATime}" class="TableLabel"/>
 										<t:template>
 											<Text
-												text="{path:'mainservices>ZzreqEtaTo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
+												text="{path:'fleetdetailsModel>ZzreqEtaTo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 										<t:template>
-											<Button text="{i18n>linkVehicle}" visible="{parts:[{path:'mainservices>Zzvtn'},{path:'mainservices>ZzsoStatus'}],formatter:'toyota.ca.SoldOrder.util.formatter.linkvehicleRetail'}"
+											<Button text="{i18n>linkVehicle}" visible="{parts:[{path:'fleetdetailsModel>Zzvtn'},{path:'fleetdetailsModel>ZzsoStatus'}],formatter:'toyota.ca.SoldOrder.util.formatter.linkvehicleRetail'}"
 												enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" id="btn_linkVeh_FSOD"
 												press="onLinkVehicle"/>
 										</t:template>
 									</t:Column>
 								</t:columns>
 							</t:Table>
+								<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L2 M4 S8" class="marginCornersBottom">
+
+							<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>
+							<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
+								<l:content>
+								    <Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>
+								</l:content>
+								</l:Grid>
 						</items>
 					</VBox>
 					<!--<Dialog draggable="true" id="VTNDialog_FSOD" title='Search Vehicle By VTN/VIN' contentWidth="400px" contentHeight="260px">
