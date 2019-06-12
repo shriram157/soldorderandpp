@@ -223,7 +223,7 @@ sap.ui.define([
 			}
 			else
 			{
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip=0&$filter=(FleetReference eq '')&$orderby=ZzsoReqNo desc";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(FleetReference eq '')&$orderby=ZzsoReqNo desc";
 					$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -238,7 +238,7 @@ sap.ui.define([
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<110)
+					}else if(data.d.results.length<10)
 					{
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
@@ -338,7 +338,7 @@ sap.ui.define([
 			var host = RSOS_controller.host();
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip=0&$filter=(";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 				oUrl=oUrl+"(ZzsoStatus eq '"+status+"')";
@@ -403,7 +403,7 @@ sap.ui.define([
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
 					}
-					else if(data.d.results.length<110)
+					else if(data.d.results.length<10)
 					{
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
@@ -431,7 +431,7 @@ sap.ui.define([
 			}
 			else
 			{
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip=0&$filter=(";
+					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 				oUrl=oUrl+"(ZzsoStatus eq '"+status+"')";
@@ -495,7 +495,7 @@ sap.ui.define([
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			  			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<110)
+					}else if(data.d.results.length<10)
 					{
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			  			 BtnNext.setEnabled(false);
@@ -690,14 +690,14 @@ sap.ui.define([
 			else{		   
 		     clicks += 1;
 			}		 
-			num = clicks * 110;
+			num = clicks * 10;
 			
 				if(num === count1)
 				{
 				 var BtnNext = this.getView().byId("buttonNext");
 				 BtnNext.setEnabled(false);
 				}				
-				if(num >= 110)
+				if(num >= 10)
 				{	
 			   		    var BtnPrev = this.getView().byId("buttonPrev");
 			   			 BtnPrev.setEnabled(true);			   			
@@ -715,7 +715,7 @@ sap.ui.define([
 			  num = 0;
 			}
 			else{	       		
-			 num = clicks * 110;   
+			 num = clicks * 10;   
 			}   
    			if(num < count1)
 			{		  
@@ -733,7 +733,7 @@ sap.ui.define([
 				var host = RSOS_controller.host();
 					var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip="+num+"&$filter=(";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip="+num+"&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 				oUrl=oUrl+"(ZzsoStatus eq '"+status+"')";
@@ -801,7 +801,7 @@ sap.ui.define([
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<110)
+					}else if(data.d.results.length<10)
 					{
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
@@ -828,7 +828,7 @@ sap.ui.define([
 			else
 			{
 				
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=110&$skip="+num+"&$filter=(FleetReference eq '')&$orderby=ZzsoReqNo desc";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip="+num+"&$filter=(FleetReference eq '')&$orderby=ZzsoReqNo desc";
 					$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -845,7 +845,7 @@ sap.ui.define([
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<110)
+					}else if(data.d.results.length<10)
 					{
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
