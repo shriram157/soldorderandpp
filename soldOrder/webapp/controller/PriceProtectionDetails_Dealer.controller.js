@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-	var PPD_DealerCont;
+	var PPD_DealerCont,clicks = 0, num = 0;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.PriceProtectionDetails_Dealer", {
 		formatter: formatter,
 
@@ -235,6 +235,287 @@ sap.ui.define([
 		},
 
 		_refresh: function () {
+			
+			var host = PPD_DealerCont.host();
+			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			if (x != "TCI_User") {
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
+				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
+				oUrl=oUrl+"(status eq '"+status+"')";
+				if(i==((this.getView().byId("mcb_status_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") and (";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+				
+			}
+					for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey();
+			oUrl=oUrl+"(zzordtypedesc eq '" +audit+"')";
+			if(i==((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") and (";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+			}
+			// 	for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
+			// var series = this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey();
+			// oUrl=oUrl+"(Zzseries eq '" +series+"')";
+			// if(i==((this.getView().byId("mcb_series_RSOS").getSelectedItems().length)-1))
+			// 	{
+			// 		oUrl= oUrl+") and (";
+			// 	}
+			// 	else
+			// 	{
+			// 		oUrl= oUrl+" or ";
+			// 	}
+			// }
+				for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
+			var dealer = this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey();
+			oUrl=oUrl+"(dealer_code eq'" +dealer+"')";
+			if(i==((this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") &$orderby=dealer_ord desc";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+			}
+			$.ajax({
+				url: oUrl,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+			
+					oModel.setData(data.d.results);
+						if(data.d.results.length==undefined)
+					{
+						
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+					}
+					else if(data.d.results.length<10)
+					{
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+			   			 PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}else{
+						 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
+					// if (oModel.length > 0) {
+					//oModel.getData().ZC_SERIES.unshift({
+					//  "{seriesModel>ModelSeriesNo}": "All",
+					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+					//})
+					// }
+					PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					
+					
+					var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			
+				}
+			});
+			}
+			else
+			{
+					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
+				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
+				oUrl=oUrl+"(status eq '"+status+"')";
+				if(i==((this.getView().byId("mcb_status_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") and (";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+				
+			}
+					for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey();
+			oUrl=oUrl+"(zzordtypedesc eq '" +audit+"')";
+			if(i==((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") &$orderby=dealer_ord desc";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+			}
+			// 	for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
+			// var series = this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey();
+			// oUrl=oUrl+"(Zzseries eq '" +series+"')";
+			// if(i==((this.getView().byId("mcb_series_RSOS").getSelectedItems().length)-1))
+			// 	{
+			// 		oUrl= oUrl+") and (FleetReference eq '')&$orderby=ZzsoReqNo desc";
+			// 	}
+			// 	else
+			// 	{
+			// 		oUrl= oUrl+" or ";
+			// 	}
+			// }
+			// 	for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
+			// var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
+			// oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
+			// if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
+			// 	{
+			// 		oUrl= oUrl+"and (FleetReference eq '')&$orderby=ZzsoReqNo desc) ";
+			// 	}
+			// 	else
+			// 	{
+			// 		oUrl= oUrl+" or ";
+			// 	}
+			// }
+			$.ajax({
+				url: oUrl,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+			
+					oModel.setData(data.d.results);
+						if(data.d.results.length==undefined)
+					{
+						
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			  			 BtnNext.setEnabled(false);
+					}else if(data.d.results.length<10)
+					{
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			  			 BtnNext.setEnabled(false);
+			  			 PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}else{
+						 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
+					// if (oModel.length > 0) {
+					//oModel.getData().ZC_SERIES.unshift({
+					//  "{seriesModel>ModelSeriesNo}": "All",
+					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+					//})
+					// }
+					PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					
+					
+					var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			
+				}
+			});
+			}
+			clicks=0;
+			num=0;
+			var page=clicks+1;
+			PPD_DealerCont.getView().byId("txtPageNum").setText("Page "+page);
+			 var BtnPrev = this.getView().byId("buttonPrev");
+			   			 BtnPrev.setEnabled(false);	
+			// var allfilter = [];
+			// //-----------------Sold Order Status-----------------
+			// var afilter = [];
+			// // var status_all = false;
+			// // 	var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
+			// // var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
+			// // for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
+			// // 	if(this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()==="ALL")
+			// // 	{
+			// // 			mcb_rsStatus_RSOS.setSelectedItems(mcb_rsStatus_RSOS.getItems());
+			// // 			status_all = true;
+			// // 			break;
+			// // 	}
+			// // }
+			// // if(status_all ==false)
+			// // {
+			// // 			mcb_rsStatus_RSOS.setSelectedItems(null);
+			// // }
+			// for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
+			// 	afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()));
+			// }
+			// if (afilter.length > 0) {
+			// 	var filter_sstatus = new Filter(afilter, false);
+			// 	allfilter.push(filter_sstatus);
+			// }
+			// //-----------------Audit Status-----------------
+			// var asfilter = [];
+			// // var audit_all =false;
+			// // 	for (var i = 0; i < this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
+			// // 		if(this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()==="ALL")
+			// // 	{
+			// // 			mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
+			// // 			audit_all = true;
+			// // 			break;		
+			// // 	}
+			// // }
+			// // if(audit_all == false)
+			// // {
+			// // 	mcb_auditStatus_RSOS.setSelectedItems(null);
+			// // }
+			// for (var i = 0; i < this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
+			// 	// 	if(this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()==="ALL")
+			// 	// {
+			// 	// 		mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
+			// 	// 		break;		
+			// 	// }
+			// 	asfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()));
+			// }
+			// if (asfilter.length > 0) {
+			// 	var filter_asstatus = new Filter(asfilter, false);
+			// 	allfilter.push(filter_asstatus);
+			// }
+			// //---------------------------------------------------------------
+			// //-----------------Series-----------------
+			// var Sfilter = [];
+			// for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
+			// 	Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey()));
+			// }
+			// if (Sfilter.length > 0) {
+			// 	var filter_series = new Filter(Sfilter, false);
+			// 	allfilter.push(filter_series);
+			// }
+			// //---------------------------------------------------------------
+			// //-----------------Dealers-----------------
+			// var dfilter = [];
+			// for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
+			// 	dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey()));
+			// }
+			// if (dfilter.length > 0) {
+			// 	var filter_dealers = new Filter(dfilter, false);
+			// 	allfilter.push(filter_dealers);
+			// }
+			// //---------------------------------------------------------------
+			// var oSorter = new sap.ui.model.Sorter({
+			// 	path: "ZzsoReqNo",
+			// 	descending: true
+			// });
+			// var filter_all = new Filter([
+			// 	filter_sstatus,
+			// 	filter_asstatus,
+			// 	filter_series,
+			// 	filter_dealers,
+			// 	new Filter("FleetReference", FilterOperator.EQ, "")
+			// ], true);
+			// var items = this.getView().byId("table_RSOS").getBinding("rows");
+			// items.filter(filter_all);
+			// items.sort(oSorter);
+		
 			var allfilter = [];
 			var items = PPD_DealerCont.getView().byId("table_PPD_Dealer").getBinding("rows");
 
@@ -346,7 +627,375 @@ items.sort(oSorter);
 				}
 			});
 		},
+onActionNext: function (oEvent) {
+			//This code was generated by the layout editor.
+			if(clicks < 0)
+			{
+			 clicks = 0;
+			 clicks += 1;	     
+			}
+			else{		   
+		     clicks += 1;
+			}		 
+			num = clicks * 10;
+			
+				// if(num === count1)
+				// {
+				//  var BtnNext = this.getView().byId("buttonNext");
+				//  BtnNext.setEnabled(false);
+				// }				
+				if(num >= 10)
+				{	
+			   		    var BtnPrev = this.getView().byId("buttonPrev");
+			   			 BtnPrev.setEnabled(true);			   			
+				}	
+				PPD_DealerCont.data();
+		},
+		/**
+		 *@memberOf toyota.ca.SoldOrder.controller.RetailSoldOrderSummary
+		 */
+		onActionPrevious: function (oEvent) {
+			//This code was generated by the layout editor.
+			clicks -= 1;
+			if(clicks <= 0)
+			{		
+			  num = 0;
+			}
+			else{	       		
+			 num = clicks * 10;   
+			}   
+   //			if(num < count1)
+			// {		  
+			//  var BtnNext = this.getView().byId("buttonNext");
+			//  BtnNext.setEnabled(true);
+			// }
+   			if(num === 0)
+   			{
+   		     var Btn = this.getView().byId("buttonPrev");
+   			 Btn.setEnabled(false);
+   			}   
+   			PPD_DealerCont.data();
+		},
+		data:function (oEvent){
+			
+			var host = PPD_DealerCont.host();
+			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			if (x != "TCI_User") {
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip="+num+"&$filter=(";
+				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
+				oUrl=oUrl+"(status eq '"+status+"')";
+				if(i==((this.getView().byId("mcb_status_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") and (";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+				
+			}
+					for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey();
+			oUrl=oUrl+"(zzordtypedesc eq '" +audit+"')";
+			if(i==((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") and (";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+			}
+			// 	for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
+			// var series = this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey();
+			// oUrl=oUrl+"(Zzseries eq '" +series+"')";
+			// if(i==((this.getView().byId("mcb_series_RSOS").getSelectedItems().length)-1))
+			// 	{
+			// 		oUrl= oUrl+") and (";
+			// 	}
+			// 	else
+			// 	{
+			// 		oUrl= oUrl+" or ";
+			// 	}
+			// }
+				for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
+			var dealer = this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey();
+			oUrl=oUrl+"(dealer_code eq'" +dealer+"')";
+			if(i==((this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") &$orderby=dealer_ord desc";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+			}
+			$.ajax({
+				url: oUrl,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+			
+					oModel.setData(data.d.results);
+						if(data.d.results.length==undefined)
+					{
+						
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+					}
+					else if(data.d.results.length<10)
+					{
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(false);
+			   			 PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}else{
+						 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
+					// if (oModel.length > 0) {
+					//oModel.getData().ZC_SERIES.unshift({
+					//  "{seriesModel>ModelSeriesNo}": "All",
+					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+					//})
+					// }
+					PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					
+					
+					var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			
+				}
+			});
+			}
+			else
+			{
+					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip="+num+"&$filter=(";
+				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
+				oUrl=oUrl+"(status eq '"+status+"')";
+				if(i==((this.getView().byId("mcb_status_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") and (";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+				
+			}
+					for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey();
+			oUrl=oUrl+"(zzordtypedesc eq '" +audit+"')";
+			if(i==((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length)-1))
+				{
+					oUrl= oUrl+") &$orderby=dealer_ord desc";
+				}
+				else
+				{
+					oUrl= oUrl+" or ";
+				}
+			}
+			// 	for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
+			// var series = this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey();
+			// oUrl=oUrl+"(Zzseries eq '" +series+"')";
+			// if(i==((this.getView().byId("mcb_series_RSOS").getSelectedItems().length)-1))
+			// 	{
+			// 		oUrl= oUrl+") and (FleetReference eq '')&$orderby=ZzsoReqNo desc";
+			// 	}
+			// 	else
+			// 	{
+			// 		oUrl= oUrl+" or ";
+			// 	}
+			// }
+			// 	for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
+			// var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
+			// oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
+			// if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
+			// 	{
+			// 		oUrl= oUrl+"and (FleetReference eq '')&$orderby=ZzsoReqNo desc) ";
+			// 	}
+			// 	else
+			// 	{
+			// 		oUrl= oUrl+" or ";
+			// 	}
+			// }
+			$.ajax({
+				url: oUrl,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+			
+					oModel.setData(data.d.results);
+						if(data.d.results.length==undefined)
+					{
+						
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			  			 BtnNext.setEnabled(false);
+					}else if(data.d.results.length<10)
+					{
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			  			 BtnNext.setEnabled(false);
+			  			 PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}else{
+						 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
+					// if (oModel.length > 0) {
+					//oModel.getData().ZC_SERIES.unshift({
+					//  "{seriesModel>ModelSeriesNo}": "All",
+					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+					//})
+					// }
+					PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					
+					
+					var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			
+				}
+			});
+			}
+			clicks=0;
+			num=0;
+			var page=clicks+1;
+			PPD_DealerCont.getView().byId("txtPageNum").setText("Page "+page);
+			 var BtnPrev = this.getView().byId("buttonPrev");
+			   			 BtnPrev.setEnabled(false);	
+			// var allfilter = [];
+			// //-----------------Sold Order Status-----------------
+			// var afilter = [];
+			// // var status_all = false;
+			// // 	var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
+			// // var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
+			// // for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
+			// // 	if(this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()==="ALL")
+			// // 	{
+			// // 			mcb_rsStatus_RSOS.setSelectedItems(mcb_rsStatus_RSOS.getItems());
+			// // 			status_all = true;
+			// // 			break;
+			// // 	}
+			// // }
+			// // if(status_all ==false)
+			// // {
+			// // 			mcb_rsStatus_RSOS.setSelectedItems(null);
+			// // }
+			// for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
+			// 	afilter.push(new Filter("ZzsoStatus", FilterOperator.EQ, this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey()));
+			// }
+			// if (afilter.length > 0) {
+			// 	var filter_sstatus = new Filter(afilter, false);
+			// 	allfilter.push(filter_sstatus);
+			// }
+			// //-----------------Audit Status-----------------
+			// var asfilter = [];
+			// // var audit_all =false;
+			// // 	for (var i = 0; i < this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
+			// // 		if(this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()==="ALL")
+			// // 	{
+			// // 			mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
+			// // 			audit_all = true;
+			// // 			break;		
+			// // 	}
+			// // }
+			// // if(audit_all == false)
+			// // {
+			// // 	mcb_auditStatus_RSOS.setSelectedItems(null);
+			// // }
+			// for (var i = 0; i < this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
+			// 	// 	if(this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()==="ALL")
+			// 	// {
+			// 	// 		mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
+			// 	// 		break;		
+			// 	// }
+			// 	asfilter.push(new Filter("ZzAuditStatus", FilterOperator.EQ, this.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey()));
+			// }
+			// if (asfilter.length > 0) {
+			// 	var filter_asstatus = new Filter(asfilter, false);
+			// 	allfilter.push(filter_asstatus);
+			// }
+			// //---------------------------------------------------------------
+			// //-----------------Series-----------------
+			// var Sfilter = [];
+			// for (var i = 0; i < this.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
+			// 	Sfilter.push(new Filter("Zzseries", FilterOperator.EQ, this.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey()));
+			// }
+			// if (Sfilter.length > 0) {
+			// 	var filter_series = new Filter(Sfilter, false);
+			// 	allfilter.push(filter_series);
+			// }
+			// //---------------------------------------------------------------
+			// //-----------------Dealers-----------------
+			// var dfilter = [];
+			// for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
+			// 	dfilter.push(new Filter("ZzdealerCode", FilterOperator.EQ, this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey()));
+			// }
+			// if (dfilter.length > 0) {
+			// 	var filter_dealers = new Filter(dfilter, false);
+			// 	allfilter.push(filter_dealers);
+			// }
+			// //---------------------------------------------------------------
+			// var oSorter = new sap.ui.model.Sorter({
+			// 	path: "ZzsoReqNo",
+			// 	descending: true
+			// });
+			// var filter_all = new Filter([
+			// 	filter_sstatus,
+			// 	filter_asstatus,
+			// 	filter_series,
+			// 	filter_dealers,
+			// 	new Filter("FleetReference", FilterOperator.EQ, "")
+			// ], true);
+			// var items = this.getView().byId("table_RSOS").getBinding("rows");
+			// items.filter(filter_all);
+			// items.sort(oSorter);
+		
+			var allfilter = [];
+			var items = PPD_DealerCont.getView().byId("table_PPD_Dealer").getBinding("rows");
 
+			var statFilter = [];
+
+			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+				statFilter.push(new Filter("status", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
+			}
+			if (statFilter.length > 0) {
+				var filter_sstatus = new Filter(statFilter, false);
+				allfilter.push(filter_sstatus);
+			}
+			
+				var ordFilter = [];
+
+			for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+				ordFilter.push(new Filter("zzordtypedesc", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText()));
+			}
+			if (ordFilter.length > 0) {
+				var filter_ord = new Filter(ordFilter, false);
+				allfilter.push(filter_ord);
+			}
+			//=======================================================================================================
+			//==================Start Binidng By Dealer=========================================================
+			//=====================================================================================================
+			var dfilter = [];
+			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
+				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
+			}
+			if (dfilter.length > 0) {
+				var filter_dealers = new Filter(dfilter, false);
+				allfilter.push(filter_dealers);
+			}
+				var oSorter = new sap.ui.model.Sorter({path:'dealer_ord', descending:true});
+
+			items.filter(new Filter([filter_sstatus, filter_ord, filter_dealers], true));
+items.sort(oSorter);
+		},
 	});
 
 });
