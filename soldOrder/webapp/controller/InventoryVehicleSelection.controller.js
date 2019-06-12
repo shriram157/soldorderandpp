@@ -38,7 +38,7 @@ sap.ui.define([
 			//Dealer Inventory	var host = RSOS_controller.host();
 						var host = InvVehSel_controller.host();
 
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=110&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
 				$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -53,7 +53,7 @@ sap.ui.define([
 						
 					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<110)
+					}else if(data.d.results.length<10)
 					{
 					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
@@ -168,7 +168,7 @@ sap.ui.define([
 			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			if (Oevent.getSource().getSelectedKey() == '1') {
-	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=110&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
+	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
 				$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -183,7 +183,7 @@ sap.ui.define([
 						
 					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<110)
+					}else if(data.d.results.length<10)
 					{
 					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
@@ -221,7 +221,7 @@ sap.ui.define([
 				// ], true)]);
 			} else if (Oevent.getSource().getSelectedKey() == '2') //National Stock
 			{
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=110&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '2400500000') and (source eq 'FLT')";
+					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '2400500000') and (source eq 'FLT')";
 				$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -236,7 +236,7 @@ sap.ui.define([
 						
 					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<110)
+					}else if(data.d.results.length<10)
 					{
 					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
@@ -423,14 +423,14 @@ sap.ui.define([
 			else{		   
 		     clicks += 1;
 			}		 
-			num = clicks * 110;
+			num = clicks * 10;
 			
 				// if(num === count1)
 				// {
 				//  var BtnNext = this.getView().byId("buttonNext");
 				//  BtnNext.setEnabled(false);
 				// }				
-				if(num >= 110)
+				if(num >= 10)
 				{	
 			   		    var BtnPrev = this.getView().byId("buttonPrev");
 			   			 BtnPrev.setEnabled(true);			   			
@@ -448,7 +448,7 @@ sap.ui.define([
 			  num = 0;
 			}
 			else{	       		
-			 num = clicks * 110;   
+			 num = clicks * 10;   
 			}   
    //			if(num < count1)
 			// {		  
@@ -468,7 +468,7 @@ sap.ui.define([
 			//Dealer Inventory	var host = RSOS_controller.host();
 						var host = InvVehSel_controller.host();
 
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=110&$skip="+num+"&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip="+num+"&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
 				$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -485,7 +485,7 @@ sap.ui.define([
 						
 					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<110)
+					}else if(data.d.results.length<10)
 					{
 					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 			   			 BtnNext.setEnabled(false);
