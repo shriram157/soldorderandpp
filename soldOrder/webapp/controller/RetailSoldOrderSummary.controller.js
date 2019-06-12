@@ -409,6 +409,8 @@ sap.ui.define([
 			   			 BtnNext.setEnabled(false);
 			   			 RSOS_controller.getView().setModel(oModel, "retailsumModel");
 					}else{
+						 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",
@@ -499,6 +501,8 @@ sap.ui.define([
 			  			 BtnNext.setEnabled(false);
 			  			 RSOS_controller.getView().setModel(oModel, "retailsumModel");
 					}else{
+						 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",
@@ -805,7 +809,8 @@ sap.ui.define([
 					}
 					else
 					{
-					
+					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					RSOS_controller.getView().setModel(oModel, "retailsumModel");
 					}
 					var page=clicks+1;
@@ -846,6 +851,8 @@ sap.ui.define([
 			   			 BtnNext.setEnabled(false);
 			   			 RSOS_controller.getView().setModel(oModel, "retailsumModel");
 					}else{
+						 var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
 					// if (oModel.length > 0) {
 					//oModel.getData().ZC_SERIES.unshift({
 					//  "{seriesModel>ModelSeriesNo}": "All",
@@ -866,6 +873,28 @@ sap.ui.define([
 			});
 			
 			}
-		}
+		},
+		onLiveChange: function (oEvent) {
+                this.sSearchQuery = oEvent.getSource()
+                    .getValue();
+                this.fnApplyFiltersAndOrdering();
+            },
+            fnApplyFiltersAndOrdering: function (oEvent) {
+                var aFilters = [],
+                    aSorters = [];
+
+                // aSorters.push(new Sorter("dealerId1", this.bDescending));
+
+                if (this.sSearchQuery) {
+                    var oFilter = new Filter([
+                        new Filter("ZzsoReqNo", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+                        new Filter("ZzdealerCode", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+                        new Filter("ZzAuditStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+                        new Filter("ZzsoStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
+                    ], false);
+                    // this.sSearchQuery);
+                    aFilters.push(oFilter);
+                }
+            }
 	});
 });
