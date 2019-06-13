@@ -53,10 +53,10 @@
 							</VBox>
 							<t:Table id="tbl_FSOD" selectionMode="None" rows="{fleetdetailsModel>/}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
 								<t:columns>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column width="8.3%"  resizable="false">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
-											<Link text="{fleetdetailsModel>ZzsoReqNo}" press="_navToRSO"/>
+											<Link text="{fleetdetailsModel>ZzsoReqNo}" wrapping="true" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
