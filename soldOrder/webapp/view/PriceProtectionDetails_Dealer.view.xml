@@ -79,7 +79,7 @@
 									<t:Column width="11.1%" resizable="false">
 										<Label class="TableLabel" text="{i18n>series}"/>
 										<t:template>
-											<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>zzseries}"
+											<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{ppdModel>zzseries}"
 											modelContextChange="onSeriesnum">
 											<items>
 												<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
