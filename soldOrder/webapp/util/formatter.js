@@ -213,10 +213,10 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	TciApprove: function (svalue) {
-		if ((svalue == 'APPROVED') || (svalue == 'REJECTED')) {
-			return false;
-		} else {
+		if (svalue == 'REQUESTED')  {
 			return true;
+		} else {
+			return false;
 		}
 	},
 		formatAmount: function (svalue) {
