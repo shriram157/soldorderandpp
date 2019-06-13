@@ -345,7 +345,7 @@ sap.ui.define([
 			oUrl=oUrl+"(ZzAuditStatus eq '" +audit+"')";
 			if(i==((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length)-1))
 				{
-					oUrl= oUrl+") and (";
+					oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
 				}
 				else
 				{
@@ -695,7 +695,7 @@ sap.ui.define([
 			oUrl=oUrl+"(ZzAuditStatus eq '" +audit+"')";
 			if(i==((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length)-1))
 				{
-					oUrl= oUrl+") and (";
+					oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
 				}
 				else
 				{
