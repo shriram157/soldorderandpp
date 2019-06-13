@@ -801,8 +801,8 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 							xhr.setRequestHeader("X-CSRF-Token", "Fetch");
 						},
 						success: function (data, textStatus, XMLHttpRequest) {
-							oToken = XMLHttpRequest.getResponseHeader('X-CSRF-Token');
-							oHeaders = {
+							var oToken = XMLHttpRequest.getResponseHeader('X-CSRF-Token');
+							var oHeaders = {
 								"x-csrf-token": oToken,
 							};
 
@@ -838,7 +838,7 @@ if(user=="Dealer_User" )//&& status !="Cancelled"
 											productname: splitVal[1],
 											uom: splitVal[2]
 
-										}
+										};
 										itemsArray.push(items);
 									}
 
