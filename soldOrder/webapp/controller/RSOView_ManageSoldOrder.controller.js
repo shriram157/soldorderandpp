@@ -1082,8 +1082,8 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 				// }));
 				// var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-				var dealer = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
-
+				var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
+                var dealer = dealerno.slice(-5);
 				this.getView().byId('model_CSOR').bindItems({
 					path: "mainservices>/ZVMS_Model_EXCLSet",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
@@ -1118,8 +1118,8 @@ RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Prote
 
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-				var dealer = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
-
+				var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
+				 var dealer = dealerno.slice(-5);
 				// this.getView().byId('suffix_CSOR').bindItems('oModel1>/', new sap.ui.core.ListItem({
 				// 	key: "{oModel1>Suffix}",
 				// 	text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel2>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
