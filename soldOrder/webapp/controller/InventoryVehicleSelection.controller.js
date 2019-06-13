@@ -102,7 +102,7 @@ sap.ui.define([
 			// }
 			for (var i = 0; i < indiceArray.length; i++) {
 				var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray[i]];
-				var data = oTable.getModel('mainservices').getProperty(binded.sPath);
+				var data = oTable.getModel('inventoryModel').getProperty(binded.sPath);
 
 				zitems.push({
 					APX: data.APX,
@@ -396,7 +396,7 @@ sap.ui.define([
 				}
 				this.getView().byId('colour_CSOR').bindItems({
 					path: 'mainservices>/ZVMS_CDS_Colour',
-					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
+					filters: new sap.ui.model.Filter([new sap.ui.Smodel.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
