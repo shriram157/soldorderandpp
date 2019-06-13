@@ -18,44 +18,44 @@ sap.ui.define([
 			if(language== "EN"){
 			Obj = {
 				"PriceProtectionStatus": [{
-		"key": "1",
+		"key": "OPEN",
 		"text": "OPEN"
 	}, {
-		"key": "2",
+		"key": "IN PROGRESS",
 		"text": "IN PROGRESS"
 	}, {
-		"key": "3",
+		"key": "PRE-APPROVED",
 		"text": "PRE-APPROVED"
 	}, {
-		"key": "4",
+		"key": "UNDER REVIEW",
 		"text": "UNDER REVIEW"
 	}, {
-		"key": "5",
+		"key": "APPROVED",
 		"text": "APPROVED"
 	}, {
-		"key": "6",
+		"key": "REJECTED",
 		"text": "REJECTED"
 	}]
 			};}
 			else{
 				Obj = {
 		"PriceProtectionStatus": [{
-		"key": "1",
+		"key": "OPEN",
 		"text": "OPEN"
 	}, {
-		"key": "2",
+		"key": "IN PROGRESS",
 		"text": "IN PROGRESS"
 	}, {
-		"key": "3",
+		"key": "PRE-APPROVED",
 		"text": "PRE-APPROVED"
 	}, {
-		"key": "4",
+		"key": "UNDER REVIEW",
 		"text": "UNDER REVIEW"
 	}, {
-		"key": "5",
+		"key": "APPROVED",
 		"text": "APPROVED"
 	}, {
-		"key": "6",
+		"key": "REJECTED",
 		"text": "REJECTED"
 	}],
 			};
@@ -254,7 +254,7 @@ sap.ui.define([
 				
 			}
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey();
+			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
 			oUrl=oUrl+"(zzordtypedesc eq '" +audit+"')";
 			if(i==((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length)-1))
 				{
@@ -347,7 +347,7 @@ sap.ui.define([
 				
 			}
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey();
+			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
 			oUrl=oUrl+"(zzordtypedesc eq '" +audit+"')";
 			if(i==((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length)-1))
 				{
@@ -516,43 +516,43 @@ sap.ui.define([
 			// items.filter(filter_all);
 			// items.sort(oSorter);
 		
-			var allfilter = [];
-			var items = PPD_DealerCont.getView().byId("table_PPD_Dealer").getBinding("rows");
+// 			var allfilter = [];
+// 			var items = PPD_DealerCont.getView().byId("table_PPD_Dealer").getBinding("rows");
 
-			var statFilter = [];
+// 			var statFilter = [];
 
-			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
-				statFilter.push(new Filter("status", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
-			}
-			if (statFilter.length > 0) {
-				var filter_sstatus = new Filter(statFilter, false);
-				allfilter.push(filter_sstatus);
-			}
+// 			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+// 				statFilter.push(new Filter("status", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
+// 			}
+// 			if (statFilter.length > 0) {
+// 				var filter_sstatus = new Filter(statFilter, false);
+// 				allfilter.push(filter_sstatus);
+// 			}
 			
-				var ordFilter = [];
+// 				var ordFilter = [];
 
-			for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-				ordFilter.push(new Filter("zzordtypedesc", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText()));
-			}
-			if (ordFilter.length > 0) {
-				var filter_ord = new Filter(ordFilter, false);
-				allfilter.push(filter_ord);
-			}
-			//=======================================================================================================
-			//==================Start Binidng By Dealer=========================================================
-			//=====================================================================================================
-			var dfilter = [];
-			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
-				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
-			}
-			if (dfilter.length > 0) {
-				var filter_dealers = new Filter(dfilter, false);
-				allfilter.push(filter_dealers);
-			}
-				var oSorter = new sap.ui.model.Sorter({path:'dealer_ord', descending:true});
+// 			for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+// 				ordFilter.push(new Filter("zzordtypedesc", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText()));
+// 			}
+// 			if (ordFilter.length > 0) {
+// 				var filter_ord = new Filter(ordFilter, false);
+// 				allfilter.push(filter_ord);
+// 			}
+// 			//=======================================================================================================
+// 			//==================Start Binidng By Dealer=========================================================
+// 			//=====================================================================================================
+// 			var dfilter = [];
+// 			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
+// 				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
+// 			}
+// 			if (dfilter.length > 0) {
+// 				var filter_dealers = new Filter(dfilter, false);
+// 				allfilter.push(filter_dealers);
+// 			}
+// 				var oSorter = new sap.ui.model.Sorter({path:'dealer_ord', descending:true});
 
-			items.filter(new Filter([filter_sstatus, filter_ord, filter_dealers], true));
-items.sort(oSorter);
+// 			items.filter(new Filter([filter_sstatus, filter_ord, filter_dealers], true));
+// items.sort(oSorter);
 		},
 		_navToRSO: function (evt) {
 			// console.log(evt.getSource());
@@ -696,7 +696,7 @@ onActionNext: function (oEvent) {
 				
 			}
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey();
+			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
 			oUrl=oUrl+"(zzordtypedesc eq '" +audit+"')";
 			if(i==((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length)-1))
 				{
@@ -789,7 +789,7 @@ onActionNext: function (oEvent) {
 				
 			}
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getKey();
+			var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
 			oUrl=oUrl+"(zzordtypedesc eq '" +audit+"')";
 			if(i==((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length)-1))
 				{
@@ -958,43 +958,43 @@ onActionNext: function (oEvent) {
 			// items.filter(filter_all);
 			// items.sort(oSorter);
 		
-			var allfilter = [];
-			var items = PPD_DealerCont.getView().byId("table_PPD_Dealer").getBinding("rows");
+// 			var allfilter = [];
+// 			var items = PPD_DealerCont.getView().byId("table_PPD_Dealer").getBinding("rows");
 
-			var statFilter = [];
+// 			var statFilter = [];
 
-			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
-				statFilter.push(new Filter("status", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
-			}
-			if (statFilter.length > 0) {
-				var filter_sstatus = new Filter(statFilter, false);
-				allfilter.push(filter_sstatus);
-			}
+// 			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+// 				statFilter.push(new Filter("status", FilterOperator.EQ, this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getText()));
+// 			}
+// 			if (statFilter.length > 0) {
+// 				var filter_sstatus = new Filter(statFilter, false);
+// 				allfilter.push(filter_sstatus);
+// 			}
 			
-				var ordFilter = [];
+// 				var ordFilter = [];
 
-			for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-				ordFilter.push(new Filter("zzordtypedesc", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText()));
-			}
-			if (ordFilter.length > 0) {
-				var filter_ord = new Filter(ordFilter, false);
-				allfilter.push(filter_ord);
-			}
-			//=======================================================================================================
-			//==================Start Binidng By Dealer=========================================================
-			//=====================================================================================================
-			var dfilter = [];
-			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
-				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
-			}
-			if (dfilter.length > 0) {
-				var filter_dealers = new Filter(dfilter, false);
-				allfilter.push(filter_dealers);
-			}
-				var oSorter = new sap.ui.model.Sorter({path:'dealer_ord', descending:true});
+// 			for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+// 				ordFilter.push(new Filter("zzordtypedesc", FilterOperator.EQ, this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText()));
+// 			}
+// 			if (ordFilter.length > 0) {
+// 				var filter_ord = new Filter(ordFilter, false);
+// 				allfilter.push(filter_ord);
+// 			}
+// 			//=======================================================================================================
+// 			//==================Start Binidng By Dealer=========================================================
+// 			//=====================================================================================================
+// 			var dfilter = [];
+// 			for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
+// 				dfilter.push(new Filter("dealer_code", FilterOperator.EQ, this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey()));
+// 			}
+// 			if (dfilter.length > 0) {
+// 				var filter_dealers = new Filter(dfilter, false);
+// 				allfilter.push(filter_dealers);
+// 			}
+// 				var oSorter = new sap.ui.model.Sorter({path:'dealer_ord', descending:true});
 
-			items.filter(new Filter([filter_sstatus, filter_ord, filter_dealers], true));
-items.sort(oSorter);
+// 			items.filter(new Filter([filter_sstatus, filter_ord, filter_dealers], true));
+// items.sort(oSorter);
 		},
 	});
 
