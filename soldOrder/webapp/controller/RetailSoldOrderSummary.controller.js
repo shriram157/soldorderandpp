@@ -358,7 +358,7 @@ sap.ui.define([
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined)
+						if(data.d.results.length==undefined ||data.d.results.length==0)
 					{
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
@@ -451,7 +451,7 @@ sap.ui.define([
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined)
+						if(data.d.results.length==undefined||data.d.results.length==0)
 					{
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
@@ -757,7 +757,7 @@ sap.ui.define([
 					//  "{seriesModel>ModelSeriesNo}": "All",
 					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
 					//})
-					if(data.d.results.length==undefined)
+					if(data.d.results.length==undefined||data.d.results.length==0)
 					{
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");
@@ -847,7 +847,7 @@ sap.ui.define([
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined)
+						if(data.d.results.length==undefined||data.d.results.length==0)
 					{
 						var page=clicks+1;
 			RSOS_controller.getView().byId("txtPageNum").setText("Page"+page);
