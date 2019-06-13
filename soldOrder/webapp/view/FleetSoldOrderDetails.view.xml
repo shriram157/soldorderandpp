@@ -113,13 +113,13 @@
 										<t:template>
 											<!--<DatePicker editable="false" value="{fleetdetailsModel>ZzreqEtaFrom}" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD"/>-->
 										<Text
-												text="{path:'fleetdetailsModel>ZzreqEtaFrom',type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+												text="{path:'fleetdetailsModel>ZzreqEtaFrom',type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy/MM/dd', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>ETATime}" class="TableLabel"/>
 										<t:template>
-											<Text text="{path:'fleetdetailsModel>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+											<Text text="{path:'fleetdetailsModel>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy/MM/dd', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="8.3%" resizable="false">
