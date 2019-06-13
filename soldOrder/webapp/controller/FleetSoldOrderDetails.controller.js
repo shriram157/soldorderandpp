@@ -237,7 +237,7 @@ sap.ui.define([
 		_refresh: function (oEvent) {
 				var host = FSOD_controller.host();
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			// if (x != "TCI_User") {
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
@@ -328,40 +328,28 @@ sap.ui.define([
 			
 				}
 			});
-			}
+			// }
 			
-			else
-			{
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(";
-				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
-					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
-				oUrl=oUrl+"(ZzsoStatus eq '"+status+"')";
-				if(i==((this.getView().byId("mcb_status_FSOD").getSelectedItems().length)-1))
-				{
-					oUrl= oUrl+") and (";
-				}
-				else
-				{
-					oUrl= oUrl+" or ";
-				}
+			// else
+			// {
+			// 		var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(";
+			// 	for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
+			// 		var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
+			// 	oUrl=oUrl+"(ZzsoStatus eq '"+status+"')";
+			// 	if(i==((this.getView().byId("mcb_status_FSOD").getSelectedItems().length)-1))
+			// 	{
+			// 		oUrl= oUrl+") and (";
+			// 	}
+			// 	else
+			// 	{
+			// 		oUrl= oUrl+" or ";
+			// 	}
 				
-			}
-					for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
-			var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey();
-			oUrl=oUrl+"(ZzAuditStatus eq '" +audit+"')";
-			if(i==((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length)-1))
-				{
-					oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
-				}
-				else
-				{
-					oUrl= oUrl+" or ";
-				}
-			}
-			// 	for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length; i++) {
-			// var series = this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems()[i].getKey();
-			// oUrl=oUrl+"(Zadd1 eq '" +series+"')";
-			// if(i==((this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length)-1))
+			// }
+			// 		for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
+			// var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey();
+			// oUrl=oUrl+"(ZzAuditStatus eq '" +audit+"')";
+			// if(i==((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length)-1))
 			// 	{
 			// 		oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
 			// 	}
@@ -370,58 +358,70 @@ sap.ui.define([
 			// 		oUrl= oUrl+" or ";
 			// 	}
 			// }
-			// 	for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
-			// var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
-			// oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
-			// if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
-			// 	{
-			// 		oUrl= oUrl+"and (FleetReference eq '')&$orderby=ZzsoReqNo desc) ";
-			// 	}
-			// 	else
-			// 	{
-			// 		oUrl= oUrl+" or ";
-			// 	}
-			// }
-			$.ajax({
-				url: oUrl,
-				method: "GET",
-				async: false,
-				dataType: "json",
-				success: function (data, textStatus, jqXHR) {
-					var oModel = new sap.ui.model.json.JSONModel();
+			// // 	for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length; i++) {
+			// // var series = this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems()[i].getKey();
+			// // oUrl=oUrl+"(Zadd1 eq '" +series+"')";
+			// // if(i==((this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length)-1))
+			// // 	{
+			// // 		oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
+			// // 	}
+			// // 	else
+			// // 	{
+			// // 		oUrl= oUrl+" or ";
+			// // 	}
+			// // }
+			// // 	for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
+			// // var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
+			// // oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
+			// // if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
+			// // 	{
+			// // 		oUrl= oUrl+"and (FleetReference eq '')&$orderby=ZzsoReqNo desc) ";
+			// // 	}
+			// // 	else
+			// // 	{
+			// // 		oUrl= oUrl+" or ";
+			// // 	}
+			// // }
+			// $.ajax({
+			// 	url: oUrl,
+			// 	method: "GET",
+			// 	async: false,
+			// 	dataType: "json",
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		var oModel = new sap.ui.model.json.JSONModel();
 			
-					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined ||data.d.results.length==0)
-					{
+			// 		oModel.setData(data.d.results);
+			// 			if(data.d.results.length==undefined ||data.d.results.length==0)
+			// 		{
 						
-					 var BtnNext = FSOD_controller.getView().byId("buttonNext");
-			  			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<10)
-					{
-					 var BtnNext = FSOD_controller.getView().byId("buttonNext");
-			  			 BtnNext.setEnabled(false);
-			  			 FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
-					}else{
-						var BtnNext = FSOD_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(true);
-					// if (oModel.length > 0) {
-					//oModel.getData().ZC_SERIES.unshift({
-					//  "{seriesModel>ModelSeriesNo}": "All",
-					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
-					//})
-					// }
-					FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
-					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
+			// 		 var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			//   			 BtnNext.setEnabled(false);
+			// 		}else if(data.d.results.length<10)
+			// 		{
+			// 		 var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			//   			 BtnNext.setEnabled(false);
+			//   			 FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
+			// 		}else{
+			// 			var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			//   			 BtnNext.setEnabled(true);
+			// 		// if (oModel.length > 0) {
+			// 		//oModel.getData().ZC_SERIES.unshift({
+			// 		//  "{seriesModel>ModelSeriesNo}": "All",
+			// 		//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+			// 		//})
+			// 		// }
+			// 		FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
+			// 		}
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
 					
 					
-					var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			// 		var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			
-				}
-			});
-			}
+			// 	}
+			// });
+			// }
 			clicks=0;
 			num=0;
 			var page=clicks+1;
@@ -587,7 +587,7 @@ sap.ui.define([
 			{
 				var host = FSOD_controller.host();
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			// if (x != "TCI_User") {
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip="+num+"&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
@@ -678,40 +678,28 @@ sap.ui.define([
 			
 				}
 			});
-			}
+			// }
 			
-			else
-			{
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip="+num+"&$filter=(";
-				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
-					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
-				oUrl=oUrl+"(ZzsoStatus eq '"+status+"')";
-				if(i==((this.getView().byId("mcb_status_FSOD").getSelectedItems().length)-1))
-				{
-					oUrl= oUrl+") and (";
-				}
-				else
-				{
-					oUrl= oUrl+" or ";
-				}
+			// else
+			// {
+			// 		var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip="+num+"&$filter=(";
+			// 	for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
+			// 		var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
+			// 	oUrl=oUrl+"(ZzsoStatus eq '"+status+"')";
+			// 	if(i==((this.getView().byId("mcb_status_FSOD").getSelectedItems().length)-1))
+			// 	{
+			// 		oUrl= oUrl+") and (";
+			// 	}
+			// 	else
+			// 	{
+			// 		oUrl= oUrl+" or ";
+			// 	}
 				
-			}
-					for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
-			var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey();
-			oUrl=oUrl+"(ZzAuditStatus eq '" +audit+"')";
-			if(i==((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length)-1))
-				{
-					oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
-				}
-				else
-				{
-					oUrl= oUrl+" or ";
-				}
-			}
-			// 	for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length; i++) {
-			// var series = this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems()[i].getKey();
-			// oUrl=oUrl+"(Zadd1 eq '" +series+"')";
-			// if(i==((this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length)-1))
+			// }
+			// 		for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
+			// var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey();
+			// oUrl=oUrl+"(ZzAuditStatus eq '" +audit+"')";
+			// if(i==((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length)-1))
 			// 	{
 			// 		oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
 			// 	}
@@ -720,61 +708,73 @@ sap.ui.define([
 			// 		oUrl= oUrl+" or ";
 			// 	}
 			// }
-			// 	for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
-			// var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
-			// oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
-			// if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
-			// 	{
-			// 		oUrl= oUrl+"and (FleetReference eq '')&$orderby=ZzsoReqNo desc) ";
-			// 	}
-			// 	else
-			// 	{
-			// 		oUrl= oUrl+" or ";
-			// 	}
-			// }
-			$.ajax({
-				url: oUrl,
-				method: "GET",
-				async: false,
-				dataType: "json",
-				success: function (data, textStatus, jqXHR) {
-					var page=clicks+1;
-			FSOD_controller.getView().byId("txtPageNum").setText("Page "+page);
-					var oModel = new sap.ui.model.json.JSONModel();
+			// // 	for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length; i++) {
+			// // var series = this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems()[i].getKey();
+			// // oUrl=oUrl+"(Zadd1 eq '" +series+"')";
+			// // if(i==((this.getView().byId("mcb_ordTyp_FSOD").getSelectedItems().length)-1))
+			// // 	{
+			// // 		oUrl= oUrl+") and (FleetReference eq 'X')&$orderby=ZzsoReqNo desc";
+			// // 	}
+			// // 	else
+			// // 	{
+			// // 		oUrl= oUrl+" or ";
+			// // 	}
+			// // }
+			// // 	for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
+			// // var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
+			// // oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
+			// // if(i==((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length)-1))
+			// // 	{
+			// // 		oUrl= oUrl+"and (FleetReference eq '')&$orderby=ZzsoReqNo desc) ";
+			// // 	}
+			// // 	else
+			// // 	{
+			// // 		oUrl= oUrl+" or ";
+			// // 	}
+			// // }
+			// $.ajax({
+			// 	url: oUrl,
+			// 	method: "GET",
+			// 	async: false,
+			// 	dataType: "json",
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		var page=clicks+1;
+			// FSOD_controller.getView().byId("txtPageNum").setText("Page "+page);
+			// 		var oModel = new sap.ui.model.json.JSONModel();
 			
-					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined ||data.d.results.length==0)
-					{
+			// 		oModel.setData(data.d.results);
+			// 			if(data.d.results.length==undefined ||data.d.results.length==0)
+			// 		{
 						
-					 var BtnNext = FSOD_controller.getView().byId("buttonNext");
-			  			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<10)
-					{
-					 var BtnNext = FSOD_controller.getView().byId("buttonNext");
-			  			 BtnNext.setEnabled(false);
-			  			 FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
-					}else{
-						var BtnNext = FSOD_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(true);
-					// if (oModel.length > 0) {
-					//oModel.getData().ZC_SERIES.unshift({
-					//  "{seriesModel>ModelSeriesNo}": "All",
-					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
-					//})
-					// }
-					FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
-					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
+			// 		 var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			//   			 BtnNext.setEnabled(false);
+			// 		}else if(data.d.results.length<10)
+			// 		{
+			// 		 var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			//   			 BtnNext.setEnabled(false);
+			//   			 FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
+			// 		}else{
+			// 			var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			//   			 BtnNext.setEnabled(true);
+			// 		// if (oModel.length > 0) {
+			// 		//oModel.getData().ZC_SERIES.unshift({
+			// 		//  "{seriesModel>ModelSeriesNo}": "All",
+			// 		//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+			// 		//})
+			// 		// }
+			// 		FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
+			// 		}
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
 					
-					var page=clicks+1;
-			FSOD_controller.getView().byId("txtPageNum").setText("Page "+page);
-					var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			// 		var page=clicks+1;
+			// FSOD_controller.getView().byId("txtPageNum").setText("Page "+page);
+			// 		var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			
-				}
-			});
-			}
+			// 	}
+			// });
+			// }
 			}
 			/*_searchNLink: function () {
 					var vinVal = FSOD_controller.getView().byId("vin_FSOD").getValue();
