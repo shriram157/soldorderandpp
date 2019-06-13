@@ -864,12 +864,12 @@ onActionNext: function (oEvent) {
 				}
 			});
 			}
-			clicks=0;
-			num=0;
+			// clicks=0;
+			// num=0;
 			var page=clicks+1;
 			PPD_DealerCont.getView().byId("txtPageNum").setText("Page "+page);
-			 var BtnPrev = this.getView().byId("buttonPrev");
-			   			 BtnPrev.setEnabled(false);	
+			 //var BtnPrev = this.getView().byId("buttonPrev");
+			 //  			 BtnPrev.setEnabled(false);	
 			// var allfilter = [];
 			// //-----------------Sold Order Status-----------------
 			// var afilter = [];
