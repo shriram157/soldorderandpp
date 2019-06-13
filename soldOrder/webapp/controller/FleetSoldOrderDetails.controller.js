@@ -81,6 +81,9 @@ sap.ui.define([
 			var Object;
 			if(language== "EN"){
 		Object = {"FSODetail_AuditStatus": [{
+		"key": "",
+		"text": "ALL"
+	},{
 		"key": "IN-PROGRESS",
 		"text": "IN-PROGRESS"
 	}, {
@@ -93,6 +96,9 @@ sap.ui.define([
 			}
 			else{
 				Object = {"FSODetail_AuditStatus": [{
+		"key": "",
+		"text": "ALL"
+	},{
 		"key": "IN-PROGRESS",
 		"text": "IN-PROGRESS"
 	}, {
