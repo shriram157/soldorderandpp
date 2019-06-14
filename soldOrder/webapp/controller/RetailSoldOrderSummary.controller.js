@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator"
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-	var RSOS_controller, zrequest, clicks=0, num, count1=11000, filter=false;
+	var RSOS_controller, zrequest, clicks=0, num, page=0, count1=11000, filter=false;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderSummary", {
 		formatter: formatter,
 		onInit: function () {

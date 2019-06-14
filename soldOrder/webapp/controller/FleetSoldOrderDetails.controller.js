@@ -154,6 +154,9 @@ sap.ui.define([
 			mcb_status_FSOD.setSelectedItems(mcb_status_FSOD.getItems());
 			mcb_auditStatus_FSOD.setSelectedItems(mcb_auditStatus_FSOD.getItems());
 			mcb_dealer_FSOD.setSelectedItems(mcb_dealer_FSOD.getItems());
+				var page=0;
+			page=clicks+1;
+			FSOD_controller.getView().byId("txtPageNum").setText("Page"+page);
 			// mcb_ordTyp_FSOD.setSelectedItems(mcb_ordTyp_FSOD.getItems());
 			//	mcb_ordTyp_FSOD.setSelectedKey("4");
 			// console.log(mcb_series_FSOD.getItems());
@@ -965,6 +968,9 @@ sap.ui.define([
 						
 					}
 				}
+					var page=0;
+			page=clicks+1;
+			FSOD_controller.getView().byId("txtPageNum").setText("Page"+page);
 			}
 			/*_searchNLink: function () {
 					var vinVal = FSOD_controller.getView().byId("vin_FSOD").getValue();
