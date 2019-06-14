@@ -284,7 +284,7 @@ sap.ui.define([
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined||data.d.results.length==0)
+						if(data.d.results.length==undefined)
 					{
 						
 					 var BtnNext = RSOS_controller.getView().byId("buttonNext");

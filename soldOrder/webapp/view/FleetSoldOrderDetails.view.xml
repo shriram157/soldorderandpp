@@ -38,13 +38,23 @@
 												</MultiComboBox>
 											</VBox>
 												<VBox visible="true">
-												<Label text="{i18n>dealer}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" class="TableLabel"/>
+												<Label text="{i18n>dealer}" visible="true" class="TableLabel"/>
 												<MultiComboBox width="" id="mcb_dealer_FSOD" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
+												<ComboBox xmlns="sap.m" id="cb_dealer_FSOD" width="300px" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
+												    <!--<items>-->
+												        <core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}" id="item12"/>
+												        	<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												        <!--<core:Item xmlns:core="sap.ui.core" key="item-2-key" text="Item 2 Text" id="item13"/>-->
+												        <!--</items>-->
+												    
+												</ComboBox>
 											</VBox>
 										</f:content>
 									</f:SimpleForm>
