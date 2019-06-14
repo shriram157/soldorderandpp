@@ -965,6 +965,7 @@ sap.ui.define([
 						
 					}
 				}
+			}
 			/*_searchNLink: function () {
 					var vinVal = FSOD_controller.getView().byId("vin_FSOD").getValue();
 					var vtinVal = FSOD_controller.getView().byId("vtin_FSOD").getValue();
