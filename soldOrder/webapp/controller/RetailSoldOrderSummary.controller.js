@@ -1072,6 +1072,8 @@ sap.ui.define([
 			
 					
 				}
+				var page=clicks+1;
+			RSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
 			}
 		},
 		onLiveChange: function (oEvent) {
