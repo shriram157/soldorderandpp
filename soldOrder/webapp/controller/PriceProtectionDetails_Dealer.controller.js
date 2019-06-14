@@ -393,6 +393,7 @@ sap.ui.define([
 					oModel.setData(data.d.results);
 						if(data.d.results.length==undefined)
 					{
+					
 						
 					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
 			  			 BtnNext.setEnabled(false);

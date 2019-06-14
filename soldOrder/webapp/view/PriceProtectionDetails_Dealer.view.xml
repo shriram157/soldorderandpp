@@ -126,13 +126,14 @@
 									</t:Column>
 								</t:columns>
 							</t:Table>
-								<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L2 M4 S8" class="marginCornersBottom">
+								<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">
 
 							<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>
-							<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
 								<l:content>
 								    <Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>
 								</l:content>
+							<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
+
 								</l:Grid>
 						</items>
 					</VBox>
