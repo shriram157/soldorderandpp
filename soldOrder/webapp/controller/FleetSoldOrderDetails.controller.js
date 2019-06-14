@@ -177,7 +177,7 @@ sap.ui.define([
 				}
 				else
 				{
-					
+					var host = FSOD_controller.host();
 					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
