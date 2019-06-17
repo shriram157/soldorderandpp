@@ -44,7 +44,7 @@
 												</MultiComboBox>
 											</VBox>
 											<VBox>
-												<Label visible ="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" text="{i18n>dealer}" class="TableLabel">
+												<Label visible ="true" text="{i18n>dealer}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -56,6 +56,16 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
+													<ComboBox xmlns="sap.m" id="cb_dealer_PPD_D" width="300px" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
+												    <!--<items>-->
+												        <core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}" id="item12"/>
+												        	<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												        <!--<core:Item xmlns:core="sap.ui.core" key="item-2-key" text="Item 2 Text" id="item13"/>-->
+												        <!--</items>-->
+												    
+												</ComboBox>
 											</VBox>
 										</f:content>
 									</f:SimpleForm>
