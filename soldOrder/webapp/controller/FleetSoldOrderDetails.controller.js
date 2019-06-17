@@ -335,6 +335,7 @@ sap.ui.define([
 		},
 		_refresh: function (oEvent) {
 				var host = FSOD_controller.host();
+				
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(";

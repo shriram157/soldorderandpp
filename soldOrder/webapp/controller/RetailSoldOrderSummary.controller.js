@@ -450,7 +450,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					filter=true;
+					
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
@@ -642,7 +642,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					filter=true;
+					
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
@@ -736,7 +736,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					filter=true;
+					
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
@@ -1230,7 +1230,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					filter=true;
+					
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);

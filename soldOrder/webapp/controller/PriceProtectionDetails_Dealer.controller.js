@@ -489,7 +489,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					pricepro=true;
+				
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
@@ -584,7 +584,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					pricepro=true;
+					
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
@@ -814,7 +814,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					pricepro=true;
+					
 					var oModel = new sap.ui.model.json.JSONModel();
 			
 					oModel.setData(data.d.results);
@@ -1099,10 +1099,50 @@ onActionNext: function (oEvent) {
 					oUrl= oUrl+" or ";
 				}
 			}
+				$.ajax({
+				url: oUrl,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
+			
+					oModel.setData(data.d.results);
+						if(data.d.results.length==undefined)
+					{
+					
+						
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			  			 BtnNext.setEnabled(false);
+					}else if(data.d.results.length<10)
+					{
+					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			  			 BtnNext.setEnabled(false);
+			  			 PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}else{
+						 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			   			 BtnNext.setEnabled(true);
+					// if (oModel.length > 0) {
+					//oModel.getData().ZC_SERIES.unshift({
+					//  "{seriesModel>ModelSeriesNo}": "All",
+					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+					//})
+					// }
+					PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					
+					
+					var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			
+				}
+			});
 				}
 				else
 				{
-					{
+					
 					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip="+num+"&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
@@ -1219,46 +1259,8 @@ onActionNext: function (oEvent) {
 			// 		oUrl= oUrl+" or ";
 			// 	}
 			// }
-			$.ajax({
-				url: oUrl,
-				method: "GET",
-				async: false,
-				dataType: "json",
-				success: function (data, textStatus, jqXHR) {
-					var oModel = new sap.ui.model.json.JSONModel();
+		
 			
-					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined)
-					{
-						
-					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-			  			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<10)
-					{
-					 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-			  			 BtnNext.setEnabled(false);
-			  			 PPD_DealerCont.getView().setModel(oModel, "ppdModel");
-					}else{
-						 var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(true);
-					// if (oModel.length > 0) {
-					//oModel.getData().ZC_SERIES.unshift({
-					//  "{seriesModel>ModelSeriesNo}": "All",
-					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
-					//})
-					// }
-					PPD_DealerCont.getView().setModel(oModel, "ppdModel");
-					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					
-					
-					var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			
-				}
-			});
-			}
 			// clicks=0;
 			// num=0;
 			var page=clicks+1;
