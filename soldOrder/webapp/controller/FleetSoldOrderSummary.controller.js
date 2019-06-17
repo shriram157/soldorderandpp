@@ -328,6 +328,12 @@ sap.ui.define([
 							
 						
 			}
+				clicks=0;
+			num=0;
+			var page=clicks+1;
+			FSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
+			 var BtnPrev = this.getView().byId("buttonPrev");
+			   			 BtnPrev.setEnabled(false);	
 		// var allfilter = [];
 		// 	var dfilter = [];
 		// 	var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
@@ -494,7 +500,12 @@ sap.ui.define([
 			
 				}
 			});
-						
+			clicks=0;
+			num=0;
+			var page=clicks+1;
+			FSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
+			 var BtnPrev = this.getView().byId("buttonPrev");
+			   			 BtnPrev.setEnabled(false);		
 							
 						
 			
@@ -1145,6 +1156,11 @@ else
 						
 			}
 			}
+			
+			var page=clicks+1;
+			FSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
+			 //var BtnPrev = this.getView().byId("buttonPrev");
+			 //  			 BtnPrev.setEnabled(false);	
 		},
 
 	});

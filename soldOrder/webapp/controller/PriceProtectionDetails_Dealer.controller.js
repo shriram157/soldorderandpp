@@ -318,6 +318,12 @@ sap.ui.define([
 			
 					
 				}
+					clicks=0;
+			num=0;
+			var page=clicks+1;
+			PPD_DealerCont.getView().byId("txtPageNum").setText("Page "+page);
+			 var BtnPrev = this.getView().byId("buttonPrev");
+			   			 BtnPrev.setEnabled(false);	
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
@@ -849,7 +855,12 @@ sap.ui.define([
 			
 				}
 			});
-			
+							clicks=0;
+			num=0;
+			var page=clicks+1;
+			PPD_DealerCont.getView().byId("txtPageNum").setText("Page "+page);
+			 var BtnPrev = this.getView().byId("buttonPrev");
+			   			 BtnPrev.setEnabled(false);	
 		},
 		_navToRSO: function (evt) {
 			// console.log(evt.getSource());

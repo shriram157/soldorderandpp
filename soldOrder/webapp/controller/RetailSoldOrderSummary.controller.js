@@ -484,7 +484,12 @@ sap.ui.define([
 			
 				}
 			});
-				
+					clicks=0;
+			num=0;
+			var page=clicks+1;
+			RSOS_controller.getView().byId("txtPageNum").setText("Page "+page);
+			 var BtnPrev = this.getView().byId("buttonPrev");
+			   			 BtnPrev.setEnabled(false);	
 				
 		},
 		_refresh: function (oEvent) {

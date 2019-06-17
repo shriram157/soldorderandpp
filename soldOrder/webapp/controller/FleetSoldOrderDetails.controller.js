@@ -769,8 +769,12 @@ sap.ui.define([
 			
 				}
 			});
-				
-				
+			clicks=0;
+			num=0;
+			var page=clicks+1;
+			FSOD_controller.getView().byId("txtPageNum").setText("Page "+page);
+			 var BtnPrev = this.getView().byId("buttonPrev");
+			   			 BtnPrev.setEnabled(false);	
 			
 			
 		},
@@ -1164,8 +1168,8 @@ sap.ui.define([
 						
 					}
 				}
-					var page=0;
-			page=clicks+1;
+				
+			var page=clicks+1;
 			FSOD_controller.getView().byId("txtPageNum").setText("Page"+page);
 			}
 			/*_searchNLink: function () {
