@@ -889,7 +889,7 @@ sap.ui.define([
 			var oFlagsModel = new sap.ui.model.json.JSONModel(Flags); // created a JSON model       
 			sap.ui.getCore().setModel(oFlagsModel, "ppdFlages");
 
-			var selectedRow = evt.getSource().getBindingContext("mainservices").getObject();
+			var selectedRow = evt.getSource().getBindingContext("ppdModel").getObject();
 
 			PPD_DealerCont.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 				Soreq: evt.getSource().getText()
