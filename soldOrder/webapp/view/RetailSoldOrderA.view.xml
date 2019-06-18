@@ -8,7 +8,7 @@
 					<Label text="{i18n>createSoldOrderTitle}" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"></Label>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false" autocomplete="off">
+						singleContainerFullSize="false" >
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss"/>
@@ -29,7 +29,7 @@
 								<core:Item key="{suffix_Model>}" text="{parts: [{path:'suffix_Model>'},{path:'suffix_Model>'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 							</ComboBox>-->
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Input id="modelYr_RSOA"  showValueHelp="true" required="true" valueHelpRequest="select_year"></Input>
+							<Input id="modelYr_RSOA"  showSuggestion="false" showValueHelp="true" required="true" valueHelpRequest="select_year"></Input>
 							<!--<ComboBox id="modelYr_RSOA" items="{ path: 'mode_Model>/'}" required="true">-->
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
@@ -88,13 +88,13 @@
 								<core:Item key="{salesTypeModel>key}" text="{salesTypeModel>text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>approvalNumber}"/>
-							<Input id="tcciNo_RSOA" value="{address>/Street}" maxLength="12"/>
+							<Input id="tcciNo_RSOA" showSuggestion="false" value="{address>/Street}" maxLength="12"/>
 							<Label wrapping="true" text="{i18n>salesPerName}"/>
-							<Input id="salesperson_RSOA" value="{address>/HouseNumber}"/>
+							<Input id="salesperson_RSOA" value="{address>/HouseNumber}" showSuggestion="false" />
 							<Label wrapping="true" text="{i18n>salesManName}"/>
-							<Input id="salesMan_RSOA" value="{address>/ZIPCode}"/>
+							<Input id="salesMan_RSOA" value="{address>/ZIPCode}" showSuggestion="false" />
 							<Label wrapping="true" id="tradeInModelYr_RSOA" text="{i18n>tradeInModelYr}"/>
-							<Input id="trademodelYear_RSOAid"  showValueHelp="true" valueHelpRequest="select_year1"></Input>
+							<Input id="trademodelYear_RSOAid" showSuggestion="false"  showValueHelp="true" valueHelpRequest="select_year1"></Input>
 							<!--<ComboBox id="trademodelYear_RSOAid" items="{ path: 'mode_Model>/'}" required="true">-->
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
@@ -103,7 +103,7 @@
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInModel}"/>
-							<Input id="trademodel_RSOAid" value="" />
+							<Input id="trademodel_RSOAid" value="" showSuggestion="false"  />
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
@@ -113,26 +113,26 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>fcustname}"/>
-							<Input id="CustName_RSOA" value="{Customer>/FirstName}" required="true"/>
+							<Input id="CustName_RSOA" value="{Customer>/FirstName}" showSuggestion="false" required="true"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
-							<Input id="CustName_SSOA" value="{Customer>/SecondName}" required="true"/>
+							<Input id="CustName_SSOA" value="{Customer>/SecondName}" showSuggestion="false" required="true"/>
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Input id="Address_RSOA" value="{Customer>/Address}" required="true"/>
+							<Input id="Address_RSOA" value="{Customer>/Address}" showSuggestion="false" required="true"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Input id="City_RSOA" value="{Customer>/City}" required="true"/>
+							<Input id="City_RSOA" value="{Customer>/City}" showSuggestion="false" required="true"/>
 							<Label wrapping="true" text="{i18n>province}"/>
 							<!--<Input id="Province_RSOA" value="" required="true"/>-->
 							<ComboBox id="Province_RSOA" items="{ path: '/Province', sorter: { path: 'key' } }" required="true" selectedKey="{Customer>/Province}">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Input id="PostalCode_RSOA" value="{Customer>/PostCode}" required="true" maxLength="6"/>
+							<Input id="PostalCode_RSOA" value="{Customer>/PostCode}" showSuggestion="false" required="true" maxLength="6"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Input value="{Customer>/Phone}"  placeholder='xxxxxxxxxx' required="true" maxLength="10"/>
+							<Input value="{Customer>/Phone}" showSuggestion="false"  placeholder='xxxxxxxxxx' required="true" maxLength="10"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Input value="{Customer>/Email}" />
+							<Input value="{Customer>/Email}" showSuggestion="false"  />
 							<Label wrapping="true" text="{i18n>driverLic}"/>
-							<Input id="License_RSOA" value="{Customer>/DriveLic}" />
+							<Input id="License_RSOA" showSuggestion="false" value="{Customer>/DriveLic}" />
 							<Label wrapping="true" text=""/>
 							<Button text="{i18n>valCust}" press="onValidateCustomer" >
 								<layoutData>

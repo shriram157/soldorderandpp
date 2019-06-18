@@ -10,13 +10,13 @@
 						class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
 					<f:SimpleForm title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false" autocomplete="off">
+						singleContainerFullSize="false" >
 						<f:content>
 							<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Input id="FanNo_CFSO" value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showValueHelp="true"/>
+							<Input id="FanNo_CFSO" value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno"  showSuggestion="false" showValueHelp="true"/>
 							<Label wrapping="true" text="{i18n>PONumber}"/>
-							<Input value="{Data>/ZpoNumber}"/>
+							<Input value="{Data>/ZpoNumber}" showSuggestion="false" />
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{Customer>/NameFirst}{Customer>/NameLast}"/>
@@ -94,12 +94,12 @@
 					<Label text="{i18n>AdditionalVehicles}" class="marginCorners fontsize"></Label>
 					<f:SimpleForm title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false" class="VBox_color" autocomplete="off">
+						singleContainerFullSize="false" class="VBox_color"  >
 						<f:content>
 							<core:Title text="{i18n>VehicleInformation}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Input id="modelYr_CFSO" value="" width="" showValueHelp="true" valueHelpRequest="select_year"></Input>
-							<Label wrapping="true" text="{i18n>series}"/>
+							<Input id="modelYr_CFSO" value="" width="" showValueHelp="true" showSuggestion="false"  valueHelpRequest="select_year"></Input>
+							<Label wrapping="true" text="{i18n>series}" />
 							<ComboBox id="series_CFSO" items="{path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
 								<!--<core:Item key="{mainservices>Zzseries}" text="{mainservices>ZzseriesDescEn}"/>-->
 								<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>
@@ -129,7 +129,7 @@
 							</ComboBox>
 							<!--//APX-->
 							<Label wrapping="true" text="{i18n>quantity}"/>
-							<Input id="quantity_CFSO" required="true" maxLength="2"></Input>
+							<Input id="quantity_CFSO" required="true" maxLength="2" showSuggestion="false" ></Input>
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<Text text="{i18n>from}">
 								<layoutData>
