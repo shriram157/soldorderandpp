@@ -9,7 +9,7 @@
 					<VBox class="VBox_color marginCornersBottom marginCorners" width="49%">
 						<items>
 					
-					<f:SimpleForm class="marginCorners" editable="true" width="90%" layout="ResponsiveLayout">
+					<f:SimpleForm class="marginCorners" editable="true" width="90%" layout="ResponsiveLayout" autocomplete="off">
 						<f:content>
 							<Label text="{i18n>ReasonCanc}"/>
 							<ComboBox id="resonCancelId" items="{ path: 'cancelReasonModel>/CancellationReason', sorter: { path: 'text' } }" required="true">

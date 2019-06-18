@@ -10,7 +10,7 @@
 						class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
 					<f:SimpleForm title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false">
+						singleContainerFullSize="false" autocomplete="off">
 						<f:content>
 							<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
@@ -94,7 +94,7 @@
 					<Label text="{i18n>AdditionalVehicles}" class="marginCorners fontsize"></Label>
 					<f:SimpleForm title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false" class="VBox_color">
+						singleContainerFullSize="false" class="VBox_color" autocomplete="off">
 						<f:content>
 							<core:Title text="{i18n>VehicleInformation}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>modelYear}"/>

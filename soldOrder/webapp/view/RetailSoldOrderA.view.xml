@@ -8,7 +8,7 @@
 					<Label text="{i18n>createSoldOrderTitle}" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"></Label>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false">
+						singleContainerFullSize="false" autocomplete="off">
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss"/>
@@ -108,7 +108,7 @@
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false">
+						singleContainerFullSize="false" >
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"/>

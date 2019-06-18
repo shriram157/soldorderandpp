@@ -9,7 +9,7 @@
 					<VBox class="VBox_color marginCorners marginCornersBottom" width="49%">
 						<items>
 					<Text text="{i18n>disclaimer2}" class="sapUiMediumMarginBegin sapUiSmallMarginBottom fontsizeIn wrapwidth"></Text>
-					<f:SimpleForm id="simpleFormChange" editable="true" width="90%" layout="ResponsiveLayout">
+					<f:SimpleForm id="simpleFormChange" editable="true" width="90%" layout="ResponsiveLayout" autocomplete="off">
 						<f:content>
 							<Label text="{i18n>ReasonChange}"/>
 							<ComboBox id="resonCancelId" items="{ path: 'changeReasonModel>/CancellationReason', sorter: { path: 'key' } }" required="true">
