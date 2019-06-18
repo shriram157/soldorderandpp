@@ -126,11 +126,11 @@
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Input id="PostalCode_RSOA" value="{Customer>/PostCode}" showSuggestion="false" required="true" maxLength="6"/>
+							<Input id="PostalCode_RSOA" value="{Customer>/PostCode}"  showSuggestion="false" required="true" maxLength="6"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Input value="{Customer>/Phone}" showSuggestion="false"  placeholder='xxxxxxxxxx' required="true" maxLength="10"/>
+							<Input id="Phone_RSOA" value="{Customer>/Phone}" showSuggestion="false"  placeholder='xxxxxxxxxx' required="true" maxLength="10"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Input value="{Customer>/Email}" showSuggestion="false"  />
+							<Input id="Email_RSOA" value="{Customer>/Email}" showSuggestion="false"  />
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Input id="License_RSOA" showSuggestion="false" value="{Customer>/DriveLic}" />
 							<Label wrapping="true" text=""/>

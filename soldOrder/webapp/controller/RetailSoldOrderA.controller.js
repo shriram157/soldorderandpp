@@ -133,7 +133,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-			RSOA_controller.getView().getModel('mainservices').refresh(true);
+		
 		},
 		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
@@ -441,6 +441,33 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 			}
 			RSOA_controller.getView().getModel('mainservices').create('/Retail_Sold_OrderSet', _data, {
 				success: function (data, oResponse) {
+						RSOA_controller.getView().byId("modelYr_RSOA").setValue("");
+			RSOA_controller.getView().byId("Suffix_RSOA").setSelectedValue("");
+			RSOA_controller.getView().byId("series_RSOA").setSelectedValue("");
+			//	var valModelCode = RSOA_controller.getView().byId("modelCode_RSOA").getValue();
+			RSOA_controller.getView().byId("CustName_RSOA").setValue("");
+			RSOA_controller.getView().byId("CustName_SSOA").setValue("");
+			RSOA_controller.getView().byId("etaTo_RSOA").setValue("");
+			RSOA_controller.getView().byId("etaFrom_RSOA").setValue("");
+			RSOA_controller.getView().byId("Colour_RSOA").setSelectedValue("");
+			RSOA_controller.getView().byId("model_RSOA").setSelectedValue("");
+			RSOA_controller.getView().byId("Apx_RSOA").setSelectedValue("");
+			RSOA_controller.getView().byId("SalesType_RSOA").setValue("");
+			RSOA_controller.getView().byId("ContractDate_RSOA").setValue("");
+			RSOA_controller.getView().byId("tcciNo_RSOA").setValue("");
+			RSOA_controller.getView().byId("salesperson_RSOA").setValue("");
+			RSOA_controller.getView().byId("salesMan_RSOA").setValue("");
+			RSOA_controller.getView().byId("trademodelYear_RSOAid").setValue("");
+			RSOA_controller.getView().byId("trademodel_RSOAid").setValue("");
+			RSOA_controller.getView().byId("tradeInMakeYear_RSOAid").setSelectedKey("");
+			RSOA_controller.getView().byId("Comment").setValue("");
+			RSOA_controller.getView().byId("Address_RSOA").setValue("");
+			RSOA_controller.getView().byId("License_RSOA").setValue("");
+			RSOA_controller.getView().byId("Email_RSOA").setValue("");
+			RSOA_controller.getView().byId("Phone_RSOA").setValue("");
+			RSOA_controller.getView().byId("City_RSOA").setValue("");
+			RSOA_controller.getView().byId("Province_RSOA").setValue("");
+			RSOA_controller.getView().byId("PostalCode_RSOA").setValue("");
 					if (data.ZzsoReqNo) {
 						RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 							Soreq: data.ZzsoReqNo
