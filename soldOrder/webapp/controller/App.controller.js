@@ -1,7 +1,8 @@
 var AppController;
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
-	"toyota/ca/SoldOrder/util/formatter"
+	"toyota/ca/SoldOrder/util/formatter",
+	"sap/m/MessageBox"
 ], function (BaseController, formatter) {
 	"use strict";
 

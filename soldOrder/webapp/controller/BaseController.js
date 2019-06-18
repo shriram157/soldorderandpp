@@ -4,7 +4,8 @@ sap.ui.define([
 	/*"sap/ui/model/odata/oDataModel",*/
 	"/sap/ui/model/resource/ResourceModel",
 	"sap/ui/core/routing/History",
-	"sap/ui/model/json/JSONModel"
+	"sap/ui/model/json/JSONModel",
+	"sap/m/MessageBox"
 ], function (Controller, ResourceModel, History, JSONModel) {
 	"use strict";
 	var basCont;

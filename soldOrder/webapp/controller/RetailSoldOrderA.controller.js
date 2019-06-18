@@ -2,7 +2,8 @@ sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"sap/ui/model/resource/ResourceModel",
 	"toyota/ca/SoldOrder/util/formatter",
-	"sap/ui/model/json/JSONModel"
+	"sap/ui/model/json/JSONModel",
+	"sap/m/MessageBox"
 ], function (BaseController, ResourceModel, formatter, JSONModel) {
 	"use strict";
 	var validateFlagA = false;

@@ -3,7 +3,8 @@ sap.ui.define([
 	"toyota/ca/SoldOrder/util/formatter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/ui/model/json/JSONModel"
+	"sap/ui/model/json/JSONModel",
+	"sap/m/MessageBox"
 ], function (BaseController, formatter, Filter, FilterOperator, JSONModel) {
 	"use strict";
 	var RSOB_controller, Zcustomer_No, input_ref;
