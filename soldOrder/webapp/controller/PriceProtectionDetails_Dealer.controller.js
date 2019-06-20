@@ -789,7 +789,7 @@ sap.ui.define([
 			oUrl=oUrl+"(zzordtypedesc eq '" +audit+"')";
 			if(i==((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length)-1))
 				{
-					oUrl= oUrl+") &$orderby=dealer_ord desc";
+					oUrl= oUrl+") and (";
 				}
 				else
 				{
@@ -810,10 +810,10 @@ sap.ui.define([
 			// }
 				// for (var i = 0; i < this.getView().byId("cb_dealer_PPD_D").getSelectedItems().length; i++) {
 			var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
-			oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
+			oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"'))";
 			// if(i==((this.getView().byId("cb_dealer_PPD_D").getSelectedItems().length)-1))
 			// 	{
-					oUrl= oUrl+"&$orderby=dealer_ord desc) ";
+					oUrl= oUrl+"&$orderby=dealer_ord desc ";
 			// 	}
 			// 	else
 			// 	{
