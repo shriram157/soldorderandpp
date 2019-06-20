@@ -485,7 +485,7 @@ sap.ui.define([
 			// }
 				// for (var i = 0; i < this.getView().byId("cb_dealer_PPD_D").getSelectedItems().length; i++) {
 			var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
-			oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
+			oUrl=oUrl+"(dealer_code eq'" +dealer+"')";
 			// if(i==((this.getView().byId("cb_dealer_PPD_D").getSelectedItems().length)-1))
 			// 	{
 					oUrl= oUrl+"and &$orderby=dealer_ord desc) ";
@@ -810,7 +810,7 @@ sap.ui.define([
 			// }
 				// for (var i = 0; i < this.getView().byId("cb_dealer_PPD_D").getSelectedItems().length; i++) {
 			var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
-			oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"'))";
+			oUrl=oUrl+"(dealer_code eq'" +dealer+"'))";
 			// if(i==((this.getView().byId("cb_dealer_PPD_D").getSelectedItems().length)-1))
 			// 	{
 					oUrl= oUrl+"&$orderby=dealer_ord desc ";
@@ -1200,7 +1200,7 @@ onActionNext: function (oEvent) {
 			// }
 				// for (var i = 0; i < this.getView().byId("cb_dealer_PPD_D").getSelectedItems().length; i++) {
 			var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
-			oUrl=oUrl+"(ZzdealerCode eq'" +dealer+"')";
+			oUrl=oUrl+"(dealer_code eq'" +dealer+"')";
 			// if(i==((this.getView().byId("cb_dealer_PPD_D").getSelectedItems().length)-1))
 			// 	{
 					oUrl= oUrl+"and &$orderby=dealer_ord desc) ";
