@@ -35,6 +35,9 @@ sap.ui.define([
 	}, {
 		"key": "REJECTED",
 		"text": "REJECTED"
+	}, {
+		"key": "CLOSED",
+		"text": "CLOSED"
 	}]
 			};}
 			else{
@@ -57,6 +60,9 @@ sap.ui.define([
 	}, {
 		"key": "REJECTED",
 		"text": "REJECTED"
+	}, {
+		"key": "CLOSED",
+		"text": "CLOSED"
 	}],
 			};
 			
