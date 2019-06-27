@@ -300,8 +300,8 @@ module.exports = function (appContext) {
 		};
 
 		var bpReqUrl = url + "/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=" + s4Client + "&$format=json" +
-			"&$expand=to_Customer&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z002')" +
-			"and zstatus ne 'X'&$orderby=BusinessPartner asc &$select=BusinessPartner,BusinessPartnerName,BusinessPartnerType,OrganizationBPName1,SearchTerm2,to_Customer/Attribute1,to_Customer/CustomerAccountGroup";
+			"&$expand=to_Customer&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z002') " +
+			"and zstatus ne 'X'&$orderby=BusinessPartner asc &$select=BusinessPartner,OrganizationBPName1,SearchTerm2,to_Customer/CustomerAccountGroup";
 
 		tracer.debug("BP URL: %s", bpReqUrl);
 		var bpReqHeaders = {
@@ -321,50 +321,17 @@ module.exports = function (appContext) {
 			if (!bpErr && bpRes.statusCode === 200) {
 				var bpResBody = JSON.parse(bpResBodyStr);
 				var bpResults = bpResBody.d.results;
-				
+
 				bpResults = bpResults.filter(o => {
 					return (o.to_Customer && o.to_Customer.CustomerAccountGroup === "Z007");
 				});
 
 				for (var i = 0; i < bpResults.length; i++) {
-					var bpLength = bpResults[i].BusinessPartner.length;
 					bpAttributes = {
 						BusinessPartnerName: bpResults[i].OrganizationBPName1,
 						BusinessPartnerKey: bpResults[i].BusinessPartner,
-						BusinessPartner: bpResults[i].BusinessPartner.substring(5, bpLength),
-						BusinessPartnerType: bpResults[i].BusinessPartnerType,
 						SearchTerm2: bpResults[i].SearchTerm2
 					};
-					try {
-						toCustomerAttr1 = bpResults[i].to_Customer.Attribute1;
-					} catch (e) {
-						logger.error("The Data is sent without Attribute value for the BP: %s", bpResults[i].BusinessPartner);
-					}
-
-					if (toCustomerAttr1 === "01") {
-						// Toyota dealer
-						bpAttributes.BPDivision = "10";
-						bpAttributes.Attribute = "01";
-					} else if (toCustomerAttr1 === "02") {
-						// Lexus dealer
-						bpAttributes.BPDivision = "20";
-						bpAttributes.Attribute = "02";
-					} else if (toCustomerAttr1 === "03") {
-						// Dual (Toyota + Lexus) dealer
-						bpAttributes.BPDivision = "Dual";
-						bpAttributes.Attribute = "03";
-					} else if (toCustomerAttr1 === "04") {
-						bpAttributes.BPDivision = "10";
-						bpAttributes.Attribute = "04";
-					} else if (toCustomerAttr1 === "05") {
-						bpAttributes.BPDivision = "Dual";
-						bpAttributes.Attribute = "05";
-					} else {
-						// Set as Toyota dealer as fallback
-						bpAttributes.BPDivision = "10";
-						bpAttributes.Attribute = "01";
-					}
-
 					resBody.attributes.push(bpAttributes);
 				}
 				tracer.debug("Response body: %s", JSON.stringify(resBody));
