@@ -116,10 +116,17 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-			if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0 || sap.ui.getCore().getModel('SecondTable').getData().items.length <= 0) {
+			if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 			} else {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+			}
+			if (sap.ui.getCore().getModel('SecondTable') != undefined) {
+				if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
+					this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+				} else {
+					this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+				}
 			}
 		},
 		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
