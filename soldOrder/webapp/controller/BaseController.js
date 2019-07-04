@@ -260,8 +260,8 @@ sap.ui.define([
 
 			var sPrefix;
 			if (sLocation_conf == 0) {
-				sPrefix = "/soldorder_node"; //ecpSales_node_secured
-				// this.attributeUrl = "/userDetails/attributes"; //
+				sPrefix = "/soldorder_node"; 
+				// this.attributeUrl = "/userDetails/attributes"; 
 				this.attributeUrl = "/userDetails/attributesforlocaltesting";
 			} else {
 				sPrefix = "";
