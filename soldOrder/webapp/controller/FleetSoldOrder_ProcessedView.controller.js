@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator"
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-	var FSO_PVController, zrequest, vehicle_no1,vehicle_no2;
+	var FSO_PVController, zrequest, vehicle_no1, vehicle_no2;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.FleetSoldOrder_ProcessedView", {
 		formatter: formatter,
 
@@ -61,7 +61,7 @@ sap.ui.define([
 						// 	// for (var i = 0; i < items2.getLength(); i++) {
 						// 	// 	vehicle_no2 = vehicle_no2 + parseInt(items2.getContexts()[i].getProperty('FltSOQty'), 10);
 						// 	// }
-      // //                     vehicle_no2 = vehicle_no1 + vehicle_no2; 
+						// //                     vehicle_no2 = vehicle_no1 + vehicle_no2; 
 						// 	// FSO_PVController.getView().byId('vechilecounter').setText(vehicle_no2.toString());
 
 						// });
@@ -92,10 +92,11 @@ sap.ui.define([
 		},
 		_navToSoldOrder: function (evt) {
 			// var sPath = evt.getSource().getBindingContext().sPath;
-		//	var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+			//	var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 			// FSO_PVController.getView().byId("tble_FSO_PV").getModel().getData();
 			FSO_PVController.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-				Soreq: evt.getSource().getText() }, true);
+				Soreq: evt.getSource().getText()
+			}, true);
 			// console.log(FSO_PVController.getView().byId("tble_FSO_PV").getModel().getData().ProductCollection[oIndex]);
 			// console.log(FSO_PVController.getView().byId("tble_FSO_PV").getModel().getData().ProductCollection[oIndex].Category);
 		},
@@ -108,10 +109,10 @@ sap.ui.define([
 		onNavBack: function (Oevent) {
 			FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary", {}, true);
 		},
-		onApprove:function(Oevent)
-		{
+		onApprove: function (Oevent) {
 			FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ZoneApproval", {
-				Soreq: zrequest }, true);	
+				Soreq: zrequest
+			}, true);
 		}
 	});
 

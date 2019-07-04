@@ -17,44 +17,43 @@ sap.ui.define([
 				this);
 			var cancelReasonModel = new sap.ui.model.json.JSONModel();
 			var Obj;
-				var language = RSOCancel_controller.returnBrowserLanguage();
-			if(language== "EN"){
-			Obj = {
-				
-					"CancellationReason": [{
-		"key": "1",
-		"text": "Customer Cancelled"
-	}, {
-		"key": "2",
-		"text": "Customer Changed Vehicle"
-	}, {
-		"key": "3",
-		"text": "Others"
-	}],
-
-			};}
-			else{
+			var language = RSOCancel_controller.returnBrowserLanguage();
+			if (language == "EN") {
 				Obj = {
-				
-				"CancellationReason": [{
-		"key": "1",
-		"text": "Client annulé"
-	}, {
-		"key": "2",
-		"text": "Véhicule changé par le client"
-	}, {
-		"key": "3",
-		"text": "Autres"
-	}],
 
-			
-};
+					"CancellationReason": [{
+						"key": "1",
+						"text": "Customer Cancelled"
+					}, {
+						"key": "2",
+						"text": "Customer Changed Vehicle"
+					}, {
+						"key": "3",
+						"text": "Others"
+					}],
+
+				};
+			} else {
+				Obj = {
+
+					"CancellationReason": [{
+						"key": "1",
+						"text": "Client annulé"
+					}, {
+						"key": "2",
+						"text": "Véhicule changé par le client"
+					}, {
+						"key": "3",
+						"text": "Autres"
+					}],
+
+				};
 			}
-			
+
 			cancelReasonModel.setData(Obj);
 			cancelReasonModel.updateBindings(true);
 			sap.ui.getCore().setModel(cancelReasonModel, "cancelReasonModel");
-			this.getView().setModel(sap.ui.getCore().getModel("cancelReasonModel"),"cancelReasonModel");
+			this.getView().setModel(sap.ui.getCore().getModel("cancelReasonModel"), "cancelReasonModel");
 			console.log(sap.ui.getCore().getModel("cancelReasonModel"));
 		},
 		_getattachRouteMatched: function (parameters) {
@@ -91,33 +90,29 @@ sap.ui.define([
 						ZzsoReqNo: requestid
 					}, // function import parameters
 					success: function (data, response) {
-						if(data.Type == 'E')
-						{
+						if (data.Type == 'E') {
 							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-						}
-						else
-						{
-						RSOCancel_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-							Soreq: requestid
-						}, true); //page 3
+								.m.MessageBox.Action.OK, null, null);
+						} else {
+							RSOCancel_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+								Soreq: requestid
+							}, true); //page 3
 						}
 					},
 					error: function (oData, response) {
 
-					sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-				
+						sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap
+							.m.MessageBox.Action.OK, null, null);
+
 					}
 				});
 
 			}
 		},
-		onNavBack:function(oe)
-		{
-				RSOCancel_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-							Soreq: requestid
-						}, true);
+		onNavBack: function (oe) {
+			RSOCancel_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+				Soreq: requestid
+			}, true);
 		}
 	});
 

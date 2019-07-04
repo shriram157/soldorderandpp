@@ -97,7 +97,7 @@ sap.ui.define([
 			// }
 		},
 		_onSubmit: function () {
-					var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
+			var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
 			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getSelectedKey();
 			var valApx = CSOR_controller.getView().byId("apx_CSOR").getSelectedKey();
 			var valColour = CSOR_controller.getView().byId("colour_CSOR").getSelectedKey();
@@ -116,7 +116,7 @@ sap.ui.define([
 			var comment = CSOR_controller.getView().byId("Comment").getValue();
 			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			var Zcustomer_fname = CSOR_controller.getView().byId("firstName").getText();
-				var Zcustomer_lname = CSOR_controller.getView().byId("lastName").getText();
+			var Zcustomer_lname = CSOR_controller.getView().byId("lastName").getText();
 			var Zcustomer_address = CSOR_controller.getView().byId("address").getText();
 			var Zcustomer_city = CSOR_controller.getView().byId("city").getText();
 			var Zcustomer_province = CSOR_controller.getView().byId("province").getText();
@@ -124,13 +124,9 @@ sap.ui.define([
 			var Zcustomer_phone = CSOR_controller.getView().byId("phone").getText();
 			var Zcustomer_email = CSOR_controller.getView().byId("email").getText();
 			// var Zcustomer_fname = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
-		
-			
-			
-			
+
 			var valDrive = CSOR_controller.getView().byId("drivelicense").getText();
-			
-			
+
 			if (valModel == "" || valSuffix == "" || valApx == "" || valColour == "" || valFrom == "" || valTo == "") {
 				var errForm = formatter.formatErrorType("SO00003");
 				var errMsg = CSOR_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
@@ -148,39 +144,38 @@ sap.ui.define([
 						delete zdata.__metadata;
 					}
 					zdata = {
-				
 
-				"ZzsoReqNo": "SO",
-				"Zzmodel": valModel, //"YZ3DCT",
-				"Zzmoyr": Zzmoyr, //"2018",
-				"Zzseries": Zzseries,
-				"Zzsuffix": valSuffix, //"ML",
-				"Zzextcol": valColour, //"01D6",
-				"Zzapx": valApx, // "00",
-				"ZzreqEtaFrom": valFrom, //null,
-				"ZzreqEtaTo": valTo, //null,
-				"ZcontractDate": ZcontractDate1, //null,
-				"ZsalesType": ZsalesType, // "",
-				// "ZtcciNum": ZtcciNum, // "",
-				"Zsalesperson": Zsalesperson, // "",
-				"Zsalesmanager": Zsalesmanager, //"",
-				"ZtradeModelYr": ZtradeModelYr, // "",
-				"ZtradeModel": ZtradeModel,
-				"ZtradeMake": ZtradeMake, // ""
-				"Comment": comment,
-				"ZzdealerCode": dealer_no,
-				"NameFirst": Zcustomer_fname,
-"NameLast": Zcustomer_lname,
-"Street": Zcustomer_address,
-"City1":Zcustomer_city,
-"Region":Zcustomer_province,
-"PostCode1":Zcustomer_postalcode,
-"TelNumber":Zcustomer_phone,
-"SmtpAddr": Zcustomer_email,
-"Qausp":valDrive
-				// "Zzendcu": Zcustomer_No,
-				// "ZdriverLiNum": valDrive
-			};
+						"ZzsoReqNo": "SO",
+						"Zzmodel": valModel, //"YZ3DCT",
+						"Zzmoyr": Zzmoyr, //"2018",
+						"Zzseries": Zzseries,
+						"Zzsuffix": valSuffix, //"ML",
+						"Zzextcol": valColour, //"01D6",
+						"Zzapx": valApx, // "00",
+						"ZzreqEtaFrom": valFrom, //null,
+						"ZzreqEtaTo": valTo, //null,
+						"ZcontractDate": ZcontractDate1, //null,
+						"ZsalesType": ZsalesType, // "",
+						// "ZtcciNum": ZtcciNum, // "",
+						"Zsalesperson": Zsalesperson, // "",
+						"Zsalesmanager": Zsalesmanager, //"",
+						"ZtradeModelYr": ZtradeModelYr, // "",
+						"ZtradeModel": ZtradeModel,
+						"ZtradeMake": ZtradeMake, // ""
+						"Comment": comment,
+						"ZzdealerCode": dealer_no,
+						"NameFirst": Zcustomer_fname,
+						"NameLast": Zcustomer_lname,
+						"Street": Zcustomer_address,
+						"City1": Zcustomer_city,
+						"Region": Zcustomer_province,
+						"PostCode1": Zcustomer_postalcode,
+						"TelNumber": Zcustomer_phone,
+						"SmtpAddr": Zcustomer_email,
+						"Qausp": valDrive
+							// "Zzendcu": Zcustomer_No,
+							// "ZdriverLiNum": valDrive
+					};
 					var URI = "/Retail_Sold_OrderSet";
 					//	CSOR_controller.getView().getModel('mainservices').refreshSecurityToken();
 					//Checking if there is no Token , it will refresh to get another one 
@@ -191,11 +186,11 @@ sap.ui.define([
 						success: function (data) {
 							// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",
 							// 	sap.m.MessageBox.Action.OK, null, null);
-								if (data.ZzsoReqNo) {
-						CSOR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-							Soreq: data.ZzsoReqNo
-						}, true);
-					}
+							if (data.ZzsoReqNo) {
+								CSOR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+									Soreq: data.ZzsoReqNo
+								}, true);
+							}
 						},
 						error: function (data) {
 							sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
@@ -212,16 +207,16 @@ sap.ui.define([
 
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
-					var model;
+			var model;
 			var language = CSOR_controller.returnBrowserLanguage();
 
 			if (language === "FR") {
-						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
-			}
-			else
-			{
-							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+			} else {
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 			}
 			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
@@ -239,7 +234,7 @@ sap.ui.define([
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'RSO')
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
@@ -262,7 +257,7 @@ sap.ui.define([
 				// 	text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel2>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
 				// }));
 				this.getView().byId('suffix_CSOR').bindItems({
-					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='"+dealer+"')/Set",
+					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
@@ -334,7 +329,7 @@ sap.ui.define([
 			}
 		},
 		_handleServiceSuffix_Series: function () {
-				var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 			var brand;
 			if (isDivisionSent) {
 				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];

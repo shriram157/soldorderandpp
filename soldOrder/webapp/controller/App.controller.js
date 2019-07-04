@@ -23,10 +23,10 @@ sap.ui.define([
 					m.attachRequestCompleted(function () {
 						var data = m.getProperty("/Users");
 						AppController.listOfUsers = data;
-							that.getDealer();
+						that.getDealer();
 						that._setTheLogo();
 						AppController._user();
-					
+
 					});
 
 				}

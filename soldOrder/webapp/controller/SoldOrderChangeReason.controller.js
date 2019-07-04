@@ -17,46 +17,45 @@ sap.ui.define([
 			SOCR_controller.getBrowserLanguage();
 			SOCR_controller.getOwnerComponent().getRouter().getRoute("SoldOrderChangeReason").attachPatternMatched(this._getattachRouteMatched,
 				this);
-				var Obj;
-				var changeReasonModel = new sap.ui.model.json.JSONModel();
-	var language = SOCR_controller.returnBrowserLanguage();
-			if(language== "EN"){
-			Obj = {
-				
-					"CancellationReason": [{
-		"key": "1",
-		"text": "Customer Cancelled"
-	}, {
-		"key": "2",
-		"text": "Customer Changed Vehicle"
-	}, {
-		"key": "3",
-		"text": "Others"
-	}],
-
-			};}
-			else{
+			var Obj;
+			var changeReasonModel = new sap.ui.model.json.JSONModel();
+			var language = SOCR_controller.returnBrowserLanguage();
+			if (language == "EN") {
 				Obj = {
-				
-				"CancellationReason": [{
-		"key": "1",
-		"text": "Client annulé"
-	}, {
-		"key": "2",
-		"text": "Véhicule changé par le client"
-	}, {
-		"key": "3",
-		"text": "Autres"
-	}],
 
-			
-};
+					"CancellationReason": [{
+						"key": "1",
+						"text": "Customer Cancelled"
+					}, {
+						"key": "2",
+						"text": "Customer Changed Vehicle"
+					}, {
+						"key": "3",
+						"text": "Others"
+					}],
+
+				};
+			} else {
+				Obj = {
+
+					"CancellationReason": [{
+						"key": "1",
+						"text": "Client annulé"
+					}, {
+						"key": "2",
+						"text": "Véhicule changé par le client"
+					}, {
+						"key": "3",
+						"text": "Autres"
+					}],
+
+				};
 			}
-			
+
 			changeReasonModel.setData(Obj);
 			changeReasonModel.updateBindings(true);
 			sap.ui.getCore().setModel(changeReasonModel, "changeReasonModel");
-			this.getView().setModel(sap.ui.getCore().getModel("changeReasonModel"),"changeReasonModel");
+			this.getView().setModel(sap.ui.getCore().getModel("changeReasonModel"), "changeReasonModel");
 			console.log(sap.ui.getCore().getModel("changeReasonModel"));
 		},
 		_getattachRouteMatched: function (parameters) {
@@ -80,40 +79,35 @@ sap.ui.define([
 			// 	Soreq: requestid
 			// }, true); 
 			// } else if (cbVal == 1 || cbVal == 3) {
-				SOCR_controller.getView().getModel('mainservices').callFunction("/RSO_Change", {
-					method: "POST",
-					urlParameters: {
-						Reason: resonCancelId_val,
-						Reason_comment: comment_ch_res,
-						// Request_Type: reqTypeId_SOCR_val,
-						ZzsoReqNo: requestid
-					}, // function import parameters
-					success: function (data, response) {
-						if(data.Type=='E')
-						{
-							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-						.MessageBox.Action.OK, null, null);
-						}
-						else
-						{
+			SOCR_controller.getView().getModel('mainservices').callFunction("/RSO_Change", {
+				method: "POST",
+				urlParameters: {
+					Reason: resonCancelId_val,
+					Reason_comment: comment_ch_res,
+					// Request_Type: reqTypeId_SOCR_val,
+					ZzsoReqNo: requestid
+				}, // function import parameters
+				success: function (data, response) {
+					if (data.Type == 'E') {
+						sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+							.MessageBox.Action.OK, null, null);
+					} else {
 						SOCR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
 							Soreq: requestid
 						}, true); //page8
-						}
-					},
-					error: function (oData, oResponse) {
+					}
+				},
+				error: function (oData, oResponse) {
 					sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
 						.MessageBox.Action.OK, null, null);
-					}
-				});
+				}
+			});
 
-			
 		},
-		onNavBack:function()
-		{
-				SOCR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-							Soreq: requestid
-						}, true);
+		onNavBack: function () {
+			SOCR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+				Soreq: requestid
+			}, true);
 		}
 
 	});

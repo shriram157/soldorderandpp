@@ -1,4 +1,6 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="toyota.ca.SoldOrder.controller.RetailSoldOrderSummary">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="toyota.ca.SoldOrder.controller.RetailSoldOrderSummary">
 	<App>
 		<pages>
 			<Page showHeader="false">
@@ -7,10 +9,12 @@
 				<content>
 					<VBox>
 						<items>
-							<Label id="label_SoldOrderSummaryid" text="{i18n>retailSoldOrderSummary}" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"/>
+							<Label id="label_SoldOrderSummaryid" text="{i18n>retailSoldOrderSummary}"
+								class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"/>
 							<VBox class="marginCorners VBox_color">
 								<items>
-									<f:SimpleForm columnsL="2" columnsM="2" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
+									<f:SimpleForm columnsL="2" columnsM="2" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="3" labelSpanM="3"
+										layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
 										<f:content>
 											<VBox>
 												<Label text="{i18n>series}" class="TableLabel">
@@ -31,7 +35,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSOSummary_Status' }" class="sapUiMediumMarginEnd">
+												<MultiComboBox id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSOSummary_Status' }"
+													class="sapUiMediumMarginEnd">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -44,7 +49,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox id="mcb_auditStatus_RSOS" items="{ path:'AuditModel>/AuditStatus'}" width="300px" selectionChange="_refresh" class="sapUiMediumMarginEnd">
+												<MultiComboBox id="mcb_auditStatus_RSOS" items="{ path:'AuditModel>/AuditStatus'}" width="300px" selectionChange="_refresh"
+													class="sapUiMediumMarginEnd">
 													<core:Item key="{AuditModel>key}" text="{AuditModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -65,23 +71,29 @@
 												<!--		<l:GridData span="L2 M12 S12"/>-->
 												<!--	</layoutData>-->
 												<!--</MultiComboBox>-->
-												<MultiComboBox id="mcb_dealer_RSOS" width="300px" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
-													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
+												<MultiComboBox id="mcb_dealer_RSOS" width="300px"
+													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}"
+													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
+														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
-												<ComboBox xmlns="sap.m" id="cb_dealer_RSOS" width="300px" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
-												    <!--<items>-->
-												        <core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}" id="item12"/>
-												        	<layoutData>
+												<ComboBox xmlns="sap.m" id="cb_dealer_RSOS" width="300px"
+													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}"
+													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
+													<!--<items>-->
+													<core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}"
+														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
+														id="item12"/>
+													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
-												        <!--<core:Item xmlns:core="sap.ui.core" key="item-2-key" text="Item 2 Text" id="item13"/>-->
-												        <!--</items>-->
-												    
+													<!--<core:Item xmlns:core="sap.ui.core" key="item-2-key" text="Item 2 Text" id="item13"/>-->
+													<!--</items>-->
 												</ComboBox>
-											<items/>
+												<items/>
 											</VBox>
 										</f:content>
 									</f:SimpleForm>
@@ -89,8 +101,8 @@
 							</VBox>
 							<Button text="{i18n>new}" id="idBtn_RSOS_new" class="cssShift marginCornersRight" visible="false" press="_createNewOrder"/>
 							<!--<t:Table id="table_RSOS" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners">-->
-							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners">
-
+							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true"
+								enableColumnFreeze="false" visibleRowCount="10" class="marginCorners">
 								<t:columns>
 									<t:Column width="10%" resizable="false">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
@@ -103,7 +115,8 @@
 										<t:template>
 											<!--<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"-->
 											<!--	wrapping="true"/>-->
-											<Text visible="true" id="tbl_lbl_dealer_RSOS" text="{path:'retailsumModel>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}" wrapping="true"/>
+											<Text visible="true" id="tbl_lbl_dealer_RSOS"
+												text="{path:'retailsumModel>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column width="10%" resizable="false">
@@ -115,7 +128,7 @@
 									<t:Column width="10%" resizable="false">
 										<Label text="{i18n>series}" class="TableLabel"/>
 										<t:template>
-												<Text text="{retailsumModel>Zzseries}" wrapping="true"/>
+											<Text text="{retailsumModel>Zzseries}" wrapping="true"/>
 											<!--<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"-->
 											<!--	modelContextChange="onSeriesnum">-->
 											<!--	<items>-->
@@ -159,10 +172,13 @@
 											<Text text="{retailsumModel>Zzvtn}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-										<t:Column width="8.3%" resizable="false">
+									<t:Column width="8.3%" resizable="false">
 										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 										<t:template>
-											<Button text="{i18n>linkVehicle}" visible="{parts:[{path:'retailsumModel>Zzvtn'},{path:'retailsumModel&gt;ZzsoStatus'}],formatter:'toyota.ca.SoldOrder.util.formatter.linkvehicleRetail'}" enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" id="btn_linkVeh_RSOS" press="onLinkVehicle"/>
+											<Button text="{i18n>linkVehicle}"
+												visible="{parts:[{path:'retailsumModel>Zzvtn'},{path:'retailsumModel&gt;ZzsoStatus'}],formatter:'toyota.ca.SoldOrder.util.formatter.linkvehicleRetail'}"
+												enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" id="btn_linkVeh_RSOS"
+												press="onLinkVehicle"/>
 										</t:template>
 									</t:Column>
 									<!--<t:Column width="11.11%" resizable="false">-->
@@ -174,14 +190,13 @@
 								</t:columns>
 							</t:Table>
 							<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">
-
-							<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>
-							<l:content>
-								    <Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>
+								<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>
+								<l:content>
+									<Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+										xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>
 								</l:content>
-							<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
-								
-								</l:Grid>
+								<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
+							</l:Grid>
 						</items>
 					</VBox>
 					<!--<Dialog draggable="true" id="VTNDialog" title='Search Vehicle By VTN/VIN' contentWidth="400px" contentHeight="260px">

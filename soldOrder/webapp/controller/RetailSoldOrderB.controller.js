@@ -20,7 +20,7 @@ sap.ui.define([
 			RSOB_controller._handleServiceSuffix_Series();
 			RSOB_controller.getView().setModel(model, 'Customer');
 			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderB").attachPatternMatched(this._getattachRouteMatched, this);
-			
+
 			// RSOB_controller._handleRSADropDown();
 			// 	var host = RSOB_controller.host();
 			// var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
@@ -140,7 +140,7 @@ sap.ui.define([
 			RSOB_controller.getView().setModel(new JSONModel(values), "RSOB_Model");
 			RSOB_controller.series_selected();
 			RSOB_controller.model_selected();
-			
+
 			RSOB_controller.suffix_selected();
 
 		},
@@ -200,7 +200,8 @@ sap.ui.define([
 		},
 		onValidateCustomer: function () {
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
-			if (CustModel.FirstName != '' && CustModel.SecondName != '' && CustModel.FirstName && CustModel.SecondName && CustModel.Phone != '' && CustModel.Phone && CustModel.City != '' && CustModel.City &&
+			if (CustModel.FirstName != '' && CustModel.SecondName != '' && CustModel.FirstName && CustModel.SecondName && CustModel.Phone != '' &&
+				CustModel.Phone && CustModel.City != '' && CustModel.City &&
 				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
 				CustModel.PostCode) {
 				var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error1");
@@ -217,10 +218,10 @@ sap.ui.define([
 				//---------------------------------------------------
 				//----Customer API-----------------------------------
 				//--------------------------------------------------
-var oBusyDialog = new sap.m.BusyDialog({
-				showCancelButton: false
-			});
-			
+				var oBusyDialog = new sap.m.BusyDialog({
+					showCancelButton: false
+				});
+
 				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 					"&lastName=" + CustModel.SecondName;
 				var msg1 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("msgcustomer1");
@@ -240,7 +241,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 					contentType: "text/xml; charset=\"utf-8\"",
 					success: function (data, textStatus, jqXHR) {
 						oBusyDialog.close();
-							var phone = '';
+						var phone = '';
 						//Looping on all customers that we got to match b phone and first name
 						for (var i = 0; i < data.customers.length; i++) {
 							// Check the First Name first
@@ -310,7 +311,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 						// }
 					},
 					error: function (request, errorText, errorCode) {
-						
+
 						var soapMessage = {
 							"requestHeader": {
 								"source": "Toyota",
@@ -363,27 +364,27 @@ var oBusyDialog = new sap.m.BusyDialog({
 								if (data.customer) {
 									Zcustomer_No = data.customer.partyID; //customerNumber;
 									Zcustomer_No = Zcustomer_No.toString();
-										var errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("success1");
-							title = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
-							icon = new sap.ui.core.Icon({
-								src: "sap-icon://success",
-								size: "2rem"
-							});
-							var msg2 = new sap.m.HBox({
-								items: [icon, new sap.m.Text({
-								text: errMsg2
-							})]
-						});
-							sap.m.MessageBox.show(msg2, {
-								icon: sap.m.MessageBox.Icon.SUCCESS,
-								title: title,
-								actions: sap.m.MessageBox.Action.OK,
-								onClose: null,
-								styleClass: "",
-								initialFocus: null,
-								textDirection: sap.ui.core.TextDirection.Inherit,
-								contentWidth: "10rem"
-							});
+									var errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("success1");
+									title = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
+									icon = new sap.ui.core.Icon({
+										src: "sap-icon://success",
+										size: "2rem"
+									});
+									var msg2 = new sap.m.HBox({
+										items: [icon, new sap.m.Text({
+											text: errMsg2
+										})]
+									});
+									sap.m.MessageBox.show(msg2, {
+										icon: sap.m.MessageBox.Icon.SUCCESS,
+										title: title,
+										actions: sap.m.MessageBox.Action.OK,
+										onClose: null,
+										styleClass: "",
+										initialFocus: null,
+										textDirection: sap.ui.core.TextDirection.Inherit,
+										contentWidth: "10rem"
+									});
 								}
 							},
 							error: function (request, errorText, errorCode) {
@@ -430,8 +431,9 @@ var oBusyDialog = new sap.m.BusyDialog({
 				// 	contentWidth: "10rem"
 				// });
 				RSOB_controller.validateFlagB = true;
-			} else {					var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
-	var	errForm = formatter.formatErrorType("SO000023");
+			} else {
+				var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+				var errForm = formatter.formatErrorType("SO000023");
 				errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
@@ -458,7 +460,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 			// var valLicense = RSOB_controller.getView().byId("License_RSOB").getValue();
 			var valCustName = RSOB_controller.getView().byId("CustName_RSOA").getValue();
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
-			if ( valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
+			if (valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
 				valProvince == "" || valPostalCode == "" || valCustName == "") {
 				flag1 = true;
 
@@ -469,7 +471,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 			if (flag1 == true && flag2 == false) {
 				var errForm = formatter.formatErrorType("SO00003");
 				errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-									var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+				var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, errTitle, sap
@@ -504,12 +506,12 @@ var oBusyDialog = new sap.m.BusyDialog({
 				var ZtradeMake = RSOB_controller.getView().byId("tradeInMakeYear_RSOBid").getSelectedKey();
 				var comment = RSOB_controller.getView().byId("Comment").getValue();
 				var host = RSOB_controller.host();
-	var Zzmoyr = RSOB_controller.getView().byId("modelYr_RSOB").getText();
-			var Zzseries = RSOB_controller.getView().byId("series_RSOB").getSelectedKey();
-			var Zzmodel = RSOB_controller.getView().byId("model_RSOB").getSelectedKey();
-			var Zzsuffix = RSOB_controller.getView().byId("suffix_CSOR").getSelectedKey();
-			var Zzapx = RSOB_controller.getView().byId("apx_RSOB").getSelectedKey();
-			var Zzextcol = RSOB_controller.getView().byId("colour_RSOB").getSelectedKey();
+				var Zzmoyr = RSOB_controller.getView().byId("modelYr_RSOB").getText();
+				var Zzseries = RSOB_controller.getView().byId("series_RSOB").getSelectedKey();
+				var Zzmodel = RSOB_controller.getView().byId("model_RSOB").getSelectedKey();
+				var Zzsuffix = RSOB_controller.getView().byId("suffix_CSOR").getSelectedKey();
+				var Zzapx = RSOB_controller.getView().byId("apx_RSOB").getSelectedKey();
+				var Zzextcol = RSOB_controller.getView().byId("colour_RSOB").getSelectedKey();
 				// SOcreateSet;
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
 				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
@@ -530,12 +532,12 @@ var oBusyDialog = new sap.m.BusyDialog({
 					// "ZtradeModelYr": "",
 					// "ZtradeMake": ""
 					"ZzsoReqNo": "SO",
-				// 	"Zzmodel": Zzmodel, //"YZ3DCT",
-				// "Zzmoyr": Zzmoyr, //"2018",
-				// "Zzseries": Zzseries,
-				// "Zzsuffix": Zzsuffix, //"ML",
-				// "Zzextcol": Zzextcol, //"01D6",
-				// "Zzapx": Zzapx, // "00",
+					// 	"Zzmodel": Zzmodel, //"YZ3DCT",
+					// "Zzmoyr": Zzmoyr, //"2018",
+					// "Zzseries": Zzseries,
+					// "Zzsuffix": Zzsuffix, //"ML",
+					// "Zzextcol": Zzextcol, //"01D6",
+					// "Zzapx": Zzapx, // "00",
 					"Zzmodel": Zzmodel, //"YZ3DCT",
 					"Zzmoyr": Zzmoyr, //"2018",
 					"Zzseries": Zzseries,
@@ -641,7 +643,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 		},
 		handleSelectYearPress: function (Oevent) {
 			input_ref.setValue(Oevent.getSource().getYear()); //this._oPopover.getContent()[0].getYear()
-				var series = this.getView().byId('series_RSOB').getSelectedKey();
+			var series = this.getView().byId('series_RSOB').getSelectedKey();
 			var modelyear = this.getView().byId('modelYr_RSOB').getValue();
 
 			if (series && modelyear) {
@@ -665,7 +667,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'RSO')
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
@@ -679,7 +681,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 			//  items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
 			this._oPopover.close();
 		},
-			series_selected: function (oEvent) {
+		series_selected: function (oEvent) {
 
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
@@ -688,27 +690,26 @@ var oBusyDialog = new sap.m.BusyDialog({
 			var language = RSOB_controller.returnBrowserLanguage();
 
 			if (language === "FR") {
-						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
-			}
-			else
-			{
-							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+			} else {
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 			}
 			var series = this.getView().byId('series_RSOB').getSelectedKey();
 			if (series && modelyear) {
 				var modelCB = this.getView().byId("model_RSOB");
-				
-			
-			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+
+				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'RSO')
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
@@ -773,7 +774,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 					RSOB_controller.getView().setModel(oModel, "seriesModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-				var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 					var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
@@ -781,13 +782,13 @@ var oBusyDialog = new sap.m.BusyDialog({
 				}
 			});
 		},
-			model_selected: function (oEvent) {
+		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_RSOB').getSelectedKey();
-						var language = RSOB_controller.returnBrowserLanguage();
-		var modelyear = this.getView().byId('modelYr_RSOB').getText();
+			var language = RSOB_controller.returnBrowserLanguage();
+			var modelyear = this.getView().byId('modelYr_RSOB').getText();
 			var suf;
-	if (language === "FR") {
+			if (language === "FR") {
 				suf =
 					"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
 
@@ -822,13 +823,13 @@ var oBusyDialog = new sap.m.BusyDialog({
 				// ], true));
 			}
 		},
-			suffix_selected: function (oEvent) {
+		suffix_selected: function (oEvent) {
 			//-----------------
 			//----APX---------
 			//----------------
 			//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
 			var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
-		var modelyear = this.getView().byId('modelYr_RSOB').getText();
+			var modelyear = this.getView().byId('modelYr_RSOB').getText();
 
 			var model = this.getView().byId('model_RSOB').getSelectedKey();
 			if (model && modelyear && suffix) {

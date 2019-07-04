@@ -5,7 +5,8 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator"
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-	var InvVehSel_controller,clicks=0, num;
+	var InvVehSel_controller, clicks = 0,
+		num;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.InventoryVehicleSelection", {
 		formatter: formatter,
 
@@ -15,17 +16,14 @@ sap.ui.define([
 
 			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
 				this);
-	// InvVehSel_controller.series_selected();
-	// InvVehSel_controller.model_selected();
-	// InvVehSel_controller.suffix_selected();
+			// InvVehSel_controller.series_selected();
+			// InvVehSel_controller.model_selected();
+			// InvVehSel_controller.suffix_selected();
 		},
 		_getattachRouteMatched: function (parameters) {
 			this.zrequest = parameters.getParameters().arguments.Soreq;
 			// var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
-		
-				
-				
-			
+
 			// vechile_items.filter([new Filter([
 			// 	new Filter("MATRIX", FilterOperator.EQ, "A205"),
 			// 	new Filter("Dealer", FilterOperator.EQ, dealer_no),
@@ -34,54 +32,52 @@ sap.ui.define([
 			// vechile_items.refresh();
 		},
 		onAfterRendering: function () {
-				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory	var host = RSOS_controller.host();
-						var host = InvVehSel_controller.host();
+			var host = InvVehSel_controller.host();
 
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
-				$.ajax({
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
+				dealer_no + "') and (source eq 'FLT')";
+			$.ajax({
 				url: oUrl,
 				method: "GET",
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
 					var oModel = new sap.ui.model.json.JSONModel();
-			
+
 					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined)
-					{
-						
-					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<10)
-					{
-					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
-			   			 InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
-					}else{
-					// if (oModel.length > 0) {
-					//oModel.getData().ZC_SERIES.unshift({
-					//  "{seriesModel>ModelSeriesNo}": "All",
-					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
-					//})
-					// }
-					InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+					if (data.d.results.length == undefined) {
+
+						var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+						BtnNext.setEnabled(false);
+					} else if (data.d.results.length < 10) {
+						var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+						BtnNext.setEnabled(false);
+						InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+					} else {
+						// if (oModel.length > 0) {
+						//oModel.getData().ZC_SERIES.unshift({
+						//  "{seriesModel>ModelSeriesNo}": "All",
+						//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+						//})
+						// }
+						InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
 					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					
-					
+
 					var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			
+
 				}
 			});
-				clicks=0;
-			num=0;
-			var page=clicks+1;
-			InvVehSel_controller.getView().byId("txtPageNum").setText("Page "+page);
-			 var BtnPrev = this.getView().byId("buttonPrev");
-			   			 BtnPrev.setEnabled(false);
+			clicks = 0;
+			num = 0;
+			var page = clicks + 1;
+			InvVehSel_controller.getView().byId("txtPageNum").setText("Page " + page);
+			var BtnPrev = this.getView().byId("buttonPrev");
+			BtnPrev.setEnabled(false);
 			// var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
 			// var dealer_no = "0";
 			// //Dealer Inventory
@@ -162,51 +158,49 @@ sap.ui.define([
 */
 		},
 		filter_change: function (Oevent) {
-									var host = InvVehSel_controller.host();
+			var host = InvVehSel_controller.host();
 
-			// var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
+			// var dealer_no = "42120"; //comment before deploying, local testing
 			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			if (Oevent.getSource().getSelectedKey() == '1') {
-	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
+					dealer_no + "') and (source eq 'FLT')";
 				$.ajax({
-				url: oUrl,
-				method: "GET",
-				async: false,
-				dataType: "json",
-				success: function (data, textStatus, jqXHR) {
-					var oModel = new sap.ui.model.json.JSONModel();
-			
-					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined)
-					{
-						
-					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<10)
-					{
-					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
-			   			 InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
-					}else{
-					// if (oModel.length > 0) {
-					//oModel.getData().ZC_SERIES.unshift({
-					//  "{seriesModel>ModelSeriesNo}": "All",
-					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
-					//})
-					// }
-					InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+					url: oUrl,
+					method: "GET",
+					async: false,
+					dataType: "json",
+					success: function (data, textStatus, jqXHR) {
+						var oModel = new sap.ui.model.json.JSONModel();
+
+						oModel.setData(data.d.results);
+						if (data.d.results.length == undefined) {
+
+							var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+							BtnNext.setEnabled(false);
+						} else if (data.d.results.length < 10) {
+							var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+							BtnNext.setEnabled(false);
+							InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+						} else {
+							// if (oModel.length > 0) {
+							//oModel.getData().ZC_SERIES.unshift({
+							//  "{seriesModel>ModelSeriesNo}": "All",
+							//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+							//})
+							// }
+							InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+						}
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+
+						var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+
 					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					
-					
-					var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			
-				}
-			});
-				
+				});
+
 				// vechile_items.filter([new Filter([
 				// 	new Filter("MATRIX", FilterOperator.EQ, "A205"),
 				// 	new Filter("Dealer", FilterOperator.EQ, dealer_no)
@@ -221,45 +215,43 @@ sap.ui.define([
 				// ], true)]);
 			} else if (Oevent.getSource().getSelectedKey() == '2') //National Stock
 			{
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '2400500000') and (source eq 'FLT')";
+				var oUrl = host +
+					"/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '2400500000') and (source eq 'FLT')";
 				$.ajax({
-				url: oUrl,
-				method: "GET",
-				async: false,
-				dataType: "json",
-				success: function (data, textStatus, jqXHR) {
-					var oModel = new sap.ui.model.json.JSONModel();
-			
-					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined)
-					{
-						
-					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<10)
-					{
-					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
-			   			 InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
-					}else{
-					// if (oModel.length > 0) {
-					//oModel.getData().ZC_SERIES.unshift({
-					//  "{seriesModel>ModelSeriesNo}": "All",
-					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
-					//})
-					// }
-					InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+					url: oUrl,
+					method: "GET",
+					async: false,
+					dataType: "json",
+					success: function (data, textStatus, jqXHR) {
+						var oModel = new sap.ui.model.json.JSONModel();
+
+						oModel.setData(data.d.results);
+						if (data.d.results.length == undefined) {
+
+							var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+							BtnNext.setEnabled(false);
+						} else if (data.d.results.length < 10) {
+							var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+							BtnNext.setEnabled(false);
+							InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+						} else {
+							// if (oModel.length > 0) {
+							//oModel.getData().ZC_SERIES.unshift({
+							//  "{seriesModel>ModelSeriesNo}": "All",
+							//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+							//})
+							// }
+							InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+						}
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+
+						var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+
 					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					
-					
-					var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			
-				}
-			});
-				
+				});
+
 				// vechile_items.filter([new Filter([
 				// 	new Filter("MATRIX", FilterOperator.EQ, "A205"),
 				// 	new Filter("Dealer", FilterOperator.EQ, "2400500000")
@@ -277,7 +269,7 @@ sap.ui.define([
 		onNavBack: function (oEvent) {
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 3		
 		},
-	series_selected: function (oEvent) {
+		series_selected: function (oEvent) {
 
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
@@ -291,9 +283,9 @@ sap.ui.define([
 				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 				// }));
 				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-					var language = InvVehSel_controller.returnBrowserLanguage();
-					var model;
-	if (language === "FR") {
+				var language = InvVehSel_controller.returnBrowserLanguage();
+				var model;
+				if (language === "FR") {
 					model = "{mainservices>model}-{mainservices>model_desc_fr}";
 				} else {
 					model = "{mainservices>model}-{mainservices>model_desc_en}";
@@ -303,7 +295,7 @@ sap.ui.define([
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'RSO')
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
@@ -317,9 +309,9 @@ sap.ui.define([
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
-						var language = InvVehSel_controller.returnBrowserLanguage();
+			var language = InvVehSel_controller.returnBrowserLanguage();
 			var suf;
-	if (language === "FR") {
+			if (language === "FR") {
 				suf =
 					"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
 
@@ -413,29 +405,26 @@ sap.ui.define([
 
 			}
 		},
-			onActionNext: function (oEvent) {
+		onActionNext: function (oEvent) {
 			//This code was generated by the layout editor.
-			if(clicks < 0)
-			{
-			 clicks = 0;
-			 clicks += 1;	     
+			if (clicks < 0) {
+				clicks = 0;
+				clicks += 1;
+			} else {
+				clicks += 1;
 			}
-			else{		   
-		     clicks += 1;
-			}		 
 			num = clicks * 10;
-			
-				// if(num === count1)
-				// {
-				//  var BtnNext = this.getView().byId("buttonNext");
-				//  BtnNext.setEnabled(false);
-				// }				
-				if(num >= 10)
-				{	
-			   		    var BtnPrev = this.getView().byId("buttonPrev");
-			   			 BtnPrev.setEnabled(true);			   			
-				}	
-				InvVehSel_controller.data();
+
+			// if(num === count1)
+			// {
+			//  var BtnNext = this.getView().byId("buttonNext");
+			//  BtnNext.setEnabled(false);
+			// }				
+			if (num >= 10) {
+				var BtnPrev = this.getView().byId("buttonPrev");
+				BtnPrev.setEnabled(true);
+			}
+			InvVehSel_controller.data();
 		},
 		/**
 		 *@memberOf toyota.ca.SoldOrder.controller.RetailSoldOrderSummary
@@ -443,70 +432,65 @@ sap.ui.define([
 		onActionPrevious: function (oEvent) {
 			//This code was generated by the layout editor.
 			clicks -= 1;
-			if(clicks <= 0)
-			{		
-			  num = 0;
+			if (clicks <= 0) {
+				num = 0;
+			} else {
+				num = clicks * 10;
 			}
-			else{	       		
-			 num = clicks * 10;   
-			}   
-   //			if(num < count1)
+			//			if(num < count1)
 			// {		  
 			//  var BtnNext = this.getView().byId("buttonNext");
 			//  BtnNext.setEnabled(true);
 			// }
-   			if(num === 0)
-   			{
-   		     var Btn = this.getView().byId("buttonPrev");
-   			 Btn.setEnabled(false);
-   			}   
-   			InvVehSel_controller.data();
+			if (num === 0) {
+				var Btn = this.getView().byId("buttonPrev");
+				Btn.setEnabled(false);
+			}
+			InvVehSel_controller.data();
 		},
-		data:function()
-		{
-				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+		data: function () {
+			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory	var host = RSOS_controller.host();
-						var host = InvVehSel_controller.host();
+			var host = InvVehSel_controller.host();
 
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip="+num+"&$filter=(MATRIX eq 'A205') and (Dealer eq '"+dealer_no+"') and (source eq 'FLT')";
-				$.ajax({
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=" + num + "&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
+				dealer_no + "') and (source eq 'FLT')";
+			$.ajax({
 				url: oUrl,
 				method: "GET",
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-						var page=clicks+1;
-			InvVehSel_controller.getView().byId("txtPageNum").setText("Page "+page);
+					var page = clicks + 1;
+					InvVehSel_controller.getView().byId("txtPageNum").setText("Page " + page);
 					var oModel = new sap.ui.model.json.JSONModel();
-			
+
 					oModel.setData(data.d.results);
-						if(data.d.results.length==undefined)
-					{
-						
-					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
-					}else if(data.d.results.length<10)
-					{
-					 var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			   			 BtnNext.setEnabled(false);
-			   			 InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
-					}else{
-					// if (oModel.length > 0) {
-					//oModel.getData().ZC_SERIES.unshift({
-					//  "{seriesModel>ModelSeriesNo}": "All",
-					//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
-					//})
-					// }
-					InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+					if (data.d.results.length == undefined) {
+
+						var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+						BtnNext.setEnabled(false);
+					} else if (data.d.results.length < 10) {
+						var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+						BtnNext.setEnabled(false);
+						InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+					} else {
+						// if (oModel.length > 0) {
+						//oModel.getData().ZC_SERIES.unshift({
+						//  "{seriesModel>ModelSeriesNo}": "All",
+						//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+						//})
+						// }
+						InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
 					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-						var page=clicks+1;
-			InvVehSel_controller.getView().byId("txtPageNum").setText("Page "+page);
-					
+					var page = clicks + 1;
+					InvVehSel_controller.getView().byId("txtPageNum").setText("Page " + page);
+
 					var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			
+
 				}
 			});
 		}

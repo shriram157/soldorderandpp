@@ -16,43 +16,43 @@ sap.ui.define([
 			RSOA_controller = this;
 			RSOA_controller.getBrowserLanguage();
 			var language = RSOA_controller.returnBrowserLanguage();
-			
+
 			var salesTypeModel = new sap.ui.model.json.JSONModel();
 			var Obj;
-			if(language== "EN"){
-			Obj = {
-				"SalesType": [{
-		"key": "1",
-		"text": "CASH"
-	}, {
-		"key": "2",
-		"text": "LEASE"
-	}, {
-		"key": "3",
-		"text": "FINANCE"
-	}],
-			};}
-			else{
+			if (language == "EN") {
 				Obj = {
-				
-				"SalesType": [{
-		"key": "1",
-		"text": "ENCAISSER"
-	}, {
-		"key": "2",
-		"text": "BAIL"
-	}, {
-		"key": "3",
-		"text": "LA FINANCE"
-	}],
-			
-};
+					"SalesType": [{
+						"key": "1",
+						"text": "CASH"
+					}, {
+						"key": "2",
+						"text": "LEASE"
+					}, {
+						"key": "3",
+						"text": "FINANCE"
+					}],
+				};
+			} else {
+				Obj = {
+
+					"SalesType": [{
+						"key": "1",
+						"text": "ENCAISSER"
+					}, {
+						"key": "2",
+						"text": "BAIL"
+					}, {
+						"key": "3",
+						"text": "LA FINANCE"
+					}],
+
+				};
 			}
-			
+
 			salesTypeModel.setData(Obj);
 			salesTypeModel.updateBindings(true);
 			sap.ui.getCore().setModel(salesTypeModel, "salesTypeModel");
-			this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"),"salesTypeModel");
+			this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"), "salesTypeModel");
 			console.log(sap.ui.getCore().getModel("salesTypeModel"));
 			// var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 			// 	pattern: "yyyy-MM-ddTHH:mm:ss"
@@ -64,13 +64,13 @@ sap.ui.define([
 			var day5 = new Date();
 			// day1.setDate(today.getDate()); //+ 1
 			// var cDate = zdateFormat.parse(day1);
-			while(num < 5){
+			while (num < 5) {
 				endDate = new Date(day5.setDate(day5.getDate() + 1));
-    if(endDate.getDay() != 0 && endDate.getDay() != 6){
-       //Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
-       num++;
-    }
-}
+				if (endDate.getDay() != 0 && endDate.getDay() != 6) {
+					//Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
+					num++;
+				}
+			}
 			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(day5);
 			// RSOA_controller._newService1();
 			// RSOA_controller._newService2();
@@ -133,7 +133,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-		
+
 		},
 		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
@@ -156,8 +156,8 @@ sap.ui.define([
 					RSOA_controller.getView().setModel(oModel, "oModel1");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -178,8 +178,8 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 					RSOA_controller.getView().setModel(oModel, "oModel2");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -203,7 +203,7 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -224,8 +224,8 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 					RSOA_controller.getView().setModel(oModel, "mode_Model");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -279,8 +279,8 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 					RSOA_controller.getView().setModel(oModel2, "model_Model");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -334,8 +334,8 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -441,33 +441,33 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 			}
 			RSOA_controller.getView().getModel('mainservices').create('/Retail_Sold_OrderSet', _data, {
 				success: function (data, oResponse) {
-						RSOA_controller.getView().byId("modelYr_RSOA").setValue("");
-			RSOA_controller.getView().byId("Suffix_RSOA").setSelectedKey(null);
-			RSOA_controller.getView().byId("series_RSOA").setSelectedKey(null);
-			//	var valModelCode = RSOA_controller.getView().byId("modelCode_RSOA").getValue();
-			RSOA_controller.getView().byId("CustName_RSOA").setValue("");
-			RSOA_controller.getView().byId("CustName_SSOA").setValue("");
-			RSOA_controller.getView().byId("etaTo_RSOA").setValue("");
-			RSOA_controller.getView().byId("etaFrom_RSOA").setValue("");
-			RSOA_controller.getView().byId("Colour_RSOA").setSelectedKey(null);
-			RSOA_controller.getView().byId("model_RSOA").setSelectedKey(null);
-			RSOA_controller.getView().byId("Apx_RSOA").setSelectedKey(null);
-			RSOA_controller.getView().byId("SalesType_RSOA").setValue("");
-			RSOA_controller.getView().byId("ContractDate_RSOA").setValue("");
-			RSOA_controller.getView().byId("tcciNo_RSOA").setValue("");
-			RSOA_controller.getView().byId("salesperson_RSOA").setValue("");
-			RSOA_controller.getView().byId("salesMan_RSOA").setValue("");
-			RSOA_controller.getView().byId("trademodelYear_RSOAid").setValue("");
-			RSOA_controller.getView().byId("trademodel_RSOAid").setValue("");
-			RSOA_controller.getView().byId("tradeInMakeYear_RSOAid").setSelectedKey(null);
-			RSOA_controller.getView().byId("Comment").setValue("");
-			RSOA_controller.getView().byId("Address_RSOA").setValue("");
-			RSOA_controller.getView().byId("License_RSOA").setValue("");
-			RSOA_controller.getView().byId("Email_RSOA").setValue("");
-			RSOA_controller.getView().byId("Phone_RSOA").setValue("");
-			RSOA_controller.getView().byId("City_RSOA").setValue("");
-			RSOA_controller.getView().byId("Province_RSOA").setValue("");
-			RSOA_controller.getView().byId("PostalCode_RSOA").setValue("");
+					RSOA_controller.getView().byId("modelYr_RSOA").setValue("");
+					RSOA_controller.getView().byId("Suffix_RSOA").setSelectedKey(null);
+					RSOA_controller.getView().byId("series_RSOA").setSelectedKey(null);
+					//	var valModelCode = RSOA_controller.getView().byId("modelCode_RSOA").getValue();
+					RSOA_controller.getView().byId("CustName_RSOA").setValue("");
+					RSOA_controller.getView().byId("CustName_SSOA").setValue("");
+					RSOA_controller.getView().byId("etaTo_RSOA").setValue("");
+					RSOA_controller.getView().byId("etaFrom_RSOA").setValue("");
+					RSOA_controller.getView().byId("Colour_RSOA").setSelectedKey(null);
+					RSOA_controller.getView().byId("model_RSOA").setSelectedKey(null);
+					RSOA_controller.getView().byId("Apx_RSOA").setSelectedKey(null);
+					RSOA_controller.getView().byId("SalesType_RSOA").setValue("");
+					RSOA_controller.getView().byId("ContractDate_RSOA").setValue("");
+					RSOA_controller.getView().byId("tcciNo_RSOA").setValue("");
+					RSOA_controller.getView().byId("salesperson_RSOA").setValue("");
+					RSOA_controller.getView().byId("salesMan_RSOA").setValue("");
+					RSOA_controller.getView().byId("trademodelYear_RSOAid").setValue("");
+					RSOA_controller.getView().byId("trademodel_RSOAid").setValue("");
+					RSOA_controller.getView().byId("tradeInMakeYear_RSOAid").setSelectedKey(null);
+					RSOA_controller.getView().byId("Comment").setValue("");
+					RSOA_controller.getView().byId("Address_RSOA").setValue("");
+					RSOA_controller.getView().byId("License_RSOA").setValue("");
+					RSOA_controller.getView().byId("Email_RSOA").setValue("");
+					RSOA_controller.getView().byId("Phone_RSOA").setValue("");
+					RSOA_controller.getView().byId("City_RSOA").setValue("");
+					RSOA_controller.getView().byId("Province_RSOA").setValue("");
+					RSOA_controller.getView().byId("PostalCode_RSOA").setValue("");
 					if (data.ZzsoReqNo) {
 						RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 							Soreq: data.ZzsoReqNo
@@ -476,8 +476,8 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 
 				},
 				error: function (oData, oResponse) {
-				var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -526,15 +526,14 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 			var CDate = zdateFormat.parse(etaFrom);
 			var day5 = new Date();
 			if (etaFrom !== "") {
-				while(count < 5){
-    endDate = new Date(CDate.setDate(CDate.getDate() + 1));
-    if(endDate.getDay() != 0 && endDate.getDay() != 6){
-       //Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
-       count++;
-    }
-}
-			
-				
+				while (count < 5) {
+					endDate = new Date(CDate.setDate(CDate.getDate() + 1));
+					if (endDate.getDay() != 0 && endDate.getDay() != 6) {
+						//Date.getDay() gives weekday starting from 0(Sunday) to 6(Saturday)
+						count++;
+					}
+				}
+
 				RSOA_controller.getView().byId("etaTo_RSOA").setMinDate(CDate);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
@@ -574,9 +573,9 @@ var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().ge
 						text: errMsg
 					})]
 				});
-var oBusyDialog = new sap.m.BusyDialog({
-				showCancelButton: false
-			});
+				var oBusyDialog = new sap.m.BusyDialog({
+					showCancelButton: false
+				});
 				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 					"&lastName=" + CustModel.SecondName;
 				//lastName=" + CustModel.Name;
@@ -629,7 +628,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 						if (!Zcustomer_No || Zcustomer_No == '') {
 							Zcustomer_No = data.customers[0].partyID; //customerNumber;
 							Zcustomer_No = Zcustomer_No.toString();
-						
+
 						}
 					},
 					error: function (request, errorText, errorCode) {
@@ -685,28 +684,28 @@ var oBusyDialog = new sap.m.BusyDialog({
 								if (data.customer) {
 									Zcustomer_No = data.customer.partyID; //customerNumber;
 									Zcustomer_No = Zcustomer_No.toString();
-										var errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("success1");
-							title = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
-							icon = new sap.ui.core.Icon({
-								src: "sap-icon://success",
-								size: "2rem"
-							});
-							var msg2 = new sap.m.HBox({
-								items: [icon, new sap.m.Text({
-								text: errMsg2
-							})]
-						});
-							sap.m.MessageBox.show(msg2, {
-								icon: sap.m.MessageBox.Icon.SUCCESS,
-								title: title,
-								actions: sap.m.MessageBox.Action.OK,
-								onClose: null,
-								styleClass: "",
-								initialFocus: null,
-								textDirection: sap.ui.core.TextDirection.Inherit,
-								contentWidth: "10rem"
-							});
-							
+									var errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("success1");
+									title = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
+									icon = new sap.ui.core.Icon({
+										src: "sap-icon://success",
+										size: "2rem"
+									});
+									var msg2 = new sap.m.HBox({
+										items: [icon, new sap.m.Text({
+											text: errMsg2
+										})]
+									});
+									sap.m.MessageBox.show(msg2, {
+										icon: sap.m.MessageBox.Icon.SUCCESS,
+										title: title,
+										actions: sap.m.MessageBox.Action.OK,
+										onClose: null,
+										styleClass: "",
+										initialFocus: null,
+										textDirection: sap.ui.core.TextDirection.Inherit,
+										contentWidth: "10rem"
+									});
+
 								}
 							},
 							error: function (request, errorText, errorCode) {
@@ -754,7 +753,7 @@ var oBusyDialog = new sap.m.BusyDialog({
 				validateFlagA = true;
 			} else {
 				var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
-				var	errForm = formatter.formatErrorType("SO000023");
+				var errForm = formatter.formatErrorType("SO000023");
 				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
@@ -812,94 +811,76 @@ var oBusyDialog = new sap.m.BusyDialog({
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valCustName == "" || valETATo == "" || valETAFrom == "" ||
 				valColour ==
 				"" || valModel == "" || valApx == "" || valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
-				valProvince == "" || valPostalCode == "" ) {
+				valProvince == "" || valPostalCode == "") {
 				flag1 = true;
 			}
 			if (validateFlagA == false) {
 				flag2 = true;
 			}
-var errForm; 
+			var errForm;
 			if (flag1 == true && flag2 == false) {
-				if(valModelYr == "" )
-				{
-						errForm = formatter.formatErrorType("SO000015");
-				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				if (valModelYr == "") {
+					errForm = formatter.formatErrorType("SO000015");
+					errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 					var errTitle = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, errTitle, sap
-					.m.MessageBox.Action.OK, null, null);
-					
-				}
-					else if(valSeries == "")
-				{
-						errForm = formatter.formatErrorType("SO000016");
-				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+						.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+
+				} else if (valSeries == "") {
+					errForm = formatter.formatErrorType("SO000016");
+					errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, errTitle, sap
-					.m.MessageBox.Action.OK, null, null);
-				}
-					else if(valModel == "")
-				{
-						errForm = formatter.formatErrorType("SO000017");
-				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-					
+						.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else if (valModel == "") {
+					errForm = formatter.formatErrorType("SO000017");
+					errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, errTitle, sap
-					.m.MessageBox.Action.OK, null, null);
-				}	
-				else if(valSuffix == "")
-				{
-						errForm = formatter.formatErrorType("SO000018");
-				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-					
+						.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else if (valSuffix == "") {
+					errForm = formatter.formatErrorType("SO000018");
+					errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, errTitle, sap
-					.m.MessageBox.Action.OK, null, null);
-				}
-					else if(valColour == "")
-				{
-						errForm = formatter.formatErrorType("SO000019");
-				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-					
+						.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else if (valColour == "") {
+					errForm = formatter.formatErrorType("SO000019");
+					errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, errTitle, sap
-					.m.MessageBox.Action.OK, null, null);
-				}
-					else if( valApx == "")
-				{
-						 errForm = formatter.formatErrorType("SO000020");
-				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-					
+						.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else if (valApx == "") {
+					errForm = formatter.formatErrorType("SO000020");
+					errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, errTitle, sap
-					.m.MessageBox.Action.OK, null, null);
-				}
-					else if(valETATo == "" || valETAFrom == "")
-				{
-						errForm = formatter.formatErrorType("SO000021");
-				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-					
+						.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else if (valETATo == "" || valETAFrom == "") {
+					errForm = formatter.formatErrorType("SO000021");
+					errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, errTitle, sap
-					.m.MessageBox.Action.OK, null, null);
-				}
-						else if(valSalesType == "" || valContractDate == "")
-				{
-						 errForm = formatter.formatErrorType("SO000022");
-				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-					
+						.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else if (valSalesType == "" || valContractDate == "") {
+					errForm = formatter.formatErrorType("SO000022");
+					errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+
 					sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, errTitle, sap
-					.m.MessageBox.Action.OK, null, null);
-				}
-				 
-				else
-				{
-				 errForm = formatter.formatErrorType("SO00003");
-				errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				sap.m.MessageBox.show(errMsg, sap
-					.m.MessageBox.Icon.ERROR, errTitle, sap
-					.m.MessageBox.Action.OK, null, null);
+						.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else {
+					errForm = formatter.formatErrorType("SO00003");
+					errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					sap.m.MessageBox.show(errMsg, sap
+						.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
 				}
 			} else if (flag1 == false && flag2 == true) {
 				var errForm2 = formatter.formatErrorType("SO00004");
@@ -959,20 +940,20 @@ var errForm;
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
 				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-	var model;
-					var oSorter = new sap.ui.model.Sorter('mainservices>model');
+				var model;
+				var oSorter = new sap.ui.model.Sorter('mainservices>model');
 
-			var language = RSOA_controller.returnBrowserLanguage();
+				var language = RSOA_controller.returnBrowserLanguage();
 
-			if (language === "FR") {
-						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+				if (language === "FR") {
+					model =
+						"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
-			}
-			else
-			{
-							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+				} else {
+					model =
+						"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
-			}
+				}
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
@@ -980,7 +961,7 @@ var errForm;
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'RSO')
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
@@ -1034,12 +1015,12 @@ var errForm;
 			var language = RSOA_controller.returnBrowserLanguage();
 
 			if (language === "FR") {
-						model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
-			}
-			else
-			{
-							model = "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+			} else {
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 			}
 			var series = this.getView().byId('series_RSOA').getSelectedKey();
@@ -1057,7 +1038,7 @@ var errForm;
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
 				var oSorter = new sap.ui.model.Sorter('mainservices>model');
-			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
@@ -1065,7 +1046,7 @@ var errForm;
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'RSO')
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
@@ -1084,8 +1065,8 @@ var errForm;
 			var suf;
 			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
-				var brand;
-				var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			var brand;
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 			if (isDivisionSent) {
 				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 
@@ -1122,8 +1103,10 @@ var errForm;
 				colorCB.destroyItems();
 				suffixCB.bindItems({
 					// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
-					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='"+dealer+"')/Set",
-					sorter:{path:'mainservices>suffix'},
+					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
+					sorter: {
+						path: 'mainservices>suffix'
+					},
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, brand)
@@ -1162,7 +1145,9 @@ var errForm;
 				apxCB.bindItems({
 					// path: 'VechileModel>/ZC_PIO_DIO',
 					path: 'mainservices>/ZVMS_CDS_APX',
-					sorter:{path:'mainservices>zzapx'},
+					sorter: {
+						path: 'mainservices>zzapx'
+					},
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
@@ -1191,8 +1176,10 @@ var errForm;
 				}
 				this.getView().byId('Colour_RSOA').bindItems({
 					path: 'mainservices>/ZVMS_CDS_Colour',
-					sorter:{path:'mainservices>ext'},
-					
+					sorter: {
+						path: 'mainservices>ext'
+					},
+
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)

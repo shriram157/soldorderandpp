@@ -55,8 +55,7 @@ sap.ui.define([
 
 			var sMsg = oBundle.getText("NationalFleetSoldOrderViewtitle", [req]);
 			NFSO_controller.getView().byId("NationalFleetSoldOrderViewid").setText(sMsg);
-			
-			
+
 			this.getView().bindElement({
 
 				path: sObjectPath,
@@ -134,7 +133,6 @@ sap.ui.define([
 					// }
 				}
 			});
-			
 
 		},
 

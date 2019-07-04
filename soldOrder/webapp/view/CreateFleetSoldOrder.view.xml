@@ -242,7 +242,7 @@
 					<footer class="sitefooter">
 					<Toolbar>
 						<ToolbarSpacer/>
-							<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight "></Button>
+							<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight" enabled="{FirstTable>/submitEnabled}"></Button>
 							<!--<Button text="{i18n>Back}" press="onNavBack" class="sapUiSmallMarginBegin marginCornersRight"></Button>-->
 					</Toolbar>
 				</footer>

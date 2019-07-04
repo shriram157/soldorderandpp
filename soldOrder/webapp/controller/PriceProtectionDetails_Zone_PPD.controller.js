@@ -23,7 +23,7 @@ sap.ui.define([
 				//https://tcid1gwapp1.tci.internal.toyota.ca:44300/sap/opu/odata/sap/ZPRICE_PROTECTION_SRV/zc_item?$format=json
 				//	url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_campaign_pricing",//?$format=json",
 				//url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/ZC_HEADER",//?$format=json",
-				url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_item",//?$format=json",
+				url: this.nodeJsUrl + "/ZPRICE_PROTECTION_SRV/zc_item", //?$format=json",
 				method: 'GET',
 				async: false,
 				dataType: 'json',
@@ -65,21 +65,21 @@ sap.ui.define([
 
 		},
 		_navToRSO: function (evt) {
-				var sPath = evt.getSource().getBindingContext().sPath;
-				var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-				console.log(sPath);
-				var s = PPD_Zone_controller.getView().byId("table_PPD_ZoneDealer").getModel().getData().ProductCollection[oIndex].num;
-				console.log(s);
+			var sPath = evt.getSource().getBindingContext().sPath;
+			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+			console.log(sPath);
+			var s = PPD_Zone_controller.getView().byId("table_PPD_ZoneDealer").getModel().getData().ProductCollection[oIndex].num;
+			console.log(s);
 
-				var n = s.indexOf("NAT");
-				if (n > -1) {
-					PPD_Zone_controller.getOwnerComponent().getRouter().navto("NationalFleetSoldOrderView", {}, true); //page3
-				}
-				var n2 = s.indexOf("SO");
-				if (n2 > -1) {
-					PPD_Zone_controller.getOwnerComponent().getRouter().navto("RSOView_ManageSoldOrder", {}, true); //page3
-				}
+			var n = s.indexOf("NAT");
+			if (n > -1) {
+				PPD_Zone_controller.getOwnerComponent().getRouter().navto("NationalFleetSoldOrderView", {}, true); //page3
 			}
+			var n2 = s.indexOf("SO");
+			if (n2 > -1) {
+				PPD_Zone_controller.getOwnerComponent().getRouter().navto("RSOView_ManageSoldOrder", {}, true); //page3
+			}
+		}
 	});
 
 });

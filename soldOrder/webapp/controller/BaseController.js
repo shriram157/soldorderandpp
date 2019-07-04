@@ -1,6 +1,5 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-
 	/*"sap/ui/model/odata/oDataModel",*/
 	"/sap/ui/model/resource/ResourceModel",
 	"sap/ui/core/routing/History",
@@ -262,7 +261,8 @@ sap.ui.define([
 			var sPrefix;
 			if (sLocation_conf == 0) {
 				sPrefix = "/soldorder_node"; //ecpSales_node_secured
-				this.attributeUrl = "/userDetails/attributes"; //"/userDetails/attributesforlocaltesting";
+				// this.attributeUrl = "/userDetails/attributes"; //
+				this.attributeUrl = "/userDetails/attributesforlocaltesting";
 			} else {
 				sPrefix = "";
 				this.attributeUrl = "/userDetails/attributes";
@@ -286,22 +286,19 @@ sap.ui.define([
 					// var userScopes = oData;
 					// userScopes.forEach(function (data) {
 
-					var userType = oData.loggedUserType[0];
+					var userType = oData.loggedUserType[0]; ////uncomment while deploying
+					//oData.loggedUserType[0]="Dealer_User"; var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					switch (userType) {
 					case "Dealer_Parts_Admin":
 						// console.log("Dealer Parts");
-
 						break;
 					case "Dealer_Services_Admin":
-
 						// console.log("Dealer_Services_Admin");
 						break;
-
 					case "Dealer_User":
 						// console.log("Dealer_User");
-
 						break;
 					case "TCI_Admin":
 						// console.log("TCI_Admin");
@@ -309,12 +306,12 @@ sap.ui.define([
 					case "TCI_User":
 						// console.log("TCI_User");
 						break;
-
 					case "Zone_User":
 						// console.log("Zone_User");
 						break;
 					default:
 						// raise a message, because this should not be allowed. 
+						// console.log("Dealer_User");
 
 					}
 				}
@@ -376,7 +373,7 @@ sap.ui.define([
 					}
 
 					console.log("BpDealer", BpDealer);
-	that.getView().getModel("LoginUserModel").setSizeLimit(750);
+					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 
 				}.bind(this),
@@ -389,7 +386,6 @@ sap.ui.define([
 			});
 
 		},
-		
 
 	});
 });
