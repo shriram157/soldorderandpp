@@ -14,9 +14,9 @@
 						<f:content>
 							<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Input id="FanNo_CFSO" value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno"  showSuggestion="false" showValueHelp="true"/>
+							<Input id="FanNo_CFSO" value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno"  showSuggestion="false" showValueHelp="true" required="true"/>
 							<Label wrapping="true" text="{i18n>PONumber}"/>
-							<Input value="{Data>/ZpoNumber}" showSuggestion="false" />
+							<Input id="ID_PONumber" value="{Data>/ZpoNumber}" showSuggestion="false" required="true"/>
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{Customer>/NameFirst}{Customer>/NameLast}"/>

@@ -460,11 +460,7 @@ sap.ui.define([
 		_onDelete1: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table1");
 			var oModel2 = oTable.getModel('FirstTable');
-			if (oModel2.getData().items.length <= 0) {
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-			} else {
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
-			}
+
 			var aContexts = oTable.getSelectedIndices();
 
 			if (aContexts.length === 0) {
@@ -477,17 +473,17 @@ sap.ui.define([
 					oModel2.getData().items.splice(index, 1);
 				}
 				oModel2.refresh();
+				if (oModel2.getData().items.length <= 0) {
+					this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+				} else {
+					this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+				}
 			}
 
 		},
 		_onDelete2: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table2");
 			var oModel2 = oTable.getModel('SecondTable');
-			if (oModel2.getData().items.length <= 0) {
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-			} else {
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
-			}
 			var aContexts = oTable.getSelectedIndices();
 
 			if (aContexts.length === 0) {
@@ -500,62 +496,74 @@ sap.ui.define([
 					oModel2.getData().items.splice(index, 1);
 				}
 				oModel2.refresh();
+				if (oModel2.getData().items.length <= 0) {
+					this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+				} else {
+					this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+				}
 			}
 		},
 		_onSubmit: function () {
-			_all_data.splice(0, _all_data.length);
-			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-				pattern: "yyyy-MM-ddTHH:mm:ss"
-			});
-			_Table_Data1 = this.getView().getModel('FirstTable').getData().items;
-			for (var i = 0; i < _Table_Data1.length; i++) {
-				_all_data.push({
-					FleetSONo: 'FSO',
-					FleetSOItem: i.toString(),
-					Model: _Table_Data1[i].Model,
-					Modelyear: _Table_Data1[i].Modelyear,
-					Suffix: _Table_Data1[i].Suffix,
-					ExteriorColourCode: _Table_Data1[i].ExteriorColorCode,
-					APX: _Table_Data1[i].APX,
-					ReqEtaFrom: zdateFormat.parse(_Table_Data1[i].ETAFrom),
-					ReqEtaTo: zdateFormat.parse(_Table_Data1[i].ETATo),
-					Zzvtn: _Table_Data1[i].ZZVTN
+			if (this.getView().byId("FanNo_CFSO").getValue() !== "" && this.getView().byId("ID_PONumber").getValue() != "") {
+				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+				//this.getView().byId("ID_PONumber");
+				_all_data.splice(0, _all_data.length);
+				var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+					pattern: "yyyy-MM-ddTHH:mm:ss"
 				});
-			}
-			var length = _Table_Data1.length;
-			for (var i = 0; i < _Table_Data2.length; i++) {
-				length = length + i;
-				_all_data.push({
-					FleetSONo: 'FSO',
-					FleetSOItem: length.toString(),
-					Model: _Table_Data2[i].model,
-					Modelyear: _Table_Data2[i].modelYear,
-					Suffix: _Table_Data2[i].suffix,
-					ExteriorColourCode: _Table_Data2[i].colour,
-					APX: _Table_Data2[i].APX,
-					ReqEtaFrom: _Table_Data2[i].ETAFrom,
-					ReqEtaTo: _Table_Data2[i].ETATime,
-					FltSOQty: _Table_Data2[i].quantity
-						// series: valSeries,
-				});
-
-			}
-			this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
-			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
-			this.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
-			this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
-				success: function (oData, oResponse) {
-					if (oData.ZsoFltReqNo) {
-						CFSO_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
-							Soreq: oData.ZsoFltReqNo
-						}, true);
-					}
-
-				},
-				error: function (oData, oResponse) {
+				_Table_Data1 = this.getView().getModel('FirstTable').getData().items;
+				for (var i = 0; i < _Table_Data1.length; i++) {
+					_all_data.push({
+						FleetSONo: 'FSO',
+						FleetSOItem: i.toString(),
+						Model: _Table_Data1[i].Model,
+						Modelyear: _Table_Data1[i].Modelyear,
+						Suffix: _Table_Data1[i].Suffix,
+						ExteriorColourCode: _Table_Data1[i].ExteriorColorCode,
+						APX: _Table_Data1[i].APX,
+						ReqEtaFrom: zdateFormat.parse(_Table_Data1[i].ETAFrom),
+						ReqEtaTo: zdateFormat.parse(_Table_Data1[i].ETATo),
+						Zzvtn: _Table_Data1[i].ZZVTN
+					});
+				}
+				var length = _Table_Data1.length;
+				for (var i = 0; i < _Table_Data2.length; i++) {
+					length = length + i;
+					_all_data.push({
+						FleetSONo: 'FSO',
+						FleetSOItem: length.toString(),
+						Model: _Table_Data2[i].model,
+						Modelyear: _Table_Data2[i].modelYear,
+						Suffix: _Table_Data2[i].suffix,
+						ExteriorColourCode: _Table_Data2[i].colour,
+						APX: _Table_Data2[i].APX,
+						ReqEtaFrom: _Table_Data2[i].ETAFrom,
+						ReqEtaTo: _Table_Data2[i].ETATime,
+						FltSOQty: _Table_Data2[i].quantity
+							// series: valSeries,
+					});
 
 				}
-			});
+				this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
+				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+				this.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
+				this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
+					success: function (oData, oResponse) {
+						if (oData.ZsoFltReqNo) {
+							CFSO_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
+								Soreq: oData.ZsoFltReqNo
+							}, true);
+						}
+
+					},
+					error: function (oData, oResponse) {
+
+					}
+				});
+			} else {
+				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+				sap.m.MessageBox.show(CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("CompleteAllFields"), sap.m.MessageBox.Icon.ERROR, CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("error"), sap.m.MessageBox.Action.OK, null, null);
+			}
 			// var valModelYr = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
 			// var valSuffix = CFSO_controller.getView().byId("suffix_CFSO").getValue();
 			// var valSeries = CFSO_controller.getView().byId("series_CFSO").getValue();
