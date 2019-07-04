@@ -481,6 +481,11 @@ sap.ui.define([
 			}
 
 		},
+		onMandatoryValChange:function(evt){
+			if(evt.getParameter("value").length>0){
+				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+			}
+		},
 		_onDelete2: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table2");
 			var oModel2 = oTable.getModel('SecondTable');
