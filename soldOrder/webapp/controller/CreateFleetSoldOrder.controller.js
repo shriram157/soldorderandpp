@@ -116,7 +116,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-			if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
+			if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0 || sap.ui.getCore().getModel('SecondTable').getData().items.length <= 0) {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 			} else {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
@@ -453,6 +453,11 @@ sap.ui.define([
 		_onDelete1: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table1");
 			var oModel2 = oTable.getModel('FirstTable');
+			if (oModel2.getData().items.length <= 0) {
+				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+			} else {
+				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+			}
 			var aContexts = oTable.getSelectedIndices();
 
 			if (aContexts.length === 0) {
@@ -471,6 +476,11 @@ sap.ui.define([
 		_onDelete2: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table2");
 			var oModel2 = oTable.getModel('SecondTable');
+			if (oModel2.getData().items.length <= 0) {
+				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+			} else {
+				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+			}
 			var aContexts = oTable.getSelectedIndices();
 
 			if (aContexts.length === 0) {

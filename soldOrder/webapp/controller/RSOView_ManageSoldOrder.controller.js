@@ -983,7 +983,7 @@ sap.ui.define([
 				});
 			}
 			sap.m.MessageBox.show(RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("FileUploaded") + zrequest, sap.m.MessageBox
-				.Icon.SUCCESS, RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("Success"), sap
+				.Icon.SUCCESS, RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("TitleSuccess"), sap
 				.m.MessageBox.Action.OK, null, null);
 			RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 			// RSO_MSO_controller.getView().byId('idRSOV_MSO_fileUpl').setValue('');
