@@ -5,7 +5,8 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator"
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-	var RSOS_controller, zrequest, clicks = 0, num, page = 0,
+	var RSOS_controller, zrequest, clicks = 0,
+		num, page = 0,
 		count1 = 11000,
 		filter = false;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderSummary", {
@@ -131,7 +132,10 @@ sap.ui.define([
 			// items.filter([new Filter("FleetReference", FilterOperator.EQ, '')]);
 			//-------------------------------------------------------------------------------
 			// var data = oTbl.getModel().getData().ProductCollection;
-			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this); // 	var host = RSOS_controller.host();
+			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachRoutePatternMatched(this._onObjectMatched, this); // 	var host = RSOS_controller.host();
+
+			//this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onRoutMatched, this);
+
 			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
 			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
 			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
@@ -166,8 +170,9 @@ sap.ui.define([
 			this.getView().byId("idmenu9").setType("Transparent");
 			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"), "globalComboModel");
 			this.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
-		},
-		onAfterRendering: function () {
+
+			/////////////////////////////// changes done 
+
 			// this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
 			var mcb_series_RSOS = RSOS_controller.getView().byId("mcb_series_RSOS");
 			var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
@@ -185,30 +190,7 @@ sap.ui.define([
 			if (isDivisionSent) {
 				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 			}
-			// var salesOffice = this.getView().getModel("LoginUserModel").getProperty("/Zone");
-			// 	var url = host + "/ZVMS_SOLD_ORDER_SRV/ZCDS_CONSOLEDATED_DLR?$filter=SalesOffice eq '"+salesOffice+"' and Division eq '"+this.sDivision+"'";
-			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
-			// $.ajax({
-			// 	url: url,
-			// 	method: 'GET',
-			// 	async: false,
-			// 	dataType: 'json',
-			// 	success: function (data, textStatus, jqXHR) {
-			// 		if (mcb_dealer_RSOS.getValue() !== "") {
-			// 			//seriesCB.setValue(" ");
-			// 			mcb_dealer_RSOS.setSelectedKey(null);
-			// 		}
-			// 		//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
-			// 		var oModel = new sap.ui.model.json.JSONModel();
-			// 		oModel.setData(data.d.results);
-			// 		RSOS_controller.getView().setModel(oModel, "dealerModel");
-			// 	},
-			// 	error: function (jqXHR, textStatus, errorThrown) {
-			// 		var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
-			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
-			// 			.m.MessageBox.Action.OK, null, null);
-			// 	}
-			// });
+
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
@@ -307,38 +289,9 @@ sap.ui.define([
 
 			}
 
-			// } //================================================================================================== 
-			// if (AppController.flagDealerUser == true) {
-			// 	RSOS_controller.getView().byId("idBtn_RSOS_new").setVisible(true);
-			// 	var len = data.length;
-			// 	for (var i = 1; i <= len; i++) {
-			// 		var Id = "tbl_lbl_dealer_RSOS-__clone" + (i + 8 * (i - 1)); // 2+ 8*(2-1) =10
-			// 		RSOS_controller.getView().byId(Id).setVisible(false);
-			// 	}
-			// 	//	RSOS_controller.getView().byId("lblTbl_btn_RSOS").setVisible(true);
-			// }
-			// if (AppController.flagSIPUser == true) { //|| AppController.flgSoldOrderReqStatus == "Pending Fulfillment") {
-			// 	var len4 = data.length;
-			// 	for (var u = 1; u <= len4; u++) {
-			// 		var ID = "btn_linkVeh_RSOS-__clone" + ((7 + u) + 8 * ((7 + u) - 8));
-			// 		console.log(ID);
-			// 		RSOS_controller.getView().byId(ID).setVisible(true);
-			// 	}
-			// }
-			// if (AppController.flagZoneUser == true) {
-			// 	var len2 = data.length;
-			// 	for (var j = 1; j <= len2; j++) {
-			// 		var Id2 = "tbl_lbl_dealer_RSOS-__clone" + (j + 8 * (j - 1));
-			// 		RSOS_controller.getView().byId(Id2).setVisible(true);
-			// 	}
-			// }
-			// if (AppController.flagNationalUser == true) {
-			// 	var len3 = data.length;
-			// 	for (var k = 1; k <= len3; k++) {
-			// 		var Id3 = "tbl_lbl_dealer_RSOS-__clone" + (k + 8 * (k - 1));
-			// 		RSOS_controller.getView().byId(Id3).setVisible(true);
-			// 	}
-			// }
+		},
+		onAfterRendering: function () {
+
 		},
 		_handleServiceSuffix_Series: function () {
 			var host = RSOS_controller.host();
