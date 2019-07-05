@@ -1,5 +1,5 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified"
-	xmlns:f="sap.ui.layout.form" xmlns:uxap="sap.uxap" xmlns:t="sap.ui.table" 
+	xmlns:f="sap.ui.layout.form" xmlns:uxap="sap.uxap" xmlns:t="sap.ui.table"
 	controllerName="toyota.ca.SoldOrder.controller.CreateFleetSoldOrder" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
@@ -10,13 +10,14 @@
 						class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
 					<f:SimpleForm title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false" >
+						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text="{i18n>RequestDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Input id="FanNo_CFSO" value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno"  showSuggestion="false" showValueHelp="true" required="true"  liveChange="onMandatoryValChange"/>
+							<Input id="FanNo_CFSO" value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showSuggestion="false" showValueHelp="true" required="true"
+								liveChange="onMandatoryValChange"/>
 							<Label wrapping="true" text="{i18n>PONumber}"/>
-							<Input id="ID_PONumber" value="{Data>/ZpoNumber}" showSuggestion="false" required="true" liveChange="onMandatoryValChange" />
+							<Input id="ID_PONumber" value="{Data>/ZpoNumber}" showSuggestion="false" required="true" liveChange="onMandatoryValChange"/>
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{Customer>/NameFirst}{Customer>/NameLast}"/>
@@ -56,12 +57,12 @@
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>series}" class="TableLabel"/>
 								<t:template>
-										<!--<ComboBox editable="false" width="100%" items="{ path: 'FirstTable>/'}" class="readonlycombo" selectedKey="{FirstTable>TCISeries}"-->
-										<!--		modelContextChange="onSeriesnum">-->
-										<!--		<items>-->
-										<!--			<core:Item key="{FirstTable>TCISeries}" text="{FirstTable>TCISeries}"/>-->
-										<!--		</items>-->
-										<!--	</ComboBox>-->
+									<!--<ComboBox editable="false" width="100%" items="{ path: 'FirstTable>/'}" class="readonlycombo" selectedKey="{FirstTable>TCISeries}"-->
+									<!--		modelContextChange="onSeriesnum">-->
+									<!--		<items>-->
+									<!--			<core:Item key="{FirstTable>TCISeries}" text="{FirstTable>TCISeries}"/>-->
+									<!--		</items>-->
+									<!--	</ComboBox>-->
 									<Text text="{FirstTable>TCISeries}"/>
 								</t:template>
 							</t:Column>
@@ -94,12 +95,12 @@
 					<Label text="{i18n>AdditionalVehicles}" class="marginCorners fontsize"></Label>
 					<f:SimpleForm title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false" class="VBox_color"  >
+						singleContainerFullSize="false" class="VBox_color">
 						<f:content>
 							<core:Title text="{i18n>VehicleInformation}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Input id="modelYr_CFSO" value="" width="" showValueHelp="true" showSuggestion="false"  valueHelpRequest="select_year"></Input>
-							<Label wrapping="true" text="{i18n>series}" />
+							<Input id="modelYr_CFSO" required="true" value="" width="" showValueHelp="true" showSuggestion="false" valueHelpRequest="select_year"></Input>
+							<Label wrapping="true" text="{i18n>series}"/>
 							<ComboBox id="series_CFSO" items="{path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
 								<!--<core:Item key="{mainservices>Zzseries}" text="{mainservices>ZzseriesDescEn}"/>-->
 								<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>
@@ -113,13 +114,13 @@
 								<!--	text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>suffix}"/>
-							<ComboBox id="suffix_CFSO"  required="true" selectionChange="suffix_selected">
+							<ComboBox id="suffix_CFSO" required="true" selectionChange="suffix_selected">
 								<!--<core:Item key="{ProductId}"-->
 								<!--	text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							</ComboBox>
 							<core:Title text="" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>colour}"/>
-							<ComboBox  required="true" id="color_CFSO">
+							<ComboBox required="true" id="color_CFSO">
 								<!--<core:Item key="{ProductId}"-->
 								<!--	text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
 							</ComboBox>
@@ -129,7 +130,7 @@
 							</ComboBox>
 							<!--//APX-->
 							<Label wrapping="true" text="{i18n>quantity}"/>
-							<Input id="quantity_CFSO" required="true" maxLength="2" showSuggestion="false" ></Input>
+							<Input id="quantity_CFSO" required="true" maxLength="2" showSuggestion="false"></Input>
 							<Label wrapping="true" text="{i18n>DealerReqETA}"/>
 							<Text text="{i18n>from}">
 								<layoutData>
@@ -147,7 +148,8 @@
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
-							<DatePicker id="etaTo_CFSO" required="true" navigate="_handleChange" change="_handleChange" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd">
+							<DatePicker id="etaTo_CFSO" required="true" navigate="_handleChange" change="_handleChange" placeholder="YYYY-MM-DD"
+								displayFormat="yyyy-MM-dd">
 								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
@@ -160,7 +162,6 @@
 							</Button>
 						</f:content>
 					</f:SimpleForm>
-				
 					<Button text="{i18n>deleteRows}" press="_onDelete2" class="sapUiSmallMarginBegin"></Button>
 					<t:Table id="idCFSO_Table2" rows="{SecondTable>/items}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false"
 						class="marginCorners">
@@ -174,12 +175,12 @@
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
-										<!--<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{SecondTable>series}"-->
-										<!--		modelContextChange="onSeriesnum">-->
-										<!--		<items>-->
-										<!--			<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>-->
-										<!--		</items>-->
-										<!--	</ComboBox>-->
+									<!--<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{SecondTable>series}"-->
+									<!--		modelContextChange="onSeriesnum">-->
+									<!--		<items>-->
+									<!--			<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>-->
+									<!--		</items>-->
+									<!--	</ComboBox>-->
 									<Text text="{SecondTable>series}"/>
 								</t:template>
 							</t:Column>
@@ -216,13 +217,15 @@
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
-									<Text text="{path:'SecondTable>ETAFrom' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
+									<Text
+										text="{path:'SecondTable>ETAFrom' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
-									<Text text="{path:'SecondTable>ETATime' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
+									<Text
+										text="{path:'SecondTable>ETATime' ,type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="11.11%" resizable="false">
@@ -235,15 +238,14 @@
 					</t:Table>
 					<!--<HBox class="cssShift marginCornersBottom">-->
 					<!--	<items>-->
-						
 					<!--	</items>-->
 					<!--</HBox>-->
 				</content>
-					<footer class="sitefooter">
+				<footer class="sitefooter">
 					<Toolbar>
 						<ToolbarSpacer/>
-							<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight" enabled="{FirstTable>/submitEnabled}"></Button>
-							<!--<Button text="{i18n>Back}" press="onNavBack" class="sapUiSmallMarginBegin marginCornersRight"></Button>-->
+						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight" enabled="{FirstTable>/submitEnabled}"></Button>
+						<!--<Button text="{i18n>Back}" press="onNavBack" class="sapUiSmallMarginBegin marginCornersRight"></Button>-->
 					</Toolbar>
 				</footer>
 			</Page>
