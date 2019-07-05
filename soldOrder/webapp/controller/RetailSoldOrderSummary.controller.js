@@ -132,8 +132,8 @@ sap.ui.define([
 			// items.filter([new Filter("FleetReference", FilterOperator.EQ, '')]);
 			//-------------------------------------------------------------------------------
 			// var data = oTbl.getModel().getData().ProductCollection;
-			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachRoutePatternMatched(this._onObjectMatched, this); // 	var host = RSOS_controller.host();
-
+			//this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachRoutePatternMatched(this._onObjectMatched, this); // 	var host = RSOS_controller.host();
+			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
 			//this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onRoutMatched, this);
 
 			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +

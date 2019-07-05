@@ -17,7 +17,7 @@
 							<Input id="FanNo_CFSO" value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showSuggestion="false" showValueHelp="true" required="true"
 								liveChange="onMandatoryValChange"/>
 							<Label wrapping="true" text="{i18n>PONumber}"/>
-							<Input id="ID_PONumber" value="{Data>/ZpoNumber}" showSuggestion="false" required="true" liveChange="onMandatoryValChange"/>
+							<Input id="ID_PONumber" value="{Data>/ZpoNumber}" showSuggestion="false" liveChange="onMandatoryValChange"/>
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{Customer>/NameFirst}{Customer>/NameLast}"/>
