@@ -133,8 +133,8 @@ sap.ui.define([
 			//-------------------------------------------------------------------------------
 			// var data = oTbl.getModel().getData().ProductCollection;
 			//this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachRoutePatternMatched(this._onObjectMatched, this); // 	var host = RSOS_controller.host();
-			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
-			//this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onRoutMatched, this);
+			//this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
+			this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, this);
 
 			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
 			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
