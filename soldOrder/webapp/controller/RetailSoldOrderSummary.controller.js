@@ -53,7 +53,7 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
-			//AppController.getDealer();
+			AppController.getDealer();
 			RSOS_controller._handleServiceSuffix_Series();
 			var BtnPrev = this.getView().byId("buttonPrev");
 			BtnPrev.setEnabled(false);
