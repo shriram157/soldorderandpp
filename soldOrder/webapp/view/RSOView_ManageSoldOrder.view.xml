@@ -291,18 +291,18 @@
 						</items>
 					</HBox>-->
 					<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12">
-						<Label text="{i18n>Attachment}" wrapping="true" class="sapUiSmallMarginTop">
+						<Label text="{i18n>Attachment}" wrapping="true" class="sapUiSmallMarginTop" textAlign="Begin">
 							<layoutData>
-								<l:GridData span="L1 M2 S12" indent="L3 M3"/>
+								<l:GridData span="L1 M2 S12" indent="L1 M3"/>
 							</layoutData>
 						</Label>
 						<u:FileUploader id="idRSOV_MSO_fileUpl" buttonText="{i18n>browseText}" useMultipart="false"
 							uploadUrl="/node/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('{mainservices>ZzsoReqNo}')/AttachmentSet" uploadComplete="handleUploadComplete"/>
+						<Button class="cl_addAttachment sapUiSmallMarginEnd" id="btn_addAttach_RSO_MSO"
+							visible="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}"
+							enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" text="{i18n>AddAttach}"
+							press="_addAttachment"></Button>
 						<HBox>
-							<Button class="cl_addAttachment" id="btn_addAttach_RSO_MSO"
-								visible="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}"
-								enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" text="{i18n>AddAttach}"
-								press="_addAttachment"></Button>
 							<items>
 								<Label text="{i18n>Comments}" wrapping="true" class="sapUiSmallMarginTop sapUiSmallMarginEnd">
 									<layoutData>
@@ -313,10 +313,10 @@
 									editable="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}"
 									enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" maxLength="30">
 									<layoutData>
-										<l:GridData span="L2 M3 S6"/>
+										<l:GridData span="L3 M3 S6"/>
 									</layoutData>
 								</TextArea>
-								<Button class="cl_btnUpdate" id="btn_update" text="{i18n>Update}"
+								<Button class="cl_btnUpdate sapUiSmallMarginBegin" id="btn_update" text="{i18n>Update}"
 									enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}"
 									visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_updateSoldOrderRequest">
 									<layoutData>
