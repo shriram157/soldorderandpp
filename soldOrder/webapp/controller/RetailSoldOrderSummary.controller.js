@@ -13,9 +13,47 @@ sap.ui.define([
 		formatter: formatter,
 		onInit: function () {
 
+			// 	var oTbl = RSOS_controller.getView().byId("table_RSOS");
+			// //-----------------------------------------------------------
+			// //-----Binding without Fleet Reference----------------------
+			// //----------------------------------------------------------
+			// var items = oTbl.getBinding('rows');
+			// items.filter([new Filter("FleetReference", FilterOperator.EQ, '')]);
+			//-------------------------------------------------------------------------------
+			// var data = oTbl.getModel().getData().ProductCollection;
+			//this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachRoutePatternMatched(this._onObjectMatched, this); // 	var host = RSOS_controller.host();
+			//this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
+			this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, this);
+
+			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
+			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
+			// $.ajax({
+			// 	url: url,
+			// 	method: 'GET',
+			// 	async: false,
+			// 	dataType: 'json',
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		if (seriesCB.getValue() !== "") {
+			// 			//seriesCB.setValue(" ");
+			// 			seriesCB.setSelectedKey(null);
+			// 		}
+			// 		//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+			// 		var oModel = new sap.ui.model.json.JSONModel();
+			// 		oModel.setData(data.d.results);
+			// 		RSOA_controller.getView().setModel(oModel, "seriesModel");
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
+			// 		var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+			// 			.m.MessageBox.Action.OK, null, null);
+			// 	}
+			// });
+		},
+		_onObjectMatched: function (oEvent) {
 			RSOS_controller = this;
 			RSOS_controller.getBrowserLanguage();
-			AppController.getDealer();
+			//AppController.getDealer();
 			RSOS_controller._handleServiceSuffix_Series();
 			var BtnPrev = this.getView().byId("buttonPrev");
 			BtnPrev.setEnabled(false);
@@ -124,44 +162,9 @@ sap.ui.define([
 			sap.ui.getCore().setModel(AuditModel, "AuditModel");
 			this.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
 			console.log(sap.ui.getCore().getModel("AuditModel"));
-			// 	var oTbl = RSOS_controller.getView().byId("table_RSOS");
-			// //-----------------------------------------------------------
-			// //-----Binding without Fleet Reference----------------------
-			// //----------------------------------------------------------
-			// var items = oTbl.getBinding('rows');
-			// items.filter([new Filter("FleetReference", FilterOperator.EQ, '')]);
-			//-------------------------------------------------------------------------------
-			// var data = oTbl.getModel().getData().ProductCollection;
-			//this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachRoutePatternMatched(this._onObjectMatched, this); // 	var host = RSOS_controller.host();
-			//this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
-			this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, this);
 
-			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
-			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
-			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
-			// $.ajax({
-			// 	url: url,
-			// 	method: 'GET',
-			// 	async: false,
-			// 	dataType: 'json',
-			// 	success: function (data, textStatus, jqXHR) {
-			// 		if (seriesCB.getValue() !== "") {
-			// 			//seriesCB.setValue(" ");
-			// 			seriesCB.setSelectedKey(null);
-			// 		}
-			// 		//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
-			// 		var oModel = new sap.ui.model.json.JSONModel();
-			// 		oModel.setData(data.d.results);
-			// 		RSOA_controller.getView().setModel(oModel, "seriesModel");
-			// 	},
-			// 	error: function (jqXHR, textStatus, errorThrown) {
-			// 		var errMsg = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
-			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
-			// 			.m.MessageBox.Action.OK, null, null);
-			// 	}
-			// });
-		},
-		_onObjectMatched: function (oEvent) {
+			// 			////////////////////////////////////////////////////////////////////////////////
+
 			this.getView().byId("idmenu1").setType("Transparent");
 			this.getView().byId("idmenu2").setType("Emphasized");
 			this.getView().byId("idmenu3").setType("Transparent");
