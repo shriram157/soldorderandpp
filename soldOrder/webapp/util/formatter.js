@@ -171,7 +171,7 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	NationalorZonalusertype: function (Usertypevalue) {
 		console.log(Usertypevalue);
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue == "Zone_User")) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User")) {
 			return true;
 		} else {
 			return false;
