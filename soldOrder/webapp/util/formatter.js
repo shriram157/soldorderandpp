@@ -47,23 +47,20 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	formatName: function (firstName, famName, custReg) {
-			
-			var name = firstName + " " + famName;
-			if (custReg == 'X') {
+
+		var name = firstName + " " + famName;
+		if (custReg == 'X') {
 			return name;
 		} else {
 			return "";
 		}
 	},
-		formatOrderTypewithVTN: function (Code, Vtn) {
-			if(Vtn)
-			{
-				return Code;
-			}
-			else
-			{
-				return "";
-			}
+	formatOrderTypewithVTN: function (Code, Vtn) {
+		if (Vtn) {
+			return Code;
+		} else {
+			return "";
+		}
 	},
 	formatOrderType: function (Code) {
 		if (Code === "SO") {
@@ -115,32 +112,29 @@ toyota.ca.SoldOrder.util.formatter = {
 			return "SO000011"; //"Invalid FAN Number. Enter correct FAN Number";
 		} else if (Code === "SO000012") {
 			return "SO000012"; //"Comments not filled";
-		}
-		else if (Code === "SO000013") {
+		} else if (Code === "SO000013") {
 			return "SO000013"; //"Comments not filled";
-		}else if (Code === "SO000014") {
+		} else if (Code === "SO000014") {
 			return "SO000014"; //"Comments not filled";
-		}else if (Code === "SO000015") {
+		} else if (Code === "SO000015") {
 			return "SO000015"; //"Comments not filled";
-		}else if (Code === "SO000016") {
+		} else if (Code === "SO000016") {
 			return "SO000016"; //"Comments not filled";
-		}else if (Code === "SO000017") {
+		} else if (Code === "SO000017") {
 			return "SO000017"; //"Comments not filled";
-		}else if (Code === "SO000018") {
+		} else if (Code === "SO000018") {
 			return "SO000018"; //"Comments not filled";
-		}else if (Code === "SO000019") {
+		} else if (Code === "SO000019") {
 			return "SO000019"; //"Comments not filled";
-		}else if (Code === "SO000020") {
+		} else if (Code === "SO000020") {
 			return "SO000020"; //"Comments not filled";
-		}
-		else if (Code === "SO000021") {
+		} else if (Code === "SO000021") {
 			return "SO000021"; //"Comments not filled";
-		}else if (Code === "SO000022") {
+		} else if (Code === "SO000022") {
 			return "SO000022"; //"Comments not filled";
-		}else if (Code === "SO000023") {
+		} else if (Code === "SO000023") {
 			return "SO000023"; //"Comments not filled";
-		}
-		else {
+		} else {
 			return;
 		}
 	},
@@ -152,15 +146,15 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 
 	},
-	linkvehicleRetail: function (vehicle,status) {
-		if ((!vehicle) && ((status==="Pending Fulfillment")||(status==="PENDING FULFILLMENT"))) {
+	linkvehicleRetail: function (vehicle, status) {
+		if ((!vehicle) && ((status === "Pending Fulfillment") || (status === "PENDING FULFILLMENT"))) {
 			return true;
 		} else {
 			return false;
 		}
 
 	},
-	
+
 	RegCustomer: function (cust, regvalue) {
 		if (regvalue == 'X') {
 			return cust;
@@ -175,15 +169,16 @@ toyota.ca.SoldOrder.util.formatter = {
 			return false;
 		}
 	},
-		NationalorZonalusertype: function (Usertypevalue) {
-		if ((Usertypevalue === "National") ||(Usertypevalue === "TCI_User") ) {
+	NationalorZonalusertype: function (Usertypevalue) {
+		console.log(Usertypevalue);
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue == "Zone_User")) {
 			return true;
 		} else {
 			return false;
 		}
 	},
 	Nationalusertype: function (Usertypevalue) {
-		if ((Usertypevalue === "National") ||(Usertypevalue === "TCI_User") ) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User")) {
 			return false;
 		} else {
 			return true;
@@ -196,14 +191,13 @@ toyota.ca.SoldOrder.util.formatter = {
 			return false;
 		}
 	},
-	Tciusernzonetype: function (Usertypevalue){
-		if ((Usertypevalue === 'TCI_User') || (Usertypevalue === "TCI_Zone_User"))
-		{
+	Tciusernzonetype: function (Usertypevalue) {
+		if ((Usertypevalue === 'TCI_User') || (Usertypevalue === "TCI_Zone_User")) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
-		
+
 	},
 	Tciuseraudit: function (status) {
 		if (status == "IN-PROGRESS") {
@@ -213,42 +207,36 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	TciApprove: function (svalue) {
-		if (svalue == 'REQUESTED')  {
+		if (svalue == 'REQUESTED') {
 			return true;
 		} else {
 			return false;
 		}
 	},
-		formatAmount: function (svalue) {
-		if((svalue != "") && (svalue !== null) )
-		{
+	formatAmount: function (svalue) {
+		if ((svalue != "") && (svalue !== null)) {
 			var pos = svalue.indexOf('.');
-			var integer = svalue.substring(0,pos);
-        var decimals = svalue.substring(pos+1, pos+3);
-        var new_Value = integer+'.'+decimals;
-			var amount = "$"+new_Value;
+			var integer = svalue.substring(0, pos);
+			var decimals = svalue.substring(pos + 1, pos + 3);
+			var new_Value = integer + '.' + decimals;
+			var amount = "$" + new_Value;
 			return amount;
-		}
-		else
-		{
+		} else {
 			return "";
 		}
 	},
-	formatdealers:function(dealerno,dealername)
-	{
-		if(dealerno){
-		return dealerno.slice(-5) + "-" + dealername;
+	formatdealers: function (dealerno, dealername) {
+		if (dealerno) {
+			return dealerno.slice(-5) + "-" + dealername;
 		}
 	},
-	formatdealerno:function(dealerno)
-	{
-		if(dealerno){
-		return dealerno.slice(-5);
+	formatdealerno: function (dealerno) {
+		if (dealerno) {
+			return dealerno.slice(-5);
 		}
 	},
-	ordercancelled:function(orderstatus)
-	{
-			if (orderstatus == "CANCELLED") {
+	ordercancelled: function (orderstatus) {
+		if (orderstatus == "CANCELLED") {
 			return false;
 		} else {
 			return true;
