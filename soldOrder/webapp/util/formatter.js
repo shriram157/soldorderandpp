@@ -177,6 +177,14 @@ toyota.ca.SoldOrder.util.formatter = {
 			return false;
 		}
 	},
+	TCIorZonalusertype: function (Usertypevalue) {
+		console.log(Usertypevalue);
+		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User")) {
+			return true;
+		} else {
+			return false;
+		}
+	},
 	Nationalusertype: function (Usertypevalue) {
 		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User")) {
 			return false;
