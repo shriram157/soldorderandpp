@@ -481,10 +481,10 @@ sap.ui.define([
 			}
 
 		},
-		onMandatoryValChange:function(evt){
-			if(evt.getParameter("value").length>0){
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
-			}
+		onMandatoryValChange: function (evt) {
+			// 			if(evt.getParameter("value").length>0){
+			// 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+			// 			}
 		},
 		_onDelete2: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table2");
@@ -567,7 +567,9 @@ sap.ui.define([
 				});
 			} else {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-				sap.m.MessageBox.show(CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("CompleteAllFields"), sap.m.MessageBox.Icon.ERROR, CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("error"), sap.m.MessageBox.Action.OK, null, null);
+				sap.m.MessageBox.show(CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("CompleteAllFields"), sap.m.MessageBox
+					.Icon.ERROR, CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("error"), sap.m.MessageBox.Action.OK, null,
+					null);
 			}
 			// var valModelYr = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
 			// var valSuffix = CFSO_controller.getView().byId("suffix_CFSO").getValue();
