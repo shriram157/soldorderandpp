@@ -6,6 +6,7 @@ sap.ui.define([
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
 	var InvVehSel_controller, clicks = 0,
+		sDivision = window.location.search.match(/Division=([^&]*)/i)[1],
 		num;
 	return BaseController.extend("toyota.ca.SoldOrder.controller.InventoryVehicleSelection", {
 		formatter: formatter,
@@ -37,7 +38,7 @@ sap.ui.define([
 			var host = InvVehSel_controller.host();
 
 			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
-				dealer_no + "') and (source eq 'FLT')";
+				dealer_no + "') and (source eq 'FLT') and (ZDIVISION eq '" + sDivision + "')";
 			$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -158,6 +159,7 @@ sap.ui.define([
 */
 		},
 		filter_change: function (Oevent) {
+
 			var host = InvVehSel_controller.host();
 
 			// var dealer_no = "42120"; //comment before deploying, local testing
@@ -165,7 +167,7 @@ sap.ui.define([
 			//Dealer Inventory
 			if (Oevent.getSource().getSelectedKey() == '1') {
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
-					dealer_no + "') and (source eq 'FLT')";
+					dealer_no + "') and (source eq 'FLT') and (ZDIVISION eq '" + sDivision + "')";
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -216,7 +218,8 @@ sap.ui.define([
 			} else if (Oevent.getSource().getSelectedKey() == '2') //National Stock
 			{
 				var oUrl = host +
-					"/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '2400500000') and (source eq 'FLT')";
+					"/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '2400500000') and (source eq 'FLT') and (ZDIVISION eq '" +
+					sDivision + "')";
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -454,7 +457,7 @@ sap.ui.define([
 			var host = InvVehSel_controller.host();
 
 			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=" + num + "&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
-				dealer_no + "') and (source eq 'FLT')";
+				dealer_no + "') and (source eq 'FLT') and (ZDIVISION eq '" + sDivision + "')";
 			$.ajax({
 				url: oUrl,
 				method: "GET",
