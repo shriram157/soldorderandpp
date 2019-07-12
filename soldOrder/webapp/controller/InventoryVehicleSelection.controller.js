@@ -6,8 +6,14 @@ sap.ui.define([
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
 	var InvVehSel_controller, clicks = 0,
-		sDivision = window.location.search.match(/Division=([^&]*)/i)[1],
+		oDivision = window.location.search.match(/Division=([^&]*)/i)[1],
+		sDivision,
 		num;
+	if (oDivision == "10") {
+		sDivision = "TOY";
+	} else {
+		sDivision = "LEX";
+	}
 	return BaseController.extend("toyota.ca.SoldOrder.controller.InventoryVehicleSelection", {
 		formatter: formatter,
 
