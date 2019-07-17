@@ -15,6 +15,7 @@ sap.ui.define([
 			AppController.getDealer();
 			FSOS_controller.getBrowserLanguage();
 			var language = FSOS_controller.returnBrowserLanguage();
+			FSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
 			if (language == "EN") {

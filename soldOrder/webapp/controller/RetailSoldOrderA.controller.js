@@ -16,6 +16,7 @@ sap.ui.define([
 			RSOA_controller = this;
 			RSOA_controller.getBrowserLanguage();
 			var language = RSOA_controller.returnBrowserLanguage();
+			RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 
 			var salesTypeModel = new sap.ui.model.json.JSONModel();
 			var Obj;

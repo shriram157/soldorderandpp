@@ -1,14 +1,15 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
-	xmlns:l="sap.ui.layout" controllerName="toyota.ca.SoldOrder.controller.RetailSoldOrderA" xmlns:html="http://www.w3.org/1999/xhtml" height="100%">
+	xmlns:l="sap.ui.layout" controllerName="toyota.ca.SoldOrder.controller.RetailSoldOrderA" xmlns:html="http://www.w3.org/1999/xhtml"
+	height="100%">
 	<App>
 		<pages>
-			<Page showHeader="false" showFooter="true" >
+			<Page showHeader="false" showFooter="true">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
 					<Label text="{i18n>createSoldOrderTitle}" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"></Label>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false" >
+						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss"/>
@@ -29,28 +30,29 @@
 								<core:Item key="{suffix_Model>}" text="{parts: [{path:'suffix_Model>'},{path:'suffix_Model>'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
 							</ComboBox>-->
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Input id="modelYr_RSOA"  showSuggestion="false" showValueHelp="true" required="true" valueHelpRequest="select_year"></Input>
+							<Input id="modelYr_RSOA" showSuggestion="false" showValueHelp="true" required="true" valueHelpRequest="select_year"></Input>
 							<!--<ComboBox id="modelYr_RSOA" items="{ path: 'mode_Model>/'}" required="true">-->
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>Series}"/>
 							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
-								<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>
-							<!--<core:Item text="{seriesdropDownModel>}" key="{seriesdropDownModelKey>}"/>-->
+								<core:Item key="{seriesModel>ModelSeriesNo}"
+									text="{=${LocalDataModel>/Lang} ==='FR' ? ${seriesModel>TCISeriesDescriptionFR} : ${seriesModel>TCISeriesDescriptionEN} }"/>
+								<!--<core:Item text="{seriesdropDownModel>}" key="{seriesdropDownModelKey>}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Model}"/>
-							<ComboBox id="model_RSOA"  required="true" selectionChange="model_selected">
+							<ComboBox id="model_RSOA" required="true" selectionChange="model_selected">
 								<!--<core:Item key="{oModel3>Model}"-->
 								<!--	text="{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Suffix}"/>
-							<ComboBox id="Suffix_RSOA"  required="true" selectionChange="suffix_selected">
+							<ComboBox id="Suffix_RSOA" required="true" selectionChange="suffix_selected">
 								<!--<core:Item key="{oModel1>Suffix}"-->
 								<!--	text="{parts: [{path:'oModel1>SuffixDescriptionEN'},{path:'oModel2>TrimInteriorColor'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 								<!--	<core:ListItem   text="{=${SeriesData>SPRAS}==='English' ? ${SeriesData>TCISeriesDescriptionEN}:${SeriesData>TCISeriesDescriptionFR} }" key="{SeriesData>TCISeries}" />-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Colour}"/>
-							<ComboBox id="Colour_RSOA"  required="true">
+							<ComboBox id="Colour_RSOA" required="true">
 								<!--<core:Item key="{key}" text="{text}"></core:Item>-->
 								<!--<core:Item key="{oModel2>ExteriorColorCode}"-->
 								<!--	text="{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
@@ -59,22 +61,20 @@
 							<ComboBox id="Apx_RSOA" required="true">
 								<!--<core:Item key="{mode_Model>zzapx}" text="{mode_Model>zzapx}"/>-->
 							</ComboBox>
-						
 							<Label wrapping="true" text="{i18n>ETA}" required="true"/>
 							<VBox>
 								<items>
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-											<DatePicker id="etaFrom_RSOA" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD" change="_handleToDateChange"></DatePicker>
-											
+											<DatePicker id="etaFrom_RSOA" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD"
+												change="_handleToDateChange"></DatePicker>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
 											<DatePicker id="etaTo_RSOA" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD"></DatePicker>
-											
 										</items>
 									</HBox>
 								</items>
@@ -84,17 +84,18 @@
 							<Label wrapping="true" text="{i18n>contractDate}"/>
 							<DatePicker id="ContractDate_RSOA" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD" required="true"></DatePicker>
 							<Label wrapping="true" text="{i18n>salesType}"/>
-							<ComboBox id="SalesType_RSOA" items="{path: 'salesTypeModel>/SalesType', sorter: {path: 'text'}}" required="true" selectionChange="stype_change">
+							<ComboBox id="SalesType_RSOA" items="{path: 'salesTypeModel>/SalesType', sorter: {path: 'text'}}" required="true"
+								selectionChange="stype_change">
 								<core:Item key="{salesTypeModel>key}" text="{salesTypeModel>text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>approvalNumber}"/>
 							<Input id="tcciNo_RSOA" showSuggestion="false" value="{address>/Street}" maxLength="12"/>
 							<Label wrapping="true" text="{i18n>salesPerName}"/>
-							<Input id="salesperson_RSOA" value="{address>/HouseNumber}" showSuggestion="false" />
+							<Input id="salesperson_RSOA" value="{address>/HouseNumber}" showSuggestion="false"/>
 							<Label wrapping="true" text="{i18n>salesManName}"/>
-							<Input id="salesMan_RSOA" value="{address>/ZIPCode}" showSuggestion="false" />
+							<Input id="salesMan_RSOA" value="{address>/ZIPCode}" showSuggestion="false"/>
 							<Label wrapping="true" id="tradeInModelYr_RSOA" text="{i18n>tradeInModelYr}"/>
-							<Input id="trademodelYear_RSOAid" showSuggestion="false"  showValueHelp="true" valueHelpRequest="select_year1"></Input>
+							<Input id="trademodelYear_RSOAid" showSuggestion="false" showValueHelp="true" valueHelpRequest="select_year1"></Input>
 							<!--<ComboBox id="trademodelYear_RSOAid" items="{ path: 'mode_Model>/'}" required="true">-->
 							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
 							<!--</ComboBox>-->
@@ -103,12 +104,12 @@
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>tradeInModel}"/>
-							<Input id="trademodel_RSOAid" value="" showSuggestion="false"  />
+							<Input id="trademodel_RSOAid" value="" showSuggestion="false"/>
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
-						singleContainerFullSize="false" >
+						singleContainerFullSize="false">
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"/>
@@ -126,15 +127,15 @@
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Input id="PostalCode_RSOA" value="{Customer>/PostCode}"  showSuggestion="false" required="true" maxLength="6"/>
+							<Input id="PostalCode_RSOA" value="{Customer>/PostCode}" showSuggestion="false" required="true" maxLength="6"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Input id="Phone_RSOA" value="{Customer>/Phone}" showSuggestion="false"  placeholder='xxxxxxxxxx' required="true" maxLength="10"/>
+							<Input id="Phone_RSOA" value="{Customer>/Phone}" showSuggestion="false" placeholder='xxxxxxxxxx' required="true" maxLength="10"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Input id="Email_RSOA" value="{Customer>/Email}" showSuggestion="false"  />
+							<Input id="Email_RSOA" value="{Customer>/Email}" showSuggestion="false"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
-							<Input id="License_RSOA" showSuggestion="false" value="{Customer>/DriveLic}" />
+							<Input id="License_RSOA" showSuggestion="false" value="{Customer>/DriveLic}"/>
 							<Label wrapping="true" text=""/>
-							<Button text="{i18n>valCust}" press="onValidateCustomer" >
+							<Button text="{i18n>valCust}" press="onValidateCustomer">
 								<layoutData>
 									<l:GridData span="L4 M4 S12" indent="L4 M4"/>
 								</layoutData>

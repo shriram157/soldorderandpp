@@ -15,6 +15,7 @@ sap.ui.define([
 			CFSO_controller = this;
 			CFSO_controller.getBrowserLanguage();
 			var language = CFSO_controller.returnBrowserLanguage();
+			CFSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var today = new Date();
 			var day30 = new Date();
 			CFSO_controller.getFleetCustomer();
