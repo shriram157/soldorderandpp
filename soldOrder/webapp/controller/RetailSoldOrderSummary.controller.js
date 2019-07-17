@@ -58,6 +58,8 @@ sap.ui.define([
 			var BtnPrev = this.getView().byId("buttonPrev");
 			BtnPrev.setEnabled(false);
 			var language = RSOS_controller.returnBrowserLanguage();
+			console.log(language);
+			RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
 			if (language == "EN") {

@@ -31,6 +31,8 @@ sap.ui.define([
 			// Get resource bundle
 			var bundle = this.getModel('i18n').getResourceBundle();
 
+			this.setModel(models.createLocalDataModel(), "LocalDataModel");
+
 			// Attach XHR event handler to detect 401 error responses for handling as timeout
 			var sessionExpDialog = new Dialog({
 				title: bundle.getText('SESSION_EXP_TITLE'),

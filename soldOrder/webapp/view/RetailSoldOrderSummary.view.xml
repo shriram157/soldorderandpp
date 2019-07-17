@@ -23,7 +23,8 @@
 													</layoutData>
 												</Label>
 												<MultiComboBox id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'seriesModel>/'}" class="sapUiMediumMarginEnd">
-													<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>
+													<core:Item key="{seriesModel>ModelSeriesNo}"
+														text="{=${LocalDataModel>/Lang} ==='FR' ? ${seriesModel>TCISeriesDescriptionFR} : ${seriesModel>TCISeriesDescriptionEN} }"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
