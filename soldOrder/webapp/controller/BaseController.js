@@ -287,7 +287,7 @@ sap.ui.define([
 					// userScopes.forEach(function (data) {
 
 					var userType = oData.loggedUserType[0]; ////uncomment while deploying
-					//oData.loggedUserType[0]="Dealer_User"; var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
+					// oData.loggedUserType[0]="Dealer_User"; var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					switch (userType) {
