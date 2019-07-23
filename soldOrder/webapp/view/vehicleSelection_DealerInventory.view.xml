@@ -19,7 +19,7 @@
 						</m:items>
 					</m:VBox>
 
-					<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"
+					<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{InventoryModel>/}" enableColumnReordering="false"
 									alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" >
 
 					<!--<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"-->
@@ -35,50 +35,50 @@
 							<Column width="10%" resizable="false" sortProperty="Category">
 								<m:Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>ETAFrom}" wrapping="false"/>
+									<m:Text text="{InventoryModel>ETAFrom}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>ETATime}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>ETATo}" wrapping="false"/>
+									<m:Text text="{InventoryModel>ETATo}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>vehicleTrackingNumber}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>ZZVTN}" wrapping="false"/>
+									<m:Text text="{InventoryModel>ZZVTN}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>orderNumber}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>ZZDLR_REF_NO}" wrapping="false"/>
+									<m:Text text="{InventoryModel>ZZDLR_REF_NO}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>Model}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>Model}" wrapping="false"/>
+									<m:Text text="{InventoryModel>Model}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false" id="suffix">
 								<m:Label text="{i18n>Suffix}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>Suffix}" wrapping="false"/>
+									<m:Text text="{InventoryModel>Suffix}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false" id="colour">
 								<m:Label text="{i18n>Colour}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>ExteriorColorCode}" wrapping="false"/>
+									<m:Text text="{InventoryModel>ExteriorColorCode}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false" id="apx">
 								<m:Label text="{i18n>status}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>Status}" wrapping="false"/>
-									<!--<m:Text text="{mainservices>ZMMSTA}" wrapping="false"/>-->
+									<m:Text text="{InventoryModel>Status}" wrapping="false"/>
+									<!--<m:Text text="{InventoryModel>ZMMSTA}" wrapping="false"/>-->
 								</template>
 							</Column>
 						</columns>

@@ -26,36 +26,36 @@ sap.ui.define([
 			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-			// var host = VehSel_DealerInv_controller.host();
-			// var url = host +
-			// 	"ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(MATRIX eq  A205 and Dealer eq '" + dealer_no + "' and Model eq '" + vehicle.model + "' and ExteriorColorCode eq '" + vehicle.color + "' and TCISeries eq '" + vehicle.series + "' and RSO_NUM eq '" + zrequest + "' and Modelyear eq '" + vehicle.modelyear +
-			// 	" 'and Suffix eq '" + vehicle.suffix + "')";
-			// 				$.ajax({
-			// 	url: url,
-			// 	method: 'GET',
-			// 	async: false,
-			// 	dataType: 'json',
-			// 	success: function (data, textStatus, jqXHR) {
-			// 		var oModel = new sap.ui.model.json.JSONModel();
+			var host = VehSel_DealerInv_controller.host();
+			var url = host +
+				"ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(MATRIX eq  A205 and Dealer eq '" + dealer_no + "' and Model eq '" + vehicle.model + "' and ExteriorColorCode eq '" + vehicle.color + "' and TCISeries eq '" + vehicle.series + "' and RSO_NUM eq '" + zrequest + "' and Modelyear eq '" + vehicle.modelyear +
+				" 'and Suffix eq '" + vehicle.suffix + "')";
+							$.ajax({
+				url: url,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					var oModel = new sap.ui.model.json.JSONModel();
 
-			// 		// var arr = [];
-			// 		// var j = 0; //TCISeries_fr
+					// var arr = [];
+					// var j = 0; //TCISeries_fr
 
-			// 					// if ($.inArray(data.d.results[0], arr) < 0) {
-			// 					// 	arr[0] = data.d.results[0]["TCISeries_fr"];
+								// if ($.inArray(data.d.results[0], arr) < 0) {
+								// 	arr[0] = data.d.results[0]["TCISeries_fr"];
 
-			// 					// }
+								// }
 
-			// 		oModel.setData(data.d.results[0]);
-			// 		VehSel_DealerInv_controller.getView().setModel(oModel, "InventoryModel");
-			// 	},
-			// 	error: function (jqXHR, textStatus, errorThrown) {
-			// 		var errMsg = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
-			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
-			// 			.m.MessageBox.Action.OK, null, null);
-			// 	}
-			// });
-			//vechile_items.Sorter("ETAFrom", false);
+					oModel.setData(data.d.results[0]);
+					VehSel_DealerInv_controller.getView().setModel(oModel, "InventoryModel");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					var errMsg = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+			vechile_items.Sorter("ETAFrom", false);
 			vechile_items.filter([new Filter([
 				new Filter("MATRIX", FilterOperator.EQ, "A205"),
 				new Filter("Dealer", FilterOperator.EQ, dealer_no),
