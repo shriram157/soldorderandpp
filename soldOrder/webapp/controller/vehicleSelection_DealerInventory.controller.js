@@ -55,7 +55,7 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
-			vechile_items.Sorter("ETAFrom", false);
+			// vechile_items.Sorter("ETAFrom", false);
 			vechile_items.filter([new Filter([
 				new Filter("MATRIX", FilterOperator.EQ, "A205"),
 				new Filter("Dealer", FilterOperator.EQ, dealer_no),
