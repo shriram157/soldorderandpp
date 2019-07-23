@@ -112,6 +112,12 @@
 										</t:template>
 									</t:Column>
 									<t:Column width="10%" resizable="false">
+										<Label text="{i18n>custname}" class="TableLabel"/>
+										<t:template>
+											<Text text="{retailsumModel>ZzendcuName}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="10%" resizable="false">
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
 											<!--<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"-->
