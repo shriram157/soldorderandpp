@@ -72,9 +72,10 @@ sap.ui.define([
 				new Filter("ZDIVISION",FilterOperator.EQ, this.sDivision),
 				new Filter("Model", FilterOperator.EQ, vehicle.model),
 				new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
-				new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
-				new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
-				new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
+				new Filter("TCISeries", FilterOperator.EQ, vehicle.series)
+				// ,
+				// new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
+				// new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
 				// new Filter("INTCOL", FilterOperator.EQ, "42")
 				// new Filter("ETA", FilterOperator.EQ, ""),
 				// new Filter("APX", FilterOperator.EQ, ""),
