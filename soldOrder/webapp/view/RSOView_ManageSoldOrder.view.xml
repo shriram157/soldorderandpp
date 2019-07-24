@@ -74,7 +74,7 @@
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
 							<Text
-								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>SalesType}"/>
 							<ComboBox id="salestype_CSOR" items="{ path: 'salesTypeModel>/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
 								<core:Item key="{salesTypeModel>key}" text="{salesTypeModel>text}"/>
@@ -87,7 +87,7 @@
 											<Text/>
 											<Label wrapping="true" text="{i18n>from}:-" class="sapUiSmallMarginTop"/>
 											<Text
-												text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+												text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</items>
 									</HBox>
 									<HBox>
@@ -95,7 +95,7 @@
 											<Text/>
 											<Label wrapping="true" text="{i18n>to}:-" class="sapUiSmallMarginTop"/>
 											<Text
-												text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+												text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 										</items>
 									</HBox>
 								</items>
@@ -164,7 +164,7 @@
 							<!--</VBox>-->
 							<Label wrapping="true" text="{i18n>VehDelDate}"/>
 							<Text
-								text="{path:'mainservices>VDelDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+								text="{path:'mainservices>VDelDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>OrderType}"/>
 							<Text
 								text="{parts:[{path:'mainservices>Zzordtypedesc'},{path:'mainservices>Zzvtn'}], formatter:'toyota.ca.SoldOrder.util.formatter.formatOrderTypewithVTN'}"/>
@@ -244,10 +244,10 @@
 							<TextArea id="RSOV_MSO_comment3" enabled="false" maxLength="150"/>
 							<Label wrapping="true" text="{i18n>App/RejDate}"/>
 							<Text
-								text="{path:'mainservices>AppRejDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+								text="{path:'mainservices>AppRejDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>PayDate}"/>
 							<Text
-								text="{path:'mainservices>PaymentDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+								text="{path:'mainservices>PaymentDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>PayAmount}"/>
 							<Text text="{path:'mainservices>PaymentAmmount',formatter:'toyota.ca.SoldOrder.util.formatter.formatAmount'}"/>
 						</f:content>
