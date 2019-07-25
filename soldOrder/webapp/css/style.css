@@ -177,3 +177,5 @@ html.sap-desktop .sapMBtn:focus > .sapMFocusable {
 }
 .readonlycombo input
 {background-color: white !important;}
+
+.moreBtn { width:100%; text-align:center;}
