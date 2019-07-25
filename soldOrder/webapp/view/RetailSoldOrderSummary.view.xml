@@ -7,7 +7,7 @@
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<!--	<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.VtinDialog" type="JS"/>-->
 				<content>
-					<VBox>
+					<VBox busy="{RSOModel>/RSOBusyIndicator}">
 						<items>
 							<Label id="label_SoldOrderSummaryid" text="{i18n>retailSoldOrderSummary}"
 								class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"/>
@@ -111,7 +111,7 @@
 											<Link text="{retailsumModel>ZzsoReqNo}" press="_dispalySoldOrderDetails" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column >
+									<t:Column width="230px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
 										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>ZzendcuName}" wrapping="true"/>
