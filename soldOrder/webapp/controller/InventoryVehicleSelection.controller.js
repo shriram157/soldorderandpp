@@ -39,7 +39,7 @@ sap.ui.define([
 			// vechile_items.refresh();
 		},
 		onAfterRendering: function () {
-			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory	var host = RSOS_controller.host();
 			var host = InvVehSel_controller.host();
 
@@ -169,7 +169,7 @@ sap.ui.define([
 			var host = InvVehSel_controller.host();
 
 			// var dealer_no = "42120"; //comment before deploying, local testing
-			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			if (Oevent.getSource().getSelectedKey() == '1') {
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
@@ -291,7 +291,7 @@ sap.ui.define([
 				// 	key: "{oModel3>Model}",
 				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 				// }));
-				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				var language = InvVehSel_controller.returnBrowserLanguage();
 				var model;
 				if (language === "FR") {
@@ -458,7 +458,7 @@ sap.ui.define([
 			InvVehSel_controller.data();
 		},
 		data: function () {
-			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory	var host = RSOS_controller.host();
 			var host = InvVehSel_controller.host();
 

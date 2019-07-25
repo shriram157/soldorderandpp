@@ -22,7 +22,6 @@ sap.ui.define([
 				var name = evt.getParameter('name');
 				jQuery.sap.log.info("Route name is : " + name);
 			});
-
 		},
 
 		host: function () {
@@ -57,31 +56,14 @@ sap.ui.define([
 
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary");
 
-			}
-			//REquired More Clarification 
-			//---------------------------------------------------------------------
-			// else if (oGetText === this.oBundle.getText("menu4")) { //dicey sol, check it again 
-			// 	//this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary");
-			// 	if (this.requestStatus == "Pending Fulfilment") {
-			// 		this.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ZoneApproval"); //page 13
-			// 	} else if (this.requestStatus == "Approved") { //processed
-			// 		this.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView"); // page 14
-			// 	} else {
-			// 		this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary"); //page 15 
-			// 	}
-			// } 
-			else if (oGetText === this.oBundle.getText("menu5")) {
+			} else if (oGetText === this.oBundle.getText("menu5")) {
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
 
 			} else if (oGetText === this.oBundle.getText("menu9")) {
 
 				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer"); //page 16
 
-			}
-			// else if (oGetText === this.oBundle.getText("menu6")) {
-			// 	this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
-			// }
-			else if (oGetText === this.oBundle.getText("menu7")) {
+			} else if (oGetText === this.oBundle.getText("menu7")) {
 				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderB", {
 					modelyear: '2018',
 					modelkey: 'YZ3DCT',
@@ -94,10 +76,6 @@ sap.ui.define([
 					todate: '20181224'
 				}, true); //page 2
 			}
-			// else if (oGetText === this.oBundle.getText("menu8")) {
-			// 	this.getOwnerComponent().getRouter().navTo("NationalFleetSoldOrderView"); //page 19
-			// }
-
 		},
 
 		getRouter: function () {
@@ -122,9 +100,6 @@ sap.ui.define([
 			} else {
 				var sSelectedLocale = "EN"; // default is english 
 			}
-			//console.log(sSelectedLocale);
-			//selected language. 
-			// if (window.location.search == "?language=fr") {
 			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/") {
 				var i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
@@ -157,7 +132,6 @@ sap.ui.define([
 			}
 			console.log(sSelectedLocale);
 			//selected language. 
-			// if (window.location.search == "?language=fr") {
 			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/" || sSelectedLocale == "FR" || sSelectedLocale == "FR/") {
 				var i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
@@ -176,64 +150,6 @@ sap.ui.define([
 			}
 			return this.sCurrentLocale;
 		},
-		/*var i18nModel;
-		var sLocale;
-		var oI18nModel = new sap.ui.model.resource.ResourceModel({
-			bundleUrl: "i18n/i18n.properties"
-		});
-		this.getView().setModel(oI18nModel, "i18n");*/
-		// sLocale = sap.ui.getCore().getConfiguration().getLanguage();
-		// if (sLocale=="en"||sLocale=="en-US"){
-		// 	i18nModel = new ResourceModel({
-		// 	bundleName: "toyota.ca.SoldOrder.i18n.i18n_en"	
-		// });
-		// this.getView().setModel(i18nModel, "i18n");
-		// }
-		// else if (sLocale=="de"){
-		// 	i18nModel = new ResourceModel({
-		// 	bundleName: "toyota.ca.SoldOrder.i18n.i18n_de"	
-		// });
-		// this.getView().setModel(i18nModel, "i18n");
-		// }
-		// else{
-		// 		i18nModel = new ResourceModel({
-		// 	bundleName: "toyota.ca.SoldOrder.i18n.i18n_en"	
-		// });
-		// this.getView().setModel(i18nModel, "i18n");
-		// }
-
-		// console.log(window.location.search);
-		// 	var currentImageSource = this.getView().byId("idLexusLogo");
-		// 	if (window.location.search == "?language=fr") {
-
-		// 	 i18nModel = new sap.ui.model.resource.ResourceModel({
-		// 		bundleUrl: "i18n/i18n_fr.properties",
-		// 		bundleLocale: ("fr")
-
-		// 	});
-		// 	this.getView().setModel(i18nModel, "i18n");
-		// 	this.sCurrentLocale = 'FR';
-		// 	// set the right image for logo	 - french		
-
-		// 	currentImageSource.setProperty("src", "images/Lexus_FR.png");
-
-		// } else {
-		// 	 i18nModel = new sap.ui.model.resource.ResourceModel({
-		// 		bundleUrl: "i18n/i18n_en.properties",
-		// 		bundleLocale: ("en")
-
-		// 	});
-		// 	this.getView().setModel(i18nModel, "i18n");
-		// 	this.sCurrentLocale = 'EN';
-		// 	// set the right image for logo			
-		// //	var currentImageSource = this.getView().byId("idLexusLogo");
-		// 	currentImageSource.setProperty("src", "images/Lexus_EN.png");
-
-		// }
-
-		// var oModeli18n = this.getView().getModel("i18n");
-		// this._oResourceBundle = oModeli18n.getResourceBundle();
-		// console.log(this._oResourceBundle);
 
 		onNavBack: function (oEvent) {
 			var oHistory, sPreviousHash;
@@ -260,7 +176,7 @@ sap.ui.define([
 
 			var sPrefix;
 			if (sLocation_conf == 0) {
-				sPrefix = "/soldorder_node"; 
+				sPrefix = "/soldorder_node";
 				// this.attributeUrl = "/userDetails/attributes"; 
 				this.attributeUrl = "/userDetails/attributesforlocaltesting";
 			} else {
@@ -271,25 +187,22 @@ sap.ui.define([
 			//======================================================================================================================//			
 			//  on init method,  get the token attributes and authentication details to the UI from node layer.  - begin
 			//======================================================================================================================//		
-			//  get the Scopes to the UI 
-			//this.sPrefix ="";
 
 			var that = this;
-			// var zjson = new JSONModel();
-			// sap.ui.getCore().setModel(zjson,"LoginUserModel");
 			$.ajax({
 				url: sPrefix + "/userDetails/currentScopesForUser",
 				type: "GET",
 				dataType: "json",
 				async: false,
 				success: function (oData) {
-					// var userScopes = oData;
-					// userScopes.forEach(function (data) {
-
+					var LoginUserModel = new sap.ui.model.json.JSONModel();
+					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
 					var userType = oData.loggedUserType[0]; ////uncomment while deploying
-					// oData.loggedUserType[0]="Dealer_User"; var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
+					// oData.loggedUserType[0] = "Dealer_User"; 
+					// var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
+					sap.ui.getCore().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					switch (userType) {
 					case "Dealer_Parts_Admin":
 						// console.log("Dealer Parts");
@@ -315,12 +228,6 @@ sap.ui.define([
 
 					}
 				}
-
-				// if (data === "ecpSales!t1188.Manage_ECP_Application") {
-				// 	that.getView().getModel("oDateModel").setProperty("/oCreateButton", true);
-				// 	that.getModel("LocalDataModel").setProperty("/newAppLink", true);
-				// } 
-
 			});
 
 			// get the attributes and BP Details  Copyied from Minkashi 

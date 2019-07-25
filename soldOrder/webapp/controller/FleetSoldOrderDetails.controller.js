@@ -13,7 +13,7 @@ sap.ui.define([
 		onInit: function () {
 			FSOD_controller = this;
 			FSOD_controller.getBrowserLanguage();
-			AppController.getDealer();
+			// AppController.getDealer();
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrderDetails").attachPatternMatched(this._onObjectMatched, this);
 			var language = FSOD_controller.returnBrowserLanguage();
 			var globalComboModel = new sap.ui.model.json.JSONModel();
@@ -166,7 +166,7 @@ sap.ui.define([
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
 			var dfilter = [];
-			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
 				FSOD_controller._refresh();
 				// for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
@@ -324,7 +324,7 @@ sap.ui.define([
 		_refresh: function (oEvent) {
 			var host = FSOD_controller.host();
 
-			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
@@ -818,7 +818,7 @@ sap.ui.define([
 		},
 		data: function (oEvent) {
 				var host = FSOD_controller.host();
-				var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+				var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				if (x != "TCI_User") {
 					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=10&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {

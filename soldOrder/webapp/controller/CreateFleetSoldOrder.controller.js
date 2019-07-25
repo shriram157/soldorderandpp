@@ -551,7 +551,7 @@ sap.ui.define([
 
 				}
 				this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
-				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+				var dealer_no =sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 				this.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
 				this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
 					success: function (oData, oResponse) {
@@ -684,7 +684,7 @@ sap.ui.define([
 						"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 				}
-				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				var dealer =sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
@@ -809,7 +809,7 @@ sap.ui.define([
 				colorCB.destroyItems();
 				var model;
 				var language = CFSO_controller.returnBrowserLanguage();
-				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				var dealer =sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				if (language === "FR") {
 					model =
 						"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
@@ -842,7 +842,7 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
 			var language = CFSO_controller.returnBrowserLanguage();
 			var suf;
-			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var dealer =sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 			var brand;
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);

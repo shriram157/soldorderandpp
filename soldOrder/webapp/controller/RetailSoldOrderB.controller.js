@@ -16,7 +16,7 @@ sap.ui.define([
 			RSOB_controller.getBrowserLanguage();
 			RSOB_controller.validateFlagB = false;
 			var model = new JSONModel({});
-			AppController.getDealer();
+			// AppController.getDealer();
 			RSOB_controller._handleServiceSuffix_Series();
 			RSOB_controller.getView().setModel(model, 'Customer');
 			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderB").attachPatternMatched(this._getattachRouteMatched, this);
@@ -514,7 +514,7 @@ sap.ui.define([
 				var Zzextcol = RSOB_controller.getView().byId("colour_RSOB").getSelectedKey();
 				// SOcreateSet;
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
-				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+				var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 				var _data = {
 					// "ZzsoReqNo": "",
 					// "Zzmodel": "YZ3DCT",
@@ -659,7 +659,7 @@ sap.ui.define([
 				apxCB.destroyItems();
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
-				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
@@ -702,7 +702,7 @@ sap.ui.define([
 			if (series && modelyear) {
 				var modelCB = this.getView().byId("model_RSOB");
 
-				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
@@ -797,7 +797,7 @@ sap.ui.define([
 					"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
 
 			}
-			// var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			// var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 			if (model && modelyear) {
 				// var suffixCB = this.getView().byId("Suffix_CSO");
@@ -906,7 +906,7 @@ sap.ui.define([
 		// 		apxCB.destroyItems();
 		// 		colorCB.setSelectedKey(null);
 		// 		colorCB.destroyItems();
-		// 	var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+		// 	var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 		// 		modelCB.bindItems({
 		// 			// path: "VechileModel>/zc_model",
 		// 			path: "mainservices>/ZVMS_Model_EXCLSet",

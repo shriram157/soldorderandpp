@@ -76,15 +76,15 @@
 								</items>
 							</VBox>
 							<t:Table id="tbl_FSOS" selectionMode="None" rows="{fleetsumModel>/}" enableColumnReordering="false" alternateRowColors="true"
-								enableColumnFreeze="false" class="marginCorners" visibleRowCount="10">
+								enableColumnFreeze="false" class="marginCorners" visibleRowCount="9">
 								<t:columns>
-									<t:Column width="11.11%" resizable="false">
+									<t:Column filterProperty="ZsoFltReqNo" sortProperty="ZsoFltReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{fleetsumModel>ZsoFltReqNo}" press="_navToSoldOrder"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false">
+									<t:Column>
 										<Label id="tbl_lbl_dealer_FSOS" visible="true" text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
 											<!--,{path:'/Products/0/Category'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}-->
@@ -92,43 +92,43 @@
 												text="{path:'fleetsumModel>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZsoFltStatus}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>FanNumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZfanNo}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>CustName}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>NameOrg1}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>PONumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZpoNumber}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>orderType}" class="TableLabel"/>
 										<t:template>
 											<Text text="{path:'fleetsumModel>Zadd1',formatter: 'toyota.ca.SoldOrder.util.formatter.formatOrderType'}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>zoneAppNumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZzoneApproval}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="11.11%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>totalVehicles}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZtotalVehQty}"/>
@@ -136,13 +136,10 @@
 									</t:Column>
 								</t:columns>
 							</t:Table>
-							<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">
-								<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>
+							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners moreBtn">
 								<l:content>
-									<Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
-										xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>
+									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
 								</l:content>
-								<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
 							</l:Grid>
 						</items>
 					</VBox>

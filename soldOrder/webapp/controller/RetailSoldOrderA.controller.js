@@ -391,7 +391,7 @@ sap.ui.define([
 			var host = RSOA_controller.host();
 			// SOcreateSet;
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
-			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			var _data = {
 				// "ZzsoReqNo": "",
 				// "Zzmodel": "YZ3DCT",
@@ -940,7 +940,7 @@ sap.ui.define([
 				apxCB.destroyItems();
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
-				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				var model;
 				var oSorter = new sap.ui.model.Sorter('mainservices>model');
 
@@ -1039,7 +1039,7 @@ sap.ui.define([
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
 				var oSorter = new sap.ui.model.Sorter('mainservices>model');
-				var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
@@ -1064,7 +1064,7 @@ sap.ui.define([
 			var language = RSOA_controller.returnBrowserLanguage();
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			var suf;
-			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 			var brand;
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);

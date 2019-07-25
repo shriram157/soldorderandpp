@@ -39,46 +39,6 @@ sap.ui.define([
 			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 		},
 		sortETA: function (oEvent) {
-			/*
-						var oCurrentColumn = oEvent.getParameter("column");
-						var oDeliveryDateColumn = VehSel_NatStock_Controller.byId("deliverydate");
-						if (oCurrentColumn != oDeliveryDateColumn) {
-							oDeliveryDateColumn.setSorted(false); //No multi-column sorting
-							return;
-						}
-
-						oEvent.preventDefault();
-
-						var sOrder = oEvent.getParameter("sortOrder");
-						var oDateFormat = DateFormat.getDateInstance({pattern: "dd/MM/yyyy"});
-
-						VehSel_NatStock_Controller._resetSortingState(); //No multi-column sorting
-						oDeliveryDateColumn.setSorted(true);
-						oDeliveryDateColumn.setSortOrder(sOrder);
-
-						var oSorter = new Sorter(oDeliveryDateColumn.getSortProperty(), sOrder === SortOrder.Ascending);
-						//The date data in the JSON model is string based. For a proper sorting the compare function needs to be customized.
-						oSorter.fnCompare = function(a, b) {
-							if (b == null) {
-								return -1;
-							}
-							if (a == null) {
-								return 1;
-							}
-
-							var aa = oDateFormat.parse(a).getTime();
-							var bb = oDateFormat.parse(b).getTime();
-
-							if (aa < bb) {
-								return -1;
-							}
-							if (aa > bb) {
-								return 1;
-							}
-							return 0;
-						};
-						VehSel_NatStock_Controller.byId("table_RSOVehicleSel").getBinding("rows").sort(oSorter);
-					*/
 		}
 	});
 

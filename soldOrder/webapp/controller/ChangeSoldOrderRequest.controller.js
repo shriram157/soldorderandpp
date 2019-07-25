@@ -114,7 +114,7 @@ sap.ui.define([
 			var ZtradeModel = CSOR_controller.getView().byId("trademodel_CSOR").getText();
 			var ZtradeMake = CSOR_controller.getView().byId("trademake_CSOR").getText();
 			var comment = CSOR_controller.getView().byId("Comment").getValue();
-			var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			var Zcustomer_fname = CSOR_controller.getView().byId("firstName").getText();
 			var Zcustomer_lname = CSOR_controller.getView().byId("lastName").getText();
 			var Zcustomer_address = CSOR_controller.getView().byId("address").getText();
@@ -219,7 +219,7 @@ sap.ui.define([
 					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 			}
-			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 			if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries') && this.getView().getElementBinding(
 					'mainservices').getBoundContext().getProperty('Zzmoyr')) {
@@ -248,7 +248,7 @@ sap.ui.define([
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
-			var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');

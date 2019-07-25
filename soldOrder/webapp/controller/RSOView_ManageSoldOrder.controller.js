@@ -81,7 +81,7 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setVisible(true);
 				}
 			}
-			var user = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			// var status = this.getView().getModel('mainservices').getData().ZzsoStatus;
 			if (user == "Dealer_User") //&& status !="Cancelled"
 			{
@@ -122,33 +122,7 @@ sap.ui.define([
 						RSO_MSO_controller.series_selected();
 						RSO_MSO_controller.model_selected();
 						RSO_MSO_controller.suffix_selected();
-						// // Model
-						// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel')) {
-						// 	var model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel');
-						// 	var model_CSOR_items = RSO_MSO_controller.getView().byId("model_CSOR").getBinding("items");
-						// 	model_CSOR_items.filter([new Filter("model", FilterOperator.EQ, model)]);
-						// }
-						// // Suffix
-						// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix')) {
-						// 	var suffix = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix');
-						// 	var suffix_CSOR_items = RSO_MSO_controller.getView().byId("suffix_CSOR").getBinding("items");
-						// 	suffix_CSOR_items.filter([new Filter("Suffix", FilterOperator.EQ, suffix)]);
-						// }
-						// // APX
-						// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx')) {
-						// 	var apx = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzapx');
-						// 	var apx_CSOR_items = RSO_MSO_controller.getView().byId("apx_CSOR").getBinding("items");
-						// 	apx_CSOR_items.filter([new Filter("zzapx", FilterOperator.EQ, apx)]);
-						// }
-						// // Color
-						// if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol')) {
-						// 	var color = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol');
-						// 	var color_CSOR_items = RSO_MSO_controller.getView().byId("colour_CSOR").getBinding("items");
-						// 	color_CSOR_items.filter([new Filter("ExteriorColorCode", FilterOperator.EQ, color)]);
-						// }
-						//----------------------------------------------------------
-						// Get Customer Details by Customer No From API
-						//	var x = 'W27687139';
+						
 						//----------------------------------------------------------
 						var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
 
@@ -185,47 +159,7 @@ sap.ui.define([
 								},
 								error: function (request, errorText, errorCode) {}
 							});
-							// this.getView().byId('idETAFrm').bindItems({
-							// 				path: 'mainservices>/InventoryDetailsSet',
-							// 			// 	filters: new sap.ui.model.Filter([
-							// 			// new Filter("MATRIX", FilterOperator.EQ, "A205"),
-							// 			// 	new Filter("Dealer", FilterOperator.EQ, dealer_no),
-							// 			// 	new Filter("Model", FilterOperator.EQ, vehicle.model),
-							// 			// 	new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
-							// 			// 	new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
-							// 			// 	new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
-							// 			// 	// new Filter("INTCOL", FilterOperator.EQ, "42")
-							// 			// 	new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
-							// 			// 	new Filter("RSO_NUM", FilterOperator.EQ, zrequest),
-
-							// 			// 	// new Filter("ETA", FilterOperator.EQ, ""),
-							// 			// 	// new Filter("APX", FilterOperator.EQ, ""),
-							// 			// ], true),
-							// 				template: new sap.ui.core.ListItem({
-							// 					key: "{mainservices>ETAFrom}",
-							// 					text: "{mainservices>ETAFrom}"
-							// 				})
-							// 			});
-
-							// var vechile_items = RSO_MSO_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
-							// var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
-							//Dealer Inventory
-							// var	vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-
-							// vechile_items.filter([new Filter([
-							// new Filter("MATRIX", FilterOperator.EQ, "A205"),
-							// 	new Filter("Dealer", FilterOperator.EQ, dealer_no),
-							// 	new Filter("Model", FilterOperator.EQ, vehicle.model),
-							// 	new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
-							// 	new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
-							// 	new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color),
-							// 	// new Filter("INTCOL", FilterOperator.EQ, "42")
-							// 	new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
-							// 	new Filter("RSO_NUM", FilterOperator.EQ, zrequest),
-
-							// 	// new Filter("ETA", FilterOperator.EQ, ""),
-							// 	// new Filter("APX", FilterOperator.EQ, ""),
-							// ], true)]);
+						
 
 						}
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
@@ -258,139 +192,23 @@ sap.ui.define([
 						}
 					},
 					dataReceived: function (oData) {
-						//filteration
-						// if (oData.getParameters().data.Zzmodel) {
-						// 	var model_CSOR_items = RSO_MSO_controller.getView().byId("model_CSOR").getBinding("items");
-						// 	model_CSOR_items.filter([new Filter("model", FilterOperator.EQ, oData.getParameters().data.Zzmodel)]);
-						// }
+					
 					}
 				}
 			});
-			// zmodel.read("/Retail_Sold_OrderSet('" + req + "')", {
-			// 	success: function (data) {
-			// 		//	console.log(data.d.results[0]);
-			// 		var oModel = new sap.ui.model.json.JSONModel();
-			// 		oModel.setData(data);
-			// 		RSO_MSO_controller.getView().setModel(oModel, "RSO_MSO_Model");
-
-			// 		var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
-			// 		var sRecipient = data.ZzsoReqNo;
-			// 		var sMsg = oBundle.getText("mangSoldOrder", [sRecipient]);
-			// 		RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);
-			// 	},
-			// 	error: function (data) {
-			// 		sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-			// 			.m.MessageBox.Action.OK, null, null);
-			// 	}
-			// });
-			//-------------old scenario-----------------
-			// $.ajax({
-			// 	type: 'GET',
-			// 	url: oURL,
-			// 	dataType: "json",
-			// 	cache: false,
-			// 	success: function (data) {
-			// 	//	console.log(data.d.results[0]);
-			// 		var oModel = new sap.ui.model.json.JSONModel();
-			// 		oModel.setData(data.d);
-			// 		RSO_MSO_controller.getView().setModel(oModel, "RSO_MSO_Model");
-
-			// 		var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
-			// 		var sRecipient = data.d.ZzsoReqNo;
-			// 		var sMsg = oBundle.getText("mangSoldOrder", [sRecipient]);
-			// 		RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);
-			// 	},
-			// 	error: function (data) {
-			// 		sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-			// 			.m.MessageBox.Action.OK, null, null);
-			// 	}
-
-			// });
 		},
 		onAfterRendering: function () {
-			/*	var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
-				//var sRecipient = "S09732984"; // RSO_MSO_controller.getView().getModel().getProperty("/recipient/name");
-					var sRecipient =RSO_MSO_controller.getView().getModel("RSO_MSO_Model").getData()[0].ZzsoReqNo;
-					console.log(sRecipient);
-				var sMsg = oBundle.getText("mangSoldOrder", [sRecipient]);
-				RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);*/
-
-			// if (AppController.flagOrderingDealer == true) {
-			// 	RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(true);
-			// 	//RSO_MSO_controller.getView().byId("idRSOV_MSO_delButton").setEnabled(true);
-			// 	RSO_MSO_controller.getView().byId("idRSOV_MSO_fileUpl").setEnabled(true);
-			// 	RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(true);
-			// 	RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(true);
-			// 	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(true);
-			// 	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(true);
-			// 	RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(true);
-			// 	var oTbl = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
-			// 	var data = oTbl.getModel().getData().ProductCollection;
-			// 	var len = data.length;
-			// 	// for (var i = 0; i < len; i++) {
-			// 	// 	var Id = "idRSOV_MSO_delButton-__clone" + (i * 3);
-
-			// 	// 	RSO_MSO_controller.getView().byId(Id).setEnabled(true);
-			// 	// }
-			// }
-			// if (AppController.flagNationalUser == true) {
-			// 	RSO_MSO_controller.getView().byId("RSOV_MSO_comment2").setEnabled(true);
-			// }
-			// if (AppController.flagPPDUser == true) {
-			// 	RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
-			// }
-			// if (AppController.flagNationalPPDUser == true) {
-			// 	RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
-			// 	RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setVisible(true);
-			// 	RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
-			// 	RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setVisible(true);
-			// }
-			// if (AppController.flagSIPUser == true) {
-			// 	RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO").setVisible(true);
-			// }
-			// if (AppController.flgSoldOrderReqStatus = "In Progress") {
-			// 	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setVisible(true);
-			// }
-			// if (AppController.flgSoldOrderReqStatus = "Audit - In Progress") {
-			// 	RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO").setEnabled(true);
-			// }
-			// if (AppController.flgPriceProtectionStatus = "In Progress") {
-			// 	RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setVisible(true);
-			// }
 
 		},
 
 		_updateSoldOrderRequest: function () {
 			var comment = RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").getValue();
-			// var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
-
-			// var model = this.getView().byId('model_CSOR').getSelectedKey();
-			// var moyr = this.getView().byId('moyr_CSOR').getValue();
-			// var color = this.getView().byId('colour_CSOR').getSelectedKey();
-			// var apx = this.getView().byId('apx_CSOR').getSelectedKey();
-			// var eligible = this.getView().byId('RSO_PRC_Eligilibity').getValue();
-			// var series = this.getView().byId('series_CSOR').getSelectedKey();
+			
 			var _data = {
-
-				// "Eligilibity" : eligible,
-
-				// "Zzmodel" : model,
-
-				// "Zzmoyr" : moyr,
-
-				// "Zzsuffix" : suffix,
-				//"Zzseries" : series,
-				// "Zzextcol" : color,
-				// "Zzapx" : apx,
 
 				"Comment": comment,
 				"ZzsoReqNo": zrequest
-					// "Zzmodel" : model,
-					// "Zzmoyr" : moyr,
-					// 			"Zzsuffix" : suffix,
-					// "Zzextcol" : color,
-					// "Zzapx" : apx,
-
+				
 			};
 			var host = RSO_MSO_controller.host();
 			var url = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + zrequest + "')";
@@ -452,51 +270,7 @@ sap.ui.define([
 
 		_approvePriceProtectionDetails: function () {
 			if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
-				//alert("MEDHAT Yes");
-				// RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Price_Protection_Ownership_Doc", {
-				// 					method: "POST",
-				// 					urlParameters: {
-				// 						ZzsoReqNo: zrequest,
-				// 						OwnerShip: "X"
-				// 					}, // function import parameters
-				// 					success: function (oData, response) {
-				// 						if (oData.Type == 'E') {
-				// 							// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
-				// 							var sMsg = oData.Message;
-				// 							//	sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "ERROR", sap.m.MessageBox.Action.OK, null, null);
-
-				// 							// sap.m.MessageBox.show(sMsg, {
-				// 							// 	icon: sap.m.MessageBox.Icon.ERROR,
-				// 							// 	title: "ERROR",
-				// 							// 	actions: [sap.m.MessageBox.Action.OK],
-				// 							// 	onClose: function (oAction) {
-				// 							// 		// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
-
-				// 							// 	}
-				// 							// });
-
-				// 						} else {
-				// 							var sMsg = oData.Message;
-				// 							// sap.m.MessageBox.show(sMsg, {
-				// 							// 	icon: sap.m.MessageBox.Icon.SUCCESS,
-				// 							// 	title: "SUCCESS",
-				// 							// 	actions: [sap.m.MessageBox.Action.OK],
-				// 							// 	onClose: function (oAction) {
-				// 							// 		RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
-				// 							// 	}
-				// 							// });
-
-				// 							// sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
-				// 							// 	.m.MessageBox.Action.OK, null, null);
-
-				// 							// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
-				// 						}
-
-				// 					},
-				// 					error: function (oError) {
-
-				// 					}
-				// },
+				
 				RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Approve_Price_Details", {
 					method: "POST",
 					urlParameters: {
@@ -530,10 +304,7 @@ sap.ui.define([
 								}
 							});
 
-							// sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
-							// 	.m.MessageBox.Action.OK, null, null);
-
-							// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+						
 						}
 
 					},
@@ -595,34 +366,6 @@ sap.ui.define([
 			RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 				Soreq: zrequest
 			}, true);
-			// Hashed for test first scenario Select from Inventory	
-			// if (RSO_MSO_controller.flagOrderingDealer === true) {
-
-			// 	RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {}, true); //page5 
-			// }
-			// if (RSO_MSO_controller.flagNationalSIPUser === true) {
-			// 	RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_NationalStock", {}, true); //page6  
-			// }
-			// var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorVeh");
-			// var title = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("title2");
-			// var icon = new sap.ui.core.Icon({
-			// 	src: "sap-icon://alert",
-			// 	size: "2rem"
-			// });
-			// var msg = new sap.m.HBox({
-			// 	items: [icon, new sap.m.Text({
-			// 		text: errMsg
-			// 	})]
-			// });
-			// sap.m.MessageBox.show(msg, {
-			// 	title: title,
-			// 	actions: sap.m.MessageBox.Action.OK,
-			// 	onClose: null,
-			// 	styleClass: "",
-			// 	initialFocus: null,
-			// 	textDirection: sap.ui.core.TextDirection.Inherit,
-			// 	contentWidth: "10rem"
-			// });
 		},
 
 		_navCancleOrder: function () {
@@ -718,16 +461,7 @@ sap.ui.define([
 		_addAttachment: function () {
 			var com = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").getValue();
 			var textArea = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
-			// if (com == "") {
-			// 	textArea.setValueState("Error");
-			// 	textArea.setValueStateText("Fill the comments");
-			// 	var errForm = formatter.formatErrorType("SO000012");
-			// 	var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-			// 	sap.m.MessageBox.show(errMsg, sap
-			// 		.m.MessageBox.Icon.ERROR, "Error", sap
-			// 		.m.MessageBox.Action.OK, null, null);
-			// } else {
-			// AppController.flgOwnershipUploaded = true;
+			
 			var oFileUploader = RSO_MSO_controller.getView().byId("idRSOV_MSO_fileUpl");
 			var zcomment = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
 			oFileUploader.removeAllHeaderParameters();
@@ -879,61 +613,7 @@ sap.ui.define([
 				jQuery.sap.log.error("File upload failed:\n" + oException.message);
 			}
 		},
-		/*	uploadFile2: function () {
-				var file = jQuery.sap.domById("__xmlview2– fileupload - fu").files[0];
-				try {
-					if (file) {
-						RSO_MSO_controller._bUploading = true;
-						var that = RSO_MSO_controller;
-					
-						var a = “/Yourservice URL or Metadata URL “;
-						var f = {
-							headers: {“
-								X - Requested - With”: “XMLHttpRequest”,
-								“Content - Type”: “application / atom + xml”,
-								DataServiceVersion: “2.0”,
-								“X - CSRF - Token”: “Fetch”
-							},
-							requestUri: a,
-							method: “GET”
-						};
-						var oHeaders;
-						var sUrl = oDataModel.sServiceUrl + “/Your Entity Set “;
-						var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
-						sap.ui.getCore().setModel(oModel);
-						OData.request(f, function (data, oSuccess) {
-							oToken = oSuccess.headers[‘x - csrf - token’];
-							oHeaders = {“
-								x - csrf - token”: oToken,
-								“slug”: “QF”,
-							};
-							//To Fetch CSRF Token To Upload File
-							
-
-							var oURL = oDataModel.sServiceUrl + “/Entity Set”;
-							jQuery.ajax({
-								type: ‘POST’,
-								url: oURL,
-								headers: oHeaders,
-								cache: false,
-								contentType: file.type,
-								processData: false,
-								data: file,
-								success: function (data) {
-									var rec = data.getElementsByTagName(“entry”)[0].children[5].getAttribute(“src”);
-									sap.m.MessageToast.show(“File Uploaded Successfully” + rec);
-								},
-								error: function (data) {
-									sap.m.MessageToast.show(“File Uploaded Successfully”);
-								}
-							});
-						});
-					}
-				} catch (oException) {
-					jQuery.sap.log.error(“File upload failed: \n” + oException.message);
-				}
-			},*/
-
+		
 		handleUploadComplete: function (c) {
 			if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
 				//alert("MEDHAT Yes");
@@ -947,33 +627,10 @@ sap.ui.define([
 						if (oData.Type == 'E') {
 							// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
 							var sMsg = oData.Message;
-							//	sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "ERROR", sap.m.MessageBox.Action.OK, null, null);
-
-							// sap.m.MessageBox.show(sMsg, {
-							// 	icon: sap.m.MessageBox.Icon.ERROR,
-							// 	title: "ERROR",
-							// 	actions: [sap.m.MessageBox.Action.OK],
-							// 	onClose: function (oAction) {
-							// 		// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
-
-							// 	}
-							// });
-
+							
 						} else {
 							var sMsg = oData.Message;
-							// sap.m.MessageBox.show(sMsg, {
-							// 	icon: sap.m.MessageBox.Icon.SUCCESS,
-							// 	title: "SUCCESS",
-							// 	actions: [sap.m.MessageBox.Action.OK],
-							// 	onClose: function (oAction) {
-							// 		RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
-							// 	}
-							// });
-
-							// sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS", sap
-							// 	.m.MessageBox.Action.OK, null, null);
-
-							// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("ToPriceProtectionSummary", {}, true);
+							
 						}
 
 					},
@@ -988,20 +645,7 @@ sap.ui.define([
 			RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 			// RSO_MSO_controller.getView().byId('idRSOV_MSO_fileUpl').setValue('');
 			RSO_MSO_controller.getView().byId('idComments_TA_RSO_ManageSO').setValue('');
-			// var _ = RSO_MSO_controller.getControllerInstance();
-			// var p = c.getParameters();
-			// if (parseInt(p.status, 10) >= 400) {
-			// 	var X = jQuery.parseXML(p.responseRaw);
-			// 	var e = RSO_MSO_controller.Xml2Json(X.documentElement);
-			// 	// var s = {
-			// 	// 	message: e.message,
-			// 	// 	type: sap.m.MessageBox.Icon.ERROR
-			// 	// };
-			// 	// sap.ca.ui.message.showMessageBox(s);
-			// 		sap.m.MessageBox.show(e.message, sap.m.MessageBox.Icon.ERROR, "Error", sap
-			// 			.m.MessageBox.Action.OK, null, null);
-			// }
-			//	RSO_MSO_controller.onSubmitLRCsuccess(_.objectResponse, _.ResponseMessage);
+		
 		},
 		getControllerInstance: function () {
 			var _ = null;
@@ -1074,11 +718,6 @@ sap.ui.define([
 						"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 				}
-				// this.getView().byId('model_CSOR').bindItems("oModel3>/", new sap.ui.core.ListItem({
-				// 	key: "{oModel3>Model}",
-				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
-				// }));
-				// var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 				var dealer = dealerno.slice(-5);
 				this.getView().byId('model_CSOR').bindItems({
@@ -1093,8 +732,6 @@ sap.ui.define([
 						text: model
 					})
 				});
-				// var items_binding = this.getView().byId('model_CSOR').getBinding('items');
-				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
 		},
 		model_selected: function (oEvent) {
@@ -1111,16 +748,13 @@ sap.ui.define([
 					"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
 
 			}
-			// var dealer = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			// var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 				var dealer = dealerno.slice(-5);
-				// this.getView().byId('suffix_CSOR').bindItems('oModel1>/', new sap.ui.core.ListItem({
-				// 	key: "{oModel1>Suffix}",
-				// 	text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel2>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
-				// }));
+				
 				this.getView().byId('suffix_CSOR').bindItems({
 					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
@@ -1131,10 +765,6 @@ sap.ui.define([
 						text: suf
 					})
 				});
-				// var items_binding = this.getView().byId('suffix_CSOR').getBinding('items');
-				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-				// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-				// ], true));
 			}
 		},
 		suffix_selected: function (oEvent) {
@@ -1147,10 +777,7 @@ sap.ui.define([
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-				// this.getView().byId('apx_CSOR').bindItems('mode_Model>/', new sap.ui.core.ListItem({
-				// 	key: "{mode_Model>zzapx}",
-				// 	text: "{mode_Model>zzapx}"
-				// }));
+				
 				this.getView().byId('apx_CSOR').bindItems({
 					path: 'mainservices>/ZVMS_CDS_APX',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
@@ -1162,18 +789,6 @@ sap.ui.define([
 						text: "{mainservices>zzapx}"
 					})
 				});
-				// var items_binding = this.getView().byId('apx_CSOR').getBinding('items');
-				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
-				// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
-				// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-				// ], true));
-				//-----------------
-				//----Color---------
-				//----------------
-				// this.getView().byId('colour_CSOR').bindItems('oModel2>/', new sap.ui.core.ListItem({
-				// 	key: "{oModel2>ExteriorColorCode}",
-				// 	text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
-				// }));
 				var color;
 				var language = RSO_MSO_controller.returnBrowserLanguage();
 				if (language === "FR") {
@@ -1192,12 +807,6 @@ sap.ui.define([
 						text: color
 					})
 				});
-				// var items_binding = this.getView().byId('colour_CSOR').getBinding('items');
-				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
-				// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-				// ], true));
-
 			}
 		},
 		_handleServiceSuffix_Series: function () {
