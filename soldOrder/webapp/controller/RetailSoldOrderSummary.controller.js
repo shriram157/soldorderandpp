@@ -267,7 +267,7 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						sap.ui.core.BusyIndicator.hide();
 						var BtnNext = RSOS_controller.getView().byId("buttonNext");
-						if (data.d.results.length < 0) {
+						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
 						} else {
 							BtnNext.setEnabled(true);
@@ -428,7 +428,7 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					sap.ui.core.BusyIndicator.hide();
 					var BtnNext = RSOS_controller.getView().byId("buttonNext");
-					if (data.d.results.length < 0) {
+					if (data.d.results.length <= 0) {
 						BtnNext.setEnabled(false);
 					} else {
 						BtnNext.setEnabled(true);
@@ -545,7 +545,7 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						sap.ui.core.BusyIndicator.hide();
 						var BtnNext = RSOS_controller.getView().byId("buttonNext");
-						if (data.d.results.length < 0) {
+						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
 						} else {
 							BtnNext.setEnabled(true);
@@ -676,7 +676,7 @@ sap.ui.define([
 						success: function (data, textStatus, jqXHR) {
 							sap.ui.core.BusyIndicator.hide();
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
-							if (data.d.results.length < 0) {
+							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
@@ -808,7 +808,7 @@ sap.ui.define([
 						success: function (data, textStatus, jqXHR) {
 							sap.ui.core.BusyIndicator.hide();
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
-							if (data.d.results.length < 0) {
+							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
@@ -1146,7 +1146,7 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						sap.ui.core.BusyIndicator.hide();
 						var BtnNext = RSOS_controller.getView().byId("buttonNext");
-						if (data.d.results.length < 0) {
+						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
 						} else {
 							BtnNext.setEnabled(true);
@@ -1268,7 +1268,7 @@ sap.ui.define([
 						success: function (data, textStatus, jqXHR) {
 							sap.ui.core.BusyIndicator.hide();
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
-							if (data.d.results.length < 0) {
+							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
@@ -1399,7 +1399,7 @@ sap.ui.define([
 						success: function (data, textStatus, jqXHR) {
 							sap.ui.core.BusyIndicator.hide();
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
-							if (data.d.results.length < 0) {
+							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
