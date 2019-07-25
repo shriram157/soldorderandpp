@@ -98,8 +98,11 @@ html.sap-desktop .sapMBtn:focus > .sapMFocusable {
     padding-inline-start: 42%;
 }
 
+/*.marginCorners {*/
+/*    margin: 32px;*/
+/*}*/
 .marginCorners {
-    margin: 32px;
+    margin: 10px 30px;
 }
 
 .marginCornersRight {

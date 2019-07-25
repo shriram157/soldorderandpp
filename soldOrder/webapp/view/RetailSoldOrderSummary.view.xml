@@ -103,9 +103,9 @@
 							<Button text="{i18n>new}" id="idBtn_RSOS_new" class="cssShift marginCornersRight" visible="false" press="_createNewOrder"/>
 							<!--<t:Table id="table_RSOS" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners">-->
 							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true"
-								enableColumnFreeze="false" visibleRowCount="10" class="marginCorners">
+								enableColumnFreeze="false" visibleRowCount="8" class="marginCorners">
 								<t:columns>
-									<t:Column width="10%" resizable="false">
+									<t:Column width="10%" resizable="false" filterProperty="ZzsoReqNo" sortProperty="ZzsoReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{retailsumModel>ZzsoReqNo}" press="_dispalySoldOrderDetails" wrapping="true"/>
@@ -196,13 +196,14 @@
 									<!--</t:Column>-->
 								</t:columns>
 							</t:Table>
-							<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">
-								<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>
+							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">
+								<!--<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>-->
 								<l:content>
-									<Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
-										xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>
+									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="More"/>
+									<!--<Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"-->
+									<!--	xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>-->
 								</l:content>
-								<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
+								
 							</l:Grid>
 						</items>
 					</VBox>
