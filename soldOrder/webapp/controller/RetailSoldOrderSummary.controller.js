@@ -52,17 +52,17 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			RSOS_controller = this;
+			var RSOModel = new sap.ui.model.json.JSONModel();
+			RSOModel.setData({
+				RSOBusyIndicator:false
+			});
+			RSOS_controller.getView().setModel(RSOModel, "RSOModel");
 			RSOS_controller.getBrowserLanguage();
 			AppController.getDealer();
 			RSOS_controller._handleServiceSuffix_Series();
 			// var BtnPrev = this.getView().byId("buttonPrev");
 			// BtnPrev.setEnabled(false);
 			var language = RSOS_controller.returnBrowserLanguage();
-			var RSOModel = new sap.ui.model.json.JSONModel();
-			RSOModel.setData({
-				RSOBusyIndicator:false
-			});
-			RSOS_controller.getView().setModel(RSOModel, "RSOModel");
 
 			var oModel = new sap.ui.model.json.JSONModel();
 			RSOS_controller.getView().setModel(oModel, "retailsumModel");
