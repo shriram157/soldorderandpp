@@ -258,7 +258,7 @@ sap.ui.define([
 				// 		oUrl= oUrl+" or ";
 				// 	}
 				// }
-				sap.ui.core.BusyIndicator.show();
+				sap.ui.core.BusyIndicator.show(100);
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -332,6 +332,7 @@ sap.ui.define([
 
 		},
 		_handleServiceSuffix_Series: function () {
+			sap.ui.core.BusyIndicator.show(100);
 			var host = RSOS_controller.host();
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 			var brand;
@@ -346,7 +347,7 @@ sap.ui.define([
 					brand = "LEX"; // }
 				}
 			}
-			sap.ui.core.BusyIndicator.show();
+			// sap.ui.core.BusyIndicator.show();
 			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
 				"' and zzzadddata2 eq 'X' and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
 			$.ajax({
@@ -376,6 +377,7 @@ sap.ui.define([
 			});
 		},
 		_refreshCombo: function (evt) {
+			sap.ui.core.BusyIndicator.show(100);
 			var host = RSOS_controller.host();
 			filter = true;
 			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
@@ -419,7 +421,7 @@ sap.ui.define([
 			// 		oUrl= oUrl+" or ";
 			// 	}
 			// }
-			sap.ui.core.BusyIndicator.show();
+			// sap.ui.core.BusyIndicator.show();
 			$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -495,6 +497,7 @@ sap.ui.define([
 
 		},
 		_refresh: function (oEvent) {
+			sap.ui.core.BusyIndicator.show(100);
 			var host = RSOS_controller.host();
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
@@ -536,7 +539,7 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
-				sap.ui.core.BusyIndicator.show();
+				// sap.ui.core.BusyIndicator.show();
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -667,7 +670,7 @@ sap.ui.define([
 					// 		oUrl= oUrl+" or ";
 					// 	}
 					// }
-					sap.ui.core.BusyIndicator.show();
+					// sap.ui.core.BusyIndicator.show();
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -799,7 +802,7 @@ sap.ui.define([
 					// 		oUrl= oUrl+" or ";
 					// 	}
 					// }
-					sap.ui.core.BusyIndicator.show();
+					
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -1005,7 +1008,7 @@ sap.ui.define([
 			d.open();
 		},
 		_searchNLink: function (evt) {
-			sap.ui.core.BusyIndicator.show();
+			sap.ui.core.BusyIndicator.show(100);
 			var vinVal = RSOS_controller.byId("idFrag_RSOS--VinIdFrag").getValue();
 			var vtinVal = RSOS_controller.byId("idFrag_RSOS--VtinIdFrag").getValue();
 			var V_No;
@@ -1096,6 +1099,7 @@ sap.ui.define([
 			RSOS_controller.data();
 		},
 		data: function (oEvent) {
+			sap.ui.core.BusyIndicator.show(100);
 			var host = RSOS_controller.host();
 			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
@@ -1137,7 +1141,7 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
-				sap.ui.core.BusyIndicator.show();
+				// sap.ui.core.BusyIndicator.show();
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -1259,7 +1263,7 @@ sap.ui.define([
 					// 		oUrl= oUrl+" or ";
 					// 	}
 					// }
-					sap.ui.core.BusyIndicator.show();
+					// sap.ui.core.BusyIndicator.show();
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -1390,7 +1394,7 @@ sap.ui.define([
 					// 		oUrl= oUrl+" or ";
 					// 	}
 					// }
-					sap.ui.core.BusyIndicator.show();
+					// sap.ui.core.BusyIndicator.show();
 					$.ajax({
 						url: oUrl,
 						method: "GET",

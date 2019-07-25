@@ -105,19 +105,19 @@
 							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" visibleRowCount="8" class="marginCorners">
 								<t:columns>
-									<t:Column width="10%" resizable="false" filterProperty="ZzsoReqNo" sortProperty="ZzsoReqNo">
+									<t:Column filterProperty="ZzsoReqNo" sortProperty="ZzsoReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{retailsumModel>ZzsoReqNo}" press="_dispalySoldOrderDetails" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="10%" resizable="false">
+									<t:Column >
 										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>ZzendcuName}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="10%" resizable="false">
+									<t:Column >
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
 											<!--<Text visible="false" id="tbl_lbl_dealer_RSOS" text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"-->
@@ -126,13 +126,13 @@
 												text="{path:'retailsumModel>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="10%" resizable="false">
+									<t:Column >
 										<Label text="{i18n>modelYear}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>Zzmoyr}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="10%" resizable="false">
+									<t:Column >
 										<Label text="{i18n>series}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>Zzseries}" wrapping="true"/>
@@ -145,7 +145,7 @@
 											<!--<Text text="{mainservices>Zzseries}" wrapping="true"/>-->
 										</t:template>
 									</t:Column>
-									<t:Column width="10%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
 											<!--<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"-->
@@ -153,7 +153,7 @@
 											<Text text="{retailsumModel>Zzmodel}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="10%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>suffix}" class="TableLabel"/>
 										<t:template>
 											<!--<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"-->
@@ -161,25 +161,25 @@
 											<Text text="{retailsumModel>Zzsuffix}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="10%" resizable="false">
+									<t:Column >
 										<Label text="{i18n>AuditStatus}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>ZzAuditStatus}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="10%" resizable="false">
+									<t:Column >
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>ZzsoStatus}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="10%" resizable="false">
+									<t:Column >
 										<Label text="{i18n>vehicleTrackingNumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>Zzvtn}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column >
 										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 										<t:template>
 											<Button text="{i18n>linkVehicle}"
@@ -188,7 +188,7 @@
 												press="onLinkVehicle"/>
 										</t:template>
 									</t:Column>
-									<!--<t:Column width="11.11%" resizable="false">-->
+									<!--<t:Column width="11.11%"  >-->
 									<!--	<Label text="{i18n>linkVehicle}" class="TableLabel"/>-->
 									<!--	<t:template>-->
 									<!--		<Button id="btn_linkVeh_RSOS" visible="false" text="{i18n>linkVehicle}" press="onLinkVehicle"/>-->
