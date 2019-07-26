@@ -120,26 +120,18 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			var oModel = new sap.ui.model.json.JSONModel();
 			FSOS_controller.getView().setModel(oModel, "fleetsumModel");
+			var FSOLocalModel = new sap.ui.model.json.JSONModel();
+			FSOLocalModel.setData({
+				FSOBusyIndicator: false
+			});
+
+			FSOS_controller.getView().setModel(FSOLocalModel, "FSOLocalModel");
 			this.getView().byId("idmenu1").setType('Transparent');
 			this.getView().byId("idmenu2").setType('Transparent');
 			this.getView().byId("idmenu3").setType('Transparent');
 			this.getView().byId("idmenu4").setType('Emphasized');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-		},
-		onBeforeRendering: function () {
-			if (AppController.flagZoneUser == true) {
-				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
-			}
-			if (AppController.flagNationalUser == true) {
-				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
-			}
-			/*	if (AppController.flagTCINationalUser == true) {
-					FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
-				}*/
-		},
-		onAfterRendering: function () {
-
 			var mcb_status_FSOS = FSOS_controller.getView().byId("mcb_status_FSOS");
 			var mcb_ordTyp_FSOS = FSOS_controller.getView().byId("mcb_ordTyp_FSOS");
 			var mcb_dealer_FSOS = FSOS_controller.getView().byId("mcb_dealer_FSOS");
@@ -150,13 +142,15 @@ sap.ui.define([
 			mcb_dealer_FSOS.setSelectedItems(mcb_dealer_FSOS.getItems());
 			var host = FSOS_controller.host();
 			//=======================================================================================================
-			//==================Start Binidng By Dealer=========================================================
+			//==================Start Bindidng By Dealer=========================================================
 			//=====================================================================================================
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
+				FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
+				console.log("loading data");
 				FSOS_controller._refresh();
 			} else {
-
+				FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -183,7 +177,7 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						// FSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
+						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 						var BtnNext = FSOS_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -205,16 +199,91 @@ sap.ui.define([
 						}
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
+						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 					}
 				});
 			}
 		},
+		onBeforeRendering: function () {
+			if (AppController.flagZoneUser == true) {
+				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
+			}
+			if (AppController.flagNationalUser == true) {
+				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
+			}
+			/*	if (AppController.flagTCINationalUser == true) {
+					FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
+				}*/
+		},
+		onAfterRendering: function () {
+			//=======================================================================================================
+			//==================Start Bindidng By Dealer=========================================================
+			//=====================================================================================================
+			// var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+			// if (x != "TCI_User") {
+			// 	FSOS_controller._refresh();
+			// } else {
+
+			// 	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
+			// 	for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
+			// 		var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
+			// 		oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
+			// 		if (i == ((this.getView().byId("mcb_status_FSOS").getSelectedItems().length) - 1)) {
+			// 			oUrl = oUrl + ") and (";
+			// 		} else {
+			// 			oUrl = oUrl + " or ";
+			// 		}
+
+			// 	}
+			// 	for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
+			// 		var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
+			// 		oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
+			// 		if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
+			// 			oUrl = oUrl + ")&$orderby=ZsoFltReqNo desc";
+			// 		} else {
+			// 			oUrl = oUrl + " or ";
+			// 		}
+			// 	}
+			// 	$.ajax({
+			// 		url: oUrl,
+			// 		method: "GET",
+			// 		async: false,
+			// 		dataType: "json",
+			// 		success: function (data, textStatus, jqXHR) {
+			// 			// FSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
+			// 			var BtnNext = FSOS_controller.getView().byId("buttonNext");
+			// 			if (data.d.results.length <= 0) {
+			// 				BtnNext.setEnabled(false);
+			// 			} else {
+			// 				BtnNext.setEnabled(true);
+			// 			}
+
+			// 			var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
+			// 			if (DataModel.getData().length != undefined) {
+
+			// 				for (var m = 0; m < data.d.results.length; m++) {
+			// 					DataModel.getData().push(data.d.results[m]);
+			// 					DataModel.updateBindings(true);
+			// 					console.log("DataModel.getData()", DataModel.getData());
+			// 				}
+			// 			} else {
+			// 				DataModel.setData(data.d.results);
+			// 				DataModel.updateBindings(true);
+			// 			}
+			// 		},
+			// 		error: function (jqXHR, textStatus, errorThrown) {
+			// 			var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+			// 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			// 		}
+			// 	});
+			// }
+		},
 		_refreshCombo: function (evt) {
 			fleet = true;
 			var host = FSOS_controller.host();
-
+			FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
 			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 				var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -244,6 +313,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
+					FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 					var BtnNext = FSOS_controller.getView().byId("buttonNext");
 					if (data.d.results.length <= 0) {
 						BtnNext.setEnabled(false);
@@ -265,7 +335,7 @@ sap.ui.define([
 					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-
+					FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -337,6 +407,7 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
+						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 						var BtnNext = FSOS_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -358,7 +429,7 @@ sap.ui.define([
 						}
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
-
+						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -392,6 +463,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
+							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 							var BtnNext = FSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -413,7 +485,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-
+							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -452,6 +524,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
+							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 							var BtnNext = FSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -473,6 +546,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
+							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 						}
@@ -492,6 +566,7 @@ sap.ui.define([
 			FSOS_controller.data();
 		},
 		data: function (oEvent) {
+			FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			var host = FSOS_controller.host();
 			if (x != "TCI_User") {
@@ -531,6 +606,7 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
+						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 						var BtnNext = FSOS_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -586,6 +662,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
+							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 							var BtnNext = FSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -607,9 +684,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-
-							// var page = clicks + 1;
-							// FSOS_controller.getView().byId("txtPageNum").setText("Page " + page);
+							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -649,6 +724,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
+							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 							var BtnNext = FSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -670,6 +746,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
+							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 						}

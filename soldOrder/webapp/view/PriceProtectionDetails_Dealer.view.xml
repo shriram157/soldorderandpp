@@ -6,7 +6,7 @@
 			<Page showHeader="false">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
-					<VBox>
+					<VBox busy="{PPDLocalModel>/PPDBusyIndicator}">
 						<items>
 							<Label id="label_PriceProtectionDetails_Dealerid" text="{i18n>PriceProtectionDetails}"
 								class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>

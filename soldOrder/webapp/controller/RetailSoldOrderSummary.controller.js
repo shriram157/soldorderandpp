@@ -9,7 +9,7 @@ sap.ui.define([
 		num, page = 0,
 		count1 = 11000,
 		filter = false;
-		var language =sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
+	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderSummary", {
 		formatter: formatter,
 		onInit: function () {
@@ -19,13 +19,13 @@ sap.ui.define([
 			RSOS_controller = this;
 			var RSOModel = new sap.ui.model.json.JSONModel();
 			RSOModel.setData({
-				RSOBusyIndicator:false
+				RSOBusyIndicator: false
 			});
-			
+
 			RSOS_controller.getView().setModel(RSOModel, "RSOModel");
 			console.log(sap.ui.getCore().getModel("LoginUserModel"));
 			RSOS_controller._handleServiceSuffix_Series();
-			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"),"LoginUserModel");
+			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			// RSOS_controller.getBrowserLanguage();
 			// AppController.getDealer();
 			// var language = RSOS_controller.returnBrowserLanguage();
@@ -162,7 +162,7 @@ sap.ui.define([
 			mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
 			mcb_dealer_RSOS.setSelectedItems(mcb_dealer_RSOS.getItems());
 			var host = RSOS_controller.host();
-			
+
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 			if (isDivisionSent) {
 				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
@@ -173,15 +173,14 @@ sap.ui.define([
 			//=====================================================================================================
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
-				
-			RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
-			console.log("loading data");
+				RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
+				console.log("loading data");
 				RSOS_controller._refresh();
 
 			} else {
-				
-			RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
-			console.log("loading data");
+
+				RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
+				console.log("loading data");
 
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
@@ -228,7 +227,7 @@ sap.ui.define([
 
 						var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 						if (DataModel.getData().length != undefined) {
-							
+
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
@@ -284,7 +283,7 @@ sap.ui.define([
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
 					RSOS_controller.getView().setModel(oModel, "seriesModel");
-					
+
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
@@ -329,7 +328,7 @@ sap.ui.define([
 			}
 			var dealer = this.getView().byId("cb_dealer_RSOS").getSelectedKey();
 			oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')) and (FleetReference eq '')&$orderby=ZzsoReqNo desc";
-			
+
 			$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -346,7 +345,7 @@ sap.ui.define([
 
 					var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 					if (DataModel.getData().length != undefined) {
-						
+
 						for (var m = 0; m < data.d.results.length; m++) {
 							DataModel.getData().push(data.d.results[m]);
 							DataModel.updateBindings(true);
@@ -368,7 +367,6 @@ sap.ui.define([
 
 		},
 		_refresh: function (oEvent) {
-			// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 			var host = RSOS_controller.host();
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
@@ -427,7 +425,7 @@ sap.ui.define([
 
 						var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 						if (DataModel.getData().length != undefined) {
-							
+
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
@@ -493,7 +491,7 @@ sap.ui.define([
 
 							var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 							if (DataModel.getData().length != undefined) {
-								
+
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
@@ -546,8 +544,7 @@ sap.ui.define([
 					// for (var i = 0; i < this.getView().byId("cb_dealer_RSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("cb_dealer_RSOS").getSelectedKey();
 					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')) and (FleetReference eq '')&$orderby=ZzsoReqNo desc";
-					
-					
+
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -564,7 +561,7 @@ sap.ui.define([
 
 							var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 							if (DataModel.getData().length != undefined) {
-							
+
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
@@ -641,7 +638,9 @@ sap.ui.define([
 							items.refresh();
 						}
 					},
-					error: function (oError) {RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);}
+					error: function (oError) {
+						RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
+					}
 				});
 			}
 		},
@@ -749,7 +748,7 @@ sap.ui.define([
 
 						var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 						if (DataModel.getData().length != undefined) {
-						
+
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
@@ -817,7 +816,7 @@ sap.ui.define([
 
 							var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 							if (DataModel.getData().length != undefined) {
-								
+
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
@@ -870,7 +869,7 @@ sap.ui.define([
 					// for (var i = 0; i < this.getView().byId("cb_dealer_RSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("cb_dealer_RSOS").getSelectedKey();
 					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')) and (FleetReference eq '')&$orderby=ZzsoReqNo desc";
-					
+
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -892,7 +891,7 @@ sap.ui.define([
 								// } else {
 								// 	BtnNext.setEnabled(true);
 								// }
-								for (var m = 0; m <data.d.results.length; m++) {
+								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
 									console.log("DataModel.getData()", DataModel.getData());

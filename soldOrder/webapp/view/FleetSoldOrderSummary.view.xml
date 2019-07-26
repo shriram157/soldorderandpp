@@ -5,7 +5,7 @@
 			<Page showHeader="false">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
-					<VBox>
+					<VBox busy="{FSOLocalModel>/FSOBusyIndicator}">
 						<items>
 							<Label id="label_FleetSoldOrderSummaryid" text="{i18n>fleetSoldOrderSummary}"
 								class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></Label>
