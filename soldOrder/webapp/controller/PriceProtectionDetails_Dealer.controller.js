@@ -15,6 +15,7 @@ sap.ui.define([
 			onInit: function () {
 				PPD_DealerCont = this;
 				// AppController.getDealer();
+				PPD_DealerCont.setModel(sap.ui.getCore().getModel("LoginUserModel"),"LoginUserModel");
 				 //PPD_DealerCont.returnBrowserLanguage();
 				var globalComboModel = new sap.ui.model.json.JSONModel();
 				var Obj;

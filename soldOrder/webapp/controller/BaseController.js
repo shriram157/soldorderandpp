@@ -22,12 +22,6 @@ sap.ui.define([
 				var name = evt.getParameter('name');
 				jQuery.sap.log.info("Route name is : " + name);
 			});
-
-			this.LoginUserModel = new sap.ui.model.json.JSONModel();
-			this.LoginUserModel.setData({
-				UserType:""
-			});
-			sap.ui.getCore().setModel(this.LoginUserModel, "LoginUserModel");
 		},
 
 		host: function () {
@@ -109,20 +103,20 @@ sap.ui.define([
 			var i18nModel;
 			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/") {
 				this.sCurrentLocale = 'FR';
-				i18nModel = new sap.ui.model.resource.ResourceModel({
+					i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
 					bundleLocale: ("fr"),
-					Lang: this.sCurrentLocale
+					Lang:this.sCurrentLocale
 				});
 				this.getView().setModel(i18nModel, "i18n");
 				sap.ui.getCore().setModel(i18nModel, "i18n");
 
 			} else {
 				this.sCurrentLocale = 'EN';
-				i18nModel = new sap.ui.model.resource.ResourceModel({
+					i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
 					bundleLocale: ("en"),
-					Lang: this.sCurrentLocale
+					Lang:this.sCurrentLocale
 				});
 				this.getView().setModel(i18nModel, "i18n");
 				sap.ui.getCore().setModel(i18nModel, "i18n");
@@ -188,8 +182,8 @@ sap.ui.define([
 			var sPrefix;
 			if (sLocation_conf == 0) {
 				sPrefix = "/soldorder_node";
-				// this.attributeUrl = "/userDetails/attributes"; 
-				this.attributeUrl = "/userDetails/attributesforlocaltesting";
+				this.attributeUrl = "/userDetails/attributes"; 
+				// this.attributeUrl = "/userDetails/attributesforlocaltesting";
 			} else {
 				sPrefix = "";
 				this.attributeUrl = "/userDetails/attributes";
@@ -206,12 +200,13 @@ sap.ui.define([
 				dataType: "json",
 				async: false,
 				success: function (oData) {
+					var LoginUserModel = new sap.ui.model.json.JSONModel();
+					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
 					var userType = oData.loggedUserType[0]; ////uncomment while deploying
 					// oData.loggedUserType[0] = "Dealer_User"; var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
-					this.LoginUserModel.setProperty("/UserType", oData.loggedUserType[0]);
-					this.LoginUserModel.updateBindings(true);
+					sap.ui.getCore().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					switch (userType) {
 					case "Dealer_Parts_Admin":
 						// console.log("Dealer Parts");
@@ -287,21 +282,18 @@ sap.ui.define([
 							}
 						}
 					}
-
 					console.log("BpDealer", BpDealer);
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
-
+					sap.ui.getCore().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 				}.bind(this),
 				error: function (response) {
 					sap.ui.core.BusyIndicator.hide();
 				}
 			}).done(function (data, textStatus, jqXHR) {
-
 				that.getView().getModel("LoginUserModel").setProperty("/BPDealerDetails", data.attributes[0]);
+				sap.ui.getCore().getModel("LoginUserModel").setProperty("/BPDealerDetails", data.attributes[0]);
 			});
-
 		},
-
 	});
 });

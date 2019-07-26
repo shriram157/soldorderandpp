@@ -16,7 +16,6 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
-			console.log(sap.ui.getCore().getModel("LoginUserModel"));
 			RSOS_controller = this;
 			var RSOModel = new sap.ui.model.json.JSONModel();
 			RSOModel.setData({
@@ -25,8 +24,9 @@ sap.ui.define([
 			RSOS_controller.getView().setModel(RSOModel, "RSOModel");
 			// RSOS_controller.getBrowserLanguage();
 			// AppController.getDealer();
+			console.log(sap.ui.getCore().getModel("LoginUserModel"));
 			RSOS_controller._handleServiceSuffix_Series();
-		
+			RSOS_controller.setModel(sap.ui.getCore().getModel("LoginUserModel"),"LoginUserModel")
 			// var language = RSOS_controller.returnBrowserLanguage();
 
 			var oModel = new sap.ui.model.json.JSONModel();
