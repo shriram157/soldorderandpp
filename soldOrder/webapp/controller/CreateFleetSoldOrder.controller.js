@@ -8,13 +8,14 @@ sap.ui.define([
 	var _Table_Data2 = [],
 		_Table_Data1 = [],
 		_all_data = [];
+
+	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.CreateFleetSoldOrder", {
 		formatter: formatter,
 
 		onInit: function () {
 			CFSO_controller = this;
-			CFSO_controller.getBrowserLanguage();
-			var language = CFSO_controller.returnBrowserLanguage();
+			// CFSO_controller.getBrowserLanguage();
 			CFSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var today = new Date();
 			var day30 = new Date();
@@ -104,7 +105,7 @@ sap.ui.define([
 
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -222,8 +223,8 @@ sap.ui.define([
 				CFSO_controller.getView().byId("etaTo_CFSO").setMinDate(CDate);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
-				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				var errTitle = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap.m.MessageBox.Action.OK, null, null);
 			}
 
@@ -376,7 +377,7 @@ sap.ui.define([
 
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
 				}
@@ -435,8 +436,8 @@ sap.ui.define([
 				CFSO_controller.getView().byId("etaTo_CFSO").setMinDate(CDate);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
-				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				var errTitle = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap.m.MessageBox.Action.OK, null, null);
 			}
 
@@ -466,7 +467,7 @@ sap.ui.define([
 
 			if (aContexts.length === 0) {
 				var errForm = formatter.formatErrorType("SO00007");
-				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			} else {
 				for (var i = aContexts.length - 1; i >= 0; i--) {
@@ -494,7 +495,7 @@ sap.ui.define([
 
 			if (aContexts.length === 0) {
 				var errForm = formatter.formatErrorType("SO00007");
-				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			} else {
 				for (var i = aContexts.length - 1; i >= 0; i--) {
@@ -551,7 +552,7 @@ sap.ui.define([
 
 				}
 				this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
-				var dealer_no =sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+				var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 				this.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
 				this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
 					success: function (oData, oResponse) {
@@ -568,8 +569,8 @@ sap.ui.define([
 				});
 			} else {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-				sap.m.MessageBox.show(CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("CompleteAllFields"), sap.m.MessageBox
-					.Icon.ERROR, CFSO_controller.getView().getModel("i18n").getResourceBundle().getText("error"), sap.m.MessageBox.Action.OK, null,
+				sap.m.MessageBox.show(sap.ui.getCore().getModel("i18n").getResourceBundle().getText("CompleteAllFields"), sap.m.MessageBox
+					.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error"), sap.m.MessageBox.Action.OK, null,
 					null);
 			}
 			// var valModelYr = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
@@ -579,7 +580,7 @@ sap.ui.define([
 
 			// if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "") {
 			// 	var errForm = formatter.formatErrorType("SO00003");
-			// 	var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+			// 	var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 			// 	sap.m.MessageBox.show(errMsg, sap
 			// 		.m.MessageBox.Icon.ERROR, "Error", sap
 			// 		.m.MessageBox.Action.OK, null, null);
@@ -615,7 +616,7 @@ sap.ui.define([
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" || etaFrom === null ||
 				etaTo === null || quantity == "") {
 				var errForm = formatter.formatErrorType("SO00003");
-				var errMsg = CFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
@@ -673,7 +674,7 @@ sap.ui.define([
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
 				var model;
-				var language = CFSO_controller.returnBrowserLanguage();
+				// var language = CFSO_controller.returnBrowserLanguage();
 
 				if (language === "FR") {
 					model =
@@ -684,7 +685,7 @@ sap.ui.define([
 						"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 				}
-				var dealer =sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
@@ -808,8 +809,8 @@ sap.ui.define([
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
 				var model;
-				var language = CFSO_controller.returnBrowserLanguage();
-				var dealer =sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				// var language = CFSO_controller.returnBrowserLanguage();
+				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				if (language === "FR") {
 					model =
 						"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
@@ -840,9 +841,9 @@ sap.ui.define([
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = oEvent.getSource().getSelectedKey();
 			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
-			var language = CFSO_controller.returnBrowserLanguage();
+			// var language = CFSO_controller.returnBrowserLanguage();
 			var suf;
-			var dealer =sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 			var brand;
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
@@ -940,7 +941,7 @@ sap.ui.define([
 				//----Color---------
 				//----------------
 				var color;
-				var language = CFSO_controller.returnBrowserLanguage();
+				// var language = CFSO_controller.returnBrowserLanguage();
 				if (language === "FR") {
 					color = "{mainservices>ext}/{mainservices>mktg_desc_fr}";
 				} else {

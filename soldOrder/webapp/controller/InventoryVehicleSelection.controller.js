@@ -14,12 +14,13 @@ sap.ui.define([
 	} else {
 		sDivision = "LEX";
 	}
+	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.InventoryVehicleSelection", {
 		formatter: formatter,
 
 		onInit: function () {
 			InvVehSel_controller = this;
-			InvVehSel_controller.getBrowserLanguage();
+			// InvVehSel_controller.getBrowserLanguage();
 
 			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
 				this);
@@ -74,7 +75,7 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 
-					var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 				}
@@ -154,7 +155,7 @@ sap.ui.define([
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
 			/*	if (oTable.setSelectedIndex(-1) == true) {
 					var errForm = formatter.formatErrorType("SO00007");
-					var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 				} else {
 					var aContexts = oTable.getSelectedIndices();
@@ -203,7 +204,7 @@ sap.ui.define([
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 
-						var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 					}
@@ -255,7 +256,7 @@ sap.ui.define([
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 
-						var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 					}
@@ -292,7 +293,7 @@ sap.ui.define([
 				// 	text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 				// }));
 				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-				var language = InvVehSel_controller.returnBrowserLanguage();
+				// language = InvVehSel_controller.returnBrowserLanguage();
 				var model;
 				if (language === "FR") {
 					model = "{mainservices>model}-{mainservices>model_desc_fr}";
@@ -318,7 +319,7 @@ sap.ui.define([
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
-			var language = InvVehSel_controller.returnBrowserLanguage();
+			// language = InvVehSel_controller.returnBrowserLanguage();
 			var suf;
 			if (language === "FR") {
 				suf =
@@ -389,7 +390,7 @@ sap.ui.define([
 				// 	text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 				// }));
 				var color;
-				var language = InvVehSel_controller.returnBrowserLanguage();
+				// language = InvVehSel_controller.returnBrowserLanguage();
 				if (language === "FR") {
 					color = "{mainservices>ext}/{mainservices>mktg_desc_fr}";
 				} else {
@@ -497,7 +498,7 @@ sap.ui.define([
 					var page = clicks + 1;
 					InvVehSel_controller.getView().byId("txtPageNum").setText("Page " + page);
 
-					var errMsg = InvVehSel_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 				}

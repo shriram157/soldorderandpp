@@ -8,7 +8,7 @@ sap.ui.define([
 		formatter: formatter,
 		onInit: function () {
 			VehSel_NatStock_Controller = this;
-			VehSel_NatStock_Controller.getBrowserLanguage();
+			// VehSel_NatStock_Controller.getBrowserLanguage();
 			VehSel_NatStock_Controller.getSO();
 		},
 		getSO: function () {

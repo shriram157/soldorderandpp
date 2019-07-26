@@ -10,7 +10,7 @@ sap.ui.define([
 
 		onInit: function () {
 			PPD_Zone_controller = this;
-			PPD_Zone_controller.getBrowserLanguage();
+			// PPD_Zone_controller.getBrowserLanguage();
 			var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
 			if (sLocation_conf == 0) {

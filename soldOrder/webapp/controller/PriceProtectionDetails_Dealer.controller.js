@@ -8,13 +8,14 @@ sap.ui.define([
 	var PPD_DealerCont, clicks = 0,
 		num = 0,
 		pricepro = false;
+		var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.PriceProtectionDetails_Dealer", {
 			formatter: formatter,
 
 			onInit: function () {
 				PPD_DealerCont = this;
-				AppController.getDealer();
-				var language = PPD_DealerCont.returnBrowserLanguage();
+				// AppController.getDealer();
+				 //PPD_DealerCont.returnBrowserLanguage();
 				var globalComboModel = new sap.ui.model.json.JSONModel();
 				var Obj;
 				if (language == "EN") {
@@ -133,7 +134,7 @@ sap.ui.define([
 				sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
 				this.getView().setModel(sap.ui.getCore().getModel("OrderTypeModel"), "OrderTypeModel");
 				console.log(sap.ui.getCore().getModel("OrderTypeModel"));
-				PPD_DealerCont.getBrowserLanguage();
+				// PPD_DealerCont.getBrowserLanguage();
 				PPD_DealerCont._handleServiceSuffix_Series();
 				// var sLocation = window.location.host;
 				// var sLocation_conf = sLocation.search("webide");

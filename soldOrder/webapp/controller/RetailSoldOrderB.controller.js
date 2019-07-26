@@ -8,12 +8,13 @@ sap.ui.define([
 ], function (BaseController, formatter, Filter, FilterOperator, JSONModel) {
 	"use strict";
 	var RSOB_controller, Zcustomer_No, input_ref;
+	var language =sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderB", {
 		formatter: formatter,
 
 		onInit: function () {
 			RSOB_controller = this;
-			RSOB_controller.getBrowserLanguage();
+			// RSOB_controller.getBrowserLanguage();
 			RSOB_controller.validateFlagB = false;
 			var model = new JSONModel({});
 			// AppController.getDealer();
@@ -59,7 +60,7 @@ sap.ui.define([
 
 			// 	},
 			// 	error: function (jqXHR, textStatus, errorThrown) {
-			// 		var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("Error1");
+			// 		var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Error1");
 			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 			// 			.m.MessageBox.Action.OK, null, null);
 			// 	}
@@ -85,8 +86,8 @@ sap.ui.define([
 					RSOB_controller.getView().setModel(oModel, "mode_Model");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-					var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
@@ -204,8 +205,8 @@ sap.ui.define([
 				CustModel.Phone && CustModel.City != '' && CustModel.City &&
 				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
 				CustModel.PostCode) {
-				var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error1");
-				var title = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error1");
+				var title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title5");
 				var icon = new sap.ui.core.Icon({
 					src: "sap-icon://alert",
 					size: "2rem"
@@ -224,7 +225,7 @@ sap.ui.define([
 
 				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 					"&lastName=" + CustModel.SecondName;
-				var msg1 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("msgcustomer1");
+				var msg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("msgcustomer1");
 				//lastName=" + CustModel.Name;
 				//+ "&phone=" +CustModel.Phone;
 				oBusyDialog.open();
@@ -364,8 +365,8 @@ sap.ui.define([
 								if (data.customer) {
 									Zcustomer_No = data.customer.partyID; //customerNumber;
 									Zcustomer_No = Zcustomer_No.toString();
-									var errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("success1");
-									title = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("title5");
+									var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("success1");
+									title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title5");
 									icon = new sap.ui.core.Icon({
 										src: "sap-icon://success",
 										size: "2rem"
@@ -432,9 +433,9 @@ sap.ui.define([
 				// });
 				RSOB_controller.validateFlagB = true;
 			} else {
-				var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 				var errForm = formatter.formatErrorType("SO000023");
-				errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			}
@@ -470,23 +471,23 @@ sap.ui.define([
 			}
 			if (flag1 == true && flag2 == false) {
 				var errForm = formatter.formatErrorType("SO00003");
-				errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+				errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			} else if (flag1 == false && flag2 == true) {
 				var errForm2 = formatter.formatErrorType("SO00004");
-				errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm2);
 				sap.m.MessageBox.show(errMsg2, sap
 					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			} else if (flag1 == true && flag2 == true) {
 				var errForm = formatter.formatErrorType("SO00003");
-				errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				// var errForm2 = formatter.formatErrorType("SO00004");
-				// errMsg2 = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
+				// errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm2);
 				var errMsg3 = errMsg; //+ "\n" + errMsg2;
 				sap.m.MessageBox.show(errMsg3, sap
 					.m.MessageBox.Icon.ERROR, errTitle, sap
@@ -687,7 +688,7 @@ sap.ui.define([
 			// items="{ path: 'oModel3>/'}"
 			var modelyear = this.getView().byId('modelYr_RSOB').getText();
 			var model;
-			var language = RSOB_controller.returnBrowserLanguage();
+			// var language = RSOB_controller.returnBrowserLanguage();
 
 			if (language === "FR") {
 				model =
@@ -774,8 +775,8 @@ sap.ui.define([
 					RSOB_controller.getView().setModel(oModel, "seriesModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-					var errTitle = RSOB_controller.getView().getModel("i18n").getResourceBundle().getText("error");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
@@ -785,7 +786,7 @@ sap.ui.define([
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_RSOB').getSelectedKey();
-			var language = RSOB_controller.returnBrowserLanguage();
+			// var language = RSOB_controller.returnBrowserLanguage();
 			var modelyear = this.getView().byId('modelYr_RSOB').getText();
 			var suf;
 			if (language === "FR") {
@@ -862,7 +863,7 @@ sap.ui.define([
 				// 	text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 				// }));
 				var color;
-				var language = RSOB_controller.returnBrowserLanguage();
+				// var language = RSOB_controller.returnBrowserLanguage();
 				if (language === "FR") {
 					color = "{mainservices>ext}/{mainservices>mktg_desc_fr}";
 				} else {

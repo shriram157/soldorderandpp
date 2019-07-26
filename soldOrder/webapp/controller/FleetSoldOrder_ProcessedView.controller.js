@@ -11,7 +11,7 @@ sap.ui.define([
 
 		onInit: function () {
 			FSO_PVController = this;
-			FSO_PVController.getBrowserLanguage();
+			// FSO_PVController.getBrowserLanguage();
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrder_ProcessedView").attachPatternMatched(this._getattachRouteMatched,
 				this);
 		},
@@ -34,7 +34,7 @@ sap.ui.define([
 			zrequest = req;
 			var zmodel = FSO_PVController.getView().getModel("mainservices");
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
-			var oBundle = FSO_PVController.getView().getModel("i18n").getResourceBundle();
+			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("procViewTitle", [req]);
 			FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg);
 			zmodel.refresh();
@@ -101,7 +101,7 @@ sap.ui.define([
 			// console.log(FSO_PVController.getView().byId("tble_FSO_PV").getModel().getData().ProductCollection[oIndex].Category);
 		},
 		onAfterRendering: function () {
-			// var oBundle = FSO_PVController.getView().getModel("i18n").getResourceBundle();
+			// var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			// var sRecipient = "09789898565684"; // FSO_PVController.getView().getModel().getProperty("/recipient/name");
 			// var sMsg = oBundle.getText("procViewTitle", [sRecipient]);
 			// FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg);

@@ -9,14 +9,14 @@ var RSO_ChangeVehSel_controller;
 		
 		onInit: function () {
 			RSO_ChangeVehSel_controller=this;
-			RSO_ChangeVehSel_controller.getBrowserLanguage();
+			// RSO_ChangeVehSel_controller.getBrowserLanguage();
 		},
 		_onSelect: function (evt) {
 			var oTable = RSO_ChangeVehSel_controller.getView().byId("table_RSOVehicleSel");
-			console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
+			// console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
 			var sPath = evt.getSource().getBindingContext().sPath;
 			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-			console.log(oIndex)
+			// console.log(oIndex);
 		}
 
 

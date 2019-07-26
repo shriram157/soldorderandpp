@@ -8,13 +8,13 @@ sap.ui.define([
 	var FSOS_controller, clicks = 0,
 		num = 0,
 		fleet = false;
+	var language =sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return Controller.extend("toyota.ca.SoldOrder.controller.FleetSoldOrderSummary", {
 		formatter: formatter,
 		onInit: function () {
 			FSOS_controller = this;
 			// AppController.getDealer();
-			FSOS_controller.getBrowserLanguage();
-			var language = FSOS_controller.returnBrowserLanguage();
+			// FSOS_controller.getBrowserLanguage();
 			FSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
@@ -150,7 +150,7 @@ sap.ui.define([
 			//=======================================================================================================
 			//==================Start Binidng By Dealer=========================================================
 			//=====================================================================================================
-			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
 				FSOS_controller._refresh();
 			} else {
@@ -220,7 +220,7 @@ sap.ui.define([
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 
-						var errMsg = FSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 					}
@@ -306,7 +306,7 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 
-					var errMsg = FSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 				}
@@ -339,12 +339,12 @@ sap.ui.define([
 			var vtinVal = FSOS_controller.getView().byId("vtin_FSOS").getValue();
 
 			var errForm = formatter.formatErrorType("SO000010");
-			var errMsg = FSOS_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+			var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 		},
 		_refresh: function (oEvent) {
-			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			var host = FSOS_controller.host();
 			if (x != "TCI_User") {
 
@@ -422,7 +422,7 @@ sap.ui.define([
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 
-						var errMsg = FSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 					}
@@ -493,7 +493,7 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 
-							var errMsg = FSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 						}
@@ -569,7 +569,7 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 
-							var errMsg = FSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 						}
@@ -623,7 +623,7 @@ sap.ui.define([
 		// 	FSOS_controller.data();
 		// },
 		data: function (oEvent) {
-			var x = this.getView().getModel("LoginUserModel").getProperty("/UserType");
+			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			var host = FSOS_controller.host();
 			if (x != "TCI_User") {
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=" + num + "&$filter=(";
@@ -705,7 +705,7 @@ sap.ui.define([
 
 						// var page = clicks + 1;
 						// FSOS_controller.getView().byId("txtPageNum").setText("Page " + page);
-						var errMsg = FSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 					}
@@ -782,7 +782,7 @@ sap.ui.define([
 
 							// var page = clicks + 1;
 							// FSOS_controller.getView().byId("txtPageNum").setText("Page " + page);
-							var errMsg = FSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 						}
@@ -859,7 +859,7 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 
-							var errMsg = FSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 						}

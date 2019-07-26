@@ -7,7 +7,7 @@ sap.ui.define([
 	return BaseController.extend("toyota.ca.SoldOrder.controller.notFound", {
 		formatter: formatter,
 		onInit: function () {
-			this.getBrowserLanguage();
+			// this.getBrowserLanguage();
 		}
 	});
 

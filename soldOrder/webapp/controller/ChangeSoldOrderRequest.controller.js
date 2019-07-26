@@ -7,6 +7,7 @@ sap.ui.define([
 	"use strict";
 	var CSOR_controller;
 	var requestid, zcustomerModel;
+	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.ChangeSoldOrderRequest", {
 		formatter: formatter,
 		/**
@@ -16,7 +17,7 @@ sap.ui.define([
 		 */
 		onInit: function () {
 			CSOR_controller = this;
-			CSOR_controller.getBrowserLanguage();
+			// CSOR_controller.getBrowserLanguage();
 			CSOR_controller._handleServiceSuffix_Series();
 			// var today = new Date();
 			// var day1 = new Date();
@@ -81,7 +82,7 @@ sap.ui.define([
 				CSOR_controller.getView().byId("etaTo_CSOR").setMinDate(day5);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
-				var errMsg = CSOR_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			}
 			// var etaFrom = CSOR_controller.getView().byId("etaFrom_CSOR").getValue();
@@ -92,7 +93,7 @@ sap.ui.define([
 			// 	CSOR_controller.getView().byId("etaTo_CSOR").setMinDate(day5);
 			// } else {
 			// 	var errForm = formatter.formatErrorType("SO00002");
-			// 	var errMsg = CSOR_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+			// 	var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 			// 	sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			// }
 		},
@@ -129,7 +130,7 @@ sap.ui.define([
 
 			if (valModel == "" || valSuffix == "" || valApx == "" || valColour == "" || valFrom == "" || valTo == "") {
 				var errForm = formatter.formatErrorType("SO00003");
-				var errMsg = CSOR_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
@@ -208,7 +209,7 @@ sap.ui.define([
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
 			var model;
-			var language = CSOR_controller.returnBrowserLanguage();
+			// var language = CSOR_controller.returnBrowserLanguage();
 
 			if (language === "FR") {
 				model =

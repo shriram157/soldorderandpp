@@ -100,21 +100,26 @@ sap.ui.define([
 			} else {
 				var sSelectedLocale = "EN"; // default is english 
 			}
+			var i18nModel;
 			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/") {
-				var i18nModel = new sap.ui.model.resource.ResourceModel({
+				this.sCurrentLocale = 'FR';
+					i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
-					bundleLocale: ("fr")
+					bundleLocale: ("fr"),
+					Lang:this.sCurrentLocale
 				});
 				this.getView().setModel(i18nModel, "i18n");
-				this.sCurrentLocale = 'FR';
+				sap.ui.getCore().setModel(i18nModel, "i18n");
 
 			} else {
-				var i18nModel = new sap.ui.model.resource.ResourceModel({
+				this.sCurrentLocale = 'EN';
+					i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
-					bundleLocale: ("en")
+					bundleLocale: ("en"),
+					Lang:this.sCurrentLocale
 				});
 				this.getView().setModel(i18nModel, "i18n");
-				this.sCurrentLocale = 'EN';
+				sap.ui.getCore().setModel(i18nModel, "i18n");
 			}
 		},
 		returnBrowserLanguage: function () {
@@ -198,8 +203,7 @@ sap.ui.define([
 					var LoginUserModel = new sap.ui.model.json.JSONModel();
 					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
 					var userType = oData.loggedUserType[0]; ////uncomment while deploying
-					// oData.loggedUserType[0] = "Dealer_User"; 
-					// var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
+					// oData.loggedUserType[0] = "Dealer_User"; var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					sap.ui.getCore().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);

@@ -6,17 +6,18 @@ sap.ui.define([
 ], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
 	var FSO_Z_controller, zrequest, vehicle_no;
+	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.FleetSoldOrder_ZoneApproval", {
 		formatter: formatter,
 
 		onInit: function () {
 			FSO_Z_controller = this;
-			FSO_Z_controller.getBrowserLanguage();
+			// FSO_Z_controller.getBrowserLanguage();
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrder_ZoneApproval").attachPatternMatched(this._getattachRouteMatched,
 				this);
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
-			var language = FSO_Z_controller.returnBrowserLanguage();
+			 //FSO_Z_controller.returnBrowserLanguage();
 			if (language == "EN") {
 				Object = {
 					"FSOSummary_OrderType": [{
@@ -80,7 +81,7 @@ sap.ui.define([
 			zrequest = req;
 			var zmodel = FSO_Z_controller.getView().getModel("mainservices");
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
-			var oBundle = FSO_Z_controller.getView().getModel("i18n").getResourceBundle();
+			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("zoneApprovalTitle", [req]);
 			FSO_Z_controller.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg);
 			zmodel.refresh();
@@ -138,7 +139,7 @@ sap.ui.define([
 			if (FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey() == "" || FSO_Z_controller.getView().byId('zoneapproval').getValue() ==
 				"") {
 				var errForm = formatter.formatErrorType("SO00003");
-				var errMsg = FSO_Z_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				// var errForm2 = formatter.formatErrorType("SO00004");
 				// errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				var errMsg3 = errMsg; // + "\n" + errMsg2;
@@ -170,7 +171,7 @@ sap.ui.define([
 			if (FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey() == "" || FSO_Z_controller.getView().byId('zoneapproval').getValue() ==
 				"") {
 				var errForm = formatter.formatErrorType("SO00003");
-				var errMsg = FSO_Z_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				// var errForm2 = formatter.formatErrorType("SO00004");
 				// errMsg2 = RSOA_controller.getView().getModel("i18n").getResourceBundle().getText(errForm2);
 				var errMsg3 = errMsg; // + "\n" + errMsg2;
@@ -198,7 +199,7 @@ sap.ui.define([
 			}
 		},
 		onAfterRendering: function () {
-			// var oBundle = FSO_Z_controller.getView().getModel("i18n").getResourceBundle();
+			// var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			// var sRecipient = "09787878784"; // FSO_Z_controller.getView().getModel().getProperty("/recipient/name");
 			// var sMsg = oBundle.getText("zoneApprovalTitle", [sRecipient]);
 			// FSO_Z_controller.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg);

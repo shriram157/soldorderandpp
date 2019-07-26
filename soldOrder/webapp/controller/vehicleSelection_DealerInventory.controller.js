@@ -12,7 +12,7 @@ sap.ui.define([
 
 		onInit: function () {
 			VehSel_DealerInv_controller = this;
-			VehSel_DealerInv_controller.getBrowserLanguage();
+			// VehSel_DealerInv_controller.getBrowserLanguage();
 			this.getOwnerComponent().getRouter().getRoute("vehicleSelection_DealerInventory").attachPatternMatched(this._getattachRouteMatched,
 				this);
 
@@ -24,7 +24,7 @@ sap.ui.define([
 			} else {
 				this.sDivision = "LEX";
 			}
-			var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
+			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var Msg = oBundle.getText("novehicletable");
 			VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").setNoData(Msg);
 			zrequest = parameters.getParameters().arguments.Soreq;
@@ -118,7 +118,7 @@ sap.ui.define([
 					}, // function import parameters
 					success: function (oData, response) {
 						if (oData.Type == 'E') {
-							var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
+							var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 							var sMsg = oBundle.getText("SO000013", [zrequest]);
 							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 								.m.MessageBox.Action.OK, null, null);

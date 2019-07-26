@@ -5,6 +5,7 @@ sap.ui.define([
 	"use strict";
 	var SOCR_controller;
 	var requestid;
+	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.SoldOrderChangeReason", {
 		formatter: formatter,
 		/**
@@ -14,12 +15,12 @@ sap.ui.define([
 		 */
 		onInit: function () {
 			SOCR_controller = this;
-			SOCR_controller.getBrowserLanguage();
+			// SOCR_controller.getBrowserLanguage();
 			SOCR_controller.getOwnerComponent().getRouter().getRoute("SoldOrderChangeReason").attachPatternMatched(this._getattachRouteMatched,
 				this);
 			var Obj;
 			var changeReasonModel = new sap.ui.model.json.JSONModel();
-			var language = SOCR_controller.returnBrowserLanguage();
+			//sap.ui.getCore().getModel("i18n").getProperty("/Lang");
 			if (language == "EN") {
 				Obj = {
 
@@ -60,7 +61,7 @@ sap.ui.define([
 		},
 		_getattachRouteMatched: function (parameters) {
 			requestid = parameters.getParameters().arguments.Soreq;
-			var oBundle = SOCR_controller.getView().getModel("i18n").getResourceBundle();
+			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var sRecipient = requestid; // SOCR_controller.getView().getModel().getProperty("/recipient/name");
 			var sMsg = oBundle.getText("soldOrderReqTitle", [sRecipient]);
 			SOCR_controller.getView().byId("label_SoldOrderid").setText(sMsg);

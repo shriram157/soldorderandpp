@@ -9,6 +9,7 @@ sap.ui.define([
 		num, page = 0,
 		count1 = 11000,
 		filter = false;
+		var language =sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderSummary", {
 		formatter: formatter,
 		onInit: function () {
@@ -22,11 +23,11 @@ sap.ui.define([
 				RSOBusyIndicator:false
 			});
 			RSOS_controller.getView().setModel(RSOModel, "RSOModel");
-			RSOS_controller.getBrowserLanguage();
+			// RSOS_controller.getBrowserLanguage();
 			// AppController.getDealer();
 			RSOS_controller._handleServiceSuffix_Series();
 		
-			var language = RSOS_controller.returnBrowserLanguage();
+			// var language = RSOS_controller.returnBrowserLanguage();
 
 			var oModel = new sap.ui.model.json.JSONModel();
 			RSOS_controller.getView().setModel(oModel, "retailsumModel");
@@ -234,8 +235,8 @@ sap.ui.define([
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 						RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-						var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null);
 
 					}
@@ -281,8 +282,8 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 						"error"), sap.m.MessageBox.Action.OK, null, null);
 				}
 			});
@@ -352,8 +353,8 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-					var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 						"error"), sap.m.MessageBox.Action.OK, null, null);
 
 				}
@@ -433,8 +434,8 @@ sap.ui.define([
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 						RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-						var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null);
 
 					}
@@ -499,8 +500,8 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-							var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 								"error"), sap.m.MessageBox.Action.OK, null, null);
 
 						}
@@ -570,8 +571,8 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-							var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 								"error"), sap.m.MessageBox.Action.OK, null, null);
 
 						}
@@ -602,8 +603,8 @@ sap.ui.define([
 			var V_No;
 			if (vinVal == "" && vtinVal == "") {
 				var errForm = formatter.formatErrorType("SO000010");
-				var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
-				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 					"error"), sap.m.MessageBox.Action.OK, null, null);
 			} else {
 				if (vinVal !== "") {
@@ -621,12 +622,12 @@ sap.ui.define([
 					success: function (oData, response) {
 						RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
 						if (oData.Type == "E") {
-							var oBundle = RSOS_controller.getView().getModel("i18n").getResourceBundle();
+							var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 							var sMsg = oBundle.getText("SO000013", [zrequest]);
-							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 								"error"), sap.m.MessageBox.Action.OK, null, null);
 						} else {
-							var oBundle = RSOS_controller.getView().getModel("i18n").getResourceBundle();
+							var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 							var sMsg = oBundle.getText("SO000014", [zrequest]);
 							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK, null, null);
 							var oTbl = RSOS_controller.getView().byId("tbl_FSOD");
@@ -758,8 +759,8 @@ sap.ui.define([
 						RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
 						// var page = clicks + 1;
 						// RSOS_controller.getView().byId("txtPageNum").setText("Page " + page);
-						var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null);
 					}
 				});
@@ -823,8 +824,8 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-							var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 								"error"), sap.m.MessageBox.Action.OK, null, null);
 
 						}
@@ -897,8 +898,8 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-							var errMsg = RSOS_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, RSOS_controller.getView().getModel("i18n").getResourceBundle().getText(
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 								"error"), sap.m.MessageBox.Action.OK, null, null);
 
 						}

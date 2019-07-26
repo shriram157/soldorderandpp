@@ -8,7 +8,7 @@ sap.ui.define([
 		formatter: formatter,
 		onInit: function () {
 			NFSO_controller = this;
-			NFSO_controller.getBrowserLanguage();
+			// NFSO_controller.getBrowserLanguage();
 
 			// var oRouter = this.getRouter(); 
 			// oRouter.attachMatched(this._onRouteMatched, this);
@@ -51,7 +51,7 @@ sap.ui.define([
 			var zmodel = NFSO_controller.getView().getModel("mainservices");
 
 			var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
-			var oBundle = NFSO_controller.getView().getModel("i18n").getResourceBundle();
+			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 
 			var sMsg = oBundle.getText("NationalFleetSoldOrderViewtitle", [req]);
 			NFSO_controller.getView().byId("NationalFleetSoldOrderViewid").setText(sMsg);
@@ -159,8 +159,8 @@ sap.ui.define([
 		},
 		_onDelete: function (evt) {
 			var evtContext = evt.getSource().getBindingContext(); // "/ProductCollection/0"
-			var errMsg = NFSO_controller.getView().getModel("i18n").getResourceBundle().getText("deleteError");
-			var title = NFSO_controller.getView().getModel("i18n").getResourceBundle().getText("title1");
+			var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("deleteError");
+			var title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title1");
 			var icon = new sap.ui.core.Icon({
 				src: "sap-icon://alert",
 				size: "2rem"
@@ -203,7 +203,7 @@ sap.ui.define([
 			var com = NFSO_controller.getView().byId("comments_NFSO").getValue();
 			if (com == "") {
 				var errForm = formatter.formatErrorType("SO000012");
-				var errMsg = NFSO_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);

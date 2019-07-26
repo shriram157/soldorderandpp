@@ -11,12 +11,13 @@ sap.ui.define([
 	var zrequest;
 	var ppdFlages;
 	var zcustomerModel, zinventoryModel;
+	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder", {
 		formatter: formatter,
 
 		onInit: function (OEvent) {
 			RSO_MSO_controller = this;
-			RSO_MSO_controller.getBrowserLanguage();
+			// RSO_MSO_controller.getBrowserLanguage();
 			RSO_MSO_controller._handleServiceSuffix_Series();
 			RSO_MSO_controller._oBusyDialog = new sap.m.BusyDialog();
 			zcustomerModel = new JSONModel({});
@@ -24,7 +25,7 @@ sap.ui.define([
 			this.getView().setModel(zcustomerModel, 'Customer');
 			this.getView().setModel(zinventoryModel, 'Inventory');
 			this.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(this._getattachRouteMatched, this);
-			var language = RSO_MSO_controller.returnBrowserLanguage();
+			// var language = RSO_MSO_controller.returnBrowserLanguage();
 
 			var salesTypeModel = new sap.ui.model.json.JSONModel();
 			var Obj;
@@ -707,7 +708,7 @@ sap.ui.define([
 					'mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-				var language = RSO_MSO_controller.returnBrowserLanguage();
+				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				var model;
 				if (language === "FR") {
 					model =
@@ -737,7 +738,7 @@ sap.ui.define([
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
-			var language = RSO_MSO_controller.returnBrowserLanguage();
+			// var language = RSO_MSO_controller.returnBrowserLanguage();
 			var suf;
 			if (language === "FR") {
 				suf =
@@ -790,7 +791,7 @@ sap.ui.define([
 					})
 				});
 				var color;
-				var language = RSO_MSO_controller.returnBrowserLanguage();
+				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				if (language === "FR") {
 					color = "{mainservices>ext}/{mainservices>mktg_desc_fr}";
 				} else {

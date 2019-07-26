@@ -8,14 +8,15 @@ sap.ui.define([
 	var FSOD_controller, zrequest, clicks = 0,
 		num = 0,
 		filter = false;
+		var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();//FSOD_controller.returnBrowserLanguage();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.FleetSoldOrderDetails", {
 		formatter: formatter,
 		onInit: function () {
 			FSOD_controller = this;
-			FSOD_controller.getBrowserLanguage();
+			// FSOD_controller.getBrowserLanguage();
 			// AppController.getDealer();
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrderDetails").attachPatternMatched(this._onObjectMatched, this);
-			var language = FSOD_controller.returnBrowserLanguage();
+			
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
 			if (language == "EN") {
@@ -256,7 +257,7 @@ sap.ui.define([
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 
-						var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 					}
@@ -398,7 +399,7 @@ sap.ui.define([
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 
-						var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 					}
@@ -480,7 +481,7 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 
-							var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 						}
@@ -562,7 +563,7 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 
-							var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 						}
@@ -706,7 +707,7 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 
-					var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 				}
@@ -734,7 +735,7 @@ sap.ui.define([
 			var V_No;
 			if (vinVal == "" && vtinVal == "") {
 				var errForm = formatter.formatErrorType("SO000010");
-				var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			} else {
 				if (vinVal !== "") {
@@ -751,12 +752,12 @@ sap.ui.define([
 					}, // function import parameters
 					success: function (oData, response) {
 						if (oData.Type == 'E') {
-							var oBundle = FSOD_controller.getView().getModel("i18n").getResourceBundle();
+							var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 							var sMsg = oBundle.getText("SO000013", [zrequest]);
 							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 								.m.MessageBox.Action.OK, null, null);
 						} else {
-							var oBundle = FSOD_controller.getView().getModel("i18n").getResourceBundle();
+							var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 							var sMsg = oBundle.getText("SO000014", [zrequest]);
 							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "Success", sap
 								.m.MessageBox.Action.OK, null, null);
@@ -892,7 +893,7 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 
-							var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 						}
@@ -974,7 +975,7 @@ sap.ui.define([
 							},
 							error: function (jqXHR, textStatus, errorThrown) {
 
-								var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+								var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 								sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 							}
@@ -1056,7 +1057,7 @@ sap.ui.define([
 							},
 							error: function (jqXHR, textStatus, errorThrown) {
 
-								var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+								var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 								sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 							}
@@ -1073,7 +1074,7 @@ sap.ui.define([
 					var vtinVal = FSOD_controller.getView().byId("vtin_FSOD").getValue();
 
 					var errForm = formatter.formatErrorType("SO000010");
-					var errMsg = FSOD_controller.getView().getModel("i18n").getResourceBundle().getText(errForm);
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
 				}*/
