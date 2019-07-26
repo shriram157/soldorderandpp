@@ -201,12 +201,13 @@ sap.ui.define([
 				async: false,
 				success: function (oData) {
 					var LoginUserModel = new sap.ui.model.json.JSONModel();
-					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
 					var userType = oData.loggedUserType[0]; ////uncomment while deploying
 					// oData.loggedUserType[0] = "Dealer_User"; var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
-					sap.ui.getCore().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
+					LoginUserModel.setProperty("/UserType", oData.loggedUserType[0]);
+					LoginUserModel.updateBindings(true);
+					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
 					switch (userType) {
 					case "Dealer_Parts_Admin":
 						// console.log("Dealer Parts");
