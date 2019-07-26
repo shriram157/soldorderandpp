@@ -18,7 +18,7 @@ sap.ui.define([
 			RSOB_controller.validateFlagB = false;
 			var model = new JSONModel({});
 			// AppController.getDealer();
-			RSOB_controller.setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			RSOB_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			RSOB_controller._handleServiceSuffix_Series();
 			RSOB_controller.getView().setModel(model, 'Customer');
 			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderB").attachPatternMatched(this._getattachRouteMatched, this);

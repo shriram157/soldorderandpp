@@ -15,7 +15,7 @@ sap.ui.define([
 			FSOD_controller = this;
 			// FSOD_controller.getBrowserLanguage();
 			// AppController.getDealer();
-			FSOD_controller.setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			FSOD_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrderDetails").attachPatternMatched(this._onObjectMatched, this);
 			
 			var globalComboModel = new sap.ui.model.json.JSONModel();

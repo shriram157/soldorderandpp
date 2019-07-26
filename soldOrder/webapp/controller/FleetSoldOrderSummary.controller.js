@@ -15,7 +15,7 @@ sap.ui.define([
 			FSOS_controller = this;
 			// AppController.getDealer();
 			
-			FSOS_controller.setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			FSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			// FSOS_controller.getBrowserLanguage();
 			FSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var globalComboModel = new sap.ui.model.json.JSONModel();
