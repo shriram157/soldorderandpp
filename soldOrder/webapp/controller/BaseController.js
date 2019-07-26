@@ -41,28 +41,17 @@ sap.ui.define([
 			// this.getDealer();
 			var oGetText = oEvent.getSource().getText();
 			if (oGetText === this.oBundle.getText("menu1")) {
-
 				this.getOwnerComponent().getRouter().navTo("RouteView1", {}, true); //page 1
-
 			} else if (oGetText === this.oBundle.getText("menu2")) {
-
 				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary"); //page 10
-
 			} else if (oGetText === this.oBundle.getText("menu3")) {
-
 				this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
-
 			} else if (oGetText === this.oBundle.getText("menu4")) { //dicey sol, check it again 
-
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary");
-
 			} else if (oGetText === this.oBundle.getText("menu5")) {
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
-
 			} else if (oGetText === this.oBundle.getText("menu9")) {
-
 				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer"); //page 16
-
 			} else if (oGetText === this.oBundle.getText("menu7")) {
 				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderB", {
 					modelyear: '2018',

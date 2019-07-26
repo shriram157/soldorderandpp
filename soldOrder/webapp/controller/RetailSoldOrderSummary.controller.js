@@ -21,12 +21,13 @@ sap.ui.define([
 			RSOModel.setData({
 				RSOBusyIndicator:false
 			});
+			
 			RSOS_controller.getView().setModel(RSOModel, "RSOModel");
-			// RSOS_controller.getBrowserLanguage();
-			AppController.getDealer();
 			console.log(sap.ui.getCore().getModel("LoginUserModel"));
 			RSOS_controller._handleServiceSuffix_Series();
 			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"),"LoginUserModel");
+			// RSOS_controller.getBrowserLanguage();
+			// AppController.getDealer();
 			// var language = RSOS_controller.returnBrowserLanguage();
 
 			var oModel = new sap.ui.model.json.JSONModel();
@@ -172,9 +173,15 @@ sap.ui.define([
 			//=====================================================================================================
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
+				
+			RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
+			console.log("loading data");
 				RSOS_controller._refresh();
 
 			} else {
+				
+			RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
+			console.log("loading data");
 
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
@@ -205,7 +212,6 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
-				RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -362,7 +368,7 @@ sap.ui.define([
 
 		},
 		_refresh: function (oEvent) {
-			RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
+			// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 			var host = RSOS_controller.host();
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
