@@ -13,10 +13,7 @@ sap.ui.define([
 		formatter: formatter,
 		onInit: function () {
 			FSOS_controller = this;
-			// AppController.getDealer();
-
 			FSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
-			// FSOS_controller.getBrowserLanguage();
 			FSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
@@ -38,31 +35,27 @@ sap.ui.define([
 				};
 			} else {
 				Obj = {
-					"FSOSummary_Status": [
-
-						{
-							"key": "REQUESTED",
-							"text": "REQUESTED"
-						}, {
-							"key": "APPROVED",
-							"text": "APPROVED"
-						}, {
-							"key": "REJECTED",
-							"text": "REJECTED"
-						}, {
-							"key": "PROCESSED",
-							"text": "PROCESSED"
-						}
-					]
+					"FSOSummary_Status": [{
+						"key": "REQUESTED",
+						"text": "REQUESTED"
+					}, {
+						"key": "APPROVED",
+						"text": "APPROVED"
+					}, {
+						"key": "REJECTED",
+						"text": "REJECTED"
+					}, {
+						"key": "PROCESSED",
+						"text": "PROCESSED"
+					}]
 				};
-
 			}
 
 			globalComboModel.setData(Obj);
 			globalComboModel.updateBindings(true);
 			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
-			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"), "globalComboModel");
-			console.log(sap.ui.getCore().getModel("globalComboModel"));
+			this.getView().setModel(globalComboModel, "globalComboModel");
+			console.log("globalComboModel",globalComboModel);
 
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
@@ -111,10 +104,8 @@ sap.ui.define([
 			OrderTypeModel.setData(Object);
 			OrderTypeModel.updateBindings(true);
 			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
-			this.getView().setModel(sap.ui.getCore().getModel("OrderTypeModel"), "OrderTypeModel");
-			console.log(sap.ui.getCore().getModel("OrderTypeModel"));
-			/*	FSOS_controller.flagSipUser = false;
-				FSOS_controller.requestStatus = "";*/
+			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
+			console.log("OrderTypeModel",OrderTypeModel);
 			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrderSummary").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
@@ -124,6 +115,14 @@ sap.ui.define([
 			FSOLocalModel.setData({
 				FSOBusyIndicator: false
 			});
+			var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				this.sPrefix = "/soldorder_node";
+			} else {
+				this.sPrefix = "";
+			}
+			this.nodeJsUrl = this.sPrefix + "/node";
 
 			FSOS_controller.getView().setModel(FSOLocalModel, "FSOLocalModel");
 			this.getView().byId("idmenu1").setType('Transparent');
@@ -140,7 +139,7 @@ sap.ui.define([
 			mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems());
 			mcb_ordTyp_FSOS.setSelectedItems(mcb_ordTyp_FSOS.getItems());
 			mcb_dealer_FSOS.setSelectedItems(mcb_dealer_FSOS.getItems());
-			var host = FSOS_controller.host();
+			// var host = FSOS_controller.host();
 			//=======================================================================================================
 			//==================Start Bindidng By Dealer=========================================================
 			//=====================================================================================================
@@ -151,7 +150,7 @@ sap.ui.define([
 				FSOS_controller._refresh();
 			} else {
 				FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
+				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -226,7 +225,7 @@ sap.ui.define([
 			// 	FSOS_controller._refresh();
 			// } else {
 
-			// 	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
+			// 	var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 			// 	for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 			// 		var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 			// 		oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -282,9 +281,8 @@ sap.ui.define([
 		},
 		_refreshCombo: function (evt) {
 			fleet = true;
-			var host = FSOS_controller.host();
 			FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
+			var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 				var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 				oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -368,10 +366,9 @@ sap.ui.define([
 		},
 		_refresh: function (oEvent) {
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			var host = FSOS_controller.host();
+			
 			if (x != "TCI_User") {
-
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
+				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -380,7 +377,6 @@ sap.ui.define([
 					} else {
 						oUrl = oUrl + " or ";
 					}
-
 				}
 				for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
 					var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
@@ -391,7 +387,6 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
-
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
@@ -401,6 +396,7 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
+				
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -417,7 +413,6 @@ sap.ui.define([
 
 						var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
 						if (DataModel.getData().length != undefined) {
-
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
@@ -437,7 +432,7 @@ sap.ui.define([
 				});
 			} else {
 				if (fleet == false) {
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -446,7 +441,6 @@ sap.ui.define([
 						} else {
 							oUrl = oUrl + " or ";
 						}
-
 					}
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
 						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
@@ -457,6 +451,7 @@ sap.ui.define([
 							oUrl = oUrl + " or ";
 						}
 					}
+					
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -473,7 +468,6 @@ sap.ui.define([
 
 							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
 							if (DataModel.getData().length != undefined) {
-
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
@@ -493,7 +487,7 @@ sap.ui.define([
 					});
 				} else {
 
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -502,7 +496,6 @@ sap.ui.define([
 						} else {
 							oUrl = oUrl + " or ";
 						}
-
 					}
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
 						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
@@ -513,11 +506,10 @@ sap.ui.define([
 							oUrl = oUrl + " or ";
 						}
 					}
-
-					// for (var i = 0; i < this.getView().byId("cb_dealer_FSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
 					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
 					oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
+					
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -534,7 +526,6 @@ sap.ui.define([
 
 							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
 							if (DataModel.getData().length != undefined) {
-
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
@@ -568,9 +559,8 @@ sap.ui.define([
 		data: function (oEvent) {
 			FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			var host = FSOS_controller.host();
 			if (x != "TCI_User") {
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=" + num + "&$filter=(";
+				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -600,6 +590,7 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
+				
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -616,7 +607,6 @@ sap.ui.define([
 
 						var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
 						if (DataModel.getData().length != undefined) {
-
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
@@ -635,7 +625,7 @@ sap.ui.define([
 				});
 			} else {
 				if (fleet == false) {
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=" + num + "&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -672,7 +662,6 @@ sap.ui.define([
 
 							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
 							if (DataModel.getData().length != undefined) {
-
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
@@ -693,7 +682,7 @@ sap.ui.define([
 
 				} else {
 
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=" + num + "&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -715,7 +704,6 @@ sap.ui.define([
 					}
 					var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
 					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
-
 					oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
 
 					$.ajax({
@@ -734,7 +722,6 @@ sap.ui.define([
 
 							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
 							if (DataModel.getData().length != undefined) {
-
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);

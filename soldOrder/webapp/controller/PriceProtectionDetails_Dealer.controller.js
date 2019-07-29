@@ -14,9 +14,7 @@ sap.ui.define([
 
 		onInit: function () {
 			PPD_DealerCont = this;
-			// AppController.getDealer();
 			PPD_DealerCont.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
-			//PPD_DealerCont.returnBrowserLanguage();
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
 			if (language == "EN") {
@@ -75,8 +73,8 @@ sap.ui.define([
 			globalComboModel.setData(Obj);
 			globalComboModel.updateBindings(true);
 			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
-			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"), "globalComboModel");
-			console.log(sap.ui.getCore().getModel("globalComboModel"));
+			this.getView().setModel(globalComboModel, "globalComboModel");
+			console.log("globalComboModel",globalComboModel);
 
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
@@ -130,10 +128,9 @@ sap.ui.define([
 			OrderTypeModel.setData(Object);
 			OrderTypeModel.updateBindings(true);
 			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
-			this.getView().setModel(sap.ui.getCore().getModel("OrderTypeModel"), "OrderTypeModel");
-			console.log(sap.ui.getCore().getModel("OrderTypeModel"));
+			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
+			console.log("OrderTypeModel",OrderTypeModel);
 			// PPD_DealerCont.getBrowserLanguage();
-			PPD_DealerCont._handleServiceSuffix_Series();
 			this.getOwnerComponent().getRouter().getRoute("PriceProtectionDetails_Dealer").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
@@ -159,15 +156,24 @@ sap.ui.define([
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			var host = PPD_DealerCont.host();
+			
+			var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				this.sPrefix = "/soldorder_node";
+			} else {
+				this.sPrefix = "";
+			}
+			this.nodeJsUrl = this.sPrefix + "/node";
 
+			PPD_DealerCont._handleServiceSuffix_Series(this.nodeJsUrl);
 			if (x != "TCI_User") {
 				PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", true);
 				console.log("loading data");
 				PPD_DealerCont._refresh();
 			} else {
 				PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", true);
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
+				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(status eq '" + status + "')";
@@ -232,13 +238,13 @@ sap.ui.define([
 			// mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			// mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
 			// var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			// var host = PPD_DealerCont.host();
+			
 
 			// if (x != "TCI_User") {
 			// 	PPD_DealerCont._refresh();
 			// } else {
 
-			// 	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
+			// 	var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
 			// 	for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 			// 		var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 			// 		oUrl = oUrl + "(status eq '" + status + "')";
@@ -293,10 +299,10 @@ sap.ui.define([
 		},
 
 		_refresh: function () {
-			var host = PPD_DealerCont.host();
+			
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
+				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(status eq '" + status + "')";
@@ -361,7 +367,7 @@ sap.ui.define([
 				});
 			} else {
 				if (pricepro == true) {
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(status eq '" + status + "')";
@@ -423,7 +429,7 @@ sap.ui.define([
 					});
 				} else {
 
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(status eq '" + status + "')";
@@ -483,9 +489,9 @@ sap.ui.define([
 		},
 		_refreshCombo: function (evt) {
 			pricepro = true;
-			var host = PPD_DealerCont.host();
+			
 			PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", true);
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
+			var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=0&$filter=(";
 			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 				var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 				oUrl = oUrl + "(status eq '" + status + "')";
@@ -565,9 +571,8 @@ sap.ui.define([
 			}
 
 		},
-		_handleServiceSuffix_Series: function () {
-			var host = PPD_DealerCont.host();
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
+		_handleServiceSuffix_Series: function (nodeJsUrl) {
+			var oUrl = nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
 			$.ajax({
 				url: oUrl,
 				method: 'GET',
@@ -610,10 +615,10 @@ sap.ui.define([
 		},
 		data: function (oEvent) {
 			PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", true);
-			var host = PPD_DealerCont.host();
+			
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=" + num + "&$filter=(";
+				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(status eq '" + status + "')";
@@ -678,7 +683,7 @@ sap.ui.define([
 				});
 			} else {
 				if (pricepro == false) {
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=" + num + "&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(status eq '" + status + "')";
@@ -734,7 +739,7 @@ sap.ui.define([
 					});
 				} else {
 
-					var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=" + num + "&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=10&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(status eq '" + status + "')";

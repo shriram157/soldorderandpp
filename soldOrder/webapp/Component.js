@@ -12,12 +12,6 @@ sap.ui.define([
 		metadata: {
 			manifest: "json"
 		},
-
-		/**
-		 * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
-		 * @public
-		 * @override
-		 */
 		init: function () {
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
@@ -54,6 +48,57 @@ sap.ui.define([
 				});
 				origOpen.apply(this, arguments);
 			};
+			
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			this.brand;
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+				if (this.sDivision == "10")
+				// set the toyoto logo
+				{
+					this.brand = "TOY";
+				} else {
+					// set the lexus logo
+					this.brand = "LEX"; // }
+				}
+			}
+			
+			var oModel = new sap.ui.model.json.JSONModel();
+			// oModel.setData();
+			sap.ui.getCore().setModel(oModel, "seriesModel");
+			var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				this.sPrefix = "/soldorder_node";
+			} else {
+				this.sPrefix = "";
+			}
+			this.nodeJsUrl = this.sPrefix + "/node";
+			// return this.nodeJsUrl;
+			this.getSeriesData(this.brand,this.nodeJsUrl);
+		},
+		
+		getSeriesData:function(brand,nodeJsUrl){
+			sap.ui.core.BusyIndicator.show();
+			var oUrl = nodeJsUrl + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+				"' and zzzadddata2 eq 'X' and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
+			$.ajax({
+				url: oUrl,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					sap.ui.core.BusyIndicator.hide();
+					sap.ui.getCore().getModel("seriesModel").setData(data.d.results);
+					sap.ui.getCore().getModel("seriesModel").updateBindings(true);
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.ui.core.BusyIndicator.hide();
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+						"error"), sap.m.MessageBox.Action.OK, null, null);
+				}
+			});
 		}
 	});
 });
