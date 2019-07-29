@@ -22,7 +22,7 @@ sap.ui.define([
 				var name = evt.getParameter('name');
 				jQuery.sap.log.info("Route name is : " + name);
 			});
-			this.getDealer();
+			// this.getDealer();
 		},
 
 		host: function () {
