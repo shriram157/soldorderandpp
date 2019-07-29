@@ -115,7 +115,7 @@ sap.ui.define([
 			FSOLocalModel.setData({
 				FSOBusyIndicator: false
 			});
-			num = 0;
+			num = 0;clicks = 0;
 			var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
 			if (sLocation_conf == 0) {
