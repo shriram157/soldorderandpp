@@ -145,23 +145,6 @@
 									</HBox>
 								</items>
 							</VBox>
-							<!--<Label wrapping="true" text="{i18n>CurrrentETA}"/>-->
-							<!--<VBox>-->
-							<!--	<items>-->
-							<!--		<HBox>-->
-							<!--			<items>-->
-							<!--				<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>-->
-							<!--				<Text text="{path:'mainservices>ETAFrom', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>-->
-							<!--			</items>-->
-							<!--		</HBox>-->
-							<!--		<HBox>-->
-							<!--			<items>-->
-							<!--				<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>-->
-							<!--				<Text text="{path:'mainservices>ETATo', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>-->
-							<!--			</items>-->
-							<!--		</HBox>-->
-							<!--	</items>-->
-							<!--</VBox>-->
 							<Label wrapping="true" text="{i18n>VehDelDate}"/>
 							<Text
 								text="{path:'mainservices>VDelDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
@@ -187,6 +170,8 @@
 							<Text text="{Customer>/person/firstName}"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
 							<Text text="{Customer>/person/familyName}"/>
+							<Label wrapping="true" text="{i18n>custname}"/>
+							<Text text="{mainservices>CustName1}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Text text="{Customer>/addresses/0/line1}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
@@ -201,6 +186,8 @@
 							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Text text="{mainservices>ZdriverLiNum}"/>
+							<Label wrapping="true" text="{i18n>FanNumber}"/>
+							<Text text="{mainservices>Fan}"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>
 							<!--<Label wrapping="true" text="{i18n>CustName}" />-->
@@ -211,6 +198,9 @@
 							<Label wrapping="true" text="{i18n>scustname}"/>
 							<Text
 								text="{parts:[{path:'mainservices>NameLast'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Label wrapping="true" text="{i18n>custname}"/>
+							<Text
+								text="{parts:[{path:'mainservices>CustName1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Text
 								text="{parts:[{path:'mainservices>Street'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
@@ -232,6 +222,9 @@
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Text
 								text="{parts:[{path:'mainservices>Qausp'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+								<Label wrapping="true" text="{i18n>FanNumber}"/>
+							<Text
+								text="{parts:[{path:'mainservices>Fan'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>PriceProtectionDetails}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>Eligibility}"/>
