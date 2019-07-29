@@ -141,7 +141,7 @@ sap.ui.define([
 				PPDBusyIndicator: false
 			});
 			PPD_DealerCont.getView().setModel(PPDLocalModel, "PPDLocalModel");
-			
+			num = 0;
 			this.getView().byId("idmenu1").setType('Transparent');
 			this.getView().byId("idmenu2").setType('Transparent');
 			this.getView().byId("idmenu3").setType('Transparent');

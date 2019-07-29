@@ -21,6 +21,7 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			if (oEvent.getParameter("name") == "RetailSoldOrderSummary") {
+				num = 0;
 				RSOS_controller = this;
 				var RSOModel = new sap.ui.model.json.JSONModel();
 				RSOModel.setData({
