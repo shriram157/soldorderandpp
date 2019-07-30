@@ -177,14 +177,14 @@ sap.ui.define([
 									success: function (data, textStatus, jqXHR) {
 										console.log("customer data", data);
 										if (data.customer) {
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('NameFirst',data.customer.person[0].firstName);
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('NameLast',data.customer.person[0].familyName);
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('NameFirst',data.customer.person.firstName);
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('NameLast',data.customer.person.familyName);
 											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Street',data.customer.addresses[0].line1);
 											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('City1',data.customer.addresses[0].city);
 											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('PostCode1',data.customer.addresses[0].postalCode);
 											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Region',data.customer.addresses[0].provinceCode);
 											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('TelNumber',data.customer.phones[0].areaCode+""+data.customer.phones[0].localNumber);
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('ZzendcuEmail',data.customer.electronicAddresses[0].uriID);
+											if(data.customer.electronicAddresses){RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('ZzendcuEmail',data.customer.electronicAddresses[0].uriID);}
 											// zcustomerModel.setData(data.customer);
 										}
 									},
