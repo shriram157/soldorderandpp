@@ -51,7 +51,7 @@
 							</VBox>
 							<t:Table id="tbl_FSOD" selectionMode="None" rows="{fleetdetailsModel>/}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount="8">
 								<t:columns>
-									<t:Column >
+									<t:Column filterProperty="ZzsoReqNo" sortProperty="ZzsoReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{fleetdetailsModel>ZzsoReqNo}" wrapping="true" press="_navToRSO"/>

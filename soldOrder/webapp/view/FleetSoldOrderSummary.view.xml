@@ -84,6 +84,12 @@
 											<Link text="{fleetsumModel>ZsoFltReqNo}" press="_navToSoldOrder"/>
 										</t:template>
 									</t:Column>
+									<t:Column filterProperty="NameOrg1" sortProperty="NameOrg1">
+										<Label text="{i18n>CustName}" class="TableLabel"/>
+										<t:template>
+											<Text text="{fleetsumModel>NameOrg1}"/>
+										</t:template>
+									</t:Column>
 									<t:Column>
 										<Label id="tbl_lbl_dealer_FSOS" visible="true" text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
@@ -102,12 +108,6 @@
 										<Label text="{i18n>FanNumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZfanNo}"/>
-										</t:template>
-									</t:Column>
-									<t:Column>
-										<Label text="{i18n>CustName}" class="TableLabel"/>
-										<t:template>
-											<Text text="{fleetsumModel>NameOrg1}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>

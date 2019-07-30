@@ -6,11 +6,6 @@
 			<Page showHeader="false">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
-					<!--<Button xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="{i18n>Back}" press="onNavBack" class="sapUiMediumMarginBegin">-->
-					<!--<layoutData>-->
-					<!--    <l:GridData xmlns:l="sap.ui.layout" span="L2 M3 S6" id="data67"/>-->
-					<!--</layoutData>-->
-					<!--</Button>-->
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
 						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
 						singleContainerFullSize="false">
@@ -26,51 +21,17 @@
 									<core:Item key="{seriesModel>Zzseries}" text="{seriesModel>ZzseriesDescEn}"/>
 								</items>
 							</ComboBox>
-							<!--<Text text="{mainservices>Zzseries}"/>-->
 							<Label wrapping="true" text="{i18n>Model}"/>
-							<!--<Text text="{path:'mainservices>Zzmodel',filters: [{ path: 'Zzmodel', operator: 'EQ', value1: 'mainservices>Zzmodel']}}"/>-->
-							<!--<Label wrapping="true" text="{i18n>Suffix}"/>-->
-							<!--<Text-->
-							<!--	text="{parts: [{path:'mainservices>Zzsuffix'},{path:'mainservices>Zzsuffix'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
-							<!--<Label wrapping="true" text="{i18n>APX}"/>-->
-							<!--<Text text="{mainservices>Zzapx}"/>-->
-							<!--<Label wrapping="true" text="{i18n>colour}"/>-->
-							<!--<Text wrapping="true"-->
-							<!--	text="{parts: [{path:'mainservices>Zzextcol'},{path:'mainservices>Zzextcol'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
-							<!--<ComboBox id="model_CSOR" items="{mainservices>/ZVMS_CDS_Model}" editable="false" selectedKey="{mainservices>Zzmodel}">-->
-							<!--	<core:Item key="{mainservices>model}" text="{mainservices>model}-{mainservices>model_desc_en}"/>-->
-							<!--</ComboBox>-->
-							<!--<Label text="{i18n>Suffix}"/>-->
-							<!--<ComboBox id="suffix_CSOR" items="{VechileModel>/zc_configuration}" editable="false" selectedKey="{mainservices>Zzsuffix}">-->
-							<!--	<core:Item key="{VechileModel>Suffix}" text="{VechileModel>SuffixDescriptionEN}"/>-->
-							<!--</ComboBox>-->
-							<!--<Label text="{i18n>APX}"/>-->
-							<!--<ComboBox id="apx_CSOR" items="{path: 'VechileModel>/ZC_PIO_DIO'}" editable="false" selectedKey="{mainservices>Zzapx}">-->
-							<!--	<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
-							<!--</ComboBox>-->
-							<!--<Label text="{i18n>Colour}"/>-->
-							<!--<ComboBox id="colour_CSOR" items="{ path: 'VechileModel>/zc_exterior_trim'}" editable="false" selectedKey="{mainservices>Zzextcol}">-->
-							<!--	<core:Item key="{VechileModel>ExteriorColorCode}" text="{path:'VechileModel>ExteriorDescriptionEN'}"/>-->
-							<!--</ComboBox>-->
-							<!--items="{ path: 'VechileModel>/zc_model' }"-->
 							<ComboBox id="model_CSOR" editable="false" required="true" maxWidth="100%" selectedKey="{mainservices>Zzmodel}">
-								<!--<core:Item key="{VechileModel>Model}" text="{VechileModel>Model}-{VechileModel>ModelDescriptionEN}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Suffix}"/>
-							<!--items="{ path: 'VechileModel>/zc_configuration'}"-->
 							<ComboBox id="suffix_CSOR" editable="false" maxWidth="100%" required="true" selectedKey="{mainservices>Zzsuffix}">
-								<!--<core:Item key="{VechileModel>Suffix}"-->
-								<!--	text="{parts: [{path:'VechileModel>Suffix'},{path:'VechileModel>SuffixDescriptionEN'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 							</ComboBox>
 							<Label text="{i18n>Colour}"/>
-							<!--items="{ path: 'VechileModel>/zc_exterior_trim'}"-->
 							<ComboBox id="colour_CSOR" editable="false" maxWidth="100%" required="true" selectedKey="{mainservices>Zzextcol}">
-								<!--<core:Item key="{VechileModel>ExteriorColorCode}" text="{VechileModel>ExteriorColorCode}-{VechileModel>ExteriorDescriptionEN}"/>-->
 							</ComboBox>
 							<Label text="{i18n>APX}"/>
-							<!--items="{path: 'VechileModel>/ZC_PIO_DIO'}"-->
 							<ComboBox id="apx_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzapx}">
-								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
 							<Text
@@ -116,9 +77,6 @@
 							<Text text="{mainservices>ZtradeModel}"/>
 							<Label wrapping="true" text="{i18n>SoldOrdStatus}"/>
 							<Text text="{mainservices>ZzsoStatus}"/>
-							<!--	<ComboBox id="soldostatus_CSOR" items="{ path: '/SoldOrderStatus'}" editable="false" selectedKey="{mainservices>ZzsoStatus}">-->
-							<!--	<core:Item key="{key}" text="{text}"/>-->
-							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="40" value="{mainservices>Comment}"/>
 							<core:Title text="" class="titleFontSize"/>
@@ -164,26 +122,32 @@
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoTitle}" class="msgStripFormat msgStripCss "/>
-							<!--<Label wrapping="true" text="{i18n>CustName}"/>-->
-							<!--<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>-->
 							<Label wrapping="true" text="{i18n>fcustname}"/>
-							<Text text="{Customer>/person/firstName}"/>
+							<Text text="{mainservices>NameFirst}"/>
+							<!--<Text text="{Customer>/person/firstName}"/>-->
 							<Label wrapping="true" text="{i18n>scustname}"/>
-							<Text text="{Customer>/person/familyName}"/>
+							<Text text="{mainservices>NameLast}"/>
+							<!--<Text text="{Customer>/person/familyName}"/>-->
 							<Label wrapping="true" text="{i18n>custname}"/>
 							<Text text="{mainservices>CustName1}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Text text="{Customer>/addresses/0/line1}"/>
+							<Text text="{mainservices>Street}"/>
+							<!--<Text text="{Customer>/addresses/0/line1}"/>-->
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Text text="{Customer>/addresses/0/city}"/>
+							<Text text="{mainservices>City1}"/>
+							<!--<Text text="{Customer>/addresses/0/city}"/>-->
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Text text="{Customer>/addresses/0/provinceCode}"/>
+							<Text text="{mainservices>Region}"/>
+							<!--<Text text="{Customer>/addresses/0/provinceCode}"/>-->
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text text="{Customer>/addresses/0/postalCode}"/>
+							<Text text="{mainservices>PostCode1}"/>
+							<!--<Text text="{Customer>/addresses/0/postalCode}"/>-->
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{Customer>/phones/0/areaCode}{Customer>/phones/0/localNumber}"/>
+							<Text text="{mainservices>TelNumber}"/>
+							<!--<Text text="{Customer>/phones/0/areaCode}{Customer>/phones/0/localNumber}"/>-->
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Text text="{Customer>/electronicAddresses/0/uriID}"/>
+							<Text text="{mainservices>ZzendcuEmail}"/>
+							<!--<Text text="{Customer>/electronicAddresses/0/uriID}"/>-->
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Text text="{mainservices>ZdriverLiNum}"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>

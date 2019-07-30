@@ -111,10 +111,10 @@
 											<Link text="{retailsumModel>ZzsoReqNo}" press="_dispalySoldOrderDetails" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="230px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
+									<t:Column width="230px" filterProperty="CustName1" sortProperty="CustName1">
 										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>
-											<Text text="{retailsumModel>ZzendcuName}" wrapping="true"/>
+											<Text text="{retailsumModel>CustName1}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column >

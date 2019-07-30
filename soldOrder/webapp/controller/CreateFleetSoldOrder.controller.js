@@ -34,11 +34,6 @@ sap.ui.define([
 				}
 			}
 			CFSO_controller.getView().byId("etaFrom_CFSO").setMinDate(day5);
-			// CFSO_controller._newService1();
-			// CFSO_controller._newService2();
-			// CFSO_controller._newService3();
-			// CFSO_controller._handleServiceSuffix_Series();
-			// CFSO_controller._handleRSADropDown();
 			this._alldata = new JSONModel({
 				ZsoFltReqNo: 'FSO',
 				ZzdealerCode: '',
@@ -85,31 +80,34 @@ sap.ui.define([
 					// }
 				}
 			}
-			var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
-				"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
-			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
-			$.ajax({
-				url: url,
-				method: 'GET',
-				async: false,
-				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
-					if (seriesCB.getValue() !== "") {
-						//seriesCB.setValue(" ");
-						seriesCB.setSelectedKey(null);
-					}
-					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
-					var oModel = new sap.ui.model.json.JSONModel();
-					oModel.setData(data.d.results);
-					CFSO_controller.getView().setModel(oModel, "seriesModel");
+			
+			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
+			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
+			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
+			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
+			// $.ajax({
+			// 	url: url,
+			// 	method: 'GET',
+			// 	async: false,
+			// 	dataType: 'json',
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		if (seriesCB.getValue() !== "") {
+			// 			//seriesCB.setValue(" ");
+			// 			seriesCB.setSelectedKey(null);
+			// 		}
+			// 		//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+			// 		var oModel = new sap.ui.model.json.JSONModel();
+			// 		oModel.setData(data.d.results);
+			// 		CFSO_controller.getView().setModel(oModel, "seriesModel");
 
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-				}
-			});
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
+			// 		var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+			// 			.m.MessageBox.Action.OK, null, null);
+			// 	}
+			// });
 		},
 		_onObjectMatched: function (oEvent) {
 			this.getView().byId("idmenu1").setType('Transparent');
@@ -131,12 +129,6 @@ sap.ui.define([
 				}
 			}
 		},
-		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
-
-		//2) Suffix  and  Suffix Description : Z_VEHICLE_CATALOGUE_SRV/zc_configuration SuffixDescriptionEN, Suffix
-		//     Interior Colour Description     :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  TrimInteriorColor    
-
-		//3)Color Code , Colour Description :  :Z_VEHICLE_CATALOGUE_SRV/zc_exterior_trim  ExteriorColorCode: "0218"ExteriorDescriptionEN: "BLACK"
 		_newService1: function () {
 			var host = CFSO_controller.host();
 			var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/zc_configuration?$format=json";
@@ -146,8 +138,6 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					// console.log("Result from zc_configuration");
-					// console.log(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					CFSO_controller.getView().setModel(oModel, "oModel1");
 				},

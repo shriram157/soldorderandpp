@@ -123,7 +123,7 @@ sap.ui.define([
 						RSO_MSO_controller.series_selected();
 						RSO_MSO_controller.model_selected();
 						RSO_MSO_controller.suffix_selected();
-						
+
 						//----------------------------------------------------------
 						var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
 
@@ -146,70 +146,65 @@ sap.ui.define([
 								url: url,
 								headers: {
 									accept: 'application/json'
-										// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
-										// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
 								},
 								type: "GET",
 								dataType: "json",
 								// data: soapMessage,
 								contentType: "text/xml; charset=\"utf-8\"",
 								success: function (data, textStatus, jqXHR) {
-
 									zinventoryModel.setData(data.results);
-
 								},
 								error: function (request, errorText, errorCode) {}
 							});
-						
 
 						}
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
 							var regFlag = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('CustAtReg');
 
-							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
-							//?customerNumber=" +
-							// if(regFlag === "X")
-							// {
-							$.ajax({
-								url: url,
-								headers: {
-									accept: 'application/json'
-										// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
-										// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
-								},
-								type: "GET",
-								dataType: "json",
-								// data: soapMessage,
-								contentType: "text/xml; charset=\"utf-8\"",
-								success: function (data, textStatus, jqXHR) {
-									if (data.customer) {
-										zcustomerModel.setData(data.customer);
-									}
-								},
-								error: function (request, errorText, errorCode) {}
-							});
+							var _SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
+							if (_SOType == "SO") {
+								var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 
+								$.ajax({
+									url: url,
+									headers: {
+										accept: 'application/json'
+									},
+									type: "GET",
+									dataType: "json",
+									contentType: "text/xml; charset=\"utf-8\"",
+									success: function (data, textStatus, jqXHR) {
+										console.log("customer data", data);
+										if (data.customer) {
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('NameFirst',data.customer.person[0].firstName);
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('NameLast',data.customer.person[0].familyName);
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Street',data.customer.addresses[0].line1);
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('City1',data.customer.addresses[0].city);
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('PostCode1',data.customer.addresses[0].postalCode);
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Region',data.customer.addresses[0].provinceCode);
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('TelNumber',data.customer.phones[0].areaCode+""+data.customer.phones[0].localNumber);
+											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('ZzendcuEmail',data.customer.electronicAddresses[0].uriID);
+											// zcustomerModel.setData(data.customer);
+										}
+									},
+									error: function (request, errorText, errorCode) {}
+								});
+							}
 						}
 					},
-					dataReceived: function (oData) {
-					
-					}
+					dataReceived: function (oData) {}
 				}
 			});
 		},
-		onAfterRendering: function () {
-
-		},
+		onAfterRendering: function () {	},
 
 		_updateSoldOrderRequest: function () {
 			var comment = RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").getValue();
-			
 			var _data = {
-
 				"Comment": comment,
 				"ZzsoReqNo": zrequest
-				
+
 			};
 			var host = RSO_MSO_controller.host();
 			var url = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + zrequest + "')";
@@ -271,7 +266,7 @@ sap.ui.define([
 
 		_approvePriceProtectionDetails: function () {
 			if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
-				
+
 				RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Approve_Price_Details", {
 					method: "POST",
 					urlParameters: {
@@ -305,7 +300,6 @@ sap.ui.define([
 								}
 							});
 
-						
 						}
 
 					},
@@ -462,7 +456,7 @@ sap.ui.define([
 		_addAttachment: function () {
 			var com = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").getValue();
 			var textArea = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
-			
+
 			var oFileUploader = RSO_MSO_controller.getView().byId("idRSOV_MSO_fileUpl");
 			var zcomment = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
 			oFileUploader.removeAllHeaderParameters();
@@ -614,7 +608,7 @@ sap.ui.define([
 				jQuery.sap.log.error("File upload failed:\n" + oException.message);
 			}
 		},
-		
+
 		handleUploadComplete: function (c) {
 			if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
 				//alert("MEDHAT Yes");
@@ -628,10 +622,10 @@ sap.ui.define([
 						if (oData.Type == 'E') {
 							// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
 							var sMsg = oData.Message;
-							
+
 						} else {
 							var sMsg = oData.Message;
-							
+
 						}
 
 					},
@@ -646,7 +640,7 @@ sap.ui.define([
 			RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 			// RSO_MSO_controller.getView().byId('idRSOV_MSO_fileUpl').setValue('');
 			RSO_MSO_controller.getView().byId('idComments_TA_RSO_ManageSO').setValue('');
-		
+
 		},
 		getControllerInstance: function () {
 			var _ = null;
@@ -755,7 +749,7 @@ sap.ui.define([
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 				var dealer = dealerno.slice(-5);
-				
+
 				this.getView().byId('suffix_CSOR').bindItems({
 					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
@@ -778,7 +772,7 @@ sap.ui.define([
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-				
+
 				this.getView().byId('apx_CSOR').bindItems({
 					path: 'mainservices>/ZVMS_CDS_APX',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
