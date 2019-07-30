@@ -112,9 +112,9 @@
 										</t:template>
 									</t:Column>
 									<t:Column width="230px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
-										<Label text="{i18n>ZzendcuName}" class="TableLabel"/>
+										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>
-											<Text text="{retailsumModel>CustName1}" wrapping="true"/>
+											<Text text="{retailsumModel>ZzendcuName}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column >
