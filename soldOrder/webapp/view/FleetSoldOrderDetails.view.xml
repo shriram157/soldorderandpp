@@ -12,9 +12,6 @@
 										<f:content>
 											<VBox>
 												<Label text="{i18n>status}" class="TableLabel">
-													<!--	<layoutData>
-											<l:GridData span="L2 M12 S12"/>
-										</layoutData>-->
 												</Label>
 												<MultiComboBox width="" id="mcb_status_FSOD" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSODetails_Status', sorter: { path: 'key' } }">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
@@ -25,11 +22,7 @@
 											</VBox>
 									
 											<VBox>
-												<Label text="{i18n>auditStatus}" class="TableLabel">
-													<!--<layoutData>
-											<l:GridData span="L2 M12 S12"/>
-										</layoutData>-->
-												</Label>
+												<Label text="{i18n>auditStatus}" class="TableLabel"></Label>
 												<MultiComboBox id="mcb_auditStatus_FSOD" width="" selectionChange="_refresh" items="{ path: 'AuditModel>/FSODetail_AuditStatus', sorter: { path: 'key' } }">
 													<core:Item key="{AuditModel>key}" text="{AuditModel>text}"/>
 													<layoutData>
@@ -46,93 +39,86 @@
 													</layoutData>
 												</MultiComboBox>
 												<ComboBox xmlns="sap.m" id="cb_dealer_FSOD" width="300px" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
-												    <!--<items>-->
 												        <core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}" id="item12"/>
 												        	<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
-												        <!--<core:Item xmlns:core="sap.ui.core" key="item-2-key" text="Item 2 Text" id="item13"/>-->
-												        <!--</items>-->
-												    
 												</ComboBox>
 											</VBox>
 										</f:content>
 									</f:SimpleForm>
-								
 								</items>
 							</VBox>
-							<t:Table id="tbl_FSOD" selectionMode="None" rows="{fleetdetailsModel>/}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" class="marginCorners marginCornersBottom" visibleRowCount="10">
+							<t:Table id="tbl_FSOD" selectionMode="None" rows="{fleetdetailsModel>/}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount="8">
 								<t:columns>
-									<t:Column width="8.3%"  resizable="false">
+									<t:Column >
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{fleetdetailsModel>ZzsoReqNo}" wrapping="true" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
 											<Text id="tbl_val_dealer_FSOD" visible="true" text="{path:'fleetdetailsModel>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}"/>
-											<!--, formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'-->
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>Zzmodel}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>Suffix}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>Zzsuffix}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>APX}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>Zzapx}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>colour}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>Zzextcol}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>ZzsoStatus}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>audit}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>ZzAuditStatus}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>VehTrackNo}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>Zzvtn}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
-											<!--<DatePicker editable="false" value="{fleetdetailsModel>ZzreqEtaFrom}" valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD"/>-->
 										<Text
 												text="{path:'fleetdetailsModel>ZzreqEtaFrom',type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ss' },pattern: 'dd:MM:yyyy', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>ETATime}" class="TableLabel"/>
 										<t:template>
 											<Text text="{path:'fleetdetailsModel>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ss' }, pattern: 'dd:MM:yyyy', strictParsing: false, relative: false }}"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="8.3%" resizable="false">
+									<t:Column>
 										<Label text="{i18n>linkVehicle}" class="TableLabel"/>
 										<t:template>
 											<Button text="{i18n>linkVehicle}" visible="{parts:[{path:'fleetdetailsModel>Zzvtn'},{path:'fleetdetailsModel&gt;ZzsoStatus'}],formatter:'toyota.ca.SoldOrder.util.formatter.linkvehicleRetail'}" enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" id="btn_linkVeh_FSOD" press="onLinkVehicle"/>
@@ -140,50 +126,22 @@
 									</t:Column>
 								</t:columns>
 							</t:Table>
-								<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">
-
-							<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>
+							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners moreBtn">
 								<l:content>
-								    <Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>
+									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
 								</l:content>
-							<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
+							</l:Grid>
+							<!--	<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">-->
 
-								</l:Grid>
+							<!--<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>-->
+							<!--	<l:content>-->
+							<!--	    <Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>-->
+							<!--	</l:content>-->
+							<!--<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>-->
+
+							<!--	</l:Grid>-->
 						</items>
 					</VBox>
-					<!--<Dialog draggable="true" id="VTNDialog_FSOD" title='Search Vehicle By VTN/VIN' contentWidth="400px" contentHeight="260px">
-						<content>
-							<VBox>
-								<items>
-									<HBox class="justifyContentCenter">
-										<items>
-											<Label id="vin_FSOD" text="{i18n>vtn}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-											<Input></Input>
-										</items>
-									</HBox>
-									<HBox class="justifyContentCenter">
-										<items>
-											<Label text="{i18n>or}"></Label>
-										</items>
-									</HBox>
-									<HBox class="justifyContentCenter">
-										<items>
-											<Label id="vtin_FSOD" text="{i18n>vin}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd "></Label>
-											<Input></Input>
-										</items>
-									</HBox>
-									<HBox class="justifyContentCenter">
-										<items>
-											<Button text="{i18n>searchLink}" press="_searchNLink"></Button>
-										</items>
-									</HBox>
-								</items>
-							</VBox>
-						</content>
-						<beginButton>
-							<Button text="{i18n>Close}" press="closeDialog"></Button>
-						</beginButton>
-					</Dialog>-->
 				</content>
 			</Page>
 		</pages>

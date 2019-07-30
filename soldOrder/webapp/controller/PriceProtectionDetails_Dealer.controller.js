@@ -74,7 +74,7 @@ sap.ui.define([
 			globalComboModel.updateBindings(true);
 			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
 			this.getView().setModel(globalComboModel, "globalComboModel");
-			console.log("globalComboModel",globalComboModel);
+			console.log("globalComboModel", globalComboModel);
 
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
@@ -129,7 +129,7 @@ sap.ui.define([
 			OrderTypeModel.updateBindings(true);
 			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
 			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
-			console.log("OrderTypeModel",OrderTypeModel);
+			console.log("OrderTypeModel", OrderTypeModel);
 			// PPD_DealerCont.getBrowserLanguage();
 			this.getOwnerComponent().getRouter().getRoute("PriceProtectionDetails_Dealer").attachPatternMatched(this._onObjectMatched, this);
 		},
@@ -140,8 +140,13 @@ sap.ui.define([
 			PPDLocalModel.setData({
 				PPDBusyIndicator: false
 			});
+			PPD_DealerCont.dialog = new sap.m.BusyDialog({
+				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
+			});
+			
 			PPD_DealerCont.getView().setModel(PPDLocalModel, "PPDLocalModel");
-			num = 0;clicks = 0;
+			num = 0;
+			clicks = 0;
 			this.getView().byId("idmenu1").setType('Transparent');
 			this.getView().byId("idmenu2").setType('Transparent');
 			this.getView().byId("idmenu3").setType('Transparent');
@@ -156,7 +161,7 @@ sap.ui.define([
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			
+
 			var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
 			if (sLocation_conf == 0) {
@@ -168,11 +173,11 @@ sap.ui.define([
 
 			PPD_DealerCont._handleServiceSuffix_Series(this.nodeJsUrl);
 			if (x != "TCI_User") {
-				PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", true);
+				PPD_DealerCont.dialog.open();
 				console.log("loading data");
 				PPD_DealerCont._refresh();
 			} else {
-				PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", true);
+				PPD_DealerCont.dialog.open();
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=50&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
@@ -199,7 +204,7 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+						PPD_DealerCont.dialog.close();
 						var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -221,7 +226,7 @@ sap.ui.define([
 						}
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
-						PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+						PPD_DealerCont.dialog.close();
 						var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 					}
@@ -238,7 +243,6 @@ sap.ui.define([
 			// mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			// mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
 			// var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			
 
 			// if (x != "TCI_User") {
 			// 	PPD_DealerCont._refresh();
@@ -299,7 +303,7 @@ sap.ui.define([
 		},
 
 		_refresh: function () {
-			
+
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=50&$skip=0&$filter=(";
@@ -337,7 +341,7 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+						PPD_DealerCont.dialog.close();
 						var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -359,7 +363,7 @@ sap.ui.define([
 						}
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
-						PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+						PPD_DealerCont.dialog.close();
 						var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -389,16 +393,16 @@ sap.ui.define([
 					}
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq'" + dealer + "')";
-					
+
 					oUrl = oUrl + "and &$orderby=dealer_ord desc) ";
-					
+
 					$.ajax({
 						url: oUrl,
 						method: "GET",
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-							PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+							PPD_DealerCont.dialog.close();
 							var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -421,7 +425,7 @@ sap.ui.define([
 
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-							PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+							PPD_DealerCont.dialog.close();
 							var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -455,7 +459,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-							PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+							PPD_DealerCont.dialog.close();
 							var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -477,7 +481,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-							PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+							PPD_DealerCont.dialog.close();
 							var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -489,8 +493,8 @@ sap.ui.define([
 		},
 		_refreshCombo: function (evt) {
 			pricepro = true;
-			
-			PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", true);
+
+			PPD_DealerCont.dialog.open();
 			var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=50&$skip=0&$filter=(";
 			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 				var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
@@ -513,16 +517,16 @@ sap.ui.define([
 			}
 			var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 			oUrl = oUrl + "(dealer_code eq'" + dealer + "'))";
-		
+
 			oUrl = oUrl + "&$orderby=dealer_ord desc ";
-		
+
 			$.ajax({
 				url: oUrl,
 				method: "GET",
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+					PPD_DealerCont.dialog.close();
 					var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
 					if (data.d.results.length <= 0) {
 						BtnNext.setEnabled(false);
@@ -544,7 +548,7 @@ sap.ui.define([
 					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+					PPD_DealerCont.dialog.close();
 					var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -567,8 +571,7 @@ sap.ui.define([
 
 			if (selectedRow.zzso_type == "SO") {
 
-			} else {
-			}
+			} else {}
 
 		},
 		_handleServiceSuffix_Series: function (nodeJsUrl) {
@@ -590,7 +593,7 @@ sap.ui.define([
 			});
 		},
 		onActionNext: function (oEvent) {
-			PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", true);
+			this .dialog.open();
 			//This code was generated by the layout editor.
 			if (clicks < 0) {
 				clicks = 0;
@@ -615,8 +618,8 @@ sap.ui.define([
 		// 	PPD_DealerCont.data();
 		// },
 		data: function (oEvent) {
-			PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", true);
-			
+			PPD_DealerCont.dialog.open();
+
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=50&$skip=" + num + "&$filter=(";
@@ -654,7 +657,7 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+						PPD_DealerCont.dialog.close();
 						var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -676,7 +679,7 @@ sap.ui.define([
 						}
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
-						PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+						PPD_DealerCont.dialog.close();
 						var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -710,7 +713,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-							PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+							PPD_DealerCont.dialog.close();
 							var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -732,7 +735,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-							PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+							PPD_DealerCont.dialog.close();
 							var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -763,14 +766,14 @@ sap.ui.define([
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq'" + dealer + "')";
 					oUrl = oUrl + "and &$orderby=dealer_ord desc) ";
-					
+
 					$.ajax({
 						url: oUrl,
 						method: "GET",
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-							PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+							PPD_DealerCont.dialog.close();
 							var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -792,7 +795,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-							PPD_DealerCont.getView().getModel("PPDLocalModel").setProperty("/PPDBusyIndicator", false);
+							PPD_DealerCont.dialog.close();
 							var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 						}

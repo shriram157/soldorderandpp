@@ -115,6 +115,10 @@ sap.ui.define([
 			FSOLocalModel.setData({
 				FSOBusyIndicator: false
 			});
+			FSOS_controller.dialog = new sap.m.BusyDialog({
+				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
+			});
+			
 			num = 0;clicks = 0;
 			var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
@@ -146,11 +150,11 @@ sap.ui.define([
 			//=====================================================================================================
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
-				FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
+				FSOS_controller.dialog.open();
 				console.log("loading data");
 				FSOS_controller._refresh();
 			} else {
-				FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
+				FSOS_controller.dialog.open();
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -177,7 +181,7 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+						FSOS_controller.dialog.close();
 						var BtnNext = FSOS_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -199,7 +203,7 @@ sap.ui.define([
 						}
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
-						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+						FSOS_controller.dialog.close();
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 					}
@@ -213,9 +217,6 @@ sap.ui.define([
 			if (AppController.flagNationalUser == true) {
 				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
 			}
-			/*	if (AppController.flagTCINationalUser == true) {
-					FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
-				}*/
 		},
 		onAfterRendering: function () {
 			//=======================================================================================================
@@ -282,7 +283,7 @@ sap.ui.define([
 		},
 		_refreshCombo: function (evt) {
 			fleet = true;
-			FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
+			FSOS_controller.dialog.open();
 			var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=0&$filter=(";
 			for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 				var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -312,7 +313,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+					FSOS_controller.dialog.close();
 					var BtnNext = FSOS_controller.getView().byId("buttonNext");
 					if (data.d.results.length <= 0) {
 						BtnNext.setEnabled(false);
@@ -334,7 +335,7 @@ sap.ui.define([
 					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+					FSOS_controller.dialog.close();
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -404,7 +405,7 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+						FSOS_controller.dialog.close();
 						var BtnNext = FSOS_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -425,7 +426,7 @@ sap.ui.define([
 						}
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
-						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+						FSOS_controller.dialog.close();
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -459,7 +460,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+							FSOS_controller.dialog.close();
 							var BtnNext = FSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -480,7 +481,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+							FSOS_controller.dialog.close();
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -517,7 +518,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+							FSOS_controller.dialog.close();
 							var BtnNext = FSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -538,7 +539,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+							FSOS_controller.dialog.close();
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 						}
@@ -547,7 +548,7 @@ sap.ui.define([
 			}
 		},
 		onActionNext: function (oEvent) {
-			FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
+			// FSOS_controller.dialog.open();
 			//This code was generated by the layout editor.
 			if (clicks < 0) {
 				clicks = 0;
@@ -559,7 +560,7 @@ sap.ui.define([
 			FSOS_controller.data();
 		},
 		data: function (oEvent) {
-			FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", true);
+			FSOS_controller.dialog.open();
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=50&$skip=" + num + "&$filter=(";
@@ -599,7 +600,7 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+						FSOS_controller.dialog.close();
 						var BtnNext = FSOS_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -654,7 +655,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+							FSOS_controller.dialog.close();
 							var BtnNext = FSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -675,7 +676,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+							FSOS_controller.dialog.close();
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
@@ -714,7 +715,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+							FSOS_controller.dialog.close();
 							var BtnNext = FSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -735,7 +736,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-							FSOS_controller.getView().getModel("FSOLocalModel").setProperty("/FSOBusyIndicator", false);
+							FSOS_controller.dialog.close();
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 						}
