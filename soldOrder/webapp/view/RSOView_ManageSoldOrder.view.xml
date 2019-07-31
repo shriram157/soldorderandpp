@@ -122,47 +122,64 @@
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoTitle}" class="msgStripFormat msgStripCss "/>
-							<Label wrapping="true" text="{i18n>fcustname}"/><Text text=""/>
-							<!--<Text text="{mainservices>NameFirst}">-->
-							<Label wrapping="true" text="{i18n>scustname}"/><Text text=""/>
-							<!--<Text text="{mainservices>NameLast}"/>-->
-							<Label wrapping="true" text="{i18n>custname}"/><Text text=""/>
-							<!--<Text text="{mainservices>ZzendcuName}"/>-->
-							<Label wrapping="true" text="{i18n>address}"/><Text text=""/>
-							<!--<Text text="{mainservices>Street}"/>-->
-							<Label wrapping="true" text="{i18n>city}"/><Text text=""/>
-							<!--<Text text="{mainservices>City1}"/>-->
-							<Label wrapping="true" text="{i18n>province}"/><Text text=""/>
-							<!--<Text text="{mainservices>Region}"/>-->
-							<Label wrapping="true" text="{i18n>postalcode}"/><Text text=""/>
-							<!--<Text text="{mainservices>PostCode1}"/>-->
-							<Label wrapping="true" text="{i18n>phnNo}"/><Text text=""/>
-							<!--<Text text="{mainservices>TelNumber}"/>-->
-							<Label wrapping="true" text="{i18n>email}"/><Text text=""/>
-							<!--<Text text="{mainservices>ZzendcuEmail}"/>-->
-							<Label wrapping="true" text="{i18n>driverLic}"/><Text text=""/>
-							<!--<Text text="{mainservices>ZdriverLiNum}"/>-->
-							<Label wrapping="true" text="{i18n>FanNumber}"/><Text text=""/>
-							<!--<Text text="{mainservices>Fan}"/>-->
-							
+							<Label wrapping="true" text="{i18n>fcustname}"/>
+							<Text text="{mainservices>NameFirst}"/>
+							<!--<Text text="{Customer>/person/firstName}"/>-->
+							<Label wrapping="true" text="{i18n>scustname}"/>
+							<Text text="{mainservices>NameLast}"/>
+							<!--<Text text="{Customer>/person/familyName}"/>-->
+							<Label wrapping="true" text="{i18n>custname}"/>
+							<Text text="{mainservices>ZzendcuName}"/>
+							<Label wrapping="true" text="{i18n>address}"/>
+							<Text text="{mainservices>Street}"/>
+							<!--<Text text="{Customer>/addresses/0/line1}"/>-->
+							<Label wrapping="true" text="{i18n>city}"/>
+							<Text text="{mainservices>City1}"/>
+							<!--<Text text="{Customer>/addresses/0/city}"/>-->
+							<Label wrapping="true" text="{i18n>province}"/>
+							<Text text="{mainservices>Region}"/>
+							<!--<Text text="{Customer>/addresses/0/provinceCode}"/>-->
+							<Label wrapping="true" text="{i18n>postalcode}"/>
+							<Text text="{mainservices>PostCode1}"/>
+							<!--<Text text="{Customer>/addresses/0/postalCode}"/>-->
+							<Label wrapping="true" text="{i18n>phnNo}"/>
+							<Text text="{mainservices>TelNumber}"/>
+							<!--<Text text="{Customer>/phones/0/areaCode}{Customer>/phones/0/localNumber}"/>-->
+							<Label wrapping="true" text="{i18n>email}"/>
+							<Text text="{mainservices>ZzendcuEmail}"/>
+							<!--<Text text="{Customer>/electronicAddresses/0/uriID}"/>-->
+							<Label wrapping="true" text="{i18n>driverLic}"/>
+							<Text text="{mainservices>ZdriverLiNum}"/>
+							<Label wrapping="true" text="{i18n>FanNumber}"/>
+							<Text text="{mainservices>Fan}"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>
+							<!--<Label wrapping="true" text="{i18n>CustName}" />-->
+							<!--<Text text="{parts:[{path:'Customer>/person/firstName'},{path:'Customer>/person/familyName'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatName'}"  />-->
 							<Label wrapping="true" text="{i18n>fcustname}"/>
-							<Text text="{parts:[{path:'mainservices>NameFirst'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Text
+								text="{parts:[{path:'mainservices>NameFirst'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
-							<Text text="{parts:[{path:'mainservices>NameLast'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Text
+								text="{parts:[{path:'mainservices>NameLast'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>custname}"/>
-							<Text text="{parts:[{path:'mainservices>CustName1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Text
+								text="{parts:[{path:'mainservices>CustName1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Text text="{parts:[{path:'mainservices>Street'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Text
+								text="{parts:[{path:'mainservices>Street'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Text text="{parts:[{path:'mainservices>City1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Text
+								text="{parts:[{path:'mainservices>City1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Text text="{parts:[{path:'mainservices>Region'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Text
+								text="{parts:[{path:'mainservices>Region'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text text="{parts:[{path:'mainservices>PostCode1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Text
+								text="{parts:[{path:'mainservices>PostCode1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{parts:[{path:'mainservices>TelNumber'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Text
+								text="{parts:[{path:'mainservices>TelNumber'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
 							<Text
 								text="{parts:[{path:'mainservices>SmtpAddr'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
