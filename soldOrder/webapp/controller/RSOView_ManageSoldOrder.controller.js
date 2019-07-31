@@ -70,6 +70,12 @@ sap.ui.define([
 		_getattachRouteMatched: function (parameters) {
 			var requestid = parameters.getParameters().arguments.Soreq;
 			RSO_MSO_controller.getSO(requestid);
+			var RSO_MSO_Model = new sap.ui.model.json.JSONModel();
+			RSO_MSO_Model.setData({
+				NFVisible: false,
+				SOVisible: false
+			});
+			RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
 		},
 		getSO: function (req) {
 			//"""""""""""""""""""""""""""""""""""""""
@@ -164,6 +170,8 @@ sap.ui.define([
 
 							var _SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
 							if (_SOType == "SO") {
+								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 								var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 
 								$.ajax({
@@ -177,19 +185,14 @@ sap.ui.define([
 									success: function (data, textStatus, jqXHR) {
 										console.log("customer data", data);
 										if (data.customer) {
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('NameFirst',data.customer.person[0].firstName);
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('NameLast',data.customer.person[0].familyName);
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Street',data.customer.addresses[0].line1);
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('City1',data.customer.addresses[0].city);
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('PostCode1',data.customer.addresses[0].postalCode);
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Region',data.customer.addresses[0].provinceCode);
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('TelNumber',data.customer.phones[0].areaCode+""+data.customer.phones[0].localNumber);
-											RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('ZzendcuEmail',data.customer.electronicAddresses[0].uriID);
-											// zcustomerModel.setData(data.customer);
+											zcustomerModel.setData(data.customer);
 										}
 									},
 									error: function (request, errorText, errorCode) {}
 								});
+							} else {
+								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
 							}
 						}
 					},
@@ -197,7 +200,7 @@ sap.ui.define([
 				}
 			});
 		},
-		onAfterRendering: function () {	},
+		onAfterRendering: function () {},
 
 		_updateSoldOrderRequest: function () {
 			var comment = RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").getValue();
