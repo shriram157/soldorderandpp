@@ -222,7 +222,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	formatAmount: function (svalue) {
-		if ((svalue != "") && (svalue !== null)) {
+		if ((svalue != "") && (svalue !== null)&& (svalue !== undefined)) {
 			var pos = svalue.indexOf('.');
 			var integer = svalue.substring(0, pos);
 			var decimals = svalue.substring(pos + 1, pos + 3);

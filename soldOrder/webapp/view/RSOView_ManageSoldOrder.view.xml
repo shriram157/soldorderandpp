@@ -122,36 +122,28 @@
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoTitle}" class="msgStripFormat msgStripCss "/>
-							<Label wrapping="true" text="{i18n>fcustname}"/>
-							<Text text="{mainservices>NameFirst}" visible="{RSO_MSO_Model>/visibleNF}" >
-							<Text text="{Customer>/person/firstName}" visible="{RSO_MSO_Model>/visibleSO}" />
-							<Label wrapping="true" text="{i18n>scustname}"/>
-							<Text text="{mainservices>NameLast}" visible="{RSO_MSO_Model>/visibleNF}" />
-							<Text text="{Customer>/person/familyName}" visible="{RSO_MSO_Model>/visibleSO}" />
-							<Label wrapping="true" text="{i18n>custname}"/>
-							<Text text="{mainservices>ZzendcuName}"/>
-							<Label wrapping="true" text="{i18n>address}"/>
-							<Text text="{mainservices>Street}" visible="{RSO_MSO_Model>/visibleNF}" />
-							<Text text="{Customer>/addresses/0/line1}" visible="{RSO_MSO_Model>/visibleSO}" />
-							<Label wrapping="true" text="{i18n>city}"/>
-							<Text text="{mainservices>City1}" visible="{RSO_MSO_Model>/visibleNF}" />
-							<Text text="{Customer>/addresses/0/city}" visible="{RSO_MSO_Model>/visibleSO}" />
-							<Label wrapping="true" text="{i18n>province}"/>
-							<Text text="{mainservices>Region}" visible="{RSO_MSO_Model>/visibleNF}" />
-							<Text text="{Customer>/addresses/0/provinceCode}" visible="{RSO_MSO_Model>/visibleSO}" />
-							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text text="{mainservices>PostCode1}" visible="{RSO_MSO_Model>/visibleNF}" />
-							<Text text="{Customer>/addresses/0/postalCode}" visible="{RSO_MSO_Model>/visibleSO}" />
-							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{mainservices>TelNumber}" visible="{RSO_MSO_Model>/visibleNF}" />
-							<Text text="{Customer>/phones/0/areaCode}{Customer>/phones/0/localNumber}" visible="{RSO_MSO_Model>/visibleSO}" />
-							<Label wrapping="true" text="{i18n>email}"/>
-							<Text text="{mainservices>ZzendcuEmail}" visible="{RSO_MSO_Model>/visibleNF}" />
-							<Text text="{Customer>/electronicAddresses/0/uriID}" visible="{RSO_MSO_Model>/visibleSO}" />
-							<Label wrapping="true" text="{i18n>driverLic}"/>
-							<Text text="{mainservices>ZdriverLiNum}"/>
-							<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Text text="{mainservices>Fan}"/>
+							<Label wrapping="true" text="{i18n>fcustname}"/><Text text=""/>
+							<!--<Text text="{mainservices>NameFirst}">-->
+							<Label wrapping="true" text="{i18n>scustname}"/><Text text=""/>
+							<!--<Text text="{mainservices>NameLast}"/>-->
+							<Label wrapping="true" text="{i18n>custname}"/><Text text=""/>
+							<!--<Text text="{mainservices>ZzendcuName}"/>-->
+							<Label wrapping="true" text="{i18n>address}"/><Text text=""/>
+							<!--<Text text="{mainservices>Street}"/>-->
+							<Label wrapping="true" text="{i18n>city}"/><Text text=""/>
+							<!--<Text text="{mainservices>City1}"/>-->
+							<Label wrapping="true" text="{i18n>province}"/><Text text=""/>
+							<!--<Text text="{mainservices>Region}"/>-->
+							<Label wrapping="true" text="{i18n>postalcode}"/><Text text=""/>
+							<!--<Text text="{mainservices>PostCode1}"/>-->
+							<Label wrapping="true" text="{i18n>phnNo}"/><Text text=""/>
+							<!--<Text text="{mainservices>TelNumber}"/>-->
+							<Label wrapping="true" text="{i18n>email}"/><Text text=""/>
+							<!--<Text text="{mainservices>ZzendcuEmail}"/>-->
+							<Label wrapping="true" text="{i18n>driverLic}"/><Text text=""/>
+							<!--<Text text="{mainservices>ZdriverLiNum}"/>-->
+							<Label wrapping="true" text="{i18n>FanNumber}"/><Text text=""/>
+							<!--<Text text="{mainservices>Fan}"/>-->
 							
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>

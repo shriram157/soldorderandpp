@@ -23,6 +23,7 @@ sap.ui.define([
 			zcustomerModel = new JSONModel({});
 			zinventoryModel = new JSONModel({});
 			this.getView().setModel(zcustomerModel, 'Customer');
+			this.getView().setModel(zcustomerModel, 'mainservices');
 			this.getView().setModel(zinventoryModel, 'Inventory');
 			this.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(this._getattachRouteMatched, this);
 			// var language = RSO_MSO_controller.returnBrowserLanguage();
@@ -173,7 +174,7 @@ sap.ui.define([
 								RSO_MSO_controller.getView().getModel("RSOModel").setProperty("/visibleSO", true);
 								RSO_MSO_controller.getView().getModel("RSOModel").setProperty("/visibleNF", false);
 								var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
-
+								var that=this;
 								$.ajax({
 									url: url,
 									headers: {
@@ -184,22 +185,33 @@ sap.ui.define([
 									contentType: "text/xml; charset=\"utf-8\"",
 									success: function (data, textStatus, jqXHR) {
 										console.log("customer data", data);
+										var email;
+										if (data.customer.electronicAddresses) {
+											email = data.customer.electronicAddresses[0].uriID;
+										} else {
+											email = "";
+										}
 										if (data.customer) {
-											// var NameFirst = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('NameFirst');
-											// NameFirst = data.customer.person.firstName;
-											// RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('NameLast',data.customer.person.familyName);
-											// RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Street',data.customer.addresses[0].line1);
-											// RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('City1',data.customer.addresses[0].city);
-											// RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('PostCode1',data.customer.addresses[0].postalCode);
-											// RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Region',data.customer.addresses[0].provinceCode);
-											// RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('TelNumber',data.customer.phones[0].areaCode+""+data.customer.phones[0].localNumber);
-											// if(data.customer.electronicAddresses){RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('ZzendcuEmail',data.customer.electronicAddresses[0].uriID);}
-											zcustomerModel.setData(data.customer);
+											var OBj = {
+												"NameFirst": data.customer.person.firstName,
+												"NameLast": data.customer.person.familyName,
+												"Street": data.customer.addresses[0].line1,
+												"City1": data.customer.addresses[0].city,
+												"PostCode1": data.customer.addresses[0].postalCode,
+												"Region": data.customer.addresses[0].provinceCode,
+												"TelNumber": data.customer.phones[0].areaCode + "" + data.customer.phones[0].localNumber,
+												"ZzendcuEmail": email
+											}
+											zcustomerModel.setData(OBj);
+											console.log("mainservice", zcustomerModel);
+											console.log("mainservice", that.getView().getModel('mainservices'));
+											// zcustomerModel.setData(data.customer);
 										}
 									},
 									error: function (request, errorText, errorCode) {}
 								});
 							} else {
+								console.log("mainservice", RSO_MSO_controller.getView().getElementBinding('mainservices'));
 								RSO_MSO_controller.getView().getModel("RSOModel").setProperty("/visibleSO", false);
 								RSO_MSO_controller.getView().getModel("RSOModel").setProperty("/visibleNF", true);
 							}
