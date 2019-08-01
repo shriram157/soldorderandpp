@@ -76,11 +76,19 @@ sap.ui.define([
 				SOVisible: false
 			});
 			RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
+			if (this.getView().getElementBinding('mainservices').getBoundContext() !== null) {
+				var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
+				console.log("So status", SOType);
+				if (SOType == "SO") {
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
+				} else {
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+				}
+			}
 		},
 		getSO: function (req) {
-			//"""""""""""""""""""""""""""""""""""""""
-			//Medhat
-
 			ppdFlages = sap.ui.getCore().getModel("ppdFlages");
 			if (ppdFlages) {
 				if (ppdFlages.getData().openCommentBox == 'X') {
@@ -126,6 +134,15 @@ sap.ui.define([
 							series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')
 						}), 'Vehicle_Selection');
 						//Filter Data Sold Order
+						var _SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
+						if (_SOType == "SO") {
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
+						} else {
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+						}
+
 						RSO_MSO_controller.series_selected();
 						RSO_MSO_controller.model_selected();
 						RSO_MSO_controller.suffix_selected();
