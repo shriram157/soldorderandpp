@@ -19,7 +19,8 @@ sap.ui.define([
 			CFSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var today = new Date();
 			var day30 = new Date();
-			CFSO_controller.getFleetCustomer();
+			// CFSO_controller.getFleetCustomer();
+			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("fleetModel"), "fleetModel");
 			//day30.setDate(today.getDate() + 30);
 			var num = 0;
 			var endDate = new Date();
@@ -333,46 +334,46 @@ sap.ui.define([
 			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
 			// }
 		},
-		getFleetCustomer: function () {
-			var sLocation = window.location.host;
-			var sLocation_conf = sLocation.search("webide");
+		// getFleetCustomer: function () {
+		// 	var sLocation = window.location.host;
+		// 	var sLocation_conf = sLocation.search("webide");
 
-			var sPrefix;
-			if (sLocation_conf == 0) {
-				sPrefix = "/soldorder_node"; //ecpSales_node_secured
-				this.fleetUrl = "/userDetails/FleetCustomers"; //"/userDetails/attributesforlocaltesting";
-			} else {
-				sPrefix = "";
-				this.fleetUrl = "/userDetails/FleetCustomers";
-			}
+		// 	var sPrefix;
+		// 	if (sLocation_conf == 0) {
+		// 		sPrefix = "/soldorder_node"; //ecpSales_node_secured
+		// 		this.fleetUrl = "/userDetails/FleetCustomers"; //"/userDetails/attributesforlocaltesting";
+		// 	} else {
+		// 		sPrefix = "";
+		// 		this.fleetUrl = "/userDetails/FleetCustomers";
+		// 	}
 
-			//======================================================================================================================//			
-			//  on init method,  get the token attributes and authentication details to the UI from node layer.  - begin
-			//======================================================================================================================//		
-			//  get the Scopes to the UI 
-			//this.sPrefix ="";
+		// 	//======================================================================================================================//			
+		// 	//  on init method,  get the token attributes and authentication details to the UI from node layer.  - begin
+		// 	//======================================================================================================================//		
+		// 	//  get the Scopes to the UI 
+		// 	//this.sPrefix ="";
 
-			var that = this;
-			// var zjson = new JSONModel();
-			// sap.ui.getCore().setModel(zjson,"LoginUserModel");
-			$.ajax({
-				url: sPrefix + this.fleetUrl,
-				type: "GET",
-				dataType: "json",
-				async: false,
-				success: function (oData) {
-					var oModel = new sap.ui.model.json.JSONModel();
-					oModel.setData(oData.attributes);
-					CFSO_controller.getView().setModel(oModel, "fleetModel");
+		// 	var that = this;
+		// 	// var zjson = new JSONModel();
+		// 	// sap.ui.getCore().setModel(zjson,"LoginUserModel");
+		// 	$.ajax({
+		// 		url: sPrefix + this.fleetUrl,
+		// 		type: "GET",
+		// 		dataType: "json",
+		// 		async: false,
+		// 		success: function (oData) {
+		// 			var oModel = new sap.ui.model.json.JSONModel();
+		// 			oModel.setData(oData.attributes);
+		// 			CFSO_controller.getView().setModel(oModel, "fleetModel");
 
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-				}
-			});
-		},
+		// 		},
+		// 		error: function (jqXHR, textStatus, errorThrown) {
+		// 			var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+		// 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+		// 				.m.MessageBox.Action.OK, null, null);
+		// 		}
+		// 	});
+		// },
 		listOfModelYear: function () {
 			var d = new Date();
 			var currentModelYear = d.getFullYear();

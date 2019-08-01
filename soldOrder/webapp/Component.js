@@ -99,6 +99,48 @@ sap.ui.define([
 						"error"), sap.m.MessageBox.Action.OK, null, null);
 				}
 			});
-		}
+		},
+		getFleetCustomer: function () {
+			sap.ui.core.BusyIndicator.show();
+			var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+
+			var sPrefix;
+			if (sLocation_conf == 0) {
+				sPrefix = "/soldorder_node"; //ecpSales_node_secured
+				this.fleetUrl = "/userDetails/FleetCustomers"; //"/userDetails/attributesforlocaltesting";
+			} else {
+				sPrefix = "";
+				this.fleetUrl = "/userDetails/FleetCustomers";
+			}
+
+			//======================================================================================================================//			
+			//  on init method,  get the token attributes and authentication details to the UI from node layer.  - begin
+			//======================================================================================================================//		
+			//  get the Scopes to the UI 
+			//this.sPrefix ="";
+
+			var that = this;
+			// var zjson = new JSONModel();
+			// sap.ui.getCore().setModel(zjson,"LoginUserModel");
+			$.ajax({
+				url: sPrefix + this.fleetUrl,
+				type: "GET",
+				dataType: "json",
+				async: false,
+				success: function (oData) {
+					sap.ui.core.BusyIndicator.hide();
+					var oModel = new sap.ui.model.json.JSONModel();
+					oModel.setData(oData.attributes);
+					sap.ui.getCore().setModel(oModel, "fleetModel");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					sap.ui.core.BusyIndicator.hide();
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+		},
 	});
 });
