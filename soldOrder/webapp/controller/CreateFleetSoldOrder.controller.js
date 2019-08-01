@@ -81,7 +81,7 @@ sap.ui.define([
 					// }
 				}
 			}
-			
+
 			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
 			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
 			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
@@ -111,6 +111,9 @@ sap.ui.define([
 			// });
 		},
 		_onObjectMatched: function (oEvent) {
+			CFSO_controller.dialog = new sap.m.BusyDialog({
+				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
+			});
 			this.getView().byId("idmenu1").setType('Transparent');
 			this.getView().byId("idmenu2").setType('Transparent');
 			this.getView().byId("idmenu3").setType('Emphasized');
@@ -502,6 +505,7 @@ sap.ui.define([
 			}
 		},
 		_onSubmit: function () {
+			CFSO_controller.dialog.open();
 			if (this.getView().byId("FanNo_CFSO").getValue() !== "" && this.getView().byId("ID_PONumber").getValue() != "") {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 				//this.getView().byId("ID_PONumber");
@@ -547,6 +551,7 @@ sap.ui.define([
 				this.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
 				this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
 					success: function (oData, oResponse) {
+						CFSO_controller.dialog.close();
 						if (oData.ZsoFltReqNo) {
 							CFSO_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
 								Soreq: oData.ZsoFltReqNo
@@ -555,7 +560,7 @@ sap.ui.define([
 
 					},
 					error: function (oData, oResponse) {
-
+						CFSO_controller.dialog.close();
 					}
 				});
 			} else {
@@ -979,16 +984,19 @@ sap.ui.define([
 			return true;
 		},
 		onCloseDialogFan: function (Oevent) {
+			CFSO_controller.dialog.open();
 			var Fan = this.getView().byId("FanNo_CFSO");
 			var key = Oevent.getParameter("selectedContexts")[0].getProperty('BusinessPartnerKey');
 			var text = Oevent.getParameter("selectedContexts")[0].getProperty('SearchTerm2');
 			CFSO_controller.getView().getModel('mainservices').read("/Customer_infoSet('" + key + "')", {
 				success: function (data, textStatus, jqXHR) {
+					CFSO_controller.dialog.close();
 					var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
 					CFSO_controller.getView().setModel(oModel, "Customer");
 					Fan.setValue(text);
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
+					CFSO_controller.dialog.close();
 					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
 						sap
 						.m.MessageBox.Action.OK, null, null);
@@ -997,7 +1005,6 @@ sap.ui.define([
 
 		},
 		handleSearchFan: function (oEvent) {
-
 			var searchString = oEvent.getParameter("value");
 			var filters = [];
 			if (searchString && searchString.length > 0) {
