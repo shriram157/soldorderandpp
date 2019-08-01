@@ -50,7 +50,7 @@ sap.ui.define([
 			};
 			
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-			this.brand;
+			this.brand = "";
 			if (isDivisionSent) {
 				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 				if (this.sDivision == "10")
@@ -76,6 +76,7 @@ sap.ui.define([
 			this.nodeJsUrl = this.sPrefix + "/node";
 			// return this.nodeJsUrl;
 			this.getSeriesData(this.brand,this.nodeJsUrl);
+			this.getFleetCustomer();
 		},
 		
 		getSeriesData:function(brand,nodeJsUrl){
