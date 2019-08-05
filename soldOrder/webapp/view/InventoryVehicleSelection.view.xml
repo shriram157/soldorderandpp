@@ -22,33 +22,33 @@
 					</VBox>
 					
 					
-					<t:Table id="idFSO_IVS_Table" rows="{inventoryModel>/}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" class="marginCorners marginCornersBottom">
+					<t:Table id="idFSO_IVS_Table" rows="{inventoryModel>/}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount="9" >
 						<t:columns>
-						<t:Column width="11.11%" resizable="false">
+						<t:Column>
 								<Label text="{i18n>series}" class="TableLabel"/>
 								<t:template>
 									<Text text="{inventoryModel>TCISeries}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false">
+							<t:Column>
 								<Label text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<Text text="{inventoryModel>Modelyear}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="13.11%" resizable="false">
+							<t:Column>
 								<Label text="{i18n>VehTrackNo}" class="TableLabel"/>
 								<t:template>
 									<Text text="{inventoryModel>ZZVTN}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" sortProperty="Category">
+							<t:Column sortProperty="Category">
 								<Label text="{i18n>orderNumber}" class="TableLabel"/>
 								<t:template>
 									<Text text="{inventoryModel>ZZDLR_REF_NO}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false" sortProperty="Category">
+							<t:Column sortProperty="Category">
 								<Label text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 								<!--	<Text text="{Category}"/>-->
@@ -57,7 +57,7 @@
 							<!--</ComboBox>-->
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" sortProperty="Category" resizable="false">
+							<t:Column sortProperty="Category">
 								<Label text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 										<Text text="{inventoryModel>Suffix}" wrapping="false"/>
@@ -65,13 +65,13 @@
 									<!--<Text text="{parts: [{path:'mainservices>Suffix'},{path:'mainservices>SUFFIX_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 								</t:template>
 							</t:Column>
-								<t:Column width="9.11%" resizable="false">
+								<t:Column >
 								<Label text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
 									<Text text="{inventoryModel>APX}"/>
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false">
+							<t:Column>
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 							<!--	<ComboBox id="colour_CSOR" editable="false" maxWidth = "100%"  selectedKey="{mainservices>Zzextcol}">-->
@@ -81,7 +81,7 @@
 									<!--<Text text="{parts: [{path:'mainservices>ExteriorColorCode'},{path:'mainservices>INTCOL_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
 								</t:template>
 							</t:Column>
-							<t:Column width="11.11%" resizable="false">
+							<t:Column>
 								<Label text="{i18n>status}" class="TableLabel"/>
 								<t:template>
 									<Text text="{inventoryModel>Status}"/>
@@ -89,14 +89,22 @@
 							</t:Column>
 								</t:columns>
 						</t:Table>
-							<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12" class="marginCornersBottom">
+							<!--<l:Grid hSpacing="1" vSpacing="1" defaultSpan="L3 M6 S12" class="marginCornersBottom">-->
 
-							<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>
-								<l:content>
-							    <Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>
-							</l:content>
-							<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>
+							<!--<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>-->
+							<!--	<l:content>-->
+							<!--    <Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>-->
+							<!--</l:content>-->
+							<!--<Button xmlns="sap.m" id="buttonNext" press="onActionNext" icon="sap-icon://navigation-right-arrow"/>-->
 						
+							<!--</l:Grid>-->
+							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners moreBtn">
+								<!--<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>-->
+								<l:content>
+									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
+									<!--<Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"-->
+									<!--	xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>-->
+								</l:content>
 							</l:Grid>
 				</content>
 					<footer class="sitefooter">
