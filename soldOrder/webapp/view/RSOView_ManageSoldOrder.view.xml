@@ -22,17 +22,13 @@
 								</items>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Model}"/>
-							<ComboBox id="model_CSOR" editable="false" required="true" maxWidth="100%" selectedKey="{mainservices>Zzmodel}">
-							</ComboBox>
+							<ComboBox id="model_CSOR" editable="false" required="true" maxWidth="100%" selectedKey="{mainservices>Zzmodel}"></ComboBox>
 							<Label text="{i18n>Suffix}"/>
-							<ComboBox id="suffix_CSOR" editable="false" maxWidth="100%" required="true" selectedKey="{mainservices>Zzsuffix}">
-							</ComboBox>
+							<ComboBox id="suffix_CSOR" editable="false" maxWidth="100%" required="true" selectedKey="{mainservices>Zzsuffix}"></ComboBox>
 							<Label text="{i18n>Colour}"/>
-							<ComboBox id="colour_CSOR" editable="false" maxWidth="100%" required="true" selectedKey="{mainservices>Zzextcol}">
-							</ComboBox>
+							<ComboBox id="colour_CSOR" editable="false" maxWidth="100%" required="true" selectedKey="{mainservices>Zzextcol}"></ComboBox>
 							<Label text="{i18n>APX}"/>
-							<ComboBox id="apx_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzapx}">
-							</ComboBox>
+							<ComboBox id="apx_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzapx}"></ComboBox>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
 							<Text
 								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
@@ -186,9 +182,8 @@
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Text
 								text="{parts:[{path:'mainservices>Qausp'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
-								<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Text
-								text="{parts:[{path:'mainservices>Fan'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Label wrapping="true" text="{i18n>FanNumber}"/>
+							<Text text="{parts:[{path:'mainservices>Fan'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>PriceProtectionDetails}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>Eligibility}"/>

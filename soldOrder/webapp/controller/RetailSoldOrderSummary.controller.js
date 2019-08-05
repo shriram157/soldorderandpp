@@ -1,9 +1,10 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"toyota/ca/SoldOrder/util/formatter",
+	"sap/ui/model/Sorter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
-], function (BaseController, formatter, Filter, FilterOperator) {
+], function (BaseController, formatter, Sorter, Filter, FilterOperator) {
 	"use strict";
 	var RSOS_controller, zrequest, clicks = 0,
 		num, page = 0,
@@ -273,6 +274,36 @@ sap.ui.define([
 		onAfterRendering: function () {
 
 		},
+		
+		onLiveSOChange:function(oEvent){
+			this.sSearchQuery = oEvent.getSource().getValue();
+			this.fnSuperSearch();
+		},
+		fnSuperSearch: function (oEvent) {
+			var aFilters = [],
+				aSorters = [];
+
+			aSorters.push(new Sorter("ZzsoReqNo", this.bDescending));
+
+			if (this.sSearchQuery) {
+				var oFilter = new Filter([
+					new Filter("ZzsoReqNo", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZzendcuName", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZzdealerCode", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("Zzmoyr", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("Zzseries", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("Zzmodel", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("Zzsuffix", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZzAuditStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZzsoStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("Zzvtn", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
+				], false);
+
+				var aFilters = new sap.ui.model.Filter([oFilter], true);
+			}
+			this.byId("table_RSOS").getBinding().filter(aFilters).sort(aSorters);
+		},
+		
 		_handleServiceSuffix_Series: function () {
 			// sap.ui.core.BusyIndicator.show(100);
 			RSOS_controller.dialog.open();

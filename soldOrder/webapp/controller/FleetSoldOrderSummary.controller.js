@@ -1,9 +1,10 @@
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"toyota/ca/SoldOrder/util/formatter",
+	"sap/ui/model/Sorter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
-], function (Controller, formatter, Filter, FilterOperator) {
+], function (Controller, formatter, Sorter, Filter, FilterOperator) {
 	"use strict";
 	var FSOS_controller, clicks = 0,
 		num = 0,
@@ -744,5 +745,33 @@ sap.ui.define([
 				}
 			}
 		},
+		onLiveSOChange:function(oEvent){
+			this.sSearchQuery = oEvent.getSource().getValue();
+			this.fnSuperSearch();
+		},
+		fnSuperSearch: function (oEvent) {
+			var aFilters = [],
+				aSorters = [];
+
+			aSorters.push(new Sorter("ZsoFltReqNo", this.bDescending));
+
+			if (this.sSearchQuery) {
+				var oFilter = new Filter([
+					new Filter("ZsoFltReqNo", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("NameOrg1", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZzdealerCode", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZsoFltStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZfanNo", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZpoNumber", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("Zadd1", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZzoneApproval", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZtotalVehQty", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("Zzvtn", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
+				], false);
+
+				aFilters = new sap.ui.model.Filter([oFilter], true);
+			}
+			this.byId("tbl_FSOS").getBinding().filter(aFilters).sort(aSorters);
+		}
 	});
 });

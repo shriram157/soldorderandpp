@@ -78,6 +78,17 @@
 							</VBox>
 							<t:Table id="table_PPD_Dealer" selectionMode="None" rows="{ppdModel>/}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" class="marginCorners" visibleRowCount="7">
+								<t:extension>
+									<Toolbar>
+										<Title id="tableHeader" text="{detailView>/tableCount}"/>
+										<ToolbarSpacer/>
+										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="">
+											<layoutData>
+												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
+											</layoutData>
+										</SearchField>
+									</Toolbar>
+								</t:extension>
 								<t:columns>
 									<t:Column filterProperty="dealer_ord" sortProperty="dealer_ord">
 										<Label class="TableLabel" text="{i18n>orderNum}"/>

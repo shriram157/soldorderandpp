@@ -77,6 +77,17 @@
 							</VBox>
 							<t:Table id="tbl_FSOS" selectionMode="None" rows="{fleetsumModel>/}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" class="marginCorners" visibleRowCount="9">
+								<t:extension>
+									<Toolbar>
+										<Title id="tableHeader" text="{detailView>/tableCount}"/>
+										<ToolbarSpacer/>
+										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="">
+											<layoutData>
+												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
+											</layoutData>
+										</SearchField>
+									</Toolbar>
+								</t:extension>
 								<t:columns>
 									<t:Column filterProperty="ZsoFltReqNo" sortProperty="ZsoFltReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>

@@ -104,6 +104,17 @@
 							<!--<t:Table id="table_RSOS" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners">-->
 							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true"
 								enableColumnFreeze="false" visibleRowCount="9" class="marginCorners">
+								<t:extension>
+									<Toolbar>
+										<Title id="tableHeader" text="{detailView>/tableCount}"/>
+										<ToolbarSpacer/>
+										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="">
+											<layoutData>
+												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
+											</layoutData>
+										</SearchField>
+									</Toolbar>
+								</t:extension>
 								<t:columns>
 									<t:Column filterProperty="ZzsoReqNo" sortProperty="ZzsoReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
@@ -136,28 +147,17 @@
 										<Label text="{i18n>series}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>Zzseries}" wrapping="true"/>
-											<!--<ComboBox editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"-->
-											<!--	modelContextChange="onSeriesnum">-->
-											<!--	<items>-->
-											<!--		<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>-->
-											<!--	</items>-->
-											<!--</ComboBox>-->
-											<!--<Text text="{mainservices>Zzseries}" wrapping="true"/>-->
 										</t:template>
 									</t:Column>
 									<t:Column>
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
-											<!--<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"-->
-											<!--	wrapping="true"/>-->
 											<Text text="{retailsumModel>Zzmodel}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
 										<Label text="{i18n>suffix}" class="TableLabel"/>
 										<t:template>
-											<!--<Text text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"-->
-											<!--	wrapping="true"/>-->
 											<Text text="{retailsumModel>Zzsuffix}" wrapping="true"/>
 										</t:template>
 									</t:Column>
@@ -197,7 +197,6 @@
 									<!--<Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"-->
 									<!--	xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="txtPageNum"/>-->
 								</l:content>
-								
 							</l:Grid>
 						</items>
 					</VBox>
