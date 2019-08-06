@@ -120,17 +120,18 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-			if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
+			if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0 ||(sap.ui.getCore().getModel('SecondTable') != undefined && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0)) {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-			} else {
+			} 
+			// else if (sap.ui.getCore().getModel('SecondTable') != undefined) {
+			// 	if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
+			// 		this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+			// 	} else {
+			// 		this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+			// 	}
+			// }
+			else {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
-			}
-			if (sap.ui.getCore().getModel('SecondTable') != undefined) {
-				if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
-					this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-				} else {
-					this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
-				}
 			}
 		},
 		_newService1: function () {
