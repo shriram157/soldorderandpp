@@ -613,10 +613,12 @@ sap.ui.define([
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" || etaFrom === null ||
 				etaTo === null || quantity == "") {
 				var errForm = formatter.formatErrorType("SO00003");
+				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
+					
 			} else {
 				_Table_Data2.push({
 					modelYear: valModelYr,
@@ -630,6 +632,7 @@ sap.ui.define([
 					quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
 				});
 				this.getView().getModel('SecondTable').refresh();
+				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 			}
 		},
 
