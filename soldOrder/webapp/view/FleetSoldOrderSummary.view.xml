@@ -76,7 +76,7 @@
 								</items>
 							</VBox>
 							<t:Table id="tbl_FSOS" selectionMode="None" rows="{fleetsumModel>/}" enableColumnReordering="false" alternateRowColors="true"
-								enableColumnFreeze="false" class="marginCorners" visibleRowCount="9">
+								 class="marginCorners" visibleRowCount="7">
 								<t:extension>
 									<Toolbar>
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>

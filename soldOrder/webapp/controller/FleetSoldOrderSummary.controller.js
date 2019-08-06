@@ -763,7 +763,7 @@ sap.ui.define([
 					new Filter("ZsoFltStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ZfanNo", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ZpoNumber", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
-					new Filter("Zadd1", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("Zzordtypedesc", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ZzoneApproval", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ZtotalVehQty", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("Zzvtn", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
