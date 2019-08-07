@@ -40,7 +40,7 @@ sap.ui.define([
 			//Dealer Inventory	var host = RSOS_controller.host();
 			var host = InvVehSel_controller.host();
 
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=50&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
 				dealer_no + "') and (source eq 'FLT') and (ZDIVISION eq '" + sDivision + "')";
 			$.ajax({
 				url: oUrl,
@@ -180,7 +180,7 @@ sap.ui.define([
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			if (Oevent.getSource().getSelectedKey() == '1') {
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=50&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
 					dealer_no + "') and (source eq 'FLT') and (ZDIVISION eq '" + sDivision + "')";
 				$.ajax({
 					url: oUrl,
@@ -241,7 +241,7 @@ sap.ui.define([
 			} else if (Oevent.getSource().getSelectedKey() == '2') //National Stock
 			{
 				var oUrl = host +
-					"/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '2400500000') and (source eq 'FLT') and (ZDIVISION eq '" +
+					"/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=50&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '2400500000') and (source eq 'FLT') and (ZDIVISION eq '" +
 					sDivision + "')";
 				$.ajax({
 					url: oUrl,
@@ -396,7 +396,7 @@ sap.ui.define([
 			} else {
 				clicks += 1;
 			}
-			num = clicks * 10;
+			num = clicks * 50;
 
 			// if(num === count1)
 			// {
@@ -436,7 +436,7 @@ sap.ui.define([
 			//Dealer Inventory	var host = RSOS_controller.host();
 			var host = InvVehSel_controller.host();
 
-			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=10&$skip=" + num + "&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=50&$skip=" + num + "&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
 				dealer_no + "') and (source eq 'FLT') and (ZDIVISION eq '" + sDivision + "')";
 			$.ajax({
 				url: oUrl,
