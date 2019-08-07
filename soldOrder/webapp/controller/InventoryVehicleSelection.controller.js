@@ -49,7 +49,7 @@ sap.ui.define([
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
 					var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-					if (data.d.results.length <= 10) {
+					if (data.d.results.length < 10) {
 						BtnNext.setEnabled(false);
 					} else {
 						BtnNext.setEnabled(true);
@@ -65,7 +65,7 @@ sap.ui.define([
 					} else {
 						DataModel.setData(data.d.results);
 						DataModel.updateBindings(true);
-						if (data.d.results.length <= 10) {
+						if (data.d.results.length < 10) {
 							BtnNext.setEnabled(false);
 						}
 					}
@@ -190,7 +190,7 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						
 					var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-					if (data.d.results.length <= 10) {
+					if (data.d.results.length < 10) {
 						BtnNext.setEnabled(false);
 					} else {
 						BtnNext.setEnabled(true);
@@ -206,7 +206,7 @@ sap.ui.define([
 					} else {
 						DataModel.setData(data.d.results);
 						DataModel.updateBindings(true);
-						if (data.d.results.length <= 10) {
+						if (data.d.results.length < 10) {
 							BtnNext.setEnabled(false);
 						}
 					}
@@ -446,7 +446,7 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					
 					var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-					if (data.d.results.length <= 10) {
+					if (data.d.results.length < 10) {
 						BtnNext.setEnabled(false);
 					} else {
 						BtnNext.setEnabled(true);
@@ -462,7 +462,7 @@ sap.ui.define([
 					} else {
 						DataModel.setData(data.d.results);
 						DataModel.updateBindings(true);
-						if (data.d.results.length <= 10) {
+						if (data.d.results.length < 10) {
 							BtnNext.setEnabled(false);
 						}
 					}
