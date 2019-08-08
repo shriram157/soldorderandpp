@@ -35,8 +35,7 @@ sap.ui.define([
 			var oModel = new sap.ui.model.json.JSONModel();
 			InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
 			// vechile_items.refresh();
-		},
-		onAfterRendering: function () {
+			
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory	var host = RSOS_controller.host();
 			var host = InvVehSel_controller.host();
@@ -124,6 +123,95 @@ sap.ui.define([
 			});
 			clicks = 0;
 			num = 0;
+		},
+		onAfterRendering: function () {
+			// var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			// //Dealer Inventory	var host = RSOS_controller.host();
+			// var host = InvVehSel_controller.host();
+
+			// var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=50&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
+			// 	dealer_no + "') and (source eq 'FLT') and (ZDIVISION eq '" + sDivision + "')";
+			// $.ajax({
+			// 	url: oUrl,
+			// 	method: "GET",
+			// 	async: false,
+			// 	dataType: "json",
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+			// 		if (data.d.results.length < 10) {
+			// 			BtnNext.setEnabled(false);
+			// 		} else {
+			// 			BtnNext.setEnabled(true);
+			// 		}
+
+			// 		var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
+			// 		if (DataModel.getData().length != undefined) {
+			// 			DataModel.getData().results = [];
+			// 			for (var m = 0; m < data.d.results.length; m++) {
+			// 				if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+			// 					if (data.d.results[m].TCISeries == "SIE") {
+			// 						DataModel.getData().results.push(data.d.results[m]);
+			// 					}
+			// 				} else {
+			// 					DataModel.getData().results.push(data.d.results[m]);
+			// 				}
+
+			// 				DataModel.updateBindings(true);
+			// 				console.log("DataModel.getData()", DataModel.getData());
+			// 			}
+			// 		} else {
+			// 			var obj = {
+			// 				"results": []
+			// 			};
+
+			// 			if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+			// 				for (var m = 0; m < data.d.results.length; m++) {
+			// 					if (data.d.results[m].TCISeries == "SIE") {
+			// 						obj.results.push(data.d.results[m]);
+			// 					}
+			// 				}
+			// 				DataModel.setData(obj);
+			// 			} else {
+			// 				DataModel.setData(data.d.results);
+			// 			}
+
+			// 			DataModel.updateBindings(true);
+			// 			console.log("DataModel.getData()", DataModel.getData());
+
+			// 			if (data.d.results.length < 10) {
+			// 				BtnNext.setEnabled(false);
+			// 			}
+			// 		}
+					// var oModel = new sap.ui.model.json.JSONModel();
+
+					// oModel.setData(data.d.results);
+					// if (data.d.results.length == undefined) {
+
+					// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+					// 	BtnNext.setEnabled(false);
+					// } else if (data.d.results.length < 10) {
+					// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+					// 	BtnNext.setEnabled(false);
+					// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+					// } else {
+					// 	// if (oModel.length > 0) {
+					// 	//oModel.getData().ZC_SERIES.unshift({
+					// 	//  "{seriesModel>ModelSeriesNo}": "All",
+					// 	//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+					// 	//})
+					// 	// }
+					// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+					// }
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
+
+			// 		var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+
+			// 	}
+			// });
+			// clicks = 0;
+			// num = 0;
 			// var page = clicks + 1;
 			// InvVehSel_controller.getView().byId("txtPageNum").setText("Page " + page);
 			// var BtnPrev = this.getView().byId("buttonPrev");
