@@ -82,33 +82,46 @@ sap.ui.define([
 				}
 			}
 
-			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
-			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
-			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
-			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
-			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
-			// $.ajax({
-			// 	url: url,
-			// 	method: 'GET',
-			// 	async: false,
-			// 	dataType: 'json',
-			// 	success: function (data, textStatus, jqXHR) {
-			// 		if (seriesCB.getValue() !== "") {
-			// 			//seriesCB.setValue(" ");
-			// 			seriesCB.setSelectedKey(null);
-			// 		}
-			// 		//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
-			// 		var oModel = new sap.ui.model.json.JSONModel();
-			// 		oModel.setData(data.d.results);
-			// 		CFSO_controller.getView().setModel(oModel, "seriesModel");
+			// CFSO_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
+			// console.log("series data", sap.ui.getCore().getModel("seriesModel"));
+			var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+				"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
+			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
+			$.ajax({
+				url: url,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
+					var obj = {
+						"results": []
+					};
+					if (seriesCB.getValue() !== "") {
+						//seriesCB.setValue(" ");
+						seriesCB.setSelectedKey(null);
+					}
+					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
+					var oModel = new sap.ui.model.json.JSONModel();
+					for (var m = 0; m < data.d.results.length; m++) {
+						if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+							if (data.d.results[m].TCISeries == "SIE") {
+								obj.results.push(data.d.results[m]);
+							}
+							oModel.setData(obj);
+						} else {
+							oModel.setData(data.d.results);
+						}
+					}
 
-			// 	},
-			// 	error: function (jqXHR, textStatus, errorThrown) {
-			// 		var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
-			// 			.m.MessageBox.Action.OK, null, null);
-			// 	}
-			// });
+					CFSO_controller.getView().setModel(oModel, "seriesModel");
+
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
 		},
 		_onObjectMatched: function (oEvent) {
 			CFSO_controller.dialog = new sap.m.BusyDialog({
@@ -120,9 +133,10 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-			if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0 ||(sap.ui.getCore().getModel('SecondTable') != undefined && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0)) {
+			if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0 || (sap.ui.getCore().getModel('SecondTable') != undefined &&
+					sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0)) {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-			} 
+			}
 			// else if (sap.ui.getCore().getModel('SecondTable') != undefined) {
 			// 	if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
 			// 		this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
@@ -618,7 +632,7 @@ sap.ui.define([
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
-					
+
 			} else {
 				_Table_Data2.push({
 					modelYear: valModelYr,
@@ -997,6 +1011,7 @@ sap.ui.define([
 					CFSO_controller.dialog.close();
 					var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
 					CFSO_controller.getView().setModel(oModel, "Customer");
+					sap.ui.getCore().setModel(oModel, "CustomerData");
 					Fan.setValue(text);
 				},
 				error: function (jqXHR, textStatus, errorThrown) {

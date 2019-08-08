@@ -25,6 +25,7 @@ sap.ui.define([
 		},
 		_getattachRouteMatched: function (parameters) {
 			this.zrequest = parameters.getParameters().arguments.Soreq;
+			this.Kukla = sap.ui.getCore().getModel("CustomerData").getData().Kukla;
 			num = 0;
 			clicks = 0;
 			InvVehSel_controller.dialog = new sap.m.BusyDialog({
@@ -58,13 +59,29 @@ sap.ui.define([
 					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
 					if (DataModel.getData().length != undefined) {
 						for (var m = 0; m < data.d.results.length; m++) {
-							DataModel.getData().push(data.d.results[m]);
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+								if (data.d.results[m].TCISeries == "SIE") {
+									DataModel.getData().push(data.d.results[m]);
+								}
+							} else {
+								DataModel.getData().push(data.d.results[m]);
+							}
+
 							DataModel.updateBindings(true);
 							console.log("DataModel.getData()", DataModel.getData());
 						}
 					} else {
-						DataModel.setData(data.d.results);
-						DataModel.updateBindings(true);
+						for (var m = 0; m < data.d.results.length; m++) {
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+								if (data.d.results[m].TCISeries == "SIE") {
+									DataModel.getData().push(data.d.results[m]);
+								}
+							} else {
+								DataModel.setData(data.d.results);
+							}
+							DataModel.updateBindings(true);
+							console.log("DataModel.getData()", DataModel.getData());
+						}
 						if (data.d.results.length < 10) {
 							BtnNext.setEnabled(false);
 						}
@@ -170,7 +187,7 @@ sap.ui.define([
 			});
 			Model.refresh();
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
-			
+
 		},
 		filter_change: function (Oevent) {
 
@@ -188,28 +205,44 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						
-					var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-					if (data.d.results.length < 10) {
-						BtnNext.setEnabled(false);
-					} else {
-						BtnNext.setEnabled(true);
-					}
 
-					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
-					if (DataModel.getData().length != undefined) {
-						for (var m = 0; m < data.d.results.length; m++) {
-							DataModel.getData().push(data.d.results[m]);
-							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
-						}
-					} else {
-						DataModel.setData(data.d.results);
-						DataModel.updateBindings(true);
+						var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 						if (data.d.results.length < 10) {
 							BtnNext.setEnabled(false);
+						} else {
+							BtnNext.setEnabled(true);
 						}
-					}
+
+						var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
+						if (DataModel.getData().length != undefined) {
+							for (var m = 0; m < data.d.results.length; m++) {
+								if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+									if (data.d.results[m].TCISeries == "SIE") {
+										DataModel.getData().push(data.d.results[m]);
+									}
+								} else {
+									DataModel.getData().push(data.d.results[m]);
+								}
+
+								DataModel.updateBindings(true);
+								console.log("DataModel.getData()", DataModel.getData());
+							}
+						} else {
+							for (var m = 0; m < data.d.results.length; m++) {
+								if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+									if (data.d.results[m].TCISeries == "SIE") {
+										DataModel.getData().push(data.d.results[m]);
+									}
+								} else {
+									DataModel.setData(data.d.results);
+								}
+								DataModel.updateBindings(true);
+								console.log("DataModel.getData()", DataModel.getData());
+							}
+							if (data.d.results.length < 10) {
+								BtnNext.setEnabled(false);
+							}
+						}
 						// var oModel = new sap.ui.model.json.JSONModel();
 
 						// oModel.setData(data.d.results);
@@ -249,20 +282,43 @@ sap.ui.define([
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						var oModel = new sap.ui.model.json.JSONModel();
+						var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+					if (data.d.results.length < 10) {
+						BtnNext.setEnabled(false);
+					} else {
+						BtnNext.setEnabled(true);
+					}
 
-						oModel.setData(data.d.results);
-						if (data.d.results.length == undefined) {
+					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
+					if (DataModel.getData().length != undefined) {
+						for (var m = 0; m < data.d.results.length; m++) {
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+								if (data.d.results[m].TCISeries == "SIE") {
+									DataModel.getData().push(data.d.results[m]);
+								}
+							} else {
+								DataModel.getData().push(data.d.results[m]);
+							}
 
-							var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-							BtnNext.setEnabled(false);
-						} else if (data.d.results.length < 10) {
-							var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-							BtnNext.setEnabled(false);
-							InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
-						} else {
-							InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+							DataModel.updateBindings(true);
+							console.log("DataModel.getData()", DataModel.getData());
 						}
+					} else {
+						for (var m = 0; m < data.d.results.length; m++) {
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+								if (data.d.results[m].TCISeries == "SIE") {
+									DataModel.getData().push(data.d.results[m]);
+								}
+							} else {
+								DataModel.setData(data.d.results);
+							}
+							DataModel.updateBindings(true);
+							console.log("DataModel.getData()", DataModel.getData());
+						}
+						if (data.d.results.length < 10) {
+							BtnNext.setEnabled(false);
+						}
+					}
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 
@@ -282,7 +338,7 @@ sap.ui.define([
 					'mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-				
+
 				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				// language = InvVehSel_controller.returnBrowserLanguage();
 				var model;
@@ -444,7 +500,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-					
+
 					var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
 					if (data.d.results.length < 10) {
 						BtnNext.setEnabled(false);
@@ -455,13 +511,29 @@ sap.ui.define([
 					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
 					if (DataModel.getData().length != undefined) {
 						for (var m = 0; m < data.d.results.length; m++) {
-							DataModel.getData().push(data.d.results[m]);
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+								if (data.d.results[m].TCISeries == "SIE") {
+									DataModel.getData().push(data.d.results[m]);
+								}
+							} else {
+								DataModel.getData().push(data.d.results[m]);
+							}
+
 							DataModel.updateBindings(true);
 							console.log("DataModel.getData()", DataModel.getData());
 						}
 					} else {
-						DataModel.setData(data.d.results);
-						DataModel.updateBindings(true);
+						for (var m = 0; m < data.d.results.length; m++) {
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+								if (data.d.results[m].TCISeries == "SIE") {
+									DataModel.getData().push(data.d.results[m]);
+								}
+							} else {
+								DataModel.setData(data.d.results);
+							}
+							DataModel.updateBindings(true);
+							console.log("DataModel.getData()", DataModel.getData());
+						}
 						if (data.d.results.length < 10) {
 							BtnNext.setEnabled(false);
 						}
