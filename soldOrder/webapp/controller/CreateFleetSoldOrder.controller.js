@@ -1008,7 +1008,7 @@ sap.ui.define([
 			var text = Oevent.getParameter("selectedContexts")[0].getProperty('SearchTerm2');
 			CFSO_controller.getView().getModel('mainservices').read("/Customer_infoSet('" + key + "')", {
 				success: function (data, textStatus, jqXHR) {
-					CFSO_controller.dialog.close();
+					
 					var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
 					CFSO_controller.getView().setModel(oModel, "Customer");
 					sap.ui.getCore().setModel(oModel, "CustomerData");
@@ -1018,8 +1018,7 @@ sap.ui.define([
 				error: function (jqXHR, textStatus, errorThrown) {
 					CFSO_controller.dialog.close();
 					sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
-						sap
-						.m.MessageBox.Action.OK, null, null);
+						sap.m.MessageBox.Action.OK, null, null);
 				}
 			});
 
@@ -1035,6 +1034,7 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
+					CFSO_controller.dialog.close();
 					var obj = {
 						"results": []
 					};
@@ -1054,6 +1054,7 @@ sap.ui.define([
 
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
+					CFSO_controller.dialog.close();
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 						.m.MessageBox.Action.OK, null, null);
