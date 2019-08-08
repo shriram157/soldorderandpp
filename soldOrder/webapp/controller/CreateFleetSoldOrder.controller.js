@@ -102,15 +102,15 @@ sap.ui.define([
 					}
 					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
-					for (var m = 0; m < data.d.results.length; m++) {
-						if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+					if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+						for (var m = 0; m < data.d.results.length; m++) {
 							if (data.d.results[m].TCISeries == "SIE") {
 								obj.results.push(data.d.results[m]);
 							}
-							oModel.setData(obj);
-						} else {
-							oModel.setData(data.d.results);
 						}
+							oModel.setData(obj);
+					} else {
+						oModel.setData(data.d.results);
 					}
 
 					CFSO_controller.getView().setModel(oModel, "seriesModel");
