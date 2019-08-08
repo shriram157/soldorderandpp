@@ -35,7 +35,7 @@ sap.ui.define([
 			var oModel = new sap.ui.model.json.JSONModel();
 			InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
 			// vechile_items.refresh();
-			
+
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory	var host = RSOS_controller.host();
 			var host = InvVehSel_controller.host();
@@ -57,20 +57,23 @@ sap.ui.define([
 
 					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
 					if (DataModel.getData().length != undefined) {
-						DataModel.getData().results = [];
-						for (var m = 0; m < data.d.results.length; m++) {
+							var obj = {
+								"results": []
+							};
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
-								if (data.d.results[m].TCISeries == "SIE") {
-									DataModel.getData().results.push(data.d.results[m]);
+								for (var m = 0; m < data.d.results.length; m++) {
+									if (data.d.results[m].TCISeries == "SIE") {
+										obj.results.push(data.d.results[m]);
+									}
 								}
+								DataModel.getData().results.push(obj);
 							} else {
 								DataModel.getData().results.push(data.d.results[m]);
 							}
-
 							DataModel.updateBindings(true);
 							console.log("DataModel.getData()", DataModel.getData());
-						}
-					} else {
+							// }
+						} else {
 						var obj = {
 							"results": []
 						};
@@ -182,26 +185,26 @@ sap.ui.define([
 			// 				BtnNext.setEnabled(false);
 			// 			}
 			// 		}
-					// var oModel = new sap.ui.model.json.JSONModel();
+			// var oModel = new sap.ui.model.json.JSONModel();
 
-					// oModel.setData(data.d.results);
-					// if (data.d.results.length == undefined) {
+			// oModel.setData(data.d.results);
+			// if (data.d.results.length == undefined) {
 
-					// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-					// 	BtnNext.setEnabled(false);
-					// } else if (data.d.results.length < 10) {
-					// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-					// 	BtnNext.setEnabled(false);
-					// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
-					// } else {
-					// 	// if (oModel.length > 0) {
-					// 	//oModel.getData().ZC_SERIES.unshift({
-					// 	//  "{seriesModel>ModelSeriesNo}": "All",
-					// 	//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
-					// 	//})
-					// 	// }
-					// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
-					// }
+			// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+			// 	BtnNext.setEnabled(false);
+			// } else if (data.d.results.length < 10) {
+			// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+			// 	BtnNext.setEnabled(false);
+			// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+			// } else {
+			// 	// if (oModel.length > 0) {
+			// 	//oModel.getData().ZC_SERIES.unshift({
+			// 	//  "{seriesModel>ModelSeriesNo}": "All",
+			// 	//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+			// 	//})
+			// 	// }
+			// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+			// }
 			// 	},
 			// 	error: function (jqXHR, textStatus, errorThrown) {
 
@@ -311,19 +314,22 @@ sap.ui.define([
 
 						var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
 						if (DataModel.getData().length != undefined) {
-							DataModel.getData().results = [];
-							for (var m = 0; m < data.d.results.length; m++) {
-								if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+							var obj = {
+								"results": []
+							};
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+								for (var m = 0; m < data.d.results.length; m++) {
 									if (data.d.results[m].TCISeries == "SIE") {
-										DataModel.getData().results.push(data.d.results[m]);
+										obj.results.push(data.d.results[m]);
 									}
-								} else {
-									DataModel.getData().results.push(data.d.results[m]);
 								}
-
-								DataModel.updateBindings(true);
-								console.log("DataModel.getData()", DataModel.getData());
+								DataModel.getData().results.push(obj);
+							} else {
+								DataModel.getData().results.push(data.d.results[m]);
 							}
+							DataModel.updateBindings(true);
+							console.log("DataModel.getData()", DataModel.getData());
+							// }
 						} else {
 							var obj = {
 								"results": []
@@ -395,19 +401,22 @@ sap.ui.define([
 
 						var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
 						if (DataModel.getData().length != undefined) {
-							DataModel.getData().results = [];
-							for (var m = 0; m < data.d.results.length; m++) {
-								if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+							var obj = {
+								"results": []
+							};
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+								for (var m = 0; m < data.d.results.length; m++) {
 									if (data.d.results[m].TCISeries == "SIE") {
-										DataModel.getData().results.push(data.d.results[m]);
+										obj.results.push(data.d.results[m]);
 									}
-								} else {
-									DataModel.getData().results.push(data.d.results[m]);
 								}
-
-								DataModel.updateBindings(true);
-								console.log("DataModel.getData()", DataModel.getData());
+								DataModel.getData().results.push(obj);
+							} else {
+								DataModel.getData().results.push(data.d.results[m]);
 							}
+							DataModel.updateBindings(true);
+							console.log("DataModel.getData()", DataModel.getData());
+							// }
 						} else {
 							var obj = {
 								"results": []
@@ -622,19 +631,23 @@ sap.ui.define([
 
 					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
 					if (DataModel.getData().length != undefined) {
-						for (var m = 0; m < data.d.results.length; m++) {
+							var obj = {
+								"results": []
+							};
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
-								if (data.d.results[m].TCISeries == "SIE") {
-									DataModel.getData().push(data.d.results[m]);
+								for (var m = 0; m < data.d.results.length; m++) {
+									if (data.d.results[m].TCISeries == "SIE") {
+										obj.results.push(data.d.results[m]);
+									}
 								}
+								DataModel.getData().results.push(obj);
 							} else {
-								DataModel.getData().push(data.d.results[m]);
+								DataModel.getData().results.push(data.d.results[m]);
 							}
-
 							DataModel.updateBindings(true);
 							console.log("DataModel.getData()", DataModel.getData());
-						}
-					} else {
+							// }
+						} else {
 						for (var m = 0; m < data.d.results.length; m++) {
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 								if (data.d.results[m].TCISeries == "SIE") {
