@@ -83,7 +83,7 @@ sap.ui.define([
 							}
 							DataModel.setData(obj);
 						} else {
-							DataModel.setData(data.d.results);
+							DataModel.setData(data.d);
 						}
 
 						DataModel.updateBindings(true);
@@ -337,7 +337,7 @@ sap.ui.define([
 								}
 								DataModel.setData(obj);
 							} else {
-								DataModel.setData(data.d.results);
+								DataModel.setData(data.d);
 							}
 
 							DataModel.updateBindings(true);
@@ -422,7 +422,7 @@ sap.ui.define([
 								}
 								DataModel.setData(obj);
 							} else {
-								DataModel.setData(data.d.results);
+								DataModel.setData(data.d);
 							}
 
 							DataModel.updateBindings(true);
@@ -643,7 +643,7 @@ sap.ui.define([
 									DataModel.getData().push(data.d.results[m]);
 								}
 							} else {
-								DataModel.setData(data.d.results);
+								DataModel.setData(data.d);
 							}
 							DataModel.updateBindings(true);
 							console.log("DataModel.getData()", DataModel.getData());

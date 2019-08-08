@@ -101,7 +101,7 @@
 							<Label wrapping="true" text="{i18n>modelYear}"/>
 							<Input id="modelYr_CFSO" required="true" value="" width="" showValueHelp="true" showSuggestion="false" valueHelpRequest="select_year"></Input>
 							<Label wrapping="true" text="{i18n>series}"/>
-							<ComboBox id="series_CFSO" items="{path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
+							<ComboBox id="series_CFSO" items="{path: 'seriesModel>/results'}" required="true" selectionChange="series_selected">
 								<!--<core:Item key="{mainservices>Zzseries}" text="{mainservices>ZzseriesDescEn}"/>-->
 								<core:Item key="{seriesModel>ModelSeriesNo}"
 									text="{=${LocalDataModel>/Lang} ==='FR' ? ${seriesModel>TCISeriesDescriptionFR} : ${seriesModel>TCISeriesDescriptionEN} }"/>
