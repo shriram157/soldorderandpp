@@ -57,23 +57,20 @@ sap.ui.define([
 
 					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
 					if (DataModel.getData().length != undefined) {
-							var obj = {
-								"results": []
-							};
-							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
-								for (var m = 0; m < data.d.results.length; m++) {
-									if (data.d.results[m].TCISeries == "SIE") {
-										obj.results.push(data.d.results[m]);
-									}
-								}
-								DataModel.getData().results.push(obj);
+						var obj = {
+							"results": []
+						};
+						for (var m = 0; m < data.d.results.length; m++) {
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M" && data.d.results[m].TCISeries == "SIE") {
+								DataModel.getData().results.push(data.d.results[m]);
 							} else {
 								DataModel.getData().results.push(data.d.results[m]);
 							}
-							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
-							// }
-						} else {
+						}
+						DataModel.updateBindings(true);
+						console.log("DataModel.getData()", DataModel.getData());
+						// }
+					} else {
 						var obj = {
 							"results": []
 						};
@@ -317,15 +314,12 @@ sap.ui.define([
 							var obj = {
 								"results": []
 							};
-							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
-								for (var m = 0; m < data.d.results.length; m++) {
-									if (data.d.results[m].TCISeries == "SIE") {
-										obj.results.push(data.d.results[m]);
-									}
+							for (var m = 0; m < data.d.results.length; m++) {
+								if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M" && data.d.results[m].TCISeries == "SIE") {
+									DataModel.getData().results.push(data.d.results[m]);
+								} else {
+									DataModel.getData().results.push(data.d.results[m]);
 								}
-								DataModel.getData().results.push(obj);
-							} else {
-								DataModel.getData().results.push(data.d.results[m]);
 							}
 							DataModel.updateBindings(true);
 							console.log("DataModel.getData()", DataModel.getData());
@@ -404,16 +398,14 @@ sap.ui.define([
 							var obj = {
 								"results": []
 							};
-							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
-								for (var m = 0; m < data.d.results.length; m++) {
-									if (data.d.results[m].TCISeries == "SIE") {
-										obj.results.push(data.d.results[m]);
-									}
+							for (var m = 0; m < data.d.results.length; m++) {
+								if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M" && data.d.results[m].TCISeries == "SIE") {
+									DataModel.getData().results.push(data.d.results[m]);
+								} else {
+									DataModel.getData().results.push(data.d.results[m]);
 								}
-								DataModel.getData().results.push(obj);
-							} else {
-								DataModel.getData().results.push(data.d.results[m]);
 							}
+							// DataModel.getData().results.push(obj);
 							DataModel.updateBindings(true);
 							console.log("DataModel.getData()", DataModel.getData());
 							// }
@@ -631,23 +623,20 @@ sap.ui.define([
 
 					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
 					if (DataModel.getData().length != undefined) {
-							var obj = {
-								"results": []
-							};
-							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
-								for (var m = 0; m < data.d.results.length; m++) {
-									if (data.d.results[m].TCISeries == "SIE") {
-										obj.results.push(data.d.results[m]);
-									}
-								}
-								DataModel.getData().results.push(obj);
+						var obj = {
+							"results": []
+						};
+						for (var m = 0; m < data.d.results.length; m++) {
+							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M" && data.d.results[m].TCISeries == "SIE") {
+								DataModel.getData().results.push(data.d.results[m]);
 							} else {
 								DataModel.getData().results.push(data.d.results[m]);
 							}
-							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
-							// }
-						} else {
+						}
+						DataModel.updateBindings(true);
+						console.log("DataModel.getData()", DataModel.getData());
+						// }
+					} else {
 						for (var m = 0; m < data.d.results.length; m++) {
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 								if (data.d.results[m].TCISeries == "SIE") {
