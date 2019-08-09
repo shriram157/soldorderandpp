@@ -69,7 +69,6 @@ sap.ui.define([
 		},
 		_getattachRouteMatched: function (parameters) {
 			var requestid = parameters.getParameters().arguments.Soreq;
-			RSO_MSO_controller.getSO(requestid);
 			var RSO_MSO_Model = new sap.ui.model.json.JSONModel();
 			RSO_MSO_Model.setData({
 				NFVisible: false,
@@ -91,6 +90,7 @@ sap.ui.define([
 				}
 			}
 			RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
+			RSO_MSO_controller.getSO(requestid);
 		},
 		getSO: function (req) {
 			ppdFlages = sap.ui.getCore().getModel("ppdFlages");
