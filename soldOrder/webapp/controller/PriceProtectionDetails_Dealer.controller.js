@@ -351,17 +351,17 @@ sap.ui.define([
 						}
 
 						var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
-						if (DataModel.getData().length != undefined) {
+						// if (DataModel.getData().length != undefined) {
 
-							for (var m = 0; m < data.d.results.length; m++) {
-								DataModel.getData().push(data.d.results[m]);
-								DataModel.updateBindings(true);
-								console.log("DataModel.getData()", DataModel.getData());
-							}
-						} else {
+						// 	for (var m = 0; m < data.d.results.length; m++) {
+						// 		DataModel.getData().push(data.d.results[m]);
+						// 		DataModel.updateBindings(true);
+						// 		console.log("DataModel.getData()", DataModel.getData());
+						// 	}
+						// } else {
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
-						}
+						// }
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 						PPD_DealerCont.dialog.close();
@@ -412,17 +412,17 @@ sap.ui.define([
 							}
 
 							var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
-							if (DataModel.getData().length != undefined) {
+							// if (DataModel.getData().length != undefined) {
 
-								for (var m = 0; m < data.d.results.length; m++) {
-									DataModel.getData().push(data.d.results[m]);
-									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
-								}
-							} else {
+							// 	for (var m = 0; m < data.d.results.length; m++) {
+							// 		DataModel.getData().push(data.d.results[m]);
+							// 		DataModel.updateBindings(true);
+							// 		console.log("DataModel.getData()", DataModel.getData());
+							// 	}
+							// } else {
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
-							}
+							// }
 
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
@@ -469,17 +469,17 @@ sap.ui.define([
 							}
 
 							var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
-							if (DataModel.getData().length != undefined) {
+							// if (DataModel.getData().length != undefined) {
 
-								for (var m = 0; m < data.d.results.length; m++) {
-									DataModel.getData().push(data.d.results[m]);
-									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
-								}
-							} else {
+							// 	for (var m = 0; m < data.d.results.length; m++) {
+							// 		DataModel.getData().push(data.d.results[m]);
+							// 		DataModel.updateBindings(true);
+							// 		console.log("DataModel.getData()", DataModel.getData());
+							// 	}
+							// } else {
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
-							}
+							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							PPD_DealerCont.dialog.close();
@@ -536,17 +536,17 @@ sap.ui.define([
 					}
 
 					var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
-					if (DataModel.getData().length != undefined) {
+					// if (DataModel.getData().length != undefined) {
 
-						for (var m = 0; m < data.d.results.length; m++) {
-							DataModel.getData().push(data.d.results[m]);
-							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
-						}
-					} else {
+					// 	for (var m = 0; m < data.d.results.length; m++) {
+					// 		DataModel.getData().push(data.d.results[m]);
+					// 		DataModel.updateBindings(true);
+					// 		console.log("DataModel.getData()", DataModel.getData());
+					// 	}
+					// } else {
 						DataModel.setData(data.d.results);
 						DataModel.updateBindings(true);
-					}
+					// }
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					PPD_DealerCont.dialog.close();

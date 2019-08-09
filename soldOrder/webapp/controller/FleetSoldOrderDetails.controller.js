@@ -372,16 +372,16 @@ sap.ui.define([
 							BtnNext.setEnabled(true);
 						}
 						var DataModel = FSOD_controller.getView().getModel("fleetdetailsModel");
-						if (DataModel.getData().length != undefined) {
-							for (var m = 0; m < data.d.results.length; m++) {
-								DataModel.getData().push(data.d.results[m]);
-								DataModel.updateBindings(true);
-								console.log("DataModel.getData()", DataModel.getData());
-							}
-						} else {
+						// if (DataModel.getData().length != undefined) {
+						// 	for (var m = 0; m < data.d.results.length; m++) {
+						// 		DataModel.getData().push(data.d.results[m]);
+						// 		DataModel.updateBindings(true);
+						// 		console.log("DataModel.getData()", DataModel.getData());
+						// 	}
+						// } else {
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
-						}
+						// }
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 						FSOD_controller.dialog.close();
@@ -426,16 +426,16 @@ sap.ui.define([
 								BtnNext.setEnabled(true);
 							}
 							var DataModel = FSOD_controller.getView().getModel("fleetdetailsModel");
-							if (DataModel.getData().length != undefined) {
-								for (var m = 0; m < data.d.results.length; m++) {
-									DataModel.getData().push(data.d.results[m]);
-									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
-								}
-							} else {
+							// if (DataModel.getData().length != undefined) {
+							// 	for (var m = 0; m < data.d.results.length; m++) {
+							// 		DataModel.getData().push(data.d.results[m]);
+							// 		DataModel.updateBindings(true);
+							// 		console.log("DataModel.getData()", DataModel.getData());
+							// 	}
+							// } else {
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
-							}
+							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							FSOD_controller.dialog.close();
@@ -482,16 +482,16 @@ sap.ui.define([
 								BtnNext.setEnabled(true);
 							}
 							var DataModel = FSOD_controller.getView().getModel("fleetdetailsModel");
-							if (DataModel.getData().length != undefined) {
-								for (var m = 0; m < data.d.results.length; m++) {
-									DataModel.getData().push(data.d.results[m]);
-									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
-								}
-							} else {
+							// if (DataModel.getData().length != undefined) {
+							// 	for (var m = 0; m < data.d.results.length; m++) {
+							// 		DataModel.getData().push(data.d.results[m]);
+							// 		DataModel.updateBindings(true);
+							// 		console.log("DataModel.getData()", DataModel.getData());
+							// 	}
+							// } else {
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
-							}
+							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 						FSOD_controller.dialog.close();
@@ -548,16 +548,16 @@ sap.ui.define([
 						BtnNext.setEnabled(true);
 					}
 					var DataModel = FSOD_controller.getView().getModel("fleetdetailsModel");
-					if (DataModel.getData().length != undefined) {
-						for (var m = 0; m < data.d.results.length; m++) {
-							DataModel.getData().push(data.d.results[m]);
-							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
-						}
-					} else {
+					// if (DataModel.getData().length != undefined) {
+					// 	for (var m = 0; m < data.d.results.length; m++) {
+					// 		DataModel.getData().push(data.d.results[m]);
+					// 		DataModel.updateBindings(true);
+					// 		console.log("DataModel.getData()", DataModel.getData());
+					// 	}
+					// } else {
 						DataModel.setData(data.d.results);
 						DataModel.updateBindings(true);
-					}
+					// }
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 						FSOD_controller.dialog.close();
