@@ -74,21 +74,21 @@ sap.ui.define([
 				NFVisible: false,
 				SOVisible: false
 			});
-			if (this.getView().getElementBinding('mainservices').getBoundContext() !== null) {
-				var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
-				console.log("So status", SOType);
-				if (SOType == "SO") {
-					RSO_MSO_Model.setData({
-						NFVisible: false,
-						SOVisible: true
-					});
-				} else {
-					RSO_MSO_Model.setData({
-						NFVisible: true,
-						SOVisible: false
-					});
-				}
-			}
+			// if (this.getView().getElementBinding('mainservices').getBoundContext() !== null) {
+			// 	var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
+			// 	console.log("So status", SOType);
+			// 	if (SOType == "SO") {
+			// 		RSO_MSO_Model.setData({
+			// 			NFVisible: false,
+			// 			SOVisible: true
+			// 		});
+			// 	} else {
+			// 		RSO_MSO_Model.setData({
+			// 			NFVisible: true,
+			// 			SOVisible: false
+			// 		});
+			// 	}
+			// }
 			RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
 			RSO_MSO_controller.getSO(requestid);
 		},
