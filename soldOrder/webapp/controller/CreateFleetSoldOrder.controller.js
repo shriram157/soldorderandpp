@@ -1008,7 +1008,6 @@ sap.ui.define([
 			var text = Oevent.getParameter("selectedContexts")[0].getProperty('SearchTerm2');
 			CFSO_controller.getView().getModel('mainservices').read("/Customer_infoSet('" + key + "')", {
 				success: function (data, textStatus, jqXHR) {
-					
 					var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
 					CFSO_controller.getView().setModel(oModel, "Customer");
 					sap.ui.getCore().setModel(oModel, "CustomerData");
@@ -1025,41 +1024,17 @@ sap.ui.define([
 		},
 		
 		updateSeries:function(){
-			var url = CFSO_controller.host() + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + this.brand +
-				"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
-			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
-			$.ajax({
-				url: url,
-				method: 'GET',
-				async: false,
-				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
-					CFSO_controller.dialog.close();
-					var obj = {
-						"results": []
-					};
-					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
-					var oModel = new sap.ui.model.json.JSONModel();
-					if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M") {
-						for (var m = 0; m < data.d.results.length; m++) {
-							if (data.d.results[m].TCISeries == "SIE") {
-								obj.results.push(data.d.results[m]);
-							}
-						}
-						oModel.setData(obj);
-					} else {
-						oModel.setData(data.d);
-					}
-					CFSO_controller.getView().setModel(oModel, "seriesModel");
-
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					CFSO_controller.dialog.close();
-					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
-						.m.MessageBox.Action.OK, null, null);
-				}
-			});
+			CFSO_controller.dialog.close();
+			var data = sap.ui.getCore().getModel("seriesModel").getData();
+			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M"){
+				var dataUpdated = data.filter(function(val){
+					return val.ModelSeriesNo == "SIE";
+				})
+				console.log("data", data);
+				CFSO_controller.getView().getModel("seriesModel").setData(dataUpdated);
+				console.log("data", CFSO_controller.getView().getModel("seriesModel"));
+				CFSO_controller.getView().getModel("seriesModel").updateBindings(true);
+			}
 		},
 		handleSearchFan: function (oEvent) {
 			var searchString = oEvent.getParameter("value");
