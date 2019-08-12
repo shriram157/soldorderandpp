@@ -41,6 +41,22 @@ sap.ui.define([
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 		},
 		_onObjectMatched: function (oEvent) {
+			// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
+			// RSOS_controller.getView().getModel("seriesModel").getData().unshift({
+			// 	"Division": "",
+			// 	"ModelSeriesNo": "ALL",
+			// 	"ProductHierarchy": "",
+			// 	"ProfitCenter": "",
+			// 	"SeriesSequenceNumber": "",
+			// 	"TCIModelDescriptionEN": "",
+			// 	"TCIModelDescriptionFR": "",
+			// 	"TCISeriesDescriptionEN": "All",
+			// 	"TCISeriesDescriptionFR": "Toute",
+			// 	"zzzadddata2": "X",
+			// 	"zzzadddata4": "100"
+			// });
+			// RSOS_controller.getView().getModel("seriesModel").updateBindings(true);
+			// console.log(RSOS_controller.getView().getModel("seriesModel").getData());
 			if (oEvent.getParameter("name") == "RetailSoldOrderSummary") {
 				num = 0;
 				clicks = 0;

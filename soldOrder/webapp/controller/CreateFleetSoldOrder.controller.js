@@ -1027,7 +1027,7 @@ sap.ui.define([
 		
 		updateSeries:function(){
 			CFSO_controller.dialog.close();
-			var data = sap.ui.getCore().getModel("seriesModel").getData();
+			var data = CFSO_controller.getView().getModel("seriesModel").getData();
 			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M"){
 				var dataUpdated = data.filter(function(val){
 					return val.ModelSeriesNo == "SIE";
