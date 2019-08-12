@@ -457,12 +457,6 @@ sap.ui.define([
 				}
 			}
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			// if(this.getView().byId("mcb_series_RSOS").getSelectedItems()[0].getKey()=="ALL"){
-			// 	this.getView().byId("mcb_series_RSOS").setSelectedItems(this.getView().byId("mcb_series_RSOS").getItems());
-			// }
-			// else{
-			// 	this.getView().byId("mcb_series_RSOS").setSelectedItems(this.getView().byId("mcb_series_RSOS").getItems())
-			// }
 			if (x != "TCI_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
