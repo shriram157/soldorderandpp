@@ -17,7 +17,26 @@ sap.ui.define([
 			RSOS_controller = this;
 			AppController.getDealer();
 			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
-			// RSOS_controller.getView().getModel("seriesModel").getData().unshift();
+			RSOS_controller.getView().getModel("seriesModel").getData().unshift({
+				"Division": "",
+				"ModelSeriesNo": "ALL",
+				"ProductHierarchy": "",
+				"ProfitCenter": "",
+				"SeriesSequenceNumber": "",
+				"TCIModelDescriptionEN": "",
+				"TCIModelDescriptionFR": "",
+				"TCISeriesDescriptionEN": "All",
+				"TCISeriesDescriptionFR": "Toute",
+				"zzzadddata2": "X",
+				"zzzadddata4": "100"
+			});
+			RSOS_controller.getView().getModel("seriesModel").updateBindings(true);
+			console.log(RSOS_controller.getView().getModel("seriesModel").getData());
+			/* 
+			RSOS_controller.getView().getModel("seriesModel").getData().unshift({
+			
+			});
+			*/
 			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 		},
@@ -275,8 +294,8 @@ sap.ui.define([
 		onAfterRendering: function () {
 
 		},
-		
-		onLiveSOChange:function(oEvent){
+
+		onLiveSOChange: function (oEvent) {
 			this.sSearchQuery = oEvent.getSource().getValue();
 			this.fnSuperSearch();
 		},
@@ -304,7 +323,7 @@ sap.ui.define([
 			}
 			this.byId("table_RSOS").getBinding().filter(aFilters).sort(aSorters);
 		},
-		
+
 		_handleServiceSuffix_Series: function () {
 			// sap.ui.core.BusyIndicator.show(100);
 			RSOS_controller.dialog.open();
@@ -408,11 +427,11 @@ sap.ui.define([
 					// 		console.log("DataModel.getData()", DataModel.getData());
 					// 	}
 					// } else {
-						DataModel.setData(data.d.results);
-						DataModel.updateBindings(true);
-						if (data.d.results.length <= 10) {
-							BtnNext.setEnabled(false);
-						}
+					DataModel.setData(data.d.results);
+					DataModel.updateBindings(true);
+					if (data.d.results.length <= 10) {
+						BtnNext.setEnabled(false);
+					}
 					// }
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -428,7 +447,22 @@ sap.ui.define([
 
 		},
 		_refresh: function (oEvent) {
+			if (oEvent) {
+				if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") == false)) {
+					this.getView().byId("mcb_series_RSOS").setSelectedItems();
+					sap.m.MessageBox.show(sap.ui.getCore().getModel("i18n").getResourceBundle().getText("SO000016"), sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+						"error"), sap.m.MessageBox.Action.OK, null, null);
+				} else if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") == true)) {
+					this.getView().byId("mcb_series_RSOS").setSelectedItems(this.getView().byId("mcb_series_RSOS").getItems());
+				}
+			}
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+			// if(this.getView().byId("mcb_series_RSOS").getSelectedItems()[0].getKey()=="ALL"){
+			// 	this.getView().byId("mcb_series_RSOS").setSelectedItems(this.getView().byId("mcb_series_RSOS").getItems());
+			// }
+			// else{
+			// 	this.getView().byId("mcb_series_RSOS").setSelectedItems(this.getView().byId("mcb_series_RSOS").getItems())
+			// }
 			if (x != "TCI_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
@@ -491,11 +525,11 @@ sap.ui.define([
 						// 		console.log("DataModel.getData()", DataModel.getData());
 						// 	}
 						// } else {
-							DataModel.setData(data.d.results);
-							DataModel.updateBindings(true);
-							if (data.d.results.length <= 10) {
-								BtnNext.setEnabled(false);
-							}
+						DataModel.setData(data.d.results);
+						DataModel.updateBindings(true);
+						if (data.d.results.length <= 10) {
+							BtnNext.setEnabled(false);
+						}
 						// }
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
@@ -562,11 +596,11 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
-								if (data.d.results.length <= 10) {
-									BtnNext.setEnabled(false);
-								}
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
+							if (data.d.results.length <= 10) {
+								BtnNext.setEnabled(false);
+							}
+							DataModel.setData(data.d.results);
+							DataModel.updateBindings(true);
 							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
@@ -637,11 +671,11 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
-								if (data.d.results.length <= 10) {
-									BtnNext.setEnabled(false);
-								}
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
+							if (data.d.results.length <= 10) {
+								BtnNext.setEnabled(false);
+							}
+							DataModel.setData(data.d.results);
+							DataModel.updateBindings(true);
 							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {

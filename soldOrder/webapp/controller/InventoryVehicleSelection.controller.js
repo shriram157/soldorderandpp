@@ -25,7 +25,7 @@ sap.ui.define([
 		},
 		_getattachRouteMatched: function (parameters) {
 			this.zrequest = parameters.getParameters().arguments.Soreq;
-			this.Kukla = sap.ui.getCore().getModel("CustomerData").getData().Kukla;
+			// this.Kukla = sap.ui.getCore().getModel("CustomerData").getData().Kukla;
 			num = 0;
 			clicks = 0;
 			InvVehSel_controller.dialog = new sap.m.BusyDialog({
