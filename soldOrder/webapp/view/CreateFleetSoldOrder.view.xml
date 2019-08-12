@@ -35,7 +35,7 @@
 					</f:SimpleForm>
 					<HBox class="marginCss">
 						<items>
-							<Button text="{i18n>AddVehiclesinmyInventory}" press="_addVehiclesToInventory" class="sapUiSmallMarginEnd sapUiTinyMarginBegin"></Button>
+							<Button text="{i18n>AddVehiclesinmyInventory}" press="_addVehiclesToInventory" class="sapUiSmallMarginEnd sapUiTinyMarginBegin" enabled="{FirstTable>/invtSelectEnabled}"></Button>
 							<Button text="{i18n>deleteRows}" press="_onDelete1"></Button>
 						</items>
 					</HBox>

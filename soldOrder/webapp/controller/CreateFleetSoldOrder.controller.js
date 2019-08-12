@@ -57,7 +57,8 @@ sap.ui.define([
 			this.getView().setModel(this._data, 'SecondTable');
 			this._data2 = new JSONModel({
 				items: _Table_Data1,
-				submitEnabled: false
+				submitEnabled: false,
+				invtSelectEnabled:false
 			});
 			this._data2.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
 			this.getView().setModel(this._data2, 'FirstTable');
@@ -1003,6 +1004,7 @@ sap.ui.define([
 		},
 		onCloseDialogFan: function (Oevent) {
 			CFSO_controller.dialog.open();
+			this.getView().getModel('FirstTable').setProperty("/invtSelectEnabled", true);
 			var Fan = this.getView().byId("FanNo_CFSO");
 			var key = Oevent.getParameter("selectedContexts")[0].getProperty('BusinessPartnerKey');
 			var text = Oevent.getParameter("selectedContexts")[0].getProperty('SearchTerm2');
