@@ -640,7 +640,7 @@ sap.ui.define([
 						for (var m = 0; m < data.d.results.length; m++) {
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 								if (data.d.results[m].TCISeries == "SIE") {
-									DataModel.getData().push(data.d.results[m]);
+									DataModel.getData().results.push(data.d.results[m]);
 								}
 							} else {
 								DataModel.setData(data.d);
