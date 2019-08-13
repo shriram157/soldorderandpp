@@ -1031,7 +1031,7 @@ sap.ui.define([
 			CFSO_controller.dialog.close();
 			var dataUpdated;
 			var data = CFSO_controller.initialSeriesData;
-			if (data[0].ModelSeriesNo === "ALL") {
+			if (data[0] && data[0].ModelSeriesNo === "ALL") {
 				delete data[0];
 			}
 			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M") {
