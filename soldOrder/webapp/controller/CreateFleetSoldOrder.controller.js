@@ -82,9 +82,7 @@ sap.ui.define([
 					// }
 				}
 			}
-
-			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
-			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
+			
 			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
 			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
 			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
@@ -125,6 +123,8 @@ sap.ui.define([
 			// });
 		},
 		_onObjectMatched: function (oEvent) {
+			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
+			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
 			CFSO_controller.dialog = new sap.m.BusyDialog({
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
 			});

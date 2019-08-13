@@ -16,31 +16,6 @@ sap.ui.define([
 		onInit: function () {
 			RSOS_controller = this;
 			AppController.getDealer();
-			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
-			RSOS_controller.getView().getModel("seriesModel").getData().unshift({
-				"Division": "",
-				"ModelSeriesNo": "ALL",
-				"ProductHierarchy": "",
-				"ProfitCenter": "",
-				"SeriesSequenceNumber": "",
-				"TCIModelDescriptionEN": "",
-				"TCIModelDescriptionFR": "",
-				"TCISeriesDescriptionEN": "All",
-				"TCISeriesDescriptionFR": "Toute",
-				"zzzadddata2": "X",
-				"zzzadddata4": "100"
-			});
-			RSOS_controller.getView().getModel("seriesModel").updateBindings(true);
-			console.log(RSOS_controller.getView().getModel("seriesModel").getData());
-			/* 
-			RSOS_controller.getView().getModel("seriesModel").getData().unshift({
-			
-			});
-			*/
-			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
-			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
-		},
-		_onObjectMatched: function (oEvent) {
 			// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
 			// RSOS_controller.getView().getModel("seriesModel").getData().unshift({
 			// 	"Division": "",
@@ -57,7 +32,37 @@ sap.ui.define([
 			// });
 			// RSOS_controller.getView().getModel("seriesModel").updateBindings(true);
 			// console.log(RSOS_controller.getView().getModel("seriesModel").getData());
+			/* 
+			RSOS_controller.getView().getModel("seriesModel").getData().unshift({
+			
+			});
+			*/
+			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
+			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
+		},
+		_onObjectMatched: function (oEvent) {
 			if (oEvent.getParameter("name") == "RetailSoldOrderSummary") {
+				var seriesModel = new sap.ui.model.json.JSONModel();
+				var data = sap.ui.getCore().getModel("seriesModel").getData();
+				seriesModel.setData(data);
+				RSOS_controller.getView().setModel(seriesModel, "seriesModel");
+				if (data[0].ModelSeriesNo !== "ALL") {
+					seriesModel.getData().unshift({
+						"Division": "",
+						"ModelSeriesNo": "ALL",
+						"ProductHierarchy": "",
+						"ProfitCenter": "",
+						"SeriesSequenceNumber": "",
+						"TCIModelDescriptionEN": "",
+						"TCIModelDescriptionFR": "",
+						"TCISeriesDescriptionEN": "All",
+						"TCISeriesDescriptionFR": "Toute",
+						"zzzadddata2": "X",
+						"zzzadddata4": "100"
+					});
+				}
+				RSOS_controller.getView().getModel("seriesModel").updateBindings(true);
+				console.log(RSOS_controller.getView().getModel("seriesModel").getData());
 				num = 0;
 				clicks = 0;
 				RSOS_controller = this;
@@ -467,13 +472,13 @@ sap.ui.define([
 				if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") === false)) {
 					this.getView().byId("mcb_series_RSOS").setSelectedItems();
 					this.noData = true;
-					sap.m.MessageBox.show(sap.ui.getCore().getModel("i18n").getResourceBundle().getText("SO000016"), sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+					sap.m.MessageBox.show(sap.ui.getCore().getModel("i18n").getResourceBundle().getText("SO000016"), sap.m.MessageBox.Icon.ERROR, sap
+						.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null);
 				} else if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") == true)) {
 					this.getView().byId("mcb_series_RSOS").setSelectedItems(this.getView().byId("mcb_series_RSOS").getItems());
 					this.noData = false;
-				}
-				else {
+				} else {
 					this.noData = false;
 				}
 			}
@@ -707,8 +712,7 @@ sap.ui.define([
 
 					}
 				}
-			}
-			else{
+			} else {
 				RSOS_controller.getView().getModel("retailsumModel").setData();
 				RSOS_controller.getView().getModel("retailsumModel").updateBindings(true);
 			}
