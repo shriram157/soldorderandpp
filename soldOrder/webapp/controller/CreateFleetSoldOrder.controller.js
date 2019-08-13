@@ -1031,6 +1031,9 @@ sap.ui.define([
 			CFSO_controller.dialog.close();
 			var dataUpdated;
 			var data = CFSO_controller.initialSeriesData;
+			if (data[0].ModelSeriesNo === "ALL") {
+				delete data[0];
+			}
 			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M") {
 				dataUpdated = data.filter(function (val) {
 					return val.ModelSeriesNo == "SIE";
@@ -1038,7 +1041,6 @@ sap.ui.define([
 			} else {
 				dataUpdated = data;
 			}
-
 			console.log("dataUpdated", dataUpdated);
 			CFSO_controller.getView().getModel("seriesModel").setData(dataUpdated);
 			console.log("data", CFSO_controller.getView().getModel("seriesModel"));
