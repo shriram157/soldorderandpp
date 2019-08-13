@@ -244,6 +244,13 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	ordercancelled: function (orderstatus) {
+		if (orderstatus == "CANCELLED") {
+			return false;
+		} else {
+			return true;
+		}
+	},
+	orderFilled: function (orderstatus) {
 		if (orderstatus == "CANCELLED" || orderstatus == "FILLED") {
 			return false;
 		} else {
