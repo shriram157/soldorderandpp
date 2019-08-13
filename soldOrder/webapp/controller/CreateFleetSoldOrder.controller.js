@@ -21,6 +21,7 @@ sap.ui.define([
 			var day30 = new Date();
 			// CFSO_controller.getFleetCustomer();
 			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("fleetModel"), "fleetModel");
+			CFSO_controller.initialSeriesData = sap.ui.getCore().getModel("seriesModel").getData();
 			//day30.setDate(today.getDate() + 30);
 			var num = 0;
 			var endDate = new Date();
@@ -58,7 +59,7 @@ sap.ui.define([
 			this._data2 = new JSONModel({
 				items: _Table_Data1,
 				submitEnabled: false,
-				invtSelectEnabled:false
+				invtSelectEnabled: false
 			});
 			this._data2.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
 			this.getView().setModel(this._data2, 'FirstTable');
@@ -75,14 +76,14 @@ sap.ui.define([
 				if (this.sDivision == '10') // set the toyoto logo
 				{
 					this.brand = "TOY";
-						
+
 				} else { // set the lexus logo
 					this.brand = "LEX";
 
 					// }
 				}
 			}
-			
+
 			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
 			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
 			// //	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
@@ -123,8 +124,9 @@ sap.ui.define([
 			// });
 		},
 		_onObjectMatched: function (oEvent) {
-			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
-			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
+			var seriesModel = new sap.ui.model.json.JSONModel();
+			seriesModel.setData(CFSO_controller.initialSeriesData);
+			CFSO_controller.getView().setModel(seriesModel, "seriesModel");
 			CFSO_controller.dialog = new sap.m.BusyDialog({
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
 			});
@@ -1024,12 +1026,12 @@ sap.ui.define([
 			});
 
 		},
-		
-		updateSeries:function(){
+
+		updateSeries: function () {
 			CFSO_controller.dialog.close();
-			var data = CFSO_controller.getView().getModel("seriesModel").getData();
-			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M"){
-				var dataUpdated = data.filter(function(val){
+			var data = CFSO_controller.initialSeriesData;
+			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M") {
+				var dataUpdated = data.filter(function (val) {
 					return val.ModelSeriesNo == "SIE";
 				})
 				console.log("data", data);
