@@ -1029,16 +1029,20 @@ sap.ui.define([
 
 		updateSeries: function () {
 			CFSO_controller.dialog.close();
+			var dataUpdated;
 			var data = CFSO_controller.initialSeriesData;
 			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M") {
-				var dataUpdated = data.filter(function (val) {
+				dataUpdated = data.filter(function (val) {
 					return val.ModelSeriesNo == "SIE";
 				})
-				console.log("data", data);
-				CFSO_controller.getView().getModel("seriesModel").setData(dataUpdated);
-				console.log("data", CFSO_controller.getView().getModel("seriesModel"));
-				CFSO_controller.getView().getModel("seriesModel").updateBindings(true);
+			} else {
+				dataUpdated = data;
 			}
+
+			console.log("dataUpdated", dataUpdated);
+			CFSO_controller.getView().getModel("seriesModel").setData(dataUpdated);
+			console.log("data", CFSO_controller.getView().getModel("seriesModel"));
+			CFSO_controller.getView().getModel("seriesModel").updateBindings(true);
 		},
 		handleSearchFan: function (oEvent) {
 			var searchString = oEvent.getParameter("value");
