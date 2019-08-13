@@ -1006,6 +1006,7 @@ sap.ui.define([
 		},
 		onCloseDialogFan: function (Oevent) {
 			CFSO_controller.dialog.open();
+			CFSO_controller.getView().byId("series_CFSO").setSelectedKey();
 			this.getView().getModel('FirstTable').setProperty("/invtSelectEnabled", true);
 			var Fan = this.getView().byId("FanNo_CFSO");
 			var key = Oevent.getParameter("selectedContexts")[0].getProperty('BusinessPartnerKey');
@@ -1033,6 +1034,7 @@ sap.ui.define([
 			var data = CFSO_controller.initialSeriesData;
 			if (data[0] && data[0].ModelSeriesNo === "ALL") {
 				delete data[0];
+				data.shift();
 			}
 			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M") {
 				dataUpdated = data.filter(function (val) {
