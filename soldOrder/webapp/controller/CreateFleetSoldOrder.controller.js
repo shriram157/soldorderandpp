@@ -907,12 +907,12 @@ sap.ui.define([
 					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-						new sap.ui.model.Filter("this.brand", sap.ui.model.FilterOperator.EQ, this.brand)
+						new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, this.brand)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
-						text:"{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
-						// text: suf
+						// text:"{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
+						text: suf
 					})
 				});
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
