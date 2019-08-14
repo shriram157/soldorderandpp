@@ -124,12 +124,22 @@ sap.ui.define([
 			// });
 		},
 		_onObjectMatched: function (oEvent) {
+			console.log("CFSO_controller.initialSeriesData",CFSO_controller.initialSeriesData);
 			var seriesModel = new sap.ui.model.json.JSONModel();
 			if (CFSO_controller.initialSeriesData[0] && CFSO_controller.initialSeriesData[0].ModelSeriesNo === "ALL") {
 				delete CFSO_controller.initialSeriesData[0];
 				CFSO_controller.initialSeriesData.shift();
 			}
-			seriesModel.setData(CFSO_controller.initialSeriesData);
+			var temp = CFSO_controller.initialSeriesData;
+			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M") {
+				var temp2 = temp.filter(function (val) {
+					return val.ModelSeriesNo == "SIE";
+				})
+			} else {
+				temp2 = temp;
+			}
+			console.log("temp2",temp2);
+			seriesModel.setData(temp2);
 			CFSO_controller.getView().setModel(seriesModel, "seriesModel");
 			CFSO_controller.dialog = new sap.m.BusyDialog({
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
