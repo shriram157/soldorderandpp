@@ -125,6 +125,10 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			var seriesModel = new sap.ui.model.json.JSONModel();
+			if (CFSO_controller.initialSeriesData[0] && CFSO_controller.initialSeriesData[0].ModelSeriesNo === "ALL") {
+				delete CFSO_controller.initialSeriesData[0];
+				CFSO_controller.initialSeriesData.shift();
+			}
 			seriesModel.setData(CFSO_controller.initialSeriesData);
 			CFSO_controller.getView().setModel(seriesModel, "seriesModel");
 			CFSO_controller.dialog = new sap.m.BusyDialog({
@@ -907,7 +911,8 @@ sap.ui.define([
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
-						text: suf
+						text:"{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
+						// text: suf
 					})
 				});
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
