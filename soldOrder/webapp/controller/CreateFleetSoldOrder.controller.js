@@ -131,7 +131,7 @@ sap.ui.define([
 				CFSO_controller.initialSeriesData.shift();
 			}
 			var temp = CFSO_controller.initialSeriesData;
-			if (CFSO_controller.getView().getModel("Customer").getData().Kukla == "M") {
+			if (CFSO_controller.getView().getModel("Customer") && CFSO_controller.getView().getModel("Customer").getData().Kukla == "M") {
 				var temp2 = temp.filter(function (val) {
 					return val.ModelSeriesNo == "SIE";
 				})
