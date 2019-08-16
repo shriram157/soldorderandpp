@@ -501,11 +501,11 @@ sap.ui.define([
 					oModel2.getData().items.splice(index, 1);
 				}
 				oModel2.refresh();
-				if (oModel2.getData().items.length <= 0) {
-					this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-				} else {
-					this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
-				}
+				// if (oModel2.getData().items.length <= 0) {
+				// 	this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+				// } else {
+				// 	this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+				// }
 			}
 
 		},
@@ -538,7 +538,7 @@ sap.ui.define([
 		},
 		_onSubmit: function () {
 			CFSO_controller.dialog.open();
-			if (this.getView().byId("FanNo_CFSO").getValue() !== "" && this.getView().byId("ID_PONumber").getValue() != "") {
+			if (this.getView().byId("FanNo_CFSO").getValue() !== "") {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 				//this.getView().byId("ID_PONumber");
 				_all_data.splice(0, _all_data.length);
