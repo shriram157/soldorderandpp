@@ -584,6 +584,18 @@ sap.ui.define([
 				this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
 					success: function (oData, oResponse) {
 						CFSO_controller.dialog.close();
+						if(CFSO_controller.getView().getModel('FirstTable')){CFSO_controller.getView().getModel('FirstTable').setData();}
+						if(CFSO_controller.getView().getModel('SecondTable')){CFSO_controller.getView().getModel('SecondTable').setData();}
+						CFSO_controller.getView().getModel("Customer").setData();
+						CFSO_controller.getView().byId("FanNo_CFSO").setValue("");
+						CFSO_controller.getView().byId("ID_PONumber").setValue("");
+						CFSO_controller.getView().byId("quantity_CFSO").setValue("");
+						CFSO_controller.getView().byId("modelYr_CFSO").setSelectedKey();
+						CFSO_controller.getView().byId("suffix_CFSO").setSelectedKey();
+						CFSO_controller.getView().byId("Apx_CFSO").setSelectedKey();
+						CFSO_controller.getView().byId("modelCode_CFSO").setSelectedKey();
+						CFSO_controller.getView().byId("series_CFSO").setSelectedKey();
+						
 						if (oData.ZsoFltReqNo) {
 							CFSO_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
 								Soreq: oData.ZsoFltReqNo
