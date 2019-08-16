@@ -150,8 +150,8 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-			if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0 || (sap.ui.getCore().getModel('SecondTable') != undefined &&
-					sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0)) {
+			if ((sap.ui.getCore().getModel('FirstTable').getData() && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) || (sap.ui.getCore().getModel('SecondTable') != undefined &&
+					sap.ui.getCore().getModel('FirstTable').getData() && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0)) {
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 			}
 			// else if (sap.ui.getCore().getModel('SecondTable') != undefined) {
@@ -584,9 +584,9 @@ sap.ui.define([
 				this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
 					success: function (oData, oResponse) {
 						CFSO_controller.dialog.close();
-						if(CFSO_controller.getView().getModel('FirstTable')){CFSO_controller.getView().getModel('FirstTable').setData();}
-						if(CFSO_controller.getView().getModel('SecondTable')){CFSO_controller.getView().getModel('SecondTable').setData();}
-						CFSO_controller.getView().getModel("Customer").setData();
+						if(CFSO_controller.getView().getModel('FirstTable')){CFSO_controller.getView().getModel('FirstTable').setData("");}
+						if(CFSO_controller.getView().getModel('SecondTable')){CFSO_controller.getView().getModel('SecondTable').setData("");}
+						CFSO_controller.getView().getModel("Customer").setData("");
 						CFSO_controller.getView().byId("FanNo_CFSO").setValue("");
 						CFSO_controller.getView().byId("ID_PONumber").setValue("");
 						CFSO_controller.getView().byId("quantity_CFSO").setValue("");
