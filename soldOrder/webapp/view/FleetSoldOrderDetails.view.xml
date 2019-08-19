@@ -49,12 +49,12 @@
 									</f:SimpleForm>
 								</items>
 							</VBox>
-							<t:Table id="tbl_FSOD" selectionMode="None" rows="{fleetdetailsModel>/}" enableColumnReordering="false" alternateRowColors="true" class="marginCorners" visibleRowCount="7">
+							<t:Table id="tbl_FSOD" selectionMode="None" rows="{fleetdetailsModel>/}" enableColumnReordering="false" alternateRowColors="true" class="marginCorners" visibleRowCount="6">
 								<t:extension>
 									<Toolbar>
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>
 										<ToolbarSpacer/>
-										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="">
+										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
 											<layoutData>
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>

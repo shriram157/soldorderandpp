@@ -107,7 +107,7 @@
 									<Toolbar>
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>
 										<ToolbarSpacer/>
-										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="">
+										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
 											<layoutData>
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
