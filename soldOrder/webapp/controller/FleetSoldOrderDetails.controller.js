@@ -790,7 +790,7 @@ sap.ui.define([
 						}
 					});
 				} else {
-					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
