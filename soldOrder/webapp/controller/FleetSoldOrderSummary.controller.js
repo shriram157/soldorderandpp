@@ -99,10 +99,13 @@ sap.ui.define([
 					{
 						"key": "F4",
 						"text": "NAT ELITE"
-					}, {
-						"key": "F5",
-						"text": "MOBILITY"
-					}],
+					}
+					// , 
+					// {
+					// 	"key": "F5",
+					// 	"text": "MOBILITY"
+					// }
+					],
 				};
 
 			}

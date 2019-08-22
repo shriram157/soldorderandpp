@@ -79,7 +79,7 @@ sap.ui.define([
 
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
-			if (language == "EN") {
+			if(window.location.search.match(/Division=([^&]*)/i)[1] == "10"){
 				Object = {
 					"PriceProtection_OrderType": [{
 						"key": "F1",
@@ -104,22 +104,28 @@ sap.ui.define([
 
 			} else {
 				Object = {
-					"PriceProtection_OrderType": [{
-						"key": "F1",
-						"text": "DLR RAC"
-					}, {
+					"PriceProtection_OrderType": [
+					// {
+					// 	"key": "F1",
+					// 	"text": "DLR RAC"
+					// }, 
+					{
 						"key": "F2",
 						"text": "DLR ELITE"
-					}, {
-						"key": "F3",
-						"text": "NAT RAC"
-					}, {
+					}, 
+					// {
+					// 	"key": "F3",
+					// 	"text": "NAT RAC"
+					// },
+					{
 						"key": "F4",
 						"text": "NAT ELITE"
-					}, {
-						"key": "F5",
-						"text": "MOBILITY"
-					}, {
+					},
+					// {
+					// 	"key": "F5",
+					// 	"text": "MOBILITY"
+					// },
+					{
 						"key": "RETAIL SOLD",
 						"text": "RETAIL SOLD"
 					}],
