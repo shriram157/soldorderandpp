@@ -68,6 +68,12 @@
 											<Link text="{fleetdetailsModel>ZzsoReqNo}" wrapping="true" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
+									<t:Column width="230px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
+										<Label text="{i18n>custname}" class="TableLabel"/>
+										<t:template>
+											<Text text="{fleetdetailsModel>ZzendcuName}" wrapping="true"/>
+										</t:template>
+									</t:Column>
 									<t:Column>
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>

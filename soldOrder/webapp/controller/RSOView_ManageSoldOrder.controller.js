@@ -72,7 +72,7 @@ sap.ui.define([
 			var RSO_MSO_Model = new sap.ui.model.json.JSONModel();
 			RSO_MSO_Model.setData({
 				NFVisible: false,
-				SOVisible: false
+				SOVisible: true
 			});
 			// if (this.getView().getElementBinding('mainservices').getBoundContext() !== null) {
 			// 	var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
@@ -139,13 +139,13 @@ sap.ui.define([
 						}), 'Vehicle_Selection');
 						//Filter Data Sold Order
 						var _SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
-						if (_SOType == "SO") {
-							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
-							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-						} else {
-							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
-							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
-						}
+						// if (_SOType == "SO") {
+						// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+						// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
+						// } else {
+						// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+						// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+						// }
 
 						RSO_MSO_controller.series_selected();
 						RSO_MSO_controller.model_selected();
@@ -190,9 +190,9 @@ sap.ui.define([
 							var regFlag = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('CustAtReg');
 
 							var _SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
-							if (_SOType == "SO") {
-								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
-								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
+							// if (_SOType == "SO") {
+								// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+								// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 								var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 
 								$.ajax({
@@ -211,10 +211,10 @@ sap.ui.define([
 									},
 									error: function (request, errorText, errorCode) {}
 								});
-							} else {
-								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
-								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
-							}
+							// } else {
+							// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+							// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+							// }
 						}
 					},
 					dataReceived: function (oData) {}
