@@ -160,7 +160,7 @@
 								text="{parts:[{path:'mainservices>NameLast'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>custname}"/>
 							<Text
-								text="{parts:[{path:'mainservices>NameFirst - mainservices>NameLast'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+								text="{parts:[{path:'mainservices>ZzendcuName},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Text
 								text="{parts:[{path:'mainservices>Street'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
