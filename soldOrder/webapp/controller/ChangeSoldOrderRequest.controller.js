@@ -125,6 +125,8 @@ sap.ui.define([
 			var Zcustomer_phone = CSOR_controller.getView().byId("phone").getText();
 			var Zcustomer_email = CSOR_controller.getView().byId("email").getText();
 			// var Zcustomer_fname = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
+			
+			var Zcustomer_No = CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zcustomer_No");
 
 			var valDrive = CSOR_controller.getView().byId("drivelicense").getText();
 
@@ -173,8 +175,8 @@ sap.ui.define([
 						"PostCode1": Zcustomer_postalcode,
 						"TelNumber": Zcustomer_phone,
 						"SmtpAddr": Zcustomer_email,
-						"Qausp": valDrive
-							// "Zzendcu": Zcustomer_No,
+						"Qausp": valDrive,
+						"Zzendcu": Zcustomer_No
 							// "ZdriverLiNum": valDrive
 					};
 					var URI = "/Retail_Sold_OrderSet";

@@ -1,3 +1,4 @@
+Zcustomer_No;
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"sap/ui/model/resource/ResourceModel",
@@ -393,22 +394,6 @@ sap.ui.define([
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			var _data = {
-				// "ZzsoReqNo": "",
-				// "Zzmodel": "YZ3DCT",
-				// "Zzmoyr": "2018",
-				// "Zzsuffix": "ML",
-				// "Zzextcol": "01D6",
-				// "Zzapx": "00",
-				// "ZzreqEtaFrom": "20190102",
-				// "ZzreqEtaTo": "20180304",
-				// "ZcontractDate": "20180304",
-				// "ZsalesType": "",
-				// "ZtcciNum": "",
-				// "Zsalesperson": "",
-				// "Zsalesmanager": "",
-				// "ZtradeModelYr": "",
-				// "ZtradeMake": ""
-
 				"ZzsoReqNo": "RS",
 				"Zzmodel": Zzmodel, //"YZ3DCT",
 				"Zzmoyr": Zzmoyr, //"2018",
@@ -431,6 +416,8 @@ sap.ui.define([
 				"Zzendcu": Zcustomer_No,
 				"ZdriverLiNum": CustModel.DriveLic
 			};
+			
+			RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", Zcustomer_No);
 			var dataString = JSON.stringify(
 				_data
 			);
