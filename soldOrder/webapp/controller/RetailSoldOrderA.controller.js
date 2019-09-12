@@ -1,4 +1,3 @@
-Zcustomer_No;
 sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"sap/ui/model/resource/ResourceModel",
@@ -9,7 +8,7 @@ sap.ui.define([
 	"use strict";
 	var validateFlagA = false;
 	var RSOA_controller, Zcustomer_No, input_ref;
-	var language =sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
+	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderA", {
 		formatter: formatter,
 
@@ -416,8 +415,9 @@ sap.ui.define([
 				"Zzendcu": Zcustomer_No,
 				"ZdriverLiNum": CustModel.DriveLic
 			};
-			
-			RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", Zcustomer_No);
+			if (Zcustomer_No) {
+				RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", Zcustomer_No);
+			}
 			var dataString = JSON.stringify(
 				_data
 			);
