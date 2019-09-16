@@ -632,7 +632,7 @@ sap.ui.define([
 		},
 		enableExportButton:function(){
 			var BtnNext = FSOD_controller.getView().byId("buttonNext");
-			var BtnExport=FSOD_controller.getView().byId("idBtnExportToExcel");
+			var BtnExport=FSOD_controller.getView().byId("idBtnExportToExcel_FSO");
 			if(BtnNext.setEnabled==false){
 				BtnExport.setEnabled(true);
 			}
