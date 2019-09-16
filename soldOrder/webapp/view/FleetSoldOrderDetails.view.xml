@@ -59,6 +59,7 @@
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
+											<Button text="{i18n>exportToExcel}" press="onExport" enabled="false" id="idBtnExportToExcel_FSO" class="sapUiTinyMarginBegin"></Button>
 									</Toolbar>
 								</t:extension>
 								<t:columns>
@@ -81,6 +82,12 @@
 										</t:template>
 									</t:Column>
 									<t:Column>
+										<Label text="{i18n>modelYear}" class="TableLabel"/>
+										<t:template>
+											<Text id="tbl_val_modelYear_FSOD" visible="true" text="{path:'fleetdetailsModel>ZzmodelYear'}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>Zzmodel}"/>
@@ -92,16 +99,17 @@
 											<Text text="{fleetdetailsModel>Zzsuffix}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
-										<Label text="{i18n>APX}" class="TableLabel"/>
-										<t:template>
-											<Text text="{fleetdetailsModel>Zzapx}"/>
-										</t:template>
-									</t:Column>
+									
 									<t:Column>
 										<Label text="{i18n>colour}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>Zzextcol}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>APX}" class="TableLabel"/>
+										<t:template>
+											<Text text="{fleetdetailsModel>Zzapx}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
@@ -120,6 +128,12 @@
 										<Label text="{i18n>VehTrackNo}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>Zzvtn}"/>
+										</t:template>
+									</t:Column>
+										<t:Column>
+										<Label text="{i18n>vin}" class="TableLabel"/>
+										<t:template>
+											<Text text="{fleetdetailsModel>Zzvin}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column>

@@ -205,11 +205,19 @@ sap.ui.define([
 									contentType: "text/xml; charset=\"utf-8\"",
 									success: function (data, textStatus, jqXHR) {
 										console.log("customer data", data);
+									
+									/*	if(data.responseHeader.status=="404"){  										// change 16 sep
+											zcustomerModel.setData([]); 
+												console.log("empty data", data);// change 16 sep
+										}  	*/									// change 16 sep
 										if (data.customer) {
 											zcustomerModel.setData(data.customer);
 										}
 									},
-									error: function (request, errorText, errorCode) {}
+									error: function (request, errorText, errorCode) {
+										zcustomerModel.setData([]);  										// change 16 sep
+									//	console.log("empty data", data);// change 16 sep
+									}
 								});
 							// } else {
 							// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);

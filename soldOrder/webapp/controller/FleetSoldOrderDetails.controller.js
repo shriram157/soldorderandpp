@@ -117,6 +117,7 @@ sap.ui.define([
 			sap.ui.getCore().setModel(AuditModel, "AuditModel");
 			this.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
 			console.log(sap.ui.getCore().getModel("AuditModel"));
+			//FSOD_controller.enableExportButton();
 		},
 		_onObjectMatched: function (oEvent) {
 			
@@ -205,6 +206,7 @@ sap.ui.define([
 						var BtnNext = FSOD_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
+							FSOD_controller.enableExportButton();
 						} else {
 							BtnNext.setEnabled(true);
 						}
@@ -368,6 +370,7 @@ sap.ui.define([
 						var BtnNext = FSOD_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
+							FSOD_controller.enableExportButton();
 						} else {
 							BtnNext.setEnabled(true);
 						}
@@ -422,6 +425,7 @@ sap.ui.define([
 							var BtnNext = FSOD_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
+								FSOD_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
 							}
@@ -478,6 +482,7 @@ sap.ui.define([
 							var BtnNext = FSOD_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
+								FSOD_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
 							}
@@ -544,6 +549,7 @@ sap.ui.define([
 					var BtnNext = FSOD_controller.getView().byId("buttonNext");
 					if (data.d.results.length <= 0) {
 						BtnNext.setEnabled(false);
+						FSOD_controller.enableExportButton();
 					} else {
 						BtnNext.setEnabled(true);
 					}
@@ -624,6 +630,107 @@ sap.ui.define([
 
 			}
 		},
+		enableExportButton:function(){
+			var BtnNext = FSOD_controller.getView().byId("buttonNext");
+			var BtnExport=FSOD_controller.getView().byId("idBtnExportToExcel");
+			if(BtnNext.setEnabled==false){
+				BtnExport.setEnabled(true);
+			}
+			else{
+				BtnExport.setEnabled(false);
+			}
+		},
+		onExport:function(){
+			
+			var data;
+				var DataModel = FSOD_controller.getView().getModel("retailsumModel");
+			if (DataModel != undefined) {
+				data = DataModel.getData();
+			} else {
+				data = FSOD_controller.getView().byId("table_RSOS").getModel("retailsumModel").getData();
+			}
+			FSOD_controller.JSONToExcelConvertor(data, "Report", true);
+		
+		},
+			JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
+			var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
+			var CSV = "";
+			if (ShowLabel) {
+				var row = "";
+				row = row.slice(0, -1);
+			}
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("orderNumber") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("custname") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("dealer") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("modelYear") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("series") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("Model") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("Suffix") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("Colour") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("APX") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("Status") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("audit") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("vtn") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("vin") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("ETAFrom") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("ETATime") + ",";
+			row += FSOD_controller.oI18nModel.getResourceBundle().getText("linkVehicle") + ",";
+			CSV += row + '\r\n';
+
+			//loop is to extract each row
+			for (var i = 0; i < arrData.length; i++) {
+				var row = "";
+				row+=" ";
+				row += arrData[i].ZzsoReqNo + '","' + 
+					arrData[i].ZzendcuName +'","' + 
+					'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
+					arrData[i].ZzdealerCode +'","' + 
+					arrData[i].Zzmoyr +'","' + 
+					arrData[i].Zzseries +'","' + 
+					arrData[i].Zzmodel +'","' + 
+					arrData[i].Zzsuffix +'","' +
+					"-" + arrData[i].SUFFIX_DESC_EN + '","' +
+					arrData[i].ExteriorColorCode + "-" +
+					arrData[i].EXTCOL_DESC_EN + '",="' +
+					arrData[i].ExteriorColorCode +'","' + 
+					arrData[i].Zzapx +'","' + 
+					arrData[i].Zzstatus +'","' + 
+					arrData[i].ZzAuditStatus +'","' + 
+					arrData[i].ZzsoStatus +'","' + 
+					arrData[i].Zzvtn +'","' + 
+					arrData[i].Zzvin +'","' + 
+					FSOD_controller.dateConverter(arrData[i].ETAFrom) +'",="' +
+					FSOD_controller.dateConverter(arrData[i].ETATo) + '",';
+					
+				//}
+				row.slice(1, row.length);
+				CSV += row + '\r\n';
+			}
+			if (CSV == "") {
+				alert("Invalid data");
+				return;
+			}
+			var fileName = FSOD_controller.oI18nModel.getResourceBundle().getText("RetailSoldOrderReport");
+			fileName += ReportTitle.replace(/ /g, "_");
+			// Initialize file format you want csv or xls
+
+			var blob = new Blob(["\ufeff" + CSV], {
+				type: "text/csv;charset=utf-8,"
+			});
+			if (sap.ui.Device.browser.name === "ie" || sap.ui.Device.browser.name === "ed") { // IE 10+ , Edge (IE 12+)
+				navigator.msSaveBlob(blob, FSOD_controller.oI18nModel.getResourceBundle().getText("RetailSoldOrderReport") + ".csv");
+			} else {
+				var uri = 'data:text/csv;charset=utf-8,' + "\ufeff" + encodeURIComponent(CSV); //'data:application/vnd.ms-excel,' + escape(CSV);
+				var link = document.createElement("a");
+
+				link.href = uri;
+				link.style = "visibility:hidden";
+				link.download = fileName + ".csv";
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			}
+		},
 		onActionNext: function (oEvent) {
 			//This code was generated by the layout editor.
 			if (clicks < 0) {
@@ -639,6 +746,7 @@ sap.ui.define([
 			// }
 			FSOD_controller.data();
 		},
+		
 		data: function (oEvent) {
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			FSOD_controller.dialog.open();
@@ -682,6 +790,7 @@ sap.ui.define([
 						var BtnNext = FSOD_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
+							FSOD_controller.enableExportButton();
 						} else {
 							BtnNext.setEnabled(true);
 						}
@@ -751,6 +860,7 @@ sap.ui.define([
 							var BtnNext = FSOD_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
+								FSOD_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
 							}
@@ -824,6 +934,7 @@ sap.ui.define([
 							var BtnNext = FSOD_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
+								FSOD_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
 							}

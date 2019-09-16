@@ -112,6 +112,8 @@
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
+										
+										<Button text="{i18n>exportToExcel}" press="onExport" enabled="false" id="idBtnExportToExcel" class="sapUiTinyMarginBegin"></Button>
 									</Toolbar>
 								</t:extension>
 								<t:columns>
@@ -160,6 +162,12 @@
 											<Text text="{retailsumModel>Zzsuffix}" wrapping="true"/>
 										</t:template>
 									</t:Column>
+										<t:Column>
+										<Label text="{i18n>colour}" class="TableLabel"/>
+										<t:template>
+											<Text text="{retailsumModel>Zzextcol}" wrapping="true"/>
+										</t:template>
+									</t:Column>
 									<t:Column >
 										<Label text="{i18n>AuditStatus}" class="TableLabel"/>
 										<t:template>
@@ -176,6 +184,12 @@
 										<Label text="{i18n>vehicleTrackingNumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>Zzvtn}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+										<t:Column>
+										<Label text="{i18n>vin}" class="TableLabel"/>
+										<t:template>
+											<Text text="{retailsumModel>Zzvin}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column >

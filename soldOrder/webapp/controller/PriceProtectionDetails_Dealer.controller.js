@@ -30,8 +30,8 @@ sap.ui.define([
 						"key": "PRE-APPROVED",
 						"text": "PRE-APPROVED"
 					}, {
-						"key": "UNDER REVIEW",
-						"text": "UNDER REVIEW"
+						"key": "UNDER-REVIEW",
+						"text": "UNDER-REVIEW"
 					}, {
 						"key": "APPROVED",
 						"text": "APPROVED"
@@ -55,8 +55,8 @@ sap.ui.define([
 						"key": "PRE-APPROVED",
 						"text": "PRE-APPROVED"
 					}, {
-						"key": "UNDER REVIEW",
-						"text": "UNDER REVIEW"
+						"key": "UNDER-REVIEW",
+						"text": "UNDER-REVIEW"
 					}, {
 						"key": "APPROVED",
 						"text": "APPROVED"

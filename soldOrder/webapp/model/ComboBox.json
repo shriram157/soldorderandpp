@@ -337,7 +337,7 @@
 		"text": "Pre-Approved"
 	}, {
 		"key": "4",
-		"text": "Under Review"
+		"text": "Under-Review"
 	}, {
 		"key": "5",
 		"text": "Approved"
@@ -396,7 +396,7 @@
 		"text": "Pre-Approved"
 	}, {
 		"key": "2",
-		"text": "Under Review"
+		"text": "Under-Review"
 	}, {
 		"key": "4",
 		"text": "Approved"

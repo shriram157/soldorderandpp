@@ -281,6 +281,7 @@ sap.ui.define([
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 10) {
 								BtnNext.setEnabled(false);
+								RSOS_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
 							}
@@ -297,6 +298,7 @@ sap.ui.define([
 								DataModel.updateBindings(true);
 								if (data.d.results.length <= 10) {
 									BtnNext.setEnabled(false);
+									RSOS_controller.enableExportButton();
 								}
 							}
 						},
@@ -436,6 +438,7 @@ sap.ui.define([
 					var BtnNext = RSOS_controller.getView().byId("buttonNext");
 					if (data.d.results.length <= 0) {
 						BtnNext.setEnabled(false);
+						RSOS_controller.enableExportButton();
 					} else {
 						BtnNext.setEnabled(true);
 					}
@@ -452,6 +455,7 @@ sap.ui.define([
 					DataModel.updateBindings(true);
 					if (data.d.results.length <= 10) {
 						BtnNext.setEnabled(false);
+						RSOS_controller.enableExportButton();
 					}
 					// }
 				},
@@ -534,6 +538,7 @@ sap.ui.define([
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
+								RSOS_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
 							}
@@ -550,6 +555,7 @@ sap.ui.define([
 							DataModel.updateBindings(true);
 							if (data.d.results.length <= 10) {
 								BtnNext.setEnabled(false);
+								RSOS_controller.enableExportButton();
 							}
 							// }
 						},
@@ -605,6 +611,7 @@ sap.ui.define([
 								var BtnNext = RSOS_controller.getView().byId("buttonNext");
 								if (data.d.results.length <= 0) {
 									BtnNext.setEnabled(false);
+									RSOS_controller.enableExportButton();
 								} else {
 									BtnNext.setEnabled(true);
 								}
@@ -619,6 +626,7 @@ sap.ui.define([
 								// } else {
 								if (data.d.results.length <= 10) {
 									BtnNext.setEnabled(false);
+									RSOS_controller.enableExportButton();
 								}
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
@@ -680,6 +688,7 @@ sap.ui.define([
 								var BtnNext = RSOS_controller.getView().byId("buttonNext");
 								if (data.d.results.length <= 0) {
 									BtnNext.setEnabled(false);
+									RSOS_controller.enableExportButton();
 								} else {
 									BtnNext.setEnabled(true);
 								}
@@ -694,6 +703,7 @@ sap.ui.define([
 								// } else {
 								if (data.d.results.length <= 10) {
 									BtnNext.setEnabled(false);
+									RSOS_controller.enableExportButton();
 								}
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
@@ -825,6 +835,98 @@ sap.ui.define([
 		// 	}
 		// 	RSOS_controller.data();
 		// },
+		enableExportButton:function(){
+			var BtnNext = RSOS_controller.getView().byId("buttonNext");
+			var BtnExport=RSOS_controller.getView().byId("idBtnExportToExcel");
+			if(BtnNext.setEnabled==false){
+				BtnExport.setEnabled(true);
+			}
+			else{
+				BtnExport.setEnabled(false);
+			}
+		},
+		onExport:function(){
+			
+			var data;
+				var DataModel = RSOS_controller.getView().getModel("retailsumModel");
+			if (DataModel != undefined) {
+				data = DataModel.getData();
+			} else {
+				data = RSOS_controller.getView().byId("table_RSOS").getModel("retailsumModel").getData();
+			}
+			RSOS_controller.JSONToExcelConvertor(data, "Report", true);
+		
+		},
+			JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
+			var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
+			var CSV = "";
+			if (ShowLabel) {
+				var row = "";
+				row = row.slice(0, -1);
+			}
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("orderNumber") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("custname") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("dealer") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("modelYear") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("series") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("Model") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("Suffix") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("Colour") + ",";
+			
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("auditStatus") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("Status") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("vtn") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("vin") + ",";
+			row += RSOS_controller.oI18nModel.getResourceBundle().getText("linkVehicle") + ",";
+			CSV += row + '\r\n';
+
+			//loop is to extract each row
+			for (var i = 0; i < arrData.length; i++) {
+				var row = "";
+				row+=" ";
+				row += arrData[i].ZzsoReqNo + '","' + 
+					arrData[i].ZzendcuName +'","' + 
+					'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
+					arrData[i].ZzdealerCode +'","' + 
+					arrData[i].Zzmoyr +'","' + 
+					arrData[i].Zzseries +'","' + 
+					arrData[i].Zzmodel +'","' + 
+					arrData[i].Zzsuffix +'","' + 
+					arrData[i].ExteriorColorCode +'","' + 
+					arrData[i].ZzAuditStatus +'","' + 
+					arrData[i].ZzsoStatus +'","' + 
+					arrData[i].Zzvtn +'","' + 
+					arrData[i].Zzvin +'","' + 
+					+ '",';
+				//}
+				row.slice(1, row.length);
+				CSV += row + '\r\n';
+			}
+			if (CSV == "") {
+				alert("Invalid data");
+				return;
+			}
+			var fileName = RSOS_controller.oI18nModel.getResourceBundle().getText("RetailSoldOrderReport");
+			fileName += ReportTitle.replace(/ /g, "_");
+			// Initialize file format you want csv or xls
+
+			var blob = new Blob(["\ufeff" + CSV], {
+				type: "text/csv;charset=utf-8,"
+			});
+			if (sap.ui.Device.browser.name === "ie" || sap.ui.Device.browser.name === "ed") { // IE 10+ , Edge (IE 12+)
+				navigator.msSaveBlob(blob, RSOS_controller.oI18nModel.getResourceBundle().getText("RetailSoldOrderReport") + ".csv");
+			} else {
+				var uri = 'data:text/csv;charset=utf-8,' + "\ufeff" + encodeURIComponent(CSV); //'data:application/vnd.ms-excel,' + escape(CSV);
+				var link = document.createElement("a");
+
+				link.href = uri;
+				link.style = "visibility:hidden";
+				link.download = fileName + ".csv";
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			}
+		},
 		data: function (oEvent) {
 			RSOS_controller.dialog.open();
 			// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
@@ -881,6 +983,7 @@ sap.ui.define([
 						var BtnNext = RSOS_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
+							RSOS_controller.enableExportButton();
 						} else {
 							BtnNext.setEnabled(true);
 						}
@@ -896,6 +999,7 @@ sap.ui.define([
 						} else {
 							if (data.d.results.length <= 10) {
 								BtnNext.setEnabled(false);
+								RSOS_controller.enableExportButton();
 							}
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
@@ -955,6 +1059,7 @@ sap.ui.define([
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
+								RSOS_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
 							}
@@ -970,6 +1075,7 @@ sap.ui.define([
 							} else {
 								if (data.d.results.length <= 10) {
 									BtnNext.setEnabled(false);
+									RSOS_controller.enableExportButton();
 								}
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
@@ -1031,6 +1137,7 @@ sap.ui.define([
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
+								RSOS_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
 							}
@@ -1045,6 +1152,7 @@ sap.ui.define([
 							} else {
 								if (data.d.results.length <= 10) {
 									BtnNext.setEnabled(false);
+									RSOS_controller.enableExportButton();
 								}
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
