@@ -3,8 +3,9 @@ sap.ui.define([
 	"toyota/ca/SoldOrder/util/formatter",
 	"sap/ui/model/Sorter",
 	"sap/ui/model/Filter",
+	"sap/m/MessageToast",
 	"sap/ui/model/FilterOperator"
-], function (BaseController, formatter, Sorter, Filter, FilterOperator) {
+], function (BaseController, formatter, Sorter, Filter, MessageToast, FilterOperator) {
 	"use strict";
 	var RSOS_controller, zrequest, clicks = 0,
 		num, page = 0,
@@ -388,6 +389,23 @@ sap.ui.define([
 					// 	"error"), sap.m.MessageBox.Action.OK, null, null);
 					sap.m.MessageToast.show(errMsg);
 				}
+			});
+		},
+		
+		_SelectionFinish:function(oEvent){
+			var selectedItems = oEvent.getParameter("selectedItems");
+			var messageText = "Event 'selectionFinished': [";
+
+			for (var i = 0; i < selectedItems.length; i++) {
+				messageText += "'" + selectedItems[i].getText() + "'";
+				if (i != selectedItems.length - 1) {
+					messageText += ",";
+				}
+			}
+
+			messageText += "]";
+			MessageToast.show(messageText, {
+				width: "auto"
 			});
 		},
 		_refreshCombo: function (evt) {

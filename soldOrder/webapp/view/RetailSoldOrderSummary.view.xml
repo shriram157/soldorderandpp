@@ -74,7 +74,7 @@
 												<!--</MultiComboBox>-->
 												<MultiComboBox id="mcb_dealer_RSOS" width="300px"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}"
-													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
+													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd" selectionFinish="_SelectionFinish">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
 														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
