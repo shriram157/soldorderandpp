@@ -191,39 +191,40 @@ sap.ui.define([
 
 							var _SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
 							// if (_SOType == "SO") {
-								// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
-								// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-								var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
+							// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+							// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
+							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 
-								$.ajax({
-									url: url,
-									headers: {
-										accept: 'application/json'
-									},
-									type: "GET",
-									dataType: "json",
-									contentType: "text/xml; charset=\"utf-8\"",
-									success: function (data, textStatus, jqXHR) {
-										console.log("customer data", data);
-									
+							$.ajax({
+								url: url,
+								headers: {
+									accept: 'application/json'
+								},
+								type: "GET",
+								dataType: "json",
+								contentType: "text/xml; charset=\"utf-8\"",
+								success: function (data, textStatus, jqXHR) {
+									console.log("customer data", data);
+
 									/*	if(data.responseHeader.status=="404"){  										// change 16 sep
 											zcustomerModel.setData([]); 
 												console.log("empty data", data);// change 16 sep
-										}  	*/									// change 16 sep
-										if (data.customer) {
-											zcustomerModel.setData(data.customer);
-											
-										}
-									},
-									error: function (request, errorText, errorCode) {
-										zcustomerModel.setData([]);  										// change 16 sep
-										console.log(request.responseText.errorText);
-										console.log(errorText);
-										console.log(request);
-										sap.m.MessageToast.show(request.responseText.errorText); // 17 sep change 
-									//	console.log("empty data", data);// change 16 sep
+										}  	*/ // change 16 sep
+									if (data.customer) {
+										zcustomerModel.setData(data.customer);
+
 									}
-								});
+								},
+								error: function (request, errorText, errorCode) {
+									zcustomerModel.setData([]); // change 16 sep
+									console.log(request.responseText);
+									var str = request.responseText;
+									var obj = JSON.stringify(str);
+									var obj2 = JSON.parse(obj);
+									sap.m.MessageToast.show(obj2.messages[0].errorText); // 17 sep change 
+									//	console.log("empty data", data);// change 16 sep
+								}
+							});
 							// } else {
 							// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
 							// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
@@ -285,6 +286,7 @@ sap.ui.define([
 		},
 
 		_updateAuditSoldOrderRequest: function () {
+			var btnAudit= RSO_MSO_controller.getView().getId("btn_AuditComp_RSO_MSO");
 			RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Update_Audit_Status", {
 				method: "POST",
 				urlParameters: {
@@ -295,6 +297,8 @@ sap.ui.define([
 					console.log(oData); //17 sep change 
 					var msg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("auditStatusCompletion");
 					sap.m.MessageToast.show(msg); //17 sep change
+					btnAudit.setEnabled(false);
+					RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 				},
 				error: function (oError) {
 

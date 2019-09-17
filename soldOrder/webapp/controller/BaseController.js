@@ -93,20 +93,20 @@ sap.ui.define([
 			var i18nModel;
 			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/") {
 				this.sCurrentLocale = 'FR';
-					i18nModel = new sap.ui.model.resource.ResourceModel({
+				i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
 					bundleLocale: ("fr"),
-					Lang:this.sCurrentLocale
+					Lang: this.sCurrentLocale
 				});
 				this.getView().setModel(i18nModel, "i18n");
 				sap.ui.getCore().setModel(i18nModel, "i18n");
 
 			} else {
 				this.sCurrentLocale = 'EN';
-					i18nModel = new sap.ui.model.resource.ResourceModel({
+				i18nModel = new sap.ui.model.resource.ResourceModel({
 					bundleUrl: "i18n/i18n.properties",
 					bundleLocale: ("en"),
-					Lang:this.sCurrentLocale
+					Lang: this.sCurrentLocale
 				});
 				this.getView().setModel(i18nModel, "i18n");
 				sap.ui.getCore().setModel(i18nModel, "i18n");
@@ -172,7 +172,7 @@ sap.ui.define([
 			var sPrefix;
 			if (sLocation_conf == 0) {
 				sPrefix = "/soldorder_node";
-				this.attributeUrl = "/userDetails/attributes"; 
+				this.attributeUrl = "/userDetails/attributes";
 				// this.attributeUrl = "/userDetails/attributesforlocaltesting";
 			} else {
 				sPrefix = "";
@@ -193,7 +193,8 @@ sap.ui.define([
 					var LoginUserModel = new sap.ui.model.json.JSONModel();
 					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
 					var userType = oData.loggedUserType[0]; ////uncomment while deploying
-					//oData.loggedUserType[0] = "Dealer_User"; var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
+					//oData.loggedUserType[0] = "Dealer_User";
+					var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
 					// console.log("logged in user dealer");
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
@@ -233,7 +234,7 @@ sap.ui.define([
 				async: false,
 				success: function (oData) {
 					console.log("initial BP load", oData);
-					var BpDealerArr = [],
+							var BpDealerArr = [],
 						BpDealer = [];
 
 					var userAttributes = [];
