@@ -189,7 +189,7 @@
 										<t:Column>
 										<Label text="{i18n>vin}" class="TableLabel"/>
 										<t:template>
-											<Text text="{retailsumModel>Zzvin}" wrapping="true"/>
+											<Text text="{retailsumModel>Vhvin}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column >

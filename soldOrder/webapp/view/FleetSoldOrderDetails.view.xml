@@ -84,7 +84,7 @@
 									<t:Column>
 										<Label text="{i18n>modelYear}" class="TableLabel"/>
 										<t:template>
-											<Text id="tbl_val_modelYear_FSOD" visible="true" text="{path:'fleetdetailsModel>ZzmodelYear'}"/>
+											<Text id="tbl_val_modelYear_FSOD" visible="true" text="{path:'fleetdetailsModel>Zzmoyr'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
@@ -133,7 +133,7 @@
 										<t:Column>
 										<Label text="{i18n>vin}" class="TableLabel"/>
 										<t:template>
-											<Text text="{fleetdetailsModel>Zzvin}" wrapping="true"/>
+											<Text text="{fleetdetailsModel>Vhvin }" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column>

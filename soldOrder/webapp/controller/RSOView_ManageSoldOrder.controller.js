@@ -212,10 +212,15 @@ sap.ui.define([
 										}  	*/									// change 16 sep
 										if (data.customer) {
 											zcustomerModel.setData(data.customer);
+											
 										}
 									},
 									error: function (request, errorText, errorCode) {
 										zcustomerModel.setData([]);  										// change 16 sep
+										console.log(request.responseText.errorText);
+										console.log(errorText);
+										console.log(request);
+										sap.m.MessageToast.show(request.responseText.errorText); // 17 sep change 
 									//	console.log("empty data", data);// change 16 sep
 									}
 								});
@@ -287,7 +292,9 @@ sap.ui.define([
 					ZzsoReqNo: zrequest
 				}, // function import parameters
 				success: function (oData, response) {
-
+					console.log(oData); //17 sep change 
+					var msg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("auditStatusCompletion");
+					sap.m.MessageToast.show(msg); //17 sep change
 				},
 				error: function (oError) {
 

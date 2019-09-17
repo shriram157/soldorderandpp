@@ -120,7 +120,7 @@ sap.ui.define([
 			//FSOD_controller.enableExportButton();
 		},
 		_onObjectMatched: function (oEvent) {
-			
+
 			clicks = 0;
 			num = 0;
 			var oModel = new sap.ui.model.json.JSONModel();
@@ -382,8 +382,8 @@ sap.ui.define([
 						// 		console.log("DataModel.getData()", DataModel.getData());
 						// 	}
 						// } else {
-							DataModel.setData(data.d.results);
-							DataModel.updateBindings(true);
+						DataModel.setData(data.d.results);
+						DataModel.updateBindings(true);
 						// }
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
@@ -437,8 +437,8 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
+							DataModel.setData(data.d.results);
+							DataModel.updateBindings(true);
 							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
@@ -478,7 +478,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-						FSOD_controller.dialog.close();
+							FSOD_controller.dialog.close();
 							var BtnNext = FSOD_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -494,12 +494,12 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
+							DataModel.setData(data.d.results);
+							DataModel.updateBindings(true);
 							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-						FSOD_controller.dialog.close();
+							FSOD_controller.dialog.close();
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 						}
@@ -545,7 +545,7 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-						FSOD_controller.dialog.close();
+					FSOD_controller.dialog.close();
 					var BtnNext = FSOD_controller.getView().byId("buttonNext");
 					if (data.d.results.length <= 0) {
 						BtnNext.setEnabled(false);
@@ -561,12 +561,12 @@ sap.ui.define([
 					// 		console.log("DataModel.getData()", DataModel.getData());
 					// 	}
 					// } else {
-						DataModel.setData(data.d.results);
-						DataModel.updateBindings(true);
+					DataModel.setData(data.d.results);
+					DataModel.updateBindings(true);
 					// }
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-						FSOD_controller.dialog.close();
+					FSOD_controller.dialog.close();
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 				}
@@ -625,83 +625,86 @@ sap.ui.define([
 						}
 					},
 					error: function (oError) {
-						FSOD_controller.dialog.close();}
+						FSOD_controller.dialog.close();
+					}
 				});
 
 			}
 		},
-		enableExportButton:function(){
+		enableExportButton: function () {
 			var BtnNext = FSOD_controller.getView().byId("buttonNext");
-			var BtnExport=FSOD_controller.getView().byId("idBtnExportToExcel_FSO");
-			if(BtnNext.setEnabled==false){
+			var BtnExport = FSOD_controller.getView().byId("idBtnExportToExcel_FSO");
+			if (BtnNext.getEnabled() == false) {
 				BtnExport.setEnabled(true);
-			}
-			else{
+			} else {
 				BtnExport.setEnabled(false);
 			}
 		},
-		onExport:function(){
-			
+		onExport: function () {
+
 			var data;
-				var DataModel = FSOD_controller.getView().getModel("retailsumModel");
+			var DataModel = FSOD_controller.getView().getModel("fleetdetailsModel");
 			if (DataModel != undefined) {
 				data = DataModel.getData();
 			} else {
-				data = FSOD_controller.getView().byId("table_RSOS").getModel("retailsumModel").getData();
+				data = FSOD_controller.getView().byId("tbl_FSOD").getModel("fleetdetailsModel").getData();
 			}
 			FSOD_controller.JSONToExcelConvertor(data, "Report", true);
-		
+
 		},
-			JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
-			var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
+		JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
+			//	var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
+			var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
 			var CSV = "";
 			if (ShowLabel) {
 				var row = "";
 				row = row.slice(0, -1);
 			}
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("orderNumber") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("custname") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("dealer") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("modelYear") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("series") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("Model") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("Suffix") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("Colour") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("APX") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("Status") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("audit") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("vtn") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("vin") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("ETAFrom") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("ETATime") + ",";
-			row += FSOD_controller.oI18nModel.getResourceBundle().getText("linkVehicle") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("orderNumber") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("custname") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
+
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Model") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Suffix") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Colour") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("APX") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Status") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("audit") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vtn") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vin") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("ETAFrom") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("ETATime") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
+
 			CSV += row + '\r\n';
 
 			//loop is to extract each row
 			for (var i = 0; i < arrData.length; i++) {
+				console.log(arrData[i]);
 				var row = "";
-				row+=" ";
-				row += arrData[i].ZzsoReqNo + '","' + 
-					arrData[i].ZzendcuName +'","' + 
-					'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
-					arrData[i].ZzdealerCode +'","' + 
-					arrData[i].Zzmoyr +'","' + 
-					arrData[i].Zzseries +'","' + 
-					arrData[i].Zzmodel +'","' + 
-					arrData[i].Zzsuffix +'","' +
-					"-" + arrData[i].SUFFIX_DESC_EN + '","' +
-					arrData[i].ExteriorColorCode + "-" +
-					arrData[i].EXTCOL_DESC_EN + '",="' +
-					arrData[i].ExteriorColorCode +'","' + 
-					arrData[i].Zzapx +'","' + 
-					arrData[i].Zzstatus +'","' + 
-					arrData[i].ZzAuditStatus +'","' + 
-					arrData[i].ZzsoStatus +'","' + 
-					arrData[i].Zzvtn +'","' + 
-					arrData[i].Zzvin +'","' + 
-					FSOD_controller.dateConverter(arrData[i].ETAFrom) +'",="' +
-					FSOD_controller.dateConverter(arrData[i].ETATo) + '",';
-					
+				row += " ";
+				row += arrData[i].ZzsoReqNo + '","' +
+					arrData[i].ZzendcuName + '","' +
+					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
+					arrData[i].ZzdealerCode + '","' +
+					arrData[i].Zzmoyr + '","' +
+
+					arrData[i].Zzmodel + '","' +
+					arrData[i].Zzsuffix + '","' +
+
+					arrData[i].Zzextcol + '","' +
+					arrData[i].Zzapx + '","' +
+					arrData[i].ZzsoStatus + '","' +
+					arrData[i].ZzAuditStatus + '","' +
+
+					arrData[i].Zzvtn + '","' +
+					arrData[i].Vhvin + '","' +
+					//	arrData[i].ZzreqEtaFrom +'",="' +
+					//	arrData[i].ZzreqEtaTo+ '",';
+					FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) + '","' +
+					FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + '",';
+
 				//}
 				row.slice(1, row.length);
 				CSV += row + '\r\n';
@@ -710,7 +713,7 @@ sap.ui.define([
 				alert("Invalid data");
 				return;
 			}
-			var fileName = FSOD_controller.oI18nModel.getResourceBundle().getText("RetailSoldOrderReport");
+			var fileName = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FleetSoldOrderReport");
 			fileName += ReportTitle.replace(/ /g, "_");
 			// Initialize file format you want csv or xls
 
@@ -718,7 +721,7 @@ sap.ui.define([
 				type: "text/csv;charset=utf-8,"
 			});
 			if (sap.ui.Device.browser.name === "ie" || sap.ui.Device.browser.name === "ed") { // IE 10+ , Edge (IE 12+)
-				navigator.msSaveBlob(blob, FSOD_controller.oI18nModel.getResourceBundle().getText("RetailSoldOrderReport") + ".csv");
+				navigator.msSaveBlob(blob, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FleetSoldOrderReport") + ".csv");
 			} else {
 				var uri = 'data:text/csv;charset=utf-8,' + "\ufeff" + encodeURIComponent(CSV); //'data:application/vnd.ms-excel,' + escape(CSV);
 				var link = document.createElement("a");
@@ -731,6 +734,21 @@ sap.ui.define([
 				document.body.removeChild(link);
 			}
 		},
+		dateConverter: function (_dVal) {
+			if (_dVal !== null && _dVal !== undefined && _dVal != "") {
+				var str = _dVal;
+				var res = str.split(")");
+				var res2 = res[0].split("(");
+				var CDate = res2[1];
+				var strParse=parseInt(CDate);
+				var date1= new Date(strParse);
+				var year =date1.getFullYear()
+				var month= date1.getMonth()
+				var day=date1.getDate()
+				return month+"/"+day+"/"+year;
+			} else return "";
+		},
+		
 		onActionNext: function (oEvent) {
 			//This code was generated by the layout editor.
 			if (clicks < 0) {
@@ -746,7 +764,7 @@ sap.ui.define([
 			// }
 			FSOD_controller.data();
 		},
-		
+
 		data: function (oEvent) {
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			FSOD_controller.dialog.open();
@@ -856,7 +874,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-						FSOD_controller.dialog.close();
+							FSOD_controller.dialog.close();
 							var BtnNext = FSOD_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -894,7 +912,7 @@ sap.ui.define([
 							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-						FSOD_controller.dialog.close();
+							FSOD_controller.dialog.close();
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 						}
@@ -930,7 +948,7 @@ sap.ui.define([
 						async: false,
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
-						FSOD_controller.dialog.close();
+							FSOD_controller.dialog.close();
 							var BtnNext = FSOD_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -951,7 +969,7 @@ sap.ui.define([
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
-						FSOD_controller.dialog.close();
+							FSOD_controller.dialog.close();
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 						}
@@ -961,7 +979,7 @@ sap.ui.define([
 			// var page = clicks + 1;
 			// FSOD_controller.getView().byId("txtPageNum").setText("Page" + page);
 		},
-		onLiveSOChange:function(oEvent){
+		onLiveSOChange: function (oEvent) {
 			this.sSearchQuery = oEvent.getSource().getValue();
 			this.fnSuperSearch();
 		},

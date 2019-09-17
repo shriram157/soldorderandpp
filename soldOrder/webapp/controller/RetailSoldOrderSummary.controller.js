@@ -838,7 +838,7 @@ sap.ui.define([
 		enableExportButton:function(){
 			var BtnNext = RSOS_controller.getView().byId("buttonNext");
 			var BtnExport=RSOS_controller.getView().byId("idBtnExportToExcel");
-			if(BtnNext.setEnabled==false){
+			if(BtnNext.getEnabled()==false){
 				BtnExport.setEnabled(true);
 			}
 			else{
@@ -858,46 +858,56 @@ sap.ui.define([
 		
 		},
 			JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
-			var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
+			//	var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
+			var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
 			var CSV = "";
 			if (ShowLabel) {
 				var row = "";
 				row = row.slice(0, -1);
 			}
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("orderNumber") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("custname") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("dealer") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("modelYear") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("series") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("Model") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("Suffix") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("Colour") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("orderNumber") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("custname") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("series") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Model") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Suffix") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Colour") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("audit") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Status") + ",";
 			
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("auditStatus") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("Status") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("vtn") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("vin") + ",";
-			row += RSOS_controller.oI18nModel.getResourceBundle().getText("linkVehicle") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vtn") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vin") + ",";
+			
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
+			
 			CSV += row + '\r\n';
 
 			//loop is to extract each row
 			for (var i = 0; i < arrData.length; i++) {
+				console.log(arrData[i]);
 				var row = "";
 				row+=" ";
 				row += arrData[i].ZzsoReqNo + '","' + 
 					arrData[i].ZzendcuName +'","' + 
-					'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
+					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
 					arrData[i].ZzdealerCode +'","' + 
 					arrData[i].Zzmoyr +'","' + 
 					arrData[i].Zzseries +'","' + 
 					arrData[i].Zzmodel +'","' + 
-					arrData[i].Zzsuffix +'","' + 
-					arrData[i].ExteriorColorCode +'","' + 
+					arrData[i].Zzsuffix +'","' +
+					
+					arrData[i].Zzextcol +'","' + 
+				//	arrData[i].Zzapx +'","' + 
+				//
 					arrData[i].ZzAuditStatus +'","' + 
-					arrData[i].ZzsoStatus +'","' + 
+					arrData[i].ZzsoStatus +'","' + 	 
 					arrData[i].Zzvtn +'","' + 
-					arrData[i].Zzvin +'","' + 
-					+ '",';
+					arrData[i].Vhvin + '",';
+				 
+					//FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) +'",="' +
+					//FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + '",';
+					
 				//}
 				row.slice(1, row.length);
 				CSV += row + '\r\n';
@@ -906,7 +916,7 @@ sap.ui.define([
 				alert("Invalid data");
 				return;
 			}
-			var fileName = RSOS_controller.oI18nModel.getResourceBundle().getText("RetailSoldOrderReport");
+			var fileName = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("RetailSoldOrderReport");
 			fileName += ReportTitle.replace(/ /g, "_");
 			// Initialize file format you want csv or xls
 
@@ -914,7 +924,7 @@ sap.ui.define([
 				type: "text/csv;charset=utf-8,"
 			});
 			if (sap.ui.Device.browser.name === "ie" || sap.ui.Device.browser.name === "ed") { // IE 10+ , Edge (IE 12+)
-				navigator.msSaveBlob(blob, RSOS_controller.oI18nModel.getResourceBundle().getText("RetailSoldOrderReport") + ".csv");
+				navigator.msSaveBlob(blob, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("RetailSoldOrderReport") + ".csv");
 			} else {
 				var uri = 'data:text/csv;charset=utf-8,' + "\ufeff" + encodeURIComponent(CSV); //'data:application/vnd.ms-excel,' + escape(CSV);
 				var link = document.createElement("a");
