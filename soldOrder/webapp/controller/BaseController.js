@@ -193,8 +193,8 @@ sap.ui.define([
 					var LoginUserModel = new sap.ui.model.json.JSONModel();
 					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
 					var userType = oData.loggedUserType[0]; ////uncomment while deploying
-					//oData.loggedUserType[0] = "Dealer_User";
-					var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
+					oData.loggedUserType[0] = "Dealer_User";
+					//var userType = oData.loggedUserType[0]; //for local testing, comment while deploying
 					// console.log("logged in user dealer");
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
@@ -234,7 +234,7 @@ sap.ui.define([
 				async: false,
 				success: function (oData) {
 					console.log("initial BP load", oData);
-							var BpDealerArr = [],
+					var BpDealerArr = [],
 						BpDealer = [];
 
 					var userAttributes = [];

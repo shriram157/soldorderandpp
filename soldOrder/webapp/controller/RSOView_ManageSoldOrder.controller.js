@@ -219,8 +219,8 @@ sap.ui.define([
 									zcustomerModel.setData([]); // change 16 sep
 									console.log(request.responseText);
 									var str = request.responseText;
-									var obj = JSON.stringify(str);
-									var obj2 = JSON.parse(obj);
+								//	var obj = JSON.stringify(str);
+									var obj2 = JSON.parse(str);
 									sap.m.MessageToast.show(obj2.messages[0].errorText); // 17 sep change 
 									//	console.log("empty data", data);// change 16 sep
 								}
@@ -286,7 +286,8 @@ sap.ui.define([
 		},
 
 		_updateAuditSoldOrderRequest: function () {
-			var btnAudit= RSO_MSO_controller.getView().getId("btn_AuditComp_RSO_MSO");
+			this.btnAudit= RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO");
+			var that=this;
 			RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Update_Audit_Status", {
 				method: "POST",
 				urlParameters: {
@@ -297,7 +298,7 @@ sap.ui.define([
 					console.log(oData); //17 sep change 
 					var msg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("auditStatusCompletion");
 					sap.m.MessageToast.show(msg); //17 sep change
-					btnAudit.setEnabled(false);
+					that.btnAudit.setEnabled(false);
 					RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 				},
 				error: function (oError) {
