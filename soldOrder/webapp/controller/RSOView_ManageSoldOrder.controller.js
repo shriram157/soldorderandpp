@@ -217,11 +217,13 @@ sap.ui.define([
 								},
 								error: function (request, errorText, errorCode) {
 									zcustomerModel.setData([]); // change 16 sep
-									console.log(request.responseText);
-									var str = request.responseText;
-									var obj = JSON.stringify(str);
-									var obj2 = JSON.parse(obj);
-									sap.m.MessageToast.show(obj2.messages[0].errorText); // 17 sep change 
+									if (request.responseText) {
+										console.log(request.responseText);
+										var str = request.responseText;
+										// var obj = JSON.stringify(str);
+										var obj2 = JSON.parse(str);
+										sap.m.MessageToast.show(obj2.messages[0].errorText); // 17 sep change 
+									}
 									//	console.log("empty data", data);// change 16 sep
 								}
 							});
@@ -286,7 +288,7 @@ sap.ui.define([
 		},
 
 		_updateAuditSoldOrderRequest: function () {
-			var btnAudit= RSO_MSO_controller.getView().getId("btn_AuditComp_RSO_MSO");
+			var btnAudit = RSO_MSO_controller.getView().getId("btn_AuditComp_RSO_MSO");
 			RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Update_Audit_Status", {
 				method: "POST",
 				urlParameters: {
