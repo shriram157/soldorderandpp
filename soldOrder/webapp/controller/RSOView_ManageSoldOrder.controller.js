@@ -300,7 +300,9 @@ sap.ui.define([
 					var msg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("auditStatusCompletion");
 					sap.m.MessageToast.show(msg); //17 sep change
 					that.btnAudit.setEnabled(false); // 18 sep change 
-					RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
+					RSO_MSO_controller.getView().getElementBinding('mainservices').refresh(true);
+					RSO_MSO_controller.getView().getModel('mainservices').updateBindings(true);
+					
 				},
 				error: function (oError) {
 
