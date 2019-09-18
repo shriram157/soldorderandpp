@@ -296,6 +296,7 @@ sap.ui.define([
 				}, // function import parameters
 				success: function (oData, response) {
 					console.log(oData); //17 sep change 
+					console.log(oData.Message); //18 sep change
 					var msg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("auditStatusCompletion");
 					sap.m.MessageToast.show(msg); //17 sep change
 					that.btnAudit.setEnabled(false); // 18 sep change 
