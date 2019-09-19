@@ -20,9 +20,9 @@ sap.ui.define([
 			CFSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var today = new Date();
 			var day30 = new Date();
-			var tableModelCreate=new sap.ui.model.json.JSONModel([]);
+			/*var tableModelCreate=new sap.ui.model.json.JSONModel([]);
 			sap.ui.getCore().setModel(tableModelCreate,'tableModelCreate');
-			this.getView().setModel('tableModelCreate');
+			this.getView().setModel('tableModelCreate');*/
 			//console.log(tableModelCreate.getData());
 			// CFSO_controller.getFleetCustomer();
 			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("fleetModel"), "fleetModel");
