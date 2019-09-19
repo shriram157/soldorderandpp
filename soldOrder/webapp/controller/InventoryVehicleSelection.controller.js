@@ -288,10 +288,12 @@ sap.ui.define([
 			});
 			Model.refresh();
 			tempModel.setData({   // 19 sep change 
-				items: zitems    // 19 sep change 
+				 zitems    // 19 sep change 
 			}); // 19 sep change 
 			tempModel.refresh(true); // 19 sep change 
-			tableModel.getData().items.push(tempModel.getData().items); //19 sep change 
+			console.log(tempModel.getData());
+			tableModel.getData().push(tempModel.getData()); //19 sep change 
+				console.log(tableModel.getData());
 			tableModel.refresh(true); // 19 sep change 
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
 

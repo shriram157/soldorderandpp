@@ -41,21 +41,21 @@
 					</HBox>
 					<!--<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{FirstTable>/items}" enableColumnReordering="false"
 						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">-->
-						<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{tableModel>/items}" enableColumnReordering="false"
+						<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{tableModelCreate>/}" enableColumnReordering="false"
 						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
 									<!--<Text text="{FirstTable>ZZVTN}"/>-->
-									<Text text="{tableModel>ZZVTN}"/>
+									<Text text="{tableModelCreate>ZZVTN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
 									<!--<Text text="{FirstTable>Modelyear}"/>-->
-									<Text text="{tableModel>Modelyear}"/>
+									<Text text="{tableModelCreate>Modelyear}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
@@ -68,35 +68,35 @@
 									<!--		</items>-->
 									<!--	</ComboBox>-->
 									<!--<Text text="{FirstTable>TCISeries}"/>-->
-									<Text text="{tableModel>TCISeries}"/>
+									<Text text="{tableModelCreate>TCISeries}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>model}" class="TableLabel"/>
 								<t:template>
 									<!--<Text text="{FirstTable>MODEL_DESC_EN}"/>-->
-									<Text text="{tableModel>MODEL_DESC_EN}"/>
+									<Text text="{tableModelCreate>MODEL_DESC_EN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
 									<!--<Text text="{FirstTable>SUFFIX_DESC_EN}"/>-->
-									<Text text="{tableModel>SUFFIX_DESC_EN}"/>
+									<Text text="{tableModelCreate>SUFFIX_DESC_EN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
 									<!--<Text text="{FirstTable>ExteriorColorCode}"/>-->
-									<Text text="{tableModel>ExteriorColorCode}"/>
+									<Text text="{tableModelCreate>ExteriorColorCode}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
 									<!--<Text text="{FirstTable>APX}"/>-->
-									<Text text="{tableModel>APX}"/>
+									<Text text="{tableModelCreate>APX}"/>
 								</t:template>
 							</t:Column>
 						</t:columns>

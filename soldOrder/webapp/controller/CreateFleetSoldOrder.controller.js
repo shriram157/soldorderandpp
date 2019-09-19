@@ -124,6 +124,14 @@ sap.ui.define([
 			// });
 		},
 		_onObjectMatched: function (oEvent) {
+			var tableModelCreate=new sap.ui.model.json.JSONModel();
+			sap.ui.getCore().setModel(tableModelCreate,'tableModelCreate');
+			this.getView().setModel('tableModelCreate');
+			console.log(tableModelCreate.getData());
+			var tableModel=sap.ui.getCore.getModel('tableModel');
+			console.log(tableModel.getData());
+			tableModelCreate.getData().push(tableModel.getData());
+			console.log(tableModelCreate.getData());
 			console.log("CFSO_controller.initialSeriesData", CFSO_controller.initialSeriesData);
 			var seriesModel = new sap.ui.model.json.JSONModel();
 			if (CFSO_controller.initialSeriesData[0] && CFSO_controller.initialSeriesData[0].ModelSeriesNo === "ALL") {
