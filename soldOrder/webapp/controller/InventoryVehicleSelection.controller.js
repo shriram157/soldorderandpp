@@ -622,7 +622,7 @@ sap.ui.define([
 					}
 
 					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
-					if (DataModel.getData().reults.length != undefined) {
+					if (DataModel.getData().results.length != undefined) {
 					/*	var obj = {
 							"results": []
 						};*/
