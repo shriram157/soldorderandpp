@@ -23,7 +23,7 @@ sap.ui.define([
 			var tableModelCreate=new sap.ui.model.json.JSONModel([]);
 			sap.ui.getCore().setModel(tableModelCreate,'tableModelCreate');
 			this.getView().setModel('tableModelCreate');
-			console.log(tableModelCreate.getData());
+			//console.log(tableModelCreate.getData());
 			// CFSO_controller.getFleetCustomer();
 			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("fleetModel"), "fleetModel");
 			CFSO_controller.initialSeriesData = sap.ui.getCore().getModel("seriesModel").getData();
@@ -130,12 +130,12 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 		
-			var tableModelCreate= sap.ui.getCore().getModel('tableModelCreate');
+		/*	var tableModelCreate= sap.ui.getCore().getModel('tableModelCreate');
 			var tableModel=sap.ui.getCore().getModel('tableModel');
 			console.log(tableModel.getData());
 			tableModelCreate.getData().push(tableModel.getData());
-			console.log(tableModelCreate.getData());
-			console.log("CFSO_controller.initialSeriesData", CFSO_controller.initialSeriesData);
+			console.log(tableModelCreate.getData());*/
+		//	console.log("CFSO_controller.initialSeriesData", CFSO_controller.initialSeriesData);
 			var seriesModel = new sap.ui.model.json.JSONModel();
 			if (CFSO_controller.initialSeriesData[0] && CFSO_controller.initialSeriesData[0].ModelSeriesNo === "ALL") {
 				delete CFSO_controller.initialSeriesData[0];

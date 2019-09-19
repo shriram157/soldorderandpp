@@ -39,23 +39,19 @@
 							<Button text="{i18n>deleteRows}" press="_onDelete1"></Button>
 						</items>
 					</HBox>
-					<!--<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{FirstTable>/items}" enableColumnReordering="false"
-						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">-->
-						<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{tableModelCreate>/}" enableColumnReordering="false"
+					<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{FirstTable>/items}" enableColumnReordering="false"
 						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
-									<!--<Text text="{FirstTable>ZZVTN}"/>-->
-									<Text text="{tableModelCreate>ZZVTN}"/>
+									<Text text="{FirstTable>ZZVTN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
-									<!--<Text text="{FirstTable>Modelyear}"/>-->
-									<Text text="{tableModelCreate>Modelyear}"/>
+									<Text text="{FirstTable>Modelyear}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
@@ -67,36 +63,31 @@
 									<!--			<core:Item key="{FirstTable>TCISeries}" text="{FirstTable>TCISeries}"/>-->
 									<!--		</items>-->
 									<!--	</ComboBox>-->
-									<!--<Text text="{FirstTable>TCISeries}"/>-->
-									<Text text="{tableModelCreate>TCISeries}"/>
+									<Text text="{FirstTable>TCISeries}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>model}" class="TableLabel"/>
 								<t:template>
-									<!--<Text text="{FirstTable>MODEL_DESC_EN}"/>-->
-									<Text text="{tableModelCreate>MODEL_DESC_EN}"/>
+									<Text text="{FirstTable>MODEL_DESC_EN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
-									<!--<Text text="{FirstTable>SUFFIX_DESC_EN}"/>-->
-									<Text text="{tableModelCreate>SUFFIX_DESC_EN}"/>
+									<Text text="{FirstTable>SUFFIX_DESC_EN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
-									<!--<Text text="{FirstTable>ExteriorColorCode}"/>-->
-									<Text text="{tableModelCreate>ExteriorColorCode}"/>
+									<Text text="{FirstTable>ExteriorColorCode}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
-									<!--<Text text="{FirstTable>APX}"/>-->
-									<Text text="{tableModelCreate>APX}"/>
+									<Text text="{FirstTable>APX}"/>
 								</t:template>
 							</t:Column>
 						</t:columns>
