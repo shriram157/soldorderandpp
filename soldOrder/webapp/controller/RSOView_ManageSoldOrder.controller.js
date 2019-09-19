@@ -307,6 +307,9 @@ sap.ui.define([
 				error: function (oError) {
 
 				}
+					RSO_MSO_controller.getView().getModel('mainservices').updateBindings(true);
+					var _SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
+					console.log(_SOType);
 			});
 			// AppController.flgSoldOrderReqStatus = "Audit - Complete";
 		},

@@ -622,10 +622,10 @@ sap.ui.define([
 					}
 
 					var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
-					if (DataModel.getData().length != undefined) {
-						var obj = {
+					if (DataModel.getData().reults.length != undefined) {
+					/*	var obj = {
 							"results": []
-						};
+						};*/
 						for (var m = 0; m < data.d.results.length; m++) {
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M" && data.d.results[m].TCISeries == "SIE") {
 								DataModel.getData().results.push(data.d.results[m]);
@@ -641,9 +641,11 @@ sap.ui.define([
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 								if (data.d.results[m].TCISeries == "SIE") {
 									DataModel.getData().results.push(data.d.results[m]);
+									DataModel.updateBindings(true);
 								}
 							} else {
 								DataModel.setData(data.d);
+								DataModel.updateBindings(true);
 							}
 							DataModel.updateBindings(true);
 							console.log("DataModel.getData()", DataModel.getData());
