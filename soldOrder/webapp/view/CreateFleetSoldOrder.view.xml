@@ -45,13 +45,15 @@
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>vtn}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>ZZVTN}"/>
+									<!--<Text text="{FirstTable>ZZVTN}"/>-->
+									<Text text="{tableModel>ZZVTN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>modelYear}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>Modelyear}"/>
+									<!--<Text text="{FirstTable>Modelyear}"/>-->
+									<Text text="{tableModel>Modelyear}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
@@ -63,31 +65,36 @@
 									<!--			<core:Item key="{FirstTable>TCISeries}" text="{FirstTable>TCISeries}"/>-->
 									<!--		</items>-->
 									<!--	</ComboBox>-->
-									<Text text="{FirstTable>TCISeries}"/>
+									<!--<Text text="{FirstTable>TCISeries}"/>-->
+									<Text text="{tableModel>TCISeries}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>model}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>MODEL_DESC_EN}"/>
+									<!--<Text text="{FirstTable>MODEL_DESC_EN}"/>-->
+									<Text text="{tableModel>MODEL_DESC_EN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>suffix}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>SUFFIX_DESC_EN}"/>
+									<!--<Text text="{FirstTable>SUFFIX_DESC_EN}"/>-->
+									<Text text="{tableModel>SUFFIX_DESC_EN}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>ExteriorColorCode}"/>
+									<!--<Text text="{FirstTable>ExteriorColorCode}"/>-->
+									<Text text="{tableModel>ExteriorColorCode}"/>
 								</t:template>
 							</t:Column>
 							<t:Column width="14.2%" resizable="false">
 								<Label wrapping="true" text="{i18n>APX}" class="TableLabel"/>
 								<t:template>
-									<Text text="{FirstTable>APX}"/>
+									<!--<Text text="{FirstTable>APX}"/>-->
+									<Text text="{tableModel>APX}"/>
 								</t:template>
 							</t:Column>
 						</t:columns>

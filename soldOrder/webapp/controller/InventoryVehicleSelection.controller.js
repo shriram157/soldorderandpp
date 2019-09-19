@@ -228,6 +228,12 @@ sap.ui.define([
 		_onSelect: function () {
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
 			var indiceArray = oTable.getSelectedIndices();
+		
+			var tempModel = new sap.ui.model.json.JSONModel();
+			sap.ui.getCore().setModel(tempModel, 'tempModel');
+			var tableModel=new sap.ui.model.json.JSONModel();
+			sap.ui.getCore().setModel(tableModel, 'tableModel');
+			
 			var Model = sap.ui.getCore().getModel('FirstTable');
 			// Model.setData();
 			var zitems = [];
@@ -237,7 +243,6 @@ sap.ui.define([
 			for (var i = 0; i < indiceArray.length; i++) {
 				var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray[i]];
 				var data = oTable.getModel('inventoryModel').getProperty(binded.sPath);
-
 				zitems.push({
 					APX: data.APX,
 					AssignVehicle: data.AssignVehicle,
@@ -282,6 +287,12 @@ sap.ui.define([
 				items: zitems
 			});
 			Model.refresh();
+			tempModel.setData({
+				items: zitems
+			});
+			tempModel.refresh(true);
+			tableModel.getData().push(tempModel.getData());
+			tableModel.refresh(true);
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
 
 		},
