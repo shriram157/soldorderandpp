@@ -22,6 +22,7 @@ sap.ui.define([
 			InvVehSel_controller = this;
 			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
 				this);
+					this.zitems = [];
 		},
 		_getattachRouteMatched: function (parameters) {
 			this.zrequest = parameters.getParameters().arguments.Soreq;
@@ -236,14 +237,14 @@ sap.ui.define([
 			tableModel.setData({items:[]});*/  // 19 sep change 
 			var Model = sap.ui.getCore().getModel('FirstTable');
 			// Model.setData();
-			var zitems = [];
+		
 			// if (Model.getData().items) {
 			// 	 zitems = Model.getData().items;
 			// }
 			for (var i = 0; i < indiceArray.length; i++) {
 				var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray[i]];
 				var data = oTable.getModel('inventoryModel').getProperty(binded.sPath);
-				zitems.push({
+				this.zitems.push({
 					APX: data.APX,
 					AssignVehicle: data.AssignVehicle,
 					Dealer: data.Dealer,
@@ -284,7 +285,7 @@ sap.ui.define([
 				});
 			}
 			Model.setData({
-				items: zitems
+				items: this.zitems
 			});
 			Model.refresh();
 			/*tempModel.setData({   // 19 sep change 

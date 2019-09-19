@@ -962,10 +962,6 @@ sap.ui.define([
 			}
 		},
 		suffix_selected: function (oEvent) {
-			//-----------------
-			//----APX---------
-			//----------------
-			//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
 			var suffix = oEvent.getSource().getSelectedKey();
 			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
 			var model = this.getView().byId('modelCode_CFSO').getSelectedKey();
