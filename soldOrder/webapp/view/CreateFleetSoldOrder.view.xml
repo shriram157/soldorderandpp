@@ -39,7 +39,9 @@
 							<Button text="{i18n>deleteRows}" press="_onDelete1"></Button>
 						</items>
 					</HBox>
-					<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{FirstTable>/items}" enableColumnReordering="false"
+					<!--<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{FirstTable>/items}" enableColumnReordering="false"
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">-->
+						<t:Table columnResize="onColumnResize" id="idCFSO_Table1" rows="{tableModel>/items}" enableColumnReordering="false"
 						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">
 						<t:columns>
 							<t:Column width="14.2%" resizable="false">
