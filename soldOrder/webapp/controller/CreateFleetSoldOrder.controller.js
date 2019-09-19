@@ -22,6 +22,8 @@ sap.ui.define([
 			var day30 = new Date();
 			var tableModelCreate=new sap.ui.model.json.JSONModel([]);
 			sap.ui.getCore().setModel(tableModelCreate,'tableModelCreate');
+			this.getView().setModel('tableModelCreate');
+			console.log(tableModelCreate.getData());
 			// CFSO_controller.getFleetCustomer();
 			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("fleetModel"), "fleetModel");
 			CFSO_controller.initialSeriesData = sap.ui.getCore().getModel("seriesModel").getData();
@@ -127,10 +129,8 @@ sap.ui.define([
 			// });
 		},
 		_onObjectMatched: function (oEvent) {
-			var tableModelCreate=new sap.ui.model.json.JSONModel();
-			sap.ui.getCore().setModel(tableModelCreate,'tableModelCreate');
-			this.getView().setModel('tableModelCreate');
-			console.log(tableModelCreate.getData());
+		
+			var tableModelCreate= sap.ui.getCore().getModel('tableModelCreate');
 			var tableModel=sap.ui.getCore().getModel('tableModel');
 			console.log(tableModel.getData());
 			tableModelCreate.getData().push(tableModel.getData());
