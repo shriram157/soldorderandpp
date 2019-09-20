@@ -33,7 +33,7 @@ sap.ui.define([
 			});
 		},
 
-		_user: function () {
+		_user: function () {/*
 			var user = AppController.listOfUsers;
 			var selUser = AppController.getView().byId("AppInputId").getValue();
 
@@ -136,7 +136,7 @@ sap.ui.define([
 				AppController.flagNationalUser = false;
 				AppController.flagOrderingDealer = true;
 			}
-		},
+		*/},
 
 		ResetFlag: function () {
 			AppController.flagOrderingDealer = false;
