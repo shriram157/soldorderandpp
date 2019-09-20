@@ -17,27 +17,6 @@ sap.ui.define([
 		onInit: function () {
 			RSOS_controller = this;
 			AppController.getDealer();
-			// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("seriesModel"), "seriesModel");
-			// RSOS_controller.getView().getModel("seriesModel").getData().unshift({
-			// 	"Division": "",
-			// 	"ModelSeriesNo": "ALL",
-			// 	"ProductHierarchy": "",
-			// 	"ProfitCenter": "",
-			// 	"SeriesSequenceNumber": "",
-			// 	"TCIModelDescriptionEN": "",
-			// 	"TCIModelDescriptionFR": "",
-			// 	"TCISeriesDescriptionEN": "All",
-			// 	"TCISeriesDescriptionFR": "Toute",
-			// 	"zzzadddata2": "X",
-			// 	"zzzadddata4": "100"
-			// });
-			// RSOS_controller.getView().getModel("seriesModel").updateBindings(true);
-			// console.log(RSOS_controller.getView().getModel("seriesModel").getData());
-			/* 
-			RSOS_controller.getView().getModel("seriesModel").getData().unshift({
-			
-			});
-			*/
 			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 		},
