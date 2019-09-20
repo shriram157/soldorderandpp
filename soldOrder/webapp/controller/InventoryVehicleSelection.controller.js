@@ -23,6 +23,8 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
 				this);
 					this.zitems = [];
+				//	this.tempItems=[];
+					this.permItems=[];
 		},
 		_getattachRouteMatched: function (parameters) {
 			this.zrequest = parameters.getParameters().arguments.Soreq;
@@ -230,9 +232,9 @@ sap.ui.define([
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
 			var indiceArray = oTable.getSelectedIndices();
 		
-		/*	var tempModel = new sap.ui.model.json.JSONModel(); // 19 sep change 
+			var tempModel = new sap.ui.model.json.JSONModel(); // 19 sep change 
 			sap.ui.getCore().setModel(tempModel, 'tempModel'); // 19 sep change 
-			var tableModel=new sap.ui.model.json.JSONModel(); // 19 sep change 
+		/*	var tableModel=new sap.ui.model.json.JSONModel(); // 19 sep change 
 			sap.ui.getCore().setModel(tableModel, 'tableModel'); // 19 sep change 
 			tableModel.setData({items:[]});*/  // 19 sep change 
 			var Model = sap.ui.getCore().getModel('FirstTable');
@@ -284,18 +286,63 @@ sap.ui.define([
 					ZZVTN: data.ZZVTN
 				});
 			}
-			Model.setData({
+			/*Model.setData({
 				items: this.zitems
 			});
-			Model.refresh();
-			/*tempModel.setData({   // 19 sep change 
-				 zitems    // 19 sep change 
-			}); */// 19 sep change 
-		/*	tempModel.refresh(true); // 19 sep change 
-			console.log(tempModel.getData());
-			tableModel.getData().push(tempModel.getData()); //19 sep change 
-				console.log(tableModel.getData());
-			tableModel.refresh(true);*/ // 19 sep change 
+			Model.refresh();*/
+			tempModel.setData({   // 19 sep change 
+				 items: this.zitems    // 19 sep change 
+			}); // 19 sep change 
+			
+			for(var i = 0; i<=tempModel.getData().items.length; i++){
+				for (var j = 0; j <= Model.getData().items.length; j++) {
+				if(tempModel.getData().items[i].ZZVTN!=Model.getData().items[j].ZZVTN ){
+					this.permItems.push({
+					APX: tempModel.getData().items[i].APX,
+					AssignVehicle: tempModel.getData().items[i].AssignVehicle,
+					Dealer: tempModel.getData().items[i].Dealer,
+					DropShip: tempModel.getData().items[i].DropShip,
+					ETA: tempModel.getData().items[i].ETA,
+					ETAFrom: tempModel.getData().items[i].ETAFrom,
+					ETATo: tempModel.getData().items[i].ETATo,
+					EXTCOL_DESC_EN: tempModel.getData().items[i].EXTCOL_DESC_EN,
+					EXTCOL_DESC_FR: tempModel.getData().items[i].EXTCOL_DESC_FR,
+					ExteriorColorCode: tempModel.getData().items[i].ExteriorColorCode,
+					INTCOL: tempModel.getData().items[i].INTCOL,
+					INTCOL_DESC_EN: tempModel.getData().items[i].INTCOL_DESC_EN,
+					INTCOL_DESC_FR: tempModel.getData().items[i].INTCOL_DESC_FR,
+					MATRIX: tempModel.getData().items[i].MATRIX,
+					MODEL_DESC_EN: tempModel.getData().items[i].MODEL_DESC_EN,
+					MODEL_DESC_FR: tempModel.getData().items[i].MODEL_DESC_FR,
+					Model: tempModel.getData().items[i].Model,
+					Modelyear: tempModel.getData().items[i].Modelyear,
+					ORDERTYPE_DESC_EN: tempModel.getData().items[i].ORDERTYPE_DESC_EN,
+					SERIES_DESC_EN: tempModel.getData().items[i].SERIES_DESC_EN,
+					SERIES_DESC_FR: tempModel.getData().items[i].SERIES_DESC_FR,
+					SPART: tempModel.getData().items[i].SPART,
+					SUFFIX_DESC_EN: tempModel.getData().items[i].SUFFIX_DESC_EN,
+					SUFFIX_DESC_FR: tempModel.getData().items[i].SUFFIX_DESC_FR,
+					Suffix: tempModel.getData().items[i].Suffix,
+					TCISeries: tempModel.getData().items[i].TCISeries,
+					UserType: tempModel.getData().items[i].UserType,
+					VGUID: tempModel.getData().items[i].VGUID,
+					VHCLE: tempModel.getData().items[i].VHCLE,
+					VHVIN: tempModel.getData().items[i].VHVIN,
+					VKBUR: tempModel.getData().items[i].VKBUR,
+					VKORG: tempModel.getData().items[i].VKORG,
+					VTWEG: tempModel.getData().items[i].VTWEG,
+					ZMMSTA: tempModel.getData().items[i].ZMMSTA,
+					ZZDLR_REF_NO: tempModel.getData().items[i].ZZDLR_REF_NO,
+					ZZORDERTYPE: tempModel.getData().items[i].ZZORDERTYPE,
+					ZZVTN: tempModel.getData().items[i].ZZVTN
+				});	
+				}
+			}
+			}
+			Model.setData({
+				items:this.permItems
+			});
+	
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
 
 		},

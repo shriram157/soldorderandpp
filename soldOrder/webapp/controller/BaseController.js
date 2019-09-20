@@ -194,7 +194,6 @@ sap.ui.define([
 					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
 					var userType = oData.loggedUserType[0]; ////uncomment while deploying
 				//	oData.loggedUserType[0] = "Dealer_User"; //for local testing, comment while deploying
-					
 					// console.log("logged in user dealer");
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
