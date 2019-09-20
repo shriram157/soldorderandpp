@@ -329,16 +329,16 @@ sap.ui.define([
 						}
 					}
 				}
+				Model.setData({
+					items: InvVehSel_controller.permItems
+				});
+				Model.refresh();
 			} else {
 				Model.setData({
 					items: InvVehSel_controller.zitems
 				});
 				Model.refresh();
 			}
-			Model.setData({
-				items: InvVehSel_controller.permItems
-			});
-			Model.refresh();
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
 		},
 
