@@ -192,13 +192,8 @@ sap.ui.define([
 				success: function (oData) {
 					var LoginUserModel = new sap.ui.model.json.JSONModel();
 					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
-<<<<<<< Upstream, based on origin/master
-					var userType = oData.loggedUserType[0]; ////uncomment while deploying
-				//	oData.loggedUserType[0] = "Dealer_User"; //for local testing, comment while deploying
-=======
 					var userType = oData.loggedUserType[0]; 
 					// oData.loggedUserType[0] = "Dealer_User";//for local testing, comment while deploying
->>>>>>> 16a1175 commit- export excel flag fix
 					// console.log("logged in user dealer");
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
