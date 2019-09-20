@@ -182,3 +182,7 @@ html.sap-desktop .sapMBtn:focus > .sapMFocusable {
     width: 100% !important;
     text-align: center !important;
 }
+
+.VisibleStyle .sapUiRespGrid[class*="sapUiRespGridVSpace0"] > .sapUiRespGridSpanInvisible {
+    width: 0 !important;
+}

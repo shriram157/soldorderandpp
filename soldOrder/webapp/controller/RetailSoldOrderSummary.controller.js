@@ -84,6 +84,8 @@ sap.ui.define([
 				var oModel = new sap.ui.model.json.JSONModel();
 				RSOS_controller.getView().setModel(oModel, "retailsumModel");
 				console.log(language);
+				var BtnExport = RSOS_controller.getView().byId("idBtnExportToExcel");
+				BtnExport.setEnabled(false);
 				RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var globalComboModel = new sap.ui.model.json.JSONModel();
 				var Obj;
@@ -391,8 +393,8 @@ sap.ui.define([
 				}
 			});
 		},
-		
-		_SelectionFinish:function(oEvent){
+
+		_SelectionFinish: function (oEvent) {
 			var selectedItems = oEvent.getParameter("selectedItems");
 			var messageText = "Event 'selectionFinished': [";
 
@@ -853,29 +855,28 @@ sap.ui.define([
 		// 	}
 		// 	RSOS_controller.data();
 		// },
-		enableExportButton:function(){
+		enableExportButton: function () {
 			var BtnNext = RSOS_controller.getView().byId("buttonNext");
-			var BtnExport=RSOS_controller.getView().byId("idBtnExportToExcel");
-			if(BtnNext.getEnabled()==false){
+			var BtnExport = RSOS_controller.getView().byId("idBtnExportToExcel");
+			if (BtnNext.getEnabled() == false) {
 				BtnExport.setEnabled(true);
-			}
-			else{
+			} else {
 				BtnExport.setEnabled(false);
 			}
 		},
-		onExport:function(){
-			
+		onExport: function () {
+
 			var data;
-				var DataModel = RSOS_controller.getView().getModel("retailsumModel");
+			var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 			if (DataModel != undefined) {
 				data = DataModel.getData();
 			} else {
 				data = RSOS_controller.getView().byId("table_RSOS").getModel("retailsumModel").getData();
 			}
 			RSOS_controller.JSONToExcelConvertor(data, "Report", true);
-		
+
 		},
-			JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
+		JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
 			//	var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
 			var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
 			var CSV = "";
@@ -893,39 +894,39 @@ sap.ui.define([
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Colour") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("audit") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Status") + ",";
-			
+
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vtn") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vin") + ",";
-			
+
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
-			
+
 			CSV += row + '\r\n';
 
 			//loop is to extract each row
 			for (var i = 0; i < arrData.length; i++) {
 				console.log(arrData[i]);
 				var row = "";
-				row+=" ";
-				row += arrData[i].ZzsoReqNo + '","' + 
-					arrData[i].ZzendcuName +'","' + 
+				row += " ";
+				row += arrData[i].ZzsoReqNo + '","' +
+					arrData[i].ZzendcuName + '","' +
 					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
-					arrData[i].ZzdealerCode +'","' + 
-					arrData[i].Zzmoyr +'","' + 
-					arrData[i].Zzseries +'","' + 
-					arrData[i].Zzmodel +'","' + 
-					arrData[i].Zzsuffix +'","' +
-					
-					arrData[i].Zzextcol +'","' + 
-				//	arrData[i].Zzapx +'","' + 
-				//
-					arrData[i].ZzAuditStatus +'","' + 
-					arrData[i].ZzsoStatus +'","' + 	 
-					arrData[i].Zzvtn +'","' + 
+					arrData[i].ZzdealerCode + '","' +
+					arrData[i].Zzmoyr + '","' +
+					arrData[i].Zzseries + '","' +
+					arrData[i].Zzmodel + '","' +
+					arrData[i].Zzsuffix + '","' +
+
+					arrData[i].Zzextcol + '","' +
+					//	arrData[i].Zzapx +'","' + 
+					//
+					arrData[i].ZzAuditStatus + '","' +
+					arrData[i].ZzsoStatus + '","' +
+					arrData[i].Zzvtn + '","' +
 					arrData[i].Vhvin + '",';
-				 
-					//FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) +'",="' +
-					//FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + '",';
-					
+
+				//FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) +'",="' +
+				//FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + '",';
+
 				//}
 				row.slice(1, row.length);
 				CSV += row + '\r\n';
@@ -1220,6 +1221,11 @@ sap.ui.define([
 				// this.sSearchQuery);
 				aFilters.push(oFilter);
 			}
+		},
+		onExit: function () {
+			var oModel = new sap.ui.model.json.JSONModel();
+			oModel.updateBindings(true);
+			RSOS_controller.getView().setModel(oModel, "retailsumModel");
 		}
 	});
 });

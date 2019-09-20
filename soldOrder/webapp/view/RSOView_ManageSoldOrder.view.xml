@@ -114,7 +114,7 @@
 					<Label id="label_MangSoldOrderid" text="" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"/>
 					<f:SimpleForm class="FormTitle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
 						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
-						singleContainerFullSize="false">
+						singleContainerFullSize="false" class="VisibleStyle">
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoTitle}" class="msgStripFormat msgStripCss "/>

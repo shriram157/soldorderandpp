@@ -49,9 +49,9 @@
 	
 		<tnt:ToolHeaderUtilitySeparator/>
 	<tnt:content>
-	    <ToolbarSpacer xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt" id="spacer0"/>
+	    <ToolbarSpacer/>
 	</tnt:content>
-	<Button xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns="sap.m" text="{i18n>Back}" id="idmenu10" press="onNavBack" type="Transparent">
+	<Button text="{i18n>Back}" id="idmenu10" press="onNavBack" type="Transparent">
 	    <layoutData>
 	        <OverflowToolbarLayoutData priority="High" id="data10"/>
 	        
