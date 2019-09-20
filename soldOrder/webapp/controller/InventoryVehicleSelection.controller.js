@@ -22,7 +22,7 @@ sap.ui.define([
 			InvVehSel_controller = this;
 			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
 				this);
-			InvVehSel_controller.zitems = [];
+			
 			//	this.tempItems=[];
 			InvVehSel_controller.permItems = [];
 		},
@@ -229,6 +229,7 @@ sap.ui.define([
 			// vechile_items.refresh();
 		},
 		_onSelect: function () {
+			InvVehSel_controller.zitems = [];
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
 			var indiceArray = oTable.getSelectedIndices();
 
