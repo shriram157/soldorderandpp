@@ -22,8 +22,8 @@ sap.ui.define([
 			InvVehSel_controller = this;
 			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
 				this);
-			
-			//	this.tempItems=[];
+
+			InvVehSel_controller.zitems = [];
 			InvVehSel_controller.permItems = [];
 		},
 		_getattachRouteMatched: function (parameters) {
@@ -229,7 +229,7 @@ sap.ui.define([
 			// vechile_items.refresh();
 		},
 		_onSelect: function () {
-			InvVehSel_controller.zitems = [];
+
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
 			var indiceArray = oTable.getSelectedIndices();
 
@@ -240,95 +240,110 @@ sap.ui.define([
 			for (var i = 0; i < indiceArray.length; i++) {
 				var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray[i]];
 				var data = oTable.getModel('inventoryModel').getProperty(binded.sPath);
-				InvVehSel_controller.zitems.push({
-					APX: data.APX,
-					AssignVehicle: data.AssignVehicle,
-					Dealer: data.Dealer,
-					DropShip: data.DropShip,
-					ETA: data.ETA,
-					ETAFrom: data.ETAFrom,
-					ETATo: data.ETATo,
+			//	var $addedProductCodes = [];
+				var $td_productCode = data.ZZVTN;
+				var index = $.inArray($td_productCode, InvVehSel_controller.zitems);
+				if (index >= 0) {
+					alert("You already added this Product");
+				} else {
+					//	$('#test').append("<tr><td>" + value + "</td></tr>");
+					InvVehSel_controller.zitems.push(
+					ZZVTN: data.ZZVTN,
+					Modelyear: data.Modelyear,
+					SERIES_DESC_EN: data.SERIES_DESC_EN,
+					SERIES_DESC_FR: data.SERIES_DESC_FR,
+					TCISeries: data.TCISeries,
+					MODEL_DESC_EN: data.MODEL_DESC_EN,
+					MODEL_DESC_FR: data.MODEL_DESC_FR,
+					Model: data.Model,
+					SUFFIX_DESC_EN: data.SUFFIX_DESC_EN,
+					SUFFIX_DESC_FR: data.SUFFIX_DESC_FR,
+					Suffix: data.Suffix,
 					EXTCOL_DESC_EN: data.EXTCOL_DESC_EN,
 					EXTCOL_DESC_FR: data.EXTCOL_DESC_FR,
 					ExteriorColorCode: data.ExteriorColorCode,
 					INTCOL: data.INTCOL,
 					INTCOL_DESC_EN: data.INTCOL_DESC_EN,
 					INTCOL_DESC_FR: data.INTCOL_DESC_FR,
-					MATRIX: data.MATRIX,
+					APX: data.APX,
+				);
+				}
+
+			/*	InvVehSel_controller.zitems.push({
+					ZZVTN: data.ZZVTN,
+					Modelyear: data.Modelyear,
+					SERIES_DESC_EN: data.SERIES_DESC_EN,
+					SERIES_DESC_FR: data.SERIES_DESC_FR,
+					TCISeries: data.TCISeries,
 					MODEL_DESC_EN: data.MODEL_DESC_EN,
 					MODEL_DESC_FR: data.MODEL_DESC_FR,
 					Model: data.Model,
-					Modelyear: data.Modelyear,
-					ORDERTYPE_DESC_EN: data.ORDERTYPE_DESC_EN,
-					SERIES_DESC_EN: data.SERIES_DESC_EN,
-					SERIES_DESC_FR: data.SERIES_DESC_FR,
-					SPART: data.SPART,
 					SUFFIX_DESC_EN: data.SUFFIX_DESC_EN,
 					SUFFIX_DESC_FR: data.SUFFIX_DESC_FR,
 					Suffix: data.Suffix,
-					TCISeries: data.TCISeries,
-					UserType: data.UserType,
-					VGUID: data.VGUID,
-					VHCLE: data.VHCLE,
-					VHVIN: data.VHVIN,
-					VKBUR: data.VKBUR,
-					VKORG: data.VKORG,
-					VTWEG: data.VTWEG,
-					ZMMSTA: data.ZMMSTA,
-					ZZDLR_REF_NO: data.ZZDLR_REF_NO,
-					ZZORDERTYPE: data.ZZORDERTYPE,
-					ZZVTN: data.ZZVTN
-				});
+					EXTCOL_DESC_EN: data.EXTCOL_DESC_EN,
+					EXTCOL_DESC_FR: data.EXTCOL_DESC_FR,
+					ExteriorColorCode: data.ExteriorColorCode,
+					INTCOL: data.INTCOL,
+					INTCOL_DESC_EN: data.INTCOL_DESC_EN,
+					INTCOL_DESC_FR: data.INTCOL_DESC_FR,
+					APX: data.APX,
+				});*/
+				/*	InvVehSel_controller.zitems.push({
+						APX: data.APX,
+						AssignVehicle: data.AssignVehicle,
+						Dealer: data.Dealer,
+						DropShip: data.DropShip,
+						ETA: data.ETA,
+						ETAFrom: data.ETAFrom,
+						ETATo: data.ETATo,
+						EXTCOL_DESC_EN: data.EXTCOL_DESC_EN,
+						EXTCOL_DESC_FR: data.EXTCOL_DESC_FR,
+						ExteriorColorCode: data.ExteriorColorCode,
+						INTCOL: data.INTCOL,
+						INTCOL_DESC_EN: data.INTCOL_DESC_EN,
+						INTCOL_DESC_FR: data.INTCOL_DESC_FR,
+						MATRIX: data.MATRIX,
+						MODEL_DESC_EN: data.MODEL_DESC_EN,
+						MODEL_DESC_FR: data.MODEL_DESC_FR,
+						Model: data.Model,
+						Modelyear: data.Modelyear,
+						ORDERTYPE_DESC_EN: data.ORDERTYPE_DESC_EN,
+						SERIES_DESC_EN: data.SERIES_DESC_EN,
+						SERIES_DESC_FR: data.SERIES_DESC_FR,
+						SPART: data.SPART,
+						SUFFIX_DESC_EN: data.SUFFIX_DESC_EN,
+						SUFFIX_DESC_FR: data.SUFFIX_DESC_FR,
+						Suffix: data.Suffix,
+						TCISeries: data.TCISeries,
+						UserType: data.UserType,
+						VGUID: data.VGUID,
+						VHCLE: data.VHCLE,
+						VHVIN: data.VHVIN,
+						VKBUR: data.VKBUR,
+						VKORG: data.VKORG,
+						VTWEG: data.VTWEG,
+						ZMMSTA: data.ZMMSTA,
+						ZZDLR_REF_NO: data.ZZDLR_REF_NO,
+						ZZORDERTYPE: data.ZZORDERTYPE,
+						ZZVTN: data.ZZVTN
+					});*/
 			}
 
-			tempModel.setData({ // 20 sep change 
-				items: InvVehSel_controller.zitems // 19 sep change 
-			}); // 19 sep change 
-			if (Model.getData().items.length != 0) {
+			Model.setData({ // 22 sep change 
+				items: InvVehSel_controller.zitems // 22 sep change 
+			});
+			Model.refresh(); // 22 sep change 
+		/*	if (Model.getData().items.length != 0) {
 				for (var i = 0; i < tempModel.getData().items.length; i++) {
 					for (var j = 0; j < Model.getData().items.length; j++) {
 						if (tempModel.getData().items[i].ZZVTN != Model.getData().items[j].ZZVTN) {
 							InvVehSel_controller.permItems.push({
-								APX: tempModel.getData().items[i].APX,
-								AssignVehicle: tempModel.getData().items[i].AssignVehicle,
-								Dealer: tempModel.getData().items[i].Dealer,
-								DropShip: tempModel.getData().items[i].DropShip,
-								ETA: tempModel.getData().items[i].ETA,
-								ETAFrom: tempModel.getData().items[i].ETAFrom,
-								ETATo: tempModel.getData().items[i].ETATo,
-								EXTCOL_DESC_EN: tempModel.getData().items[i].EXTCOL_DESC_EN,
-								EXTCOL_DESC_FR: tempModel.getData().items[i].EXTCOL_DESC_FR,
-								ExteriorColorCode: tempModel.getData().items[i].ExteriorColorCode,
-								INTCOL: tempModel.getData().items[i].INTCOL,
-								INTCOL_DESC_EN: tempModel.getData().items[i].INTCOL_DESC_EN,
-								INTCOL_DESC_FR: tempModel.getData().items[i].INTCOL_DESC_FR,
-								MATRIX: tempModel.getData().items[i].MATRIX,
-								MODEL_DESC_EN: tempModel.getData().items[i].MODEL_DESC_EN,
-								MODEL_DESC_FR: tempModel.getData().items[i].MODEL_DESC_FR,
-								Model: tempModel.getData().items[i].Model,
-								Modelyear: tempModel.getData().items[i].Modelyear,
-								ORDERTYPE_DESC_EN: tempModel.getData().items[i].ORDERTYPE_DESC_EN,
-								SERIES_DESC_EN: tempModel.getData().items[i].SERIES_DESC_EN,
-								SERIES_DESC_FR: tempModel.getData().items[i].SERIES_DESC_FR,
-								SPART: tempModel.getData().items[i].SPART,
-								SUFFIX_DESC_EN: tempModel.getData().items[i].SUFFIX_DESC_EN,
-								SUFFIX_DESC_FR: tempModel.getData().items[i].SUFFIX_DESC_FR,
-								Suffix: tempModel.getData().items[i].Suffix,
-								TCISeries: tempModel.getData().items[i].TCISeries,
-								UserType: tempModel.getData().items[i].UserType,
-								VGUID: tempModel.getData().items[i].VGUID,
-								VHCLE: tempModel.getData().items[i].VHCLE,
-								VHVIN: tempModel.getData().items[i].VHVIN,
-								VKBUR: tempModel.getData().items[i].VKBUR,
-								VKORG: tempModel.getData().items[i].VKORG,
-								VTWEG: tempModel.getData().items[i].VTWEG,
-								ZMMSTA: tempModel.getData().items[i].ZMMSTA,
-								ZZDLR_REF_NO: tempModel.getData().items[i].ZZDLR_REF_NO,
-								ZZORDERTYPE: tempModel.getData().items[i].ZZORDERTYPE,
-								ZZVTN: tempModel.getData().items[i].ZZVTN
+
 							});
 						}
 					}
+					InvVehSel_controller.permItems.push
 				}
 				Model.setData({
 					items: InvVehSel_controller.permItems
@@ -339,7 +354,7 @@ sap.ui.define([
 					items: InvVehSel_controller.zitems
 				});
 				Model.refresh();
-			}
+			}*/
 			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
 		},
 
