@@ -247,7 +247,7 @@ sap.ui.define([
 					alert("You already added this Product");
 				} else {
 					//	$('#test').append("<tr><td>" + value + "</td></tr>");
-					InvVehSel_controller.zitems.push(
+					InvVehSel_controller.zitems.push({
 					ZZVTN: data.ZZVTN,
 					Modelyear: data.Modelyear,
 					SERIES_DESC_EN: data.SERIES_DESC_EN,
@@ -266,7 +266,7 @@ sap.ui.define([
 					INTCOL_DESC_EN: data.INTCOL_DESC_EN,
 					INTCOL_DESC_FR: data.INTCOL_DESC_FR,
 					APX: data.APX,
-				);
+			}	);
 				}
 
 			/*	InvVehSel_controller.zitems.push({
