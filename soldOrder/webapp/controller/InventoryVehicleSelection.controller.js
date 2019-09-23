@@ -260,56 +260,8 @@ sap.ui.define([
 					INTCOL_DESC_FR: data.INTCOL_DESC_FR,
 					APX: data.APX,
 				});
-				//	var $addedProductCodes = [];
-				/*	var $td_productCode = data.ZZVTN;
-					var index = $.inArray($td_productCode, InvVehSel_controller.zitems);
-					if (index >= 0) {
-						alert("You already added this Product");
-					} else {
-						//	$('#test').append("<tr><td>" + value + "</td></tr>");
-						InvVehSel_controller.zitems.push({
-						ZZVTN: data.ZZVTN,
-						Modelyear: data.Modelyear,
-						SERIES_DESC_EN: data.SERIES_DESC_EN,
-						SERIES_DESC_FR: data.SERIES_DESC_FR,
-						TCISeries: data.TCISeries,
-						MODEL_DESC_EN: data.MODEL_DESC_EN,
-						MODEL_DESC_FR: data.MODEL_DESC_FR,
-						Model: data.Model,
-						SUFFIX_DESC_EN: data.SUFFIX_DESC_EN,
-						SUFFIX_DESC_FR: data.SUFFIX_DESC_FR,
-						Suffix: data.Suffix,
-						EXTCOL_DESC_EN: data.EXTCOL_DESC_EN,
-						EXTCOL_DESC_FR: data.EXTCOL_DESC_FR,
-						ExteriorColorCode: data.ExteriorColorCode,
-						INTCOL: data.INTCOL,
-						INTCOL_DESC_EN: data.INTCOL_DESC_EN,
-						INTCOL_DESC_FR: data.INTCOL_DESC_FR,
-						APX: data.APX,
-				}	);
-					}*/
 
-				/*	InvVehSel_controller.zitems.push({
-						ZZVTN: data.ZZVTN,
-						Modelyear: data.Modelyear,
-						SERIES_DESC_EN: data.SERIES_DESC_EN,
-						SERIES_DESC_FR: data.SERIES_DESC_FR,
-						TCISeries: data.TCISeries,
-						MODEL_DESC_EN: data.MODEL_DESC_EN,
-						MODEL_DESC_FR: data.MODEL_DESC_FR,
-						Model: data.Model,
-						SUFFIX_DESC_EN: data.SUFFIX_DESC_EN,
-						SUFFIX_DESC_FR: data.SUFFIX_DESC_FR,
-						Suffix: data.Suffix,
-						EXTCOL_DESC_EN: data.EXTCOL_DESC_EN,
-						EXTCOL_DESC_FR: data.EXTCOL_DESC_FR,
-						ExteriorColorCode: data.ExteriorColorCode,
-						INTCOL: data.INTCOL,
-						INTCOL_DESC_EN: data.INTCOL_DESC_EN,
-						INTCOL_DESC_FR: data.INTCOL_DESC_FR,
-						APX: data.APX,
-					});*/
-				/*	InvVehSel_controller.zitems.push({
+				/*	that.zitems.push({
 						APX: data.APX,
 						AssignVehicle: data.AssignVehicle,
 						Dealer: data.Dealer,
@@ -354,73 +306,22 @@ sap.ui.define([
 				items: InvVehSel_controller.zitems // 22 sep change 
 			});
 			tempModel.refresh(); // 22 sep change 
-			/*	if (Model.getData().items.length != 0) {
-					for (var i = 0; i < tempModel.getData().items.length; i++) {
-						for (var j = 0; j < Model.getData().items.length; j++) {
-							if (tempModel.getData().items[i].ZZVTN != Model.getData().items[j].ZZVTN) {
-								InvVehSel_controller.permItems.push({
 
-								});
-							}
-						}
-						InvVehSel_controller.permItems.push
-					}
-					Model.setData({
-						items: InvVehSel_controller.permItems
-					});
-					Model.refresh();
-				} else {
-					Model.setData({
-						items: InvVehSel_controller.zitems
-					});
-					Model.refresh();
-				}*/
-				 var uniques = [];
-    var itemsFound = {};
-    var arr=tempModel.getData().items;
+			var uniques = [];
+			var itemsFound = {};
+			var arr = tempModel.getData().items;
 			var len = tempModel.getData().items.length;
 			if (len != undefined) {
 
-			 
-    for(var i = 0, l = arr.length; i < l; i++) {
-        var stringified = JSON.stringify(arr[i]);
-        if(itemsFound[stringified]) { continue; }
-        uniques.push(arr[i]);
-        itemsFound[stringified] = true;
-    }
-			//	var myArray = tempModel.getData().items;
-			/*	for (var i = 0; i < len; i++) {
-			 
-							
-				if (myArray.indexOf(tempModel.getData().items[i].ZZVTN) === -1) {
-					console.log("element doesn't exist");
-					InvVehSel_controller.permItems.push({
+				for (var i = 0, l = arr.length; i < l; i++) {
+					var stringified = JSON.stringify(arr[i]);
+					if (itemsFound[stringified]) {
+						continue;
+					}
+					uniques.push(arr[i]);
+					itemsFound[stringified] = true;
+				}
 
-								ZZVTN: tempModel.getData().items[i].ZZVTN,
-								Modelyear: tempModel.getData().items[i].Modelyear,
-								SERIES_DESC_EN: tempModel.getData().items[i].SERIES_DESC_EN,
-								SERIES_DESC_FR: tempModel.getData().items[i].SERIES_DESC_FR,
-								TCISeries: tempModel.getData().items[i].TCISeries,
-								MODEL_DESC_EN: tempModel.getData().items[i].MODEL_DESC_EN,
-								MODEL_DESC_FR: tempModel.getData().items[i].MODEL_DESC_FR,
-								Model: tempModel.getData().items[i].Model,
-								SUFFIX_DESC_EN: tempModel.getData().items[i].SUFFIX_DESC_EN,
-								SUFFIX_DESC_FR: tempModel.getData().items[i].SUFFIX_DESC_FR,
-								Suffix: tempModel.getData().items[i].Suffix,
-								EXTCOL_DESC_EN: tempModel.getData().items[i].EXTCOL_DESC_EN,
-								EXTCOL_DESC_FR: tempModel.getData().items[i].EXTCOL_DESC_FR,
-								ExteriorColorCode: tempModel.getData().items[i].ExteriorColorCode,
-								INTCOL: tempModel.getData().items[i].INTCOL,
-								INTCOL_DESC_EN: tempModel.getData().items[i].INTCOL_DESC_EN,
-								INTCOL_DESC_FR: tempModel.getData().items[i].INTCOL_DESC_FR,
-								APX: tempModel.getData().items[i].APX
-							});
-				} 
-						else {
-								console.log("duplicate element found");
-						}
-				//	}
-				}*/
 			}
 			Model.setData({ // 22 sep change 
 				items: uniques // 22 sep change 

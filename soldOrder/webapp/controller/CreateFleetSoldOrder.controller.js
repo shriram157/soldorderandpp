@@ -521,7 +521,7 @@ sap.ui.define([
 				// 	this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 				// }
 			}
-
+					oTable.removeSelections("true");// 23 sep change
 		},
 		onMandatoryValChange: function (evt) {
 			// 			if (evt.getParameter("value").length > 0) {

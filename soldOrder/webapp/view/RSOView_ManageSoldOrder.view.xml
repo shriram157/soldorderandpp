@@ -147,8 +147,10 @@
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Text text="{mainservices>ZdriverLiNum}"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Text text="{mainservices>Fan}"/>
+							<!--<Text text="{mainservices>Fan}"/>-->
+							<Text text="{mainservices>FanSoldorder}"/> <!--change 23 sep-->
 							<core:Title text="" class="titleFontSize"/>
+					
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>
 							<!--<Label wrapping="true" text="{i18n>CustName}" />-->
 							<!--<Text text="{parts:[{path:'Customer>/person/firstName'},{path:'Customer>/person/familyName'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatName'}"  />-->
@@ -162,20 +164,33 @@
 							<Text
 								text="{parts:[{path:'mainservices>ZzendcuName'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
+							<!--<Text
+								text="{parts:[{path:'mainservices>Street'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>-->
 							<Text
-								text="{parts:[{path:'mainservices>Street'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+								text="{parts:[{path:'mainservices>ZzendcuStreet'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Text
+							<!--<Text
 								text="{parts:[{path:'mainservices>City1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							-->
+							<Text
+								text="{parts:[{path:'mainservices>ZzendcuAdCity1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Text
+						<!--	<Text
 								text="{parts:[{path:'mainservices>Region'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							-->
+							<Text
+								text="{parts:[{path:'mainservices>ZzendcuRegion'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text
+						<!--	<Text
 								text="{parts:[{path:'mainservices>PostCode1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
-							<Label wrapping="true" text="{i18n>phnNo}"/>
+							-->	
 							<Text
+								text="{parts:[{path:'mainservices>ZzendcuPostCode'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<Label wrapping="true" text="{i18n>phnNo}"/>
+							<!--<Text
 								text="{parts:[{path:'mainservices>TelNumber'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+						--><Text
+								text="{parts:[{path:'mainservices>ZzendcuTelNumber'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
 							<Text
 								text="{parts:[{path:'mainservices>SmtpAddr'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
@@ -183,8 +198,10 @@
 							<Text
 								text="{parts:[{path:'mainservices>Qausp'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
-							<Text text="{parts:[{path:'mainservices>Fan'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+						<!--	<Text text="{parts:[{path:'mainservices>Fan'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>-->
+							<Text text="{parts:[{path:'mainservices>FanRegistration'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<core:Title text="" class="titleFontSize"/>
+						
 							<MessageStrip text="{i18n>PriceProtectionDetails}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>Eligibility}"/>
 							<Text text="{mainservices>Eligilibity}" id="RSO_PRC_Eligilibity"/>
