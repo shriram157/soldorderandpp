@@ -375,12 +375,21 @@ sap.ui.define([
 					});
 					Model.refresh();
 				}*/
+				 var uniques = [];
+    var itemsFound = {};
+    var arr=tempModel.getData().items;
 			var len = tempModel.getData().items.length;
 			if (len != undefined) {
 
-			
-				var myArray = tempModel.getData().items;
-				for (var i = 0; i < len; i++) {
+			 
+    for(var i = 0, l = arr.length; i < l; i++) {
+        var stringified = JSON.stringify(arr[i]);
+        if(itemsFound[stringified]) { continue; }
+        uniques.push(arr[i]);
+        itemsFound[stringified] = true;
+    }
+			//	var myArray = tempModel.getData().items;
+			/*	for (var i = 0; i < len; i++) {
 			 
 							
 				if (myArray.indexOf(tempModel.getData().items[i].ZZVTN) === -1) {
@@ -411,10 +420,10 @@ sap.ui.define([
 								console.log("duplicate element found");
 						}
 				//	}
-				}
+				}*/
 			}
 			Model.setData({ // 22 sep change 
-				items: InvVehSel_controller.permItems // 22 sep change 
+				items: uniques // 22 sep change 
 			});
 			Model.refresh(); // 22 sep change 
 
