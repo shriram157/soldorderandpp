@@ -521,7 +521,7 @@ sap.ui.define([
 				// 	this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 				// }
 			}
-					oTable.removeSelections("true");// 23 sep change
+					oTable.clearSelection("true");// 23 sep change
 		},
 		onMandatoryValChange: function (evt) {
 			// 			if (evt.getParameter("value").length > 0) {
@@ -549,7 +549,7 @@ sap.ui.define([
 					this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 				}
 			}
-				oTable.removeSelections("true");// 20 sep change
+				oTable.clearSelection("true");// 24 sep change
 		},
 		_onSubmit: function () {
 			CFSO_controller.dialog.open();
