@@ -102,7 +102,7 @@
 							</VBox>
 							<Button text="{i18n>new}" id="idBtn_RSOS_new" class="cssShift marginCornersRight" visible="false" press="_createNewOrder"/>
 							<!--<t:Table id="table_RSOS" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners">-->
-							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true" visibleRowCount="8" class="marginCorners">
+							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true" visibleRowCount="10" class="marginCorners"> <!--change 24 sep, earlier 8-->
 								<t:extension>
 									<Toolbar>
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>
@@ -113,7 +113,7 @@
 											</layoutData>
 										</SearchField>
 										
-										<Button text="{i18n>exportToExcel}" press="onExport" enabled="false" id="idBtnExportToExcel" class="sapUiTinyMarginBegin"></Button>
+										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" id="idBtnExportToExcel" class="sapUiTinyMarginBegin"></Button>
 									</Toolbar>
 								</t:extension>
 								<t:columns>

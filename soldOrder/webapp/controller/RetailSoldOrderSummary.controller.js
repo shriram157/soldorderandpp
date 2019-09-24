@@ -64,7 +64,7 @@ sap.ui.define([
 				RSOS_controller.getView().setModel(oModel, "retailsumModel");
 				console.log(language);
 				var BtnExport = RSOS_controller.getView().byId("idBtnExportToExcel");
-				BtnExport.setEnabled(false);
+			//	BtnExport.setEnabled(false); // change 24 sep 
 				RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var globalComboModel = new sap.ui.model.json.JSONModel();
 				var Obj;
@@ -840,7 +840,8 @@ sap.ui.define([
 			if (BtnNext.getEnabled() == false) {
 				BtnExport.setEnabled(true);
 			} else {
-				BtnExport.setEnabled(false);
+				//BtnExport.setEnabled(false);
+				BtnExport.setEnabled(true); // change 24 sep -requirement change
 			}
 		},
 		onExport: function () {

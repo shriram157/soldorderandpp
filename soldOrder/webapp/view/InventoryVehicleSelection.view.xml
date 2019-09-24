@@ -22,7 +22,7 @@
 					</VBox>
 					
 					
-					<t:Table id="idFSO_IVS_Table" rows="{inventoryModel>/results}" enableColumnReordering="false" alternateRowColors="true" class="marginCorners" visibleRowCount="8" >
+					<t:Table id="idFSO_IVS_Table" rows="{inventoryModel>/results}" enableColumnReordering="false" alternateRowColors="true" class="marginCorners" visibleRowCount="10" > <!--change 24 sep, earlier 8-->
 						<t:columns>
 						<t:Column>
 								<Label text="{i18n>series}" class="TableLabel"/>

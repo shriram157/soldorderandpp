@@ -49,7 +49,7 @@
 									</f:SimpleForm>
 								</items>
 							</VBox>
-							<t:Table id="tbl_FSOD" selectionMode="None" rows="{fleetdetailsModel>/}" enableColumnReordering="false" alternateRowColors="true" class="marginCorners" visibleRowCount="6">
+							<t:Table id="tbl_FSOD" selectionMode="None" rows="{fleetdetailsModel>/}" enableColumnReordering="false" alternateRowColors="true" class="marginCorners" visibleRowCount="10"> <!--change 24 sep, earlier 6-->
 								<t:extension>
 									<Toolbar>
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>
@@ -59,7 +59,7 @@
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
-											<Button text="{i18n>exportToExcel}" press="onExport" enabled="false" id="idBtnExportToExcel_FSO" class="sapUiTinyMarginBegin"></Button>
+											<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" id="idBtnExportToExcel_FSO" class="sapUiTinyMarginBegin"></Button>
 									</Toolbar>
 								</t:extension>
 								<t:columns>

@@ -139,7 +139,7 @@ sap.ui.define([
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
 			});
 			var BtnExport = FSOD_controller.getView().byId("idBtnExportToExcel_FSO");
-			BtnExport.setEnabled(false);
+		//	BtnExport.setEnabled(false);  // change 24 sep 
 
 			var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
@@ -639,7 +639,8 @@ sap.ui.define([
 			if (BtnNext.getEnabled() == false) {
 				BtnExport.setEnabled(true);
 			} else {
-				BtnExport.setEnabled(false);
+				//BtnExport.setEnabled(false);
+				BtnExport.setEnabled(true); // change 24 sep -requirement change
 			}
 		},
 		onExport: function () {

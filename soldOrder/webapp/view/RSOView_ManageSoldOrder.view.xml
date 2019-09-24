@@ -125,7 +125,7 @@
 							<Text text="{mainservices>NameLast}" visible="{RSO_MSO_Model>/NFVisible}"/>
 							<Text text="{Customer>/person/familyName}" visible="{RSO_MSO_Model>/SOVisible}"/>
 							<Label wrapping="true" text="{i18n>custname}"/>
-							<Text text="{mainservices>ZzendcuName}"/>
+							<Text text="{mainservices>CustName1}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Text text="{mainservices>Street}" visible="{RSO_MSO_Model>/NFVisible}"/>
 							<Text text="{Customer>/addresses/0/line1}" visible="{RSO_MSO_Model>/SOVisible}"/>
@@ -173,13 +173,13 @@
 								text="{parts:[{path:'mainservices>City1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							-->
 							<Text
-								text="{parts:[{path:'mainservices>ZzendcuAdCity1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+								text="{parts:[{path:'mainservices>ZzendcuCity'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
 						<!--	<Text
 								text="{parts:[{path:'mainservices>Region'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							-->
 							<Text
-								text="{parts:[{path:'mainservices>ZzendcuProvincy'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+								text="{parts:[{path:'mainservices>ZzendcuRegion'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
 						<!--	<Text
 								text="{parts:[{path:'mainservices>PostCode1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
