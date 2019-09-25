@@ -23,8 +23,8 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
 				this);
 
-			InvVehSel_controller.zitems = [];
-			InvVehSel_controller.permItems = [];
+		//	InvVehSel_controller.zitems = [];
+		//	InvVehSel_controller.permItems = [];
 		},
 		_getattachRouteMatched: function (parameters) {
 			this.zrequest = parameters.getParameters().arguments.Soreq;
@@ -127,109 +127,9 @@ sap.ui.define([
 			clicks = 0;
 			num = 0;
 		},
-		onAfterRendering: function () {
-			// var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
-			// //Dealer Inventory	var host = RSOS_controller.host();
-			// var host = InvVehSel_controller.host();
-
-			// var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=50&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
-			// 	dealer_no + "') and (source eq 'FLT') and (ZDIVISION eq '" + sDivision + "')";
-			// $.ajax({
-			// 	url: oUrl,
-			// 	method: "GET",
-			// 	async: false,
-			// 	dataType: "json",
-			// 	success: function (data, textStatus, jqXHR) {
-			// 		var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			// 		if (data.d.results.length < 10) {
-			// 			BtnNext.setEnabled(false);
-			// 		} else {
-			// 			BtnNext.setEnabled(true);
-			// 		}
-
-			// 		var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
-			// 		if (DataModel.getData().length != undefined) {
-			// 			DataModel.getData().results = [];
-			// 			for (var m = 0; m < data.d.results.length; m++) {
-			// 				if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
-			// 					if (data.d.results[m].TCISeries == "SIE") {
-			// 						DataModel.getData().results.push(data.d.results[m]);
-			// 					}
-			// 				} else {
-			// 					DataModel.getData().results.push(data.d.results[m]);
-			// 				}
-
-			// 				DataModel.updateBindings(true);
-			// 				console.log("DataModel.getData()", DataModel.getData());
-			// 			}
-			// 		} else {
-			// 			var obj = {
-			// 				"results": []
-			// 			};
-
-			// 			if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
-			// 				for (var m = 0; m < data.d.results.length; m++) {
-			// 					if (data.d.results[m].TCISeries == "SIE") {
-			// 						obj.results.push(data.d.results[m]);
-			// 					}
-			// 				}
-			// 				DataModel.setData(obj);
-			// 			} else {
-			// 				DataModel.setData(data.d.results);
-			// 			}
-
-			// 			DataModel.updateBindings(true);
-			// 			console.log("DataModel.getData()", DataModel.getData());
-
-			// 			if (data.d.results.length < 10) {
-			// 				BtnNext.setEnabled(false);
-			// 			}
-			// 		}
-			// var oModel = new sap.ui.model.json.JSONModel();
-
-			// oModel.setData(data.d.results);
-			// if (data.d.results.length == undefined) {
-
-			// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			// 	BtnNext.setEnabled(false);
-			// } else if (data.d.results.length < 10) {
-			// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
-			// 	BtnNext.setEnabled(false);
-			// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
-			// } else {
-			// 	// if (oModel.length > 0) {
-			// 	//oModel.getData().ZC_SERIES.unshift({
-			// 	//  "{seriesModel>ModelSeriesNo}": "All",
-			// 	//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
-			// 	//})
-			// 	// }
-			// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
-			// }
-			// 	},
-			// 	error: function (jqXHR, textStatus, errorThrown) {
-
-			// 		var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-
-			// 	}
-			// });
-			// clicks = 0;
-			// num = 0;
-			// var page = clicks + 1;
-			// InvVehSel_controller.getView().byId("txtPageNum").setText("Page " + page);
-			// var BtnPrev = this.getView().byId("buttonPrev");
-			// BtnPrev.setEnabled(false);
-			// var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
-			// var dealer_no = "0";
-			// //Dealer Inventory
-			// vechile_items.filter([new Filter([
-			// 	new Filter("MATRIX", FilterOperator.EQ, "A205"),
-			// 	new Filter("Dealer", FilterOperator.EQ, dealer_no)
-			// ], true)]);
-			// vechile_items.refresh();
-		},
+	
 		_onSelect: function () {
-
+			InvVehSel_controller.zitems = [];
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
 			var indiceArray = oTable.getSelectedIndices();
 
@@ -260,57 +160,17 @@ sap.ui.define([
 					INTCOL_DESC_FR: data.INTCOL_DESC_FR,
 					APX: data.APX,
 				});
-
-				/*	that.zitems.push({
-						APX: data.APX,
-						AssignVehicle: data.AssignVehicle,
-						Dealer: data.Dealer,
-						DropShip: data.DropShip,
-						ETA: data.ETA,
-						ETAFrom: data.ETAFrom,
-						ETATo: data.ETATo,
-						EXTCOL_DESC_EN: data.EXTCOL_DESC_EN,
-						EXTCOL_DESC_FR: data.EXTCOL_DESC_FR,
-						ExteriorColorCode: data.ExteriorColorCode,
-						INTCOL: data.INTCOL,
-						INTCOL_DESC_EN: data.INTCOL_DESC_EN,
-						INTCOL_DESC_FR: data.INTCOL_DESC_FR,
-						MATRIX: data.MATRIX,
-						MODEL_DESC_EN: data.MODEL_DESC_EN,
-						MODEL_DESC_FR: data.MODEL_DESC_FR,
-						Model: data.Model,
-						Modelyear: data.Modelyear,
-						ORDERTYPE_DESC_EN: data.ORDERTYPE_DESC_EN,
-						SERIES_DESC_EN: data.SERIES_DESC_EN,
-						SERIES_DESC_FR: data.SERIES_DESC_FR,
-						SPART: data.SPART,
-						SUFFIX_DESC_EN: data.SUFFIX_DESC_EN,
-						SUFFIX_DESC_FR: data.SUFFIX_DESC_FR,
-						Suffix: data.Suffix,
-						TCISeries: data.TCISeries,
-						UserType: data.UserType,
-						VGUID: data.VGUID,
-						VHCLE: data.VHCLE,
-						VHVIN: data.VHVIN,
-						VKBUR: data.VKBUR,
-						VKORG: data.VKORG,
-						VTWEG: data.VTWEG,
-						ZMMSTA: data.ZMMSTA,
-						ZZDLR_REF_NO: data.ZZDLR_REF_NO,
-						ZZORDERTYPE: data.ZZORDERTYPE,
-						ZZVTN: data.ZZVTN
-					});*/
 			}
 
-			tempModel.setData({ // 22 sep change 
+			Model.setData({ // 22 sep change 
 				items: InvVehSel_controller.zitems // 22 sep change 
 			});
-			tempModel.refresh(); // 22 sep change 
+			Model.refresh(); // 22 sep change 
 
 			var uniques = [];
 			var itemsFound = {};
-			var arr = tempModel.getData().items;
-			var len = tempModel.getData().items.length;
+			var arr = Model.getData().items;
+			var len = Model.getData().items.length;
 			if (len != undefined) {
 
 				for (var i = 0, l = arr.length; i < l; i++) {
@@ -733,6 +593,146 @@ sap.ui.define([
 
 				}
 			});
+		},
+			onAfterRendering: function () {
+			// var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+			// //Dealer Inventory	var host = RSOS_controller.host();
+			// var host = InvVehSel_controller.host();
+
+			// var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$top=50&$skip=0&$filter=(MATRIX eq 'A205') and (Dealer eq '" +
+			// 	dealer_no + "') and (source eq 'FLT') and (ZDIVISION eq '" + sDivision + "')";
+			// $.ajax({
+			// 	url: oUrl,
+			// 	method: "GET",
+			// 	async: false,
+			// 	dataType: "json",
+			// 	success: function (data, textStatus, jqXHR) {
+			// 		var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+			// 		if (data.d.results.length < 10) {
+			// 			BtnNext.setEnabled(false);
+			// 		} else {
+			// 			BtnNext.setEnabled(true);
+			// 		}
+
+			// 		var DataModel = InvVehSel_controller.getView().getModel("inventoryModel");
+			// 		if (DataModel.getData().length != undefined) {
+			// 			DataModel.getData().results = [];
+			// 			for (var m = 0; m < data.d.results.length; m++) {
+			// 				if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+			// 					if (data.d.results[m].TCISeries == "SIE") {
+			// 						DataModel.getData().results.push(data.d.results[m]);
+			// 					}
+			// 				} else {
+			// 					DataModel.getData().results.push(data.d.results[m]);
+			// 				}
+
+			// 				DataModel.updateBindings(true);
+			// 				console.log("DataModel.getData()", DataModel.getData());
+			// 			}
+			// 		} else {
+			// 			var obj = {
+			// 				"results": []
+			// 			};
+
+			// 			if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
+			// 				for (var m = 0; m < data.d.results.length; m++) {
+			// 					if (data.d.results[m].TCISeries == "SIE") {
+			// 						obj.results.push(data.d.results[m]);
+			// 					}
+			// 				}
+			// 				DataModel.setData(obj);
+			// 			} else {
+			// 				DataModel.setData(data.d.results);
+			// 			}
+
+			// 			DataModel.updateBindings(true);
+			// 			console.log("DataModel.getData()", DataModel.getData());
+
+			// 			if (data.d.results.length < 10) {
+			// 				BtnNext.setEnabled(false);
+			// 			}
+			// 		}
+			// var oModel = new sap.ui.model.json.JSONModel();
+
+			// oModel.setData(data.d.results);
+			// if (data.d.results.length == undefined) {
+
+			// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+			// 	BtnNext.setEnabled(false);
+			// } else if (data.d.results.length < 10) {
+			// 	var BtnNext = InvVehSel_controller.getView().byId("buttonNext");
+			// 	BtnNext.setEnabled(false);
+			// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+			// } else {
+			// 	// if (oModel.length > 0) {
+			// 	//oModel.getData().ZC_SERIES.unshift({
+			// 	//  "{seriesModel>ModelSeriesNo}": "All",
+			// 	//  "{seriesModel>TCISeriesDescriptionEN}": "Select All",
+			// 	//})
+			// 	// }
+			// 	InvVehSel_controller.getView().setModel(oModel, "inventoryModel");
+			// }
+			// 	},
+			// 	error: function (jqXHR, textStatus, errorThrown) {
+
+			// 		var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+			// 		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+
+			// 	}
+			// });
+			// clicks = 0;
+			// num = 0;
+			// var page = clicks + 1;
+			// InvVehSel_controller.getView().byId("txtPageNum").setText("Page " + page);
+			// var BtnPrev = this.getView().byId("buttonPrev");
+			// BtnPrev.setEnabled(false);
+			// var vechile_items = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows');
+			// var dealer_no = "0";
+			// //Dealer Inventory
+			// vechile_items.filter([new Filter([
+			// 	new Filter("MATRIX", FilterOperator.EQ, "A205"),
+			// 	new Filter("Dealer", FilterOperator.EQ, dealer_no)
+			// ], true)]);
+			// vechile_items.refresh();
 		}
+			/*	that.zitems.push({
+						APX: data.APX,
+						AssignVehicle: data.AssignVehicle,
+						Dealer: data.Dealer,
+						DropShip: data.DropShip,
+						ETA: data.ETA,
+						ETAFrom: data.ETAFrom,
+						ETATo: data.ETATo,
+						EXTCOL_DESC_EN: data.EXTCOL_DESC_EN,
+						EXTCOL_DESC_FR: data.EXTCOL_DESC_FR,
+						ExteriorColorCode: data.ExteriorColorCode,
+						INTCOL: data.INTCOL,
+						INTCOL_DESC_EN: data.INTCOL_DESC_EN,
+						INTCOL_DESC_FR: data.INTCOL_DESC_FR,
+						MATRIX: data.MATRIX,
+						MODEL_DESC_EN: data.MODEL_DESC_EN,
+						MODEL_DESC_FR: data.MODEL_DESC_FR,
+						Model: data.Model,
+						Modelyear: data.Modelyear,
+						ORDERTYPE_DESC_EN: data.ORDERTYPE_DESC_EN,
+						SERIES_DESC_EN: data.SERIES_DESC_EN,
+						SERIES_DESC_FR: data.SERIES_DESC_FR,
+						SPART: data.SPART,
+						SUFFIX_DESC_EN: data.SUFFIX_DESC_EN,
+						SUFFIX_DESC_FR: data.SUFFIX_DESC_FR,
+						Suffix: data.Suffix,
+						TCISeries: data.TCISeries,
+						UserType: data.UserType,
+						VGUID: data.VGUID,
+						VHCLE: data.VHCLE,
+						VHVIN: data.VHVIN,
+						VKBUR: data.VKBUR,
+						VKORG: data.VKORG,
+						VTWEG: data.VTWEG,
+						ZMMSTA: data.ZMMSTA,
+						ZZDLR_REF_NO: data.ZZDLR_REF_NO,
+						ZZORDERTYPE: data.ZZORDERTYPE,
+						ZZVTN: data.ZZVTN
+					});*/
 	});
 });

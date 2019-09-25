@@ -300,129 +300,7 @@ sap.ui.define([
 				}
 			});
 		},
-		// _handleServiceSuffix_Series: function () {
-		// 	var host = CFSO_controller.host();
-		// 	var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_MODEL_DETAILS?$format=json";
-		// 	$.ajax({
-		// 		url: oUrl,
-		// 		method: 'GET',
-		// 		async: false,
-		// 		dataType: 'json',
-		// 		success: function (data, textStatus, jqXHR) {
-
-		// 			// console.log("Result from ZC_MODEL_DETAILS ");
-		// 			// console.log(data.d.results);
-		// 			var oModel = new sap.ui.model.json.JSONModel();
-
-		// 			var arr = [];
-		// 			var j = 0;
-		// 			for (var c = 0; c < data.d.results.length; c++) {
-		// 				for (var i = 0; i < data.d.results.length; i++) {
-		// 					if ($.inArray(data.d.results[i]["TCISeries"], arr) < 0) {
-		// 						arr[j] = data.d.results[i]["TCISeries"];
-		// 						j++;
-
-		// 					}
-		// 				}
-		// 			}
-
-		// 			oModel.setData(arr);
-		// 			CFSO_controller.getView().setModel(oModel, "seriesModel");
-		// 			// console.log(CFSO_controller.getView().getModel("seriesModel").getData());
-
-		// 			var oModel2 = new sap.ui.model.json.JSONModel();
-
-		// 			var arr2 = [''];
-		// 			var k = 0;
-		// 			for (var q = 0; q < data.d.results.length; q++) {
-		// 				for (var i = 0; i < data.d.results.length; i++) {
-		// 					if ($.inArray(data.d.results[i]["suffix"], arr2) < 0) {
-		// 						arr2[k] = data.d.results[i]["suffix"];
-		// 						k++;
-		// 					}
-		// 				}
-		// 			}
-		// 			// console.log(arr2);
-		// 			oModel2.setData(arr2);
-		// 			CFSO_controller.getView().setModel(oModel2, "suffix_Model");
-
-		// 		},
-		// 		error: function (jqXHR, textStatus, errorThrown) {
-		// 			sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-		// 				.m.MessageBox.Action.OK, null, null);
-		// 		}
-		// 	});
-		// },
-		onAfterRendering: function () {
-			// CFSO_controller.listOfModelYear();
-			// if (AppController.flagPPDUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagNationalSIPUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagNationalPPDUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagDealerUser == true) {
-
-			// }
-			// if (AppController.flagZoneUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagTCINationalUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagSIPUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagNationalUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagOrderingDealer == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-		},
-		// getFleetCustomer: function () {
-		// 	var sLocation = window.location.host;
-		// 	var sLocation_conf = sLocation.search("webide");
-
-		// 	var sPrefix;
-		// 	if (sLocation_conf == 0) {
-		// 		sPrefix = "/soldorder_node"; //ecpSales_node_secured
-		// 		this.fleetUrl = "/userDetails/FleetCustomers"; //"/userDetails/attributesforlocaltesting";
-		// 	} else {
-		// 		sPrefix = "";
-		// 		this.fleetUrl = "/userDetails/FleetCustomers";
-		// 	}
-
-		// 	//======================================================================================================================//			
-		// 	//  on init method,  get the token attributes and authentication details to the UI from node layer.  - begin
-		// 	//======================================================================================================================//		
-		// 	//  get the Scopes to the UI 
-		// 	//this.sPrefix ="";
-
-		// 	var that = this;
-		// 	// var zjson = new JSONModel();
-		// 	// sap.ui.getCore().setModel(zjson,"LoginUserModel");
-		// 	$.ajax({
-		// 		url: sPrefix + this.fleetUrl,
-		// 		type: "GET",
-		// 		dataType: "json",
-		// 		async: false,
-		// 		success: function (oData) {
-		// 			var oModel = new sap.ui.model.json.JSONModel();
-		// 			oModel.setData(oData.attributes);
-		// 			CFSO_controller.getView().setModel(oModel, "fleetModel");
-
-		// 		},
-		// 		error: function (jqXHR, textStatus, errorThrown) {
-		// 			var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-		// 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
-		// 				.m.MessageBox.Action.OK, null, null);
-		// 		}
-		// 	});
-		// },
+		
 		listOfModelYear: function () {
 			var d = new Date();
 			var currentModelYear = d.getFullYear();
@@ -779,79 +657,7 @@ sap.ui.define([
 		onnextyears: function (oEvent) {
 			this._oPopover.getContent()[0].nextPage();
 		},
-		//---------------------------------------
-		//--------Handling Filter---------------
-		//----------------------------------
-
-		// // var valModelYr = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
-		// // var valSuffix = CFSO_controller.getView().byId("suffix_CFSO").getValue();
-		// // var valSeries = CFSO_controller.getView().byId("series_CFSO").getValue();
-		// // var valModelCode = CFSO_controller.getView().byId("modelCode_CFSO").getValue();
-		// series_selected: function (oEvent) {
-
-		// 	// var year = this.getView().byId('modelYr_RSOA').getValue();
-		// 	// items="{ path: 'oModel3>/'}"
-		// 	var series = oEvent.getSource().getSelectedKey();
-		// 	if (series) {
-		// 		this.getView().byId("modelCode_CFSO").bindItems("oModel3>/", new sap.ui.core.ListItem({
-		// 			key: "{oModel3>Model}",
-		// 			text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
-		// 		}));
-		// 		var items_binding = this.getView().byId("modelCode_CFSO").getBinding('items');
-		// 		items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
-		// 	}
-		// },
-		// model_selected: function (oEvent) {
-		// 	// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
-		// 	var model = oEvent.getSource().getSelectedKey();
-		// 	var modelyear = this.getView().byId("modelYr_CFSO").getValue();
-		// 	if (model && modelyear) {
-		// 		this.getView().byId('suffix_CFSO').bindItems('oModel1>/', new sap.ui.core.ListItem({
-		// 			key: "{oModel1>Suffix}",
-		// 			text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel1>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
-		// 		}));
-		// 		var items_binding = this.getView().byId('suffix_CFSO').getBinding('items');
-		// 		items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-		// 			new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 		], true));
-		// 	}
-		// },
-		// suffix_selected: function (oEvent) {
-		// 	//-----------------
-		// 	//----APX---------
-		// 	//----------------
-		// 	//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
-		// 	var suffix = oEvent.getSource().getSelectedKey();
-		// 	var modelyear = this.getView().byId("modelYr_CFSO").getValue();
-		// 	var model = this.getView().byId("modelCode_CFSO").getSelectedKey();
-		// 	if (model && modelyear && suffix) {
-		// 		// this.getView().byId('Apx_RSOA').bindItems('mode_Model>/', new sap.ui.core.ListItem({
-		// 		// 	key: "{mode_Model>zzapx}",
-		// 		// 	text: "{mode_Model>zzapx}"
-		// 		// }));
-		// 		// var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');
-		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
-		// 		// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 		// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 		// ], true));
-		// 		//-----------------
-		// 		//----Color---------
-		// 		//----------------
-		// 		this.getView().byId('color_CFSO').bindItems('oModel2>/', new sap.ui.core.ListItem({
-		// 			key: "{oModel2>ExteriorColorCode}",
-		// 			text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
-		// 		}));
-		// 		var items_binding = this.getView().byId('color_CFSO').getBinding('items');
-		// 		items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-		// 			new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 			new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 		], true));
-
-		// 	}
-		// },
-		//---------------------------------------
-		//--------Handling Filter---------------
-		//----------------------------------
+		
 		series_selected: function (oEvent) {
 
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
@@ -1104,6 +910,36 @@ sap.ui.define([
 			oEvent.getSource().getBinding("items").filter(filters);
 
 		},
+		onAfterRendering: function () {
+			// CFSO_controller.listOfModelYear();
+			// if (AppController.flagPPDUser == true) {
+			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			// }
+			// if (AppController.flagNationalSIPUser == true) {
+			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			// }
+			// if (AppController.flagNationalPPDUser == true) {
+			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			// }
+			// if (AppController.flagDealerUser == true) {
+
+			// }
+			// if (AppController.flagZoneUser == true) {
+			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			// }
+			// if (AppController.flagTCINationalUser == true) {
+			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			// }
+			// if (AppController.flagSIPUser == true) {
+			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			// }
+			// if (AppController.flagNationalUser == true) {
+			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			// }
+			// if (AppController.flagOrderingDealer == true) {
+			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+			// }
+		}
 		// _handleServiceSuffix_Series: function () {
 		// 	var host = CFSO_controller.host();
 		// 	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
@@ -1123,7 +959,173 @@ sap.ui.define([
 		// 		}
 		// 	});
 		// },
+// _handleServiceSuffix_Series: function () {
+		// 	var host = CFSO_controller.host();
+		// 	var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_MODEL_DETAILS?$format=json";
+		// 	$.ajax({
+		// 		url: oUrl,
+		// 		method: 'GET',
+		// 		async: false,
+		// 		dataType: 'json',
+		// 		success: function (data, textStatus, jqXHR) {
 
+		// 			// console.log("Result from ZC_MODEL_DETAILS ");
+		// 			// console.log(data.d.results);
+		// 			var oModel = new sap.ui.model.json.JSONModel();
+
+		// 			var arr = [];
+		// 			var j = 0;
+		// 			for (var c = 0; c < data.d.results.length; c++) {
+		// 				for (var i = 0; i < data.d.results.length; i++) {
+		// 					if ($.inArray(data.d.results[i]["TCISeries"], arr) < 0) {
+		// 						arr[j] = data.d.results[i]["TCISeries"];
+		// 						j++;
+
+		// 					}
+		// 				}
+		// 			}
+
+		// 			oModel.setData(arr);
+		// 			CFSO_controller.getView().setModel(oModel, "seriesModel");
+		// 			// console.log(CFSO_controller.getView().getModel("seriesModel").getData());
+
+		// 			var oModel2 = new sap.ui.model.json.JSONModel();
+
+		// 			var arr2 = [''];
+		// 			var k = 0;
+		// 			for (var q = 0; q < data.d.results.length; q++) {
+		// 				for (var i = 0; i < data.d.results.length; i++) {
+		// 					if ($.inArray(data.d.results[i]["suffix"], arr2) < 0) {
+		// 						arr2[k] = data.d.results[i]["suffix"];
+		// 						k++;
+		// 					}
+		// 				}
+		// 			}
+		// 			// console.log(arr2);
+		// 			oModel2.setData(arr2);
+		// 			CFSO_controller.getView().setModel(oModel2, "suffix_Model");
+
+		// 		},
+		// 		error: function (jqXHR, textStatus, errorThrown) {
+		// 			sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+		// 				.m.MessageBox.Action.OK, null, null);
+		// 		}
+		// 	});
+		// },
+		
+		// getFleetCustomer: function () {
+		// 	var sLocation = window.location.host;
+		// 	var sLocation_conf = sLocation.search("webide");
+
+		// 	var sPrefix;
+		// 	if (sLocation_conf == 0) {
+		// 		sPrefix = "/soldorder_node"; //ecpSales_node_secured
+		// 		this.fleetUrl = "/userDetails/FleetCustomers"; //"/userDetails/attributesforlocaltesting";
+		// 	} else {
+		// 		sPrefix = "";
+		// 		this.fleetUrl = "/userDetails/FleetCustomers";
+		// 	}
+
+		// 	//======================================================================================================================//			
+		// 	//  on init method,  get the token attributes and authentication details to the UI from node layer.  - begin
+		// 	//======================================================================================================================//		
+		// 	//  get the Scopes to the UI 
+		// 	//this.sPrefix ="";
+
+		// 	var that = this;
+		// 	// var zjson = new JSONModel();
+		// 	// sap.ui.getCore().setModel(zjson,"LoginUserModel");
+		// 	$.ajax({
+		// 		url: sPrefix + this.fleetUrl,
+		// 		type: "GET",
+		// 		dataType: "json",
+		// 		async: false,
+		// 		success: function (oData) {
+		// 			var oModel = new sap.ui.model.json.JSONModel();
+		// 			oModel.setData(oData.attributes);
+		// 			CFSO_controller.getView().setModel(oModel, "fleetModel");
+
+		// 		},
+		// 		error: function (jqXHR, textStatus, errorThrown) {
+		// 			var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+		// 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+		// 				.m.MessageBox.Action.OK, null, null);
+		// 		}
+		// 	});
+		// },
+		//---------------------------------------
+		//--------Handling Filter---------------
+		//----------------------------------
+
+		// // var valModelYr = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
+		// // var valSuffix = CFSO_controller.getView().byId("suffix_CFSO").getValue();
+		// // var valSeries = CFSO_controller.getView().byId("series_CFSO").getValue();
+		// // var valModelCode = CFSO_controller.getView().byId("modelCode_CFSO").getValue();
+		// series_selected: function (oEvent) {
+
+		// 	// var year = this.getView().byId('modelYr_RSOA').getValue();
+		// 	// items="{ path: 'oModel3>/'}"
+		// 	var series = oEvent.getSource().getSelectedKey();
+		// 	if (series) {
+		// 		this.getView().byId("modelCode_CFSO").bindItems("oModel3>/", new sap.ui.core.ListItem({
+		// 			key: "{oModel3>Model}",
+		// 			text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
+		// 		}));
+		// 		var items_binding = this.getView().byId("modelCode_CFSO").getBinding('items');
+		// 		items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
+		// 	}
+		// },
+		// model_selected: function (oEvent) {
+		// 	// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
+		// 	var model = oEvent.getSource().getSelectedKey();
+		// 	var modelyear = this.getView().byId("modelYr_CFSO").getValue();
+		// 	if (model && modelyear) {
+		// 		this.getView().byId('suffix_CFSO').bindItems('oModel1>/', new sap.ui.core.ListItem({
+		// 			key: "{oModel1>Suffix}",
+		// 			text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel1>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
+		// 		}));
+		// 		var items_binding = this.getView().byId('suffix_CFSO').getBinding('items');
+		// 		items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+		// 			new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+		// 		], true));
+		// 	}
+		// },
+		// suffix_selected: function (oEvent) {
+		// 	//-----------------
+		// 	//----APX---------
+		// 	//----------------
+		// 	//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
+		// 	var suffix = oEvent.getSource().getSelectedKey();
+		// 	var modelyear = this.getView().byId("modelYr_CFSO").getValue();
+		// 	var model = this.getView().byId("modelCode_CFSO").getSelectedKey();
+		// 	if (model && modelyear && suffix) {
+		// 		// this.getView().byId('Apx_RSOA').bindItems('mode_Model>/', new sap.ui.core.ListItem({
+		// 		// 	key: "{mode_Model>zzapx}",
+		// 		// 	text: "{mode_Model>zzapx}"
+		// 		// }));
+		// 		// var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');
+		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
+		// 		// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
+		// 		// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
+		// 		// ], true));
+		// 		//-----------------
+		// 		//----Color---------
+		// 		//----------------
+		// 		this.getView().byId('color_CFSO').bindItems('oModel2>/', new sap.ui.core.ListItem({
+		// 			key: "{oModel2>ExteriorColorCode}",
+		// 			text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+		// 		}));
+		// 		var items_binding = this.getView().byId('color_CFSO').getBinding('items');
+		// 		items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
+		// 			new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
+		// 			new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
+		// 		], true));
+
+		// 	}
+		// },
+		//---------------------------------------
+		//--------Handling Filter---------------
+		//----------------------------------
 	});
 
 });
