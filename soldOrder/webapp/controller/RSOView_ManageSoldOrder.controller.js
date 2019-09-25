@@ -132,7 +132,7 @@ sap.ui.define([
 					change: function (oEvent) {
 						RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 						// Filter for Display Data Sold Order
-						var attachButton = this.getView().byId("btn_addAttach_RSO_MSO");
+						var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 						_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
 						if (_Eligilibity == "NO") {
 							attachButton.setEnabled(false);
