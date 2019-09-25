@@ -23,7 +23,7 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().getRoute("InventoryVehicleSelection").attachPatternMatched(this._getattachRouteMatched,
 				this);
 
-		//	InvVehSel_controller.zitems = [];
+			InvVehSel_controller.zitems = [];
 		//	InvVehSel_controller.permItems = [];
 		},
 		_getattachRouteMatched: function (parameters) {
@@ -129,7 +129,7 @@ sap.ui.define([
 		},
 	
 		_onSelect: function () {
-			InvVehSel_controller.zitems = [];
+		//	InvVehSel_controller.zitems = [];
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
 			var indiceArray = oTable.getSelectedIndices();
 
