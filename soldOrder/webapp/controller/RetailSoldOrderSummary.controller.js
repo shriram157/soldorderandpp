@@ -223,7 +223,7 @@ sap.ui.define([
 					// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 					console.log("loading data");
 
-					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
@@ -394,7 +394,7 @@ sap.ui.define([
 			// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 
 			filter = true;
-			var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
+			var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 			for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 				var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 				oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
@@ -488,7 +488,7 @@ sap.ui.define([
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (!this.noData) {
 				if (x != "TCI_User") {
-					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
@@ -570,7 +570,7 @@ sap.ui.define([
 					});
 				} else {
 					if (filter == false) {
-						var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
+						var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 						for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 							var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 							oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
@@ -643,7 +643,7 @@ sap.ui.define([
 						});
 					} else {
 
-						var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=0&$filter=(";
+						var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 						for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 							var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 							oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
@@ -942,7 +942,7 @@ sap.ui.define([
 
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
-				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=" + num + "&$filter=(";
+				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
@@ -1028,7 +1028,7 @@ sap.ui.define([
 				});
 			} else {
 				if (filter == false) {
-					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=" + num + "&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
@@ -1102,7 +1102,7 @@ sap.ui.define([
 					});
 				} else {
 
-					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=50&$skip=" + num + "&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";

@@ -478,14 +478,10 @@ sap.ui.define([
 		deleteAtt: function (evtContext, index) {
 			var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 			var sPath = evtContext.sPath;
-			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-			// var model = oTable.getModel();
-			// var data = model.getProperty("/AttachmentSet");
+			
 			RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
 				success: function (data, oResponse) {
-					// data.splice(index, 1);
-					// model.setProperty("/AttachmentSet", data);
-					oTable.getModel('mainservices').refresh();
+				oTable.getModel('mainservices').refresh();
 					//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 				},
 				error: function (oData, oResponse) {
@@ -493,8 +489,14 @@ sap.ui.define([
 						.MessageBox.Action.OK, null, null);
 				}
 			});
-
 		},
+// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+			// var model = oTable.getModel();
+			// var data = model.getProperty("/AttachmentSet");
+				// data.splice(index, 1);
+					// model.setProperty("/AttachmentSet", data);
+					
+	
 
 		_openFile: function (oEvent) {
 			// var fileUrl = "https://google.com";
