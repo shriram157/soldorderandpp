@@ -609,8 +609,11 @@ sap.ui.define([
 						CFSO_controller.getView().byId("FanNo_CFSO").setValue("");
 						CFSO_controller.getView().byId("ID_PONumber").setValue("");
 						CFSO_controller.getView().byId("quantity_CFSO").setValue("");
-						CFSO_controller.getView().byId("modelYr_CFSO").setSelectedKey();
+						//CFSO_controller.getView().byId("modelYr_CFSO").setSelectedKey();
 						CFSO_controller.getView().byId("suffix_CFSO").setSelectedKey();
+						CFSO_controller.getView().byId("color_CFSO").setSelectedKey();
+						//
+						CFSO_controller.getView().byId("modelYr_CFSO").setValue("");
 						CFSO_controller.getView().byId("Apx_CFSO").setSelectedKey();
 						CFSO_controller.getView().byId("modelCode_CFSO").setSelectedKey();
 						CFSO_controller.getView().byId("series_CFSO").setSelectedKey();
