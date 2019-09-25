@@ -91,6 +91,7 @@ sap.ui.define([
 			// }
 			RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
 			RSO_MSO_controller.getSO(requestid);
+			
 		},
 		getSO: function (req) {
 			ppdFlages = sap.ui.getCore().getModel("ppdFlages");
@@ -116,6 +117,7 @@ sap.ui.define([
 
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
 			zrequest = req;
+			var _Eligilibity=" ";
 			var zmodel = RSO_MSO_controller.getView().getModel("mainservices");
 			var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
 			var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
@@ -130,6 +132,13 @@ sap.ui.define([
 					change: function (oEvent) {
 						RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 						// Filter for Display Data Sold Order
+						var attachButton=this.getView().byId("btn_addAttach_RSO_MSO");
+			 _Eligilibity = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+			if(_Eligilibity=="NO"){
+				attachButton.setEnabled(false);
+			}else{
+					attachButton.setEnabled(true);
+			}
 						sap.ui.getCore().setModel(new JSONModel({
 							model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
 							modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
@@ -478,7 +487,6 @@ sap.ui.define([
 		deleteAtt: function (evtContext, index) {
 			var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 			var sPath = evtContext.sPath;
-			
 			RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
 				success: function (data, oResponse) {
 				oTable.getModel('mainservices').refresh();

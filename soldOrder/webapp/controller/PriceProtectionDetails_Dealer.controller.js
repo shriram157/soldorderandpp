@@ -146,6 +146,7 @@ sap.ui.define([
 			var PPDLocalModel = new sap.ui.model.json.JSONModel();
 			PPDLocalModel.setData({
 				PPDBusyIndicator: false
+			//	enableOwnershipFlag:false
 			});
 			PPD_DealerCont.dialog = new sap.m.BusyDialog({
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
