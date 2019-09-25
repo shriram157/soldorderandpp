@@ -91,7 +91,7 @@ sap.ui.define([
 			// }
 			RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
 			RSO_MSO_controller.getSO(requestid);
-			
+
 		},
 		getSO: function (req) {
 			ppdFlages = sap.ui.getCore().getModel("ppdFlages");
@@ -117,7 +117,7 @@ sap.ui.define([
 
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
 			zrequest = req;
-			var _Eligilibity=" ";
+			var _Eligilibity = " ";
 			var zmodel = RSO_MSO_controller.getView().getModel("mainservices");
 			var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
 			var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
@@ -132,13 +132,13 @@ sap.ui.define([
 					change: function (oEvent) {
 						RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 						// Filter for Display Data Sold Order
-						var attachButton=this.getView().byId("btn_addAttach_RSO_MSO");
-			 _Eligilibity = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
-			if(_Eligilibity=="NO"){
-				attachButton.setEnabled(false);
-			}else{
-					attachButton.setEnabled(true);
-			}
+						var attachButton = this.getView().byId("btn_addAttach_RSO_MSO");
+						_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+						if (_Eligilibity == "NO") {
+							attachButton.setEnabled(false);
+						} else {
+							attachButton.setEnabled(true);
+						}
 						sap.ui.getCore().setModel(new JSONModel({
 							model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
 							modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
@@ -228,7 +228,7 @@ sap.ui.define([
 									zcustomerModel.setData([]); // change 16 sep
 									console.log(request.responseText);
 									var str = request.responseText;
-								//	var obj = JSON.stringify(str);
+									//	var obj = JSON.stringify(str);
 									var obj2 = JSON.parse(str);
 									sap.m.MessageToast.show(obj2.messages[0].errorText); // 17 sep change 
 									//	console.log("empty data", data);// change 16 sep
@@ -295,8 +295,8 @@ sap.ui.define([
 		},
 
 		_updateAuditSoldOrderRequest: function () {
-			this.btnAudit= RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO");
-			var that=this;
+			this.btnAudit = RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO");
+			var that = this;
 			RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Update_Audit_Status", {
 				method: "POST",
 				urlParameters: {
@@ -311,12 +311,12 @@ sap.ui.define([
 					that.btnAudit.setEnabled(false); // 18 sep change 
 					RSO_MSO_controller.getView().getElementBinding('mainservices').refresh(true);
 					RSO_MSO_controller.getView().getModel('mainservices').updateBindings(true);
-					
+
 				},
 				error: function (oError) {
 
 				}
-				
+
 			});
 			// AppController.flgSoldOrderReqStatus = "Audit - Complete";
 		},
@@ -489,7 +489,7 @@ sap.ui.define([
 			var sPath = evtContext.sPath;
 			RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
 				success: function (data, oResponse) {
-				oTable.getModel('mainservices').refresh();
+					oTable.getModel('mainservices').refresh();
 					//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 				},
 				error: function (oData, oResponse) {
@@ -498,13 +498,11 @@ sap.ui.define([
 				}
 			});
 		},
-// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-			// var model = oTable.getModel();
-			// var data = model.getProperty("/AttachmentSet");
-				// data.splice(index, 1);
-					// model.setProperty("/AttachmentSet", data);
-					
-	
+		// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
+		// var model = oTable.getModel();
+		// var data = model.getProperty("/AttachmentSet");
+		// data.splice(index, 1);
+		// model.setProperty("/AttachmentSet", data);
 
 		_openFile: function (oEvent) {
 			// var fileUrl = "https://google.com";

@@ -805,7 +805,7 @@ sap.ui.define([
 			} else {
 				clicks += 1;
 			}
-			num = clicks * 50;
+			num = clicks * 100; //chnage 25 sep , 50 earleir
 
 			// if (num === count1) {
 			// 	var BtnNext = this.getView().byId("buttonNext");
