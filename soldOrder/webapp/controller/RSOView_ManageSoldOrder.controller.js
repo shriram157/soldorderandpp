@@ -1,4 +1,4 @@
-https: //dev-soldorderandpp.scp.toyota.ca/soldorderandpp/index.html?Division=10&Language=ensap.ui.define([
+sap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"sap/ui/model/resource/ResourceModel",
 	"toyota/ca/SoldOrder/util/formatter",
