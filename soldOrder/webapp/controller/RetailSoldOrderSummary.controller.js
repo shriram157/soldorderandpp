@@ -735,7 +735,14 @@ sap.ui.define([
 			RSOS_controller.getOwnerComponent().getRouter().navto("RetailSoldOrderA", {}, true);
 		},
 		onLinkVehicle: function (evt) {
-			zrequest = evt.getSource().getBindingContext("mainservices").getProperty("ZzsoReqNo");
+			var sPath=evt.oSource.oPropagatedProperties.oBindingContexts.retailsumModel.sPath;
+			var path =sPath.substring(1);
+			var tbl=RSOS_controller.getView().byId("table_RSOS");
+			var data=tbl.getModel().getData();
+			if(data){
+			 zrequest= data[path].ZzsoReqNo;
+			}
+			//zrequest = evt.getSource().getBindingContext("mainservices").getProperty("ZzsoReqNo");
 			var d = new sap.ui.jsfragment(RSOS_controller.createId("idFrag_RSOS"), "toyota.ca.SoldOrder.view.fragments.VtinDialog",
 				RSOS_controller);
 			RSOS_controller.getView().addDependent(d);
