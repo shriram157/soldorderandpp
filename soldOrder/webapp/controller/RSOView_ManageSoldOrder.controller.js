@@ -1,11 +1,11 @@
-sap.ui.define([
+https: //dev-soldorderandpp.scp.toyota.ca/soldorderandpp/index.html?Division=10&Language=ensap.ui.define([
 	"toyota/ca/SoldOrder/controller/BaseController",
 	"sap/ui/model/resource/ResourceModel",
 	"toyota/ca/SoldOrder/util/formatter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/ui/model/json/JSONModel"
-], function (BaseController, ResourceModel, formatter, Filter, FilterOperator, JSONModel) {
+	"sap/ui/model/json/JSONModel"],
+function (BaseController, ResourceModel, formatter, Filter, FilterOperator, JSONModel) {
 	"use strict";
 	var RSO_MSO_controller;
 	var zrequest;
@@ -74,15 +74,6 @@ sap.ui.define([
 				NFVisible: false,
 				SOVisible: true
 			});
-			if (this.getView().getElementBinding('mainservices').getBoundContext() !== null) {
-				var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
-				// 	console.log("So status", SOType);
-				if (SOType !== "SO") {
-					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
-				} else {
-					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
-				}
-			}
 			// 		RSO_MSO_Model.setData({
 			// 			NFVisible: false,
 			// 			SOVisible: true
@@ -104,7 +95,19 @@ sap.ui.define([
 				attachButton.setEnabled(false);
 			}
 			RSO_MSO_controller.getSO(requestid);
-			
+
+			if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
+				var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
+				// 	console.log("So status", SOType);
+				if (SOType !== "SO") {
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+				} else {
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
+				}
+			}
+
 		},
 		getSO: function (req) {
 			ppdFlages = sap.ui.getCore().getModel("ppdFlages");
@@ -160,11 +163,13 @@ sap.ui.define([
 							series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')
 						}), 'Vehicle_Selection');
 						//Filter Data Sold Order
-						var _SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
-						if (_SOType !== "SO") {
+						var SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
+						if (SOType !== "SO") {
 							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
 						} else {
 							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 						}
 
 						RSO_MSO_controller.series_selected();
