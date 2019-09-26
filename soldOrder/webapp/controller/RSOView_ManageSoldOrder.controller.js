@@ -101,6 +101,7 @@ function (BaseController, ResourceModel, formatter, Filter, FilterOperator, JSON
 			if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
 				var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
 				// 	console.log("So status", SOType);
+				
 				if (SOType == "NF" || SOType == "FO") {
 					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
