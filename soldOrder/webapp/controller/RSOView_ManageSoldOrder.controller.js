@@ -74,10 +74,15 @@ sap.ui.define([
 				NFVisible: false,
 				SOVisible: true
 			});
-			// if (this.getView().getElementBinding('mainservices').getBoundContext() !== null) {
-			// 	var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
-			// 	console.log("So status", SOType);
-			// 	if (SOType == "SO") {
+			if (this.getView().getElementBinding('mainservices').getBoundContext() !== null) {
+				var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
+				// 	console.log("So status", SOType);
+				if (SOType !== "SO") {
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+				} else {
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+				}
+			}
 			// 		RSO_MSO_Model.setData({
 			// 			NFVisible: false,
 			// 			SOVisible: true
@@ -91,8 +96,8 @@ sap.ui.define([
 			// }
 			RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
 			var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
-			var _Eligibility1=RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
-		//	_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+			var _Eligibility1 = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
+			//	_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
 			if (_Eligibility1.getText() == "YES") {
 				attachButton.setEnabled(true);
 			} else {
@@ -156,13 +161,11 @@ sap.ui.define([
 						}), 'Vehicle_Selection');
 						//Filter Data Sold Order
 						var _SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
-						// if (_SOType == "SO") {
-						// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
-						// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-						// } else {
-						// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
-						// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
-						// }
+						if (_SOType !== "SO") {
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+						} else {
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+						}
 
 						RSO_MSO_controller.series_selected();
 						RSO_MSO_controller.model_selected();
@@ -182,7 +185,7 @@ sap.ui.define([
 						}
 						// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 						// var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
-						
+
 						var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
 						if (_Eligilibity == "YES") {
 							attachButton.setEnabled(true);
