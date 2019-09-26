@@ -99,7 +99,7 @@ sap.ui.define([
 				attachButton.setEnabled(false);
 			}
 			RSO_MSO_controller.getSO(requestid);
-
+			
 		},
 		getSO: function (req) {
 			ppdFlages = sap.ui.getCore().getModel("ppdFlages");
