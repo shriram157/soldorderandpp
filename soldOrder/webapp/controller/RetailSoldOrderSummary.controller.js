@@ -737,8 +737,7 @@ sap.ui.define([
 		onLinkVehicle: function (evt) {
 			var sPath=evt.oSource.oPropagatedProperties.oBindingContexts.retailsumModel.sPath;
 			var path =sPath.substring(1);
-			var tbl=RSOS_controller.getView().byId("table_RSOS");
-			var data=tbl.getModel().getData();
+			var data=RSOS_controller.getView().getModel('retailsumModel').getData();
 			if(data){
 			 zrequest= data[path].ZzsoReqNo;
 			}

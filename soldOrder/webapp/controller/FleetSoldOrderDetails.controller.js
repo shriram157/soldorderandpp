@@ -582,7 +582,13 @@ sap.ui.define([
 
 		},
 		onLinkVehicle: function (evt) {
-			zrequest = evt.getSource().getBindingContext('mainservices').getProperty('ZzsoReqNo');
+			var sPath=evt.oSource.oPropagatedProperties.oBindingContexts.fleetdetailsModel.sPath;
+			var path =sPath.substring(1);
+			var data=FSOD_controller.getView().getModel('fleetdetailsModel').getData();
+			if(data){
+			 zrequest= data[path].ZzsoReqNo;
+			}
+		//	zrequest = evt.getSource().getBindingContext('mainservices').getProperty('ZzsoReqNo');
 			var d = new sap.ui.jsfragment(FSOD_controller.createId("idFrag_FSOD"), "toyota.ca.SoldOrder.view.fragments.VtinDialog",
 				FSOD_controller);
 			FSOD_controller.getView().addDependent(d);
