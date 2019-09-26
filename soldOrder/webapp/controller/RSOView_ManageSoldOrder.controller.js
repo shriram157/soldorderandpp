@@ -93,10 +93,10 @@ sap.ui.define([
 			var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 			var _Eligibility1=RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
 		//	_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
-			if (_Eligibility1.getText() == "NO") {
-				attachButton.setEnabled(false);
-			} else {
+			if (_Eligibility1.getText() == "YES") {
 				attachButton.setEnabled(true);
+			} else {
+				attachButton.setEnabled(false);
 			}
 			RSO_MSO_controller.getSO(requestid);
 
@@ -125,7 +125,7 @@ sap.ui.define([
 
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
 			zrequest = req;
-			var _Eligilibity = " ";
+			// var _Eligilibity = " ";
 			var zmodel = RSO_MSO_controller.getView().getModel("mainservices");
 			var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
 			var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
@@ -141,11 +141,11 @@ sap.ui.define([
 						RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 						// Filter for Display Data Sold Order
 						var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
-						_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
-						if (_Eligilibity == "NO") {
-							attachButton.setEnabled(false);
-						} else {
+						var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+						if (_Eligilibity == "YES") {
 							attachButton.setEnabled(true);
+						} else {
+							attachButton.setEnabled(false);
 						}
 						sap.ui.getCore().setModel(new JSONModel({
 							model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
@@ -182,6 +182,13 @@ sap.ui.define([
 						}
 						// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 						// var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+						
+						var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+						if (_Eligilibity == "YES") {
+							attachButton.setEnabled(true);
+						} else {
+							attachButton.setEnabled(false);
+						}
 
 						if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
 							var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
