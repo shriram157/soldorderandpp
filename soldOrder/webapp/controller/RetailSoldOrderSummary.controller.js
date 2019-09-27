@@ -785,7 +785,7 @@ sap.ui.define([
 							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK, null, null);
 							var oTbl = RSOS_controller.getView().byId("tbl_FSOD");
 							var items = oTbl.getBinding("rows");
-							items.refresh();
+						//	items.refresh();
 							RSOS_controller.getView().getElementBinding('mainservices').refresh(true);
 							RSOS_controller.getView().getModel('mainservices').updateBindings(true);
 							oTbl.getModel().updateBindings(true);
