@@ -786,6 +786,9 @@ sap.ui.define([
 							var oTbl = RSOS_controller.getView().byId("tbl_FSOD");
 							var items = oTbl.getBinding("rows");
 							items.refresh();
+							RSOS_controller.getView().getElementBinding('mainservices').refresh(true);
+							RSOS_controller.getView().getModel('mainservices').updateBindings(true);
+							oTbl.getModel().updateBindings(true);
 						}
 					},
 					error: function (oError) {
