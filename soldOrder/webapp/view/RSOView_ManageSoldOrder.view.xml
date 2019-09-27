@@ -280,7 +280,7 @@
 								</Label>
 								<TextArea id="idComments_TA_RSO_ManageSO"
 									editable="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}"
-									enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" maxLength="30">
+									enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" maxLength="40">
 									<layoutData>
 										<l:GridData span="L3 M3 S6"/>
 									</layoutData>

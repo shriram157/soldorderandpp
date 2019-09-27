@@ -72,7 +72,10 @@ sap.ui.define([
 					num++;
 				}
 			}
+			var todayDate = new Date();
 			RSOA_controller.getView().byId("etaFrom_RSOA").setMinDate(day5);
+			RSOA_controller.getView().byId("ContractDate_RSOA").setMaxDate(todayDate);
+
 			// RSOA_controller._newService1();
 			// RSOA_controller._newService2();
 			// RSOA_controller._newService3();
@@ -128,6 +131,13 @@ sap.ui.define([
 			});
 		},
 		_onObjectMatched: function (oEvent) {
+			validateFlagA = false;
+			var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA")
+			if (validateFlagA == true) {
+				submitBtn.setEnabled(true);
+			} else {
+				submitBtn.setEnabled(false);
+			}
 			this.getView().byId("idmenu1").setType('Emphasized');
 			this.getView().byId("idmenu2").setType('Transparent');
 			this.getView().byId("idmenu3").setType('Transparent');
@@ -739,7 +749,19 @@ sap.ui.define([
 				// 	contentWidth: "10rem"
 				// });
 				validateFlagA = true;
+				var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
+				if (validateFlagA == true) {
+					submitBtn.setEnabled(true);
+				}else{
+					submitBtn.setEnabled(false);
+				}
+
 			} else {
+				/*	validateFlagA = true;
+				if (validateFlagA == true) {
+					var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA")
+					submitBtn.setEnabled(true);
+				}*/
 				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 				var errForm = formatter.formatErrorType("SO000023");
 				errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -773,7 +795,7 @@ sap.ui.define([
 		},
 
 		_onSubmit: function () {
-
+			var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
 			var flag1 = false;
 			var flag2 = false;
 			var errMsg2;
@@ -886,6 +908,7 @@ sap.ui.define([
 					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			} else {
+				//submitBtn.setEnabled(true);
 				RSOA_controller.submitSO();
 
 			}

@@ -150,7 +150,7 @@
 				<footer class="sitefooter">
 					<Toolbar>
 						<ToolbarSpacer/>
-						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized"></Button>
+						<Button text="{i18n>submit}" press="_onSubmit" enabled="false"  id="Btn_submit_RSOA" type="Emphasized"></Button>
 					</Toolbar>
 				</footer>
 			</Page>
