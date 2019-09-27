@@ -90,7 +90,7 @@ function (BaseController, ResourceModel, formatter, Filter, FilterOperator, JSON
 			if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
 				var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
 				// 	console.log("So status", SOType);
-				
+				//For FLeet Details only
 				if (SOType == "NF" || SOType == "FO") {
 					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
@@ -147,6 +147,8 @@ function (BaseController, ResourceModel, formatter, Filter, FilterOperator, JSON
 						} else {
 							attachButton.setEnabled(false);
 						}
+						var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
+						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", zcustomerNumber);
 						sap.ui.getCore().setModel(new JSONModel({
 							model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
 							modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
@@ -156,6 +158,7 @@ function (BaseController, ResourceModel, formatter, Filter, FilterOperator, JSON
 						}), 'Vehicle_Selection');
 						//Filter Data Sold Order
 						var SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
+						//For FLeet Details only
 						if (SOType == "NF" || SOType == "FO") {
 							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
 							// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
