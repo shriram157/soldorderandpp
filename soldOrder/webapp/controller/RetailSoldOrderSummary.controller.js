@@ -783,12 +783,13 @@ sap.ui.define([
 							var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 							var sMsg = oBundle.getText("SO000014", [zrequest]);
 							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK, null, null);
-							var oTbl = RSOS_controller.getView().byId("tbl_FSOD");
-							var items = oTbl.getBinding("rows");
+							RSOS_controller._refresh();
+						//	var oTbl = RSOS_controller.getView().byId("tbl_FSOD");
+						//	var items = oTbl.getBinding("rows");
 						//	items.refresh();
-							RSOS_controller.getView().getElementBinding('mainservices').refresh(true);
-							RSOS_controller.getView().getModel('mainservices').updateBindings(true);
-							oTbl.getModel().updateBindings(true);
+						//	RSOS_controller.getView().getElementBinding('mainservices').refresh(true);
+						//	RSOS_controller.getView().getModel('mainservices').updateBindings(true);
+						//	oTbl.getModel().updateBindings(true);
 						}
 					},
 					error: function (oError) {

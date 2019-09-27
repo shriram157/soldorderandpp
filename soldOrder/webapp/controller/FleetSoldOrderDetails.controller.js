@@ -627,9 +627,10 @@ sap.ui.define([
 							var sMsg = oBundle.getText("SO000014", [zrequest]);
 							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "Success", sap
 								.m.MessageBox.Action.OK, null, null);
-							var oTbl = FSOD_controller.getView().byId("tbl_FSOD");
-							var items = oTbl.getBinding('rows');
-							items.refresh();
+						FSOD_controller._refresh();
+					//		var oTbl = FSOD_controller.getView().byId("tbl_FSOD");
+					//		var items = oTbl.getBinding('rows');
+					//		items.refresh();
 						}
 					},
 					error: function (oError) {
