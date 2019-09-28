@@ -54,7 +54,8 @@
 						<Column width="14.2%" resizable="false"  id="colour" >
 								<m:Label text="{i18n>Colour}" class="TableLabel"/>
 								<template>
-									<m:Text text="{parts: [{path:'vehSel_NatStock_Model>Zzextcol'},{path:'vehSel_NatStock_Model>Zzextcol'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}" wrapping="false"/>
+									<!--<m:Text text="{parts: [{path:'vehSel_NatStock_Model>Zzextcol'},{path:'vehSel_NatStock_Model>Zzextcol'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}" wrapping="false"/>-->
+										<m:Text text="{vehSel_NatStock_Model>Zzextcol}" wrapping="false"/>
 								</template>
 							</Column>
 						</columns>

@@ -71,7 +71,9 @@
 							<Column width="10%" resizable="false" id="colour">
 								<m:Label text="{i18n>Colour}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>ExteriorColorCode}" wrapping="false"/>
+									<!--<m:Text text="{mainservices>ExteriorColorCode}" wrapping="false"/>-->
+									
+									<m:Text text="{mainservices>Zzextcol}" wrapping="false"/> <!--change 28 sep-->
 								</template>
 							</Column>
 							<Column width="10%" resizable="false" id="apx">

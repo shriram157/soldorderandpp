@@ -31,7 +31,7 @@
 							<ComboBox id="apx_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzapx}"></ComboBox>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>
 							<Text
-								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>SalesType}"/>
 							<ComboBox id="salestype_CSOR" items="{ path: 'salesTypeModel>/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
 								<core:Item key="{salesTypeModel>key}" text="{salesTypeModel>text}"/>
@@ -44,7 +44,7 @@
 											<Text/>
 											<Label wrapping="true" text="{i18n>from}:-" class="sapUiSmallMarginTop"/>
 											<Text
-												text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+												text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 										</items>
 									</HBox>
 									<HBox>
@@ -52,7 +52,7 @@
 											<Text/>
 											<Label wrapping="true" text="{i18n>to}:-" class="sapUiSmallMarginTop"/>
 											<Text
-												text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+												text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 										</items>
 									</HBox>
 								</items>
@@ -101,7 +101,7 @@
 							</VBox>
 							<Label wrapping="true" text="{i18n>VehDelDate}"/>
 							<Text
-								text="{path:'mainservices>VDelDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+								text="{path:'mainservices>VDelDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>OrderType}"/>
 							<Text
 								text="{parts:[{path:'mainservices>Zzordtypedesc'},{path:'mainservices>Zzvtn'}], formatter:'toyota.ca.SoldOrder.util.formatter.formatOrderTypewithVTN'}"/>
@@ -112,45 +112,61 @@
 						</f:content>
 					</f:SimpleForm>
 					<Label id="label_MangSoldOrderid" text="" class=" sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"/>
-					<f:SimpleForm class="FormTitle VisibleStyle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="12"
-						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
-						singleContainerFullSize="false">
+					<f:SimpleForm class="FormTitle VisibleStyle" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3"
+						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+						columnsL="3" columnsM="3" singleContainerFullSize="false">
 						<f:content>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>CustInfoTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>fcustname}"/>
-							<Text text="{mainservices>NameFirst}" visible="{RSO_MSO_Model>/NFVisible}"/>
-							<Text text="{Customer>/person/firstName}" visible="{RSO_MSO_Model>/SOVisible}"/>
+							<!--<Text text="{mainservices>NameFirst}" visible="{RSO_MSO_Model>/NFVisible}"/>
+							<Text text="{Customer>/person/firstName}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
+							<Text
+								text="{parts:[{path:'mainservices>NameFirst'},{path:'Customer>/person/firstName'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
-							<Text text="{mainservices>NameLast}" visible="{RSO_MSO_Model>/NFVisible}"/>
-							<Text text="{Customer>/person/familyName}" visible="{RSO_MSO_Model>/SOVisible}"/>
+							<!--<Text text="{mainservices>NameLast}" visible="{RSO_MSO_Model>/NFVisible}"/>
+							<Text text="{Customer>/person/familyName}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
+							<Text
+								text="{parts:[{path:'mainservices>NameLast'},{path:'Customer>/person/familyName'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>custname}"/>
 							<Text text="{mainservices>CustName1}"/>
 							<Label wrapping="true" text="{i18n>address}"/>
-							<Text text="{mainservices>Street}" visible="{RSO_MSO_Model>/NFVisible}"/>
-							<Text text="{Customer>/addresses/0/line1}" visible="{RSO_MSO_Model>/SOVisible}"/>
+							<!--<Text text="{mainservices>Street}" visible="{RSO_MSO_Model>/NFVisible}"/>
+							<Text text="{Customer>/addresses/0/line1}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
+							<Text
+								text="{parts:[{path:'mainservices>street'},{path:'Customer>/addresses/0/line1'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
-							<Text text="{mainservices>City1}" visible="{RSO_MSO_Model>/NFVisible}"/>
-							<Text text="{Customer>/addresses/0/city}" visible="{RSO_MSO_Model>/SOVisible}"/>
+							<!--<Text text="{mainservices>City1}" visible="{RSO_MSO_Model>/NFVisible}"/>
+							<Text text="{Customer>/addresses/0/city}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
+							<Text
+								text="{parts:[{path:'mainservices>City1'},{path:'Customer>/addresses/0/city'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<Text text="{mainservices>Region}" visible="{RSO_MSO_Model>/NFVisible}"/>
-							<Text text="{Customer>/addresses/0/provinceCode}" visible="{RSO_MSO_Model>/SOVisible}"/>
+							<!--<Text text="{mainservices>Region}" visible="{RSO_MSO_Model>/NFVisible}"/>
+							<Text text="{Customer>/addresses/0/provinceCode}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
+							<Text
+								text="{parts:[{path:'mainservices>Region'},{path:'Customer>/addresses/0/provinceCode'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Text text="{mainservices>PostCode1}" visible="{RSO_MSO_Model>/NFVisible}"/>
-							<Text text="{Customer>/addresses/0/postalCode}" visible="{RSO_MSO_Model>/SOVisible}"/>
+							<!--<Text text="{mainservices>PostCode1}" visible="{RSO_MSO_Model>/NFVisible}"/>
+							<Text text="{Customer>/addresses/0/postalCode}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
+							<Text
+								text="{parts:[{path:'mainservices>PostCode1'},{path:'Customer>/addresses/0/postalCode'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Text text="{mainservices>TelNumber}" visible="{RSO_MSO_Model>/NFVisible}"/>
-							<Text text="{Customer>/phones/0/areaCode}{Customer>/phones/0/localNumber}" visible="{RSO_MSO_Model>/SOVisible}"/>
+							<!--<Text text="{mainservices>TelNumber}" visible="{RSO_MSO_Model>/NFVisible}"/>
+							<Text text="{Customer>/phones/0/areaCode}{Customer>/phones/0/localNumber}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
+							<Text
+								text="{parts:[{path:'mainservices>TelNumber'},{path:'Customer>/phones/0/areaCode'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
-							<Text text="{mainservices>ZzendcuEmail}" visible="{RSO_MSO_Model>/NFVisible}"/>
-							<Text text="{Customer>/electronicAddresses/0/uriID}" visible="{RSO_MSO_Model>/SOVisible}"/>
+							<!--<Text text="{mainservices>ZzendcuEmail}" visible="{RSO_MSO_Model>/NFVisible}"/>
+							<Text text="{Customer>/electronicAddresses/0/uriID}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
+							<Text
+								text="{parts:[{path:'mainservices>ZzendcuEmail'},{path:'Customer>/electronicAddresses/0/uriID'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
 							<Text text="{mainservices>ZdriverLiNum}"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
 							<!--<Text text="{mainservices>Fan}"/>-->
-							<Text text="{mainservices>FanSoldorder}"/> <!--change 23 sep-->
+							<Text text="{mainservices>FanSoldorder}"/>
+							<!--change 23 sep-->
 							<core:Title text="" class="titleFontSize"/>
-					
 							<MessageStrip text="{i18n>CustInfoRegTitle}" class="msgStripFormat msgStripCss "/>
 							<!--<Label wrapping="true" text="{i18n>CustName}" />-->
 							<!--<Text text="{parts:[{path:'Customer>/person/firstName'},{path:'Customer>/person/familyName'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatName'}"  />-->
@@ -175,15 +191,15 @@
 							<Text
 								text="{parts:[{path:'mainservices>ZzendcuCity'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-						<!--	<Text
+							<!--	<Text
 								text="{parts:[{path:'mainservices>Region'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							-->
 							<Text
 								text="{parts:[{path:'mainservices>ZzendcuRegion'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-						<!--	<Text
+							<!--	<Text
 								text="{parts:[{path:'mainservices>PostCode1'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
-							-->	
+							-->
 							<Text
 								text="{parts:[{path:'mainservices>ZzendcuPostCode'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
@@ -198,10 +214,10 @@
 							<Text
 								text="{parts:[{path:'mainservices>Qausp'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<Label wrapping="true" text="{i18n>FanNumber}"/>
-						<!--	<Text text="{parts:[{path:'mainservices>Fan'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>-->
-							<Text text="{parts:[{path:'mainservices>FanRegistration'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
+							<!--	<Text text="{parts:[{path:'mainservices>Fan'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>-->
+							<Text
+								text="{parts:[{path:'mainservices>FanRegistration'},{path:'mainservices>CustAtReg'}],formatter:'toyota.ca.SoldOrder.util.formatter.RegCustomer'}"/>
 							<core:Title text="" class="titleFontSize"/>
-						
 							<MessageStrip text="{i18n>PriceProtectionDetails}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>Eligibility}"/>
 							<Text text="{mainservices>Eligilibity}" id="RSO_PRC_Eligilibity"/>
@@ -213,10 +229,10 @@
 							<TextArea id="RSOV_MSO_comment3" enabled="false" maxLength="150"/>
 							<Label wrapping="true" text="{i18n>App/RejDate}"/>
 							<Text
-								text="{path:'mainservices>AppRejDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+								text="{path:'mainservices>AppRejDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>PayDate}"/>
 							<Text
-								text="{path:'mainservices>PaymentDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>
+								text="{path:'mainservices>PaymentDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>PayAmount}"/>
 							<Text text="{path:'mainservices>PaymentAmmount',formatter:'toyota.ca.SoldOrder.util.formatter.formatAmount'}"/>
 						</f:content>

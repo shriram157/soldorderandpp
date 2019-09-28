@@ -9,6 +9,19 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 		return text;
 	},
+	formatNFSOFlag:function (oData,apiData,nfFlag,soFlag) {
+		var empty=" ";
+		if(nfFlag==true){
+			return oData;
+		}
+		else if(soFlag==true){
+			return apiData;
+		}
+		else{
+			return 	empty;
+		}
+		
+	},
 	formatModel: function (ModelCode, ModelDescription) {
 		var text = ModelCode + "-" + ModelDescription;
 		return text;

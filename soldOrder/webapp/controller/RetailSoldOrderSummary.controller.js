@@ -767,7 +767,8 @@ sap.ui.define([
 				RSOS_controller.getView().getModel("mainservices").callFunction("/RSO_VTN_ASSIGN", {
 					method: "POST",
 					urlParameters: {
-						Zzvtn: V_No,
+						Zzvtn: vtinVal,
+						Vhvin:vinVal,
 						ZzsoReqNo: zrequest //	Endcustomer:
 					},
 					// function import parameters
