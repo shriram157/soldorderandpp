@@ -245,7 +245,7 @@ sap.ui.define([
 										}
 									},
 									error: function (request, errorText, errorCode) {
-										if (RSO_MSO_controller._SOType !== "NF" || RSO_MSO_controller._SOType !== "FO") {
+										if (RSO_MSO_controller._SOType !== "NF" && RSO_MSO_controller._SOType !== "FO") {
 											zcustomerModel.setData([]); // change 16 sep
 											console.log(request.responseText);
 											var str = request.responseText;
