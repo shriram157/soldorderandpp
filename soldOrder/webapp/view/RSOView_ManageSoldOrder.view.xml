@@ -134,7 +134,7 @@
 							<!--<Text text="{mainservices>Street}" visible="{RSO_MSO_Model>/NFVisible}"/>
 							<Text text="{Customer>/addresses/0/line1}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
 							<Text
-								text="{parts:[{path:'mainservices>street'},{path:'Customer>/addresses/0/line1'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
+								text="{parts:[{path:'mainservices>Street'},{path:'Customer>/addresses/0/line1'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>city}"/>
 							<!--<Text text="{mainservices>City1}" visible="{RSO_MSO_Model>/NFVisible}"/>
 							<Text text="{Customer>/addresses/0/city}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
