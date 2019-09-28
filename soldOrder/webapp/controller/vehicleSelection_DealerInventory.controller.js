@@ -94,6 +94,7 @@ sap.ui.define([
 			// Store the Vechile No
 			if (evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN')) {
 				var V_No = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
+				//	var Vin = evt.getSource().getBindingContext('mainservices').getProperty('Vhvin');
 				// var host = VehSel_DealerInv_controller.host();
 				// var oUrl = host + "/Z_VEHICLE_MASTER_SRV/zc_exterior_trim?$format=json";
 				// $.ajax({
@@ -113,6 +114,7 @@ sap.ui.define([
 				VehSel_DealerInv_controller.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
 					method: "POST",
 					urlParameters: {
+							Vhvin:"",
 						Zzvtn: V_No,
 						ZzsoReqNo: zrequest
 							//	Endcustomer:
