@@ -7,6 +7,7 @@ sap.ui.define([
 	"use strict";
 	var VehSel_DealerInv_controller;
 	var zrequest, vehicle, model, modelyear, suffix, color, series;
+			var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.vehicleSelection_DealerInventory", {
 		formatter: formatter,
 
@@ -18,6 +19,7 @@ sap.ui.define([
 
 		},
 		_getattachRouteMatched: function (parameters) {
+			VehSel_DealerInv_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 			if (oDivision == "10") {
 				this.sDivision = "TOY";
@@ -32,7 +34,7 @@ sap.ui.define([
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-			
+
 			vechile_items.filter([new Filter([
 				//	(MATRIX eq 'A205') and (Dealer eq '2400001116') and (RSO_NUM eq 'SO0000000119') and (source eq 'RSO') and (ZDIVISION eq 'TOY') and (Model eq 'B11HLT') and (Modelyear eq '2019') and (TCISeries eq 'CAM') and (Suffix eq 'AM')
 
@@ -40,7 +42,7 @@ sap.ui.define([
 				new Filter("Dealer", FilterOperator.EQ, dealer_no),
 				new Filter("RSO_NUM", FilterOperator.EQ, zrequest),
 				new Filter("source", FilterOperator.EQ, "RSO"),
-				new Filter("ZDIVISION",FilterOperator.EQ, this.sDivision),
+				new Filter("ZDIVISION", FilterOperator.EQ, this.sDivision),
 				new Filter("Model", FilterOperator.EQ, vehicle.model),
 				new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
 				new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
@@ -48,8 +50,7 @@ sap.ui.define([
 				new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color)
 			], true)]);
 		},
-		onAfterRendering: function () {
-		},
+		onAfterRendering: function () {},
 		filter_change: function (Oevent) {
 			var vechile_items = VehSel_DealerInv_controller.getView().byId("table_RSOVehicleDealer").getBinding('rows');
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
@@ -114,7 +115,7 @@ sap.ui.define([
 				VehSel_DealerInv_controller.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
 					method: "POST",
 					urlParameters: {
-							Vhvin:"",
+						Vhvin: "",
 						Zzvtn: V_No,
 						ZzsoReqNo: zrequest
 							//	Endcustomer:

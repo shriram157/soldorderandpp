@@ -11,20 +11,17 @@
 							<!--<m:ComboBox placeholder="{i18n>placeholder_select}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" selectionChange="filter_change"-->
 							<!--	width="30%" >-->
 							<!--	<core:Item key="1" text="{i18n>inventorys}" />-->
-								<!--<core:Item key="2" text="{i18n>nationals}"/>-->
+							<!--<core:Item key="2" text="{i18n>nationals}"/>-->
 							<!--</m:ComboBox>-->
 							<m:Label text="{i18n>RSOVehicleSel}" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></m:Label>
 							<m:Label text="{i18n>myStockPipeline}" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiTinyMarginBegin fontsize"></m:Label>
 							<m:Label text="{i18n>disclaimer}" class="sapUiTinyMarginTop sapUiLargeMarginBegin fontsizeIn"></m:Label>
 						</m:items>
 					</m:VBox>
-
 					<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"
-									alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" >
-
-					<!--<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"-->
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">
+						<!--<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"-->
 						<!--alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" >-->
-
 						<columns>
 							<Column width="10%" resizable="false">
 								<m:Label text=""/>
@@ -71,9 +68,9 @@
 							<Column width="10%" resizable="false" id="colour">
 								<m:Label text="{i18n>Colour}" class="TableLabel"/>
 								<template>
-									<m:Text text="{mainservices>ExteriorColorCode}" wrapping="false"/>
-									
-					<!--		<m:Text text="{mainservices>Zzextcol}" wrapping="false"/> -->
+									<!--<m:Text text="{mainservices>ExteriorColorCode}" wrapping="false"/>-->
+									<m:Text text="{=${LocalDataModel>/Lang} ==='FR' ? ${mainservices>EXTCOL_DESC_FR} : ${mainservices>EXTCOL_DESC_EN} }" wrapping="false"/>
+									<!--		<m:Text text="{mainservices>Zzextcol}" wrapping="false"/> -->
 								</template>
 							</Column>
 							<Column width="10%" resizable="false" id="apx">

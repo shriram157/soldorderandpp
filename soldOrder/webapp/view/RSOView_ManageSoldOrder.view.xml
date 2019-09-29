@@ -153,8 +153,8 @@
 							<Label wrapping="true" text="{i18n>phnNo}"/>
 							<!--<Text text="{mainservices>TelNumber}" visible="{RSO_MSO_Model>/NFVisible}"/>
 							<Text text="{Customer>/phones/0/areaCode}{Customer>/phones/0/localNumber}" visible="{RSO_MSO_Model>/SOVisible}"/>-->
-							<Text
-								text="{parts:[{path:'mainservices>TelNumber'},{path:'Customer>/phones/0/areaCode'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
+							<Text 
+								text="{parts:[{path:'mainservices>TelNumber'},{path:'Customer>/phones/0/areaCode'}{path:'Customer>/phones/0/localNumber'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
 							<!--<Text text="{mainservices>ZzendcuEmail}" visible="{RSO_MSO_Model>/NFVisible}"/>
 							<Text text="{Customer>/electronicAddresses/0/uriID}" visible="{RSO_MSO_Model>/SOVisible}"/>-->

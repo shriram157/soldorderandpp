@@ -27,7 +27,7 @@ sap.ui.define([
 				this.getView().setModel(zinventoryModel, 'Inventory');
 				this.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(this._getattachRouteMatched, this);
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
-
+				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var salesTypeModel = new sap.ui.model.json.JSONModel();
 				var Obj;
 				if (language == "EN") {
