@@ -896,24 +896,24 @@ sap.ui.define([
 			//loop is to extract each row
 			for (var i = 0; i < arrData.length; i++) {
 				console.log(arrData[i]);
-				var row = "";
-				row += " ";
-				row += arrData[i].ZzsoReqNo + '","' +
-					arrData[i].ZzendcuName + '","' +
+				// var row = "";
+				row = " ";
+				row += arrData[i].ZzsoReqNo + ',' +
+					arrData[i].ZzendcuName + ',' +
 					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
-					arrData[i].ZzdealerCode + '","' +
-					arrData[i].Zzmoyr + '","' +
-					arrData[i].Zzseries + '","' +
-					arrData[i].Zzmodel + '","' +
-					arrData[i].Zzsuffix + '","' +
+					arrData[i].ZzdealerCode + ',' +
+					arrData[i].Zzmoyr + ',' +
+					arrData[i].Zzseries + ',' +
+					arrData[i].Zzmodel + ',' +
+					arrData[i].Zzsuffix + ',' +
 
-					arrData[i].Zzextcol + '","' +
+					arrData[i].Zzextcol + ',' +
 					//	arrData[i].Zzapx +'","' + 
 					//
-					arrData[i].ZzAuditStatus + '","' +
-					arrData[i].ZzsoStatus + '","' +
-					arrData[i].Zzvtn + '","' +
-					arrData[i].Vhvin + '",';
+					arrData[i].ZzAuditStatus + ',' +
+					arrData[i].ZzsoStatus + ',' +
+					arrData[i].Zzvtn + ',' +
+					arrData[i].Vhvin + ',';
 
 				//FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) +'",="' +
 				//FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + '",';

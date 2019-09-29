@@ -694,27 +694,27 @@ sap.ui.define([
 			for (var i = 0; i < arrData.length; i++) {
 				console.log(arrData[i]);
 				var row = "";
-				row += " ";
-				row += arrData[i].ZzsoReqNo + '","' +
-					arrData[i].ZzendcuName + '","' +
-					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
-					arrData[i].ZzdealerCode + '","' +
-					arrData[i].Zzmoyr + '","' +
+				row = " ";
+				row += arrData[i].ZzsoReqNo + ',' +
+					arrData[i].ZzendcuName + ',' +
+					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + ',' +
+					arrData[i].ZzdealerCode + ',' +
+					arrData[i].Zzmoyr + ',' +
 
-					arrData[i].Zzmodel + '","' +
-					arrData[i].Zzsuffix + '","' +
+					arrData[i].Zzmodel + ',' +
+					arrData[i].Zzsuffix + ',' +
 
-					arrData[i].Zzextcol + '","' +
-					arrData[i].Zzapx + '","' +
-					arrData[i].ZzsoStatus + '","' +
-					arrData[i].ZzAuditStatus + '","' +
+					arrData[i].Zzextcol + ',' +
+					arrData[i].Zzapx + ',' +
+					arrData[i].ZzsoStatus + ',' +
+					arrData[i].ZzAuditStatus + ',' +
 
-					arrData[i].Zzvtn + '","' +
-					arrData[i].Vhvin + '","' +
-					//	arrData[i].ZzreqEtaFrom +'",="' +
+					arrData[i].Zzvtn + ',' +
+					arrData[i].Vhvin + ',' +
+					//	arrData[i].ZzreqEtaFrom +',' +
 					//	arrData[i].ZzreqEtaTo+ '",';
-					FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) + '","' +
-					FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + '",';
+					FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) + ',' +
+					FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + ',';
 
 				//}
 				row.slice(1, row.length);
