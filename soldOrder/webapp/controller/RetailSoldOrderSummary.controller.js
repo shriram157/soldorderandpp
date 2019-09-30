@@ -17,17 +17,17 @@ sap.ui.define([
 		onInit: function () {
 			RSOS_controller = this;
 			AppController.getDealer();
-			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
-			RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
-			RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
+			// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
+			// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
 			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 		},
 		_onObjectMatched: function (oEvent) {
 			if (oEvent.getParameter("name") == "RetailSoldOrderSummary") {
-				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
-				RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
-				RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
+				// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+				// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
+				// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
 				var seriesModel = new sap.ui.model.json.JSONModel();
 				var data = sap.ui.getCore().getModel("seriesModel").getData();
 				seriesModel.setData(data);

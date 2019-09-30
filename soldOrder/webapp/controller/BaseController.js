@@ -196,6 +196,7 @@ sap.ui.define([
 					//oData.loggedUserType[0] = "Dealer_User";//for local testing, comment while deploying
 					// console.log("logged in user dealer");
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
+					sap.ui.getCore().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					sap.ui.getCore().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					sap.ui.getCore().getModel("LoginUserModel").updateBindings(true);
@@ -276,6 +277,7 @@ sap.ui.define([
 					}
 					console.log("BpDealer", BpDealer);
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
+					sap.ui.getCore().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 					sap.ui.getCore().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 					sap.ui.getCore().getModel("LoginUserModel").updateBindings(true);

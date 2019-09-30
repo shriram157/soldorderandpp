@@ -149,9 +149,9 @@ sap.ui.define([
 			//	enableOwnershipFlag:false
 			});
 			
-			PPD_DealerCont.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
-			PPD_DealerCont.getView().getModel("LoginUserModel").setSizeLimit(750);
-			PPD_DealerCont.getView().getModel("LoginUserModel").updateBindings(true);
+			// PPD_DealerCont.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			// PPD_DealerCont.getView().getModel("LoginUserModel").setSizeLimit(750);
+			// PPD_DealerCont.getView().getModel("LoginUserModel").updateBindings(true);
 			PPD_DealerCont.dialog = new sap.m.BusyDialog({
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
 			});

@@ -126,9 +126,9 @@ sap.ui.define([
 			var oModel = new sap.ui.model.json.JSONModel();
 			FSOD_controller.getView().setModel(oModel, "fleetdetailsModel");
 			
-			FSOD_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
-			FSOD_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
-			FSOD_controller.getView().getModel("LoginUserModel").updateBindings(true);
+			// FSOD_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			// FSOD_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
+			// FSOD_controller.getView().getModel("LoginUserModel").updateBindings(true);
 			
 			if (AppController.flagZoneUser == true) {
 				FSOD_controller.getView().byId("mcb_dealer_FSOD").setVisible(true);
