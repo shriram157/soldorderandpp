@@ -17,6 +17,7 @@ sap.ui.define([
 		onInit: function () {
 			RSOS_controller = this;
 			AppController.getDealer();
+			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 		},
