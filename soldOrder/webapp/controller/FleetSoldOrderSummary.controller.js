@@ -120,6 +120,10 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			var oModel = new sap.ui.model.json.JSONModel();
 			FSOS_controller.getView().setModel(oModel, "fleetsumModel");
+			
+			FSOLocalModel.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			FSOLocalModel.getView().getModel("LoginUserModel").setSizeLimit(750);
+			FSOLocalModel.getView().getModel("LoginUserModel").updateBindings(true);
 			var FSOLocalModel = new sap.ui.model.json.JSONModel();
 			FSOLocalModel.setData({
 				FSOBusyIndicator: false

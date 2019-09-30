@@ -18,11 +18,16 @@ sap.ui.define([
 			RSOS_controller = this;
 			AppController.getDealer();
 			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
+			RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
 			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 		},
 		_onObjectMatched: function (oEvent) {
 			if (oEvent.getParameter("name") == "RetailSoldOrderSummary") {
+				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+				RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
+				RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
 				var seriesModel = new sap.ui.model.json.JSONModel();
 				var data = sap.ui.getCore().getModel("seriesModel").getData();
 				seriesModel.setData(data);
@@ -65,7 +70,7 @@ sap.ui.define([
 				RSOS_controller.getView().setModel(oModel, "retailsumModel");
 				console.log(language);
 				var BtnExport = RSOS_controller.getView().byId("idBtnExportToExcel");
-			//	BtnExport.setEnabled(false); // change 24 sep 
+				//	BtnExport.setEnabled(false); // change 24 sep 
 				RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var globalComboModel = new sap.ui.model.json.JSONModel();
 				var Obj;
@@ -736,11 +741,11 @@ sap.ui.define([
 			RSOS_controller.getOwnerComponent().getRouter().navto("RetailSoldOrderA", {}, true);
 		},
 		onLinkVehicle: function (evt) {
-			var sPath=evt.oSource.oPropagatedProperties.oBindingContexts.retailsumModel.sPath;
-			var path =sPath.substring(1);
-			var data=RSOS_controller.getView().getModel('retailsumModel').getData();
-			if(data){
-			 zrequest= data[path].ZzsoReqNo;
+			var sPath = evt.oSource.oPropagatedProperties.oBindingContexts.retailsumModel.sPath;
+			var path = sPath.substring(1);
+			var data = RSOS_controller.getView().getModel('retailsumModel').getData();
+			if (data) {
+				zrequest = data[path].ZzsoReqNo;
 			}
 			//zrequest = evt.getSource().getBindingContext("mainservices").getProperty("ZzsoReqNo");
 			var d = new sap.ui.jsfragment(RSOS_controller.createId("idFrag_RSOS"), "toyota.ca.SoldOrder.view.fragments.VtinDialog",
@@ -769,7 +774,7 @@ sap.ui.define([
 					method: "POST",
 					urlParameters: {
 						Zzvtn: vtinVal,
-						Vhvin:vinVal,
+						Vhvin: vinVal,
 						ZzsoReqNo: zrequest //	Endcustomer:
 					},
 					// function import parameters
@@ -786,12 +791,12 @@ sap.ui.define([
 							var sMsg = oBundle.getText("SO000014", [zrequest]);
 							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK, null, null);
 							RSOS_controller._refresh();
-						//	var oTbl = RSOS_controller.getView().byId("tbl_FSOD");
-						//	var items = oTbl.getBinding("rows");
-						//	items.refresh();
-						//	RSOS_controller.getView().getElementBinding('mainservices').refresh(true);
-						//	RSOS_controller.getView().getModel('mainservices').updateBindings(true);
-						//	oTbl.getModel().updateBindings(true);
+							//	var oTbl = RSOS_controller.getView().byId("tbl_FSOD");
+							//	var items = oTbl.getBinding("rows");
+							//	items.refresh();
+							//	RSOS_controller.getView().getElementBinding('mainservices').refresh(true);
+							//	RSOS_controller.getView().getModel('mainservices').updateBindings(true);
+							//	oTbl.getModel().updateBindings(true);
 						}
 					},
 					error: function (oError) {

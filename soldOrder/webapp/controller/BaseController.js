@@ -198,6 +198,7 @@ sap.ui.define([
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
 					sap.ui.getCore().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
+					sap.ui.getCore().getModel("LoginUserModel").updateBindings(true);
 					switch (userType) {
 					case "Dealer_Parts_Admin":
 						// console.log("Dealer Parts");
@@ -277,6 +278,7 @@ sap.ui.define([
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 					sap.ui.getCore().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
+					sap.ui.getCore().getModel("LoginUserModel").updateBindings(true);
 				}.bind(this),
 				error: function (response) {
 					sap.ui.core.BusyIndicator.hide();
