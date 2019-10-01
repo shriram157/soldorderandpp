@@ -269,6 +269,13 @@ toyota.ca.SoldOrder.util.formatter = {
 		} else {
 			return true;
 		}
-	}
+	},
+		_DateFomatter:function(oDate){
+			var year = oDate.substring(0,4);
+			var month = oDate.substring(4,6);
+			var day = oDate.substring(6,8);
+			
+			return year+"-"+month+"-"+day;
+		}
 
 };

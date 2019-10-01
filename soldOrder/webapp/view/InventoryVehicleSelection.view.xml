@@ -90,13 +90,13 @@
 							<t:Column>
 								<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<t:template>
-									<Text text="{inventoryModel>ETAFrom}"/>
+									<Text text="{path:'inventoryModel>ETAFrom', formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}"/>
 								</t:template>
 							</t:Column>
 							<t:Column>
 								<Label text="{i18n>ETATime}" class="TableLabel"/>
 								<t:template>
-									<Text text="{inventoryModel>ETATo}"/>
+									<Text text="{path:'inventoryModel>ETATo', formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}"/>
 								</t:template>
 							</t:Column>
 							<t:Column>

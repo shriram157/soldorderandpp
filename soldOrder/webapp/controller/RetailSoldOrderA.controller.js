@@ -752,7 +752,7 @@ sap.ui.define([
 				var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
 				if (validateFlagA == true) {
 					submitBtn.setEnabled(true);
-				}else{
+				} else {
 					submitBtn.setEnabled(false);
 				}
 
@@ -1219,7 +1219,43 @@ sap.ui.define([
 				RSOA_controller.getView().byId("tcciNo_RSOA").setEnabled(true);
 			}
 
+		},
+
+		validPostalCode: function (postalCode) {
+			if (postalCode) {
+				postalCode = postalCode.getParameters().newValue;
+				var postalRegEx = new RegExp(/^[ABCEGHJ-NPRSTV-Z]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/m);
+				if (postalRegEx.test(postalCode) == true) {
+					return postalCode;
+				} else {
+					RSOA_controller.getView().byId("PostalCode_RSOA").setValueState("Error");
+					// var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+					// var invalidPostalCode = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("SO000024");
+					// sap.m.MessageBox.show(invalidPostalCode, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+					// 	.m.MessageBox.Action.OK, null, null);
+					return null;
+				}
+			}
+		},
+		validPhoneNum: function (phoneNum) {
+			if (phoneNum) {
+				phoneNum = phoneNum.getParameters().newValue;
+				var phoneregEx = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+				if (phoneregEx.test(phoneNum) == true) {
+					return phoneNum;
+				} else {
+					RSOA_controller.getView().byId("Phone_RSOA").setValueState("Error");
+					return null;
+				}
+			}
 		}
+		// ,
+
+		// ShowError: function () {
+		// 	var invalidPostalCode = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("SO000024");
+		// 	sap.m.MessageBox.show(invalidPostalCode, sap.m.MessageBox.Icon.ERROR, sap
+		// 		.m.MessageBox.Action.OK, null, null);
+		// }
 
 	});
 

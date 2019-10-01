@@ -13,54 +13,21 @@
 						<f:content>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss"/>
-							<!--<Label wrapping="true"  text="{i18n>modelYear}"/>
-							<ComboBox id="modelYr_RSOA" items="{ path: 'modelYear_Model>/',sorter: { path: 'modelYear_Model>/' } }" required="true">
-								<core:Item key="{modelYear_Model>}" text="{modelYear_Model>}"/>
-							</ComboBox>
-							<Label wrapping="true"  text="{i18n>Series}"/>
-							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/', sorter: { path: '/TCISeries' } }" required="true">
-								<core:Item key="{seriesModel>}" text="{seriesModel>}"/>
-							</ComboBox>
-							<Label wrapping="true"  text="{i18n>Model}"/>
-							<ComboBox id="model_RSOA" items="{ path: 'model_Model>/', sorter: { path: '/Model' } }" required="true">
-								<core:Item key="{model_Model>}" text="{parts: [{path:'model_Model>'},{path:'model_Model>'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>
-							</ComboBox>
-							<Label wrapping="true"  text="{i18n>Suffix}"/>
-							<ComboBox id="Suffix_RSOA" items="{ path: 'suffix_Model>/', sorter: { path: 'suffix_Model>/' } }" required="true">
-								<core:Item key="{suffix_Model>}" text="{parts: [{path:'suffix_Model>'},{path:'suffix_Model>'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
-							</ComboBox>-->
 							<Label wrapping="true" text="{i18n>modelYear}"/>
 							<Input id="modelYr_RSOA" showSuggestion="false" showValueHelp="true" required="true" valueHelpRequest="select_year"></Input>
-							<!--<ComboBox id="modelYr_RSOA" items="{ path: 'mode_Model>/'}" required="true">-->
-							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
-							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>Series}"/>
 							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
 								<core:Item key="{seriesModel>ModelSeriesNo}"
 									text="{=${LocalDataModel>/Lang} ==='FR' ? ${seriesModel>TCISeriesDescriptionFR} : ${seriesModel>TCISeriesDescriptionEN} }"/>
-								<!--<core:Item text="{seriesdropDownModel>}" key="{seriesdropDownModelKey>}"/>-->
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>Model}"/>
-							<ComboBox id="model_RSOA" required="true" selectionChange="model_selected">
-								<!--<core:Item key="{oModel3>Model}"-->
-								<!--	text="{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"/>-->
-							</ComboBox>
+							<ComboBox id="model_RSOA" required="true" selectionChange="model_selected"></ComboBox>
 							<Label wrapping="true" text="{i18n>Suffix}"/>
-							<ComboBox id="Suffix_RSOA" required="true" selectionChange="suffix_selected">
-								<!--<core:Item key="{oModel1>Suffix}"-->
-								<!--	text="{parts: [{path:'oModel1>SuffixDescriptionEN'},{path:'oModel2>TrimInteriorColor'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
-								<!--	<core:ListItem   text="{=${SeriesData>SPRAS}==='English' ? ${SeriesData>TCISeriesDescriptionEN}:${SeriesData>TCISeriesDescriptionFR} }" key="{SeriesData>TCISeries}" />-->
-							</ComboBox>
+							<ComboBox id="Suffix_RSOA" required="true" selectionChange="suffix_selected"></ComboBox>
 							<Label wrapping="true" text="{i18n>Colour}"/>
-							<ComboBox id="Colour_RSOA" required="true">
-								<!--<core:Item key="{key}" text="{text}"></core:Item>-->
-								<!--<core:Item key="{oModel2>ExteriorColorCode}"-->
-								<!--	text="{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
-							</ComboBox>
+							<ComboBox id="Colour_RSOA" required="true"></ComboBox>
 							<Label wrapping="true" text="{i18n>APX}"/>
-							<ComboBox id="Apx_RSOA" required="true">
-								<!--<core:Item key="{mode_Model>zzapx}" text="{mode_Model>zzapx}"/>-->
-							</ComboBox>
+							<ComboBox id="Apx_RSOA" required="true"></ComboBox>
 							<Label wrapping="true" text="{i18n>ETA}" required="true"/>
 							<VBox>
 								<items>
@@ -96,9 +63,7 @@
 							<Input id="salesMan_RSOA" value="{address>/ZIPCode}" showSuggestion="false"/>
 							<Label wrapping="true" id="tradeInModelYr_RSOA" text="{i18n>tradeInModelYr}"/>
 							<Input id="trademodelYear_RSOAid" showSuggestion="false" showValueHelp="true" valueHelpRequest="select_year1"></Input>
-							<!--<ComboBox id="trademodelYear_RSOAid" items="{ path: 'mode_Model>/'}" required="true">-->
-							<!--	<core:Item key="{mode_Model>zzmoyr}" text="{mode_Model>zzmoyr}"/>-->
-							<!--</ComboBox>-->
+							
 							<Label wrapping="true" text="{i18n>tradeInMake}"/>
 							<ComboBox id="tradeInMakeYear_RSOAid" items="{path:'/Trademake', sorter: {path: 'key'}}">
 								<core:Item key="{key}" text="{text}"/>
@@ -122,14 +87,14 @@
 							<Label wrapping="true" text="{i18n>city}"/>
 							<Input id="City_RSOA" value="{Customer>/City}" showSuggestion="false" required="true"/>
 							<Label wrapping="true" text="{i18n>province}"/>
-							<!--<Input id="Province_RSOA" value="" required="true"/>-->
+							
 							<ComboBox id="Province_RSOA" items="{ path: '/Province', sorter: { path: 'key' } }" required="true" selectedKey="{Customer>/Province}">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Input id="PostalCode_RSOA" value="{Customer>/PostCode}" showSuggestion="false" required="true" maxLength="6"/>
+							<Input id="PostalCode_RSOA" value="{path:'Customer>/PostCode'}" showSuggestion="false" required="true" maxLength="6" valueState="None" valueStateText="{i18n>SO000024}" change="validPostalCode"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Input id="Phone_RSOA" value="{Customer>/Phone}" showSuggestion="false" placeholder='xxxxxxxxxx' required="true" maxLength="10"/>
+							<Input id="Phone_RSOA" value="{Customer>/Phone}" showSuggestion="false" placeholder='xxxxxxxxxx' required="true" maxLength="10" valueState="None" valueStateText="{i18n>SO000025}" change="validPhoneNum"/>
 							<Label wrapping="true" text="{i18n>email}"/>
 							<Input id="Email_RSOA" value="{Customer>/Email}" showSuggestion="false"/>
 							<Label wrapping="true" text="{i18n>driverLic}"/>
@@ -150,7 +115,7 @@
 				<footer class="sitefooter">
 					<Toolbar>
 						<ToolbarSpacer/>
-						<Button text="{i18n>submit}" press="_onSubmit" enabled="false"  id="Btn_submit_RSOA" type="Emphasized"></Button>
+						<Button text="{i18n>submit}" press="_onSubmit" enabled="false" id="Btn_submit_RSOA" type="Emphasized"></Button>
 					</Toolbar>
 				</footer>
 			</Page>
