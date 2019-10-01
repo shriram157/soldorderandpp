@@ -492,6 +492,9 @@ sap.ui.define([
 						CFSO_controller.getView().byId("suffix_CFSO").setSelectedKey();
 						CFSO_controller.getView().byId("color_CFSO").setSelectedKey();
 						//
+						CFSO_controller.getView().byId("etaFrom_CFSO").setDateValue(null);
+						CFSO_controller.getView().byId("etaTo_CFSO").setDateValue(null);
+						
 						CFSO_controller.getView().byId("modelYr_CFSO").setValue("");
 						CFSO_controller.getView().byId("Apx_CFSO").setSelectedKey();
 						CFSO_controller.getView().byId("modelCode_CFSO").setSelectedKey();
@@ -509,6 +512,7 @@ sap.ui.define([
 					}
 				});
 			} else {
+				CFSO_controller.dialog.close();
 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 				sap.m.MessageBox.show(sap.ui.getCore().getModel("i18n").getResourceBundle().getText("CompleteAllFields"), sap.m.MessageBox
 					.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error"), sap.m.MessageBox.Action.OK, null,
