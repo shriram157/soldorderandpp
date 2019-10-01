@@ -9,18 +9,16 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 		return text;
 	},
-	formatNFSOFlag:function (oData,apiData,nfFlag,soFlag) {
-		var empty=" ";
-		if(nfFlag==true){
+	formatNFSOFlag: function (oData, apiData, nfFlag, soFlag) {
+		var empty = " ";
+		if (nfFlag == true) {
 			return oData;
-		}
-		else if(soFlag==true){
+		} else if (soFlag == true) {
 			return apiData;
+		} else {
+			return empty;
 		}
-		else{
-			return 	empty;
-		}
-		
+
 	},
 	formatModel: function (ModelCode, ModelDescription) {
 		var text = ModelCode + "-" + ModelDescription;
@@ -235,7 +233,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	formatAmount: function (svalue) {
-		if ((svalue != "") && (svalue !== null)&& (svalue !== undefined)) {
+		if ((svalue != "") && (svalue !== null) && (svalue !== undefined)) {
 			var pos = svalue.indexOf('.');
 			var integer = svalue.substring(0, pos);
 			var decimals = svalue.substring(pos + 1, pos + 3);
@@ -270,12 +268,14 @@ toyota.ca.SoldOrder.util.formatter = {
 			return true;
 		}
 	},
-		_DateFomatter:function(oDate){
-			var year = oDate.substring(0,4);
-			var month = oDate.substring(4,6);
-			var day = oDate.substring(6,8);
-			
-			return year+"-"+month+"-"+day;
+	_DateFomatter: function (oDate) {
+		if (oDate) {
+			var year = oDate.substring(0, 4);
+			var month = oDate.substring(4, 6);
+			var day = oDate.substring(6, 8);
+
+			return year + "-" + month + "-" + day;
 		}
+	}
 
 };
