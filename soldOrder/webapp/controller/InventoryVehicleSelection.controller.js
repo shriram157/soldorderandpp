@@ -129,13 +129,18 @@ sap.ui.define([
 		},
 	
 		_onSelect: function () {
+			var Model = sap.ui.getCore().getModel('FirstTable');
+		if(Model.getProperty("/invtSelectEnabled")== true){
+				InvVehSel_controller.zitems = [];
+		}
+		//	InvVehSel_controller.permItems = [];
 		//	InvVehSel_controller.zitems = [];
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
 			var indiceArray = oTable.getSelectedIndices();
 
 			var tempModel = new sap.ui.model.json.JSONModel(); // 19 sep change 
 			sap.ui.getCore().setModel(tempModel, 'tempModel'); // 19 sep change 
-			var Model = sap.ui.getCore().getModel('FirstTable');
+			
 
 			for (var i = 0; i < indiceArray.length; i++) {
 				var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray[i]];
