@@ -65,12 +65,7 @@
 									<!--<Text text="{parts: [{path:'mainservices>Suffix'},{path:'mainservices>SUFFIX_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>-->
 								</t:template>
 							</t:Column>
-								<t:Column >
-								<Label text="{i18n>APX}" class="TableLabel"/>
-								<t:template>
-									<Text text="{inventoryModel>APX}"/>
-								</t:template>
-							</t:Column>
+							
 							<t:Column>
 								<Label text="{i18n>colour}" class="TableLabel"/>
 								<t:template>
@@ -79,6 +74,12 @@
 							<!--</ComboBox>-->
 								<Text text="{inventoryModel>ExteriorColorCode}" wrapping="false"/>
 									<!--<Text text="{parts: [{path:'mainservices>ExteriorColorCode'},{path:'mainservices>INTCOL_DESC_EN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>-->
+								</t:template>
+							</t:Column>
+								<t:Column >
+								<Label text="{i18n>APX}" class="TableLabel"/>
+								<t:template>
+									<Text text="{inventoryModel>APX}"/>
 								</t:template>
 							</t:Column>
 							<t:Column>
