@@ -916,6 +916,7 @@ sap.ui.define([
 
 		onAfterRendering: function () {
 			RSOA_controller.listOfModelYear();
+			
 		},
 		//-----------------------------------------
 		//---------Handling Select Year----------
@@ -1226,13 +1227,10 @@ sap.ui.define([
 				postalCode = postalCode.getParameters().newValue;
 				var postalRegEx = new RegExp(/^[ABCEGHJ-NPRSTV-Z]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/m);
 				if (postalRegEx.test(postalCode) == true) {
+					RSOA_controller.getView().byId("PostalCode_RSOA").setValueState("None");
 					return postalCode;
 				} else {
 					RSOA_controller.getView().byId("PostalCode_RSOA").setValueState("Error");
-					// var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
-					// var invalidPostalCode = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("SO000024");
-					// sap.m.MessageBox.show(invalidPostalCode, sap.m.MessageBox.Icon.ERROR, errTitle, sap
-					// 	.m.MessageBox.Action.OK, null, null);
 					return null;
 				}
 			}
@@ -1242,6 +1240,7 @@ sap.ui.define([
 				phoneNum = phoneNum.getParameters().newValue;
 				var phoneregEx = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
 				if (phoneregEx.test(phoneNum) == true) {
+					RSOA_controller.getView().byId("Phone_RSOA").setValueState("None");
 					return phoneNum;
 				} else {
 					RSOA_controller.getView().byId("Phone_RSOA").setValueState("Error");
