@@ -865,7 +865,7 @@ sap.ui.define([
 			var text = Oevent.getParameter("selectedContexts")[0].getProperty('SearchTerm2');
 			CFSO_controller.getView().getModel('mainservices').read("/Customer_infoSet('" + key + "')", {
 				success: function (data, textStatus, jqXHR) {
-					this.getView().getModel('FirstTable').setProperty("/newFanSelected", true);
+					CFSO_controller.getView().getModel('FirstTable').setProperty("/newFanSelected", true);
 					var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
 					CFSO_controller.getView().setModel(oModel, "Customer");
 					sap.ui.getCore().setModel(oModel, "CustomerData");
