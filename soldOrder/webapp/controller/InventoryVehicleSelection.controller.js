@@ -96,6 +96,13 @@ sap.ui.define([
 							}
 							DataModel.setData(obj);
 						} else {
+							for (var m = 0; m < data.d.results.length; m++) {
+								if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+									data.d.results[m].DropShip = "X";
+								} else {
+									data.d.results[m].DropShip = "";
+								}
+							}
 							DataModel.setData(data.d);
 						}
 
@@ -267,6 +274,13 @@ sap.ui.define([
 								}
 								DataModel.setData(obj);
 							} else {
+								for (var m = 0; m < data.d.results.length; m++) {
+									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+										data.d.results[m].DropShip = "X";
+									} else {
+										data.d.results[m].DropShip = "";
+									}
+								}
 								DataModel.setData(data.d);
 							}
 
@@ -362,6 +376,13 @@ sap.ui.define([
 								}
 								DataModel.setData(obj);
 							} else {
+								for (var m = 0; m < data.d.results.length; m++) {
+									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+										data.d.results[m].DropShip = "X";
+									} else {
+										data.d.results[m].DropShip = "";
+									}
+								}
 								DataModel.setData(data.d);
 							}
 
@@ -595,6 +616,13 @@ sap.ui.define([
 									DataModel.updateBindings(true);
 								}
 							} else {
+								for (var m = 0; m < data.d.results.length; m++) {
+									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+										data.d.results[m].DropShip = "X";
+									} else {
+										data.d.results[m].DropShip = "";
+									}
+								}
 								DataModel.setData(data.d);
 								DataModel.updateBindings(true);
 							}
