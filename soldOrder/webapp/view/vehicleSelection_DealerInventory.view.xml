@@ -32,13 +32,13 @@
 							<Column width="10%" resizable="false" sortProperty="Category">
 								<m:Label text="{i18n>ETAFrom}" class="TableLabel"/>
 								<template>
-									<m:Text text="{path:'inventoryModel>ETAFrom', formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}" wrapping="false"/>
+									<m:Text text="{path:'mainservices>ETAFrom', formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>ETATime}" class="TableLabel"/>
 								<template>
-									<m:Text text="{path:'inventoryModel>ETATo', formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}" wrapping="false"/>
+									<m:Text text="{path:'mainservices>ETATo', formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}" wrapping="false"/>
 								</template>
 							</Column>
 							<Column width="10%" resizable="false">
@@ -83,7 +83,7 @@
 							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>DropShip}" class="TableLabel"/>
 								<template>
-									<m:Text text="{inventoryModel>DropShip}"/>
+									<m:Text text="{mainservices>DropShip}"/>
 								</template>
 							</Column>
 						</columns>
