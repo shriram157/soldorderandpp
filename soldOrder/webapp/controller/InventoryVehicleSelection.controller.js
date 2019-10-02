@@ -24,7 +24,7 @@ sap.ui.define([
 				this);
 
 			InvVehSel_controller.zitems = [];
-		//	InvVehSel_controller.permItems = [];
+			//	InvVehSel_controller.permItems = [];
 		},
 		_getattachRouteMatched: function (parameters) {
 			this.zrequest = parameters.getParameters().arguments.Soreq;
@@ -64,6 +64,11 @@ sap.ui.define([
 							"results": []
 						};
 						for (var m = 0; m < data.d.results.length; m++) {
+							if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+								data.d.results[m].DropShip = "X";
+							} else {
+								data.d.results[m].DropShip = "";
+							}
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M" && data.d.results[m].TCISeries == "SIE") {
 								DataModel.getData().results.push(data.d.results[m]);
 							} else {
@@ -80,6 +85,11 @@ sap.ui.define([
 
 						if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 							for (var m = 0; m < data.d.results.length; m++) {
+								if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+									data.d.results[m].DropShip = "X";
+								} else {
+									data.d.results[m].DropShip = "";
+								}
 								if (data.d.results[m].TCISeries == "SIE") {
 									obj.results.push(data.d.results[m]);
 								}
@@ -127,20 +137,19 @@ sap.ui.define([
 			clicks = 0;
 			num = 0;
 		},
-	
+
 		_onSelect: function () {
 			var Model = sap.ui.getCore().getModel('FirstTable');
-		if(Model.getProperty("/invtSelectEnabled")== true){
+			if (Model.getProperty("/invtSelectEnabled") == true) {
 				InvVehSel_controller.zitems = [];
-		}
-		//	InvVehSel_controller.permItems = [];
-		//	InvVehSel_controller.zitems = [];
+			}
+			//	InvVehSel_controller.permItems = [];
+			//	InvVehSel_controller.zitems = [];
 			var oTable = InvVehSel_controller.getView().byId("idFSO_IVS_Table");
 			var indiceArray = oTable.getSelectedIndices();
 
 			var tempModel = new sap.ui.model.json.JSONModel(); // 19 sep change 
 			sap.ui.getCore().setModel(tempModel, 'tempModel'); // 19 sep change 
-			
 
 			for (var i = 0; i < indiceArray.length; i++) {
 				var binded = InvVehSel_controller.getView().byId("idFSO_IVS_Table").getBinding('rows').getContexts()[indiceArray[i]];
@@ -226,6 +235,11 @@ sap.ui.define([
 								"results": []
 							};
 							for (var m = 0; m < data.d.results.length; m++) {
+								if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+									data.d.results[m].DropShip = "X";
+								} else {
+									data.d.results[m].DropShip = "";
+								}
 								if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M" && data.d.results[m].TCISeries == "SIE") {
 									DataModel.getData().results.push(data.d.results[m]);
 								} else {
@@ -242,6 +256,11 @@ sap.ui.define([
 
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 								for (var m = 0; m < data.d.results.length; m++) {
+									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+										data.d.results[m].DropShip = "X";
+									} else {
+										data.d.results[m].DropShip = "";
+									}
 									if (data.d.results[m].TCISeries == "SIE") {
 										obj.results.push(data.d.results[m]);
 									}
@@ -310,6 +329,11 @@ sap.ui.define([
 								"results": []
 							};
 							for (var m = 0; m < data.d.results.length; m++) {
+								if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+									data.d.results[m].DropShip = "X";
+								} else {
+									data.d.results[m].DropShip = "";
+								}
 								if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M" && data.d.results[m].TCISeries == "SIE") {
 									DataModel.getData().results.push(data.d.results[m]);
 								} else {
@@ -327,6 +351,11 @@ sap.ui.define([
 
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 								for (var m = 0; m < data.d.results.length; m++) {
+									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+										data.d.results[m].DropShip = "X";
+									} else {
+										data.d.results[m].DropShip = "";
+									}
 									if (data.d.results[m].TCISeries == "SIE") {
 										obj.results.push(data.d.results[m]);
 									}
@@ -539,6 +568,11 @@ sap.ui.define([
 								"results": []
 							};*/
 						for (var m = 0; m < data.d.results.length; m++) {
+							if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+								data.d.results[m].DropShip = "X";
+							} else {
+								data.d.results[m].DropShip = "";
+							}
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M" && data.d.results[m].TCISeries == "SIE") {
 								DataModel.getData().results.push(data.d.results[m]);
 							} else {
@@ -550,6 +584,11 @@ sap.ui.define([
 						// }
 					} else {
 						for (var m = 0; m < data.d.results.length; m++) {
+							if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
+								data.d.results[m].DropShip = "X";
+							} else {
+								data.d.results[m].DropShip = "";
+							}
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 								if (data.d.results[m].TCISeries == "SIE") {
 									DataModel.getData().results.push(data.d.results[m]);
@@ -599,9 +638,9 @@ sap.ui.define([
 				}
 			});
 		},
-			onAfterRendering: function () {
-			
+		onAfterRendering: function () {
+
 		}
-		
+
 	});
 });
