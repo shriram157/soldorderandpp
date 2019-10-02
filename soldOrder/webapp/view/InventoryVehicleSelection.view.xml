@@ -103,8 +103,8 @@
 							<t:Column>
 								<Label text="{i18n>DropShip}" class="TableLabel"/>
 								<t:template>
-									<!--<Text text="{inventoryModel>DropShip}"/>-->
-									<core:Icon src="sap-icon://accept" color="#ADD8E6" visible="{=(${inventoryModel>DropShip} === 'true')}"/>
+									<Text text="{inventoryModel>DropShip}"/>
+									<!--<core:Icon src="sap-icon://accept" color="#ADD8E6" visible="{=(${inventoryModel>DropShip} === 'true')}"/>-->
 								</t:template>
 							</t:Column>
 								</t:columns>
