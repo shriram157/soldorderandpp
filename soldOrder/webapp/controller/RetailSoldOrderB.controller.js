@@ -661,14 +661,14 @@ sap.ui.define([
 				apxCB.destroyItems();
 				colorCB.setSelectedKey(null);
 				colorCB.destroyItems();
-				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				// var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
+						// new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
 						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
@@ -684,6 +684,7 @@ sap.ui.define([
 			this._oPopover.close();
 		},
 		series_selected: function (oEvent) {
+			// RSOB_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 
 			// var year = this.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
@@ -704,13 +705,13 @@ sap.ui.define([
 			if (series && modelyear) {
 				var modelCB = this.getView().byId("model_RSOB");
 
-				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				// var dealer = RSOB_controller.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				modelCB.bindItems({
 					// path: "VechileModel>/zc_model",
 					path: "mainservices>/ZVMS_Model_EXCLSet",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
+						// new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
 						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
