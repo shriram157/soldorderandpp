@@ -479,10 +479,10 @@ sap.ui.define([
 					success: function (oData, oResponse) {
 						CFSO_controller.dialog.close();
 						if (CFSO_controller.getView().getModel('FirstTable')) {
-							CFSO_controller.getView().getModel('FirstTable').setData().items="";
+							CFSO_controller.getView().getModel('FirstTable').getData().items="";
 						}
 						if (CFSO_controller.getView().getModel('SecondTable')) {
-							CFSO_controller.getView().getModel('SecondTable').setData().items="";
+							CFSO_controller.getView().getModel('SecondTable').getData().items="";
 						}
 						CFSO_controller.getView().getModel("Customer").setData("");
 						CFSO_controller.getView().byId("FanNo_CFSO").setValue("");
