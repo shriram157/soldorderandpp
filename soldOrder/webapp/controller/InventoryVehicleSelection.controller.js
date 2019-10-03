@@ -180,6 +180,8 @@ sap.ui.define([
 					INTCOL_DESC_EN: data.INTCOL_DESC_EN,
 					INTCOL_DESC_FR: data.INTCOL_DESC_FR,
 					APX: data.APX,
+					ETAFrom:data.ETAFrom,
+					ETATo:data.ETATo
 				});
 			}
 

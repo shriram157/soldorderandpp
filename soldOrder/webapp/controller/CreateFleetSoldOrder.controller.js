@@ -479,10 +479,10 @@ sap.ui.define([
 					success: function (oData, oResponse) {
 						CFSO_controller.dialog.close();
 						if (CFSO_controller.getView().getModel('FirstTable')) {
-							CFSO_controller.getView().getModel('FirstTable').getData().items="";
+							CFSO_controller.getView().getModel('FirstTable').setData().items="";
 						}
 						if (CFSO_controller.getView().getModel('SecondTable')) {
-							CFSO_controller.getView().getModel('SecondTable').getData().items="";
+							CFSO_controller.getView().getModel('SecondTable').setData().items="";
 						}
 						CFSO_controller.getView().getModel("Customer").setData("");
 						CFSO_controller.getView().byId("FanNo_CFSO").setValue("");
@@ -537,6 +537,8 @@ sap.ui.define([
 			// var res2 = seqNum.substring(0, 7);
 			// var dealerFleetNum = res.concat(res2);
 			// console.log(dealerFleetNum);
+			CFSO_controller.getView().getModel('SecondTable').refresh(true);
+			CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
 		},
 		_onAddRow2: function () {
 			var valModelYr = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
@@ -579,8 +581,9 @@ sap.ui.define([
 					ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
 					quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
 				});
-				this.getView().getModel('SecondTable').refresh();
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+				CFSO_controller.getView().getModel('SecondTable').refresh(true);
+				CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
+				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 			}
 		},
 
