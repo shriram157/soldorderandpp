@@ -488,6 +488,9 @@ sap.ui.define([
 						}
 						if (CFSO_controller.getView().getModel('SecondTable')) {
 							CFSO_controller.getView().getModel('SecondTable').getData().items = "";
+							CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
+								items:""
+							});
 						}
 						CFSO_controller.getView().getModel("Customer").setData("");
 						CFSO_controller.getView().byId("FanNo_CFSO").setValue("");
