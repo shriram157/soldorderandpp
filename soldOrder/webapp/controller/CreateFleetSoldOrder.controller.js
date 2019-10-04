@@ -4,7 +4,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (BaseController, formatter, JSONModel) {
 	"use strict";
-var CFSO_controller;
+	var CFSO_controller;
 	var TableData2 = [],
 		TableData1 = [],
 		_all_data = [];
@@ -15,7 +15,7 @@ var CFSO_controller;
 
 		onInit: function () {
 			CFSO_controller = this;
-			
+
 			// CFSO_controller.getBrowserLanguage();
 			CFSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var today = new Date();
@@ -66,12 +66,13 @@ var CFSO_controller;
 				items: TableData1,
 				submitEnabled: false,
 				invtSelectEnabled: false,
-				newFanSelected:false
+				newFanSelected: false
 			});
 			CFSO_controller.firstTblModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
 			CFSO_controller.getView().setModel(CFSO_controller.firstTblModel, 'FirstTable');
 			sap.ui.getCore().setModel(CFSO_controller.firstTblModel, 'FirstTable');
-			CFSO_controller.getOwnerComponent().getRouter().getRoute("CreateFleetSoldOrder").attachPatternMatched(CFSO_controller._onObjectMatched, CFSO_controller);
+			CFSO_controller.getOwnerComponent().getRouter().getRoute("CreateFleetSoldOrder").attachPatternMatched(CFSO_controller._onObjectMatched,
+				CFSO_controller);
 			var seriesCB = CFSO_controller.getView().byId("series_CFSO");
 
 			var host = CFSO_controller.host();
@@ -131,13 +132,13 @@ var CFSO_controller;
 			// });
 		},
 		_onObjectMatched: function (oEvent) {
-		
-		/*	var tableModelCreate= sap.ui.getCore().getModel('tableModelCreate');
-			var tableModel=sap.ui.getCore().getModel('tableModel');
-			console.log(tableModel.getData());
-			tableModelCreate.getData().push(tableModel.getData());
-			console.log(tableModelCreate.getData());*/
-		//	console.log("CFSO_controller.initialSeriesData", CFSO_controller.initialSeriesData);
+
+			/*	var tableModelCreate= sap.ui.getCore().getModel('tableModelCreate');
+				var tableModel=sap.ui.getCore().getModel('tableModel');
+				console.log(tableModel.getData());
+				tableModelCreate.getData().push(tableModel.getData());
+				console.log(tableModelCreate.getData());*/
+			//	console.log("CFSO_controller.initialSeriesData", CFSO_controller.initialSeriesData);
 			var seriesModel = new sap.ui.model.json.JSONModel();
 			if (CFSO_controller.initialSeriesData[0] && CFSO_controller.initialSeriesData[0].ModelSeriesNo === "ALL") {
 				delete CFSO_controller.initialSeriesData[0];
@@ -167,6 +168,9 @@ var CFSO_controller;
 			// 		sap.ui.getCore().getModel('FirstTable').getData() && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0)) {
 			// 	CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 			// }
+			if (TableData2) {
+				TableData2 = [];
+			}
 			if (sap.ui.getCore().getModel('FirstTable').getData() && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
 				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 			}
@@ -302,7 +306,7 @@ var CFSO_controller;
 				}
 			});
 		},
-		
+
 		listOfModelYear: function () {
 			var d = new Date();
 			var currentModelYear = d.getFullYear();
@@ -401,7 +405,7 @@ var CFSO_controller;
 				// 	CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 				// }
 			}
-					oTable.clearSelection("true");// 23 sep change
+			oTable.clearSelection("true"); // 23 sep change
 		},
 		onMandatoryValChange: function (evt) {
 			// 			if (evt.getParameter("value").length > 0) {
@@ -429,7 +433,7 @@ var CFSO_controller;
 					CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 				}
 			}
-				oTable.clearSelection("true");// 24 sep change
+			oTable.clearSelection("true"); // 24 sep change
 		},
 		_onSubmit: function () {
 			CFSO_controller.dialog.open();
@@ -480,10 +484,10 @@ var CFSO_controller;
 					success: function (oData, oResponse) {
 						CFSO_controller.dialog.close();
 						if (CFSO_controller.getView().getModel('FirstTable')) {
-							CFSO_controller.getView().getModel('FirstTable').getData().items="";
+							CFSO_controller.getView().getModel('FirstTable').getData().items = "";
 						}
 						if (CFSO_controller.getView().getModel('SecondTable')) {
-							CFSO_controller.getView().getModel('SecondTable').getData().items="";
+							CFSO_controller.getView().getModel('SecondTable').getData().items = "";
 						}
 						CFSO_controller.getView().getModel("Customer").setData("");
 						CFSO_controller.getView().byId("FanNo_CFSO").setValue("");
@@ -495,7 +499,7 @@ var CFSO_controller;
 						//
 						CFSO_controller.getView().byId("etaFrom_CFSO").setDateValue(null);
 						CFSO_controller.getView().byId("etaTo_CFSO").setDateValue(null);
-						
+
 						CFSO_controller.getView().byId("modelYr_CFSO").setValue("");
 						CFSO_controller.getView().byId("Apx_CFSO").setSelectedKey();
 						CFSO_controller.getView().byId("modelCode_CFSO").setSelectedKey();
@@ -582,6 +586,9 @@ var CFSO_controller;
 					ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
 					quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
 				});
+				CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
+					items: TableData2
+				});
 				CFSO_controller.getView().getModel('SecondTable').refresh(true);
 				CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
 				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
@@ -666,7 +673,7 @@ var CFSO_controller;
 		onnextyears: function (oEvent) {
 			CFSO_controller._oPopover.getContent()[0].nextPage();
 		},
-		
+
 		series_selected: function (oEvent) {
 
 			// var year = CFSO_controller.getView().byId('modelYr_RSOA').getValue();
@@ -921,63 +928,63 @@ var CFSO_controller;
 
 		},
 		onAfterRendering: function () {
-			// CFSO_controller.listOfModelYear();
-			// if (AppController.flagPPDUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagNationalSIPUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagNationalPPDUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagDealerUser == true) {
+				// CFSO_controller.listOfModelYear();
+				// if (AppController.flagPPDUser == true) {
+				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+				// }
+				// if (AppController.flagNationalSIPUser == true) {
+				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+				// }
+				// if (AppController.flagNationalPPDUser == true) {
+				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+				// }
+				// if (AppController.flagDealerUser == true) {
 
-			// }
-			// if (AppController.flagZoneUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagTCINationalUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagSIPUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagNationalUser == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-			// if (AppController.flagOrderingDealer == true) {
-			// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-			// }
-		}
-		// _handleServiceSuffix_Series: function () {
-		// 	var host = CFSO_controller.host();
-		// 	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
-		// 	$.ajax({
-		// 		url: oUrl,
-		// 		method: 'GET',
-		// 		async: false,
-		// 		dataType: 'json',
-		// 		success: function (data, textStatus, jqXHR) {
-		// 			var oModel = new sap.ui.model.json.JSONModel();
-		// 			oModel.setData(data.d.results);
-		// 			CFSO_controller.getView().setModel(oModel, "seriesModel");
-		// 		},
-		// 		error: function (jqXHR, textStatus, errorThrown) {
-		// 			sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-		// 				.m.MessageBox.Action.OK, null, null);
-		// 		}
-		// 	});
-		// },
-// _handleServiceSuffix_Series: function () {
-		// 	var host = CFSO_controller.host();
-		// 	var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_MODEL_DETAILS?$format=json";
-		// 	$.ajax({
-		// 		url: oUrl,
-		// 		method: 'GET',
-		// 		async: false,
-		// 		dataType: 'json',
-		// 		success: function (data, textStatus, jqXHR) {
+				// }
+				// if (AppController.flagZoneUser == true) {
+				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+				// }
+				// if (AppController.flagTCINationalUser == true) {
+				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+				// }
+				// if (AppController.flagSIPUser == true) {
+				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+				// }
+				// if (AppController.flagNationalUser == true) {
+				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+				// }
+				// if (AppController.flagOrderingDealer == true) {
+				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
+				// }
+			}
+			// _handleServiceSuffix_Series: function () {
+			// 	var host = CFSO_controller.host();
+			// 	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
+			// 	$.ajax({
+			// 		url: oUrl,
+			// 		method: 'GET',
+			// 		async: false,
+			// 		dataType: 'json',
+			// 		success: function (data, textStatus, jqXHR) {
+			// 			var oModel = new sap.ui.model.json.JSONModel();
+			// 			oModel.setData(data.d.results);
+			// 			CFSO_controller.getView().setModel(oModel, "seriesModel");
+			// 		},
+			// 		error: function (jqXHR, textStatus, errorThrown) {
+			// 			sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
+			// 				.m.MessageBox.Action.OK, null, null);
+			// 		}
+			// 	});
+			// },
+			// _handleServiceSuffix_Series: function () {
+			// 	var host = CFSO_controller.host();
+			// 	var oUrl = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_MODEL_DETAILS?$format=json";
+			// 	$.ajax({
+			// 		url: oUrl,
+			// 		method: 'GET',
+			// 		async: false,
+			// 		dataType: 'json',
+			// 		success: function (data, textStatus, jqXHR) {
 
 		// 			// console.log("Result from ZC_MODEL_DETAILS ");
 		// 			// console.log(data.d.results);
@@ -1022,7 +1029,7 @@ var CFSO_controller;
 		// 		}
 		// 	});
 		// },
-		
+
 		// getFleetCustomer: function () {
 		// 	var sLocation = window.location.host;
 		// 	var sLocation_conf = sLocation.search("webide");
