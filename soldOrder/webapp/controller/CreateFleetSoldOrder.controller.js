@@ -4,9 +4,9 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (BaseController, formatter, JSONModel) {
 	"use strict";
-	var CFSO_controller;
-	var _Table_Data2 = [],
-		_Table_Data1 = [],
+var CFSO_controller;
+	var TableData2 = [],
+		TableData1 = [],
 		_all_data = [];
 
 	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
@@ -22,7 +22,7 @@ sap.ui.define([
 			var day30 = new Date();
 			/*var tableModelCreate=new sap.ui.model.json.JSONModel([]);
 			sap.ui.getCore().setModel(tableModelCreate,'tableModelCreate');
-			this.getView().setModel('tableModelCreate');*/
+			CFSO_controller.getView().setModel('tableModelCreate');*/
 			//console.log(tableModelCreate.getData());
 			// CFSO_controller.getFleetCustomer();
 			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("fleetModel"), "fleetModel");
@@ -41,7 +41,7 @@ sap.ui.define([
 				}
 			}
 			CFSO_controller.getView().byId("etaFrom_CFSO").setMinDate(day5);
-			this._alldata = new JSONModel({
+			CFSO_controller._alldata = new JSONModel({
 				ZsoFltReqNo: 'FSO',
 				ZzdealerCode: '',
 				ZfanNo: '',
@@ -55,36 +55,37 @@ sap.ui.define([
 				ZstatusComment: '',
 				FHeadertoItems: _all_data
 			});
-			this.getView().setModel(this._alldata, 'Data');
-			this._data = new JSONModel({
-				items: _Table_Data2
+			CFSO_controller.getView().setModel(CFSO_controller._alldata, 'Data');
+			CFSO_controller.secondTblModel = new JSONModel({
+				items: TableData2
 			});
-			this._data.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
-			this.getView().setModel(this._data, 'SecondTable');
-			this._data2 = new JSONModel({
-				items: _Table_Data1,
+			CFSO_controller.secondTblModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+			CFSO_controller.getView().setModel(CFSO_controller.secondTblModel, 'SecondTable');
+			sap.ui.getCore().setModel(CFSO_controller.secondTblModel, 'SecondTable');
+			CFSO_controller.firstTblModel = new JSONModel({
+				items: TableData1,
 				submitEnabled: false,
 				invtSelectEnabled: false,
 				newFanSelected:false
 			});
-			this._data2.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
-			this.getView().setModel(this._data2, 'FirstTable');
-			sap.ui.getCore().setModel(this._data2, 'FirstTable');
-			this.getOwnerComponent().getRouter().getRoute("CreateFleetSoldOrder").attachPatternMatched(this._onObjectMatched, this);
+			CFSO_controller.firstTblModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+			CFSO_controller.getView().setModel(CFSO_controller.firstTblModel, 'FirstTable');
+			sap.ui.getCore().setModel(CFSO_controller.firstTblModel, 'FirstTable');
+			CFSO_controller.getOwnerComponent().getRouter().getRoute("CreateFleetSoldOrder").attachPatternMatched(CFSO_controller._onObjectMatched, CFSO_controller);
 			var seriesCB = CFSO_controller.getView().byId("series_CFSO");
 
 			var host = CFSO_controller.host();
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 			var brand;
 			if (isDivisionSent) {
-				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+				CFSO_controller.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 
-				if (this.sDivision == '10') // set the toyoto logo
+				if (CFSO_controller.sDivision == '10') // set the toyoto logo
 				{
-					this.brand = "TOY";
+					CFSO_controller.brand = "TOY";
 
 				} else { // set the lexus logo
-					this.brand = "LEX";
+					CFSO_controller.brand = "LEX";
 
 					// }
 				}
@@ -156,28 +157,28 @@ sap.ui.define([
 			CFSO_controller.dialog = new sap.m.BusyDialog({
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
 			});
-			this.getView().byId("idmenu1").setType('Transparent');
-			this.getView().byId("idmenu2").setType('Transparent');
-			this.getView().byId("idmenu3").setType('Emphasized');
-			this.getView().byId("idmenu4").setType('Transparent');
-			this.getView().byId("idmenu5").setType('Transparent');
-			this.getView().byId("idmenu9").setType('Transparent');
+			CFSO_controller.getView().byId("idmenu1").setType('Transparent');
+			CFSO_controller.getView().byId("idmenu2").setType('Transparent');
+			CFSO_controller.getView().byId("idmenu3").setType('Emphasized');
+			CFSO_controller.getView().byId("idmenu4").setType('Transparent');
+			CFSO_controller.getView().byId("idmenu5").setType('Transparent');
+			CFSO_controller.getView().byId("idmenu9").setType('Transparent');
 			// if ((sap.ui.getCore().getModel('FirstTable').getData() && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) || (sap.ui.getCore().getModel('SecondTable') != undefined &&
 			// 		sap.ui.getCore().getModel('FirstTable').getData() && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0)) {
-			// 	this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+			// 	CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 			// }
 			if (sap.ui.getCore().getModel('FirstTable').getData() && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 			}
 			// else if (sap.ui.getCore().getModel('SecondTable') != undefined) {
 			// 	if (sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) {
-			// 		this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+			// 		CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 			// 	} else {
-			// 		this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+			// 		CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 			// 	}
 			// }
 			else {
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 			}
 		},
 		_newService1: function () {
@@ -395,16 +396,16 @@ sap.ui.define([
 				}
 				oModel2.refresh();
 				// if (oModel2.getData().items.length <= 0) {
-				// 	this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+				// 	CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 				// } else {
-				// 	this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+				// 	CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 				// }
 			}
 					oTable.clearSelection("true");// 23 sep change
 		},
 		onMandatoryValChange: function (evt) {
 			// 			if (evt.getParameter("value").length > 0) {
-			// 				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+			// 				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 			// 			}
 		},
 		_onDelete2: function () {
@@ -423,59 +424,59 @@ sap.ui.define([
 				}
 				oModel2.refresh();
 				if (oModel2.getData().items.length <= 0) {
-					this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+					CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 				} else {
-					this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+					CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 				}
 			}
 				oTable.clearSelection("true");// 24 sep change
 		},
 		_onSubmit: function () {
 			CFSO_controller.dialog.open();
-			if (this.getView().byId("FanNo_CFSO").getValue() !== "") {
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
-				//this.getView().byId("ID_PONumber");
+			if (CFSO_controller.getView().byId("FanNo_CFSO").getValue() !== "") {
+				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+				//CFSO_controller.getView().byId("ID_PONumber");
 				_all_data.splice(0, _all_data.length);
 				var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 					pattern: "yyyy-MM-ddTHH:mm:ss"
 				});
-				_Table_Data1 = this.getView().getModel('FirstTable').getData().items;
-				for (var i = 0; i < _Table_Data1.length; i++) {
+				TableData1 = CFSO_controller.getView().getModel('FirstTable').getData().items;
+				for (var i = 0; i < TableData1.length; i++) {
 					_all_data.push({
 						FleetSONo: 'FSO',
 						FleetSOItem: i.toString(),
-						Model: _Table_Data1[i].Model,
-						Modelyear: _Table_Data1[i].Modelyear,
-						Suffix: _Table_Data1[i].Suffix,
-						ExteriorColourCode: _Table_Data1[i].ExteriorColorCode,
-						APX: _Table_Data1[i].APX,
-						ReqEtaFrom: zdateFormat.parse(_Table_Data1[i].ETAFrom),
-						ReqEtaTo: zdateFormat.parse(_Table_Data1[i].ETATo),
-						Zzvtn: _Table_Data1[i].ZZVTN
+						Model: TableData1[i].Model,
+						Modelyear: TableData1[i].Modelyear,
+						Suffix: TableData1[i].Suffix,
+						ExteriorColourCode: TableData1[i].ExteriorColorCode,
+						APX: TableData1[i].APX,
+						ReqEtaFrom: zdateFormat.parse(TableData1[i].ETAFrom),
+						ReqEtaTo: zdateFormat.parse(TableData1[i].ETATo),
+						Zzvtn: TableData1[i].ZZVTN
 					});
 				}
-				var length = _Table_Data1.length;
-				for (var i = 0; i < _Table_Data2.length; i++) {
+				var length = TableData1.length;
+				for (var i = 0; i < TableData2.length; i++) {
 					length = length + i;
 					_all_data.push({
 						FleetSONo: 'FSO',
 						FleetSOItem: length.toString(),
-						Model: _Table_Data2[i].model,
-						Modelyear: _Table_Data2[i].modelYear,
-						Suffix: _Table_Data2[i].suffix,
-						ExteriorColourCode: _Table_Data2[i].colour,
-						APX: _Table_Data2[i].APX,
-						ReqEtaFrom: _Table_Data2[i].ETAFrom,
-						ReqEtaTo: _Table_Data2[i].ETATime,
-						FltSOQty: _Table_Data2[i].quantity
+						Model: TableData2[i].model,
+						Modelyear: TableData2[i].modelYear,
+						Suffix: TableData2[i].suffix,
+						ExteriorColourCode: TableData2[i].colour,
+						APX: TableData2[i].APX,
+						ReqEtaFrom: TableData2[i].ETAFrom,
+						ReqEtaTo: TableData2[i].ETATime,
+						FltSOQty: TableData2[i].quantity
 							// series: valSeries,
 					});
 
 				}
-				this.getView().getModel('Data').getData().Zendcu = this.getView().getModel('Customer').getData().Partner;
+				CFSO_controller.getView().getModel('Data').getData().Zendcu = CFSO_controller.getView().getModel('Customer').getData().Partner;
 				var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
-				this.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
-				this.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', this.getView().getModel('Data').getData(), {
+				CFSO_controller.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
+				CFSO_controller.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', CFSO_controller.getView().getModel('Data').getData(), {
 					success: function (oData, oResponse) {
 						CFSO_controller.dialog.close();
 						if (CFSO_controller.getView().getModel('FirstTable')) {
@@ -513,7 +514,7 @@ sap.ui.define([
 				});
 			} else {
 				CFSO_controller.dialog.close();
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 				sap.m.MessageBox.show(sap.ui.getCore().getModel("i18n").getResourceBundle().getText("CompleteAllFields"), sap.m.MessageBox
 					.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error"), sap.m.MessageBox.Action.OK, null,
 					null);
@@ -563,14 +564,14 @@ sap.ui.define([
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" || etaFrom === null ||
 				etaTo === null || quantity == "") {
 				var errForm = formatter.formatErrorType("SO00003");
-				this.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
 				sap.m.MessageBox.show(errMsg, sap
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 
 			} else {
-				_Table_Data2.push({
+				TableData2.push({
 					modelYear: valModelYr,
 					suffix: valSuffix,
 					series: valSeries,
@@ -599,23 +600,23 @@ sap.ui.define([
 		//--------------------------------------------
 		select_year: function (Oevent) {
 
-			if (!this._oPopover) {
-				this._oPopover = sap.ui.xmlfragment("YearPopup", "toyota.ca.SoldOrder.view.fragments.YearPopup", this);
-				this.getView().addDependent(this._oPopover);
+			if (!CFSO_controller._oPopover) {
+				CFSO_controller._oPopover = sap.ui.xmlfragment("YearPopup", "toyota.ca.SoldOrder.view.fragments.YearPopup", CFSO_controller);
+				CFSO_controller.getView().addDependent(CFSO_controller._oPopover);
 			}
-			this._oPopover.openBy(Oevent.getSource());
+			CFSO_controller._oPopover.openBy(Oevent.getSource());
 
 		},
 		handleSelectYearPress: function (Oevent) {
-			this.getView().byId("modelYr_CFSO").setValue(this._oPopover.getContent()[0].getYear());
-			var series = this.getView().byId('series_CFSO').getSelectedKey();
-			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
+			CFSO_controller.getView().byId("modelYr_CFSO").setValue(CFSO_controller._oPopover.getContent()[0].getYear());
+			var series = CFSO_controller.getView().byId('series_CFSO').getSelectedKey();
+			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
 
 			if (series && modelyear) {
-				var modelCB = this.getView().byId("modelCode_CFSO");
-				var suffixCB = this.getView().byId("suffix_CFSO");
-				var apxCB = this.getView().byId("Apx_CFSO");
-				var colorCB = this.getView().byId("color_CFSO");
+				var modelCB = CFSO_controller.getView().byId("modelCode_CFSO");
+				var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
+				var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
+				var colorCB = CFSO_controller.getView().byId("color_CFSO");
 				modelCB.setSelectedKey(null);
 				modelCB.destroyItems();
 				suffixCB.setSelectedKey(null);
@@ -651,34 +652,34 @@ sap.ui.define([
 						text: model
 					})
 				});
-				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				// var items_binding = CFSO_controller.getView().byId('model_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
-			this._oPopover.close();
+			CFSO_controller._oPopover.close();
 		},
 		initailyear: function (oEvent) {
-			this._oPopover.getContent()[0].setDate(new Date());
+			CFSO_controller._oPopover.getContent()[0].setDate(new Date());
 		},
 		onpreviousyears: function (oEvent) {
-			this._oPopover.getContent()[0].previousPage();
+			CFSO_controller._oPopover.getContent()[0].previousPage();
 		},
 		onnextyears: function (oEvent) {
-			this._oPopover.getContent()[0].nextPage();
+			CFSO_controller._oPopover.getContent()[0].nextPage();
 		},
 		
 		series_selected: function (oEvent) {
 
-			// var year = this.getView().byId('modelYr_RSOA').getValue();
+			// var year = CFSO_controller.getView().byId('modelYr_RSOA').getValue();
 			// items="{ path: 'oModel3>/'}"
 
-			var series = this.getView().byId('series_CFSO').getSelectedKey();
-			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
+			var series = CFSO_controller.getView().byId('series_CFSO').getSelectedKey();
+			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
 
 			if (series && modelyear) {
-				var modelCB = this.getView().byId("modelCode_CFSO");
-				var suffixCB = this.getView().byId("suffix_CFSO");
-				var apxCB = this.getView().byId("Apx_CFSO");
-				var colorCB = this.getView().byId("color_CFSO");
+				var modelCB = CFSO_controller.getView().byId("modelCode_CFSO");
+				var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
+				var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
+				var colorCB = CFSO_controller.getView().byId("color_CFSO");
 				modelCB.setSelectedKey(null);
 				modelCB.destroyItems();
 				suffixCB.setSelectedKey(null);
@@ -712,14 +713,14 @@ sap.ui.define([
 						text: model
 					})
 				});
-				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				// var items_binding = CFSO_controller.getView().byId('model_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
 		},
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = oEvent.getSource().getSelectedKey();
-			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
+			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
 			// var language = CFSO_controller.returnBrowserLanguage();
 			var suf;
 			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
@@ -727,14 +728,14 @@ sap.ui.define([
 			var brand;
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 			if (isDivisionSent) {
-				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+				CFSO_controller.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 
-				if (this.sDivision == '10') // set the toyoto logo
+				if (CFSO_controller.sDivision == '10') // set the toyoto logo
 				{
-					this.brand = "TOYOTA";
+					CFSO_controller.brand = "TOYOTA";
 
 				} else { // set the lexus logo
-					this.brand = "LEXUS";
+					CFSO_controller.brand = "LEXUS";
 
 					// }
 				}
@@ -749,10 +750,10 @@ sap.ui.define([
 
 			}
 			if (model && modelyear) {
-				// var modelCB = this.getView().byId("modelCode_CFSO");
-				var suffixCB = this.getView().byId("suffix_CFSO");
-				var apxCB = this.getView().byId("Apx_CFSO");
-				var colorCB = this.getView().byId("color_CFSO");
+				// var modelCB = CFSO_controller.getView().byId("modelCode_CFSO");
+				var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
+				var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
+				var colorCB = CFSO_controller.getView().byId("color_CFSO");
 				// 		modelCB.setSelectedKey(null);
 				// modelCB.destroyItems();
 				suffixCB.setSelectedKey(null);
@@ -765,7 +766,7 @@ sap.ui.define([
 					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-						new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, this.brand)
+						new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, CFSO_controller.brand)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
@@ -773,7 +774,7 @@ sap.ui.define([
 						text: suf
 					})
 				});
-				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
+				// var items_binding = CFSO_controller.getView().byId('Suffix_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
 				// ], true));
@@ -781,12 +782,12 @@ sap.ui.define([
 		},
 		suffix_selected: function (oEvent) {
 			var suffix = oEvent.getSource().getSelectedKey();
-			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
-			var model = this.getView().byId('modelCode_CFSO').getSelectedKey();
+			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
+			var model = CFSO_controller.getView().byId('modelCode_CFSO').getSelectedKey();
 			if (model && modelyear && suffix) {
-				// var suffixCB = this.getView().byId("suffix_CFSO");
-				var apxCB = this.getView().byId("Apx_CFSO");
-				var colorCB = this.getView().byId("color_CFSO");
+				// var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
+				var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
+				var colorCB = CFSO_controller.getView().byId("color_CFSO");
 				// 		modelCB.setSelectedKey(null);
 				// modelCB.destroyItems();
 				// suffixCB.setSelectedKey(null);
@@ -808,7 +809,7 @@ sap.ui.define([
 						text: "{mainservices>zzapx}"
 					})
 				});
-				// var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');
+				// var items_binding = CFSO_controller.getView().byId('Apx_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
 				// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
@@ -834,7 +835,7 @@ sap.ui.define([
 						text: color
 					})
 				});
-				// var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
+				// var items_binding = CFSO_controller.getView().byId('Colour_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
 				// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
@@ -846,12 +847,12 @@ sap.ui.define([
 		//----------Fan Number---------------
 		//----------------------------------
 		_valuehelpfanno: function (oEvent) {
-			if (!this._addNewFanPage) {
-				this._addNewFanPage = sap.ui.xmlfragment('FanNo', "toyota.ca.SoldOrder.view.fragments.FanNo", this);
-				this.getView().addDependent(this._addNewFanPage);
+			if (!CFSO_controller._addNewFanPage) {
+				CFSO_controller._addNewFanPage = sap.ui.xmlfragment('FanNo', "toyota.ca.SoldOrder.view.fragments.FanNo", CFSO_controller);
+				CFSO_controller.getView().addDependent(CFSO_controller._addNewFanPage);
 			}
-			// this._addNewFanPage.setModel(this.getView().getModel());
-			this._addNewFanPage.open();
+			// CFSO_controller._addNewFanPage.setModel(CFSO_controller.getView().getModel());
+			CFSO_controller._addNewFanPage.open();
 		},
 		isNumberKey: function (evt) {
 			evt = (evt) ? evt : window.event;
@@ -867,7 +868,7 @@ sap.ui.define([
 			CFSO_controller.dialog.open();
 			CFSO_controller.getView().byId("series_CFSO").setSelectedKey();
 			CFSO_controller.getView().getModel('FirstTable').setProperty("/invtSelectEnabled", true);
-			var Fan = this.getView().byId("FanNo_CFSO");
+			var Fan = CFSO_controller.getView().byId("FanNo_CFSO");
 			var key = Oevent.getParameter("selectedContexts")[0].getProperty('BusinessPartnerKey');
 			var text = Oevent.getParameter("selectedContexts")[0].getProperty('SearchTerm2');
 			CFSO_controller.getView().getModel('mainservices').read("/Customer_infoSet('" + key + "')", {
@@ -1029,23 +1030,23 @@ sap.ui.define([
 		// 	var sPrefix;
 		// 	if (sLocation_conf == 0) {
 		// 		sPrefix = "/soldorder_node"; //ecpSales_node_secured
-		// 		this.fleetUrl = "/userDetails/FleetCustomers"; //"/userDetails/attributesforlocaltesting";
+		// 		CFSO_controller.fleetUrl = "/userDetails/FleetCustomers"; //"/userDetails/attributesforlocaltesting";
 		// 	} else {
 		// 		sPrefix = "";
-		// 		this.fleetUrl = "/userDetails/FleetCustomers";
+		// 		CFSO_controller.fleetUrl = "/userDetails/FleetCustomers";
 		// 	}
 
 		// 	//======================================================================================================================//			
 		// 	//  on init method,  get the token attributes and authentication details to the UI from node layer.  - begin
 		// 	//======================================================================================================================//		
 		// 	//  get the Scopes to the UI 
-		// 	//this.sPrefix ="";
+		// 	//CFSO_controller.sPrefix ="";
 
-		// 	var that = this;
+		// 	var that = CFSO_controller;
 		// 	// var zjson = new JSONModel();
 		// 	// sap.ui.getCore().setModel(zjson,"LoginUserModel");
 		// 	$.ajax({
-		// 		url: sPrefix + this.fleetUrl,
+		// 		url: sPrefix + CFSO_controller.fleetUrl,
 		// 		type: "GET",
 		// 		dataType: "json",
 		// 		async: false,
@@ -1072,28 +1073,28 @@ sap.ui.define([
 		// // var valModelCode = CFSO_controller.getView().byId("modelCode_CFSO").getValue();
 		// series_selected: function (oEvent) {
 
-		// 	// var year = this.getView().byId('modelYr_RSOA').getValue();
+		// 	// var year = CFSO_controller.getView().byId('modelYr_RSOA').getValue();
 		// 	// items="{ path: 'oModel3>/'}"
 		// 	var series = oEvent.getSource().getSelectedKey();
 		// 	if (series) {
-		// 		this.getView().byId("modelCode_CFSO").bindItems("oModel3>/", new sap.ui.core.ListItem({
+		// 		CFSO_controller.getView().byId("modelCode_CFSO").bindItems("oModel3>/", new sap.ui.core.ListItem({
 		// 			key: "{oModel3>Model}",
 		// 			text: "{parts: [{path:'oModel3>Model'},{path:'oModel3>ModelDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 		// 		}));
-		// 		var items_binding = this.getView().byId("modelCode_CFSO").getBinding('items');
+		// 		var items_binding = CFSO_controller.getView().byId("modelCode_CFSO").getBinding('items');
 		// 		items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 		// 	}
 		// },
 		// model_selected: function (oEvent) {
 		// 	// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 		// 	var model = oEvent.getSource().getSelectedKey();
-		// 	var modelyear = this.getView().byId("modelYr_CFSO").getValue();
+		// 	var modelyear = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
 		// 	if (model && modelyear) {
-		// 		this.getView().byId('suffix_CFSO').bindItems('oModel1>/', new sap.ui.core.ListItem({
+		// 		CFSO_controller.getView().byId('suffix_CFSO').bindItems('oModel1>/', new sap.ui.core.ListItem({
 		// 			key: "{oModel1>Suffix}",
 		// 			text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel1>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
 		// 		}));
-		// 		var items_binding = this.getView().byId('suffix_CFSO').getBinding('items');
+		// 		var items_binding = CFSO_controller.getView().byId('suffix_CFSO').getBinding('items');
 		// 		items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 		// 			new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
 		// 		], true));
@@ -1105,14 +1106,14 @@ sap.ui.define([
 		// 	//----------------
 		// 	//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
 		// 	var suffix = oEvent.getSource().getSelectedKey();
-		// 	var modelyear = this.getView().byId("modelYr_CFSO").getValue();
-		// 	var model = this.getView().byId("modelCode_CFSO").getSelectedKey();
+		// 	var modelyear = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
+		// 	var model = CFSO_controller.getView().byId("modelCode_CFSO").getSelectedKey();
 		// 	if (model && modelyear && suffix) {
-		// 		// this.getView().byId('Apx_RSOA').bindItems('mode_Model>/', new sap.ui.core.ListItem({
+		// 		// CFSO_controller.getView().byId('Apx_RSOA').bindItems('mode_Model>/', new sap.ui.core.ListItem({
 		// 		// 	key: "{mode_Model>zzapx}",
 		// 		// 	text: "{mode_Model>zzapx}"
 		// 		// }));
-		// 		// var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');
+		// 		// var items_binding = CFSO_controller.getView().byId('Apx_RSOA').getBinding('items');
 		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
 		// 		// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
 		// 		// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
@@ -1120,11 +1121,11 @@ sap.ui.define([
 		// 		//-----------------
 		// 		//----Color---------
 		// 		//----------------
-		// 		this.getView().byId('color_CFSO').bindItems('oModel2>/', new sap.ui.core.ListItem({
+		// 		CFSO_controller.getView().byId('color_CFSO').bindItems('oModel2>/', new sap.ui.core.ListItem({
 		// 			key: "{oModel2>ExteriorColorCode}",
 		// 			text: "{parts: [{path:'oModel2>ExteriorColorCode'},{path:'oModel2>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 		// 		}));
-		// 		var items_binding = this.getView().byId('color_CFSO').getBinding('items');
+		// 		var items_binding = CFSO_controller.getView().byId('color_CFSO').getBinding('items');
 		// 		items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 		// 			new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
 		// 			new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
