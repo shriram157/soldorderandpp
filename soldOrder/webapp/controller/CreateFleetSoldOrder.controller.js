@@ -919,6 +919,7 @@ sap.ui.define([
 					CFSO_controller.getView().setModel(oModel, "Customer");
 					sap.ui.getCore().setModel(oModel, "CustomerData");
 					Fan.setValue(text);
+					CFSO_controller.onMandatoryValChange();
 					CFSO_controller.updateSeries();
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -949,7 +950,7 @@ sap.ui.define([
 			CFSO_controller.getView().getModel("seriesModel").setData(dataUpdated);
 			console.log("data", CFSO_controller.getView().getModel("seriesModel"));
 			CFSO_controller.getView().getModel("seriesModel").updateBindings(true);
-			CFSO_controller.onMandatoryValChange();
+			
 		},
 		handleSearchFan: function (oEvent) {
 			var searchString = oEvent.getParameter("value");
