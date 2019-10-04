@@ -76,7 +76,7 @@ sap.ui.define([
 							}
 						}
 						DataModel.updateBindings(true);
-						console.log("DataModel.getData()", DataModel.getData());
+						// console.log("DataModel.getData()", DataModel.getData());
 						// }
 					} else {
 						var obj = {
@@ -107,7 +107,7 @@ sap.ui.define([
 						}
 
 						DataModel.updateBindings(true);
-						console.log("DataModel.getData()", DataModel.getData());
+						// console.log("DataModel.getData()", DataModel.getData());
 
 						if (data.d.results.length < 10) {
 							BtnNext.setEnabled(false);
@@ -256,7 +256,7 @@ sap.ui.define([
 								}
 							}
 							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
+							// console.log("DataModel.getData()", DataModel.getData());
 							// }
 						} else {
 							var obj = {
@@ -287,7 +287,7 @@ sap.ui.define([
 							}
 
 							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
+							// console.log("DataModel.getData()", DataModel.getData());
 
 							if (data.d.results.length < 10) {
 								BtnNext.setEnabled(false);
@@ -358,7 +358,7 @@ sap.ui.define([
 							}
 							// DataModel.getData().results.push(obj);
 							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
+							// console.log("DataModel.getData()", DataModel.getData());
 							// }
 						} else {
 							var obj = {
@@ -389,7 +389,7 @@ sap.ui.define([
 							}
 
 							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
+							// console.log("DataModel.getData()", DataModel.getData());
 
 							if (data.d.results.length < 10) {
 								BtnNext.setEnabled(false);
@@ -603,7 +603,7 @@ sap.ui.define([
 							}
 						}
 						DataModel.updateBindings(true);
-						console.log("DataModel.getData()", DataModel.getData());
+						// console.log("DataModel.getData()", DataModel.getData());
 						// }
 					} else {
 						for (var m = 0; m < data.d.results.length; m++) {
@@ -629,7 +629,7 @@ sap.ui.define([
 								DataModel.updateBindings(true);
 							}
 							DataModel.updateBindings(true);
-							console.log("DataModel.getData()", DataModel.getData());
+							// console.log("DataModel.getData()", DataModel.getData());
 						}
 						if (data.d.results.length < 10) {
 							BtnNext.setEnabled(false);

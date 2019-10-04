@@ -77,7 +77,7 @@ sap.ui.define([
 			globalComboModel.updateBindings(true);
 			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
 			this.getView().setModel(sap.ui.getCore().getModel("globalComboModel"), "globalComboModel");
-			console.log(sap.ui.getCore().getModel("globalComboModel"));
+			// console.log(sap.ui.getCore().getModel("globalComboModel"));
 
 			var AuditModel = new sap.ui.model.json.JSONModel();
 			var Object;
@@ -116,7 +116,7 @@ sap.ui.define([
 			AuditModel.updateBindings(true);
 			sap.ui.getCore().setModel(AuditModel, "AuditModel");
 			this.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
-			console.log(sap.ui.getCore().getModel("AuditModel"));
+			// console.log(sap.ui.getCore().getModel("AuditModel"));
 			//FSOD_controller.enableExportButton();
 		},
 		_onObjectMatched: function (oEvent) {
@@ -222,7 +222,7 @@ sap.ui.define([
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
-								console.log("DataModel.getData()", DataModel.getData());
+								// console.log("DataModel.getData()", DataModel.getData());
 							}
 						} else {
 							DataModel.setData(data.d.results);
@@ -697,7 +697,7 @@ sap.ui.define([
 
 			//loop is to extract each row
 			for (var i = 0; i < arrData.length; i++) {
-				console.log(arrData[i]);
+				// console.log(arrData[i]);
 				var row = "";
 				row = " ";
 				row += arrData[i].ZzsoReqNo + ',' +
@@ -833,7 +833,7 @@ sap.ui.define([
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
-								console.log("DataModel.getData()", DataModel.getData());
+								// console.log("DataModel.getData()", DataModel.getData());
 							}
 						} else {
 							DataModel.setData(data.d.results);
@@ -903,7 +903,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
+									// console.log("DataModel.getData()", DataModel.getData());
 								}
 							} else {
 								DataModel.setData(data.d.results);
@@ -977,7 +977,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
+									// console.log("DataModel.getData()", DataModel.getData());
 								}
 							} else {
 								DataModel.setData(data.d.results);

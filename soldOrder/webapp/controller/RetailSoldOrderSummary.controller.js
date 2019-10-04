@@ -279,7 +279,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
+									// console.log("DataModel.getData()", DataModel.getData());
 								}
 							} else {
 								DataModel.setData(data.d.results);
@@ -901,7 +901,7 @@ sap.ui.define([
 
 			//loop is to extract each row
 			for (var i = 0; i < arrData.length; i++) {
-				console.log(arrData[i]);
+				// console.log(arrData[i]);
 				// var row = "";
 				row = " ";
 				row += arrData[i].ZzsoReqNo + ',' +
@@ -1020,7 +1020,7 @@ sap.ui.define([
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
-								console.log("DataModel.getData()", DataModel.getData());
+								// console.log("DataModel.getData()", DataModel.getData());
 							}
 						} else {
 							if (data.d.results.length <= 10) {
@@ -1096,7 +1096,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
+									// console.log("DataModel.getData()", DataModel.getData());
 								}
 							} else {
 								if (data.d.results.length <= 10) {
@@ -1173,7 +1173,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
+									// console.log("DataModel.getData()", DataModel.getData());
 								}
 							} else {
 								if (data.d.results.length <= 10) {
