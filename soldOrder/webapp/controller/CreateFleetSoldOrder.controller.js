@@ -411,6 +411,25 @@ sap.ui.define([
 			// 			if (evt.getParameter("value").length > 0) {
 			// 				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 			// 			}
+			var modelCB = CFSO_controller.getView().byId("modelCode_CFSO");
+			var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
+			var series = CFSO_controller.getView().byId("series_CFSO");
+			var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
+			var colorCB = CFSO_controller.getView().byId("color_CFSO");
+			CFSO_controller.getView().byId("quantity_CFSO").setValue("");
+			CFSO_controller.getView().byId("etaFrom_CFSO").setDateValue(null);
+			CFSO_controller.getView().byId("etaTo_CFSO").setDateValue(null);
+			series.setSelectedKey(null);
+			series.destroyItems();
+			modelCB.setSelectedKey(null);
+			modelCB.destroyItems();
+			suffixCB.setSelectedKey(null);
+			suffixCB.destroyItems();
+			apxCB.setSelectedKey(null);
+			apxCB.destroyItems();
+			colorCB.setSelectedKey(null);
+			colorCB.destroyItems();
+
 		},
 		_onDelete2: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table2");
@@ -489,7 +508,7 @@ sap.ui.define([
 						if (CFSO_controller.getView().getModel('SecondTable')) {
 							CFSO_controller.getView().getModel('SecondTable').getData().items = "";
 							CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
-								items:""
+								items: ""
 							});
 						}
 						CFSO_controller.getView().getModel("Customer").setData("");
@@ -499,7 +518,7 @@ sap.ui.define([
 						//CFSO_controller.getView().byId("modelYr_CFSO").setSelectedKey();
 						CFSO_controller.getView().byId("suffix_CFSO").setSelectedKey();
 						CFSO_controller.getView().byId("color_CFSO").setSelectedKey();
-						//
+						//	CFSO_controller.getView().byId("quantity_CFSO").setValue("");
 						CFSO_controller.getView().byId("etaFrom_CFSO").setDateValue(null);
 						CFSO_controller.getView().byId("etaTo_CFSO").setDateValue(null);
 
@@ -690,6 +709,9 @@ sap.ui.define([
 				var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
 				var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
 				var colorCB = CFSO_controller.getView().byId("color_CFSO");
+				CFSO_controller.getView().byId("quantity_CFSO").setValue("");
+				CFSO_controller.getView().byId("etaFrom_CFSO").setDateValue(null);
+				CFSO_controller.getView().byId("etaTo_CFSO").setDateValue(null);
 				modelCB.setSelectedKey(null);
 				modelCB.destroyItems();
 				suffixCB.setSelectedKey(null);
@@ -764,6 +786,9 @@ sap.ui.define([
 				var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
 				var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
 				var colorCB = CFSO_controller.getView().byId("color_CFSO");
+				CFSO_controller.getView().byId("quantity_CFSO").setValue("");
+				CFSO_controller.getView().byId("etaFrom_CFSO").setDateValue(null);
+				CFSO_controller.getView().byId("etaTo_CFSO").setDateValue(null);
 				// 		modelCB.setSelectedKey(null);
 				// modelCB.destroyItems();
 				suffixCB.setSelectedKey(null);
@@ -796,8 +821,13 @@ sap.ui.define([
 			var model = CFSO_controller.getView().byId('modelCode_CFSO').getSelectedKey();
 			if (model && modelyear && suffix) {
 				// var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
+
+				CFSO_controller.getView().byId("quantity_CFSO").setValue("");
+				CFSO_controller.getView().byId("etaFrom_CFSO").setDateValue(null);
+				CFSO_controller.getView().byId("etaTo_CFSO").setDateValue(null);
 				var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
 				var colorCB = CFSO_controller.getView().byId("color_CFSO");
+
 				// 		modelCB.setSelectedKey(null);
 				// modelCB.destroyItems();
 				// suffixCB.setSelectedKey(null);
