@@ -419,6 +419,7 @@ sap.ui.define([
 			CFSO_controller.getView().byId("quantity_CFSO").setValue("");
 			CFSO_controller.getView().byId("etaFrom_CFSO").setDateValue(null);
 			CFSO_controller.getView().byId("etaTo_CFSO").setDateValue(null);
+			CFSO_controller.getView().byId("modelYr_CFSO").setValue("");
 			series.setSelectedKey(null);
 			series.destroyItems();
 			modelCB.setSelectedKey(null);
@@ -948,6 +949,7 @@ sap.ui.define([
 			CFSO_controller.getView().getModel("seriesModel").setData(dataUpdated);
 			console.log("data", CFSO_controller.getView().getModel("seriesModel"));
 			CFSO_controller.getView().getModel("seriesModel").updateBindings(true);
+			CFSO_controller.onMandatoryValChange();
 		},
 		handleSearchFan: function (oEvent) {
 			var searchString = oEvent.getParameter("value");
