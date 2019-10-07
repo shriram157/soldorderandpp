@@ -152,7 +152,7 @@ sap.ui.define([
 			} else {
 				temp2 = temp;
 			}
-			console.log("temp2", temp2);
+			//console.log("temp2", temp2);
 			seriesModel.setData(temp2);
 			CFSO_controller.getView().setModel(seriesModel, "seriesModel");
 			CFSO_controller.dialog = new sap.m.BusyDialog({
@@ -946,9 +946,9 @@ sap.ui.define([
 			} else {
 				dataUpdated = data;
 			}
-			console.log("dataUpdated", dataUpdated);
+		//	console.log("dataUpdated", dataUpdated);
 			CFSO_controller.getView().getModel("seriesModel").setData(dataUpdated);
-			console.log("data", CFSO_controller.getView().getModel("seriesModel"));
+		//	console.log("data", CFSO_controller.getView().getModel("seriesModel"));
 			CFSO_controller.getView().getModel("seriesModel").updateBindings(true);
 			
 		},
