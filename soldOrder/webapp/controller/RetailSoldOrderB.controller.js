@@ -460,7 +460,7 @@ sap.ui.define([
 			var valProvince = RSOB_controller.getView().byId("Province_RSOB").getValue();
 			var valPostalCode = RSOB_controller.getView().byId("PostalCode_RSOB").getValue();
 			// var valLicense = RSOB_controller.getView().byId("License_RSOB").getValue();
-			var valCustName = RSOB_controller.getView().byId("CustName_RSOA").getValue();
+			var valCustName = RSOB_controller.getView().byId("CustName_RSOB").getValue(); ///RSOA here, check 
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
 			if (valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
 				valProvince == "" || valPostalCode == "" || valCustName == "") {
@@ -676,17 +676,17 @@ sap.ui.define([
 						text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 					})
 				});
-				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				// var items_binding = this.getView().byId('model_RSOB').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
-			// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+			// var items_binding = this.getView().byId('model_RSOB').getBinding('items');
 			//  items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
 			this._oPopover.close();
 		},
 		series_selected: function (oEvent) {
 			// RSOB_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 
-			// var year = this.getView().byId('modelYr_RSOA').getValue();
+			// var year = this.getView().byId('modelYr_RSOB').getValue();
 			// items="{ path: 'oModel3>/'}"
 			var modelyear = this.getView().byId('modelYr_RSOB').getText();
 			var model;
@@ -719,7 +719,7 @@ sap.ui.define([
 						text: model
 					})
 				});
-				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				// var items_binding = this.getView().byId('model_RSOB').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
 		},
@@ -744,7 +744,7 @@ sap.ui.define([
 		},
 		handleSelectYearPress1: function (Oevent) {
 			input_ref.setValue(Oevent.getSource().getYear()); //this._oPopover.getContent()[0].getYear()
-			// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+			// var items_binding = this.getView().byId('model_RSOB').getBinding('items');
 			//  items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
 			this._oPopover1.close();
 		},
@@ -756,13 +756,39 @@ sap.ui.define([
 			if (Oevent.getParameters().selectedItem.getKey() == "1") {
 				RSOB_controller.getView().byId("tcciNo_RSOB").setValue("N/A");
 				RSOB_controller.getView().byId("tcciNo_RSOB").setEnabled(false);
-				// tcciNo_RSOA
+				// tcciNo_RSOB
 			} else {
 				RSOB_controller.getView().byId("tcciNo_RSOB").setValue("");
 				RSOB_controller.getView().byId("tcciNo_RSOB").setEnabled(true);
 			}
 
 		},
+		validPostalCode: function (postalCode) {
+			if (postalCode) {
+				postalCode = postalCode.getParameters().newValue;
+				var postalRegEx = new RegExp(/^[ABCEGHJ-NPRSTV-Z]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/m);
+				if (postalRegEx.test(postalCode) == true) {
+					RSOB_controller.getView().byId("PostalCode_RSOB").setValueState("None");
+					return postalCode;
+				} else {
+					RSOB_controller.getView().byId("PostalCode_RSOB").setValueState("Error");
+					return null;
+				}
+			}
+		},
+		validPhoneNum: function (phoneNum) {
+			if (phoneNum) {
+				phoneNum = phoneNum.getParameters().newValue;
+				var phoneregEx = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+				if (phoneregEx.test(phoneNum) == true) {
+					RSOB_controller.getView().byId("Phone_RSOB").setValueState("None");
+					return phoneNum;
+				} else {
+					RSOB_controller.getView().byId("Phone_RSOB").setValueState("Error");
+					return null;
+				}
+			}
+		}
 		_handleServiceSuffix_Series: function () {
 			var host = RSOB_controller.host();
 			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
@@ -892,7 +918,7 @@ sap.ui.define([
 		},
 		// 	series_selected: function (oEvent) {
 
-		// 	// var year = this.getView().byId('modelYr_RSOA').getValue();
+		// 	// var year = this.getView().byId('modelYr_RSOB').getValue();
 		// 	// items="{ path: 'oModel3>/'}"
 		// 	var modelyear = this.getView().byId('modelYr_RSOB').getValue();
 		// 	var series = this.getView().byId('series_RSOB').getSelectedKey();
@@ -923,7 +949,7 @@ sap.ui.define([
 		// 				text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
 		// 			})
 		// 		});
-		// 		// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+		// 		// var items_binding = this.getView().byId('model_RSOB').getBinding('items');
 		// 		// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 		// 	}
 		// },
@@ -966,7 +992,7 @@ sap.ui.define([
 		// 			})
 		// 		});
 		// 		// ,{path:'mainservices>int_trim_desc_en'}		
-		// 		// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
+		// 		// var items_binding = this.getView().byId('Suffix_RSOB').getBinding('items');
 		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 		// 		// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
 		// 		// ], true));
@@ -1005,7 +1031,7 @@ sap.ui.define([
 		// 				text: "{mainservices>zzapx}"
 		// 			})
 		// 		});
-		// 		// var items_binding = this.getView().byId('Apx_RSOA').getBinding('items');
+		// 		// var items_binding = this.getView().byId('Apx_RSOB').getBinding('items');
 		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
 		// 		// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
 		// 		// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
@@ -1032,7 +1058,7 @@ sap.ui.define([
 		// 					// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 		// 			})
 		// 		});
-		// 		// var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
+		// 		// var items_binding = this.getView().byId('Colour_RSOB').getBinding('items');
 		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 		// 		// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
 		// 		// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)

@@ -108,7 +108,7 @@
 							<!--<Label wrapping="true" text="{i18n>custname}"/>-->
 							<!--<Input id="CustName_RSOB" value="{Customer>/Name}" required="true"/>-->
 							<Label wrapping="true" text="{i18n>fcustname}"/>
-							<Input id="CustName_RSOA" value="{Customer>/FirstName}" showSuggestion="false" required="true"/>
+							<Input id="CustName_RSOB" value="{Customer>/FirstName}" showSuggestion="false" required="true"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
 							<Input id="CustName_SSOA" value="{Customer>/SecondName}" showSuggestion="false" required="true"/>
 							<Label wrapping="true" text="{i18n>address}"/>
@@ -124,9 +124,11 @@
 							<!--	<core:Item key="{ProductId}" text="{Name}"/>-->
 							<!--</ComboBox>-->
 							<Label wrapping="true" text="{i18n>postalcode}"/>
-							<Input id="PostalCode_RSOB" value="{Customer>/PostCode}" showSuggestion="false" required="true" maxLength="6"/>
+							
+						<Input id="PostalCode_RSOB" value="{path:'Customer>/PostCode'}" showSuggestion="false" required="true" maxLength="6" valueState="None" valueStateText="{i18n>SO000024}" change="validPostalCode"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
-							<Input value="{Customer>/Phone}" placeholder="xxxxxxxxxx" showSuggestion="false" required="true"  maxLength="10"/>
+						
+						<Input id="Phone_RSOB" value="{Customer>/Phone}" showSuggestion="false" placeholder='xxxxxxxxxx' required="true" maxLength="10" valueState="None" valueStateText="{i18n>SO000025}" change="validPhoneNum"/>
 							<Label wrapping="true" text="{i18n>email}"/>
 							<Input value="{Customer>/Email}" showSuggestion="false" />
 							<Label wrapping="true" text="{i18n>driverLic}"/>
