@@ -164,7 +164,7 @@ sap.ui.define([
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
 				FSOS_controller.dialog.open();
-				console.log("loading data");
+				//console.log("loading data");
 				FSOS_controller._refresh();
 			} else {
 				FSOS_controller.dialog.open();

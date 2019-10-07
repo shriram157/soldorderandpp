@@ -54,7 +54,7 @@ sap.ui.define([
 			cancelReasonModel.updateBindings(true);
 			sap.ui.getCore().setModel(cancelReasonModel, "cancelReasonModel");
 			this.getView().setModel(sap.ui.getCore().getModel("cancelReasonModel"), "cancelReasonModel");
-			console.log(sap.ui.getCore().getModel("cancelReasonModel"));
+			//console.log(sap.ui.getCore().getModel("cancelReasonModel"));
 		},
 		_getattachRouteMatched: function (parameters) {
 			requestid = parameters.getParameters().arguments.Soreq;

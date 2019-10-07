@@ -65,7 +65,7 @@ sap.ui.define([
 				salesTypeModel.updateBindings(true);
 				sap.ui.getCore().setModel(salesTypeModel, "salesTypeModel");
 				this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"), "salesTypeModel");
-				// console.log(sap.ui.getCore().getModel("salesTypeModel"));
+				// //console.log(sap.ui.getCore().getModel("salesTypeModel"));
 
 			},
 			_getattachRouteMatched: function (parameters) {
@@ -90,7 +90,7 @@ sap.ui.define([
 
 				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
 					var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
-					// 	console.log("So status", SOType);
+					// 	//console.log("So status", SOType);
 					//For FLeet Details only
 					if (SOType == "NF" || SOType == "FO") {
 						RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
@@ -234,7 +234,7 @@ sap.ui.define([
 									dataType: "json",
 									contentType: "text/xml; charset=\"utf-8\"",
 									success: function (data, textStatus, jqXHR) {
-										console.log("customer data", data);
+										//console.log("customer data", data);
 										if (data.customer) {
 											data.customer.phones[0].phoneNumber = data.customer.phones[0].areaCode + data.customer.phones[0].localNumber;
 											zcustomerModel.setData(data.customer);
@@ -243,13 +243,13 @@ sap.ui.define([
 									error: function (request, errorText, errorCode) {
 										if (RSO_MSO_controller._SOType !== "NF" && RSO_MSO_controller._SOType !== "FO") {
 											zcustomerModel.setData([]); // change 16 sep
-											console.log(request.responseText);
+											//console.log(request.responseText);
 											var str = request.responseText;
 											//	var obj = JSON.stringify(str);
 											var obj2 = JSON.parse(str);
 											sap.m.MessageToast.show(obj2.messages[0].errorText); // 17 sep change 
 										}
-										//	console.log("empty data", data);// change 16 sep
+										//	//console.log("empty data", data);// change 16 sep
 									}
 								});
 								// } else {
@@ -302,10 +302,10 @@ sap.ui.define([
 					// 		}, // function import parameters
 					// 		data: dataString,
 					success: function (oData, response) {
-						console.log(oData);
+						//console.log(oData);
 					},
 					error: function (oError) {
-						console.log(oError);
+						//console.log(oError);
 
 					}
 				});
@@ -322,8 +322,8 @@ sap.ui.define([
 						ZzsoReqNo: zrequest
 					}, // function import parameters
 					success: function (oData, response) {
-						console.log(oData); //17 sep change 
-						console.log(oData.Message); //18 sep change
+						//console.log(oData); //17 sep change 
+						//console.log(oData.Message); //18 sep change
 						var msg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("auditStatusCompletion");
 						sap.m.MessageToast.show(msg); //17 sep change
 						that.btnAudit.setEnabled(false); // 18 sep change 

@@ -20,7 +20,7 @@ sap.ui.define([
 			// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
 			// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
-			console.log("series data", sap.ui.getCore().getModel("seriesModel"));
+		//	//console.log("series data", sap.ui.getCore().getModel("seriesModel"));
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 		},
 		_onObjectMatched: function (oEvent) {
@@ -48,7 +48,7 @@ sap.ui.define([
 					});
 				}
 				RSOS_controller.getView().getModel("seriesModel").updateBindings(true);
-				console.log(RSOS_controller.getView().getModel("seriesModel").getData());
+				//console.log(RSOS_controller.getView().getModel("seriesModel").getData());
 				num = 0;
 				clicks = 0;
 				RSOS_controller = this;
@@ -62,13 +62,13 @@ sap.ui.define([
 				});
 
 				RSOS_controller.getView().setModel(RSOModel, "RSOModel");
-				console.log(sap.ui.getCore().getModel("LoginUserModel"));
+				//console.log(sap.ui.getCore().getModel("LoginUserModel"));
 				// RSOS_controller._handleServiceSuffix_Series();
 				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 
 				var oModel = new sap.ui.model.json.JSONModel();
 				RSOS_controller.getView().setModel(oModel, "retailsumModel");
-				console.log(language);
+				//console.log(language);
 				var BtnExport = RSOS_controller.getView().byId("idBtnExportToExcel");
 				//	BtnExport.setEnabled(false); // change 24 sep 
 				RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
@@ -141,7 +141,7 @@ sap.ui.define([
 				globalComboModel.updateBindings(true);
 				sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
 				this.getView().setModel(globalComboModel, "globalComboModel");
-				console.log("globalComboModel", globalComboModel);
+				//console.log("globalComboModel", globalComboModel);
 				var AuditModel = new sap.ui.model.json.JSONModel();
 				var Object;
 				if (language == "EN") {
@@ -175,7 +175,7 @@ sap.ui.define([
 				AuditModel.updateBindings(true);
 				sap.ui.getCore().setModel(AuditModel, "AuditModel");
 				this.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
-				console.log(sap.ui.getCore().getModel("AuditModel"));
+				//console.log(sap.ui.getCore().getModel("AuditModel"));
 
 				// 			////////////////////////////////////////////////////////////////////////////////
 
@@ -221,13 +221,13 @@ sap.ui.define([
 				if (x != "TCI_User") {
 					RSOS_controller.dialog.open();
 					// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
-					console.log("loading data");
+					//console.log("loading data");
 					RSOS_controller._refresh();
 
 				} else {
 					RSOS_controller.dialog.open();
 					// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
-					console.log("loading data");
+					//console.log("loading data");
 
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
@@ -279,7 +279,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									// console.log("DataModel.getData()", DataModel.getData());
+									// //console.log("DataModel.getData()", DataModel.getData());
 								}
 							} else {
 								DataModel.setData(data.d.results);
@@ -453,7 +453,7 @@ sap.ui.define([
 					// 	for (var m = 0; m < data.d.results.length; m++) {
 					// 		DataModel.getData().push(data.d.results[m]);
 					// 		DataModel.updateBindings(true);
-					// 		console.log("DataModel.getData()", DataModel.getData());
+					// 		//console.log("DataModel.getData()", DataModel.getData());
 					// 	}
 					// } else {
 					DataModel.setData(data.d.results);
@@ -553,7 +553,7 @@ sap.ui.define([
 							// 	for (var m = 0; m < data.d.results.length; m++) {
 							// 		DataModel.getData().push(data.d.results[m]);
 							// 		DataModel.updateBindings(true);
-							// 		console.log("DataModel.getData()", DataModel.getData());
+							// 		//console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
 							DataModel.setData(data.d.results);
@@ -626,7 +626,7 @@ sap.ui.define([
 								// 	for (var m = 0; m < data.d.results.length; m++) {
 								// 		DataModel.getData().push(data.d.results[m]);
 								// 		DataModel.updateBindings(true);
-								// 		console.log("DataModel.getData()", DataModel.getData());
+								// 		//console.log("DataModel.getData()", DataModel.getData());
 								// 	}
 								// } else {
 								if (data.d.results.length <= 10) {
@@ -703,7 +703,7 @@ sap.ui.define([
 								// 	for (var m = 0; m < data.d.results.length; m++) {
 								// 		DataModel.getData().push(data.d.results[m]);
 								// 		DataModel.updateBindings(true);
-								// 		console.log("DataModel.getData()", DataModel.getData());
+								// 		//console.log("DataModel.getData()", DataModel.getData());
 								// 	}
 								// } else {
 								if (data.d.results.length <= 10) {
@@ -881,7 +881,7 @@ sap.ui.define([
 
 			//loop is to extract each row
 			for (var i = 0; i < arrData.length; i++) {
-				// console.log(arrData[i]);
+				// //console.log(arrData[i]);
 				// var row = "";
 				row = " ";
 				row += arrData[i].ZzsoReqNo + ',' +
@@ -1000,7 +1000,7 @@ sap.ui.define([
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
-								// console.log("DataModel.getData()", DataModel.getData());
+								// //console.log("DataModel.getData()", DataModel.getData());
 							}
 						} else {
 							if (data.d.results.length <= 10) {
@@ -1076,7 +1076,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									// console.log("DataModel.getData()", DataModel.getData());
+									// //console.log("DataModel.getData()", DataModel.getData());
 								}
 							} else {
 								if (data.d.results.length <= 10) {
@@ -1153,7 +1153,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									// console.log("DataModel.getData()", DataModel.getData());
+									// //console.log("DataModel.getData()", DataModel.getData());
 								}
 							} else {
 								if (data.d.results.length <= 10) {

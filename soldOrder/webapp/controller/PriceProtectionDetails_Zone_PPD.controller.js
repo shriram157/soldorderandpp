@@ -28,7 +28,7 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					console.log(data);
+					//console.log(data);
 					var oTable = PPD_Zone_controller.getView().byId("table_PPD_ZoneDealer");
 					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					oTable.setModel(oModel);
@@ -67,9 +67,9 @@ sap.ui.define([
 		_navToRSO: function (evt) {
 			var sPath = evt.getSource().getBindingContext().sPath;
 			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-			console.log(sPath);
+			//console.log(sPath);
 			var s = PPD_Zone_controller.getView().byId("table_PPD_ZoneDealer").getModel().getData().ProductCollection[oIndex].num;
-			console.log(s);
+			//console.log(s);
 
 			var n = s.indexOf("NAT");
 			if (n > -1) {

@@ -20,7 +20,7 @@ sap.ui.define([
 				url: oURL,
 				cache: false,
 				success: function (data) {
-					console.log(data.d.results);
+					//console.log(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
 					VehSel_NatStock_Controller.getView().setModel(oModel, "vehSel_NatStock_Model");
@@ -34,7 +34,7 @@ sap.ui.define([
 		},
 		_onSelect: function (evt) {
 			var oTable = VehSel_NatStock_Controller.getView().byId("table_RSOVehicleSelNationalStock");
-			console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
+			//console.log(evt.getSource().getBindingContext()); // "/ProductCollection/0"
 			var sPath = evt.getSource().getBindingContext().sPath;
 			var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 		},

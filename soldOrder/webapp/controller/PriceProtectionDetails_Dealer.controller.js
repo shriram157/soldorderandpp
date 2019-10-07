@@ -299,7 +299,7 @@ sap.ui.define([
 			// 				for (var m = 0; m < data.d.results.length; m++) {
 			// 					DataModel.getData().push(data.d.results[m]);
 			// 					DataModel.updateBindings(true);
-			// 					console.log("DataModel.getData()", DataModel.getData());
+			// 					//console.log("DataModel.getData()", DataModel.getData());
 			// 				}
 			// 			} else {
 			// 				DataModel.setData(data.d.results);

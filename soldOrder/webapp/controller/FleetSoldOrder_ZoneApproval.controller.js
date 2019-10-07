@@ -64,7 +64,7 @@ sap.ui.define([
 			OrderTypeModel.updateBindings(true);
 			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
 			this.getView().setModel(sap.ui.getCore().getModel("OrderTypeModel"), "OrderTypeModel");
-			console.log(sap.ui.getCore().getModel("OrderTypeModel"));
+			//console.log(sap.ui.getCore().getModel("OrderTypeModel"));
 			// FSO_Z_controller.flagZoneUser=false;
 			// FSO_Z_controller.zoneUserToTrue();
 		},

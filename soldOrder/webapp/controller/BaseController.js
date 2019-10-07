@@ -84,7 +84,7 @@ sap.ui.define([
 			this.getView().setModel(oI18nModel, "i18n");
 
 			var isLocaleSent = window.location.search.match(/language=([^&]*)/i);
-			//console.log(isLocaleSent);
+			////console.log(isLocaleSent);
 			if (isLocaleSent) {
 				var sSelectedLocale = window.location.search.match(/language=([^&]*)/i)[1];
 			} else {
@@ -119,13 +119,13 @@ sap.ui.define([
 			this.getView().setModel(oI18nModel, "i18n");
 
 			var isLocaleSent = window.location.search.match(/language=([^&]*)/i);
-			console.log(isLocaleSent);
+			//console.log(isLocaleSent);
 			if (isLocaleSent) {
 				var sSelectedLocale = window.location.search.match(/language=([^&]*)/i)[1];
 			} else {
 				var sSelectedLocale = "EN"; // default is english 
 			}
-			console.log(sSelectedLocale);
+			//console.log(sSelectedLocale);
 			//selected language. 
 			if (sSelectedLocale == "fr" || sSelectedLocale == "fr/" || sSelectedLocale == "FR" || sSelectedLocale == "FR/") {
 				var i18nModel = new sap.ui.model.resource.ResourceModel({
@@ -149,10 +149,10 @@ sap.ui.define([
 		onNavBack: function (oEvent) {
 			var oHistory, sPreviousHash;
 			oHistory = History.getInstance();
-			console.log(oHistory);
+			//console.log(oHistory);
 			sPreviousHash = oHistory.getPreviousHash();
-			console.log(sPreviousHash);
-			console.log(window.history);
+			//console.log(sPreviousHash);
+			//console.log(window.history);
 			if (sPreviousHash !== undefined) {
 				if (sPreviousHash == "page11") {
 					this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
@@ -194,7 +194,7 @@ sap.ui.define([
 					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
 					var userType = oData.loggedUserType[0]; 
 					//oData.loggedUserType[0] = "Dealer_User";//for local testing, comment while deploying
-					// console.log("logged in user dealer");
+					// //console.log("logged in user dealer");
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					sap.ui.getCore().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/UserType", oData.loggedUserType[0]);
@@ -202,26 +202,26 @@ sap.ui.define([
 					sap.ui.getCore().getModel("LoginUserModel").updateBindings(true);
 					switch (userType) {
 					case "Dealer_Parts_Admin":
-						// console.log("Dealer Parts");
+						// //console.log("Dealer Parts");
 						break;
 					case "Dealer_Services_Admin":
-						// console.log("Dealer_Services_Admin");
+						// //console.log("Dealer_Services_Admin");
 						break;
 					case "Dealer_User":
-						// console.log("Dealer_User");
+						// //console.log("Dealer_User");
 						break;
 					case "TCI_Admin":
-						// console.log("TCI_Admin");
+						// //console.log("TCI_Admin");
 						break;
 					case "TCI_User":
-						// console.log("TCI_User");
+						// //console.log("TCI_User");
 						break;
 					case "Zone_User":
-						// console.log("Zone_User");
+						// //console.log("Zone_User");
 						break;
 					default:
 						// raise a message, because this should not be allowed. 
-						// console.log("Dealer_User");
+						// //console.log("Dealer_User");
 
 					}
 				}
@@ -234,7 +234,7 @@ sap.ui.define([
 				dataType: "json",
 				async: false,
 				success: function (oData) {
-					console.log("initial BP load", oData);
+					//console.log("initial BP load", oData);
 					var BpDealerArr = [],
 						BpDealer = [];
 
@@ -250,7 +250,7 @@ sap.ui.define([
 					}
 					$.each(oData.attributes, function (i, item) {
 						var BpLength = item.BusinessPartner.length;
-						console.log("Div", that.Div);
+						//console.log("Div", that.Div);
 						if (item.BPDivision == that.Div) {
 							BpDealerArr.push({
 								"BusinessPartnerKey": item.BusinessPartnerKey,
@@ -275,7 +275,7 @@ sap.ui.define([
 							}
 						}
 					}
-					console.log("BpDealer", BpDealer);
+					//console.log("BpDealer", BpDealer);
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					sap.ui.getCore().getModel("LoginUserModel").setSizeLimit(750);
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);

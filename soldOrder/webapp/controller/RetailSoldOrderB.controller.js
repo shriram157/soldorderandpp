@@ -788,7 +788,7 @@ sap.ui.define([
 					return null;
 				}
 			}
-		}
+		},
 		_handleServiceSuffix_Series: function () {
 			var host = RSOB_controller.host();
 			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
