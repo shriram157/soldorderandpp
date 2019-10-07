@@ -81,7 +81,7 @@
 								</template>
 							</Column>
 							<Column width="10%" resizable="false">
-								<m:Label text="{i18n>DropShip}" class="TableLabel"/>
+								<m:Label text="{i18n>DNC}" class="TableLabel"/>
 								<template>
 									<m:Text text="{mainservices>DropShip}"/>
 								</template>
