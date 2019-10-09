@@ -171,6 +171,10 @@ sap.ui.define([
 							RSO_MSO_controller.series_selected();
 							RSO_MSO_controller.model_selected();
 							RSO_MSO_controller.suffix_selected();
+							
+							console.log(sap.ui.getCore().getModel('Vehicle_Selection').getData())
+							RSO_MSO_controller.setModel(sap.ui.getCore().getModel('Vehicle_Selection').getData(), "Vehicle_Selection");
+							RSO_MSO_controller.getModel("Vehicle_Selection").updateBindings(true);
 
 							//----------------------------------------------------------
 							var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
@@ -194,8 +198,11 @@ sap.ui.define([
 								attachButton.setEnabled(false);
 							}
 
-							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
+							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn') || sap.ui.getCore().getModel('Vehicle_Selection').getData().ZZVTN) {
 								var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
+								if(zvtn==""){
+									zvtn = sap.ui.getCore().getModel('Vehicle_Selection').getData().ZZVTN;
+								}
 								// var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq " + zvtn + ")";
 								var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq '"+zvtn+"')";   ////
 								$.ajax({
@@ -209,6 +216,7 @@ sap.ui.define([
 									contentType: "text/xml; charset=\"utf-8\"",
 									success: function (data, textStatus, jqXHR) {
 										zinventoryModel.setData(data.results);
+										zinventoryModel.updateBindings(true);
 									},
 									error: function (request, errorText, errorCode) {}
 								});
