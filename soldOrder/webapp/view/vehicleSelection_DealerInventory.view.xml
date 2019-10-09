@@ -15,7 +15,8 @@
 							<!--</m:ComboBox>-->
 							<m:Label text="{i18n>RSOVehicleSel}" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"></m:Label>
 							<m:Label text="{i18n>myStockPipeline}" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiTinyMarginBegin fontsize"></m:Label>
-							<m:Label text="{i18n>disclaimer}" class="sapUiTinyMarginTop sapUiLargeMarginBegin fontsizeIn"></m:Label>
+							<m:Label text="{i18n>disclaimer}" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginBegin fontsizeIn"></m:Label>
+							<m:Label text="{i18n>disclaimer3}" class="sapUiTinyMarginTop sapUiLargeMarginBegin fontsizeIn"></m:Label>
 						</m:items>
 					</m:VBox>
 					<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"
