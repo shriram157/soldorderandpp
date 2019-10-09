@@ -173,8 +173,8 @@ sap.ui.define([
 							RSO_MSO_controller.suffix_selected();
 							
 							console.log(sap.ui.getCore().getModel('Vehicle_Selection').getData())
-							RSO_MSO_controller.setModel(sap.ui.getCore().getModel('Vehicle_Selection').getData(), "Vehicle_Selection");
-							RSO_MSO_controller.getModel("Vehicle_Selection").updateBindings(true);
+							RSO_MSO_controller.getView().setModel(sap.ui.getCore().getModel('Vehicle_Selection').getData(), "Vehicle_Selection");
+							RSO_MSO_controller.getView().getModel("Vehicle_Selection").updateBindings(true);
 
 							//----------------------------------------------------------
 							var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
