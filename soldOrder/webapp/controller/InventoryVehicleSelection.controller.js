@@ -65,7 +65,7 @@ sap.ui.define([
 						};
 						for (var m = 0; m < data.d.results.length; m++) {
 							if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-								data.d.results[m].DropShip = "X";
+								data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 							} else {
 								data.d.results[m].DropShip = "";
 							}
@@ -86,7 +86,7 @@ sap.ui.define([
 						if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 							for (var m = 0; m < data.d.results.length; m++) {
 								if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-									data.d.results[m].DropShip = "X";
+									data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 								} else {
 									data.d.results[m].DropShip = "";
 								}
@@ -98,7 +98,7 @@ sap.ui.define([
 						} else {
 							for (var m = 0; m < data.d.results.length; m++) {
 								if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-									data.d.results[m].DropShip = "X";
+									data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 								} else {
 									data.d.results[m].DropShip = "";
 								}
@@ -245,7 +245,7 @@ sap.ui.define([
 							};
 							for (var m = 0; m < data.d.results.length; m++) {
 								if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-									data.d.results[m].DropShip = "X";
+									data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 								} else {
 									data.d.results[m].DropShip = "";
 								}
@@ -266,7 +266,7 @@ sap.ui.define([
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 								for (var m = 0; m < data.d.results.length; m++) {
 									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-										data.d.results[m].DropShip = "X";
+										data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 									} else {
 										data.d.results[m].DropShip = "";
 									}
@@ -278,7 +278,7 @@ sap.ui.define([
 							} else {
 								for (var m = 0; m < data.d.results.length; m++) {
 									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-										data.d.results[m].DropShip = "X";
+										data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 									} else {
 										data.d.results[m].DropShip = "";
 									}
@@ -346,7 +346,7 @@ sap.ui.define([
 							};
 							for (var m = 0; m < data.d.results.length; m++) {
 								if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-									data.d.results[m].DropShip = "X";
+									data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 								} else {
 									data.d.results[m].DropShip = "";
 								}
@@ -368,7 +368,7 @@ sap.ui.define([
 							if (sap.ui.getCore().getModel("CustomerData").getData().Kukla == "M") {
 								for (var m = 0; m < data.d.results.length; m++) {
 									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-										data.d.results[m].DropShip = "X";
+										data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 									} else {
 										data.d.results[m].DropShip = "";
 									}
@@ -380,7 +380,7 @@ sap.ui.define([
 							} else {
 								for (var m = 0; m < data.d.results.length; m++) {
 									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-										data.d.results[m].DropShip = "X";
+										data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 									} else {
 										data.d.results[m].DropShip = "";
 									}
@@ -592,7 +592,7 @@ sap.ui.define([
 							};*/
 						for (var m = 0; m < data.d.results.length; m++) {
 							if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-								data.d.results[m].DropShip = "X";
+								data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 							} else {
 								data.d.results[m].DropShip = "";
 							}
@@ -608,7 +608,7 @@ sap.ui.define([
 					} else {
 						for (var m = 0; m < data.d.results.length; m++) {
 							if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-								data.d.results[m].DropShip = "X";
+								data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 							} else {
 								data.d.results[m].DropShip = "";
 							}
@@ -620,7 +620,7 @@ sap.ui.define([
 							} else {
 								for (var m = 0; m < data.d.results.length; m++) {
 									if (data.d.results[m].DropShip == "1" || data.d.results[m].DropShip == "2") {
-										data.d.results[m].DropShip = "X";
+										data.d.results[m].DropShip = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Yes");
 									} else {
 										data.d.results[m].DropShip = "";
 									}
