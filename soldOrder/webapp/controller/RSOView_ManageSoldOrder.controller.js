@@ -215,7 +215,12 @@ sap.ui.define([
 							// 	.getModel('ModelCore').getData().ZZVTN) {
 							// var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 							// if (zvtn == "") {
-							var zvtn = sap.ui.getCore().getModel('ModelCore').getData().ZZVTN;
+							if (sap.ui.getCore().getModel('ModelCore')) {
+								var zvtn = sap.ui.getCore().getModel('ModelCore').getData().ZZVTN;
+							}
+							else{
+								var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');	
+							}
 							// }
 							// var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq " + zvtn + ")";
 							var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq '" + zvtn + "')"; ////
