@@ -251,6 +251,10 @@ sap.ui.define([
 
 									}
 								});
+							} else {
+								zinventoryModel.setData({});
+								zinventoryModel.updateBindings(true);
+								console.log("zinventoryModel", zinventoryModel);
 							}
 							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 								var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
