@@ -232,14 +232,15 @@ sap.ui.define([
 							// }
 							// var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq " + zvtn + ")";
 							var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
-							var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=MATRIX eq 'A205' and Dealer eq '" + zcustomerNumber +
+							var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=MATRIX eq 'A205' and Dealer eq '" + RSO_MSO_controller.getView()
+								.getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode') +
 								"' and RSO_NUM eq '" + zrequest + "' and source eq 'RSO' and ZDIVISION eq '" + RSO_MSO_controller.sDivision +
 								"' and Model eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel') +
 								"' and Modelyear eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 									'Zzmoyr') + "' and TCISeries eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-									'Zzsuffix') + "' and Suffix eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+									'Zzseries') + "' and Suffix eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 									'Zzsuffix') + "'and ExteriorColorCode eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext()
-								.getProperty('Zzsuffix') + "' and ZZVTN eq '" + zvtn + "'"; ////
+								.getProperty('Zzextcol') + "' and ZZVTN eq '" + zvtn + "'"; ////
 							//InventoryDetailsSet?$skip=0&$top=110&$filter=MATRIX eq 'A205' and Dealer eq '2400001116' and RSO_NUM eq 'SO0000001792' and source eq 'RSO' and ZDIVISION eq 'TOY' and Model eq 'KTUD3M' and Modelyear eq '2019' and TCISeries eq 'YAH' and Suffix eq 'BA' and ExteriorColorCode eq '01G3'
 							$.ajax({
 								url: url,
@@ -257,7 +258,7 @@ sap.ui.define([
 									console.log("zinventoryModel", zinventoryModel);
 								},
 								error: function (request, errorText, errorCode) {
-									
+
 								}
 							});
 
