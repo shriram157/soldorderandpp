@@ -186,7 +186,7 @@ sap.ui.define([
 							OBJNew.ETAFrom = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom;
 							OBJNew.ETATo=sap.ui.getCore().getModel('ModelCore').getData().ETATo;
 							
-							zinventoryModel.setdata(OBJNew);
+							zinventoryModel.setData(OBJNew);
 							zinventoryModel.updateBindings(true);
 							// RSO_MSO_controller.getView().getModel("Vehicle_Selection").updateBindings(true);
 
@@ -213,10 +213,10 @@ sap.ui.define([
 							}
 
 							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn') || sap.ui.getCore()
-								.getModel('ModelCore').ZZVTN) {
+								.getModel('ModelCore').getData().ZZVTN) {
 								var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 								if (zvtn == "") {
-									zvtn = sap.ui.getCore().getModel('Vehicle_Selection').getData().ZZVTN;
+									zvtn = sap.ui.getCore().getModel('ModelCore').getData().ZZVTN;
 								}
 								// var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq " + zvtn + ")";
 								var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq '" + zvtn + "')"; ////
@@ -230,8 +230,10 @@ sap.ui.define([
 									// data: soapMessage,
 									contentType: "text/xml; charset=\"utf-8\"",
 									success: function (data, textStatus, jqXHR) {
+										console.log(data.results);
 										zinventoryModel.setData(data.results);
 										zinventoryModel.updateBindings(true);
+										console.log("zinventoryModel",zinventoryModel);
 									},
 									error: function (request, errorText, errorCode) {}
 								});
