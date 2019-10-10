@@ -88,13 +88,13 @@
 										<items>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
 											<Text id="idETAFrm"
-												text="{parts:[{path:'Inventory>ETAFrom'}],formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}"/>
+												text="{path:'Inventory>ETAFrom',formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}"/>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-											<Text text="{parts:[{path:'Inventory>ETATo'}],formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}"/>
+											<Text text="{path:'Inventory>/ETATo',formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}"/>
 										</items>
 									</HBox>
 								</items>
