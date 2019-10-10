@@ -239,7 +239,7 @@ sap.ui.define([
 								"' and Modelyear eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 									'Zzmoyr') + "' and TCISeries eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 									'Zzseries') + "' and Suffix eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-									'Zzsuffix') + "'and ExteriorColorCode eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext()
+									'Zzsuffix') + "' and ExteriorColorCode eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext()
 								.getProperty('Zzextcol') + "' and ZZVTN eq '" + zvtn + "'"; ////
 							//InventoryDetailsSet?$skip=0&$top=110&$filter=MATRIX eq 'A205' and Dealer eq '2400001116' and RSO_NUM eq 'SO0000001792' and source eq 'RSO' and ZDIVISION eq 'TOY' and Model eq 'KTUD3M' and Modelyear eq '2019' and TCISeries eq 'YAH' and Suffix eq 'BA' and ExteriorColorCode eq '01G3'
 							$.ajax({
@@ -252,8 +252,8 @@ sap.ui.define([
 								// data: soapMessage,
 								contentType: "text/xml; charset=\"utf-8\"",
 								success: function (data, textStatus, jqXHR) {
-									console.log("zinventoryModel data", data.results);
-									zinventoryModel.setData(data.results);
+									console.log("zinventoryModel data", data.d.results[0]);
+									zinventoryModel.setData(data.d.results[0]);
 									zinventoryModel.updateBindings(true);
 									console.log("zinventoryModel", zinventoryModel);
 								},
