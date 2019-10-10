@@ -93,11 +93,12 @@ sap.ui.define([
 			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
 			// console.log(oIndex)
 			// Store the Vechile No
-			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-			vehicle.ZZVTN = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
-			vehicle.ETAFrom = evt.getSource().getBindingContext('mainservices').getProperty('ETAFrom');
-			vehicle.ETATo = evt.getSource().getBindingContext('mainservices').getProperty('ETATo');
-			sap.ui.getCore().getModel('Vehicle_Selection').updateBindings();
+			var OBJ={};
+			OBJ.ZZVTN = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
+			OBJ.ETAFrom = evt.getSource().getBindingContext('mainservices').getProperty('ETAFrom');
+			OBJ.ETATo = evt.getSource().getBindingContext('mainservices').getProperty('ETATo');
+			var oModelCore = new sap.ui.model.json.JSONModel(OBJ);
+			sap.ui.getCore().setModel(oModelCore,"ModelCore");
 			
 			if (evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN')) {
 				var V_No = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');

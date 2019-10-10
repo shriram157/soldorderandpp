@@ -171,9 +171,23 @@ sap.ui.define([
 							RSO_MSO_controller.series_selected();
 							RSO_MSO_controller.model_selected();
 							RSO_MSO_controller.suffix_selected();
+
+							console.log(sap.ui.getCore().getModel("ModelCore"));
+							// RSO_MSO_controller.getView().setModel(sap.ui.getCore().getModel('Vehicle_Selection').getData(), "Vehicle_Selection");
+							// zinventoryModel.ETAFrom = sap.ui.getCore().getModel('ModelCore').ETAFrom;
+							// zinventoryModel.ETATo = sap.ui.getCore().getModel('ModelCore').ETATo;
+							var OBJNew = {
+								results: []
+							};
+							OBJNew.results.push({
+								"ETAFrom": sap.ui.getCore().getModel('ModelCore').getData().ETAFrom,
+								"ETATo": sap.ui.getCore().getModel('ModelCore').getData().ETATo
+							});
+							OBJNew.ETAFrom = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom;
+							OBJNew.ETATo=sap.ui.getCore().getModel('ModelCore').getData().ETATo;
 							
-							console.log(sap.ui.getCore().getModel('Vehicle_Selection').getData())
-							RSO_MSO_controller.getView().setModel(sap.ui.getCore().getModel('Vehicle_Selection').getData(), "Vehicle_Selection");
+							zinventoryModel.setdata(OBJNew);
+							zinventoryModel.updateBindings(true);
 							// RSO_MSO_controller.getView().getModel("Vehicle_Selection").updateBindings(true);
 
 							//----------------------------------------------------------
@@ -198,13 +212,14 @@ sap.ui.define([
 								attachButton.setEnabled(false);
 							}
 
-							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn') || sap.ui.getCore().getModel('Vehicle_Selection').getData().ZZVTN) {
+							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn') || sap.ui.getCore()
+								.getModel('ModelCore').ZZVTN) {
 								var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
-								if(zvtn==""){
+								if (zvtn == "") {
 									zvtn = sap.ui.getCore().getModel('Vehicle_Selection').getData().ZZVTN;
 								}
 								// var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq " + zvtn + ")";
-								var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq '"+zvtn+"')";   ////
+								var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=(ZZVTN eq '" + zvtn + "')"; ////
 								$.ajax({
 									url: url,
 									headers: {
