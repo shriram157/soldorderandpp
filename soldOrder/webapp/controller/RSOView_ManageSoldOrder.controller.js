@@ -12,7 +12,7 @@ sap.ui.define([
 		var zrequest;
 		var ppdFlages;
 		var zcustomerModel, zinventoryModel;
-		var SelecVehicleOption =false;
+		var SelecVehicleOption = false;
 		var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 		return BaseController.extend("toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder", {
 			formatter: formatter,
@@ -217,8 +217,19 @@ sap.ui.define([
 							} else {
 								attachButton.setEnabled(false);
 							}
-							
-							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn') || (!!SelecVehicleOption && sap.ui.getCore().getModel('ModelCore').getData().ZZVTN)) {
+
+							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
+								var OBJNew = {
+									results: []
+								};
+								OBJNew.results.push({
+									"ETAFrom": RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ETAFrom"),
+									"ETATo": RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ETATo")
+								});
+								zinventoryModel.setData(OBJNew);
+								zinventoryModel.updateBindings(true);
+								console.log("Already asigned VTN",zinventoryModel);
+							} else if (!!SelecVehicleOption && sap.ui.getCore().getModel('ModelCore').getData().ZZVTN) {
 								var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 								if (zvtn == "" && sap.ui.getCore().getModel('ModelCore')) {
 									zvtn = sap.ui.getCore().getModel('ModelCore').getData().ZZVTN;
@@ -476,7 +487,7 @@ sap.ui.define([
 			},
 
 			_getVehiclesToFillSoldOrderRequest: function () {
-				SelecVehicleOption=true;
+				SelecVehicleOption = true;
 				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 					Soreq: zrequest
 				}, true);
@@ -943,10 +954,10 @@ sap.ui.define([
 					}
 				});
 			},
-		onExit: function () {
-			SelecVehicleOption=false;
-			sap.ui.getCore().getModel('ModelCore').getData().ZZVTN="";
-			sap.ui.getCore().getModel('ModelCore').updateBindings();
-		}
+			onExit: function () {
+				SelecVehicleOption = false;
+				sap.ui.getCore().getModel('ModelCore').getData().ZZVTN = "";
+				sap.ui.getCore().getModel('ModelCore').updateBindings();
+			}
 		});
 	});
