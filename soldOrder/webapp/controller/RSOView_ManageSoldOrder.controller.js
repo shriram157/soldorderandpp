@@ -223,20 +223,30 @@ sap.ui.define([
 								var _oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 									pattern: "yyyy-MM-dd"
 								});
-								var ETAFrom =RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom");
-								var ETATo =RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo");
-								
+								var ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom");
+								var ETATo = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo");
+
 								OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
 								OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
-								
+
 								zinventoryModel.setData(OBJNew);
 								zinventoryModel.updateBindings(true);
 								console.log("Already asigned VTN", zinventoryModel);
 							} else if (zvtn == "" && !!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore')) {
 								var OBJNew = {};
+								var year = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(0, 4);
+								var month = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(4, 6);
+								var day = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(6, 8);
+								var ETAFrom = year + "-" + month + "-" + day;
+
+								var year = sap.ui.getCore().getModel('ModelCore').getData().ETATo.substring(0, 4);
+								var month = sap.ui.getCore().getModel('ModelCore').getData().ETATo.substring(4, 6);
+								var day = sap.ui.getCore().getModel('ModelCore').getData().ETATo.substring(6, 8);
+								var ETATo = year + "-" + month + "-" + day;
+
 								RSO_MSO_controller.getView().byId("idVTN").setText(sap.ui.getCore().getModel('ModelCore').getData().ZZVTN);
-								OBJNew.ETAFrom = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom;
-								OBJNew.ETATo = sap.ui.getCore().getModel('ModelCore').getData().ETATo;
+								OBJNew.ETAFrom = ETAFrom;
+								OBJNew.ETATo = ETATo;
 								zinventoryModel.setData(OBJNew);
 								zinventoryModel.updateBindings(true);
 								console.log("Select Vehicle VTN", zinventoryModel);
