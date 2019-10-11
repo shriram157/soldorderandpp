@@ -12,6 +12,7 @@ sap.ui.define([
 		var zrequest;
 		var ppdFlages;
 		var zcustomerModel, zinventoryModel;
+		var SelecVehicleOption =false;
 		var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 		return BaseController.extend("toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder", {
 			formatter: formatter,
@@ -216,8 +217,8 @@ sap.ui.define([
 							} else {
 								attachButton.setEnabled(false);
 							}
-
-							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn') || sap.ui.getCore().getModel('ModelCore').getData().ZZVTN) {
+							
+							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn') || (!!SelecVehicleOption && sap.ui.getCore().getModel('ModelCore').getData().ZZVTN)) {
 								var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 								if (zvtn == "" && sap.ui.getCore().getModel('ModelCore')) {
 									zvtn = sap.ui.getCore().getModel('ModelCore').getData().ZZVTN;
@@ -475,6 +476,7 @@ sap.ui.define([
 			},
 
 			_getVehiclesToFillSoldOrderRequest: function () {
+				SelecVehicleOption=true;
 				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 					Soreq: zrequest
 				}, true);
@@ -940,6 +942,11 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				});
-			}
+			},
+		onExit: function () {
+			SelecVehicleOption=false;
+			sap.ui.getCore().getModel('ModelCore').getData().ZZVTN="";
+			sap.ui.getCore().getModel('ModelCore').updateBindings();
+		}
 		});
 	});
