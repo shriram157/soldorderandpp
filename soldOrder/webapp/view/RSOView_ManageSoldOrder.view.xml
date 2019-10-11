@@ -78,7 +78,7 @@
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
-							<Text text="{mainservices>Zzvtn}"/>
+							<Text text="{mainservices>Zzvtn}" id="idVTN"/>
 							<Label wrapping="true" text="{i18n>AuditStatus}"/>
 							<Text text="{mainservices>ZzAuditStatus}"/>
 							<Label wrapping="true" text="{i18n>DealerAcpETA}"/>

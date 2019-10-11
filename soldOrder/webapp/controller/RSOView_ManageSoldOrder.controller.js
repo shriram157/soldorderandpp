@@ -12,7 +12,7 @@ sap.ui.define([
 		var zrequest;
 		var ppdFlages;
 		var zcustomerModel, zinventoryModel;
-		var SelecVehicleOption = false;
+		var SelectVehicleOption = false;
 		var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 		return BaseController.extend("toyota.ca.SoldOrder.controller.RSOView_ManageSoldOrder", {
 			formatter: formatter,
@@ -217,8 +217,8 @@ sap.ui.define([
 							} else {
 								attachButton.setEnabled(false);
 							}
-
-							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')!="") {
+							var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
+							if (zvtn!="") {
 								var OBJNew={};
 								OBJNew.ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom");
 								OBJNew.ETATo=RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo");
@@ -226,7 +226,16 @@ sap.ui.define([
 								zinventoryModel.updateBindings(true);
 								console.log("Already asigned VTN",zinventoryModel);
 							} 
-							// else if (!!SelecVehicleOption && sap.ui.getCore().getModel('ModelCore').getData().ZZVTN) {
+							else if (zvtn == "" && !!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore')){
+								var OBJNew={};
+								RSO_MSO_controller.getView().byId("idVTN").setText(sap.ui.getCore().getModel('ModelCore').getData().ZZVTN);
+								OBJNew.ETAFrom = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom;
+								OBJNew.ETATo=sap.ui.getCore().getModel('ModelCore').getData().ETATo;
+								zinventoryModel.setData(OBJNew);
+								zinventoryModel.updateBindings(true);
+								console.log("Select Vehicle VTN",zinventoryModel);
+							}
+							// else if (!!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore').getData().ZZVTN) {
 							// 	var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 							// 	if (zvtn == "" && sap.ui.getCore().getModel('ModelCore')) {
 							// 		zvtn = sap.ui.getCore().getModel('ModelCore').getData().ZZVTN;
@@ -485,7 +494,7 @@ sap.ui.define([
 			},
 
 			_getVehiclesToFillSoldOrderRequest: function () {
-				SelecVehicleOption = true;
+				SelectVehicleOption = true;
 				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 					Soreq: zrequest
 				}, true);
@@ -953,7 +962,7 @@ sap.ui.define([
 				});
 			},
 			onExit: function () {
-				SelecVehicleOption = false;
+				SelectVehicleOption = false;
 				sap.ui.getCore().getModel('ModelCore').getData().ZZVTN = "";
 				sap.ui.getCore().getModel('ModelCore').updateBindings();
 			}
