@@ -217,7 +217,7 @@ sap.ui.define([
 								attachButton.setEnabled(false);
 							}
 
-							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
+							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn') || sap.ui.getCore().getModel('ModelCore').getData().ZZVTN) {
 								var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 								if (zvtn == "" && sap.ui.getCore().getModel('ModelCore')) {
 									zvtn = sap.ui.getCore().getModel('ModelCore').getData().ZZVTN;
