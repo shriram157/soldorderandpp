@@ -218,7 +218,7 @@ sap.ui.define([
 								attachButton.setEnabled(false);
 							}
 
-							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
+							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')!="") {
 								var OBJNew;
 								OBJNew.ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ETAFrom");
 								OBJNew.ETATo=RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ETATo");
