@@ -218,22 +218,28 @@ sap.ui.define([
 								attachButton.setEnabled(false);
 							}
 							var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
-							if (zvtn!="") {
-								var OBJNew={};
-								OBJNew.ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom");
-								OBJNew.ETATo=RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo");
+							if (zvtn != "") {
+								var OBJNew = {};
+								var _oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+									pattern: "yyyy-MM-dd"
+								});
+								var ETAFrom =RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom");
+								var ETATo =RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo");
+								
+								OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
+								OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
+								
 								zinventoryModel.setData(OBJNew);
 								zinventoryModel.updateBindings(true);
-								console.log("Already asigned VTN",zinventoryModel);
-							} 
-							else if (zvtn == "" && !!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore')){
-								var OBJNew={};
+								console.log("Already asigned VTN", zinventoryModel);
+							} else if (zvtn == "" && !!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore')) {
+								var OBJNew = {};
 								RSO_MSO_controller.getView().byId("idVTN").setText(sap.ui.getCore().getModel('ModelCore').getData().ZZVTN);
 								OBJNew.ETAFrom = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom;
-								OBJNew.ETATo=sap.ui.getCore().getModel('ModelCore').getData().ETATo;
+								OBJNew.ETATo = sap.ui.getCore().getModel('ModelCore').getData().ETATo;
 								zinventoryModel.setData(OBJNew);
 								zinventoryModel.updateBindings(true);
-								console.log("Select Vehicle VTN",zinventoryModel);
+								console.log("Select Vehicle VTN", zinventoryModel);
 							}
 							// else if (!!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore').getData().ZZVTN) {
 							// 	var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
