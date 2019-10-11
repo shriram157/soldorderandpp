@@ -219,13 +219,9 @@ sap.ui.define([
 							}
 
 							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn')) {
-								var OBJNew = {
-									results: []
-								};
-								OBJNew.results.push({
-									"ETAFrom": RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ETAFrom"),
-									"ETATo": RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ETATo")
-								});
+								var OBJNew;
+								OBJNew.ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ETAFrom");
+								OBJNew.ETATo=RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ETATo");
 								zinventoryModel.setData(OBJNew);
 								zinventoryModel.updateBindings(true);
 								console.log("Already asigned VTN",zinventoryModel);
