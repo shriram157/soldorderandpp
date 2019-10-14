@@ -835,6 +835,7 @@ sap.ui.define([
 			model_selected: function (oEvent) {
 				// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
+				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				var suf;
 				if (language === "FR") {
@@ -855,8 +856,10 @@ sap.ui.define([
 
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
-						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+						filters: new sap.ui.model.Filter([
+							new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
+							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+							new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix)
 						], true),
 						template: new sap.ui.core.ListItem({
 							key: "{mainservices>suffix}",
