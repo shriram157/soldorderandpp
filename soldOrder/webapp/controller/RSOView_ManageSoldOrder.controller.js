@@ -179,23 +179,6 @@ sap.ui.define([
 							RSO_MSO_controller.model_selected();
 							RSO_MSO_controller.suffix_selected();
 
-							// var OBJNew = {
-							// 	results: []
-							// };
-							// if (sap.ui.getCore().getModel('ModelCore')) {
-							// 	console.log(sap.ui.getCore().getModel("ModelCore"));
-							// 	OBJNew.results.push({
-							// 		"ETAFrom": sap.ui.getCore().getModel('ModelCore').getData().ETAFrom,
-							// 		"ETATo": sap.ui.getCore().getModel('ModelCore').getData().ETATo
-							// 	});
-							// 	OBJNew.ETAFrom = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom;
-							// 	OBJNew.ETATo = sap.ui.getCore().getModel('ModelCore').getData().ETATo;
-
-							// 	zinventoryModel.setData(OBJNew);
-							// 	zinventoryModel.updateBindings(true);
-							// }
-							// RSO_MSO_controller.getView().getModel("Vehicle_Selection").updateBindings(true);
-
 							//----------------------------------------------------------
 							var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
 
@@ -228,7 +211,7 @@ sap.ui.define([
 
 								OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
 								OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
-
+								SelectVehicleOption = false;
 								zinventoryModel.setData(OBJNew);
 								zinventoryModel.updateBindings(true);
 								console.log("Already asigned VTN", zinventoryModel);
@@ -247,46 +230,14 @@ sap.ui.define([
 								RSO_MSO_controller.getView().byId("idVTN").setText(sap.ui.getCore().getModel('ModelCore').getData().ZZVTN);
 								OBJNew.ETAFrom = ETAFrom;
 								OBJNew.ETATo = ETATo;
+								SelectVehicleOption = false;
 								zinventoryModel.setData(OBJNew);
 								zinventoryModel.updateBindings(true);
+								sap.ui.getCore().getModel('ModelCore').setData({});
 								console.log("Select Vehicle VTN", zinventoryModel);
 							}
-							// else if (!!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore').getData().ZZVTN) {
-							// 	var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
-							// 	if (zvtn == "" && sap.ui.getCore().getModel('ModelCore')) {
-							// 		zvtn = sap.ui.getCore().getModel('ModelCore').getData().ZZVTN;
-							// 	}
-							// 	var url = host + "/ZVMS_SOLD_ORDER_SRV/InventoryDetailsSet?$filter=MATRIX eq 'A205' and Dealer eq '" + RSO_MSO_controller.getView()
-							// 		.getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode') +
-							// 		"' and RSO_NUM eq '" + zrequest + "' and source eq 'RSO' and ZDIVISION eq '" + RSO_MSO_controller.sDivision +
-							// 		"' and Model eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel') +
-							// 		"' and Modelyear eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-							// 			'Zzmoyr') + "' and TCISeries eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-							// 			'Zzseries') + "' and Suffix eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-							// 			'Zzsuffix') + "' and ExteriorColorCode eq '" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext()
-							// 		.getProperty('Zzextcol') + "' and ZZVTN eq '" + zvtn + "'"; ////
-							// 	//InventoryDetailsSet?$skip=0&$top=110&$filter=MATRIX eq 'A205' and Dealer eq '2400001116' and RSO_NUM eq 'SO0000001792' and source eq 'RSO' and ZDIVISION eq 'TOY' and Model eq 'KTUD3M' and Modelyear eq '2019' and TCISeries eq 'YAH' and Suffix eq 'BA' and ExteriorColorCode eq '01G3'
-							// 	$.ajax({
-							// 		url: url,
-							// 		headers: {
-							// 			accept: 'application/json'
-							// 		},
-							// 		type: "GET",
-							// 		dataType: "json",
-							// 		// data: soapMessage,
-							// 		contentType: "text/xml; charset=\"utf-8\"",
-							// 		success: function (data, textStatus, jqXHR) {
-							// 			console.log("zinventoryModel data", data.d.results[0]);
-							// 			zinventoryModel.setData(data.d.results[0]);
-							// 			zinventoryModel.updateBindings(true);
-							// 			console.log("zinventoryModel", zinventoryModel);
-							// 		},
-							// 		error: function (request, errorText, errorCode) {
-
-							// 		}
-							// 	});
-							// } 
 							else {
+								SelectVehicleOption = false;
 								zinventoryModel.setData({});
 								zinventoryModel.updateBindings(true);
 								console.log("zinventoryModel", zinventoryModel);
