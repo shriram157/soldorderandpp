@@ -7,7 +7,7 @@ sap.ui.define([
 	"sap/m/MessageBox"
 ], function (BaseController, formatter, Filter, FilterOperator, JSONModel) {
 	"use strict";
-	var RSOB_controller, Zcustomer_No, input_ref;
+	var RSOB_controller, Zcustomer_No, input_ref,validateFlagB = false;
 	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.RetailSoldOrderB", {
 		formatter: formatter,
@@ -25,21 +25,21 @@ sap.ui.define([
 
 			// RSOB_controller._handleRSADropDown();
 			// 	var host = RSOB_controller.host();
-			// var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-			// var brand;
-			// if (isDivisionSent) {
-			// 	this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			RSOB_controller.brand;
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 
-			// 	if (this.sDivision == '10') // set the toyoto logo
-			// 	{
-			// 		brand = "TOY";
+				if (this.sDivision == '10') // set the toyoto logo
+				{
+					RSOB_controller.brand = "TOY";
 
-			// 	} else { // set the lexus logo
-			// 		brand = "LEX";
+				} else { // set the lexus logo
+					RSOB_controller.brand = "LEX";
 
-			// 		// }
-			// 	}
-			// }
+					// }
+				}
+			}
 			// 	var seriesCB = RSOB_controller.getView().byId("series_RSOB");
 			// var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
 			// 	"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
@@ -96,6 +96,13 @@ sap.ui.define([
 			});
 		},
 		_getattachRouteMatched: function (parameters) {
+			validateFlagB = false;
+			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
+			if (validateFlagB == true) {
+				submitBtn.setEnabled(true);
+			} else {
+				submitBtn.setEnabled(false);
+			}
 			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 				pattern: "yyyy-MM-ddTHH:mm:ss"
 			});
@@ -113,6 +120,7 @@ sap.ui.define([
 			}
 			if (parameters.getParameters().arguments.suffixkey) {
 				values.suffixkey = parameters.getParameters().arguments.suffixkey;
+				RSOB_controller.suffixkey = parameters.getParameters().arguments.suffixkey;
 				// var suffix_CSOR_items = RSOB_controller.getView().byId("suffix_CSOR").getBinding("items");
 				// var filter = new Filter([new Filter("model_year", FilterOperator.EQ, values.modelyear), new Filter("model", FilterOperator.EQ,
 				// 		values.modelkey),
@@ -201,6 +209,13 @@ sap.ui.define([
 			// });
 		},
 		onValidateCustomer: function () {
+			validateFlagB = true;  
+			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB")
+			if (validateFlagB == true) {
+				submitBtn.setEnabled(true);
+			} else {
+				submitBtn.setEnabled(false);
+			}
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
 			if (CustModel.FirstName != '' && CustModel.SecondName != '' && CustModel.FirstName && CustModel.SecondName && CustModel.Phone != '' &&
 				CustModel.Phone && CustModel.City != '' && CustModel.City &&
@@ -518,28 +533,7 @@ sap.ui.define([
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
 				var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 				var _data = {
-					// "ZzsoReqNo": "",
-					// "Zzmodel": "YZ3DCT",
-					// "Zzmoyr": "2018",
-					// "Zzsuffix": "ML",
-					// "Zzextcol": "01D6",
-					// "Zzapx": "00",
-					// "ZzreqEtaFrom": "20190102",
-					// "ZzreqEtaTo": "20180304",
-					// "ZcontractDate": "20180304",
-					// "ZsalesType": "",
-					// "ZtcciNum": "",
-					// "Zsalesperson": "",
-					// "Zsalesmanager": "",
-					// "ZtradeModelYr": "",
-					// "ZtradeMake": ""
 					"ZzsoReqNo": "SO",
-					// 	"Zzmodel": Zzmodel, //"YZ3DCT",
-					// "Zzmoyr": Zzmoyr, //"2018",
-					// "Zzseries": Zzseries,
-					// "Zzsuffix": Zzsuffix, //"ML",
-					// "Zzextcol": Zzextcol, //"01D6",
-					// "Zzapx": Zzapx, // "00",
 					"Zzmodel": Zzmodel, //"YZ3DCT",
 					"Zzmoyr": Zzmoyr, //"2018",
 					"Zzseries": Zzseries,
@@ -593,41 +587,9 @@ sap.ui.define([
 
 							});
 						}
-						// sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-						// 	.m
-						// 	.MessageBox.Action.OK, null, null);
 					}
 				});
-				// $.ajax({
-				// 	type: 'POST',
-				// 	url: oURL,
-				// 	cache: false,
-				// 	data: dataString,
-				// 	dataType: 'json',
-				// 	headers: {
-				// 		accept: 'application/json',
-				// 		// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
-				// 		// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
-				// 		'content-type': 'application/json'
-				// 	},
-				// 	success: function (data) {
-				// 		// console.log(data);
-				// 		// sap.m.MessageBox.show("Successfully Request Created", sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK,
-				// 		// 	null, null);
-				// 		if (data.d.ZzsoReqNo) {
-				// 			RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-				// 				Soreq: data.d.ZzsoReqNo
-				// 			}, true);
-				// 		} //page 3
-				// 	},
-				// 	error: function (data) {
-				// 		sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap
-				// 			.m
-				// 			.MessageBox.Action.OK, null, null);
-				// 	}
-
-				// });
-				//	RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder"); //page 3
+				
 			}
 		},
 		//-----------------------------------------
@@ -839,7 +801,9 @@ sap.ui.define([
 				this.getView().byId('suffix_CSOR').bindItems({
 					path: "mainservices>/ZVMS_SUFFIX_PIPLINE",
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+						// new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, RSOB_controller.brand),
+						new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, RSOB_controller.suffixkey)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
