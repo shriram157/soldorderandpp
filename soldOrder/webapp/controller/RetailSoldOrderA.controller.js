@@ -14,6 +14,7 @@ sap.ui.define([
 
 		onInit: function () {
 			RSOA_controller = this;
+			AppController.RSOA="true";
 			// RSOA_controller.getBrowserLanguage();
 			// var language = RSOA_controller.returnBrowserLanguage();
 			RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);

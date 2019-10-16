@@ -118,7 +118,7 @@
 							<Label text="{i18n>PreSoldOrder}"/>
 							<Link text="{mainservices>ZzsoReqNo}"></Link>
 							<Label text="{i18n>Comments}"/>
-							<TextArea id="Comment" value="{mainservices>Comment}"/>
+							<TextArea id="Comment" value="{mainservices>Comment}"  maxLength="40"/>
 						</f:content>
 					</f:SimpleForm>
 				</content>

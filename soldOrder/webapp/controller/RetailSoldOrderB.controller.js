@@ -15,6 +15,7 @@ sap.ui.define([
 		onInit: function () {
 			RSOB_controller = this;
 			// RSOB_controller.getBrowserLanguage();
+			AppController.RSOB="true";
 			RSOB_controller.validateFlagB = false;
 			var model = new JSONModel({});
 			// AppController.getDealer();
