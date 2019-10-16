@@ -133,7 +133,7 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			validateFlagA = false;
-			var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA")
+			var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
 			if (validateFlagA == true) {
 				submitBtn.setEnabled(true);
 			} else {
@@ -158,6 +158,7 @@ sap.ui.define([
 			ZzapxCB.$().find("input").attr("readonly", true);
 			var ZzextcolCB = this.getView().byId("Colour_RSOA");
 			ZzextcolCB.$().find("input").attr("readonly", true);
+			
 		},
 		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
@@ -936,7 +937,36 @@ sap.ui.define([
 					seriesCB.$().find("input").attr("readonly", true);
 				}
 			});
-
+			var ZzmoyrCB = this.getView().byId("modelYr_RSOA");
+			ZzmoyrCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzmoyrCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzmodelCB = this.getView().byId("modelYr_RSOA");
+			ZzmodelCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzmodelCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzsuffixCB = this.getView().byId("Suffix_RSOA");
+			ZzsuffixCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzsuffixCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzapxCB = this.getView().byId("Apx_RSOA");
+			ZzapxCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzapxCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzextcolCB = this.getView().byId("Colour_RSOA");
+			ZzextcolCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzextcolCB.$().find("input").attr("readonly", true);
+				}
+			});
 		},
 		//-----------------------------------------
 		//---------Handling Select Year----------
@@ -1085,7 +1115,9 @@ sap.ui.define([
 						text: model
 					})
 				});
-				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				var ZzseriesCB = this.getView().byId('series_RSOA');
+				ZzseriesCB.$().find("input").attr("readonly", true);
+					// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
 		},
@@ -1148,6 +1180,8 @@ sap.ui.define([
 						text: suf
 					})
 				});
+				var ZzmodelCB = this.getView().byId("model_RSOA");
+				ZzmodelCB.$().find("input").attr("readonly", true);
 				// ,{path:'mainservices>int_trim_desc_en'}		
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
@@ -1199,6 +1233,9 @@ sap.ui.define([
 				//-----------------
 				//----Color---------
 				//----------------
+				var ZzsuffixCB = this.getView().byId("Suffix_RSOA");
+				ZzsuffixCB.$().find("input").attr("readonly", true);
+				
 				var color;
 				// var language = RSOA_controller.returnBrowserLanguage();
 				if (language === "FR") {
@@ -1222,6 +1259,11 @@ sap.ui.define([
 							// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 					})
 				});
+				
+				var ZzextcolCB = this.getView().byId("Colour_RSOA");
+				ZzextcolCB.$().find("input").attr("readonly", true);
+				var ZzapxCB = this.getView().byId("Apx_RSOA");
+				ZzapxCB.$().find("input").attr("readonly", true);
 				// var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
