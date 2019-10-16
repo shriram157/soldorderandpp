@@ -855,10 +855,10 @@ sap.ui.define([
 					var dealer = dealerno.slice(-5);
 				
 					if (AppController.RSOB == true) {
-						 pathAB= "mainservices>/ZVMS_SUFFIX_PIPLINE",
+						 pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
 					else if (AppController.RSOA == true) {
-						pathAB ="mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
+						pathAB ="mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
 					}
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
