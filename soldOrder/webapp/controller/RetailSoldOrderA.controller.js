@@ -146,17 +146,17 @@ sap.ui.define([
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
 			
-			var ZzmoyrCB = RSOA_controller.getView().byId("modelYr_RSOA");
+			var ZzmoyrCB = this.getView().byId("modelYr_RSOA");
 			ZzmoyrCB.$().find("input").attr("readonly", true);
 			var ZzseriesCB = this.getView().byId('series_RSOA');
 			ZzseriesCB.$().find("input").attr("readonly", true);
-			var ZzmodelCB = RSOA_controller.getView().byId("model_RSOA");
+			var ZzmodelCB = this.getView().byId("model_RSOA");
 			ZzmodelCB.$().find("input").attr("readonly", true);
-			var ZzsuffixCB = RSOA_controller.getView().byId("Suffix_RSOA");
+			var ZzsuffixCB = this.getView().byId("Suffix_RSOA");
 			ZzsuffixCB.$().find("input").attr("readonly", true);
-			var ZzapxCB = RSOA_controller.getView().byId("Apx_RSOA");
+			var ZzapxCB = this.getView().byId("Apx_RSOA");
 			ZzapxCB.$().find("input").attr("readonly", true);
-			var ZzextcolCB = RSOA_controller.getView().byId("Colour_RSOA");
+			var ZzextcolCB = this.getView().byId("Colour_RSOA");
 			ZzextcolCB.$().find("input").attr("readonly", true);
 		},
 		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
