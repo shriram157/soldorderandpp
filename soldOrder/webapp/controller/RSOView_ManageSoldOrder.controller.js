@@ -832,6 +832,7 @@ sap.ui.define([
 				}
 			},
 			model_selected: function (oEvent) {
+					var pathAB="";
 				// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
@@ -852,31 +853,20 @@ sap.ui.define([
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 					var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 					var dealer = dealerno.slice(-5);
-					var pathAB="";
-					var filterAB;
-					if (AppController.RSOB == "true";) {
+				
+					if (AppController.RSOB == "true") {
 						 pathAB= "mainservices>/ZVMS_SUFFIX_PIPLINE",
-						 filterAB= new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-							// new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, RSOB_controller.brand),
-							new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, RSOB_controller.suffixkey)
-						], true),
 					}
-					else if (AppController.RSOA = "true";) {
+					else if (AppController.RSOA == "true") {
 						pathAB ="mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
-						 filterAB= new sap.ui.model.Filter([
-							new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-							new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix)
-						], true),
 					}
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
-						filters: filterAB,/*new sap.ui.model.Filter([
+						filters: new sap.ui.model.Filter([
 							new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 							new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix)
-						], true),*/
+						], true),
 						template: new sap.ui.core.ListItem({
 							key: "{mainservices>suffix}",
 							text: suf
