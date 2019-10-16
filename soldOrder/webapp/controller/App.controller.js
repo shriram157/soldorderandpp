@@ -151,8 +151,8 @@ sap.ui.define([
 			AppController.flgSoldOrderReqStatus = "";
 			AppController.flgPriceProtectionStatus = "";
 			AppController.flgOwnershipUploaded = "false";
-			AppController.RSOA="false";
-			AppController.RSOB="false"
+			AppController.RSOA=false;
+			AppController.RSOB=false;
 		},
 		_setTheLogo: function (oEvent) {
 

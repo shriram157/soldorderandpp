@@ -854,10 +854,10 @@ sap.ui.define([
 					var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 					var dealer = dealerno.slice(-5);
 				
-					if (AppController.RSOB == "true") {
+					if (AppController.RSOB == true) {
 						 pathAB= "mainservices>/ZVMS_SUFFIX_PIPLINE",
 					}
-					else if (AppController.RSOA == "true") {
+					else if (AppController.RSOA == true) {
 						pathAB ="mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 					}
 					this.getView().byId('suffix_CSOR').bindItems({
