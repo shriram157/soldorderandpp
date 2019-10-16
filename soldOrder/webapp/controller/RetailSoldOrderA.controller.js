@@ -14,7 +14,7 @@ sap.ui.define([
 
 		onInit: function () {
 			RSOA_controller = this;
-			AppController.RSOA=true;
+			AppController.RSOA = true;
 			// RSOA_controller.getBrowserLanguage();
 			// var language = RSOA_controller.returnBrowserLanguage();
 			RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
@@ -145,7 +145,18 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-
+			var ZzmoyrCB = RSOA_controller.getView().byId("modelYr_RSOA");
+			ZzmoyrCB.$().find("input").attr("readonly", true);
+			var ZzseriesCB = this.getView().byId('series_RSOA');
+			ZzseriesCB.$().find("input").attr("readonly", true);
+			var ZzmodelCB = RSOA_controller.getView().byId("model_RSOA");
+			ZzmodelCB.$().find("input").attr("readonly", true);
+			var ZzsuffixCB = RSOA_controller.getView().byId("Suffix_RSOA");
+			ZzsuffixCB.$().find("input").attr("readonly", true);
+			var ZzapxCB = RSOA_controller.getView().byId("Apx_RSOA");
+			ZzapxCB.$().find("input").attr("readonly", true);
+			var ZzextcolCB = RSOA_controller.getView().byId("Colour_RSOA");
+			ZzextcolCB.$().find("input").attr("readonly", true);
 		},
 		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
@@ -917,7 +928,14 @@ sap.ui.define([
 
 		onAfterRendering: function () {
 			RSOA_controller.listOfModelYear();
-			
+			var seriesCB = this.getView().byId('series_RSOA');
+
+			seriesCB.addEventDelegate({
+				onAfterRendering: function () {
+					seriesCB.$().find("input").attr("readonly", true);
+				}
+			});
+
 		},
 		//-----------------------------------------
 		//---------Handling Select Year----------
@@ -1237,19 +1255,19 @@ sap.ui.define([
 			}
 		},
 		validPhoneNum: function (phoneNum) {
-			if (phoneNum) {
-				phoneNum = phoneNum.getParameters().newValue;
-				var phoneregEx = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
-				if (phoneregEx.test(phoneNum) == true) {
-					RSOA_controller.getView().byId("Phone_RSOA").setValueState("None");
-					return phoneNum;
-				} else {
-					RSOA_controller.getView().byId("Phone_RSOA").setValueState("Error");
-					return null;
+				if (phoneNum) {
+					phoneNum = phoneNum.getParameters().newValue;
+					var phoneregEx = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+					if (phoneregEx.test(phoneNum) == true) {
+						RSOA_controller.getView().byId("Phone_RSOA").setValueState("None");
+						return phoneNum;
+					} else {
+						RSOA_controller.getView().byId("Phone_RSOA").setValueState("Error");
+						return null;
+					}
 				}
 			}
-		}
-		// ,
+			// ,
 
 		// ShowError: function () {
 		// 	var invalidPostalCode = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("SO000024");
