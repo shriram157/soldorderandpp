@@ -158,6 +158,8 @@ sap.ui.define([
 			ZzapxCB.$().find("input").attr("readonly", true);
 			var ZzextcolCB = this.getView().byId("Colour_RSOA");
 			ZzextcolCB.$().find("input").attr("readonly", true);
+			this.readyOnly();
+			
 			
 		},
 		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
@@ -927,11 +929,49 @@ sap.ui.define([
 
 			}
 		},
+		
+		readyOnly:function(){
+			var seriesCB = this.getView().byId('series_RSOA');
+			seriesCB.addEventDelegate({
+				onAfterRendering: function () {
+					seriesCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzmoyrCB = this.getView().byId("modelYr_RSOA");
+			ZzmoyrCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzmoyrCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzmodelCB = this.getView().byId("modelYr_RSOA");
+			ZzmodelCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzmodelCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzsuffixCB = this.getView().byId("Suffix_RSOA");
+			ZzsuffixCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzsuffixCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzapxCB = this.getView().byId("Apx_RSOA");
+			ZzapxCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzapxCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzextcolCB = this.getView().byId("Colour_RSOA");
+			ZzextcolCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzextcolCB.$().find("input").attr("readonly", true);
+				}
+			});
+		},
 
 		onAfterRendering: function () {
 			RSOA_controller.listOfModelYear();
 			var seriesCB = this.getView().byId('series_RSOA');
-
 			seriesCB.addEventDelegate({
 				onAfterRendering: function () {
 					seriesCB.$().find("input").attr("readonly", true);
@@ -1117,6 +1157,7 @@ sap.ui.define([
 				});
 				var ZzseriesCB = this.getView().byId('series_RSOA');
 				ZzseriesCB.$().find("input").attr("readonly", true);
+				this.readyOnly();
 					// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
@@ -1182,6 +1223,7 @@ sap.ui.define([
 				});
 				var ZzmodelCB = this.getView().byId("model_RSOA");
 				ZzmodelCB.$().find("input").attr("readonly", true);
+				this.readyOnly();
 				// ,{path:'mainservices>int_trim_desc_en'}		
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
@@ -1264,6 +1306,7 @@ sap.ui.define([
 				ZzextcolCB.$().find("input").attr("readonly", true);
 				var ZzapxCB = this.getView().byId("Apx_RSOA");
 				ZzapxCB.$().find("input").attr("readonly", true);
+				this.readyOnly();
 				// var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
