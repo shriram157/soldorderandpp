@@ -158,6 +158,8 @@ sap.ui.define([
 			ZzapxCB.$().find("input").attr("readonly", true);
 			var ZzextcolCB = this.getView().byId("Colour_RSOA");
 			ZzextcolCB.$().find("input").attr("readonly", true);
+			var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
+			SalesType_RSOA.$().find("input").attr("readonly", true);
 			this.readyOnly();
 			
 			
@@ -967,6 +969,13 @@ sap.ui.define([
 					ZzextcolCB.$().find("input").attr("readonly", true);
 				}
 			});
+			var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
+			SalesType_RSOA.addEventDelegate({
+				onAfterRendering: function () {
+					SalesType_RSOA.$().find("input").attr("readonly", true);
+				}
+			});
+			
 		},
 
 		onAfterRendering: function () {
@@ -1005,6 +1014,12 @@ sap.ui.define([
 			ZzextcolCB.addEventDelegate({
 				onAfterRendering: function () {
 					ZzextcolCB.$().find("input").attr("readonly", true);
+				}
+			});
+				var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
+			SalesType_RSOA.addEventDelegate({
+				onAfterRendering: function () {
+					SalesType_RSOA.$().find("input").attr("readonly", true);
 				}
 			});
 		},

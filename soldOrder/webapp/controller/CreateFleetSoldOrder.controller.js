@@ -184,6 +184,10 @@ sap.ui.define([
 			else {
 				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 			}
+			
+				var FanNo_CFSO = this.getView().byId('FanNo_CFSO');
+				FanNo_CFSO.$().find("input").attr("readonly", true);
+				
 		},
 		_newService1: function () {
 			var host = CFSO_controller.host();
@@ -888,6 +892,10 @@ sap.ui.define([
 		//----------Fan Number---------------
 		//----------------------------------
 		_valuehelpfanno: function (oEvent) {
+				var FanNo_CFSO = this.getView().byId('FanNo_CFSO');
+				FanNo_CFSO.$().find("input").attr("readonly", true);
+				
+		
 			if (!CFSO_controller._addNewFanPage) {
 				CFSO_controller._addNewFanPage = sap.ui.xmlfragment('FanNo', "toyota.ca.SoldOrder.view.fragments.FanNo", CFSO_controller);
 				CFSO_controller.getView().addDependent(CFSO_controller._addNewFanPage);
@@ -895,6 +903,7 @@ sap.ui.define([
 			// CFSO_controller._addNewFanPage.setModel(CFSO_controller.getView().getModel());
 			CFSO_controller._addNewFanPage.open();
 		},
+
 		isNumberKey: function (evt) {
 			evt = (evt) ? evt : window.event;
 			var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -946,11 +955,11 @@ sap.ui.define([
 			} else {
 				dataUpdated = data;
 			}
-		//	console.log("dataUpdated", dataUpdated);
+			//	console.log("dataUpdated", dataUpdated);
 			CFSO_controller.getView().getModel("seriesModel").setData(dataUpdated);
-		//	console.log("data", CFSO_controller.getView().getModel("seriesModel"));
+			//	console.log("data", CFSO_controller.getView().getModel("seriesModel"));
 			CFSO_controller.getView().getModel("seriesModel").updateBindings(true);
-			
+
 		},
 		handleSearchFan: function (oEvent) {
 			var searchString = oEvent.getParameter("value");
@@ -964,6 +973,12 @@ sap.ui.define([
 
 		},
 		onAfterRendering: function () {
+				var FanNo_CFSO = this.getView().byId("FanNo_CFSO");
+			FanNo_CFSO.addEventDelegate({
+				onAfterRendering: function () {
+					FanNo_CFSO.$().find("input").attr("readonly", true);
+				}
+			});
 				// CFSO_controller.listOfModelYear();
 				// if (AppController.flagPPDUser == true) {
 				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
