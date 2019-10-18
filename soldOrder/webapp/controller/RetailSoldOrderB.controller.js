@@ -22,6 +22,9 @@ sap.ui.define([
 			RSOB_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			RSOB_controller._handleServiceSuffix_Series();
 			RSOB_controller.getView().setModel(model, 'Customer');
+			var todayDate = new Date();
+			RSOB_controller.getView().byId("ContractDate_RSOB").setMaxDate(todayDate);
+
 			this.getOwnerComponent().getRouter().getRoute("RetailSoldOrderB").attachPatternMatched(this._getattachRouteMatched, this);
 
 			// RSOB_controller._handleRSADropDown();
