@@ -417,7 +417,7 @@ sap.ui.define([
 						var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
 						if (i == ((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (FleetReference eq '') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc";
+							oUrl = oUrl + ") and (FleetReference eq 'X') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc";
 						} else {
 							oUrl = oUrl + " or ";
 						}
@@ -478,7 +478,7 @@ sap.ui.define([
 					}
 					var dealer = this.getView().byId("cb_dealer_FSOD").getSelectedKey();
 					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "'))";
-					oUrl = oUrl + "and (FleetReference eq '') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc ";
+					oUrl = oUrl + "and (FleetReference eq 'X') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc ";
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -544,7 +544,7 @@ sap.ui.define([
 			}
 			var dealer = this.getView().byId("cb_dealer_FSOD").getSelectedKey();
 			oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "'))";
-			oUrl = oUrl + "and (FleetReference eq '') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc ";
+			oUrl = oUrl + "and (FleetReference eq 'X') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc ";
 
 			$.ajax({
 				url: oUrl,
@@ -956,7 +956,7 @@ sap.ui.define([
 					}
 					var dealer = this.getView().byId("cb_dealer_FSOD").getSelectedKey();
 					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "'))";
-					oUrl = oUrl + "and (FleetReference eq '') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc ";
+					oUrl = oUrl + "and (FleetReference eq 'X') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc ";
 
 					$.ajax({
 						url: oUrl,
