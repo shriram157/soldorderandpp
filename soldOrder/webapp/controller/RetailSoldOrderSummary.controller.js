@@ -430,7 +430,7 @@ sap.ui.define([
 				}
 			}
 			var dealer = this.getView().byId("cb_dealer_RSOS").getSelectedKey();
-			oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
+			oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
 
 			$.ajax({
 				url: oUrl,
@@ -524,7 +524,7 @@ sap.ui.define([
 					}
 					for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
 						var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
+						oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 						if (i == ((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length) - 1)) {
 							oUrl = oUrl + ") and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
 						} else {
@@ -680,7 +680,7 @@ sap.ui.define([
 						}
 						// for (var i = 0; i < this.getView().byId("cb_dealer_RSOS").getSelectedItems().length; i++) {
 						var dealer = this.getView().byId("cb_dealer_RSOS").getSelectedKey();
-						oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
+						oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
 
 						$.ajax({
 							url: oUrl,
@@ -970,7 +970,7 @@ sap.ui.define([
 				}
 				for (var i = 0; i < this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("mcb_dealer_RSOS").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
+					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 					if (i == ((this.getView().byId("mcb_dealer_RSOS").getSelectedItems().length) - 1)) {
 						oUrl = oUrl + ") and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
 					} else {
@@ -1130,7 +1130,7 @@ sap.ui.define([
 					}
 					// for (var i = 0; i < this.getView().byId("cb_dealer_RSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("cb_dealer_RSOS").getSelectedKey();
-					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
+					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
 
 					$.ajax({
 						url: oUrl,

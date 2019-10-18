@@ -860,6 +860,9 @@ sap.ui.define([
 					else if (AppController.RSOA == true) {
 						pathAB ="mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
 					}
+					else{
+						pathAB ="mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
+					}
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 						filters: new sap.ui.model.Filter([
