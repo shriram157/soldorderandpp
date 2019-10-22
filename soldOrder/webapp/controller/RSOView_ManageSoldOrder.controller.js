@@ -861,7 +861,7 @@ sap.ui.define([
 						pathAB ="mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
 					}
 					else{
-						pathAB ="mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
+						pathAB ="mainservices>/ZVMS_SUFFIX_PIPLINE(DLR='" + dealer + "')/Set";
 					}
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
