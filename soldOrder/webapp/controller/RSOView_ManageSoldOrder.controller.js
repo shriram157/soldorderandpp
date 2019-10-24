@@ -49,7 +49,7 @@ sap.ui.define([
 
 						"SalesType": [{
 							"key": "1",
-							"text": "ENCAISSER"
+							"text": "COMPTANT"
 						}, {
 							"key": "2",
 							"text": "BAIL"
