@@ -913,7 +913,7 @@ sap.ui.define([
 				return;
 			}
 			var fileName = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("RetailSoldOrderReport");
-			fileName += ReportTitle.replace(/ /g, "_");
+		//	fileName += ReportTitle.replace(/ /g, "_");
 			// Initialize file format you want csv or xls
 
 			var blob = new Blob(["\ufeff" + CSV], {
