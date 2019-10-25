@@ -651,16 +651,19 @@ sap.ui.define([
 					error: function (request, errorText, errorCode) {
 						/////
 						if (RSOA_controller.flagInvalidPCode == true && RSOA_controller.flagInvalidPhone == false) {
+								oBusyDialog.close();
 							var errMsg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPostalCode");
 							sap.m.MessageBox.show(errMsg1, sap.m.MessageBox.Icon.ERROR, "Error", sap
 								.m.MessageBox.Action.OK, null, null);
 						}
 						else  if (RSOA_controller.flagInvalidPCode == false && RSOA_controller.flagInvalidPhone == true) {
+								oBusyDialog.close();
 							var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPhone");
 							sap.m.MessageBox.show(errMsg2, sap.m.MessageBox.Icon.ERROR, "Error", sap
 								.m.MessageBox.Action.OK, null, null);
 						}
 						else  if (RSOA_controller.flagInvalidPCode == true && RSOA_controller.flagInvalidPhone == true) {
+								oBusyDialog.close();
 							var errMsg3 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPhonePostalCode");
 							sap.m.MessageBox.show(errMsg3, sap.m.MessageBox.Icon.ERROR, "Error", sap
 								.m.MessageBox.Action.OK, null, null);
