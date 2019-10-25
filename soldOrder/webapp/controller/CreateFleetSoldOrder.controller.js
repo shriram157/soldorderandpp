@@ -718,6 +718,15 @@ sap.ui.define([
 			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
 
 			if (series && modelyear) {
+				var modelCB = this.getView().byId("modelCode_CFSO");
+				modelCB.$().find("input").attr("readonly", true);
+				var suffix_CFSO = this.getView().byId("suffix_CFSO");
+				suffix_CFSO.$().find("input").attr("readonly", true);
+				var color_CFSO = this.getView().byId("color_CFSO");
+				color_CFSO.$().find("input").attr("readonly", true);
+				var Apx_CFSO = this.getView().byId("Apx_CFSO");
+				Apx_CFSO.$().find("input").attr("readonly", true);
+
 				var modelCB = CFSO_controller.getView().byId("modelCode_CFSO");
 				var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
 				var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
@@ -764,6 +773,15 @@ sap.ui.define([
 		},
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
+			var modelCode_CFSO = this.getView().byId("modelCode_CFSO");
+			modelCode_CFSO.$().find("input").attr("readonly", true);
+			var suffix_CFSO = this.getView().byId("suffix_CFSO");
+			suffix_CFSO.$().find("input").attr("readonly", true);
+			var color_CFSO = this.getView().byId("color_CFSO");
+			color_CFSO.$().find("input").attr("readonly", true);
+			var Apx_CFSO = this.getView().byId("Apx_CFSO");
+			Apx_CFSO.$().find("input").attr("readonly", true);
+
 			var model = oEvent.getSource().getSelectedKey();
 			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
 			// var language = CFSO_controller.returnBrowserLanguage();
@@ -829,6 +847,14 @@ sap.ui.define([
 			}
 		},
 		suffix_selected: function (oEvent) {
+
+			var suffix_CFSO = this.getView().byId("suffix_CFSO");
+			suffix_CFSO.$().find("input").attr("readonly", true);
+			var color_CFSO = this.getView().byId("color_CFSO");
+			color_CFSO.$().find("input").attr("readonly", true);
+			var Apx_CFSO = this.getView().byId("Apx_CFSO");
+			Apx_CFSO.$().find("input").attr("readonly", true);
+
 			var suffix = oEvent.getSource().getSelectedKey();
 			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
 			var model = CFSO_controller.getView().byId('modelCode_CFSO').getSelectedKey();
@@ -862,14 +888,7 @@ sap.ui.define([
 						text: "{mainservices>zzapx}"
 					})
 				});
-				// var items_binding = CFSO_controller.getView().byId('Apx_RSOA').getBinding('items');
-				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
-				// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
-				// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-				// ], true));
-				//-----------------
-				//----Color---------
-				//----------------
+
 				var color;
 				// var language = CFSO_controller.returnBrowserLanguage();
 				if (language === "FR") {
