@@ -15,6 +15,8 @@ sap.ui.define([
 		onInit: function () {
 			RSOA_controller = this;
 			AppController.RSOA = true;
+			RSOA_controller.flagInvalidPCode = false;
+			RSOA_controller.flagInvalidPhone = false;
 			// RSOA_controller.getBrowserLanguage();
 			// var language = RSOA_controller.returnBrowserLanguage();
 			RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
@@ -145,7 +147,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-			
+
 			var ZzmoyrCB = this.getView().byId("modelYr_RSOA");
 			ZzmoyrCB.$().find("input").attr("readonly", true);
 			var ZzseriesCB = this.getView().byId('series_RSOA');
@@ -161,8 +163,7 @@ sap.ui.define([
 			var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
 			SalesType_RSOA.$().find("input").attr("readonly", true);
 			this.readyOnly();
-			
-			
+
 		},
 		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
@@ -648,6 +649,24 @@ sap.ui.define([
 						}
 					},
 					error: function (request, errorText, errorCode) {
+						/////
+						if (RSOA_controller.flagInvalidPCode == true && RSOA_controller.flagInvalidPhone == false) {
+							var errMsg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPostalCode");
+							sap.m.MessageBox.show(errMsg1, sap.m.MessageBox.Icon.ERROR, "Error", sap
+								.m.MessageBox.Action.OK, null, null);
+						}
+						else  if (RSOA_controller.flagInvalidPCode == false && RSOA_controller.flagInvalidPhone == true) {
+							var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPhone");
+							sap.m.MessageBox.show(errMsg2, sap.m.MessageBox.Icon.ERROR, "Error", sap
+								.m.MessageBox.Action.OK, null, null);
+						}
+						else  if (RSOA_controller.flagInvalidPCode == true && RSOA_controller.flagInvalidPhone == true) {
+							var errMsg3 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPhonePostalCode");
+							sap.m.MessageBox.show(errMsg3, sap.m.MessageBox.Icon.ERROR, "Error", sap
+								.m.MessageBox.Action.OK, null, null);
+						}
+						else{
+
 						var soapMessage = {
 							"requestHeader": {
 								"source": "Toyota",
@@ -754,18 +773,10 @@ sap.ui.define([
 							}
 						});
 					}
+				}
 
 				});
-				// sap.m.MessageBox.show(msg, {
-				// 	//	icon: sap.m.MessageBox.Icon.WARNING,
-				// 	title: title,
-				// 	actions: sap.m.MessageBox.Action.OK,
-				// 	onClose: null,
-				// 	styleClass: "",
-				// 	initialFocus: null,
-				// 	textDirection: sap.ui.core.TextDirection.Inherit,
-				// 	contentWidth: "10rem"
-				// });
+
 				validateFlagA = true;
 				var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
 				if (validateFlagA == true) {
@@ -775,11 +786,7 @@ sap.ui.define([
 				}
 
 			} else {
-				/*	validateFlagA = true;
-				if (validateFlagA == true) {
-					var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA")
-					submitBtn.setEnabled(true);
-				}*/
+
 				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 				var errForm = formatter.formatErrorType("SO000023");
 				errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -931,8 +938,8 @@ sap.ui.define([
 
 			}
 		},
-		
-		readyOnly:function(){
+
+		readyOnly: function () {
 			var seriesCB = this.getView().byId('series_RSOA');
 			seriesCB.addEventDelegate({
 				onAfterRendering: function () {
@@ -975,7 +982,7 @@ sap.ui.define([
 					SalesType_RSOA.$().find("input").attr("readonly", true);
 				}
 			});
-			
+
 		},
 
 		onAfterRendering: function () {
@@ -1016,7 +1023,7 @@ sap.ui.define([
 					ZzextcolCB.$().find("input").attr("readonly", true);
 				}
 			});
-				var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
+			var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
 			SalesType_RSOA.addEventDelegate({
 				onAfterRendering: function () {
 					SalesType_RSOA.$().find("input").attr("readonly", true);
@@ -1173,7 +1180,7 @@ sap.ui.define([
 				var ZzseriesCB = this.getView().byId('series_RSOA');
 				ZzseriesCB.$().find("input").attr("readonly", true);
 				this.readyOnly();
-					// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
 		},
@@ -1292,7 +1299,7 @@ sap.ui.define([
 				//----------------
 				var ZzsuffixCB = this.getView().byId("Suffix_RSOA");
 				ZzsuffixCB.$().find("input").attr("readonly", true);
-				
+
 				var color;
 				// var language = RSOA_controller.returnBrowserLanguage();
 				if (language === "FR") {
@@ -1316,7 +1323,7 @@ sap.ui.define([
 							// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 					})
 				});
-				
+
 				var ZzextcolCB = this.getView().byId("Colour_RSOA");
 				ZzextcolCB.$().find("input").attr("readonly", true);
 				var ZzapxCB = this.getView().byId("Apx_RSOA");
@@ -1351,6 +1358,7 @@ sap.ui.define([
 					return postalCode;
 				} else {
 					RSOA_controller.getView().byId("PostalCode_RSOA").setValueState("Error");
+					RSOA_controller.flagInvalidPCode = true;
 					return null;
 				}
 			}
@@ -1364,6 +1372,7 @@ sap.ui.define([
 						return phoneNum;
 					} else {
 						RSOA_controller.getView().byId("Phone_RSOA").setValueState("Error");
+						RSOA_controller.flagInvalidPhone = true;
 						return null;
 					}
 				}
