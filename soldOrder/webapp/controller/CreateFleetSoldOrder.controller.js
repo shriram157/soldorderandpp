@@ -184,10 +184,18 @@ sap.ui.define([
 			else {
 				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 			}
-			
-				var FanNo_CFSO = this.getView().byId('FanNo_CFSO');
-				FanNo_CFSO.$().find("input").attr("readonly", true);
-				
+
+			var FanNo_CFSO = this.getView().byId('FanNo_CFSO');
+			FanNo_CFSO.$().find("input").attr("readonly", true);
+			var modelCode_CFSO = this.getView().byId("modelCode_CFSO");
+			modelCode_CFSO.$().find("input").attr("readonly", true);
+			var suffix_CFSO = this.getView().byId("suffix_CFSO");
+			suffix_CFSO.$().find("input").attr("readonly", true);
+			var color_CFSO = this.getView().byId("color_CFSO");
+			color_CFSO.$().find("input").attr("readonly", true);
+			var Apx_CFSO = this.getView().byId("Apx_CFSO");
+			Apx_CFSO.$().find("input").attr("readonly", true);
+
 		},
 		_newService1: function () {
 			var host = CFSO_controller.host();
@@ -892,10 +900,9 @@ sap.ui.define([
 		//----------Fan Number---------------
 		//----------------------------------
 		_valuehelpfanno: function (oEvent) {
-				var FanNo_CFSO = this.getView().byId('FanNo_CFSO');
-				FanNo_CFSO.$().find("input").attr("readonly", true);
-				
-		
+			var FanNo_CFSO = this.getView().byId('FanNo_CFSO');
+			FanNo_CFSO.$().find("input").attr("readonly", true);
+
 			if (!CFSO_controller._addNewFanPage) {
 				CFSO_controller._addNewFanPage = sap.ui.xmlfragment('FanNo', "toyota.ca.SoldOrder.view.fragments.FanNo", CFSO_controller);
 				CFSO_controller.getView().addDependent(CFSO_controller._addNewFanPage);
@@ -974,39 +981,36 @@ sap.ui.define([
 		},
 		onAfterRendering: function () {
 				var FanNo_CFSO = this.getView().byId("FanNo_CFSO");
-			FanNo_CFSO.addEventDelegate({
-				onAfterRendering: function () {
-					FanNo_CFSO.$().find("input").attr("readonly", true);
-				}
-			});
-				// CFSO_controller.listOfModelYear();
-				// if (AppController.flagPPDUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagNationalSIPUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagNationalPPDUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagDealerUser == true) {
+				FanNo_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						FanNo_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+				var modelCode_CFSO = this.getView().byId("modelCode_CFSO");
+				modelCode_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						modelCode_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+				var suffix_CFSO = this.getView().byId("suffix_CFSO");
+				suffix_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						suffix_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+				var color_CFSO = this.getView().byId("color_CFSO");
+				color_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						color_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+				var Apx_CFSO = this.getView().byId("Apx_CFSO");
+				Apx_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						Apx_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
 
-				// }
-				// if (AppController.flagZoneUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagTCINationalUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagSIPUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagNationalUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagOrderingDealer == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
 			}
 			// _handleServiceSuffix_Series: function () {
 			// 	var host = CFSO_controller.host();
