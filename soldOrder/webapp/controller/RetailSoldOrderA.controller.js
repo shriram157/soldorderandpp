@@ -1355,6 +1355,7 @@ sap.ui.define([
 				var postalRegEx = new RegExp(/^[ABCEGHJ-NPRSTV-Z]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/m);
 				if (postalRegEx.test(postalCode) == true) {
 					RSOA_controller.getView().byId("PostalCode_RSOA").setValueState("None");
+					RSOA_controller.flagInvalidPCode = false;
 					return postalCode;
 				} else {
 					RSOA_controller.getView().byId("PostalCode_RSOA").setValueState("Error");
@@ -1369,6 +1370,7 @@ sap.ui.define([
 					var phoneregEx = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
 					if (phoneregEx.test(phoneNum) == true) {
 						RSOA_controller.getView().byId("Phone_RSOA").setValueState("None");
+						RSOA_controller.flagInvalidPhone = false;
 						return phoneNum;
 					} else {
 						RSOA_controller.getView().byId("Phone_RSOA").setValueState("Error");
