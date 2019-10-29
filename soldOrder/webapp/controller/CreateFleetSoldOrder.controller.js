@@ -187,6 +187,8 @@ sap.ui.define([
 
 			var FanNo_CFSO = this.getView().byId('FanNo_CFSO');
 			FanNo_CFSO.$().find("input").attr("readonly", true);
+			var modelYr_CFSO = this.getView().byId("modelYr_CFSO");
+			modelYr_CFSO.$().find("input").attr("readonly", true);
 			var modelCode_CFSO = this.getView().byId("modelCode_CFSO");
 			modelCode_CFSO.$().find("input").attr("readonly", true);
 			var suffix_CFSO = this.getView().byId("suffix_CFSO");
@@ -773,6 +775,8 @@ sap.ui.define([
 		},
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
+			var modelYr_CFSO = this.getView().byId("modelYr_CFSO");
+			modelYr_CFSO.$().find("input").attr("readonly", true);
 			var modelCode_CFSO = this.getView().byId("modelCode_CFSO");
 			modelCode_CFSO.$().find("input").attr("readonly", true);
 			var suffix_CFSO = this.getView().byId("suffix_CFSO");
@@ -1005,6 +1009,13 @@ sap.ui.define([
 						FanNo_CFSO.$().find("input").attr("readonly", true);
 					}
 				});
+				var modelYr_CFSO = this.getView().byId("modelYr_CFSO");
+				modelYr_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						modelYr_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+
 				var modelCode_CFSO = this.getView().byId("modelCode_CFSO");
 				modelCode_CFSO.addEventDelegate({
 					onAfterRendering: function () {
