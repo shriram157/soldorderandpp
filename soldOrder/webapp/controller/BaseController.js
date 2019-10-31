@@ -251,6 +251,12 @@ sap.ui.define([
 					$.each(oData.attributes, function (i, item) {
 						var BpLength = item.BusinessPartner.length;
 						//console.log("Div", that.Div);
+						if(item.BPDivision == "03" && this.sDivision == "10"){
+							item.BPDivision = "01";
+						}
+						else if(item.BPDivision == "03" && this.sDivision == "20"){
+							item.BPDivision = "02";
+						}
 						if (item.BPDivision == that.Div) {
 							BpDealerArr.push({
 								"BusinessPartnerKey": item.BusinessPartnerKey,
