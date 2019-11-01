@@ -1247,12 +1247,15 @@ sap.ui.define([
 				});
 				var ZzmodelCB = this.getView().byId("model_RSOA");
 				ZzmodelCB.$().find("input").attr("readonly", true);
-				if(this.getView().byId('Suffix_RSOA').getItems().length<1){
-					var errMsg= sap.ui.getCore().getModel("i18n").getResourceBundle().getText("NoSuffix");
-					var errTitle = "";
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
-						.m.MessageBox.Action.OK, null, null);
-				}
+
+				setTimeout(function () {
+					if (this.getView().byId('Suffix_RSOA').getItems().length < 1) {
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("NoSuffix");
+						var errTitle = "";
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+							.m.MessageBox.Action.OK, null, null);
+					}
+				}, 3000);
 				this.readyOnly();
 				// ,{path:'mainservices>int_trim_desc_en'}		
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
@@ -1261,6 +1264,7 @@ sap.ui.define([
 				// ], true));
 			}
 		},
+
 		suffix_selected: function (oEvent) {
 			//-----------------
 			//----APX---------
