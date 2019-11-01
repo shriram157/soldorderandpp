@@ -7,7 +7,7 @@ sap.ui.define([
 	"sap/m/MessageBox"
 ], function (Controller, ResourceModel, History, JSONModel) {
 	"use strict";
-	var basCont;
+	var basCont, sDiv;
 	return Controller.extend("toyota.ca.SoldOrder.controller.BaseController", {
 
 		onInit: function () {
@@ -228,6 +228,7 @@ sap.ui.define([
 			});
 
 			// get the attributes and BP Details  Copyied from Minkashi 
+			var that=this;
 			$.ajax({
 				url: sPrefix + this.attributeUrl,
 				type: "GET",
@@ -241,20 +242,20 @@ sap.ui.define([
 					var userAttributes = [];
 					var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 					if (isDivisionSent) {
-						this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+						sDiv = window.location.search.match(/Division=([^&]*)/i)[1];
 					}
-					if (this.sDivision == "10") {
+					if (sDiv == "10") {
 						this.Div = "01";
-					} else if (this.sDivision == "20") {
+					} else if (sDiv == "20") {
 						this.Div = "02";
 					}
 					$.each(oData.attributes, function (i, item) {
 						var BpLength = item.BusinessPartner.length;
 						//console.log("Div", that.Div);
-						if(item.BPDivision == "03" && this.sDivision == "10"){
+						if(item.BPDivision == "03" && sDiv == "10"){
 							item.BPDivision = "01";
 						}
-						else if(item.BPDivision == "03" && this.sDivision == "20"){
+						else if(item.BPDivision == "03" && sDiv == "20"){
 							item.BPDivision = "02";
 						}
 						if (item.BPDivision == that.Div) {
