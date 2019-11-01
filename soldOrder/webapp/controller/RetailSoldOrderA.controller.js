@@ -1247,9 +1247,10 @@ sap.ui.define([
 				});
 				var ZzmodelCB = this.getView().byId("model_RSOA");
 				ZzmodelCB.$().find("input").attr("readonly", true);
-
+				
+				var that=this;
 				setTimeout(function () {
-					if (this.getView().byId('Suffix_RSOA').getItems().length < 1) {
+					if (that.getView().byId('Suffix_RSOA').getItems().length < 1) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("NoSuffix");
 						var errTitle = "";
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
