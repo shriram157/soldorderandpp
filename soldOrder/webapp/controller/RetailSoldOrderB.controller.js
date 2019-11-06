@@ -146,6 +146,19 @@ sap.ui.define([
 			}
 			if (parameters.getParameters().arguments.vtnn) {
 				values.vtnn = parameters.getParameters().arguments.vtnn;
+				RSOB_controller.getView().getModel('mainservices').callFunction("/Free_DNC", {
+				method: "POST",
+				urlParameters: {
+					ZZVTN: values.vtnn
+				},
+				success: function (data, response) {
+					
+				},
+				error: function (oData, oResponse) {
+					sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+						.MessageBox.Action.OK, null, null);
+				}
+			});
 			}
 			if (parameters.getParameters().arguments.fromdate) {
 				values.fromdate = zdateFormat.parse(parameters.getParameters().arguments.fromdate);
@@ -153,6 +166,8 @@ sap.ui.define([
 			if (parameters.getParameters().arguments.todate) {
 				values.todate = zdateFormat.parse(parameters.getParameters().arguments.todate);
 			}
+			
+
 			RSOB_controller.getView().setModel(new JSONModel(values), "RSOB_Model");
 			RSOB_controller.series_selected();
 			RSOB_controller.model_selected();
@@ -744,11 +759,11 @@ sap.ui.define([
 				var postalRegEx = new RegExp(/^[ABCEGHJ-NPRSTV-Z]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/m);
 				if (postalRegEx.test(postalCode) == true) {
 					RSOB_controller.getView().byId("PostalCode_RSOB").setValueState("None");
-						RSOB_controller.flagInvalidPCode = false;
+					RSOB_controller.flagInvalidPCode = false;
 					return postalCode;
 				} else {
 					RSOB_controller.getView().byId("PostalCode_RSOB").setValueState("Error");
-						RSOB_controller.flagInvalidPCode = true;
+					RSOB_controller.flagInvalidPCode = true;
 					return null;
 				}
 			}
