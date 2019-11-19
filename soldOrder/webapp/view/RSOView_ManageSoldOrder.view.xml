@@ -237,9 +237,9 @@
 							<Text text="{path:'mainservices>PaymentAmmount',formatter:'toyota.ca.SoldOrder.util.formatter.formatAmount'}"/>
 						</f:content>
 					</f:SimpleForm>
-					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss2"/>
+					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCornersRSO msgStripCss2"/>
 					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{mainservices>AttachmentSet}" enableColumnReordering="false"
-						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount="2">
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCornersRSO" visibleRowCount="2">
 						<t:columns>
 							<t:Column width="33.33%" resizable="false">
 								<Label text=""/>

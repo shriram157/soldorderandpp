@@ -75,7 +75,7 @@
 									</f:SimpleForm>
 								</items>
 							</VBox>
-							<t:Table id="tbl_FSOS" selectionMode="None" rows="{fleetsumModel>/}" enableColumnReordering="false" alternateRowColors="true"
+							<t:Table id="tbl_FSOS" selectionMode="None"  rows="{fleetsumModel>/}" enableColumnReordering="false" alternateRowColors="true"
 								 class="marginCorners" visibleRowCount="10"> <!--change 24 sep, earlier 6-->
 								<t:extension>
 									<Toolbar>
@@ -147,7 +147,7 @@
 									</t:Column>
 								</t:columns>
 							</t:Table>
-							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners moreBtn">
+							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
 								<l:content>
 									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
 								</l:content>

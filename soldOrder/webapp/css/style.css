@@ -104,7 +104,9 @@ html.sap-desktop .sapMBtn:focus > .sapMFocusable {
 .marginCorners {
     margin: 10px 30px;
 }
-
+.marginCornersRSO{
+	margin: 8px 16px;
+}
 .marginCornersRight {
     margin-right: 16px;
 }
@@ -123,6 +125,7 @@ html.sap-desktop .sapMBtn:focus > .sapMFocusable {
 
 .TableLabel {
     font-weight: bold;
+    overflow-wrap: break-word;
 }
 
 .msgStripCss {
@@ -185,4 +188,24 @@ html.sap-desktop .sapMBtn:focus > .sapMFocusable {
 
 .VisibleStyle .sapUiRespGrid[class*="sapUiRespGridVSpace0"] > .sapUiRespGridSpanInvisible {
     width: 0 !important;
+}
+
+.sapMLabel {
+	 white-space: pre-wrap;
+}
+	
+@media all and (min-width:650px)and (max-width: 4000px) {
+ .widthCss{
+ 	width:49% !important;
+ }
+}
+@media all and (min-width:500px) and (max-width: 649px) {
+ .widthCss{
+ 	width:90%;
+ }
+}
+@media all and (min-width:200px) and (max-width: 499px) {
+ .widthCss{
+ 	width:80%;
+ }
 }

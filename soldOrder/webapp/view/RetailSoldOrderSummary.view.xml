@@ -102,18 +102,30 @@
 							</VBox>
 							<Button text="{i18n>new}" id="idBtn_RSOS_new" class="cssShift marginCornersRight" visible="false" press="_createNewOrder"/>
 							<!--<t:Table id="table_RSOS" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" alternateRowColors="true" enableColumnFreeze="false" visibleRowCount="10" class="marginCorners">-->
-							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true" visibleRowCount="10" class="marginCorners"> <!--change 24 sep, earlier 8-->
-								<t:extension>
-									<Toolbar>
-										<Title id="tableHeader" text="{detailView>/tableCount}"/>
-										<ToolbarSpacer/>
-										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
+						
+									<HBox class="justifyContentEnd sapUiMediumMarginBegin">
+										<items>
+											<SearchField  class="" id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
 											<layoutData>
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
-										
-										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" id="idBtnExportToExcel" class="sapUiTinyMarginBegin"></Button>
+										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" id="idBtnExportToExcel" class="sapUiTinyMarginBegin sapUiMediumMarginEnd"></Button>
+									
+										</items>
+									</HBox>
+							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true" visibleRowCount="10" class="marginCorners"> <!--change 24 sep, earlier 8-->
+								<t:extension>
+									<Toolbar visible="false">
+										<Title id="tableHeader" text="{detailView>/tableCount}"/>
+										<ToolbarSpacer/>
+										<SearchField id="searchOrders3" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
+											<layoutData>
+												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
+											</layoutData>
+										</SearchField>
+										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" id="idBtnExportToExcel3" class="sapUiTinyMarginBegin"></Button>
+									<ToolbarSpacer/>
 									</Toolbar>
 								</t:extension>
 								<t:columns>
@@ -203,7 +215,7 @@
 									</t:Column>
 								</t:columns>
 							</t:Table>
-							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners moreBtn">
+							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
 								<!--<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>-->
 								<l:content>
 									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
