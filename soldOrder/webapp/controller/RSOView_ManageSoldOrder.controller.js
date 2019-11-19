@@ -84,7 +84,11 @@ sap.ui.define([
 					}]
 				};
 				var oModel = new sap.ui.model.json.JSONModel(dataEC);
-				this.getView().setModel(oModel, 'ChatModel');
+			//	this.getView().setModel(oModel, 'ChatModel');
+			//	sap.ui.getCore().setModel('ChatModel');
+					sap.ui.getCore().setModel(oModel, "ChatModel");
+			this.getView().setModel(sap.ui.getCore().getModel("ChatModel"), "ChatModel");
+			
 				console.log(this.getView().getModel('ChatModel').getData());
 				
 			},
@@ -106,7 +110,7 @@ sap.ui.define([
 				};
 
 				// update model
-				var oModel = this.getView().getModel('ChatModel');
+				var oModel = sap.ui.getCore().getModel('ChatModel');
 				var aEntries = oModel.getData().EntryCollection;
 				aEntries.unshift(oEntry);
 				oModel.setData({
@@ -115,7 +119,7 @@ sap.ui.define([
 				console.log(this.getView().getModel('ChatModel').getData());
 				var chatNum=this.getView().getModel('ChatModel').getData().EntryCollection.length;
 					AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
-				RSO_MSO_ChatNumModel.setData({
+				AppController.RSO_MSO_ChatNumModel.setData({
 					chatNum: chatNum
 				});
 			},
