@@ -68,7 +68,58 @@ sap.ui.define([
 				this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"), "salesTypeModel");
 				// //console.log(sap.ui.getCore().getModel("salesTypeModel"));
 
+			var dataEC = {
+					"EntryCollection": [{
+						"Author": "User 1",
+						"AuthorPicUrl": "",
+						"Type": "",
+						"Date": "Nov 03 2019",
+						"Text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+					}, {
+						"Author": "User 2",
+						"AuthorPicUrl": "",
+						"Type": "",
+						"Date": "Nov 03 2019",
+						"Text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+					}]
+				};
+				var oModel = new sap.ui.model.json.JSONModel(dataEC);
+				this.getView().setModel(oModel, 'ChatModel');
+				console.log(this.getView().getModel('ChatModel').getData());
+				
 			},
+			onPost: function (oEvent) {
+				var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+					style: "medium"
+				});
+				var oDate = new Date();
+				var sDate = oFormat.format(oDate);
+				// create new entry
+				var sValue = oEvent.getParameter("value");
+				var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+				var oEntry = {
+					Author: user,
+					AuthorPicUrl: "",
+					Type: "",
+					Date: "" + sDate,
+					Text: sValue
+				};
+
+				// update model
+				var oModel = this.getView().getModel('ChatModel');
+				var aEntries = oModel.getData().EntryCollection;
+				aEntries.unshift(oEntry);
+				oModel.setData({
+					EntryCollection: aEntries
+				});
+				console.log(this.getView().getModel('ChatModel').getData());
+				var chatNum=this.getView().getModel('ChatModel').getData().EntryCollection.length;
+					AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
+				RSO_MSO_ChatNumModel.setData({
+					chatNum: chatNum
+				});
+			},
+
 			_getattachRouteMatched: function (parameters) {
 				var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 				if (oDivision == "10") {

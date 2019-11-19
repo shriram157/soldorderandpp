@@ -209,3 +209,8 @@ html.sap-desktop .sapMBtn:focus > .sapMFocusable {
  	width:80%;
  }
 }
+.chatHeight{
+	overflow:auto;
+	height:5rem;
+	margin-top:1rem;
+}
