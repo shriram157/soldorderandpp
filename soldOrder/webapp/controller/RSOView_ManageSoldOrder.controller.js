@@ -116,9 +116,11 @@ sap.ui.define([
 				oModel.setData({
 					EntryCollection: aEntries
 				});
-				console.log(this.getView().getModel('ChatModel').getData());
+				oModel.refresh(true);
+				oModel.updateBindings(true);
+			//	console.log(this.getView().getModel('ChatModel').getData());
 				var chatNum=this.getView().getModel('ChatModel').getData().EntryCollection.length;
-					AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
+				AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
 				AppController.RSO_MSO_ChatNumModel.setData({
 					chatNum: chatNum
 				});
