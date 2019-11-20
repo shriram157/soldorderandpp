@@ -3,6 +3,9 @@ sap.ui.define([
 		"sap/ui/model/resource/ResourceModel",
 		"toyota/ca/SoldOrder/util/formatter",
 		"sap/ui/model/Filter",
+		//"sap/ushell",
+	//	"sap/ushell/Container",
+	//	"sap/ushell/services/Container",
 		"sap/ui/model/FilterOperator",
 		"sap/ui/model/json/JSONModel"
 	],
@@ -10,6 +13,7 @@ sap.ui.define([
 		"use strict";
 		var RSO_MSO_controller;
 		var zrequest;
+		var aEntries =[];
 		var ppdFlages;
 		var zcustomerModel, zinventoryModel;
 		var SelectVehicleOption = false;
@@ -73,31 +77,26 @@ sap.ui.define([
 						"Author": "User 1",
 						"AuthorPicUrl": "",
 						"Type": "",
-						"Date": "Nov 03 2019",
-						"Text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
-					}, {
-						"Author": "User 2",
-						"AuthorPicUrl": "",
-						"Type": "",
-						"Date": "Nov 03 2019",
-						"Text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+						"Date": "",
+						"Text": ""
 					}]
 				};
-				var oModel = this.getOwnerComponent()._getPropertiesToPropagate().oModels.ChatModel;
-					oModel.setData(dataEC);
-
-	console.log(oModel.getData());
-        this.getView().setModel(oModel, "ChatModel");//Create a new model in the view called parentModel
-        
-				//var oModel = new sap.ui.model.json.JSONModel(dataEC);
-			//	this.getView().setModel(oModel, 'ChatModel');
+			//	var oModel = this.getOwnerComponent()._getPropertiesToPropagate().oModels.undefined;
+				
+//	oModel.setData(dataEC);
+//	console.log(oModel.getData());
+      // this.getView().setModel(oModel, "ChatModel");//Create a new model in the view called parentModel
+   
+				var oModel = new sap.ui.model.json.JSONModel();
+				this.getView().setModel(oModel, 'ChatModel');
 			//	sap.ui.getCore().setModel('ChatModel');
 			//	var oModel=sap.ui.getCore().getModel("ChatModel");
 			
-			this.getView().setModel(sap.ui.getCore().getModel("ChatModel"), "ChatModel");
+	//		this.getView().setModel(sap.ui.getCore().getModel("ChatModel"), "ChatModel");
 			
-				console.log(oModel.getData());
-				
+	//			console.log(oModel.getData());
+				//this.getView().byId("chatList").setShowNoData(false);
+			//	this.getView().byId("chatList").setNoDataText("No Message");
 			},
 			onPost: function (oEvent) {
 				var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
@@ -115,22 +114,29 @@ sap.ui.define([
 					Date: "" + sDate,
 					Text: sValue
 				};
-
+  sap.ushell.Container.myvariable =oEntry ;
 				// update model
-				var oModel =this.getOwnerComponent()._getPropertiesToPropagate().oModels.ChatModel;// sap.ui.getCore().getModel('ChatModel');
-				var aEntries = oModel.getData().EntryCollection;
-				aEntries.unshift(oEntry);
+		//			var oModel2 = this.getOwnerComponent()._getPropertiesToPropagate().oModels.undefined;
+				var oModel =this.getView().getModel('ChatModel'); //this.getOwnerComponent()._getPropertiesToPropagate().oModels.ChatModel;// sap.ui.getCore().getModel('ChatModel');
+		//	console.log(oModel);
+		//	oModel.setData(EntryCollection:{});
+				// oModel.getData().EntryCollection;
+			
+				aEntries.unshift(sap.ushell.Container.myvariable);
+				console.log(aEntries);
 				oModel.setData({
 					EntryCollection: aEntries
 				});
 				oModel.refresh(true);
 				oModel.updateBindings(true);
 			//	console.log(this.getView().getModel('ChatModel').getData());
-				var chatNum=this.getView().getModel('ChatModel').getData().EntryCollection.length;
+			/*	var chatNum=this.getView().getModel('ChatModel').getData().EntryCollection.length;
 				AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
 				AppController.RSO_MSO_ChatNumModel.setData({
 					chatNum: chatNum
-				});
+				});*/
+				
+			
 			},
 
 			_getattachRouteMatched: function (parameters) {

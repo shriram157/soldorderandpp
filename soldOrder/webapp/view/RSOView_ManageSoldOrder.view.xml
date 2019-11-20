@@ -114,11 +114,14 @@
 							<Label wrapping="true" text="{i18n>Reply}"/>
 							<VBox class="chatHeight">
 								<items>
-								
-										<List showSeparators="Inner" items="{ path: 'ChatModel>/EntryCollection/'}">
+									<List id="chatList" showSeparators="Inner" items="{ path: 'ChatModel>/EntryCollection/'}">
 											<FeedListItem sender="{ChatModel>Author}" icon="{AuthorPicUrl}" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
 												info="{ChatModel>Type}" timestamp="{ChatModel>Date}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
 										</List>
+									<!--	<List showSeparators="Inner" items="{ path: 'ChatModel>/EntryCollection/'}">
+											<FeedListItem sender="{ChatModel>Author}" icon="{AuthorPicUrl}" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
+												info="{ChatModel>Type}" timestamp="{ChatModel>Date}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
+										</List>-->
 								
 								</items>
 							</VBox>

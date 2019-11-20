@@ -13,16 +13,44 @@
 		 -->
 		 <!--"-->
 		 <!--src="https://sapui5.hana.ondemand.com/1.63.1/resources/sap-ui-cachebuster/sap-ui-core.js"  1.52.22-->
+		<!-- <script>
+    window["sap-ushell-config"] = {
+        defaultRenderer : "fiori2",
+        renderers: {
+            fiori2: {
+                componentData: {
+                    config: {
+                        search: "hidden"
+                    }
+                }
+            }
+        },
+        applications: {
+            "SoldOrder-display": {
+                additionalInformation: "SAPUI5.Component=toyota.ca.SoldOrder",
+                applicationType: "URL",
+                url: ".",
+                title: "SoldOrder"
+            }
+        }
+    };
+</script>-->
+<script src="https://sapui5.hana.ondemand.com/1.63.1/resources/sap/ushell_abap/bootstrap/abap.js"></script>
+
+<!--<script src="https://sapui5.hana.ondemand.com/1.63.1/resources/sap/ushell_abap/bootstrap/abap.js"></script>-->
+
 		<script id="sap-ui-bootstrap"
 			src="https://sapui5.hana.ondemand.com/1.63.1/resources/sap-ui-cachebuster/sap-ui-core.js"
-			data-sap-ui-libs="sap.m,sap.tnt,sap.ui.layout,sap.ui.table,sap.ui.unified"
+			data-sap-ui-libs="sap.ushell,sap.m,sap.tnt,sap.ui.layout,sap.ui.table,sap.ui.unified"
 			data-sap-ui-preload="async"
 			data-sap-ui-theme="sap_belize"
 			data-sap-ui-compatVersion="edge"
 			data-sap-ui-xx-bindingSyntax="complex"
 			data-sap-ui-resourceroots='{"toyota.ca.SoldOrder": "./"}'>
 		</script>
-
+	
+	
+	
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 
 		<script>

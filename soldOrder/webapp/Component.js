@@ -67,9 +67,9 @@ sap.ui.define([
 			// oModel.setData();
 			sap.ui.getCore().setModel(oModel, "seriesModel");
 			
-			var ochatModel = new sap.ui.model.json.JSONModel();
+		//	var ochatModel = new sap.ui.model.json.JSONModel();
 			// oModel.setData();
-			sap.ui.getCore().setModel(ochatModel, "ChatModel");
+		//	sap.ui.getCore().setModel(ochatModel, "ChatModel");
 			
 			
 			var sLocation = window.location.host;
