@@ -83,13 +83,20 @@ sap.ui.define([
 						"Text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
 					}]
 				};
-				var oModel = new sap.ui.model.json.JSONModel(dataEC);
+				var oModel = this.getOwnerComponent()._getPropertiesToPropagate().oModels.ChatModel;
+					oModel.setData(dataEC);
+
+	console.log(oModel.getData());
+        this.getView().setModel(oModel, "ChatModel");//Create a new model in the view called parentModel
+        
+				//var oModel = new sap.ui.model.json.JSONModel(dataEC);
 			//	this.getView().setModel(oModel, 'ChatModel');
 			//	sap.ui.getCore().setModel('ChatModel');
-					sap.ui.getCore().setModel(oModel, "ChatModel");
+			//	var oModel=sap.ui.getCore().getModel("ChatModel");
+			
 			this.getView().setModel(sap.ui.getCore().getModel("ChatModel"), "ChatModel");
 			
-				console.log(this.getView().getModel('ChatModel').getData());
+				console.log(oModel.getData());
 				
 			},
 			onPost: function (oEvent) {
@@ -110,7 +117,7 @@ sap.ui.define([
 				};
 
 				// update model
-				var oModel = sap.ui.getCore().getModel('ChatModel');
+				var oModel =this.getOwnerComponent()._getPropertiesToPropagate().oModels.ChatModel;// sap.ui.getCore().getModel('ChatModel');
 				var aEntries = oModel.getData().EntryCollection;
 				aEntries.unshift(oEntry);
 				oModel.setData({
