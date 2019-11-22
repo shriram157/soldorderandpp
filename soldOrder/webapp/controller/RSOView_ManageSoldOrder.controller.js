@@ -4,8 +4,8 @@ sap.ui.define([
 		"toyota/ca/SoldOrder/util/formatter",
 		"sap/ui/model/Filter",
 		//"sap/ushell",
-	//	"sap/ushell/Container",
-	//	"sap/ushell/services/Container",
+		//	"sap/ushell/Container",
+		//	"sap/ushell/services/Container",
 		"sap/ui/model/FilterOperator",
 		"sap/ui/model/json/JSONModel"
 	],
@@ -13,7 +13,7 @@ sap.ui.define([
 		"use strict";
 		var RSO_MSO_controller;
 		var zrequest;
-		var aEntries =[];
+		var aEntries = [];
 		var ppdFlages;
 		var zcustomerModel, zinventoryModel;
 		var SelectVehicleOption = false;
@@ -72,7 +72,7 @@ sap.ui.define([
 				this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"), "salesTypeModel");
 				// //console.log(sap.ui.getCore().getModel("salesTypeModel"));
 
-			var dataEC = {
+				var dataEC = {
 					"EntryCollection": [{
 						"Author": "User 1",
 						"AuthorPicUrl": "",
@@ -81,22 +81,11 @@ sap.ui.define([
 						"Text": ""
 					}]
 				};
-			//	var oModel = this.getOwnerComponent()._getPropertiesToPropagate().oModels.undefined;
-				
-//	oModel.setData(dataEC);
-//	console.log(oModel.getData());
-      // this.getView().setModel(oModel, "ChatModel");//Create a new model in the view called parentModel
-   
 				var oModel = new sap.ui.model.json.JSONModel();
 				this.getView().setModel(oModel, 'ChatModel');
-			//	sap.ui.getCore().setModel('ChatModel');
-			//	var oModel=sap.ui.getCore().getModel("ChatModel");
-			
-	//		this.getView().setModel(sap.ui.getCore().getModel("ChatModel"), "ChatModel");
-			
-	//			console.log(oModel.getData());
+
 				//this.getView().byId("chatList").setShowNoData(false);
-			//	this.getView().byId("chatList").setNoDataText("No Message");
+				//this.getView().byId("chatList").setNoDataText("No Message");
 			},
 			onPost: function (oEvent) {
 				var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
@@ -104,7 +93,6 @@ sap.ui.define([
 				});
 				var oDate = new Date();
 				var sDate = oFormat.format(oDate);
-				// create new entry
 				var sValue = oEvent.getParameter("value");
 				var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				var oEntry = {
@@ -114,14 +102,8 @@ sap.ui.define([
 					Date: "" + sDate,
 					Text: sValue
 				};
-  sap.ushell.Container.myvariable =oEntry ;
-				// update model
-		//			var oModel2 = this.getOwnerComponent()._getPropertiesToPropagate().oModels.undefined;
-				var oModel =this.getView().getModel('ChatModel'); //this.getOwnerComponent()._getPropertiesToPropagate().oModels.ChatModel;// sap.ui.getCore().getModel('ChatModel');
-		//	console.log(oModel);
-		//	oModel.setData(EntryCollection:{});
-				// oModel.getData().EntryCollection;
-			
+				sap.ushell.Container.myvariable = oEntry;
+				var oModel = this.getView().getModel('ChatModel'); 
 				aEntries.unshift(sap.ushell.Container.myvariable);
 				console.log(aEntries);
 				oModel.setData({
@@ -129,14 +111,11 @@ sap.ui.define([
 				});
 				oModel.refresh(true);
 				oModel.updateBindings(true);
-			//	console.log(this.getView().getModel('ChatModel').getData());
-			/*	var chatNum=this.getView().getModel('ChatModel').getData().EntryCollection.length;
-				AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
-				AppController.RSO_MSO_ChatNumModel.setData({
-					chatNum: chatNum
-				});*/
-				
-			
+				/*	var chatNum=this.getView().getModel('ChatModel').getData().EntryCollection.length;
+					AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
+					AppController.RSO_MSO_ChatNumModel.setData({
+						chatNum: chatNum
+					});*/
 			},
 
 			_getattachRouteMatched: function (parameters) {
@@ -902,7 +881,7 @@ sap.ui.define([
 				}
 			},
 			model_selected: function (oEvent) {
-					var pathAB="";
+				var pathAB = "";
 				// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
@@ -923,16 +902,15 @@ sap.ui.define([
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 					var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 					var dealer = dealerno.slice(-5);
-				
+
 					// if (AppController.RSOB == true) {
 					// 	 pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					// }
 					// else 
 					if (AppController.RSOA == true) {
-						pathAB ="mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
-					}
-					else{
-						pathAB ="mainservices>/ZVMS_SUFFIX_PIPLINE";
+						pathAB = "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
+					} else {
+						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
