@@ -25,9 +25,9 @@ sap.ui.define([
 				RSO_MSO_controller._oBusyDialog = new sap.m.BusyDialog();
 				zcustomerModel = new JSONModel({});
 				zinventoryModel = new JSONModel({});
-				this.getView().setModel(zcustomerModel, 'Customer');
-				this.getView().setModel(zinventoryModel, 'Inventory');
-				this.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(this._getattachRouteMatched, this);
+				RSO_MSO_controller.getView().setModel(zcustomerModel, 'Customer');
+				RSO_MSO_controller.getView().setModel(zinventoryModel, 'Inventory');
+				RSO_MSO_controller.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(RSO_MSO_controller._getattachRouteMatched, RSO_MSO_controller);
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var salesTypeModel = new sap.ui.model.json.JSONModel();
@@ -66,14 +66,14 @@ sap.ui.define([
 
 				salesTypeModel.updateBindings(true);
 				sap.ui.getCore().setModel(salesTypeModel, "salesTypeModel");
-				this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"), "salesTypeModel");
+				RSO_MSO_controller.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"), "salesTypeModel");
 				// //console.log(sap.ui.getCore().getModel("salesTypeModel"));
 
 				var oModel = new sap.ui.model.json.JSONModel();
-				this.getView().setModel(oModel, 'ChatModel');
+				RSO_MSO_controller.getView().setModel(oModel, 'ChatModel');
 
-				//this.getView().byId("chatList").setShowNoData(false);
-				this.getView().byId("chatList").setNoDataText("No Message");
+				//RSO_MSO_controller.getView().byId("chatList").setShowNoData(false);
+				RSO_MSO_controller.getView().byId("chatList").setNoDataText("No Message");
 			},
 			onPost: function (oEvent) {
 				/*	var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
@@ -87,11 +87,11 @@ sap.ui.define([
 				var sLocation = window.location.host;
 				var sLocation_conf = sLocation.search("webide");
 				if (sLocation_conf == 0) {
-					this.sPrefix = "/soldorder_node";
+					RSO_MSO_controller.sPrefix = "/soldorder_node";
 				} else {
-					this.sPrefix = "";
+					RSO_MSO_controller.sPrefix = "";
 				}
-				this.nodeJsUrl = this.sPrefix + "/node";
+				RSO_MSO_controller.nodeJsUrl = RSO_MSO_controller.sPrefix + "/node";
 				/*	var oEntry = {
 						Zdealer: dealerNumber,
 						ZsoReqNo: zrequest,
@@ -113,13 +113,14 @@ sap.ui.define([
 
 					},
 					error: function (oError) {
-						sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
 							sap.m.MessageBox.Action.OK, null, null);
 					}
 
 				});
 
-				/*	var chatNum=this.getView().getModel('ChatModel').getData().EntryCollection.length;
+				/*	var chatNum=RSO_MSO_controller.getView().getModel('ChatModel').getData().EntryCollection.length;
 					AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
 					AppController.RSO_MSO_ChatNumModel.setData({
 						chatNum: chatNum
@@ -130,12 +131,12 @@ sap.ui.define([
 				var sLocation = window.location.host;
 				var sLocation_conf = sLocation.search("webide");
 				if (sLocation_conf == 0) {
-					this.sPrefix = "/soldorder_node";
+					RSO_MSO_controller.sPrefix = "/soldorder_node";
 				} else {
-					this.sPrefix = "";
+					RSO_MSO_controller.sPrefix = "";
 				}
-				this.nodeJsUrl = this.sPrefix + "/node";
-				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest + "' and Zdealer eq '" +
+				RSO_MSO_controller.nodeJsUrl = RSO_MSO_controller.sPrefix + "/node";
+				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest + "' and Zdealer eq '" +
 					dealerNumber + "')";
 				console.log(oUrl);
 				$.ajax({
@@ -145,7 +146,7 @@ sap.ui.define([
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
 						//	sap.ushell.Container.myvariable = data;
-						var oModel = this.getView().getModel('ChatModel');
+						var oModel = RSO_MSO_controller.getView().getModel('ChatModel');
 						//	aEntries.unshift(sap.ushell.Container.myvariable);
 						/*	console.log(aEntries);
 							oModel.setData({
@@ -157,8 +158,8 @@ sap.ui.define([
 
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
-						RSO_MSO_controller.dialog.close();
-						sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
 							sap.m.MessageBox.Action.OK, null, null);
 					}
 				});
@@ -191,7 +192,7 @@ sap.ui.define([
 				RSO_MSO_controller.getSO(requestid);
 
 				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
-					var SOType = this.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
+					var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
 					// 	//console.log("So status", SOType);
 					//For FLeet Details only
 					if (SOType == "NF" || SOType == "FO") {
@@ -213,7 +214,7 @@ sap.ui.define([
 					}
 				}
 				var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-				// var status = this.getView().getModel('mainservices').getData().ZzsoStatus;
+				// var status = RSO_MSO_controller.getView().getModel('mainservices').getData().ZzsoStatus;
 				if (user == "Dealer_User") //&& status !="Cancelled"
 				{
 					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEditable(true);
@@ -235,7 +236,7 @@ sap.ui.define([
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
 				RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);
 				zmodel.refresh();
-				this.getView().bindElement({
+				RSO_MSO_controller.getView().bindElement({
 
 					path: sObjectPath,
 					model: "mainservices",
@@ -287,7 +288,7 @@ sap.ui.define([
 								RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
 							}
 							// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-							// var dealer_no = this .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+							// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 
 							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
 							if (_Eligilibity == "YES") {
