@@ -102,7 +102,7 @@ sap.ui.define([
 					var zdataString = JSON.stringify(
 								soapMessage1
 							);
-							
+				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();							
 				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet";
 				/*?$filter=(ZsoReqNo eq '" + zrequest +
 					"' and Zdealer eq '" +
@@ -116,21 +116,15 @@ sap.ui.define([
 					type: "POST",
 					dataType: "json",
 					data: zdataString,
-					success: function (data, textStatus, jqXHR) {
-
-						/*RSO_MSO_controller.getView().getModel('mainservices').callFunction("/ChatBoxSet", {
-							method: "POST",
-							urlParameters: {
-								Zdealer: dealerNumber,
-								ZsoReqNo: zrequest,
-								Text: sValue
-							},
-							success: function (oData, response) {*/
-						console.log(data); //17 sep change 
-						RSO_MSO_controller.getchat();
-						//	RSO_MSO_controller.getView().getModel('mainservices').read("/ChatBoxSet('" + ZsoReqNo  + "')", {
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader('X-CSRF-Token', token);
+						xhr.setRequestHeader('Content-Type', "application/json");
 
 					},
+					success: function (data, textStatus, jqXHR) {
+						console.log(data); //17 sep change 
+						RSO_MSO_controller.getchat();
+						},
 					error: function (oError) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
