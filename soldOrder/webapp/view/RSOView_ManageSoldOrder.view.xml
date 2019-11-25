@@ -116,11 +116,12 @@
 								<items>
 									<List id="chatList" showSeparators="Inner" items="{ path: 'ChatModel>/'}">
 											<FeedListItem sender="{ChatModel>Zdealer}" icon="" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
-										timestamp="{path:'ChatModel>Zdate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
+										timestamp="{ChatModel>Zdate}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
 										</List>
 									<!--	<List showSeparators="Inner" items="{ path: 'ChatModel>/EntryCollection/'}">
 											<FeedListItem sender="{ChatModel>Author}" icon="{AuthorPicUrl}" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
 												info="" timestamp="{parts:[{path:'ChatModel>Zdate'}], formatter:'toyota.ca.SoldOrder.util.formatter._timeStamp'}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
+												, type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'yyyy-MM-dd', strictParsing: false, relative: false }}
 												info="{ChatModel>Type}" timestamp="{ChatModel>Date}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
 										</List>-->
 								

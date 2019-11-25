@@ -149,9 +149,10 @@ sap.ui.define([
 					RSO_MSO_controller.sPrefix = "";
 				}
 				RSO_MSO_controller.nodeJsUrl = RSO_MSO_controller.sPrefix + "/node";
-				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest +
+				var oUrl1 = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest +
 					"' and Zdealer eq '" +
 					dealerNumber + "')";
+						var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest + "')";
 				console.log(oUrl);
 				$.ajax({
 					url: oUrl,
