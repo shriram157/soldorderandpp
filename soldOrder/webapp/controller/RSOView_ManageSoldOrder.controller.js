@@ -3,9 +3,6 @@ sap.ui.define([
 		"sap/ui/model/resource/ResourceModel",
 		"toyota/ca/SoldOrder/util/formatter",
 		"sap/ui/model/Filter",
-		//"sap/ushell",
-		//	"sap/ushell/Container",
-		//	"sap/ushell/services/Container",
 		"sap/ui/model/FilterOperator",
 		"sap/ui/model/json/JSONModel"
 	],
@@ -72,52 +69,100 @@ sap.ui.define([
 				this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"), "salesTypeModel");
 				// //console.log(sap.ui.getCore().getModel("salesTypeModel"));
 
-				var dataEC = {
-					"EntryCollection": [{
-						"Author": "User 1",
-						"AuthorPicUrl": "",
-						"Type": "",
-						"Date": "",
-						"Text": ""
-					}]
-				};
 				var oModel = new sap.ui.model.json.JSONModel();
 				this.getView().setModel(oModel, 'ChatModel');
 
 				//this.getView().byId("chatList").setShowNoData(false);
-				//this.getView().byId("chatList").setNoDataText("No Message");
+				this.getView().byId("chatList").setNoDataText("No Message");
 			},
 			onPost: function (oEvent) {
-				var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
-					style: "medium"
-				});
-				var oDate = new Date();
-				var sDate = oFormat.format(oDate);
+				/*	var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+						style: "medium"
+					});*/
+				//	var oDate = new Date();
+				//	var sDate = oFormat.format(oDate);
 				var sValue = oEvent.getParameter("value");
-				var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-				var oEntry = {
-					Author: user,
-					AuthorPicUrl: "",
-					Type: "",
-					Date: "" + sDate,
-					Text: sValue
-				};
-				sap.ushell.Container.myvariable = oEntry;
-				var oModel = this.getView().getModel('ChatModel'); 
-				aEntries.unshift(sap.ushell.Container.myvariable);
-				console.log(aEntries);
-				oModel.setData({
-					EntryCollection: aEntries
+				//var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+				var dealerNumber = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BpDealerModel")[0].BusinessPartner;
+				var sLocation = window.location.host;
+				var sLocation_conf = sLocation.search("webide");
+				if (sLocation_conf == 0) {
+					this.sPrefix = "/soldorder_node";
+				} else {
+					this.sPrefix = "";
+				}
+				this.nodeJsUrl = this.sPrefix + "/node";
+				/*	var oEntry = {
+						Zdealer: dealerNumber,
+						ZsoReqNo: zrequest,
+						Text: sValue
+					};
+					*/
+
+				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/ChatBoxSet", {
+					method: "POST",
+					urlParameters: {
+						Zdealer: dealerNumber,
+						ZsoReqNo: zrequest,
+						Text: sValue
+					},
+					success: function (oData, response) {
+						console.log(oData); //17 sep change 
+						RSO_MSO_controller.getchat();
+						//	RSO_MSO_controller.getView().getModel('mainservices').read("/ChatBoxSet('" + ZsoReqNo  + "')", {
+
+					},
+					error: function (oError) {
+						sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
+							sap.m.MessageBox.Action.OK, null, null);
+					}
+
 				});
-				oModel.refresh(true);
-				oModel.updateBindings(true);
+
 				/*	var chatNum=this.getView().getModel('ChatModel').getData().EntryCollection.length;
 					AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
 					AppController.RSO_MSO_ChatNumModel.setData({
 						chatNum: chatNum
 					});*/
 			},
+			getchat: function () {
+				var dealerNumber = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BpDealerModel")[0].BusinessPartner;
+				var sLocation = window.location.host;
+				var sLocation_conf = sLocation.search("webide");
+				if (sLocation_conf == 0) {
+					this.sPrefix = "/soldorder_node";
+				} else {
+					this.sPrefix = "";
+				}
+				this.nodeJsUrl = this.sPrefix + "/node";
+				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest + "' and Zdealer eq '" +
+					dealerNumber + "')";
+				console.log(oUrl);
+				$.ajax({
+					url: oUrl,
+					method: "GET",
+					async: false,
+					dataType: "json",
+					success: function (data, textStatus, jqXHR) {
+						//	sap.ushell.Container.myvariable = data;
+						var oModel = this.getView().getModel('ChatModel');
+						//	aEntries.unshift(sap.ushell.Container.myvariable);
+						/*	console.log(aEntries);
+							oModel.setData({
+								EntryCollection: aEntries
+							});*/
+						oModel.setData(data);
+						oModel.refresh(true);
+						oModel.updateBindings(true);
 
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						RSO_MSO_controller.dialog.close();
+						sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
+							sap.m.MessageBox.Action.OK, null, null);
+					}
+				});
+			},
 			_getattachRouteMatched: function (parameters) {
 				var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 				if (oDivision == "10") {
@@ -132,6 +177,7 @@ sap.ui.define([
 					SOVisible: true
 				});
 				RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
+
 				setTimeout(function () {
 					var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 					var _Eligibility1 = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
@@ -156,7 +202,7 @@ sap.ui.define([
 						// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 					}
 				}
-
+				RSO_MSO_controller.getchat();
 			},
 			getSO: function (req) {
 				ppdFlages = sap.ui.getCore().getModel("ppdFlages");

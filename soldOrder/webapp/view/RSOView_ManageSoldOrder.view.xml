@@ -115,7 +115,7 @@
 							<VBox class="chatHeight">
 								<items>
 									<List id="chatList" showSeparators="Inner" items="{ path: 'ChatModel>/EntryCollection/'}">
-											<FeedListItem sender="{ChatModel>Author}" icon="{AuthorPicUrl}" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
+											<FeedListItem sender="{ChatModel>Zdealer}" icon="{AuthorPicUrl}" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
 												info="{ChatModel>Type}" timestamp="{ChatModel>Date}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
 										</List>
 									<!--	<List showSeparators="Inner" items="{ path: 'ChatModel>/EntryCollection/'}">
