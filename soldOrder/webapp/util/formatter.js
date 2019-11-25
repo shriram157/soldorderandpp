@@ -268,6 +268,14 @@ toyota.ca.SoldOrder.util.formatter = {
 			return true;
 		}
 	},
+	_timeStamp: function (date) {
+		var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+			style: "medium"
+		});
+	//	var oDate = new Date();
+		var sDate = oFormat.format(date);
+		return sDate;
+	},
 	_DateFomatter: function (oDate) {
 		if (oDate) {
 			var year = oDate.substring(0, 4);

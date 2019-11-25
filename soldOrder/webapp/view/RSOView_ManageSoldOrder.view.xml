@@ -116,7 +116,7 @@
 								<items>
 									<List id="chatList" showSeparators="Inner" items="{ path: 'ChatModel>/'}">
 											<FeedListItem sender="{ChatModel>Zdealer}" icon="" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
-												info="" timestamp="{ChatModel>Zdate}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
+												info="" timestamp="{parts:[{path:'ChatModel>Zdate'}], formatter:'toyota.ca.SoldOrder.util.formatter._timeStamp'}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
 										</List>
 									<!--	<List showSeparators="Inner" items="{ path: 'ChatModel>/EntryCollection/'}">
 											<FeedListItem sender="{ChatModel>Author}" icon="{AuthorPicUrl}" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
