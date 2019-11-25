@@ -27,7 +27,8 @@ sap.ui.define([
 				zinventoryModel = new JSONModel({});
 				RSO_MSO_controller.getView().setModel(zcustomerModel, 'Customer');
 				RSO_MSO_controller.getView().setModel(zinventoryModel, 'Inventory');
-				RSO_MSO_controller.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(RSO_MSO_controller._getattachRouteMatched, RSO_MSO_controller);
+				RSO_MSO_controller.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(RSO_MSO_controller._getattachRouteMatched,
+					RSO_MSO_controller);
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var salesTypeModel = new sap.ui.model.json.JSONModel();
@@ -92,22 +93,40 @@ sap.ui.define([
 					RSO_MSO_controller.sPrefix = "";
 				}
 				RSO_MSO_controller.nodeJsUrl = RSO_MSO_controller.sPrefix + "/node";
-				/*	var oEntry = {
+				var soapMessage1 = {
 						Zdealer: dealerNumber,
 						ZsoReqNo: zrequest,
 						Text: sValue
 					};
-					*/
-
-				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/ChatBoxSet", {
-					method: "POST",
-					urlParameters: {
-						Zdealer: dealerNumber,
-						ZsoReqNo: zrequest,
-						Text: sValue
+					
+					var zdataString = JSON.stringify(
+								soapMessage1
+							);
+							
+				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet";
+				/*?$filter=(ZsoReqNo eq '" + zrequest +
+					"' and Zdealer eq '" +
+					dealerNumber + "')";*/
+				$.ajax({
+					url: oUrl,
+					headers: {
+						accept: 'application/json',
+						'content-type': 'application/json'
 					},
-					success: function (oData, response) {
-						console.log(oData); //17 sep change 
+					type: "POST",
+					dataType: "json",
+					data: zdataString,
+					success: function (data, textStatus, jqXHR) {
+
+						/*RSO_MSO_controller.getView().getModel('mainservices').callFunction("/ChatBoxSet", {
+							method: "POST",
+							urlParameters: {
+								Zdealer: dealerNumber,
+								ZsoReqNo: zrequest,
+								Text: sValue
+							},
+							success: function (oData, response) {*/
+						console.log(data); //17 sep change 
 						RSO_MSO_controller.getchat();
 						//	RSO_MSO_controller.getView().getModel('mainservices').read("/ChatBoxSet('" + ZsoReqNo  + "')", {
 
@@ -136,7 +155,8 @@ sap.ui.define([
 					RSO_MSO_controller.sPrefix = "";
 				}
 				RSO_MSO_controller.nodeJsUrl = RSO_MSO_controller.sPrefix + "/node";
-				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest + "' and Zdealer eq '" +
+				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest +
+					"' and Zdealer eq '" +
 					dealerNumber + "')";
 				console.log(oUrl);
 				$.ajax({
@@ -152,7 +172,7 @@ sap.ui.define([
 							oModel.setData({
 								EntryCollection: aEntries
 							});*/
-							console.log(data);
+						console.log(data);
 						oModel.setData(data.d.results);
 						oModel.refresh(true);
 						oModel.updateBindings(true);
