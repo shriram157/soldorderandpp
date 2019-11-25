@@ -152,7 +152,8 @@ sap.ui.define([
 							oModel.setData({
 								EntryCollection: aEntries
 							});*/
-						oModel.setData(data);
+							console.log(data);
+						oModel.setData(data.d.results);
 						oModel.refresh(true);
 						oModel.updateBindings(true);
 
