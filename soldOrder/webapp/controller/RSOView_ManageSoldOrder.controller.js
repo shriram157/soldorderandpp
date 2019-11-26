@@ -85,6 +85,10 @@ sap.ui.define([
 				var sValue = oEvent.getParameter("value");
 				//var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				var dealerNumber = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BpDealerModel")[0].BusinessPartner;
+				//var userType = sap.ui.getCore().getModel("LoginUserModel").loggedUserType[0];
+				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+				console.log(userType);
+				//Dealer_User //TCI_User 9999   //TCI_Zone_User 8888 
 				var sLocation = window.location.host;
 				var sLocation_conf = sLocation.search("webide");
 				if (sLocation_conf == 0) {
@@ -93,16 +97,32 @@ sap.ui.define([
 					RSO_MSO_controller.sPrefix = "";
 				}
 				RSO_MSO_controller.nodeJsUrl = RSO_MSO_controller.sPrefix + "/node";
-				var soapMessage1 = {
+				var soapMessage1 = {};
+
+				if (userType == "TCI_User") {
+					soapMessage1 = {
+						Zdealer: "9999",
+						ZsoReqNo: zrequest,
+						Text: sValue
+					};
+				} else if (userType == "TCI_Zone_User") {
+					soapMessage1 = {
+						Zdealer: "8888",
+						ZsoReqNo: zrequest,
+						Text: sValue
+					};
+				} else {
+					soapMessage1 = {
 						Zdealer: dealerNumber,
 						ZsoReqNo: zrequest,
 						Text: sValue
 					};
-					
-					var zdataString = JSON.stringify(
-								soapMessage1
-							);
-				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();							
+				}
+
+				var zdataString = JSON.stringify(
+					soapMessage1
+				);
+				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
 				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet";
 				/*?$filter=(ZsoReqNo eq '" + zrequest +
 					"' and Zdealer eq '" +
@@ -124,7 +144,7 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						console.log(data); //17 sep change 
 						RSO_MSO_controller.getchat();
-						},
+					},
 					error: function (oError) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
@@ -140,7 +160,7 @@ sap.ui.define([
 					});*/
 			},
 			getchat: function () {
-				var dealerNumber = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BpDealerModel")[0].BusinessPartner;
+				//	var dealerNumber = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BpDealerModel")[0].BusinessPartner;
 				var sLocation = window.location.host;
 				var sLocation_conf = sLocation.search("webide");
 				if (sLocation_conf == 0) {
@@ -149,28 +169,24 @@ sap.ui.define([
 					RSO_MSO_controller.sPrefix = "";
 				}
 				RSO_MSO_controller.nodeJsUrl = RSO_MSO_controller.sPrefix + "/node";
-				var oUrl1 = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest +
+				/*var oUrl1 = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest +
 					"' and Zdealer eq '" +
-					dealerNumber + "')";
-						var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest + "')";
-				console.log(oUrl);
+					dealerNumber + "')";*/
+				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest + "')";
+
 				$.ajax({
 					url: oUrl,
 					method: "GET",
 					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
-						//	sap.ushell.Container.myvariable = data;
 						var oModel = RSO_MSO_controller.getView().getModel('ChatModel');
-						//	aEntries.unshift(sap.ushell.Container.myvariable);
-						/*	console.log(aEntries);
-							oModel.setData({
-								EntryCollection: aEntries
-							});*/
-						console.log(data);
+						console.log(data.d.results);
 						oModel.setData(data.d.results);
 						oModel.refresh(true);
 						oModel.updateBindings(true);
+						sap.ui.getCore().setModel(oModel, 'GlobalChatModel');
+						console.log(sap.ui.getCore().getModel('GlobalChatModel').getData());
 
 					},
 					error: function (jqXHR, textStatus, errorThrown) {

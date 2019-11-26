@@ -276,6 +276,18 @@ toyota.ca.SoldOrder.util.formatter = {
 		var sDate = oFormat.format(date);
 		return sDate;
 	},
+	usertype:function(userType){
+			 if(userType=="9999"){
+					return "TCI_User";
+				}
+				else if(userType=="8888"){
+					return "TCI_Zone_User";
+				}
+				else{
+						return "Dealer_User ";
+				}
+				 
+	},
 	_DateFomatter: function (oDate) {
 		if (oDate) {
 			var year = oDate.substring(0, 4);
