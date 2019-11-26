@@ -268,17 +268,13 @@ toyota.ca.SoldOrder.util.formatter = {
 			return true;
 		}
 	},
-
-	_timeStamp: function (elm) {
-            if (elm != "" && elm != null && elm != NaN) {
-               var oNumTime = moment.utc(new Date(elm)).valueOf();
-                var oTime = "\/Date(" + oNumTime + ")\/";
-                return oTime;
-            } else {
-                return null;
-            }
-        },
-	
+	_timeStamp: function (date) {
+		var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+			style: "yyyy-MM-dd"
+		});
+		var sDate = oFormat.format(new Date(date));
+		return sDate;
+	},
 	usertype:function(userType){
 			 if(userType=="9999"){
 					return "TCI_User";
