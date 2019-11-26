@@ -120,7 +120,7 @@
 									-->
 										<FeedListItem sender="{path: 'ChatModel>Zdealer' , formatter:'toyota.ca.SoldOrder.util.formatter.usertype'}" 
 										icon="" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
-										timestamp= "{path: 'ChatModel>Zdate', type: 'sap.ui.model.odata.type.DateTime', constraints: { displayFormat: 'Date'}}" 
+										timestamp= "{path: 'ChatModel>Zdate', type: 'sap.ui.model.type.DateTime', constraints: { displayFormat: 'Date'}}" 
 										text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
 								</List> <!--sap.ui.model.type.DateTime-->
 								</items>
