@@ -127,6 +127,7 @@ sap.ui.define([
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
 			FSO_PVController.getSO(requestid);
+			FSO_PVController.getchat();
 		},
 		getSO: function (req) {
 			var host = FSO_PVController.host();
