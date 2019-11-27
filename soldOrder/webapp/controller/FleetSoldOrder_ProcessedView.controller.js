@@ -12,8 +12,111 @@ sap.ui.define([
 		onInit: function () {
 			FSO_PVController = this;
 			// FSO_PVController.getBrowserLanguage();
-			this.getOwnerComponent().getRouter().getRoute("FleetSoldOrder_ProcessedView").attachPatternMatched(this._getattachRouteMatched,
-				this);
+			FSO_PVController.getOwnerComponent().getRouter().getRoute("FleetSoldOrder_ProcessedView").attachPatternMatched(this._getattachRouteMatched,
+				FSO_PVController);
+			var oModel = new sap.ui.model.json.JSONModel();
+			FSO_PVController.getView().setModel(oModel, 'ChatModelFleet');
+			FSO_PVController.getView().byId("chatListFleet").setNoDataText("No Message");
+		},
+		onPost: function (oEvent) {
+			var sValue = oEvent.getParameter("value");
+			var dealerNumber = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BpDealerModel")[0].BusinessPartner;
+			var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+			//Dealer_User //TCI_User 9999   //TCI_Zone_User 8888 
+			var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				FSO_PVController.sPrefix = "/soldorder_node";
+			} else {
+				FSO_PVController.sPrefix = "";
+			}
+			FSO_PVController.nodeJsUrl = FSO_PVController.sPrefix + "/node";
+			var soapMessage1 = {};
+
+			if (userType == "TCI_User") {
+				soapMessage1 = {
+					Zdealer: "9999",
+					ZsoReqNo: zrequest,
+					Text: sValue
+				};
+			} else if (userType == "TCI_Zone_User") {
+				soapMessage1 = {
+					Zdealer: "8888",
+					ZsoReqNo: zrequest,
+					Text: sValue
+				};
+			} else {
+				soapMessage1 = {
+					Zdealer: dealerNumber,
+					ZsoReqNo: zrequest,
+					Text: sValue
+				};
+			}
+
+			var zdataString = JSON.stringify(
+				soapMessage1
+			);
+			var token = FSO_PVController.getView().getModel('mainservices').getSecurityToken();
+			var oUrl = FSO_PVController.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet";
+
+			$.ajax({
+				url: oUrl,
+				headers: {
+					accept: 'application/json',
+					'content-type': 'application/json'
+				},
+				type: "POST",
+				dataType: "json",
+				data: zdataString,
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('X-CSRF-Token', token);
+					xhr.setRequestHeader('Content-Type', "application/json");
+				},
+				success: function (data, textStatus, jqXHR) {
+					FSO_PVController.getchat();
+				},
+				error: function (oError) {
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
+						sap.m.MessageBox.Action.OK, null, null);
+				}
+			});
+			/*	var chatNum=FSO_PVController.getView().getModel('ChatModelFleet').getData().EntryCollection.length;
+				AppController.RSO_MSO_ChatNumModel = new sap.ui.model.json.JSONModel();
+				AppController.RSO_MSO_ChatNumModel.setData({
+					chatNum: chatNum
+				});*/
+		},
+		getchat: function () {
+
+			var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				FSO_PVController.sPrefix = "/soldorder_node";
+			} else {
+				FSO_PVController.sPrefix = "";
+			}
+			FSO_PVController.nodeJsUrl = FSO_PVController.sPrefix + "/node";
+			var oUrl = FSO_PVController.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ChatBoxSet?$filter=(ZsoReqNo eq '" + zrequest + "')";
+			$.ajax({
+				url: oUrl,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					var oModel = FSO_PVController.getView().getModel('ChatModelFleet');
+					oModel.setData(data.d.results);
+					oModel.refresh(true);
+					oModel.updateBindings(true);
+					sap.ui.getCore().setModel(oModel, 'GlobalChatModelFleet');
+					console.log(sap.ui.getCore().getModel('GlobalChatModelFleet').getData());
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
+						sap.m.MessageBox.Action.OK, null, null);
+				}
+			});
 		},
 		_getattachRouteMatched: function (parameters) {
 			var requestid = parameters.getParameters().arguments.Soreq;

@@ -10,7 +10,7 @@ sap.ui.define([
 		"use strict";
 		var RSO_MSO_controller;
 		var zrequest;
-		var aEntries = [];
+	//	var aEntries = [];
 		var ppdFlages;
 		var zcustomerModel, zinventoryModel;
 		var SelectVehicleOption = false;
