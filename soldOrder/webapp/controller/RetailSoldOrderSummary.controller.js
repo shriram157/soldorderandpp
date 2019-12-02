@@ -283,6 +283,14 @@ sap.ui.define([
 								}
 							} else {
 								DataModel.setData(data.d.results);
+									var array1={}; 
+							var array2={};
+							array1 = data.d.results;
+							console.log(AppController.chatNum)
+						//	array2 = sap.ui.getCore().getModel('GlobalChatModel').getData();
+							console.log(array1);
+							//console.log(array2);
+							
 								DataModel.updateBindings(true);
 								if (data.d.results.length <= 10) {
 									BtnNext.setEnabled(false);
@@ -457,6 +465,12 @@ sap.ui.define([
 					// 	}
 					// } else {
 					DataModel.setData(data.d.results);
+						var array1={}; 
+							var array2={};
+							array1 = data.d.results;
+							array2 = sap.ui.getCore().getModel('GlobalChatModel').getData();
+							console.log(array1);console.log(array2);
+							
 					DataModel.updateBindings(true);
 					if (data.d.results.length <= 10) {
 						BtnNext.setEnabled(false);
@@ -557,6 +571,15 @@ sap.ui.define([
 							// 	}
 							// } else {
 							DataModel.setData(data.d.results);
+							
+							var array1={}; 
+							var array2={};
+							array1 = data.d.results;
+							array2 = sap.ui.getCore().getModel('GlobalChatModel').getData();
+							console.log(array1);console.log(array2);
+							
+							
+							
 							DataModel.updateBindings(true);
 							if (data.d.results.length <= 10) {
 								BtnNext.setEnabled(false);
@@ -711,6 +734,14 @@ sap.ui.define([
 									RSOS_controller.enableExportButton();
 								}
 								DataModel.setData(data.d.results);
+									var array3={}; 
+							var array4={};
+							array3 = data.d.results;
+							array4 = sap.ui.getCore().getModel('GlobalChatModel').getData();
+							console.log( "array3");
+							console.log( array3);console.log(array4);
+							
+							
 								DataModel.updateBindings(true);
 								// }
 							},

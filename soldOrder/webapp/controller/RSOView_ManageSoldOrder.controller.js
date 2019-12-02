@@ -187,6 +187,7 @@ sap.ui.define([
 						oModel.updateBindings(true);
 						sap.ui.getCore().setModel(oModel, 'GlobalChatModel');
 						console.log(sap.ui.getCore().getModel('GlobalChatModel').getData());
+						AppController.chatNum=sap.ui.getCore().getModel('GlobalChatModel').getData().length;
 
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
