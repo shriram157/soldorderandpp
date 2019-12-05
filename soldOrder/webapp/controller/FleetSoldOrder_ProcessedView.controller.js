@@ -14,9 +14,9 @@ sap.ui.define([
 			// FSO_PVController.getBrowserLanguage();
 			FSO_PVController.getOwnerComponent().getRouter().getRoute("FleetSoldOrder_ProcessedView").attachPatternMatched(this._getattachRouteMatched,
 				FSO_PVController);
-			var oModel = new sap.ui.model.json.JSONModel();
+			/*var oModel = new sap.ui.model.json.JSONModel();
 			FSO_PVController.getView().setModel(oModel, 'ChatModelFleet');
-			FSO_PVController.getView().byId("chatListFleet").setNoDataText("No Message");
+			FSO_PVController.getView().byId("chatListFleet").setNoDataText("No Message");*/
 		},
 		onPost: function (oEvent) {
 			var sValue = oEvent.getParameter("value");
@@ -127,7 +127,7 @@ sap.ui.define([
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
 			FSO_PVController.getSO(requestid);
-			FSO_PVController.getchat();
+		//	FSO_PVController.getchat();
 		},
 		getSO: function (req) {
 			var host = FSO_PVController.host();

@@ -28,8 +28,8 @@
 							<Text text="{mainservices>ZzoneApproval}"/>
 							<Label wrapping="true"  text="{i18n>totalVehicles}"/>
 							<Text text="{mainservices>ZtotalVehQty}" id="vechilecounter"/>
-								<Label wrapping="true" text="{i18n>PostComment}"/>
-							<FeedInput post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
+							<!--	<Label wrapping="true" text="{i18n>PostComment}"/>
+							<FeedInput post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>-->
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{Customer>/NameFirst}{Customer>/NameLast}"/>
@@ -43,7 +43,7 @@
 							<Text text="{Customer>/PostCode1}"/>
 							<Label wrapping="true" text="{i18n>phnNo}"/>
 							<Text text="{Customer>/TelNumber}"/>
-								<Label wrapping="true" text="{i18n>Reply}"/>
+							<!--	<Label wrapping="true" text="{i18n>Reply}"/>
 							<VBox class="chatHeight">
 								<items>
 									<List id="chatListFleet" showSeparators="Inner" items="{ path: 'ChatModelFleet>/'}">
@@ -53,7 +53,7 @@
 										text="{ChatModelFleet>Text}" convertLinksToAnchorTags="All"/>
 								</List> 
 								</items>
-							</VBox>
+							</VBox>-->
 						</f:content>
 					</f:SimpleForm>
 					<!--	<HBox class="marginCorners">
