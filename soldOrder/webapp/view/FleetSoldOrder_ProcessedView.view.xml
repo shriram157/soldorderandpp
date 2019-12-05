@@ -218,7 +218,7 @@
 					</t:Table>
 					<Label text="{i18n>allocVeh}" class="marginCorners fontsize"></Label>
 					<t:Table id="tble_FSO_PV" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" alternateRowColors="true"
-						enableColumnFreeze="false" class="marginCorners">
+						enableColumnFreeze="false" class="sapUiLargeMarginBottom marginCorners">
 						<t:columns>
 							<t:Column width="11.11%" resizable="false">
 								<Label text="{i18n>soldOrderNumber}" class="TableLabel"/>
@@ -283,7 +283,7 @@
 							</t:Column>
 						</t:columns>
 					</t:Table>
-					<Button text="{i18n>approvalpage}" press="onApprove" enabled="{path:'mainservices>ZsoFltStatus',formatter:'toyota.ca.SoldOrder.util.formatter.TciApprove'}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusernzonetype'}" class="cssShift marginCornersBottom marginCornersRight"></Button>
+					<Button text="{i18n>approvalpage}" press="onApprove" enabled="{path:'mainservices>ZsoFltStatus',formatter:'toyota.ca.SoldOrder.util.formatter.TciApprove'}" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Tciusernzonetype'}" class="cssShift marginCornersBottom  marginCornersRight"></Button>
 					<!--<Button text="{i18n>back}" press="onNavback" class="cssShift marginCornersBottom marginCornersRight"></Button>-->
 				</content>
 			</Page>
