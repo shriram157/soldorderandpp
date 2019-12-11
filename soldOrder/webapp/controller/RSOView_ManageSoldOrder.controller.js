@@ -189,9 +189,9 @@ sap.ui.define([
 						console.log(sap.ui.getCore().getModel('GlobalChatModel').getData());
 						AppController.chatNum = sap.ui.getCore().getModel('GlobalChatModel').getData().length;
 
-						for (var i = 0; i < RSO_MSO_controller.getView().byId("chatList").getItems().length; i++) {
-							RSO_MSO_controller.getView().byId("chatList").getItems()[i].focus(AppController.chatNum);
-						}
+						// for (var i = 0; i < RSO_MSO_controller.getView().byId("chatList").getItems().length; i++) {
+						RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(AppController.chatNum);
+						// }
 
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
