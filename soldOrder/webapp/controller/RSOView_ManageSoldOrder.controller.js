@@ -335,8 +335,8 @@ sap.ui.define([
 								var _oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 									pattern: "yyyy-MM-dd"
 								});
-								var ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzreqEtaFrom"); //ETAFrom earleir
-								var ETATo = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzreqEtaTo"); //ETATo
+								var ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom"); //ETAFrom earleir
+								var ETATo = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo"); //ETATo
 
 								OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
 								OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
