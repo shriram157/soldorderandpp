@@ -10,7 +10,7 @@ sap.ui.define([
 		"use strict";
 		var RSO_MSO_controller;
 		var zrequest;
-	//	var aEntries = [];
+		//	var aEntries = [];
 		var ppdFlages;
 		var zcustomerModel, zinventoryModel;
 		var SelectVehicleOption = false;
@@ -187,7 +187,11 @@ sap.ui.define([
 						oModel.updateBindings(true);
 						sap.ui.getCore().setModel(oModel, 'GlobalChatModel');
 						console.log(sap.ui.getCore().getModel('GlobalChatModel').getData());
-						AppController.chatNum=sap.ui.getCore().getModel('GlobalChatModel').getData().length;
+						AppController.chatNum = sap.ui.getCore().getModel('GlobalChatModel').getData().length;
+
+						for (var i = 0; i < RSO_MSO_controller.getView().byId("chatList").getItems().length; i++) {
+							RSO_MSO_controller.getView().byId("chatList").getItems()[i].focus(AppController.chatNum);
+						}
 
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
