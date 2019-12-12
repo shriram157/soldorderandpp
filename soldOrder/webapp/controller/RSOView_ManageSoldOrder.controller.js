@@ -181,12 +181,12 @@ sap.ui.define([
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
 						var oModel = RSO_MSO_controller.getView().getModel('ChatModel');
-						console.log(data.d.results);
+						//console.log(data.d.results);
 						oModel.setData(data.d.results);
 						oModel.refresh(true);
 						oModel.updateBindings(true);
 						sap.ui.getCore().setModel(oModel, 'GlobalChatModel');
-						console.log(sap.ui.getCore().getModel('GlobalChatModel').getData());
+						//console.log(sap.ui.getCore().getModel('GlobalChatModel').getData());
 						AppController.chatNum = sap.ui.getCore().getModel('GlobalChatModel').getData().length;
 
 						// for (var i = 0; i < RSO_MSO_controller.getView().byId("chatList").getItems().length; i++) {
@@ -240,8 +240,14 @@ sap.ui.define([
 						// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 					}
 				}
+			//	console.log(RSO_MSO_controller.getView().byId("chatList").getItems());
+				RSO_MSO_controller.getView().byId("feedId").setValue(null);
+				if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
+					RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus();
+				}
 				RSO_MSO_controller.getchat();
 			},
+			
 			getSO: function (req) {
 				ppdFlages = sap.ui.getCore().getModel("ppdFlages");
 				if (ppdFlages) {
