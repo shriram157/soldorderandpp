@@ -23,6 +23,7 @@ sap.ui.define([
 				// RSO_MSO_controller.getBrowserLanguage();
 				RSO_MSO_controller._handleServiceSuffix_Series();
 				RSO_MSO_controller._oBusyDialog = new sap.m.BusyDialog();
+				//this.getView().byId("feedId").setVisible(false);
 				zcustomerModel = new JSONModel({});
 				zinventoryModel = new JSONModel({});
 				RSO_MSO_controller.getView().setModel(zcustomerModel, 'Customer');
@@ -76,6 +77,7 @@ sap.ui.define([
 				//RSO_MSO_controller.getView().byId("chatList").setShowNoData(false);
 				RSO_MSO_controller.getView().byId("chatList").setNoDataText("No Message");
 			},
+
 			onPost: function (oEvent) {
 				/*	var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 						style: "medium"
@@ -190,9 +192,9 @@ sap.ui.define([
 						AppController.chatNum = sap.ui.getCore().getModel('GlobalChatModel').getData().length;
 
 						// for (var i = 0; i < RSO_MSO_controller.getView().byId("chatList").getItems().length; i++) {
-						if(RSO_MSO_controller.getView().byId("chatList").getItems()[0]){
-						RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(AppController.chatNum);
-						 }
+						if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
+							RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(AppController.chatNum);
+						}
 
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
@@ -241,14 +243,38 @@ sap.ui.define([
 						// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 					}
 				}
-			//	console.log(RSO_MSO_controller.getView().byId("chatList").getItems());
+				//	console.log(RSO_MSO_controller.getView().byId("chatList").getItems());
 				RSO_MSO_controller.getView().byId("feedId").setValue(null);
 				if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
 					RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus();
 				}
 				RSO_MSO_controller.getchat();
+				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+				var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
+				if (userType == "TCI_User") {
+					cb_chat.setEnabled() == true;
+				} else {
+					cb_chat.setEnabled() == false;
+				}
+				var chatNum=RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
+				var feed = RSO_MSO_controller.getView().byId("feedId");
+				if(chatNum>0){
+					feed.setEnabled=true;
+				}
+				else{
+					feed.setEnabled=false;
+				}
 			},
-			
+			onSelectCB: function () {
+				//	var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+				var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
+				var feed = RSO_MSO_controller.getView().byId("feedId");
+				if (cb_chat.getSelected() == true) {
+					feed.setEnabled(true);
+				} else {
+					feed.setEnabled(false);
+				}
+			},
 			getSO: function (req) {
 				ppdFlages = sap.ui.getCore().getModel("ppdFlages");
 				if (ppdFlages) {
@@ -289,13 +315,15 @@ sap.ui.define([
 							RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 							// Filter for Display Data Sold Order
 							var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
-							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+								"Eligilibity");
 							if (_Eligilibity == "YES") {
 								attachButton.setEnabled(true);
 							} else {
 								attachButton.setEnabled(false);
 							}
-							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
+							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+								'Zzendcu');
 							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", zcustomerNumber);
 							sap.ui.getCore().setModel(new JSONModel({
 								model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
@@ -334,7 +362,8 @@ sap.ui.define([
 							// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 							// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 
-							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+								"Eligilibity");
 							if (_Eligilibity == "YES") {
 								attachButton.setEnabled(true);
 							} else {
@@ -382,7 +411,8 @@ sap.ui.define([
 								console.log("zinventoryModel", zinventoryModel);
 							}
 							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
-								var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
+								var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+									'Zzendcu');
 								var regFlag = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('CustAtReg');
 
 								RSO_MSO_controller._SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty(
@@ -876,7 +906,8 @@ sap.ui.define([
 						}
 					});
 				}
-				sap.m.MessageBox.show(RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("FileUploaded") + zrequest, sap.m.MessageBox
+				sap.m.MessageBox.show(RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("FileUploaded") + zrequest, sap.m
+					.MessageBox
 					.Icon.SUCCESS, RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("TitleSuccess"), sap
 					.m.MessageBox.Action.OK, null, null);
 				RSO_MSO_controller.getView().getModel('mainservices').refresh(true);

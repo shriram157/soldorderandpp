@@ -75,8 +75,10 @@
 							<Text text="{mainservices>ZzsoStatus}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="40" value="{mainservices>Comment}"/>
+							<Label wrapping="true" text=""/>
+							<CheckBox enabled="false" id="ChatCB" visible="true" text="Enable Post Note" select="onSelectCB"></CheckBox>
 							<Label wrapping="true" text="{i18n>PostComment}"/>
-							<FeedInput id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
+							<FeedInput enabled="false" visible="true" id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
