@@ -228,7 +228,7 @@ sap.ui.define([
 					} else {
 						attachButton.setEnabled(false);
 					}
-					
+
 				}, (1 * 1000));
 				RSO_MSO_controller.getSO(requestid);
 
@@ -257,8 +257,8 @@ sap.ui.define([
 				} else {
 					cb_chat.setEnabled = false;
 				}
-				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
-					var chatNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
+				if (AppController.chatMessageNum) {
+					var chatNumber = AppController.chatMessageNum; //RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
 					var chatNum = parseInt(chatNumber);
 					var feed = RSO_MSO_controller.getView().byId("feedId");
 					if (chatNum > 0) {
@@ -318,6 +318,8 @@ sap.ui.define([
 							RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 							// Filter for Display Data Sold Order
 							var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
+							AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+								'ChatMessages');
 							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 								"Eligilibity");
 							if (_Eligilibity == "YES") {
@@ -456,6 +458,16 @@ sap.ui.define([
 								// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
 								// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
 								// }
+							}
+							if (AppController.chatMessageNum) {
+								var chatNumber = AppController.chatMessageNum; //RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
+								var chatNum = parseInt(chatNumber);
+								var feed = RSO_MSO_controller.getView().byId("feedId");
+								if (chatNum > 0) {
+									feed.setEnabled = true;
+								} else {
+									feed.setEnabled = false;
+								}
 							}
 						},
 						dataReceived: function (oData) {}
