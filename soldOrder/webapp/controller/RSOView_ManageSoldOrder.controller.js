@@ -228,8 +228,9 @@ sap.ui.define([
 					} else {
 						attachButton.setEnabled(false);
 					}
+						RSO_MSO_controller.getSO(requestid);
 				}, (1 * 1000));
-				RSO_MSO_controller.getSO(requestid);
+			
 
 				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
 					var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
@@ -256,13 +257,15 @@ sap.ui.define([
 				} else {
 					cb_chat.setEnabled = false;
 				}
-				var chatNum=RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
-				var feed = RSO_MSO_controller.getView().byId("feedId");
-				if(chatNum>0){
-					feed.setEnabled=true;
-				}
-				else{
-					feed.setEnabled=false;
+				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
+					var chatNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
+					var chatNum = parseInt(chatNumber);
+					var feed = RSO_MSO_controller.getView().byId("feedId");
+					if (chatNum > 0) {
+						feed.setEnabled = true;
+					} else {
+						feed.setEnabled = false;
+					}
 				}
 			},
 			onSelectCB: function () {
