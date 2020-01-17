@@ -228,9 +228,9 @@ sap.ui.define([
 					} else {
 						attachButton.setEnabled(false);
 					}
-						RSO_MSO_controller.getSO(requestid);
+					
 				}, (1 * 1000));
-			
+				RSO_MSO_controller.getSO(requestid);
 
 				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
 					var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
