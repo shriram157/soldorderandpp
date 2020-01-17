@@ -252,9 +252,9 @@ sap.ui.define([
 				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
 				if (userType == "TCI_User") {
-					cb_chat.setEnabled() == true;
+					cb_chat.setEnabled = true;
 				} else {
-					cb_chat.setEnabled() == false;
+					cb_chat.setEnabled = false;
 				}
 				var chatNum=RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
 				var feed = RSO_MSO_controller.getView().byId("feedId");
