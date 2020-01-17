@@ -257,11 +257,11 @@ sap.ui.define([
 				} else {
 					cb_chat.setEnabled = false;
 				}
-				if (AppController.chatMessageNum) {
-					var chatNumber = AppController.chatMessageNum; //RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
-					var chatNum = parseInt(chatNumber);
+				if (AppController.chatNum) {
+				//	var chatNumber = AppController.chatMessageNum; //RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
+				//	var chatNum = parseInt(chatNumber);
 					var feed = RSO_MSO_controller.getView().byId("feedId");
-					if (chatNum > 0) {
+					if (AppController.chatNum > 0) {
 						feed.setEnabled = true;
 					} else {
 						feed.setEnabled = false;
