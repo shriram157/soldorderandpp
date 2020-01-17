@@ -253,18 +253,18 @@ sap.ui.define([
 				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
 				if (userType == "TCI_User") {
-					cb_chat.setEnabled = true;
+					cb_chat.setEnabled(true);
 				} else {
-					cb_chat.setEnabled = false;
+					cb_chat.setEnabled(false);
 				}
 				if (AppController.chatNum) {
 				//	var chatNumber = AppController.chatMessageNum; //RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
 				//	var chatNum = parseInt(chatNumber);
 					var feed = RSO_MSO_controller.getView().byId("feedId");
 					if (AppController.chatNum > 0) {
-						feed.setEnabled = true;
+						feed.setEnabled(true);
 					} else {
-						feed.setEnabled = false;
+						feed.setEnabled(false);
 					}
 				}
 			},
