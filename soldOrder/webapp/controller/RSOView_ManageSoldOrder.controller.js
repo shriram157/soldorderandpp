@@ -459,7 +459,7 @@ sap.ui.define([
 								// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
 								// }
 							}
-							if (AppController.chatMessageNum) {
+						/*	if (AppController.chatMessageNum) {
 								var chatNumber = AppController.chatMessageNum; //RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
 								var chatNum = parseInt(chatNumber);
 								var feed = RSO_MSO_controller.getView().byId("feedId");
@@ -468,7 +468,7 @@ sap.ui.define([
 								} else {
 									feed.setEnabled = false;
 								}
-							}
+							}*/
 						},
 						dataReceived: function (oData) {}
 					}
