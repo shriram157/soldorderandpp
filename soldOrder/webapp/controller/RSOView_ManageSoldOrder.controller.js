@@ -276,27 +276,36 @@ sap.ui.define([
 					cb_chat.setVisible(true);
 					chatVBox.setVisible(true);
 					cb_chat.setEnabled(true);
-				} else {
-						if (AppController.chatNum !== undefined) {
-					if (AppController.chatNum > 0) {
-						feed.setEnabled(true);
-						feed.setVisible(true);
-						cb_chat.setVisible(false);
-						chatVBox.setVisible(true);
-					} else {
-						feed.setEnabled(false);
-						feed.setVisible(false);
-						cb_chat.setVisible(false);
-						chatVBox.setVisible(false);
+					if (AppController.chatNum !== undefined) {
+						if (AppController.chatNum > 0) {
+							cb_chat.getSelected(true);
+							feed.setEnabled(true);
+						} else {
+							cb_chat.getSelected(false);
+							feed.setEnabled(false);
+						}
 					}
-				}
+				} else {
+					if (AppController.chatNum !== undefined) {
+						if (AppController.chatNum > 0) {
+							feed.setEnabled(true);
+							feed.setVisible(true);
+							cb_chat.setVisible(false);
+							chatVBox.setVisible(true);
+						} else {
+							feed.setEnabled(false);
+							feed.setVisible(false);
+							cb_chat.setVisible(false);
+							chatVBox.setVisible(false);
+						}
+					}
 					cb_chat.setEnabled(false);
-				/*	feed.setVisible(false);
-					cb_chat.setVisible(false);
-					chatVBox.setVisible(false);*/
+					/*	feed.setVisible(false);
+						cb_chat.setVisible(false);
+						chatVBox.setVisible(false);*/
 				}
-			
 			},
+			
 			onSelectCB: function () {
 				//	var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
