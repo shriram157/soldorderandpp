@@ -278,10 +278,10 @@ sap.ui.define([
 					cb_chat.setEnabled(true);
 					if (AppController.chatNum !== undefined) {
 						if (AppController.chatNum > 0) {
-							cb_chat.getSelected(true);
+							cb_chat.setSelected(true);
 							feed.setEnabled(true);
 						} else {
-							cb_chat.getSelected(false);
+							cb_chat.setSelected(false);
 							feed.setEnabled(false);
 						}
 					}
