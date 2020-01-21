@@ -76,9 +76,9 @@
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="40" value="{mainservices>Comment}"/>
 							<Label wrapping="true" text=""/>
-							<CheckBox enabled="false" id="ChatCB" visible="true" text="Enable Post Note" select="onSelectCB"></CheckBox>
+							<CheckBox enabled="false" id="ChatCB" visible="false" text="Enable Post Note" select="onSelectCB"></CheckBox>
 							<Label wrapping="true" text="{i18n>PostComment}"/>
-							<FeedInput enabled="false" visible="true" id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
+							<FeedInput enabled="false" visible="false" id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
@@ -114,7 +114,7 @@
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment2" value="{mainservices>ZzcancelComment}" editable="false" enabled="false" maxLength="150"/>
 							<Label wrapping="true" text="{i18n>Reply}"/>
-							<VBox class="chatHeight">
+							<VBox id="chatVBox" class="chatHeight">
 								<items>
 									<List id="chatList" showSeparators="Inner" items="{ path: 'ChatModel>/'}">
 										<!--	<FeedListItem sender="{ChatModel>userType}" icon="" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"

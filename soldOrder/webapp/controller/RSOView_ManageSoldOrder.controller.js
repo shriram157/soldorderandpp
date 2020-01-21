@@ -195,7 +195,7 @@ sap.ui.define([
 						if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
 							RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(AppController.chatNum);
 						}
-						if (AppController.chatNum !== undefined) {
+						/*if (AppController.chatNum !== undefined) {
 
 							var feed = RSO_MSO_controller.getView().byId("feedId");
 							if (AppController.chatNum > 0) {
@@ -203,7 +203,7 @@ sap.ui.define([
 							} else {
 								feed.setEnabled(false);
 							}
-						}
+						}*/
 						//	var chatNumber = AppController.chatMessageNum; //RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ChatMessages');
 						//	var chatNum = parseInt(chatNumber);
 					},
@@ -216,11 +216,13 @@ sap.ui.define([
 			},
 			_getattachRouteMatched: function (parameters) {
 				var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
-				//	var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
+				var feed = RSO_MSO_controller.getView().byId("feedId");
+				var chatVBox = RSO_MSO_controller.getView().byId("chatVBox");
+				chatVBox.setVisible(false);
 				if (cb_chat.getSelected() == true) {
-					cb_chat.setEnabled(false);
+					cb_chat.setSelected(false);
 				} else {
-					cb_chat.setEnabled(false);
+					cb_chat.setSelected(false);
 				}
 				var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 				if (oDivision == "10") {
@@ -270,19 +272,30 @@ sap.ui.define([
 				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 
 				if (userType == "TCI_User") {
+					feed.setVisible(true);
+					cb_chat.setVisible(true);
+					chatVBox.setVisible(true);
 					cb_chat.setEnabled(true);
 				} else {
-					cb_chat.setEnabled(false);
-				}
-				if (AppController.chatNum !== undefined) {
-
-					var feed = RSO_MSO_controller.getView().byId("feedId");
+						if (AppController.chatNum !== undefined) {
 					if (AppController.chatNum > 0) {
 						feed.setEnabled(true);
+						feed.setVisible(true);
+						cb_chat.setVisible(false);
+						chatVBox.setVisible(true);
 					} else {
 						feed.setEnabled(false);
+						feed.setVisible(false);
+						cb_chat.setVisible(false);
+						chatVBox.setVisible(false);
 					}
 				}
+					cb_chat.setEnabled(false);
+				/*	feed.setVisible(false);
+					cb_chat.setVisible(false);
+					chatVBox.setVisible(false);*/
+				}
+			
 			},
 			onSelectCB: function () {
 				//	var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
