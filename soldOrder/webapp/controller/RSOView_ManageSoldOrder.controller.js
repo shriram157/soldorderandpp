@@ -215,15 +215,15 @@ sap.ui.define([
 				});
 			},
 			_getattachRouteMatched: function (parameters) {
-				var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
+			//	var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
 				var feed = RSO_MSO_controller.getView().byId("feedId");
 				var chatVBox = RSO_MSO_controller.getView().byId("chatVBox");
 				chatVBox.setVisible(false);
-				if (cb_chat.getSelected() == true) {
+			/*	if (cb_chat.getSelected() == true) {
 					cb_chat.setSelected(false);
 				} else {
 					cb_chat.setSelected(false);
-				}
+				}*/
 				var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 				if (oDivision == "10") {
 					RSO_MSO_controller.sDivision = "TOY";
@@ -273,10 +273,11 @@ sap.ui.define([
 
 				if (userType == "TCI_User") {
 					feed.setVisible(true);
-					cb_chat.setVisible(true);
+					feed.setEnabled(true);
+				//	cb_chat.setVisible(true);
 					chatVBox.setVisible(true);
-					cb_chat.setEnabled(true);
-					if (AppController.chatNum !== undefined) {
+				//	cb_chat.setEnabled(true);
+				/*	if (AppController.chatNum !== undefined) {
 						if (AppController.chatNum > 0) {
 							cb_chat.setSelected(true);
 							feed.setEnabled(true);
@@ -284,22 +285,22 @@ sap.ui.define([
 							cb_chat.setSelected(false);
 							feed.setEnabled(false);
 						}
-					}
+					}*/
 				} else {
 					if (AppController.chatNum !== undefined) {
 						if (AppController.chatNum > 0) {
 							feed.setEnabled(true);
 							feed.setVisible(true);
-							cb_chat.setVisible(false);
+						//	cb_chat.setVisible(false);
 							chatVBox.setVisible(true);
 						} else {
 							feed.setEnabled(false);
 							feed.setVisible(false);
-							cb_chat.setVisible(false);
+						//	cb_chat.setVisible(false);
 							chatVBox.setVisible(false);
 						}
 					}
-					cb_chat.setEnabled(false);
+				//	cb_chat.setEnabled(false);
 					/*	feed.setVisible(false);
 						cb_chat.setVisible(false);
 						chatVBox.setVisible(false);*/
@@ -308,13 +309,13 @@ sap.ui.define([
 
 			onSelectCB: function () {
 				//	var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-				var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
+			/*	var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
 				var feed = RSO_MSO_controller.getView().byId("feedId");
 				if (cb_chat.getSelected() == true) {
 					feed.setEnabled(true);
 				} else {
 					feed.setEnabled(false);
-				}
+				}*/
 			},
 			getSO: function (req) {
 				ppdFlages = sap.ui.getCore().getModel("ppdFlages");

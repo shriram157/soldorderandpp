@@ -75,8 +75,9 @@
 							<Text text="{mainservices>ZzsoStatus}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="40" value="{mainservices>Comment}"/>
-							<Label wrapping="true" text=""/>
+							<!--	<Label wrapping="true" text=""/>
 							<CheckBox enabled="false" id="ChatCB" visible="false" text="Enable Post Note" select="onSelectCB"></CheckBox>
+						-->
 							<Label wrapping="true" text="{i18n>PostComment}"/>
 							<FeedInput enabled="false" visible="false" id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
 							<core:Title text="" class="titleFontSize"/>
@@ -120,11 +121,12 @@
 										<!--	<FeedListItem sender="{ChatModel>userType}" icon="" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
 										timestamp="{ChatModel>Zdate}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
 									-->
-										<FeedListItem sender="{path: 'ChatModel>Zdealer' , formatter:'toyota.ca.SoldOrder.util.formatter.usertype'}" 
-										icon="" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
-										timestamp= "{path: 'ChatModel>Zdate', formatter: 'toyota.ca.SoldOrder.util.formatter._timeStamp'}" 
-										text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
-								</List> <!--sap.ui.model.type.DateTime-->
+										<FeedListItem sender="{path: 'ChatModel>Zdealer' , formatter:'toyota.ca.SoldOrder.util.formatter.usertype'}" icon=""
+											senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
+											timestamp="{path: 'ChatModel>Zdate', formatter: 'toyota.ca.SoldOrder.util.formatter._timeStamp'}" text="{ChatModel>Text}"
+											convertLinksToAnchorTags="All"/>
+									</List>
+									<!--sap.ui.model.type.DateTime-->
 								</items>
 							</VBox>
 						</f:content>
