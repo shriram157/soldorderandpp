@@ -305,7 +305,7 @@ sap.ui.define([
 						chatVBox.setVisible(false);*/
 				}
 			},
-			
+
 			onSelectCB: function () {
 				//	var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
@@ -348,7 +348,6 @@ sap.ui.define([
 				RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);
 				zmodel.refresh();
 				RSO_MSO_controller.getView().bindElement({
-
 					path: sObjectPath,
 					model: "mainservices",
 					events: {
@@ -356,8 +355,8 @@ sap.ui.define([
 							RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
 							// Filter for Display Data Sold Order
 							var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
-							AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-								'ChatMessages');
+							/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+									'ChatMessages');*/
 							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 								"Eligilibity");
 							if (_Eligilibity == "YES") {
@@ -420,13 +419,26 @@ sap.ui.define([
 								});
 								var ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom"); //ETAFrom earleir
 								var ETATo = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo"); //ETATo
+								if (ETAFrom == null && ETATo == null) {
+									var datemodel = sap.ui.getCore().getModel(dateSO_BModel);
+									var data = datemodel.getData();
+									var ETAFrom1 = data.fromDate;
+									var ETATo1 = data.toDate;
+									OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom1));
+									OBJNew.ETATo = _oDateFormat.format(new Date(ETATo1));
+									SelectVehicleOption = false;
+									zinventoryModel.setData(OBJNew);
+									zinventoryModel.updateBindings(true);
+									console.log("Already asigned VTN, coming from Pipeline", zinventoryModel);
 
-								OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
-								OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
-								SelectVehicleOption = false;
-								zinventoryModel.setData(OBJNew);
-								zinventoryModel.updateBindings(true);
-								console.log("Already asigned VTN", zinventoryModel);
+								} else {
+									OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
+									OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
+									SelectVehicleOption = false;
+									zinventoryModel.setData(OBJNew);
+									zinventoryModel.updateBindings(true);
+									console.log("Already asigned VTN", zinventoryModel);
+								}
 							} else if (zvtn == "" && !!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore')) {
 								var OBJNew = {};
 								var year = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(0, 4);

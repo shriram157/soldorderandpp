@@ -167,7 +167,11 @@ sap.ui.define([
 				values.todate = zdateFormat.parse(parameters.getParameters().arguments.todate);
 			}
 			
-
+			var dateSO_BModel=new JSONModel({
+				toDate:values.todate,
+				fromDate:values.fromdate
+			});
+			sap.ui.getCore().setModel(dateSO_BModel,"dateSO_BModel");
 			RSOB_controller.getView().setModel(new JSONModel(values), "RSOB_Model");
 			RSOB_controller.series_selected();
 			RSOB_controller.model_selected();
