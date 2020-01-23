@@ -420,7 +420,9 @@ sap.ui.define([
 								var ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom"); //ETAFrom earleir
 								var ETATo = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo"); //ETATo
 								if (ETAFrom == null && ETATo == null) {
-									var datemodel = sap.ui.getCore().getModel(dateSO_BModel);
+									var datemodel = sap.ui.getCore().getModel("dateSO_BModel");
+									var etaToText=RSO_MSO_controller.getView().byId("idtoText").getText();
+									var etaFromText=RSO_MSO_controller.getView().byId("idfromText").getText();
 									var data = datemodel.getData();
 									var ETAFrom1 = data.fromDate;
 									var ETATo1 = data.toDate;

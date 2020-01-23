@@ -43,7 +43,7 @@
 										<items>
 											<Text/>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="2rem"/>
-											<Text
+											<Text id="idfromText"
 												text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 										</items>
 									</HBox>
@@ -51,7 +51,7 @@
 										<items>
 											<Text/>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="2rem"/>
-											<Text
+											<Text id="idtoText"
 												text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 										</items>
 									</HBox>
