@@ -282,8 +282,13 @@ toyota.ca.SoldOrder.util.formatter = {
 		var oFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
 			style: "yyyy-MM-dd"
 		});
-		var sDate = oFormat.format(new Date(date));
-		return sDate;
+		var empty="";
+		if (date) {
+			var sDate = oFormat.format(new Date(date));
+			return sDate;
+		}
+		else
+		return empty;
 	},
 	usertype: function (userType) {
 		if (userType == "9999") {
