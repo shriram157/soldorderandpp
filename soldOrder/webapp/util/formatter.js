@@ -279,11 +279,12 @@ toyota.ca.SoldOrder.util.formatter = {
 			var result2 = parseInt(result);
 			var dat4 = new Date(result2);
 			dat1 = dat4.toDateString();
-			var dat2 = dat.toTimeString();
+			var dat2 = dat4.toTimeString();
 			var res3 = dat2.split(" ");
 			res4 = res3[0];
 		} else {
-			dat = "";
+			dat1="";
+			res4="";
 		}
 		return dat1 + " " + res4;
 	},
