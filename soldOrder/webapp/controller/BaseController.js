@@ -1,6 +1,6 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	
+
 	"sap/ui/model/resource/ResourceModel",
 	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
@@ -192,7 +192,7 @@ sap.ui.define([
 				success: function (oData) {
 					var LoginUserModel = new sap.ui.model.json.JSONModel();
 					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
-					var userType = oData.loggedUserType[0]; 
+					var userType = oData.loggedUserType[0];
 					//oData.loggedUserType[0] = "Dealer_User";//for local testing, comment while deploying
 					// //console.log("logged in user dealer");
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
@@ -228,7 +228,7 @@ sap.ui.define([
 			});
 
 			// get the attributes and BP Details  Copyied from Minkashi 
-			var that=this;
+			var that = this;
 			$.ajax({
 				url: sPrefix + this.attributeUrl,
 				type: "GET",
@@ -236,9 +236,13 @@ sap.ui.define([
 				async: false,
 				success: function (oData) {
 					//console.log("initial BP load", oData);
+					var SignatureModel = new sap.ui.model.json.JSONModel();
+					SignatureModel.setData(oData);
+					sap.ui.getCore().setModel(SignatureModel, "SignatureModel");
+					var Signaturetype = oData.userProfile.id;
 					var BpDealerArr = [],
 						BpDealer = [];
-
+					//var signature;
 					var userAttributes = [];
 					var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 					if (isDivisionSent) {
@@ -252,10 +256,9 @@ sap.ui.define([
 					$.each(oData.attributes, function (i, item) {
 						var BpLength = item.BusinessPartner.length;
 						//console.log("Div", that.Div);
-						if(item.BPDivision == "03" && sDiv == "10"){
+						if (item.BPDivision == "03" && sDiv == "10") {
 							item.BPDivision = "01";
-						}
-						else if(item.BPDivision == "03" && sDiv == "20"){
+						} else if (item.BPDivision == "03" && sDiv == "20") {
 							item.BPDivision = "02";
 						}
 						if (item.BPDivision == that.Div) {
@@ -285,6 +288,9 @@ sap.ui.define([
 					//console.log("BpDealer", BpDealer);
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					sap.ui.getCore().getModel("LoginUserModel").setSizeLimit(750);
+					
+					that.getView().getModel("LoginUserModel").setProperty("/Signaturetype", Signaturetype);
+					sap.ui.getCore().getModel("LoginUserModel").setProperty("/Signaturetype", Signaturetype);
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 					sap.ui.getCore().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);
 					sap.ui.getCore().getModel("LoginUserModel").updateBindings(true);

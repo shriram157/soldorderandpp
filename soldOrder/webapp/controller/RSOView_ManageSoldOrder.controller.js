@@ -87,8 +87,14 @@ sap.ui.define([
 				var sValue = oEvent.getParameter("value");
 				//var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				var dealerNumber = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BpDealerModel")[0].BusinessPartner;
-				//var userType = sap.ui.getCore().getModel("LoginUserModel").loggedUserType[0];
-				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+				var userType = 	sap.ui.getCore().getModel("LoginUserModel").getProperty('/Signaturetype');
+				//var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+				//
+				var signModel=sap.ui.getCore().getModel('SignatureModel')
+				if(signModel){
+				console.log(sap.ui.getCore().getModel('SignatureModel').getData().userProfile.id);	
+				}
+				
 				console.log(userType);
 				//Dealer_User //TCI_User 9999   //TCI_Zone_User 8888 
 				var sLocation = window.location.host;
