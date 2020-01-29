@@ -121,7 +121,8 @@
 										<!--	<FeedListItem sender="{ChatModel>userType}" icon="" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
 										timestamp="{ChatModel>Zdate}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
 									-->
-										<FeedListItem sender="{path: 'ChatModel>Zdealer' , formatter:'toyota.ca.SoldOrder.util.formatter.usertype'}" icon=""
+									<!--	<FeedListItem sender="{path: 'ChatModel>Zdealer' , formatter:'toyota.ca.SoldOrder.util.formatter.usertype'}" icon=""-->
+										<FeedListItem sender="{ChatModel>Zdealer}"  icon=""
 											senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
 												timestamp="{path: 'ChatModel>Timestamp', formatter: 'toyota.ca.SoldOrder.util.formatter._timeStamp'}"
 										 text="{ChatModel>Text}"

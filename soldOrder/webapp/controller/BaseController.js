@@ -236,9 +236,9 @@ sap.ui.define([
 				async: false,
 				success: function (oData) {
 					//console.log("initial BP load", oData);
-					var SignatureModel = new sap.ui.model.json.JSONModel();
+				/*	var SignatureModel = new sap.ui.model.json.JSONModel();
 					SignatureModel.setData(oData);
-					sap.ui.getCore().setModel(SignatureModel, "SignatureModel");
+					sap.ui.getCore().setModel(SignatureModel, "SignatureModel");*/
 					var Signaturetype = oData.userProfile.id;
 					var BpDealerArr = [],
 						BpDealer = [];
