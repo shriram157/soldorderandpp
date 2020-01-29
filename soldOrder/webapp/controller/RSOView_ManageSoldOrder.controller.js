@@ -87,14 +87,15 @@ sap.ui.define([
 				var sValue = oEvent.getParameter("value");
 				//var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				var dealerNumber = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BpDealerModel")[0].BusinessPartner;
-				var signature = 	sap.ui.getCore().getModel("LoginUserModel").getProperty('/Signaturetype');
+				var signature = sap.ui.getCore().getModel("LoginUserModel").getProperty('/Signaturetype');
 				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				//
-			/*	var signModel=sap.ui.getCore().getModel('SignatureModel')
-				if(signModel){
-				console.log(sap.ui.getCore().getModel('SignatureModel').getData().userProfile.id);	
-				}*/
-				
+				/*	var signModel=sap.ui.getCore().getModel('SignatureModel')
+					if(signModel){
+					console.log(sap.ui.getCore().getModel('SignatureModel').getData().userProfile.id);	
+					}*/
+
+				console.log(signature);
 				console.log(userType);
 				//Dealer_User //TCI_User 9999   //TCI_Zone_User 8888 
 				var sLocation = window.location.host;
@@ -109,22 +110,22 @@ sap.ui.define([
 
 				if (userType == "TCI_User") {
 					soapMessage1 = {
-				//		Zdealer: "9999",
-				Zdealer: signature,
+						Zdealer: "9999",
+						Zusertype: signature,
 						ZsoReqNo: zrequest,
 						Text: sValue
 					};
 				} else if (userType == "TCI_Zone_User") {
 					soapMessage1 = {
-				//		Zdealer: "8888",
-					Zdealer: signature,
+						Zdealer: "8888",
+						Zusertype: signature,
 						ZsoReqNo: zrequest,
 						Text: sValue
 					};
 				} else {
 					soapMessage1 = {
-				//		Zdealer: dealerNumber,
-					Zdealer: signature,
+						Zdealer: dealerNumber,
+						Zusertype: signature,
 						ZsoReqNo: zrequest,
 						Text: sValue
 					};
