@@ -295,6 +295,7 @@ sap.ui.define([
 			// }
 		},
 		_refreshCombo: function (evt) {
+			clicks = 0;
 			fleet = true;
 			FSOS_controller.dialog.open();
 			var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
@@ -380,6 +381,7 @@ sap.ui.define([
 
 		},
 		_refresh: function (oEvent) {
+			clicks = 0;
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			
 			if (x != "TCI_User") {

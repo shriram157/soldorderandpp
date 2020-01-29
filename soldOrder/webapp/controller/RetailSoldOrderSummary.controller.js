@@ -404,6 +404,7 @@ sap.ui.define([
 			});
 		},
 		_refreshCombo: function (evt) {
+			clicks = 0;
 			RSOS_controller.dialog.open();
 			// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 
@@ -491,6 +492,7 @@ sap.ui.define([
 
 		},
 		_refresh: function (oEvent) {
+			clicks = 0;
 			if (oEvent) {
 				if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") === false)) {
 					this.getView().byId("mcb_series_RSOS").setSelectedItems();
