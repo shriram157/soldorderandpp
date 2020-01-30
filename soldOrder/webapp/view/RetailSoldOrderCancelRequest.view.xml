@@ -6,7 +6,7 @@
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
 					<Label id="label_CancelSoldOrderid" text="" class=" sapUiTinyMarginTop sapUiSmallMarginBegin sapUiTinyMarginBottom fontsize"></Label>
-					<VBox class="VBox_color marginCornersBottom marginCorners" width="49%">
+					<VBox class="VBox_color marginCornersBottom marginCorners widthCss">
 						<items>
 					
 					<f:SimpleForm class="marginCorners" editable="true" width="90%" layout="ResponsiveLayout" >

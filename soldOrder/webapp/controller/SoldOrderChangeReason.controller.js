@@ -65,6 +65,13 @@ sap.ui.define([
 			var sRecipient = requestid; // SOCR_controller.getView().getModel().getProperty("/recipient/name");
 			var sMsg = oBundle.getText("soldOrderReqTitle", [sRecipient]);
 			SOCR_controller.getView().byId("label_SoldOrderid").setText(sMsg);
+			var resonCancelId = SOCR_controller.getView().byId("resonCancelId");
+			var comment_ch_res = SOCR_controller.getView().byId("comment_ch_res");
+			// var reqTypeId_SOCR_val = SOCR_controller.getView().byId("reqTypeId_SOCR").getValue();
+			var cbVal = SOCR_controller.getView().byId("resonCancelId").getSelectedKey();
+
+			resonCancelId.setSelectedKey();
+			comment_ch_res.setValue(null);
 		},
 		onAfterRendering: function () {
 
@@ -72,7 +79,7 @@ sap.ui.define([
 
 		UpdateSoldOrderRequest: function () {
 			var resonCancelId_val = SOCR_controller.getView().byId("resonCancelId").getValue();
-			var comment_ch_res = SOCR_controller.getView().byId("comment_ch_res").getValue;
+			var comment_ch_res = SOCR_controller.getView().byId("comment_ch_res").getValue();
 			// var reqTypeId_SOCR_val = SOCR_controller.getView().byId("reqTypeId_SOCR").getValue();
 			var cbVal = SOCR_controller.getView().byId("resonCancelId").getSelectedKey();
 			// if (cbVal == 2) {

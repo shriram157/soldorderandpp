@@ -43,7 +43,7 @@
 										<items>
 											<Text/>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="2rem"/>
-											<Text
+											<Text id="idfromText"
 												text="{path:'mainservices>ZzreqEtaFrom', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 										</items>
 									</HBox>
@@ -51,7 +51,7 @@
 										<items>
 											<Text/>
 											<Label wrapping="true" text="{i18n>to}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="2rem"/>
-											<Text
+											<Text id="idtoText"
 												text="{path:'mainservices>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 										</items>
 									</HBox>
@@ -75,6 +75,11 @@
 							<Text text="{mainservices>ZzsoStatus}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="40" value="{mainservices>Comment}"/>
+							<!--	<Label wrapping="true" text=""/>
+							<CheckBox enabled="false" id="ChatCB" visible="false" text="Enable Post Note" select="onSelectCB"></CheckBox>
+						-->
+							<Label wrapping="true" text="{i18n>PostComment}"/>
+							<FeedInput enabled="false" visible="false" id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
@@ -87,8 +92,8 @@
 									<HBox>
 										<items>
 											<Label wrapping="true" text="{i18n>from}" class="sapUiSmallMarginEnd sapUiSmallMarginTop" width="2rem"/>
-											<Text id="idETAFrm"	text="{path:'Inventory>/ETAFrom'}"/>
-												<!--text="{path:'Inventory>/ETAFrom',formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}"/>-->
+											<Text id="idETAFrm" text="{path:'Inventory>/ETAFrom'}"/>
+											<!--text="{path:'Inventory>/ETAFrom',formatter:'toyota.ca.SoldOrder.util.formatter._DateFomatter'}"/>-->
 										</items>
 									</HBox>
 									<HBox>
@@ -109,6 +114,25 @@
 							<Text text="{mainservices>ZzcancelRsn}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment2" value="{mainservices>ZzcancelComment}" editable="false" enabled="false" maxLength="150"/>
+							<Label wrapping="true" text="{i18n>Reply}"/>
+							<VBox id="chatVBox" class="chatHeight">
+								<items>
+									<List id="chatList" showSeparators="Inner" items="{ path: 'ChatModel>/'}">
+										<!--	<FeedListItem sender="{ChatModel>userType}" icon="" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
+										timestamp="{ChatModel>Zdate}" text="{ChatModel>Text}" convertLinksToAnchorTags="All"/>
+									-->
+									<!--	<FeedListItem sender="{path: 'ChatModel>Zdealer' , formatter:'toyota.ca.SoldOrder.util.formatter.usertype'}" icon=""-->
+										<FeedListItem sender="{ChatModel>Zusertype}"  icon=""
+											senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false"
+												timestamp="{path: 'ChatModel>Timestamp', formatter: 'toyota.ca.SoldOrder.util.formatter._timeStamp'}"
+										 text="{ChatModel>Text}"
+											convertLinksToAnchorTags="All"/>
+									</List>
+									<!--sap.ui.model.type.DateTime  
+									
+										timestamp="{path: 'ChatModel>Zdate', formatter: 'toyota.ca.SoldOrder.util.formatter._timeStamp'}" text="{ChatModel>Text}"-->
+								</items>
+							</VBox>
 						</f:content>
 					</f:SimpleForm>
 					<Label id="label_MangSoldOrderid" text="" class=" sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"/>
@@ -153,7 +177,7 @@
 							<Label wrapping="true" text="{i18n>phnNo}"/>
 							<!--<Text text="{mainservices>TelNumber}" visible="{RSO_MSO_Model>/NFVisible}"/>
 							<Text text="{Customer>/phones/0/areaCode}{Customer>/phones/0/localNumber}" visible="{RSO_MSO_Model>/SOVisible}"/> localNumber-->
-							<Text 
+							<Text
 								text="{parts:[{path:'mainservices>TelNumber'},{path:'Customer>/phones/0/phoneNumber'} ,{path:'RSO_MSO_Model>/NFVisible'},{path:'RSO_MSO_Model>/SOVisible'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatNFSOFlag'}"/>
 							<Label wrapping="true" text="{i18n>email}"/>
 							<!--<Text text="{mainservices>ZzendcuEmail}" visible="{RSO_MSO_Model>/NFVisible}"/>
@@ -237,9 +261,9 @@
 							<Text text="{path:'mainservices>PaymentAmmount',formatter:'toyota.ca.SoldOrder.util.formatter.formatAmount'}"/>
 						</f:content>
 					</f:SimpleForm>
-					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCorners msgStripCss2"/>
+					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCornersRSO msgStripCss2"/>
 					<t:Table id="table_RSOViewManageSO" selectionMode="None" rows="{mainservices>AttachmentSet}" enableColumnReordering="false"
-						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" visibleRowCount="2">
+						alternateRowColors="true" enableColumnFreeze="false" class="marginCornersRSO" visibleRowCount="2">
 						<t:columns>
 							<t:Column width="33.33%" resizable="false">
 								<Label text=""/>

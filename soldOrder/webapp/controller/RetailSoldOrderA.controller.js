@@ -15,6 +15,8 @@ sap.ui.define([
 		onInit: function () {
 			RSOA_controller = this;
 			AppController.RSOA = true;
+			RSOA_controller.flagInvalidPCode = false;
+			RSOA_controller.flagInvalidPhone = false;
 			// RSOA_controller.getBrowserLanguage();
 			// var language = RSOA_controller.returnBrowserLanguage();
 			RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
@@ -39,7 +41,7 @@ sap.ui.define([
 
 					"SalesType": [{
 						"key": "1",
-						"text": "ENCAISSER"
+						"text": "COMPTANT"
 					}, {
 						"key": "2",
 						"text": "BAIL"
@@ -145,7 +147,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
-			
+
 			var ZzmoyrCB = this.getView().byId("modelYr_RSOA");
 			ZzmoyrCB.$().find("input").attr("readonly", true);
 			var ZzseriesCB = this.getView().byId('series_RSOA');
@@ -158,7 +160,10 @@ sap.ui.define([
 			ZzapxCB.$().find("input").attr("readonly", true);
 			var ZzextcolCB = this.getView().byId("Colour_RSOA");
 			ZzextcolCB.$().find("input").attr("readonly", true);
-			
+			var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
+			SalesType_RSOA.$().find("input").attr("readonly", true);
+			this.readyOnly();
+
 		},
 		//1) Model Code , Model Description :-    Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAIL ENModelDesc  Model: "BF38KT"
 
@@ -644,124 +649,136 @@ sap.ui.define([
 						}
 					},
 					error: function (request, errorText, errorCode) {
-						var soapMessage = {
-							"requestHeader": {
-								"source": "Toyota",
-								"userId": "LOAD",
-								"requestLanguage": "fr_CA"
-							},
-							"type": "NewProfile",
-							"customer": {
-								"person": {
-									"firstName": CustModel.FirstName,
-									"familyName": CustModel.SecondName
+						/////
+						var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+
+						if (RSOA_controller.flagInvalidPCode == true && RSOA_controller.flagInvalidPhone == false) {
+							oBusyDialog.close();
+							var errMsg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPostalCode");
+							sap.m.MessageBox.show(errMsg1, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+								.m.MessageBox.Action.OK, null, null);
+						} else if (RSOA_controller.flagInvalidPCode == false && RSOA_controller.flagInvalidPhone == true) {
+							oBusyDialog.close();
+							var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPhone");
+							sap.m.MessageBox.show(errMsg2, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+								.m.MessageBox.Action.OK, null, null);
+						} else if (RSOA_controller.flagInvalidPCode == true && RSOA_controller.flagInvalidPhone == true) {
+							oBusyDialog.close();
+							var errMsg3 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPhonePostalCode");
+							sap.m.MessageBox.show(errMsg3, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+								.m.MessageBox.Action.OK, null, null);
+						} else {
+
+							var soapMessage = {
+								"requestHeader": {
+									"source": "Toyota",
+									"userId": "LOAD",
+									"requestLanguage": "fr_CA"
 								},
-								"addresses": [{
-									"line1": CustModel.Address,
-									"city": CustModel.City,
-									"provinceCode": CustModel.Province,
-									"countryCode": "CA",
-									"postalCode": CustModel.PostCode,
-									"addressType": "BUSINESS"
-								}],
-								"phones": [{
-									"localNumber": CustModel.Phone.substr(3, 7),
-									"areaCode": CustModel.Phone.substr(0, 3),
-									"useCode": "WORK"
-								}],
-								"preferredLanguageCode": "en-CA",
-								"electronicAddresses": [{
-									"uriID": CustModel.Email,
-									useCode: "PERSONAL"
-								}]
-							},
-							"source": "OICC"
-						};
-						var zdataString = JSON.stringify(
-							soapMessage
-						);
-						$.ajax({
-							url: '/node/tci/internal/api/v1.0/customer/custupdate/oicc/profileChange',
-							headers: {
-								accept: 'application/json',
-								// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
-								// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
-								'content-type': 'application/json'
-							},
-							type: "POST",
-							dataType: "json",
-							data: zdataString,
-							success: function (data, textStatus, jqXHR) {
-								oBusyDialog.close();
-								if (data.customer) {
-									Zcustomer_No = data.customer.partyID; //customerNumber;
-									Zcustomer_No = Zcustomer_No.toString();
-									var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("success1");
-									title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title5");
-									icon = new sap.ui.core.Icon({
-										src: "sap-icon://success",
-										size: "2rem"
-									});
-									var msg2 = new sap.m.HBox({
-										items: [icon, new sap.m.Text({
-											text: errMsg2
-										})]
-									});
-									sap.m.MessageBox.show(msg2, {
-										icon: sap.m.MessageBox.Icon.SUCCESS,
-										title: title,
-										actions: sap.m.MessageBox.Action.OK,
-										onClose: null,
-										styleClass: "",
-										initialFocus: null,
-										textDirection: sap.ui.core.TextDirection.Inherit,
-										contentWidth: "10rem"
-									});
+								"type": "NewProfile",
+								"customer": {
+									"person": {
+										"firstName": CustModel.FirstName,
+										"familyName": CustModel.SecondName
+									},
+									"addresses": [{
+										"line1": CustModel.Address,
+										"city": CustModel.City,
+										"provinceCode": CustModel.Province,
+										"countryCode": "CA",
+										"postalCode": CustModel.PostCode,
+										"addressType": "BUSINESS"
+									}],
+									"phones": [{
+										"localNumber": CustModel.Phone.substr(3, 7),
+										"areaCode": CustModel.Phone.substr(0, 3),
+										"useCode": "WORK"
+									}],
+									"preferredLanguageCode": "en-CA",
+									"electronicAddresses": [{
+										"uriID": CustModel.Email,
+										useCode: "PERSONAL"
+									}]
+								},
+								"source": "OICC"
+							};
+							var zdataString = JSON.stringify(
+								soapMessage
+							);
+							$.ajax({
+								url: '/node/tci/internal/api/v1.0/customer/custupdate/oicc/profileChange',
+								headers: {
+									accept: 'application/json',
+									// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
+									// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+									'content-type': 'application/json'
+								},
+								type: "POST",
+								dataType: "json",
+								data: zdataString,
+								success: function (data, textStatus, jqXHR) {
+									oBusyDialog.close();
+									if (data.customer) {
+										Zcustomer_No = data.customer.partyID; //customerNumber;
+										Zcustomer_No = Zcustomer_No.toString();
+										var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("success1");
+										title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title5");
+										icon = new sap.ui.core.Icon({
+											src: "sap-icon://success",
+											size: "2rem"
+										});
+										var msg2 = new sap.m.HBox({
+											items: [icon, new sap.m.Text({
+												text: errMsg2
+											})]
+										});
+										sap.m.MessageBox.show(msg2, {
+											icon: sap.m.MessageBox.Icon.SUCCESS,
+											title: title,
+											actions: sap.m.MessageBox.Action.OK,
+											onClose: null,
+											styleClass: "",
+											initialFocus: null,
+											textDirection: sap.ui.core.TextDirection.Inherit,
+											contentWidth: "10rem"
+										});
 
-								}
-							},
-							error: function (request, errorText, errorCode) {
-								oBusyDialog.close();
-								if (request.responseJSON.errors.length > 0) {
-									if (request.responseJSON.errors[1]) {
-										sap.m.MessageBox.show(request.responseJSON.errors[1].httpMessage, {
-											icon: sap.m.MessageBox.Icon.ERROR,
-											title: request.responseJSON.errors[0].httpMessage,
-											actions: sap.m.MessageBox.Action.OK,
-											onClose: null,
-											styleClass: "",
-											initialFocus: null,
-											textDirection: sap.ui.core.TextDirection.Inherit
-												// contentWidth: "20rem"
-										});
-									} else {
-										sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
-											icon: sap.m.MessageBox.Icon.ERROR,
-											actions: sap.m.MessageBox.Action.OK,
-											onClose: null,
-											styleClass: "",
-											initialFocus: null,
-											textDirection: sap.ui.core.TextDirection.Inherit
-												// contentWidth: "20rem"
-										});
 									}
+								},
+								error: function (request, errorText, errorCode) {
+									oBusyDialog.close();
+									if (request.responseJSON.errors.length > 0) {
+										if (request.responseJSON.errors[1]) {
+											sap.m.MessageBox.show(request.responseJSON.errors[1].httpMessage, {
+												icon: sap.m.MessageBox.Icon.ERROR,
+												title: request.responseJSON.errors[0].httpMessage,
+												actions: sap.m.MessageBox.Action.OK,
+												onClose: null,
+												styleClass: "",
+												initialFocus: null,
+												textDirection: sap.ui.core.TextDirection.Inherit
+													// contentWidth: "20rem"
+											});
+										} else {
+											sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
+												icon: sap.m.MessageBox.Icon.ERROR,
+												actions: sap.m.MessageBox.Action.OK,
+												onClose: null,
+												styleClass: "",
+												initialFocus: null,
+												textDirection: sap.ui.core.TextDirection.Inherit
+													// contentWidth: "20rem"
+											});
+										}
 
+									}
 								}
-							}
-						});
+							});
+						}
 					}
 
 				});
-				// sap.m.MessageBox.show(msg, {
-				// 	//	icon: sap.m.MessageBox.Icon.WARNING,
-				// 	title: title,
-				// 	actions: sap.m.MessageBox.Action.OK,
-				// 	onClose: null,
-				// 	styleClass: "",
-				// 	initialFocus: null,
-				// 	textDirection: sap.ui.core.TextDirection.Inherit,
-				// 	contentWidth: "10rem"
-				// });
+
 				validateFlagA = true;
 				var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
 				if (validateFlagA == true) {
@@ -771,11 +788,7 @@ sap.ui.define([
 				}
 
 			} else {
-				/*	validateFlagA = true;
-				if (validateFlagA == true) {
-					var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA")
-					submitBtn.setEnabled(true);
-				}*/
+
 				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 				var errForm = formatter.formatErrorType("SO000023");
 				errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -928,10 +941,8 @@ sap.ui.define([
 			}
 		},
 
-		onAfterRendering: function () {
-			RSOA_controller.listOfModelYear();
+		readyOnly: function () {
 			var seriesCB = this.getView().byId('series_RSOA');
-
 			seriesCB.addEventDelegate({
 				onAfterRendering: function () {
 					seriesCB.$().find("input").attr("readonly", true);
@@ -965,6 +976,59 @@ sap.ui.define([
 			ZzextcolCB.addEventDelegate({
 				onAfterRendering: function () {
 					ZzextcolCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
+			SalesType_RSOA.addEventDelegate({
+				onAfterRendering: function () {
+					SalesType_RSOA.$().find("input").attr("readonly", true);
+				}
+			});
+
+		},
+
+		onAfterRendering: function () {
+			RSOA_controller.listOfModelYear();
+			var seriesCB = this.getView().byId('series_RSOA');
+			seriesCB.addEventDelegate({
+				onAfterRendering: function () {
+					seriesCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzmoyrCB = this.getView().byId("modelYr_RSOA");
+			ZzmoyrCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzmoyrCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzmodelCB = this.getView().byId("modelYr_RSOA");
+			ZzmodelCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzmodelCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzsuffixCB = this.getView().byId("Suffix_RSOA");
+			ZzsuffixCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzsuffixCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzapxCB = this.getView().byId("Apx_RSOA");
+			ZzapxCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzapxCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzextcolCB = this.getView().byId("Colour_RSOA");
+			ZzextcolCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzextcolCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
+			SalesType_RSOA.addEventDelegate({
+				onAfterRendering: function () {
+					SalesType_RSOA.$().find("input").attr("readonly", true);
 				}
 			});
 		},
@@ -1117,7 +1181,8 @@ sap.ui.define([
 				});
 				var ZzseriesCB = this.getView().byId('series_RSOA');
 				ZzseriesCB.$().find("input").attr("readonly", true);
-					// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
+				this.readyOnly();
+				// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
 			}
 		},
@@ -1182,6 +1247,17 @@ sap.ui.define([
 				});
 				var ZzmodelCB = this.getView().byId("model_RSOA");
 				ZzmodelCB.$().find("input").attr("readonly", true);
+				
+				var that=this;
+				setTimeout(function () {
+					if (that.getView().byId('Suffix_RSOA').getItems().length < 1) {
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("NoSuffix");
+						var errTitle = "";
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+							.m.MessageBox.Action.OK, null, null);
+					}
+				}, 3000);
+				this.readyOnly();
 				// ,{path:'mainservices>int_trim_desc_en'}		
 				// var items_binding = this.getView().byId('Suffix_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
@@ -1189,6 +1265,7 @@ sap.ui.define([
 				// ], true));
 			}
 		},
+
 		suffix_selected: function (oEvent) {
 			//-----------------
 			//----APX---------
@@ -1235,7 +1312,7 @@ sap.ui.define([
 				//----------------
 				var ZzsuffixCB = this.getView().byId("Suffix_RSOA");
 				ZzsuffixCB.$().find("input").attr("readonly", true);
-				
+
 				var color;
 				// var language = RSOA_controller.returnBrowserLanguage();
 				if (language === "FR") {
@@ -1259,11 +1336,12 @@ sap.ui.define([
 							// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
 					})
 				});
-				
+
 				var ZzextcolCB = this.getView().byId("Colour_RSOA");
 				ZzextcolCB.$().find("input").attr("readonly", true);
 				var ZzapxCB = this.getView().byId("Apx_RSOA");
 				ZzapxCB.$().find("input").attr("readonly", true);
+				this.readyOnly();
 				// var items_binding = this.getView().byId('Colour_RSOA').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
@@ -1290,9 +1368,11 @@ sap.ui.define([
 				var postalRegEx = new RegExp(/^[ABCEGHJ-NPRSTV-Z]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/m);
 				if (postalRegEx.test(postalCode) == true) {
 					RSOA_controller.getView().byId("PostalCode_RSOA").setValueState("None");
+					RSOA_controller.flagInvalidPCode = false;
 					return postalCode;
 				} else {
 					RSOA_controller.getView().byId("PostalCode_RSOA").setValueState("Error");
+					RSOA_controller.flagInvalidPCode = true;
 					return null;
 				}
 			}
@@ -1303,9 +1383,11 @@ sap.ui.define([
 					var phoneregEx = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
 					if (phoneregEx.test(phoneNum) == true) {
 						RSOA_controller.getView().byId("Phone_RSOA").setValueState("None");
+						RSOA_controller.flagInvalidPhone = false;
 						return phoneNum;
 					} else {
 						RSOA_controller.getView().byId("Phone_RSOA").setValueState("Error");
+						RSOA_controller.flagInvalidPhone = true;
 						return null;
 					}
 				}

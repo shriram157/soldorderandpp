@@ -295,6 +295,7 @@ sap.ui.define([
 			// }
 		},
 		_refreshCombo: function (evt) {
+			clicks = 0;
 			fleet = true;
 			FSOS_controller.dialog.open();
 			var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
@@ -317,7 +318,7 @@ sap.ui.define([
 				}
 			}
 			var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-			oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
+			oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 
 			oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
 			$.ajax({
@@ -380,6 +381,7 @@ sap.ui.define([
 
 		},
 		_refresh: function (oEvent) {
+			clicks = 0;
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			
 			if (x != "TCI_User") {
@@ -404,7 +406,7 @@ sap.ui.define([
 				}
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
+					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 					if (i == ((this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length) - 1)) {
 						oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
 					} else {
@@ -522,7 +524,7 @@ sap.ui.define([
 						}
 					}
 					var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
+					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 					oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
 					
 					$.ajax({
@@ -599,7 +601,7 @@ sap.ui.define([
 
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
+					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 					if (i == ((this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length) - 1)) {
 						oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
 					} else {
@@ -719,7 +721,7 @@ sap.ui.define([
 						}
 					}
 					var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-					oUrl = oUrl + "(ZzdealerCode eq'" + dealer + "')";
+					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 					oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
 
 					$.ajax({

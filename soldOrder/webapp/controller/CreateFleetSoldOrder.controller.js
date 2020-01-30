@@ -184,6 +184,20 @@ sap.ui.define([
 			else {
 				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 			}
+
+			var FanNo_CFSO = this.getView().byId('FanNo_CFSO');
+			FanNo_CFSO.$().find("input").attr("readonly", true);
+			var modelYr_CFSO = this.getView().byId("modelYr_CFSO");
+			modelYr_CFSO.$().find("input").attr("readonly", true);
+			var modelCode_CFSO = this.getView().byId("modelCode_CFSO");
+			modelCode_CFSO.$().find("input").attr("readonly", true);
+			var suffix_CFSO = this.getView().byId("suffix_CFSO");
+			suffix_CFSO.$().find("input").attr("readonly", true);
+			var color_CFSO = this.getView().byId("color_CFSO");
+			color_CFSO.$().find("input").attr("readonly", true);
+			var Apx_CFSO = this.getView().byId("Apx_CFSO");
+			Apx_CFSO.$().find("input").attr("readonly", true);
+
 		},
 		_newService1: function () {
 			var host = CFSO_controller.host();
@@ -706,6 +720,15 @@ sap.ui.define([
 			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
 
 			if (series && modelyear) {
+				var modelCB = this.getView().byId("modelCode_CFSO");
+				modelCB.$().find("input").attr("readonly", true);
+				var suffix_CFSO = this.getView().byId("suffix_CFSO");
+				suffix_CFSO.$().find("input").attr("readonly", true);
+				var color_CFSO = this.getView().byId("color_CFSO");
+				color_CFSO.$().find("input").attr("readonly", true);
+				var Apx_CFSO = this.getView().byId("Apx_CFSO");
+				Apx_CFSO.$().find("input").attr("readonly", true);
+
 				var modelCB = CFSO_controller.getView().byId("modelCode_CFSO");
 				var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
 				var apxCB = CFSO_controller.getView().byId("Apx_CFSO");
@@ -752,6 +775,17 @@ sap.ui.define([
 		},
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
+			var modelYr_CFSO = this.getView().byId("modelYr_CFSO");
+			modelYr_CFSO.$().find("input").attr("readonly", true);
+			var modelCode_CFSO = this.getView().byId("modelCode_CFSO");
+			modelCode_CFSO.$().find("input").attr("readonly", true);
+			var suffix_CFSO = this.getView().byId("suffix_CFSO");
+			suffix_CFSO.$().find("input").attr("readonly", true);
+			var color_CFSO = this.getView().byId("color_CFSO");
+			color_CFSO.$().find("input").attr("readonly", true);
+			var Apx_CFSO = this.getView().byId("Apx_CFSO");
+			Apx_CFSO.$().find("input").attr("readonly", true);
+
 			var model = oEvent.getSource().getSelectedKey();
 			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
 			// var language = CFSO_controller.returnBrowserLanguage();
@@ -817,6 +851,14 @@ sap.ui.define([
 			}
 		},
 		suffix_selected: function (oEvent) {
+
+			var suffix_CFSO = this.getView().byId("suffix_CFSO");
+			suffix_CFSO.$().find("input").attr("readonly", true);
+			var color_CFSO = this.getView().byId("color_CFSO");
+			color_CFSO.$().find("input").attr("readonly", true);
+			var Apx_CFSO = this.getView().byId("Apx_CFSO");
+			Apx_CFSO.$().find("input").attr("readonly", true);
+
 			var suffix = oEvent.getSource().getSelectedKey();
 			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
 			var model = CFSO_controller.getView().byId('modelCode_CFSO').getSelectedKey();
@@ -850,14 +892,7 @@ sap.ui.define([
 						text: "{mainservices>zzapx}"
 					})
 				});
-				// var items_binding = CFSO_controller.getView().byId('Apx_RSOA').getBinding('items');
-				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
-				// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
-				// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-				// ], true));
-				//-----------------
-				//----Color---------
-				//----------------
+
 				var color;
 				// var language = CFSO_controller.returnBrowserLanguage();
 				if (language === "FR") {
@@ -888,6 +923,9 @@ sap.ui.define([
 		//----------Fan Number---------------
 		//----------------------------------
 		_valuehelpfanno: function (oEvent) {
+			var FanNo_CFSO = this.getView().byId('FanNo_CFSO');
+			FanNo_CFSO.$().find("input").attr("readonly", true);
+
 			if (!CFSO_controller._addNewFanPage) {
 				CFSO_controller._addNewFanPage = sap.ui.xmlfragment('FanNo', "toyota.ca.SoldOrder.view.fragments.FanNo", CFSO_controller);
 				CFSO_controller.getView().addDependent(CFSO_controller._addNewFanPage);
@@ -895,6 +933,7 @@ sap.ui.define([
 			// CFSO_controller._addNewFanPage.setModel(CFSO_controller.getView().getModel());
 			CFSO_controller._addNewFanPage.open();
 		},
+
 		isNumberKey: function (evt) {
 			evt = (evt) ? evt : window.event;
 			var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -946,11 +985,11 @@ sap.ui.define([
 			} else {
 				dataUpdated = data;
 			}
-		//	console.log("dataUpdated", dataUpdated);
+			//	console.log("dataUpdated", dataUpdated);
 			CFSO_controller.getView().getModel("seriesModel").setData(dataUpdated);
-		//	console.log("data", CFSO_controller.getView().getModel("seriesModel"));
+			//	console.log("data", CFSO_controller.getView().getModel("seriesModel"));
 			CFSO_controller.getView().getModel("seriesModel").updateBindings(true);
-			
+
 		},
 		handleSearchFan: function (oEvent) {
 			var searchString = oEvent.getParameter("value");
@@ -964,34 +1003,44 @@ sap.ui.define([
 
 		},
 		onAfterRendering: function () {
-				// CFSO_controller.listOfModelYear();
-				// if (AppController.flagPPDUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagNationalSIPUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagNationalPPDUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagDealerUser == true) {
+				var FanNo_CFSO = this.getView().byId("FanNo_CFSO");
+				FanNo_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						FanNo_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+				var modelYr_CFSO = this.getView().byId("modelYr_CFSO");
+				modelYr_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						modelYr_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
 
-				// }
-				// if (AppController.flagZoneUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagTCINationalUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagSIPUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagNationalUser == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
-				// if (AppController.flagOrderingDealer == true) {
-				// 	CFSO_controller.getView().byId("idCFSO_Table1").setSelectionMode("None");
-				// }
+				var modelCode_CFSO = this.getView().byId("modelCode_CFSO");
+				modelCode_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						modelCode_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+				var suffix_CFSO = this.getView().byId("suffix_CFSO");
+				suffix_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						suffix_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+				var color_CFSO = this.getView().byId("color_CFSO");
+				color_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						color_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+				var Apx_CFSO = this.getView().byId("Apx_CFSO");
+				Apx_CFSO.addEventDelegate({
+					onAfterRendering: function () {
+						Apx_CFSO.$().find("input").attr("readonly", true);
+					}
+				});
+
 			}
 			// _handleServiceSuffix_Series: function () {
 			// 	var host = CFSO_controller.host();

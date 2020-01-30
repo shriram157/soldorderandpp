@@ -66,6 +66,12 @@ sap.ui.define([
 			var oModel = new sap.ui.model.json.JSONModel();
 			// oModel.setData();
 			sap.ui.getCore().setModel(oModel, "seriesModel");
+			
+		//	var ochatModel = new sap.ui.model.json.JSONModel();
+			// oModel.setData();
+		//	sap.ui.getCore().setModel(ochatModel, "ChatModel");
+			
+			
 			var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
 			if (sLocation_conf == 0) {
