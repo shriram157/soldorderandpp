@@ -267,30 +267,27 @@ sap.ui.define([
 							RSOS_controller.dialog.close();
 							// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
-							if (data.d.results.length <= 10) {
+							// change march 10 P2 commented below block and disabled more , export button 
+							/*if (data.d.results.length <= 10) {
 								BtnNext.setEnabled(false);
 								RSOS_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
-							}
-
+							}*/
+							BtnNext.setEnabled(false); // // change march 10 P2  code added
 							var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 							if (DataModel.getData().length != undefined) {
 								for (var m = 0; m < data.d.results.length; m++) {
-									DataModel.getData().push(data.d.results[m]);
+								//	DataModel.getData().push(data.d.results[m]); // change march 10 P2 2020
+									DataModel.getData().push([]);  // change march 10 P2
+									var errMsgDropdown = "Please select dealer from the dropdown."  // change march 10 P2
+									//sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+									sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							 	"error"), sap.m.MessageBox.Action.OK, null, null);  // change march 10 P2
 									DataModel.updateBindings(true);
-									// //console.log("DataModel.getData()", DataModel.getData());
 								}
 							} else {
 								DataModel.setData(data.d.results);
-									/*var array1={}; 
-							var array2={};
-							array1 = data.d.results;
-							console.log(AppController.chatNum)
-						//	array2 = sap.ui.getCore().getModel('GlobalChatModel').getData();
-							console.log(array1);
-							//console.log(array2);
-							*/
 								DataModel.updateBindings(true);
 								if (data.d.results.length <= 10) {
 									BtnNext.setEnabled(false);
@@ -465,8 +462,8 @@ sap.ui.define([
 					// 		//console.log("DataModel.getData()", DataModel.getData());
 					// 	}
 					// } else {
-					/*DataModel.setData(data.d.results);
-						var array1={}; 
+					DataModel.setData(data.d.results);
+					/*	var array1={}; 
 							var array2={};
 							array1 = data.d.results;
 							array2 = sap.ui.getCore().getModel('GlobalChatModel').getData();
