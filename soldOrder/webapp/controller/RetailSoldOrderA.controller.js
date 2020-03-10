@@ -1149,7 +1149,15 @@ sap.ui.define([
 					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
 			}
+			//var errTitle = "";
 			var series = this.getView().byId('series_RSOA').getSelectedKey();
+			/*var series1=this.getView().byId('series_RSOA').getSelectedItem().getText();
+			if (series1) {
+				var res = series1.split("-");
+				if (res[1] == 0) {
+					sap.m.MessageBox.show("Number of allocated orders complete!", sap.m.MessageBox.Icon.ERROR, errTitle, sap.m.MessageBox.Action.OK, null, null);
+				}
+			}*/
 			if (series && modelyear) {
 				var modelCB = this.getView().byId("model_RSOA");
 				var suffixCB = this.getView().byId("Suffix_RSOA");
@@ -1247,8 +1255,8 @@ sap.ui.define([
 				});
 				var ZzmodelCB = this.getView().byId("model_RSOA");
 				ZzmodelCB.$().find("input").attr("readonly", true);
-				
-				var that=this;
+
+				var that = this;
 				setTimeout(function () {
 					if (that.getView().byId('Suffix_RSOA').getItems().length < 1) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("NoSuffix");
