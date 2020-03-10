@@ -586,7 +586,7 @@ sap.ui.define([
 				} else {
 					//march 10 P2 change adding below block and commenting older block 
 					if( filter == false){
-						
+						RSOS_controller.dialog.close();
 					var errMsgDropdown = "Please select dealer from the dropdown."  // change march 10 P2
 									sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							 	"error"), sap.m.MessageBox.Action.OK, null, null);  // change march 10 P2
@@ -1053,8 +1053,8 @@ sap.ui.define([
 			} else {
 				//march 10 P2 change adding below block and commenting older block 
 					if( filter == false){
-						
-					var errMsgDropdown = "Please select dealer from the dropdown."  // change march 10 P2
+						RSOS_controller.dialog.close();
+					var errMsgDropdown = "Please select dealer from the dropdown.";  // change march 10 P2
 									sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							 	"error"), sap.m.MessageBox.Action.OK, null, null);  // change march 10 P2
 				
