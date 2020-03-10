@@ -1051,7 +1051,15 @@ sap.ui.define([
 					}
 				});
 			} else {
-				if (filter == false) {
+				//march 10 P2 change adding below block and commenting older block 
+					if( filter == false){
+						
+					var errMsgDropdown = "Please select dealer from the dropdown."  // change march 10 P2
+									sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							 	"error"), sap.m.MessageBox.Action.OK, null, null);  // change march 10 P2
+				
+					}
+			/*	if (filter == false) {
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
@@ -1124,7 +1132,9 @@ sap.ui.define([
 
 						}
 					});
-				} else {
+			}
+				*/
+				else {
 
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
