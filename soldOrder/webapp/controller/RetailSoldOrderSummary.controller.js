@@ -224,7 +224,14 @@ sap.ui.define([
 					//console.log("loading data");
 					RSOS_controller._refresh();
 
-				} else {
+				} 
+				//march 10 P2 change adding below block and commenting older block 
+				else{
+					var errMsgDropdown = "Please select dealer from the dropdown."  // change march 10 P2
+									sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							 	"error"), sap.m.MessageBox.Action.OK, null, null);  // change march 10 P2
+				}
+			/*	else {
 					RSOS_controller.dialog.open();
 					// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 					//console.log("loading data");
@@ -267,23 +274,20 @@ sap.ui.define([
 							RSOS_controller.dialog.close();
 							// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
-							// change march 10 P2 commented below block and disabled more , export button 
-							/*if (data.d.results.length <= 10) {
+					//reverted		// change march 10 P2 commented below block and disabled more , export button 
+							if (data.d.results.length <= 10) {
 								BtnNext.setEnabled(false);
 								RSOS_controller.enableExportButton();
 							} else {
 								BtnNext.setEnabled(true);
-							}*/
-							BtnNext.setEnabled(false); // // change march 10 P2  code added
+							}
+						//reverted	//BtnNext.setEnabled(false); // // change march 10 P2  code added
 							var DataModel = RSOS_controller.getView().getModel("retailsumModel");
 							if (DataModel.getData().length != undefined) {
 								for (var m = 0; m < data.d.results.length; m++) {
-								//	DataModel.getData().push(data.d.results[m]); // change march 10 P2 2020
-									DataModel.getData().push([]);  // change march 10 P2
-									var errMsgDropdown = "Please select dealer from the dropdown."  // change march 10 P2
-									//sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-									sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							 	"error"), sap.m.MessageBox.Action.OK, null, null);  // change march 10 P2
+									DataModel.getData().push(data.d.results[m]); // change march 10 P2 2020 //revreted
+								//reverted	//DataModel.getData().push([]);  // change march 10 P2
+									
 									DataModel.updateBindings(true);
 								}
 							} else {
@@ -304,7 +308,7 @@ sap.ui.define([
 							sap.m.MessageToast.show(errMsg);
 						}
 					});
-				}
+				}*/
 			}
 		},
 		onAfterRendering: function () {
@@ -455,19 +459,8 @@ sap.ui.define([
 					}
 
 					var DataModel = RSOS_controller.getView().getModel("retailsumModel");
-					// if (DataModel.getData().length != undefined) {
-					// 	for (var m = 0; m < data.d.results.length; m++) {
-					// 		DataModel.getData().push(data.d.results[m]);
-					// 		DataModel.updateBindings(true);
-					// 		//console.log("DataModel.getData()", DataModel.getData());
-					// 	}
-					// } else {
+					
 					DataModel.setData(data.d.results);
-					/*	var array1={}; 
-							var array2={};
-							array1 = data.d.results;
-							array2 = sap.ui.getCore().getModel('GlobalChatModel').getData();
-							console.log(array1);console.log(array2);*/
 							
 					DataModel.updateBindings(true);
 					if (data.d.results.length <= 10) {
@@ -571,13 +564,7 @@ sap.ui.define([
 							// } else {
 							DataModel.setData(data.d.results);
 							
-						/*	var array1={}; 
-							var array2={};
-							array1 = data.d.results;
-							array2 = sap.ui.getCore().getModel('GlobalChatModel').getData();
-							console.log(array1);console.log(array2);
-							
-							*/
+					
 							
 							DataModel.updateBindings(true);
 							if (data.d.results.length <= 10) {
@@ -597,7 +584,15 @@ sap.ui.define([
 						}
 					});
 				} else {
-					if (filter == false) {
+					//march 10 P2 change adding below block and commenting older block 
+					if( filter == false){
+						
+					var errMsgDropdown = "Please select dealer from the dropdown."  // change march 10 P2
+									sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							 	"error"), sap.m.MessageBox.Action.OK, null, null);  // change march 10 P2
+				
+					}
+					/*if (filter == false) {
 						var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 						for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 							var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
@@ -669,7 +664,9 @@ sap.ui.define([
 
 							}
 						});
-					} else {
+					} */
+					
+					else {
 
 						var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 						for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
