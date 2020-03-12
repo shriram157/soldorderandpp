@@ -168,7 +168,7 @@ sap.ui.define([
 				FSOS_controller._refresh();
 			} else {
 				
-				if (FSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != "") {
+				if (FSOS_controller.getView().byId("cb_dealer_FSOS").getSelectedKey() != "") {
 						FSOS_controller._refreshCombo();
 
 					} else {
