@@ -228,7 +228,7 @@ sap.ui.define([
 				}
 				//march 10 P2 change adding below block and commenting older block 
 				else {
-					if (RSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != " ") {
+					if (RSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != "") {
 						RSOS_controller._refreshCombo();
 
 					} else {
