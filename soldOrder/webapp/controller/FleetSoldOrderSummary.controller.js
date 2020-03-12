@@ -231,7 +231,7 @@ sap.ui.define([
 			
 			var x2 = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x2 == "TCI_User") {
-				FSOS_controller.getView().byId("cb_dealer_RSOS").setSelectedKey(null);
+				FSOS_controller.getView().byId("cb_dealer_FSOS").setSelectedKey(null);
 			}
 		},
 		onBeforeRendering: function () {
