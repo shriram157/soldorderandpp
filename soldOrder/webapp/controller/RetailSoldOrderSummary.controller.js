@@ -228,9 +228,15 @@ sap.ui.define([
 				}
 				//march 10 P2 change adding below block and commenting older block 
 				else {
-					var errMsgDropdown = "Please select dealer from the dropdown." // change march 10 P2
-					sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-						"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
+					if (RSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != null) {
+
+					} else {
+						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
+
+					}
+
 				}
 				/*	else {
 						RSOS_controller.dialog.open();
@@ -312,12 +318,9 @@ sap.ui.define([
 					}*/
 
 			}
-			var x2 = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x2 == "TCI_User") {
-				RSOS_controller.getView().byId("cb_dealer_RSOS").setSelectedKey(null);
-			}
+
 		},
-		
+
 		onAfterRendering: function () {
 
 		},
@@ -592,7 +595,7 @@ sap.ui.define([
 					//march 10 P2 change adding below block and commenting older block 
 					if (filter == false) {
 						RSOS_controller.dialog.close();
-						var errMsgDropdown = "Please select dealer from the dropdown." // change march 10 P2
+						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
 
@@ -1058,7 +1061,7 @@ sap.ui.define([
 				//march 10 P2 change adding below block and commenting older block 
 				if (filter == false) {
 					RSOS_controller.dialog.close();
-					var errMsgDropdown = "Please select dealer from the dropdown."; // change march 10 P2
+						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 					sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 						"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
 

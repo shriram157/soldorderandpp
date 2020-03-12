@@ -167,10 +167,17 @@ sap.ui.define([
 				//console.log("loading data");
 				FSOS_controller._refresh();
 			} else {
-				var errMsgDropdown = "Please select dealer from the dropdown." ;// change march 10 P2
-					sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-						"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
-			
+				
+				if (FSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != null) {
+
+					} else {
+						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
+
+					}
+
+				
 			
 			/*
 				FSOS_controller.dialog.open();
@@ -227,12 +234,10 @@ sap.ui.define([
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 					}
 				});
-			*/}
-			
-			var x2 = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x2 == "TCI_User") {
-				FSOS_controller.getView().byId("cb_dealer_FSOS").setSelectedKey(null);
+			*/
+				
 			}
+			
 		},
 		onBeforeRendering: function () {
 			if (AppController.flagZoneUser == true) {
@@ -461,7 +466,7 @@ sap.ui.define([
 			} else {
 				if (fleet == false) {
 				FSOS_controller.dialog.close();
-						var errMsgDropdown = "Please select dealer from the dropdown."; // change march 10 P2
+							var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
 
@@ -662,7 +667,7 @@ sap.ui.define([
 			} else {
 				if (fleet == false) {
 					FSOS_controller.dialog.close();
-						var errMsgDropdown = "Please select dealer from the dropdown."; // change march 10 P2
+							var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
 
