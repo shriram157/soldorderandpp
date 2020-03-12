@@ -232,10 +232,10 @@ sap.ui.define([
 						RSOS_controller._refreshCombo();
 
 					} else {
-						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+					/*	var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
-
+*/
 					}
 
 				}
@@ -596,10 +596,10 @@ sap.ui.define([
 					//march 10 P2 change adding below block and commenting older block 
 					if (filter == false) {
 						RSOS_controller.dialog.close();
-						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+					/*	var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
-
+*/
 					}
 					/*if (filter == false) {
 						var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
@@ -1062,10 +1062,10 @@ sap.ui.define([
 				//march 10 P2 change adding below block and commenting older block 
 				if (filter == false) {
 					RSOS_controller.dialog.close();
-						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+					/*	var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 					sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 						"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
-
+*/
 				}
 				/*	if (filter == false) {
 						var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";

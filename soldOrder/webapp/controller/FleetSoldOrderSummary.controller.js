@@ -171,12 +171,12 @@ sap.ui.define([
 				if (FSOS_controller.getView().byId("cb_dealer_FSOS").getSelectedKey() != "") {
 						FSOS_controller._refreshCombo();
 
-					} else {
+					} else {/*
 						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
 
-					}
+					*/}
 
 				
 			
@@ -467,10 +467,11 @@ sap.ui.define([
 			} else {
 				if (fleet == false) {
 				FSOS_controller.dialog.close();
-							var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+				// change march 10 P2
+							/*var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
-
+							"error"), sap.m.MessageBox.Action.OK, null, null); 
+*/
 					
 				/*
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
@@ -668,10 +669,11 @@ sap.ui.define([
 			} else {
 				if (fleet == false) {
 					FSOS_controller.dialog.close();
-							var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+					// change march 10 P2
+						/*	var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
-
+							"error"), sap.m.MessageBox.Action.OK, null, null); 
+*/
 					/*
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
