@@ -706,7 +706,7 @@ sap.ui.define([
 							}
 						}
 						// for (var i = 0; i < this.getView().byId("cb_dealer_RSOS").getSelectedItems().length; i++) {
-						
+						var dealer = this.getView().byId("cb_dealer_RSOS").getSelectedKey();
 						oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
 
 						$.ajax({
