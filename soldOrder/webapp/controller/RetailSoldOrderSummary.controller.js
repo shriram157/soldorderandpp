@@ -228,7 +228,8 @@ sap.ui.define([
 				}
 				//march 10 P2 change adding below block and commenting older block 
 				else {
-					if (RSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != null) {
+					if (RSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != " ") {
+						RSOS_controller._refreshCombo();
 
 					} else {
 						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2

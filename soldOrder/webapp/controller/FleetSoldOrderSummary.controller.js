@@ -168,7 +168,8 @@ sap.ui.define([
 				FSOS_controller._refresh();
 			} else {
 				
-				if (FSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != null) {
+				if (FSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != " ") {
+						FSOS_controller._refreshCombo();
 
 					} else {
 						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
