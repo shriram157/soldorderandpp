@@ -167,7 +167,7 @@ sap.ui.define([
 				//console.log("loading data");
 				FSOS_controller._refresh();
 			} else {
-				var errMsgDropdown = "Please select dealer from the dropdown." // change march 10 P2
+				var errMsgDropdown = "Please select dealer from the dropdown." ;// change march 10 P2
 					sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 						"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
 			
@@ -461,11 +461,11 @@ sap.ui.define([
 			} else {
 				if (fleet == false) {
 				FSOS_controller.dialog.close();
-						var errMsgDropdown = "Please select dealer from the dropdown." // change march 10 P2
+						var errMsgDropdown = "Please select dealer from the dropdown."; // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
 
-					}
+					
 				/*
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
@@ -662,11 +662,11 @@ sap.ui.define([
 			} else {
 				if (fleet == false) {
 					FSOS_controller.dialog.close();
-						var errMsgDropdown = "Please select dealer from the dropdown." // change march 10 P2
+						var errMsgDropdown = "Please select dealer from the dropdown."; // change march 10 P2
 						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
 
-					}/*
+					/*
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
