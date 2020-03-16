@@ -196,6 +196,14 @@ toyota.ca.SoldOrder.util.formatter = {
 			return false;
 		}
 	},
+	NonTCIorZonalusertype: function (Usertypevalue) {
+		console.log(Usertypevalue);
+		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User")) {
+			return false;
+		} else {
+			return true;
+		}
+	},
 	Nationalusertype: function (Usertypevalue) {
 		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User")) {
 			return false;
@@ -283,8 +291,8 @@ toyota.ca.SoldOrder.util.formatter = {
 			var res3 = dat2.split(" ");
 			res4 = res3[0];
 		} else {
-			dat1="";
-			res4="";
+			dat1 = "";
+			res4 = "";
 		}
 		return dat1 + " " + res4;
 	},
