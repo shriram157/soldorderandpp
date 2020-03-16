@@ -71,9 +71,10 @@
 												<!--	<layoutData>-->
 												<!--		<l:GridData span="L2 M12 S12"/>-->
 												<!--	</layoutData>-->
-												<!--</MultiComboBox>-->
-												<MultiComboBox forceSelection= "true" id="mcb_dealer_RSOS" width="300px"
-													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}"
+												<!--</MultiComboBox>  Nationalusertype, NationalorZonalusertype-->
+												
+												<MultiComboBox id="mcb_dealer_RSOS" width="300px"
+													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NonTCIorZonalusertype'}"
 													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd" selectionFinish="_SelectionFinish">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
 														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
@@ -82,7 +83,7 @@
 													</layoutData>
 												</MultiComboBox>
 												<ComboBox id="cb_dealer_RSOS" width="300px"
-													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}"
+													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.TCIorZonalusertype'}"
 													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
 													<!--<items>-->
 													<core:ListItem key="{LoginUserModel>BusinessPartnerKey}"

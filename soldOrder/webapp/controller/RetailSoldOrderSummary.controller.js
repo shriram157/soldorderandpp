@@ -219,7 +219,7 @@ sap.ui.define([
 				//==================Start Binidng By Dealer=========================================================
 				//=====================================================================================================
 				var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-				if (x != "TCI_User") {
+				if (x != "TCI_User" && x != "TCI_Zone_User") {
 					RSOS_controller.dialog.open();
 					// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 					//console.log("loading data");
@@ -510,7 +510,7 @@ sap.ui.define([
 			}
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (!this.noData) {
-				if (x != "TCI_User") {
+				if (x != "TCI_User" && x != "TCI_Zone_User") {
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
@@ -973,7 +973,7 @@ sap.ui.define([
 			// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			if (x != "TCI_User" && x != "TCI_Zone_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
