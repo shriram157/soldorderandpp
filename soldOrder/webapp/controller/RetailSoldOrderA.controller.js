@@ -14,6 +14,7 @@ sap.ui.define([
 
 		onInit: function () {
 			RSOA_controller = this;
+		//	RSOA_controller.divison = "TOY";
 			AppController.RSOA = true;
 			RSOA_controller.flagInvalidPCode = false;
 			RSOA_controller.flagInvalidPhone = false;
@@ -99,16 +100,26 @@ sap.ui.define([
 				if (this.sDivision == '10') // set the toyoto logo
 				{
 					brand = "TOY";
+					RSOA_controller.divison = "TOY";
 
 				} else { // set the lexus logo
 					brand = "LEX";
+					RSOA_controller.divison = "LEX";
 
 					// }
 				}
 			}
-			var url = host + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
-				"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
+
+		},
+		_handleSeries: function () {
+			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+			var host = RSOA_controller.host();
+			var url = host + "ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + modelyear +
+				"',P_app_type='R')/Set?$filter=Division eq '" + RSOA_controller.divison + "'";
+			/*"/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+					"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";*/
 			//	"/Z_VEHICLE_CATALOGUE_SRV/ZC_BRAND_MODEL_DETAILSSet?$filter= (Brand eq 'TOYOTA' and Modelyear eq '2018')";
+			var seriesCB = RSOA_controller.getView().byId("series_RSOA");
 			$.ajax({
 				url: url,
 				method: 'GET',
@@ -1037,6 +1048,7 @@ sap.ui.define([
 			}
 			this._oPopover.openBy(Oevent.getSource());
 			input_ref = Oevent.getSource();
+			RSOA_controller._handleSeries();
 
 		},
 		handleSelectYearPress: function (Oevent) {
@@ -1234,7 +1246,7 @@ sap.ui.define([
 				colorCB.destroyItems();
 				suffixCB.bindItems({
 					// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
-					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
+					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set",
 					sorter: {
 						path: 'mainservices>suffix'
 					},
