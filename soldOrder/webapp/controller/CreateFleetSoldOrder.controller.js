@@ -649,9 +649,12 @@ sap.ui.define([
 				CFSO_controller.getView().addDependent(CFSO_controller._oPopover);
 			}
 			CFSO_controller._oPopover.openBy(Oevent.getSource());
-			CFSO_controller._handleSeries();
+			var	input_ref = Oevent.getSource();
+				var mYear=input_ref.getValue();
+		//	RSOA_controller._handleSeries(mYear);
+			CFSO_controller._handleSeries(mYear);
 		},
-		_handleSeries: function () {
+		_handleSeries: function (modelyear) {
 			var host = CFSO_controller.host();
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 			if (isDivisionSent) {
@@ -664,7 +667,7 @@ sap.ui.define([
 				}
 			}
 			
-			var modelyear = this.getView().byId('modelYr_CFSO').getValue();
+			//var modelyear = this.getView().byId('modelYr_CFSO').getValue();
 			var url = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + modelyear +
 				"',P_app_type='F')/Set?$filter=Division eq '" + CFSO_controller.divison + "'";
 			/*"/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +

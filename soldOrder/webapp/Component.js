@@ -50,16 +50,16 @@ sap.ui.define([
 			};
 			
 			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-			this.brand = "";
+			this.div = "";
 			if (isDivisionSent) {
 				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 				if (this.sDivision == "10")
 				// set the toyoto logo
 				{
-					this.brand = "TOY";
+					this.div = "TOY";
 				} else {
 					// set the lexus logo
-					this.brand = "LEX"; // }
+					this.div = "LEX"; // }
 				}
 			}
 			
@@ -81,14 +81,16 @@ sap.ui.define([
 			}
 			this.nodeJsUrl = this.sPrefix + "/node";
 			// return this.nodeJsUrl;
-		//	this.getSeriesData(this.brand,this.nodeJsUrl);
+			this.getSeriesData(this.div,this.nodeJsUrl);
 			this.getFleetCustomer();
 		},
 		
-		getSeriesData:function(brand,nodeJsUrl){/*
+		getSeriesData:function(divison,nodeJsUrl){
 			sap.ui.core.BusyIndicator.show();
-			var oUrl = nodeJsUrl + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
-				"' and zzzadddata2 eq 'X' and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
+			/*var oUrl = nodeJsUrl + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
+				"' and zzzadddata2 eq 'X' and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";*/
+			var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + +
+				"',P_app_type='R')/Set?$filter=Division eq '" + divison + "'";
 			$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -97,6 +99,7 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					sap.ui.core.BusyIndicator.hide();
 					sap.ui.getCore().getModel("seriesModel").setData(data.d.results);
+					console.log("data from component: "+data.d.results)
 					sap.ui.getCore().getModel("seriesModel").updateBindings(true);
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -106,7 +109,7 @@ sap.ui.define([
 						"error"), sap.m.MessageBox.Action.OK, null, null);
 				}
 			});
-		*/},
+		*/*/},
 		getFleetCustomer: function () {
 			sap.ui.core.BusyIndicator.show();
 			var sLocation = window.location.host;

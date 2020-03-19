@@ -111,8 +111,8 @@ sap.ui.define([
 			}
 
 		},
-		_handleSeries: function () {
-			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+		_handleSeries: function (modelyear) {
+			//var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			console.log(modelyear);
 			var host = RSOA_controller.host();
 			var url = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + modelyear +
@@ -134,6 +134,7 @@ sap.ui.define([
 					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
+					console.log("data from RSOA : "+data.d.results)
 					RSOA_controller.getView().setModel(oModel, "seriesModel");
 
 				},
@@ -1049,7 +1050,8 @@ sap.ui.define([
 			}
 			this._oPopover.openBy(Oevent.getSource());
 			input_ref = Oevent.getSource();
-			RSOA_controller._handleSeries();
+			var mYear=input_ref.getValue();
+			RSOA_controller._handleSeries(mYear);
 
 		},
 		handleSelectYearPress: function (Oevent) {
