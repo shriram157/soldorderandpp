@@ -81,11 +81,11 @@ sap.ui.define([
 			}
 			this.nodeJsUrl = this.sPrefix + "/node";
 			// return this.nodeJsUrl;
-			this.getSeriesData(this.brand,this.nodeJsUrl);
+		//	this.getSeriesData(this.brand,this.nodeJsUrl);
 			this.getFleetCustomer();
 		},
 		
-		getSeriesData:function(brand,nodeJsUrl){
+		getSeriesData:function(brand,nodeJsUrl){/*
 			sap.ui.core.BusyIndicator.show();
 			var oUrl = nodeJsUrl + "/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
 				"' and zzzadddata2 eq 'X' and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";
@@ -106,7 +106,7 @@ sap.ui.define([
 						"error"), sap.m.MessageBox.Action.OK, null, null);
 				}
 			});
-		},
+		*/},
 		getFleetCustomer: function () {
 			sap.ui.core.BusyIndicator.show();
 			var sLocation = window.location.host;
