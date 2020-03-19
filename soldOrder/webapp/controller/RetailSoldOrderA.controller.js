@@ -113,8 +113,9 @@ sap.ui.define([
 		},
 		_handleSeries: function () {
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
+			console.log(modelyear);
 			var host = RSOA_controller.host();
-			var url = host + "ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + modelyear +
+			var url = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + modelyear +
 				"',P_app_type='R')/Set?$filter=Division eq '" + RSOA_controller.divison + "'";
 			/*"/Z_VEHICLE_CATALOGUE_SRV/ZC_SERIES?$filter=Division eq '" + brand +
 					"' and zzzadddata2 eq 'X'and ModelSeriesNo ne 'L/C'and zzzadddata4 ne 0 &$orderby=zzzadddata4 asc";*/
