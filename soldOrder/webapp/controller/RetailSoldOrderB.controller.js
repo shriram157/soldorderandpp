@@ -235,7 +235,7 @@ sap.ui.define([
 		},
 		onValidateCustomer: function () {
 			validateFlagB = true;
-			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB")
+			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
 			if (validateFlagB == true) {
 				submitBtn.setEnabled(true);
 			} else {

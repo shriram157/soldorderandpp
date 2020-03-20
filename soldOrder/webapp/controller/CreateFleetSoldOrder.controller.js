@@ -652,7 +652,7 @@ sap.ui.define([
 			var	input_ref = Oevent.getSource();
 				var mYear=input_ref.getValue();
 		//	RSOA_controller._handleSeries(mYear);
-			CFSO_controller._handleSeries(mYear);
+			
 		},
 		_handleSeries: function (modelyear) {
 			var host = CFSO_controller.host();
@@ -703,7 +703,7 @@ sap.ui.define([
 			CFSO_controller.getView().byId("modelYr_CFSO").setValue(CFSO_controller._oPopover.getContent()[0].getYear());
 			var series = CFSO_controller.getView().byId('series_CFSO').getSelectedKey();
 			var modelyear = CFSO_controller.getView().byId('modelYr_CFSO').getValue();
-
+			CFSO_controller._handleSeries(modelyear);
 			if (series && modelyear) {
 				var modelCB = CFSO_controller.getView().byId("modelCode_CFSO");
 				var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");

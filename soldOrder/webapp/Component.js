@@ -66,6 +66,9 @@ sap.ui.define([
 			var oModel = new sap.ui.model.json.JSONModel();
 			// oModel.setData();
 			sap.ui.getCore().setModel(oModel, "seriesModel");
+			var oModelF = new sap.ui.model.json.JSONModel();
+			// oModel.setData();
+			sap.ui.getCore().setModel(oModelF, "seriesModelF");
 			
 		//	var ochatModel = new sap.ui.model.json.JSONModel();
 			// oModel.setData();

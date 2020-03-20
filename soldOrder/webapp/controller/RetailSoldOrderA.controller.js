@@ -1054,17 +1054,18 @@ sap.ui.define([
 		//	RSOA_controller._handleSeries(mYear);
 
 		},
+		/*
 		changeYear:function(){
 			var mYear=input_ref.getValue();
 				RSOA_controller._handleSeries(mYear);
-		},
+		},*/
 		handleSelectYearPress: function (Oevent) {
 			input_ref.setValue(Oevent.getSource().getYear()); //this._oPopover.getContent()[0].getYear()
 			// var items_binding = this.getView().byId('model_RSOA').getBinding('items');
 			//  items_binding.filter(new sap.ui.model.Filter("Modelyear", sap.ui.model.FilterOperator.EQ, Oevent.getSource().getYear()));
 			var series = this.getView().byId('series_RSOA').getSelectedKey();
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
-
+			RSOA_controller._handleSeries(modelyear);
 			if (series && modelyear) {
 				var modelCB = this.getView().byId("model_RSOA");
 				var suffixCB = this.getView().byId("Suffix_RSOA");
