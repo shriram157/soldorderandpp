@@ -26,7 +26,7 @@ sap.ui.define([
 			//console.log(tableModelCreate.getData());
 			// CFSO_controller.getFleetCustomer();
 			CFSO_controller.getView().setModel(sap.ui.getCore().getModel("fleetModel"), "fleetModel");
-			CFSO_controller.initialSeriesData = sap.ui.getCore().getModel("seriesModel").getData();
+			CFSO_controller.initialSeriesData = sap.ui.getCore().getModel("seriesModelF").getData();
 			//day30.setDate(today.getDate() + 30);
 			var num = 0;
 			var endDate = new Date();

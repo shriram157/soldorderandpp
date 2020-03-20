@@ -1050,9 +1050,13 @@ sap.ui.define([
 			}
 			this._oPopover.openBy(Oevent.getSource());
 			input_ref = Oevent.getSource();
-			var mYear=input_ref.getValue();
-			RSOA_controller._handleSeries(mYear);
+		//	var mYear=input_ref.getValue();
+		//	RSOA_controller._handleSeries(mYear);
 
+		},
+		changeYear:function(){
+			var mYear=input_ref.getValue();
+				RSOA_controller._handleSeries(mYear);
 		},
 		handleSelectYearPress: function (Oevent) {
 			input_ref.setValue(Oevent.getSource().getYear()); //this._oPopover.getContent()[0].getYear()
@@ -1148,7 +1152,7 @@ sap.ui.define([
 			var modelyear = this.getView().byId('modelYr_RSOA').getValue();
 			var model;
 			// var language = RSOA_controller.returnBrowserLanguage();
-
+			//RSOA_controller._handleSeries(modelyear);
 			if (language === "FR") {
 				model =
 					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";

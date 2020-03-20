@@ -14,7 +14,7 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>modelYear}"/>
-							<Input id="modelYr_RSOA" showSuggestion="false" showValueHelp="true" required="true" valueHelpRequest="select_year"></Input>
+							<Input id="modelYr_RSOA" showSuggestion="false" showValueHelp="true" required="true" valueHelpRequest="select_year" liveChange="changeYear"></Input>
 							<Label wrapping="true" text="{i18n>Series}"/>
 							<ComboBox id="series_RSOA" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
 								<core:Item key="{seriesModel>ModelSeriesNo}"
