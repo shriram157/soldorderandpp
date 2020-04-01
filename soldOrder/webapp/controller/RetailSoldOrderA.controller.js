@@ -14,7 +14,7 @@ sap.ui.define([
 
 		onInit: function () {
 			RSOA_controller = this;
-		//	RSOA_controller.divison = "TOY";
+			//	RSOA_controller.divison = "TOY";
 			AppController.RSOA = true;
 			RSOA_controller.flagInvalidPCode = false;
 			RSOA_controller.flagInvalidPhone = false;
@@ -113,7 +113,7 @@ sap.ui.define([
 		},
 		_handleSeries: function (modelyear) {
 			//var modelyear = this.getView().byId('modelYr_RSOA').getValue();
-			console.log(modelyear);
+			//console.log(modelyear);
 			var host = RSOA_controller.host();
 			var url = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + modelyear +
 				"',P_app_type='R')/Set?$filter=Division eq '" + RSOA_controller.divison + "'";
@@ -134,7 +134,7 @@ sap.ui.define([
 					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
-					console.log("data from RSOA : "+data.d.results)
+					console.log("data from RSOA : " + data.d.results)
 					RSOA_controller.getView().setModel(oModel, "seriesModel");
 
 				},
@@ -176,6 +176,7 @@ sap.ui.define([
 			var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
 			SalesType_RSOA.$().find("input").attr("readonly", true);
 			this.readyOnly();
+		//	RSOA_controller.resetAllVal();
 
 		},
 		_newService1: function () {
@@ -393,7 +394,34 @@ sap.ui.define([
 			};*/
 
 		},
-
+		resetAllVal: function () {
+			RSOA_controller.getView().byId("modelYr_RSOA").setValue("");
+			RSOA_controller.getView().byId("Suffix_RSOA").setSelectedKey(null);
+			RSOA_controller.getView().byId("series_RSOA").setSelectedKey(null);
+			RSOA_controller.getView().byId("CustName_RSOA").setValue("");
+			RSOA_controller.getView().byId("CustName_SSOA").setValue("");
+			RSOA_controller.getView().byId("etaTo_RSOA").setValue("");
+			RSOA_controller.getView().byId("etaFrom_RSOA").setValue("");
+			RSOA_controller.getView().byId("Colour_RSOA").setSelectedKey(null);
+			RSOA_controller.getView().byId("model_RSOA").setSelectedKey(null);
+			RSOA_controller.getView().byId("Apx_RSOA").setSelectedKey(null);
+			RSOA_controller.getView().byId("SalesType_RSOA").setValue("");
+			RSOA_controller.getView().byId("ContractDate_RSOA").setValue("");
+			RSOA_controller.getView().byId("tcciNo_RSOA").setValue("");
+			RSOA_controller.getView().byId("salesperson_RSOA").setValue("");
+			RSOA_controller.getView().byId("salesMan_RSOA").setValue("");
+			RSOA_controller.getView().byId("trademodelYear_RSOAid").setValue("");
+			RSOA_controller.getView().byId("trademodel_RSOAid").setValue("");
+			RSOA_controller.getView().byId("tradeInMakeYear_RSOAid").setSelectedKey(null);
+			RSOA_controller.getView().byId("Comment").setValue("");
+			RSOA_controller.getView().byId("Address_RSOA").setValue("");
+			RSOA_controller.getView().byId("License_RSOA").setValue("");
+			RSOA_controller.getView().byId("Email_RSOA").setValue("");
+			RSOA_controller.getView().byId("Phone_RSOA").setValue("");
+			RSOA_controller.getView().byId("City_RSOA").setValue("");
+			RSOA_controller.getView().byId("Province_RSOA").setValue("");
+			RSOA_controller.getView().byId("PostalCode_RSOA").setValue("");
+		},
 		submitSO: function () {
 			// Ayad editing to handle the creation method
 			// ="yyyy-MM-ddTHH:mm:ss"
@@ -1050,8 +1078,8 @@ sap.ui.define([
 			}
 			this._oPopover.openBy(Oevent.getSource());
 			input_ref = Oevent.getSource();
-		//	var mYear=input_ref.getValue();
-		//	RSOA_controller._handleSeries(mYear);
+			//	var mYear=input_ref.getValue();
+			//	RSOA_controller._handleSeries(mYear);
 
 		},
 		/*
