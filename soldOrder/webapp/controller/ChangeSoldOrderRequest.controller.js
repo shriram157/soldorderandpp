@@ -260,8 +260,9 @@ sap.ui.define([
 				// 	text: "{parts: [{path:'oModel1>Suffix'},{path:'oModel2>SuffixDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"
 				// }));
 				this.getView().byId('suffix_CSOR').bindItems({
-					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
-					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
+			//		path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
+				path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set",
+				filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
