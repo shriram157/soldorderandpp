@@ -114,7 +114,7 @@ sap.ui.define([
 							var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [vehSelDealerInvController.allocatedNo]);
 							sap.m.MessageBox.show(sMsg, {
 								icon: sap.m.MessageBox.Icon.INFORMATION,
-								title: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Information"),
+								title: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("information"),
 								actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 								onClose: function (oAction) {
 									if (oAction == "YES") {

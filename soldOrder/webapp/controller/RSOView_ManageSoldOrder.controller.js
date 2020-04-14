@@ -395,7 +395,7 @@ sap.ui.define([
 							RSO_MSO_controller.series = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 								'Zzseries');
 							if (RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType") == "SO") {
-								AppController.apptype = "R";
+								AppController.apptypeAllocation = "R";
 							} else if (RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType") == "FO") {
 								AppController.apptypeAllocation = "F";
 							} else {
