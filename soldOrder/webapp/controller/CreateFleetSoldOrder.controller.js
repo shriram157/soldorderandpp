@@ -585,6 +585,7 @@ sap.ui.define([
 			//	var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + valModelYr + "',ZzappType='F',Zzseries='" + valSeries + "',Zzmodel='" +valModelCode+"',ZzDealer='" +CFSO_controller.dealer+"')";
 
 			if (quantity.length > 0) {
+				if(quantity>0){
 				$.ajax({
 					url: zurl,
 					method: 'GET',
@@ -663,6 +664,8 @@ sap.ui.define([
 							sap
 							.m.MessageBox.Action.OK, null, null);
 			}
+		}
+			
 
 		},
 
