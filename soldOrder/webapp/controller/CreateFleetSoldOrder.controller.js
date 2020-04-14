@@ -565,7 +565,7 @@ sap.ui.define([
 				CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
 			},
 			_onAddRow2: function () {
-				CFSO_controller.allocatedNo = 2;
+				
 				var valModelYr = CFSO_controller.getView().byId("modelYr_CFSO").getValue();
 				var valSuffix = CFSO_controller.getView().byId("suffix_CFSO").getSelectedKey();
 				var valSeries = CFSO_controller.getView().byId("series_CFSO").getSelectedKey();
@@ -590,7 +590,7 @@ sap.ui.define([
 					async: false,
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
-						CFSO_controller.allocatedNo = data.d.results.Allowed;
+						CFSO_controller.allocatedNo = data.d.Allowed;
 						if (CFSO_controller.allocatedNo >= quantity) {
 							var remQ=CFSO_controller.allocatedNo-quantity;
 							var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [remQ]);

@@ -109,7 +109,7 @@ sap.ui.define([
 					async: false,
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
-						vehSelDealerInvController.allocatedNo = data.d.results.Allowed;
+						vehSelDealerInvController.allocatedNo = data.d.Allowed;
 						if (vehSelDealerInvController.allocatedNo > 0) {
 							var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [vehSelDealerInvController.allocatedNo]);
 							sap.m.MessageBox.show(sMsg, {
