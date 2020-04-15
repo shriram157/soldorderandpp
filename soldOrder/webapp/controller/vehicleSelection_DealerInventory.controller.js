@@ -87,6 +87,7 @@ sap.ui.define([
 			}
 		},
 		_onSelect: function (evt) {
+			
 			var host = vehSelDealerInvController.host();
 			var OBJ = {};
 			vehSelDealerInvController.dealer = evt.getSource().getBindingContext('mainservices').getProperty('Dealer');
@@ -113,8 +114,8 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						vehSelDealerInvController.allocatedNo = data.d.Allowed;
 						if (vehSelDealerInvController.allocatedNo == "-1") {
-							if (evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN')) {
-								var V_No = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
+							if (OBJ.ZZVTN) {
+								var V_No = OBJ.ZZVTN;
 								vehSelDealerInvController.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
 									method: "POST",
 									urlParameters: {
@@ -146,8 +147,8 @@ sap.ui.define([
 								actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 								onClose: function (oAction) {
 									if (oAction == "YES") {
-										if (evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN')) {
-											var V_No = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
+										if (OBJ.ZZVTN) {
+											var V_No = OBJ.ZZVTN;
 											vehSelDealerInvController.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
 												method: "POST",
 												urlParameters: {
@@ -179,8 +180,8 @@ sap.ui.define([
 
 						} else if (vehSelDealerInvController.allocatedNo == "") {
 
-							if (evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN')) {
-								var V_No = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
+							if (OBJ.ZZVTN) {
+								var V_No = OBJ.ZZVTN;
 								vehSelDealerInvController.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
 									method: "POST",
 									urlParameters: {
@@ -218,8 +219,8 @@ sap.ui.define([
 					}
 				});
 			} else {
-				if (evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN')) {
-					var V_No = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
+				if (OBJ.ZZVTN) {
+					var V_No = OBJ.ZZVTN;
 					vehSelDealerInvController.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
 						method: "POST",
 						urlParameters: {
