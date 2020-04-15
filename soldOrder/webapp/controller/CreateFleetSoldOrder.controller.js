@@ -626,7 +626,8 @@ sap.ui.define([
 								
 								else if (CFSO_controller.allocatedNo >= quantity) {
 									var remQ = CFSO_controller.allocatedNo - quantity;
-									var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [remQ]);
+									var remVal=parseInt(remQ);
+									var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [remVal]);
 									sap.m.MessageBox.show(sMsg, {
 										icon: sap.m.MessageBox.Icon.INFORMATION,
 										title: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("information"),

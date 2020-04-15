@@ -140,7 +140,8 @@ sap.ui.define([
 							}
 
 						} else if (vehSelDealerInvController.allocatedNo > 0) {
-							var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [vehSelDealerInvController.allocatedNo]);
+							var remVal=parseInt(vehSelDealerInvController.allocatedNo);
+							var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [remVal]);
 							sap.m.MessageBox.show(sMsg, {
 								icon: sap.m.MessageBox.Icon.INFORMATION,
 								title: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("information"),
