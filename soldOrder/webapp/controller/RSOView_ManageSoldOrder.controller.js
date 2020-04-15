@@ -741,7 +741,7 @@ sap.ui.define([
 			},
 
 			_getVehiclesToFillSoldOrderRequest: function () {
-				var host = RSO_MSO_controller.host();
+			//	var host = RSO_MSO_controller.host();
 				SelectVehicleOption = true;
 				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 					Soreq: zrequest

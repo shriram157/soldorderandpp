@@ -422,9 +422,7 @@ sap.ui.define([
 			oTable.clearSelection("true"); // 23 sep change
 		},
 		onMandatoryValChange: function (evt) {
-			// 			if (evt.getParameter("value").length > 0) {
-			// 				CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
-			// 			}
+
 			var modelCB = CFSO_controller.getView().byId("modelCode_CFSO");
 			var suffixCB = CFSO_controller.getView().byId("suffix_CFSO");
 			var series = CFSO_controller.getView().byId("series_CFSO");
@@ -434,6 +432,7 @@ sap.ui.define([
 			CFSO_controller.getView().byId("etaFrom_CFSO").setDateValue(null);
 			CFSO_controller.getView().byId("etaTo_CFSO").setDateValue(null);
 			CFSO_controller.getView().byId("modelYr_CFSO").setValue("");
+			CFSO_controller.getView().byId("modelYr_CFSO").setValue(null);
 			series.setSelectedKey(null);
 			series.destroyItems();
 			modelCB.setSelectedKey(null);
@@ -575,97 +574,139 @@ sap.ui.define([
 			var etaFrom = CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue();
 			var etaTo = CFSO_controller.getView().byId("etaTo_CFSO").getDateValue();
 			var quantity = CFSO_controller.getView().byId("quantity_CFSO").getValue();
-			//	var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+
 			var fanNo = CFSO_controller.getView().byId("FanNo_CFSO").getValue();
-			//	var apptype="F";// cr 76
 			var host = CFSO_controller.host();
 
 			var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + valModelYr + "',ZzappType='F',Zzseries='" + valSeries + "',Zzmodel='" +
 				valModelCode + "',ZzDealer='" + fanNo + "')";
-			//	var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + valModelYr + "',ZzappType='F',Zzseries='" + valSeries + "',Zzmodel='" +valModelCode+"',ZzDealer='" +CFSO_controller.dealer+"')";
 
 			if (quantity.length > 0) {
-				if(quantity>0){
-				$.ajax({
-					url: zurl,
-					method: 'GET',
-					async: false,
-					dataType: 'json',
-					success: function (data, textStatus, jqXHR) {
-						CFSO_controller.allocatedNo = data.d.Allowed;
-						if (CFSO_controller.allocatedNo >= quantity) {
-							var remQ = CFSO_controller.allocatedNo - quantity;
-							var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [remQ]);
-							sap.m.MessageBox.show(sMsg, {
-								icon: sap.m.MessageBox.Icon.INFORMATION,
-								title: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("information"),
-								actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
-								onClose: function (oAction) {
-									if (oAction == "YES") {
-										for (var i = 0; i < quantity.length; i++) {
-											if (isNaN(quantity[i])) {
-												var errMsgNum = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorNumber");
-												sap.m.MessageBox.show(errMsgNum, sap.m.MessageBox.Icon.ERROR, "Error", sap
-													.m.MessageBox.Action.OK, null, null);
+				if (quantity > 0) {
+					$.ajax({
+						url: zurl,
+						method: 'GET',
+						async: false,
+						dataType: 'json',
+						success: function (data, textStatus, jqXHR) {
+							CFSO_controller.allocatedNo = data.d.Allowed;
+							if (CFSO_controller.allocatedNo >= quantity) {
+								var remQ = CFSO_controller.allocatedNo - quantity;
+								var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [remQ]);
+								sap.m.MessageBox.show(sMsg, {
+									icon: sap.m.MessageBox.Icon.INFORMATION,
+									title: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("information"),
+									actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+									onClose: function (oAction) {
+										if (oAction == "YES") {
+											for (var i = 0; i < quantity.length; i++) {
+												if (isNaN(quantity[i])) {
+													var errMsgNum = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorNumber");
+													sap.m.MessageBox.show(errMsgNum, sap.m.MessageBox.Icon.ERROR, "Error", sap
+														.m.MessageBox.Action.OK, null, null);
+												}
 											}
-										}
-										if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" ||
-											etaFrom === null ||
-											etaTo === null || quantity == "") {
-											var errForm = formatter.formatErrorType("SO00003");
-											CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-											var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
-											sap.m.MessageBox.show(errMsg, sap
-												.m.MessageBox.Icon.ERROR, "Error", sap
-												.m.MessageBox.Action.OK, null, null);
+											if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" ||
+												etaFrom === null ||
+												etaTo === null || quantity == "") {
+												var errForm = formatter.formatErrorType("SO00003");
+												CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+												var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+												sap.m.MessageBox.show(errMsg, sap
+													.m.MessageBox.Icon.ERROR, "Error", sap
+													.m.MessageBox.Action.OK, null, null);
 
+											} else {
+												TableData2.push({
+													modelYear: valModelYr,
+													suffix: valSuffix,
+													series: valSeries,
+													model: valModelCode,
+													colour: CFSO_controller.getView().byId("color_CFSO").getSelectedKey(),
+													APX: CFSO_controller.getView().byId("Apx_CFSO").getSelectedKey(),
+													ETAFrom: CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue(),
+													ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
+													quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
+												});
+												CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
+													items: TableData2
+												});
+												CFSO_controller.getView().getModel('SecondTable').refresh(true);
+												CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
+												CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+											}
+											CFSO_controller.onMandatoryValChange();
 										} else {
-											TableData2.push({
-												modelYear: valModelYr,
-												suffix: valSuffix,
-												series: valSeries,
-												model: valModelCode,
-												colour: CFSO_controller.getView().byId("color_CFSO").getSelectedKey(),
-												APX: CFSO_controller.getView().byId("Apx_CFSO").getSelectedKey(),
-												ETAFrom: CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue(),
-												ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
-												quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
-											});
-											CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
-												items: TableData2
-											});
-											CFSO_controller.getView().getModel('SecondTable').refresh(true);
-											CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
-											CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+											CFSO_controller.onMandatoryValChange();
 										}
-									} else {}
 
+									}
+								});
+
+							} else if (CFSO_controller.allocatedNo == "") {
+
+								for (var i = 0; i < quantity.length; i++) {
+									if (isNaN(quantity[i])) {
+										var errMsgNum = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorNumber");
+										sap.m.MessageBox.show(errMsgNum, sap.m.MessageBox.Icon.ERROR, "Error", sap
+											.m.MessageBox.Action.OK, null, null);
+									}
 								}
-							});
+								if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" ||
+									etaFrom === null ||
+									etaTo === null || quantity == "") {
+									var errForm = formatter.formatErrorType("SO00003");
+									CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+									var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+									sap.m.MessageBox.show(errMsg, sap
+										.m.MessageBox.Icon.ERROR, "Error", sap
+										.m.MessageBox.Action.OK, null, null);
 
-						} else {
-							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorAllocation");
-							var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
-							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+								} else {
+									TableData2.push({
+										modelYear: valModelYr,
+										suffix: valSuffix,
+										series: valSeries,
+										model: valModelCode,
+										colour: CFSO_controller.getView().byId("color_CFSO").getSelectedKey(),
+										APX: CFSO_controller.getView().byId("Apx_CFSO").getSelectedKey(),
+										ETAFrom: CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue(),
+										ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
+										quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
+									});
+									CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
+										items: TableData2
+									});
+									CFSO_controller.getView().getModel('SecondTable').refresh(true);
+									CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
+									CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+								}
+								CFSO_controller.onMandatoryValChange();
+
+							} else {
+								var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorAllocation");
+								var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+								sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+									.m.MessageBox.Action.OK, null, null);
+								CFSO_controller.onMandatoryValChange();
+							}
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+							sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
+								sap
 								.m.MessageBox.Action.OK, null, null);
+							CFSO_controller.onMandatoryValChange();
 						}
-					},
-					error: function (jqXHR, textStatus, errorThrown) {
-						sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
-							sap
-							.m.MessageBox.Action.OK, null, null);
-					}
-				});
+					});
 
-			}
-			else{
-				var msg=sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorQuantity");
+				} else {
+					var msg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorQuantity");
 					sap.m.MessageBox.show(msg, sap.m.MessageBox.Icon.ERROR, "Error",
-							sap
-							.m.MessageBox.Action.OK, null, null);
+						sap
+						.m.MessageBox.Action.OK, null, null);
+					CFSO_controller.onMandatoryValChange();
+				}
 			}
-		}
-			
 
 		},
 
