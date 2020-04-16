@@ -113,7 +113,8 @@ sap.ui.define([
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
 						vehSelDealerInvController.allocatedNo = data.d.Allowed;
-						if (vehSelDealerInvController.allocatedNo == "-1") {
+						var compareval=parseInt("-1");
+						if (vehSelDealerInvController.allocatedNo == compareval) {
 							if (OBJ.ZZVTN) {
 								var V_No = OBJ.ZZVTN;
 								vehSelDealerInvController.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {

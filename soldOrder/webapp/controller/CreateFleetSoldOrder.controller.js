@@ -476,7 +476,7 @@ sap.ui.define([
 						dataType: 'json',
 						success: function (data, textStatus, jqXHR) {
 							CFSO_controller.allocatedNo = data.d.Allowed;
-							var normal = "-1";
+							var normal = parseInt("-1");
 							if (CFSO_controller.allocatedNo == normal) {
 								if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" ||
 									etaFrom === null ||
