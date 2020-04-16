@@ -102,7 +102,7 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					sap.ui.core.BusyIndicator.hide();
 					sap.ui.getCore().getModel("seriesModel").setData(data.d.results);
-					console.log("data from component retail: "+data.d.results);
+				
 					sap.ui.getCore().getModel("seriesModel").updateBindings(true);
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -126,7 +126,7 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					sap.ui.core.BusyIndicator.hide();
 					sap.ui.getCore().getModel("seriesModelF").setData(data.d.results);
-					console.log("data from component fleet: "+data.d.results);
+				
 					sap.ui.getCore().getModel("seriesModelF").updateBindings(true);
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
