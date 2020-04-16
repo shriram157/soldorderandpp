@@ -207,7 +207,8 @@ sap.ui.define([
 							}
 
 						} else {
-							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorAllocation");
+							var remVal2=parseInt(vehSelDealerInvController.allocatedNo);
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorAllocation",[remVal2]);
 							var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 								.m.MessageBox.Action.OK, null, null);
