@@ -18,75 +18,77 @@ sap.ui.define([
 		onInit: function () {
 			Cap_controller = this;
 			Cap_controller.listOfModelYear();
-			Cap_controller.listOfApp();
 			Cap_controller.formatcurrentMonthNameFun();
 			AppController.getDealer();
+			Cap_controller.listOfApp();
 			AppController.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
+			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var text = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("retailCapSoldOrderSummary");
+			Cap_controller.getView().byId("label_CapSoldOrderSummaryid").setText(text, [dealer]);
 			Cap_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(Cap_controller._onObjectMatched, Cap_controller);
 		},
 		_onObjectMatched: function (oEvent) {
 			Cap_controller.tableLoad();
 		},
-			formatcurrentMonthNameFun:function(){
-	var d = new Date();
-	var n = d.getMonth()+1;
-	var currentMonth=" ";
-	var currentMonth1=" ";
-	var currentMonth2=" ";
-	if(n== "1"){
-		currentMonth= "JAN";
-		currentMonth1="FEB";
-		currentMonth2="MAR";
-	}
-	else if(n=="2"){
-		currentMonth= "FEB";
-		currentMonth1="MAR";
-		currentMonth2="APR";
-	}else if(n=="3"){
-		currentMonth= "MAR";
-		currentMonth1="APR";
-		currentMonth2="MAY";
-	}else if(n=="4"){
-		currentMonth= "APR";
-		currentMonth1="MAY";
-		currentMonth2="JUN";
-	}else if(n=="5"){
-		currentMonth= "MAY";
-		currentMonth1="JUN";
-		currentMonth2="JUL";
-	}else if(n=="6"){
-		currentMonth= "JUN";
-		currentMonth1="JUL";
-		currentMonth2="AUG";
-	}else if(n=="7"){
-		currentMonth= "JUL";
-		currentMonth1="AUG";
-		currentMonth2="SEP";
-	}else if(n=="8"){
-		currentMonth= "AUG";
-		currentMonth1="SEP";
-		currentMonth2="OCT";
-	}else if(n=="9"){
-		currentMonth= "SEP";
-		currentMonth1="OCT";
-		currentMonth2="NOV";
-	}else if(n=="10"){
-		currentMonth= "OCT";
-		currentMonth1="NOV";
-		currentMonth2="DEC";
-	}else if(n=="11"){
-	currentMonth= "NOV";
-		currentMonth1="DEC";
-		currentMonth2="JAN";
-	}else{
-		currentMonth= "DEC";
-		currentMonth1="JAN";
-		currentMonth2="FEB";
-	}
-	this.getView().byId("currentmonthnameid").setText(currentMonth);
-	this.getView().byId("currentmonthname1id").setText(currentMonth1);
-	this.getView().byId("currentmonthname2id").setText(currentMonth2);
-	},
+		formatcurrentMonthNameFun: function () {
+			var d = new Date();
+			var n = d.getMonth() + 1;
+			var currentMonth = " ";
+			var currentMonth1 = " ";
+			var currentMonth2 = " ";
+			if (n == "1") {
+				currentMonth = "JAN";
+				currentMonth1 = "FEB";
+				currentMonth2 = "MAR";
+			} else if (n == "2") {
+				currentMonth = "FEB";
+				currentMonth1 = "MAR";
+				currentMonth2 = "APR";
+			} else if (n == "3") {
+				currentMonth = "MAR";
+				currentMonth1 = "APR";
+				currentMonth2 = "MAY";
+			} else if (n == "4") {
+				currentMonth = "APR";
+				currentMonth1 = "MAY";
+				currentMonth2 = "JUN";
+			} else if (n == "5") {
+				currentMonth = "MAY";
+				currentMonth1 = "JUN";
+				currentMonth2 = "JUL";
+			} else if (n == "6") {
+				currentMonth = "JUN";
+				currentMonth1 = "JUL";
+				currentMonth2 = "AUG";
+			} else if (n == "7") {
+				currentMonth = "JUL";
+				currentMonth1 = "AUG";
+				currentMonth2 = "SEP";
+			} else if (n == "8") {
+				currentMonth = "AUG";
+				currentMonth1 = "SEP";
+				currentMonth2 = "OCT";
+			} else if (n == "9") {
+				currentMonth = "SEP";
+				currentMonth1 = "OCT";
+				currentMonth2 = "NOV";
+			} else if (n == "10") {
+				currentMonth = "OCT";
+				currentMonth1 = "NOV";
+				currentMonth2 = "DEC";
+			} else if (n == "11") {
+				currentMonth = "NOV";
+				currentMonth1 = "DEC";
+				currentMonth2 = "JAN";
+			} else {
+				currentMonth = "DEC";
+				currentMonth1 = "JAN";
+				currentMonth2 = "FEB";
+			}
+			this.getView().byId("currentmonthnameid").setText(currentMonth);
+			this.getView().byId("currentmonthname1id").setText(currentMonth1);
+			this.getView().byId("currentmonthname2id").setText(currentMonth2);
+		},
 
 		tableLoad: function () {
 			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
@@ -105,7 +107,7 @@ sap.ui.define([
 					Cap_controller.getView().setModel(oModel, "CapTableModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Error1");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
@@ -113,14 +115,15 @@ sap.ui.define([
 			});
 		},
 		tableLoadFilter: function () {
-		var	zappType=Cap_controller.getView().byId("app_Cap").getSelectedItem().getText();
-		var	Zzseries=Cap_controller.getView().byId("series_Cap").getSelectedItem().getText();
-		//var	Zzmoyr
-		var	Zzmodel=Cap_controller.getView().byId("model_Cap").getSelectedItem().getText();
-		var	ZzDealer=sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-		var	CapYear= Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
+			var zappType = Cap_controller.getView().byId("app_Cap").getSelectedItem().getText();
+			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedItem().getText();
+			//var	Zzmoyr
+			var Zzmodel = Cap_controller.getView().byId("model_Cap").getSelectedItem().getText();
+			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var CapYear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var host = Cap_controller.host();
-			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "'";
+			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "'zappType eq'" + zappType +
+				"'Zzseries eq'" + Zzseries + "'Zzmodel eq'" + Zzmodel + "'CapYear eq'" + CapYear + "'";
 			$.ajax({
 				url: url,
 				method: 'GET',
@@ -133,7 +136,7 @@ sap.ui.define([
 					Cap_controller.getView().setModel(oModel, "CapTableModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Error1");
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 						.m.MessageBox.Action.OK, null, null);
@@ -144,15 +147,16 @@ sap.ui.define([
 			var series = Cap_controller.getView().byId('series_Cap');
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var modelCB = Cap_controller.getView().byId("model_Cap");
-			var appType=Cap_controller.getView().byId("app_Cap");
+			var appType = Cap_controller.getView().byId("app_Cap");
 			if (series && modelyear) {
 				modelCB.setSelectedKey(null);
 				modelCB.destroyItems();
 				series.setSelectedKey(null);
 				series.destroyItems();
 				appType.setSelectedKey(null);
-				appType.destroyItems();
 			}
+			Cap_controller.listOfApp();
+			Cap_controller.tableLoadFilter();
 		},
 		handleSelectAppPress: function (Oevent) {
 			var series = Cap_controller.getView().byId('series_Cap');
@@ -166,15 +170,16 @@ sap.ui.define([
 				series.setSelectedKey(null);
 				series.destroyItems();
 			}
-			Cap_controller._handleSeries(modelyear,appTypeVal);
+			Cap_controller._handleSeries(modelyear, appTypeVal);
+		//	Cap_controller.tableLoadFilter();
 
 		},
-		_handleSeries: function (modelyear,appTypeVal) {
+		_handleSeries: function (modelyear, appTypeVal) {
 
 			var host = Cap_controller.host();
 			var div = Cap_controller.appDivision();
 			var url = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + modelyear +
-				"',P_app_type='"+appTypeVal+"')/Set?$filter=Division eq '" + div + "'";
+				"',P_app_type='" + appTypeVal + "')/Set?$filter=Division eq '" + div + "'";
 			var seriesCB = Cap_controller.getView().byId("series_Cap");
 			$.ajax({
 				url: url,
@@ -198,6 +203,7 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
+			Cap_controller.tableLoadFilter();
 		},
 		series_selected: function (oEvent) {
 
@@ -234,9 +240,12 @@ sap.ui.define([
 					})
 				});
 			}
+			Cap_controller.tableLoadFilter();
 		},
 
-		model_selected: function (oEvent) {},
+		model_selected: function (oEvent) {
+			Cap_controller.tableLoadFilter();
+		},
 		listOfModelYear: function () {
 			var d = new Date();
 			var currentModelYear = d.getFullYear();
@@ -256,8 +265,8 @@ sap.ui.define([
 			modelYearModel.setData(data);
 			Cap_controller.getView().setModel(modelYearModel, "yearModel");
 		},
-			listOfApp: function () {
-			
+		listOfApp: function () {
+
 			var data = [{
 				"key": "R",
 				"text": "Retail"

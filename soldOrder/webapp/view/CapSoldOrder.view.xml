@@ -7,7 +7,7 @@
 				<content>
 					<VBox busy="{CapTableModel>/CapBusyIndicator}">
 						<items>
-							<Label id="label_CapSoldOrderSummaryid" text="{i18n>retailCapSoldOrderSummary}"
+							<Label id="label_CapSoldOrderSummaryid" text=" "
 								class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"/>
 							<VBox class="marginCorners VBox_color">
 								<items>
