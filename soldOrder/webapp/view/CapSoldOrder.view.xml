@@ -20,7 +20,6 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-											
 												<ComboBox id="app_Cap" items="{ path: 'appModel>/'}" required="true" selectionChange="tableLoadFilter">
 													<core:Item key="{appModel>key}" text="{appModel>text}"/>
 													<layoutData>
@@ -34,7 +33,6 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-											
 												<ComboBox id="modelYr_Cap" items="{ path: 'yearModel>/'}" required="true" selectionChange="handleSelectYearPress">
 													<core:Item key="{yearModel>key}" text="{yearModel>text}"/>
 													<layoutData>
@@ -113,28 +111,37 @@
 											<Text text="{CapTableModel>ZzappType}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-										<t:Column>
+									<t:Column>
 										<Label text="{i18n>year}" class="TableLabel"/>
 										<t:template>
 											<Text text="{CapTableModel>CapYear}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
-										<Label text="{i18n>currentMonth}" class="TableLabel"/>
+										<Label class="TableLabel" 
+										text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonthName'}" 
+										/>
 										<t:template>
-											<Text text="{CapTableModel>Month04}" wrapping="true"/>
+											<!--<Text text="{CapTableModel>Month04}" formatter wrapping="true"/>-->
+											<Text
+												text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonth'}"
+												wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column >
 										<Label text="{i18n>month2}" class="TableLabel"/>
 										<t:template>
-											<Text text="{CapTableModel>Month05}" wrapping="true"/>
+											<Text
+												text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonth1'}"
+												wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column >
 										<Label text="{i18n>month3}" class="TableLabel"/>
 										<t:template>
-											<Text text="{CapTableModel>Month06}" wrapping="true"/>
+											<Text
+												text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonth2'}"
+												wrapping="true"/>
 										</t:template>
 									</t:Column>
 								</t:columns>

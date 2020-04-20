@@ -183,10 +183,10 @@ sap.ui.define([
 			
 			var data = [{
 				"key": "1",
-				"text": "R"
+				"text": "Retail"
 			}, {
 				"key": "2",
-				"text": "F"
+				"text": "Fleet"
 			}];
 			var appModel = new JSONModel();
 			appModel.setData(data);
