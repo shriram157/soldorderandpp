@@ -85,9 +85,9 @@ sap.ui.define([
 				currentMonth1 = "JAN";
 				currentMonth2 = "FEB";
 			}
-			this.getView().byId("currentmonthnameid").setText(currentMonth);
-			this.getView().byId("currentmonthname1id").setText(currentMonth1);
-			this.getView().byId("currentmonthname2id").setText(currentMonth2);
+			Cap_controller.getView().byId("currentmonthnameid").setText(currentMonth);
+			Cap_controller.getView().byId("currentmonthname1id").setText(currentMonth1);
+			Cap_controller.getView().byId("currentmonthname2id").setText(currentMonth2);
 		},
 
 		tableLoad: function () {
@@ -115,10 +115,10 @@ sap.ui.define([
 			});
 		},
 		tableLoadFilter: function () {
-			var zappType = Cap_controller.getView().byId("app_Cap").getSelectedItem().getText();
-			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedItem().getText();
+			var zappType = Cap_controller.getView().byId("app_Cap").getSelectedKey();
+			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedKey();
 			//var	Zzmoyr
-			var Zzmodel = Cap_controller.getView().byId("model_Cap").getSelectedItem().getText();
+			var Zzmodel = Cap_controller.getView().byId("model_Cap").getSelectedKey();
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var CapYear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var host = Cap_controller.host();
@@ -791,11 +791,11 @@ sap.ui.define([
 		onExport: function () {
 
 			var data;
-			var DataModel = Cap_controller.getView().getModel("CapModel");
+			var DataModel = Cap_controller.getView().getModel("CapTableModel");
 			if (DataModel != undefined) {
 				data = DataModel.getData();
 			} else {
-				data = Cap_controller.getView().byId("table_Cap").getModel("CapModel").getData();
+				data = Cap_controller.getView().byId("table_Cap").getModel("CapTableModel").getData();
 			}
 			Cap_controller.JSONToExcelConvertor(data, "Report", true);
 
@@ -808,21 +808,16 @@ sap.ui.define([
 				var row = "";
 				row = row.slice(0, -1);
 			}
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("orderNumber") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("custname") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("appType") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("year") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("series") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Model") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Suffix") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Colour") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("audit") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Status") + ",";
-
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vtn") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vin") + ",";
-
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("model") + ",";
+			row += Cap_controller.getView().byId("currentmonthnameid").getText()+ ",";
+			row += Cap_controller.getView().byId("currentmonthname1id").getText()+ ",";
+			row += Cap_controller.getView().byId("currentmonthname2id").getText()+ ",";
+			//row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
 
 			CSV += row + '\r\n';
 
@@ -859,7 +854,7 @@ sap.ui.define([
 				//alert("Invalid data");
 				return;
 			}
-			var fileName = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("RetailSoldOrderReport");
+			var fileName = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("CapSoldOrderReport");
 			//	fileName += ReportTitle.replace(/ /g, "_");
 			// Initialize file format you want csv or xls
 
@@ -867,7 +862,7 @@ sap.ui.define([
 				type: "text/csv;charset=utf-8,"
 			});
 			if (sap.ui.Device.browser.name === "ie" || sap.ui.Device.browser.name === "ed") { // IE 10+ , Edge (IE 12+)
-				navigator.msSaveBlob(blob, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("RetailSoldOrderReport") + ".csv");
+				navigator.msSaveBlob(blob, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("CapSoldOrderReport") + ".csv");
 			} else {
 				var uri = 'data:text/csv;charset=utf-8,' + "\ufeff" + encodeURIComponent(CSV); //'data:application/vnd.ms-excel,' + escape(CSV);
 				var link = document.createElement("a");
