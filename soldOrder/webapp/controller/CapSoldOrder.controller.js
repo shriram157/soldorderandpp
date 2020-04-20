@@ -18,6 +18,7 @@ sap.ui.define([
 		onInit: function () {
 			Cap_controller = this;
 			Cap_controller.listOfModelYear();
+			Cap_controller.listOfApp();
 			AppController.getDealer();
 			AppController.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			Cap_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(Cap_controller._onObjectMatched, Cap_controller);
@@ -25,17 +26,45 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			Cap_controller.tableLoad();
 		},
-		tableLoad:function(){
+		tableLoad: function () {
 			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var host = Cap_controller.host();
-			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '"+dealer+"'" ;
-				$.ajax({
+			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + dealer + "'";
+			$.ajax({
 				url: url,
 				method: 'GET',
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					
+
+					var oModel = new sap.ui.model.json.JSONModel();
+					oModel.setData(data.d.results);
+					console.log("data from Cap Table : " + data.d.results)
+					Cap_controller.getView().setModel(oModel, "CapTableModel");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Error1");
+					var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				}
+			});
+		},
+		tableLoadFilter: function () {
+		var	zappType=Cap_controller.getView().byId("app_Cap").getSelectedItem().getText();
+		var	Zzseries=Cap_controller.getView().byId("series_Cap").getSelectedItem().getText();
+		//var	Zzmoyr
+		var	Zzmodel=Cap_controller.getView().byId("model_Cap").getSelectedItem().getText();
+		var	ZzDealer=sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+		var	CapYear= Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
+			var host = Cap_controller.host();
+			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "'";
+			$.ajax({
+				url: url,
+				method: 'GET',
+				async: false,
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
 					console.log("data from Cap Table : " + data.d.results)
@@ -53,7 +82,7 @@ sap.ui.define([
 			var series = Cap_controller.getView().byId('series_Cap');
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var modelCB = Cap_controller.getView().byId("model_Cap");
-			
+
 			if (series && modelyear) {
 				modelCB.setSelectedKey(null);
 				modelCB.destroyItems();
@@ -61,15 +90,15 @@ sap.ui.define([
 				series.destroyItems();
 			}
 			Cap_controller._handleSeries(modelyear);
-		
+
 		},
 		_handleSeries: function (modelyear) {
-			
+
 			var host = Cap_controller.host();
-			var div=Cap_controller.appDivision();
+			var div = Cap_controller.appDivision();
 			var url = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + modelyear +
 				"',P_app_type='R')/Set?$filter=Division eq '" + div + "'";
-		var seriesCB = Cap_controller.getView().byId("series_Cap");
+			var seriesCB = Cap_controller.getView().byId("series_Cap");
 			$.ajax({
 				url: url,
 				method: 'GET',
@@ -94,7 +123,7 @@ sap.ui.define([
 			});
 		},
 		series_selected: function (oEvent) {
-			
+
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var model;
 			var modelCB = Cap_controller.getView().byId("model_Cap");
@@ -107,11 +136,11 @@ sap.ui.define([
 				model =
 					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 			}
-			
+
 			if (series && modelyear) {
-				
+
 				modelCB.setSelectedKey(null);
-	//			modelCB.destroyItems();
+				//			modelCB.destroyItems();
 				var oSorter = new sap.ui.model.Sorter('mainservices>model');
 				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 				modelCB.bindItems({
@@ -120,7 +149,7 @@ sap.ui.define([
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-					//	new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
+						//	new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
@@ -129,33 +158,44 @@ sap.ui.define([
 				});
 			}
 		},
-		
+
 		model_selected: function (oEvent) {},
 		listOfModelYear: function () {
 			var d = new Date();
 			var currentModelYear = d.getFullYear();
 			var nextModelYear = currentModelYear + 1;
-			var previous = currentModelYear - 1 ;
-			var data = [
-				{
-					"key": "1",
-					"text": previous
-				}, {
-					"key": "2",
-					"text": currentModelYear
-				}, {
-					"key": "3",
-					"text": nextModelYear
-				}
-			];
+			var previous = currentModelYear - 1;
+			var data = [{
+				"key": "1",
+				"text": previous
+			}, {
+				"key": "2",
+				"text": currentModelYear
+			}, {
+				"key": "3",
+				"text": nextModelYear
+			}];
 			var modelYearModel = new JSONModel();
 			modelYearModel.setData(data);
 			Cap_controller.getView().setModel(modelYearModel, "yearModel");
 		},
+			listOfApp: function () {
+			
+			var data = [{
+				"key": "1",
+				"text": "R"
+			}, {
+				"key": "2",
+				"text": "F"
+			}];
+			var appModel = new JSONModel();
+			appModel.setData(data);
+			Cap_controller.getView().setModel(appModel, "appModel");
+		},
 		onAfterRendering: function () {
 
 		},
-		
+
 		onLiveSOChange: function (oEvent) {
 			Cap_controller.sSearchQuery = oEvent.getSource().getValue();
 			Cap_controller.fnSuperSearch();
@@ -184,8 +224,6 @@ sap.ui.define([
 			}
 			Cap_controller.byId("table_Cap").getBinding().filter(aFilters).sort(aSorters);
 		},
-
-	
 
 		_SelectionFinish: function (oEvent) {
 			var selectedItems = oEvent.getParameter("selectedItems");

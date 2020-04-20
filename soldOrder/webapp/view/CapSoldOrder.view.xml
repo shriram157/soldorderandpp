@@ -15,6 +15,20 @@
 										layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
 										<f:content>
 											<VBox>
+												<Label text="{i18n>appType}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+											
+												<ComboBox id="app_Cap" items="{ path: 'appModel>/'}" required="true" selectionChange="tableLoadFilter">
+													<core:Item key="{appModel>key}" text="{appModel>text}"/>
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</ComboBox>
+											</VBox>
+											<VBox>
 												<Label text="{i18n>modelYear}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
