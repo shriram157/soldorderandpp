@@ -160,6 +160,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
+			this.getView().byId("idmenu11").setType('Transparent');
 
 			var ZzmoyrCB = this.getView().byId("modelYr_RSOA");
 			ZzmoyrCB.$().find("input").attr("readonly", true);

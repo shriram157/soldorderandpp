@@ -149,6 +149,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Emphasized');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
+			FSOS_controller.getView().byId("idmenu11").setType('Transparent');
 			var mcb_status_FSOS = FSOS_controller.getView().byId("mcb_status_FSOS");
 			var mcb_ordTyp_FSOS = FSOS_controller.getView().byId("mcb_ordTyp_FSOS");
 			var mcb_dealer_FSOS = FSOS_controller.getView().byId("mcb_dealer_FSOS");

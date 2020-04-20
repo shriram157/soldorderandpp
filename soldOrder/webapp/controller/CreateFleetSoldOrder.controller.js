@@ -127,6 +127,7 @@ sap.ui.define([
 			CFSO_controller.getView().byId("idmenu4").setType('Transparent');
 			CFSO_controller.getView().byId("idmenu5").setType('Transparent');
 			CFSO_controller.getView().byId("idmenu9").setType('Transparent');
+			CFSO_controller.getView().byId("idmenu11").setType('Transparent');
 			// if ((sap.ui.getCore().getModel('FirstTable').getData() && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0) || (sap.ui.getCore().getModel('SecondTable') != undefined &&
 			// 		sap.ui.getCore().getModel('FirstTable').getData() && sap.ui.getCore().getModel('FirstTable').getData().items.length <= 0)) {
 			// 	CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);

@@ -186,6 +186,7 @@ sap.ui.define([
 				RSOS_controller.getView().byId("idmenu4").setType("Transparent");
 				RSOS_controller.getView().byId("idmenu5").setType("Transparent");
 				RSOS_controller.getView().byId("idmenu9").setType("Transparent");
+				RSOS_controller.getView().byId("idmenu11").setType("Transparent");
 				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("globalComboModel"), "globalComboModel");
 				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
 
