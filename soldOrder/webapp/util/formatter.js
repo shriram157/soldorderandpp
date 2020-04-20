@@ -67,64 +67,6 @@ toyota.ca.SoldOrder.util.formatter = {
 	}
 	return currentMonth;
 	},
-	formatcurrentMonthName:function(m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12){
-	var d = new Date();
-	var n = d.getMonth()+1;
-	var currentMonth=" ";
-	var currentMonth1=" ";
-	var currentMonth2=" ";
-	if(n== parseInt("1")){
-		currentMonth= "JAN";
-		currentMonth1="FEB";
-		currentMonth2="MAR";
-	}
-	else if(n==2){
-		currentMonth= "FEB";
-		currentMonth1="MAR";
-		currentMonth2="APR";
-	}else if(n==3){
-		currentMonth= "MAR";
-		currentMonth1="APR";
-		currentMonth2="MAY";
-	}else if(n==4){
-		currentMonth= "APR";
-		currentMonth1="MAY";
-		currentMonth2="JUN";
-	}else if(n=="5"){
-		currentMonth= "MAY";
-		currentMonth1="JUN";
-		currentMonth2="JUL";
-	}else if(n=="6"){
-		currentMonth= "JUN";
-		currentMonth1="JUL";
-		currentMonth2="AUG";
-	}else if(n=="7"){
-		currentMonth= "JUL";
-		currentMonth1="AUG";
-		currentMonth2="SEP";
-	}else if(n=="8"){
-		currentMonth= "AUG";
-		currentMonth1="SEP";
-		currentMonth2="OCT";
-	}else if(n=="9"){
-		currentMonth= "SEP";
-		currentMonth1="OCT";
-		currentMonth2="NOV";
-	}else if(n=="10"){
-		currentMonth= "OCT";
-		currentMonth1="NOV";
-		currentMonth2="DEC";
-	}else if(n=="11"){
-	currentMonth= "NOV";
-		currentMonth1="DEC";
-		currentMonth2="JAN";
-	}else{
-		currentMonth= "DEC";
-		currentMonth1="JAN";
-		currentMonth2="FEB";
-	}
-	return currentMonth;
-	},
 		formatcurrentMonth1:function(m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12){
 	var d = new Date();
 	var n = d.getMonth()+1;

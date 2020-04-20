@@ -14,19 +14,7 @@
 									<f:SimpleForm columnsL="2" columnsM="2" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="3" labelSpanM="3"
 										layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
 										<f:content>
-											<VBox>
-												<Label text="{i18n>appType}" class="TableLabel">
-													<layoutData>
-														<l:GridData span="L2 M12 S12"/>
-													</layoutData>
-												</Label>
-												<ComboBox id="app_Cap" items="{ path: 'appModel>/'}" required="true" selectionChange="tableLoadFilter">
-													<core:Item key="{appModel>key}" text="{appModel>text}"/>
-													<layoutData>
-														<l:GridData span="L2 M12 S12"/>
-													</layoutData>
-												</ComboBox>
-											</VBox>
+											
 											<VBox>
 												<Label text="{i18n>modelYear}" class="TableLabel">
 													<layoutData>
@@ -35,6 +23,19 @@
 												</Label>
 												<ComboBox id="modelYr_Cap" items="{ path: 'yearModel>/'}" required="true" selectionChange="handleSelectYearPress">
 													<core:Item key="{yearModel>key}" text="{yearModel>text}"/>
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</ComboBox>
+											</VBox>
+											<VBox>
+												<Label text="{i18n>appType}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+												<ComboBox id="app_Cap" items="{ path: 'appModel>/'}" required="true" selectionChange="handleSelectAppPress">
+													<core:Item key="{appModel>key}" text="{appModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -118,9 +119,7 @@
 										</t:template>
 									</t:Column>
 									<t:Column>
-										<Label class="TableLabel" 
-										text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonthName'}" 
-										/>
+										<Label id="currentmonthnameid" class="TableLabel" text=" "/>
 										<t:template>
 											<!--<Text text="{CapTableModel>Month04}" formatter wrapping="true"/>-->
 											<Text
@@ -129,7 +128,7 @@
 										</t:template>
 									</t:Column>
 									<t:Column >
-										<Label text="{i18n>month2}" class="TableLabel"/>
+										<Label text="" id="currentmonthname1id" class="TableLabel"/>
 										<t:template>
 											<Text
 												text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonth1'}"
@@ -137,7 +136,7 @@
 										</t:template>
 									</t:Column>
 									<t:Column >
-										<Label text="{i18n>month3}" class="TableLabel"/>
+										<Label text=" " id="currentmonthname2id" class="TableLabel"/>
 										<t:template>
 											<Text
 												text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonth2'}"
