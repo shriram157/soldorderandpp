@@ -26,6 +26,7 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			Cap_controller.tableLoad();
+			Cap_controller.ResetCB();
 		},
 		formatcurrentMonthNameFun: function () {
 			var d = new Date();
@@ -110,14 +111,24 @@ sap.ui.define([
 				}
 			});
 		},
+		ResetCB: function(){
+			var ZzappType = Cap_controller.getView().byId("app_Cap");
+			var Zzseries = Cap_controller.getView().byId("series_Cap");
+			var Zzmodel = Cap_controller.getView().byId("model_Cap");
+			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap');
+			ZzappType.setSelectedKey(null);
+			Zzseries.setSelectedKey(null);
+			Zzmodel.setSelectedKey(null);
+			Zzmoyr.setSelectedKey(null);
+		},
 		tableLoadFilter: function () {
 			var ZzappType = Cap_controller.getView().byId("app_Cap").getSelectedKey();
 			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedKey();
-			//var	Zzmoyr
+			
 			var Zzmodel = Cap_controller.getView().byId("model_Cap").getSelectedKey();
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
-			if (ZzappType && Zzseries && Zzmodel && ZzDealer && Zzmoyr) {
+		//	if (ZzappType && Zzseries && Zzmodel && ZzDealer && Zzmoyr) {
 				var host = Cap_controller.host();
 				var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  ZzappType eq '" + ZzappType +
 					"' and  Zzseries eq '" + Zzseries + "' and  Zzmodel eq '" + Zzmodel + "' and  Zzmoyr eq '" + Zzmoyr + "'";
@@ -139,13 +150,13 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				});
-			}
-			else{
+		//	}
+	/*		else{
 				var errMsg="Select values from drop down."
 						var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 							.m.MessageBox.Action.OK, null, null);
-			}
+			}*/
 		},
 		handleSelectYearPress: function (Oevent) {
 			var seriesval = Cap_controller.getView().byId('series_Cap').getSelectedKey();
@@ -177,7 +188,7 @@ sap.ui.define([
 				series.destroyItems();
 			}
 			Cap_controller._handleSeries(modelyear, appTypeVal);
-			//	Cap_controller.tableLoadFilter();
+				Cap_controller.tableLoadFilter();
 		},
 		_handleSeries: function (modelyear, appTypeVal) {
 
@@ -208,7 +219,7 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
-			//	Cap_controller.tableLoadFilter();
+			
 		},
 		series_selected: function (oEvent) {
 
@@ -245,7 +256,7 @@ sap.ui.define([
 					})
 				});
 			}
-			//	Cap_controller.tableLoadFilter();
+				Cap_controller.tableLoadFilter();
 		},
 		model_selected: function (oEvent) {
 			Cap_controller.tableLoadFilter();
