@@ -717,76 +717,7 @@ sap.ui.define([
 		_createNewOrder: function () {
 			Cap_controller.getOwnerComponent().getRouter().navto("RetailSoldOrderA", {}, true);
 		},
-		onLinkVehicle: function (evt) {
-			var sPath = evt.oSource.oPropagatedProperties.oBindingContexts.CapModel.sPath;
-			var path = sPath.substring(1);
-			var data = Cap_controller.getView().getModel('CapModel').getData();
-			if (data) {
-				zrequest = data[path].ZzsoReqNo;
-			}
-			//zrequest = evt.getSource().getBindingContext("mainservices").getProperty("ZzsoReqNo");
-			var d = new sap.ui.jsfragment(Cap_controller.createId("idFrag_Cap"), "toyota.ca.SoldOrder.view.fragments.VtinDialog",
-				Cap_controller);
-			Cap_controller.getView().addDependent(d);
-			d.open();
-		},
-		_searchNLink: function (evt) {
-			Cap_controller.dialog.open();
-			// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", true);
-			var vinVal = Cap_controller.byId("idFrag_Cap--VinIdFrag").getValue();
-			var vtinVal = Cap_controller.byId("idFrag_Cap--VtinIdFrag").getValue();
-			var V_No;
-			if (vinVal == "" && vtinVal == "") {
-				var errForm = formatter.formatErrorType("SO000010");
-				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
-				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-					"error"), sap.m.MessageBox.Action.OK, null, null);
-			} else {
-				if (vinVal !== "") {
-					V_No = vinVal;
-				} else {
-					V_No = vtinVal;
-				}
-				Cap_controller.getView().getModel("mainservices").callFunction("/Cap_VTN_ASSIGN", {
-					method: "POST",
-					urlParameters: {
-						Zzvtn: vtinVal,
-						Vhvin: vinVal,
-						ZzsoReqNo: zrequest //	Endcustomer:
-					},
-					// function import parameters
-					success: function (oData, response) {
-						Cap_controller.dialog.close();
-						// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
-						if (oData.Type == "E") {
-							var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
-							var sMsg = oBundle.getText("SO000013", [zrequest]);
-							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-								"error"), sap.m.MessageBox.Action.OK, null, null);
-						} else {
-							var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
-							var sMsg = oBundle.getText("SO000014", [zrequest]);
-							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK, null, null);
-							Cap_controller._refresh();
-							//	var oTbl = Cap_controller.getView().byId("tbl_FSOD");
-							//	var items = oTbl.getBinding("rows");
-							//	items.refresh();
-							//	Cap_controller.getView().getElementBinding('mainservices').refresh(true);
-							//	Cap_controller.getView().getModel('mainservices').updateBindings(true);
-							//	oTbl.getModel().updateBindings(true);
-						}
-					},
-					error: function (oError) {
-						Cap_controller.dialog.close();
-						// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
-					}
-				});
-			}
-		},
-		closeDialog: function () {
-			//var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.VinDialog", Cap_controller);
-			//	Cap_controller.oDialogBox.close();
-		},
+		
 		/**
 		 *@memberOf toyota.ca.SoldOrder.controller.RetailSoldOrderSummary
 		 */
