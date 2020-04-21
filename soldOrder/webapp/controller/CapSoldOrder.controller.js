@@ -22,9 +22,9 @@ sap.ui.define([
 			AppController.getDealer();
 			Cap_controller.listOfApp();
 			AppController.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
-			
+
 			var text = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("retailCapSoldOrderSummary");
-			
+
 			Cap_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(Cap_controller._onObjectMatched, Cap_controller);
 		},
 		_onObjectMatched: function (oEvent) {
@@ -144,16 +144,46 @@ sap.ui.define([
 			});
 		},
 		handleSelectYearPress: function (Oevent) {
+			var seriesval = Cap_controller.getView().byId('series_Cap').getSelectedKey();
 			var series = Cap_controller.getView().byId('series_Cap');
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var modelCB = Cap_controller.getView().byId("model_Cap");
 			var appType = Cap_controller.getView().byId("app_Cap");
-			if (series && modelyear) {
+			var model = "";
+			if (seriesval && modelyear) {
 				modelCB.setSelectedKey(null);
 				modelCB.destroyItems();
 				series.setSelectedKey(null);
 				series.destroyItems();
 				appType.setSelectedKey(null);
+			}
+			if (language === "FR") {
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+
+			} else {
+				model =
+					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
+			}
+
+			if (seriesval && modelyear) {
+
+				modelCB.setSelectedKey(null);
+				var oSorter = new sap.ui.model.Sorter('mainservices>model');
+				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				modelCB.bindItems({
+					path: "mainservices>/ZVMS_Model_EXCLSet",
+					sorter: oSorter,
+					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer)
+						//	new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
+					], true),
+					template: new sap.ui.core.ListItem({
+						key: "{mainservices>model}",
+						text: model
+					})
+				});
 			}
 			Cap_controller.listOfApp();
 			Cap_controller.tableLoadFilter();
@@ -171,7 +201,7 @@ sap.ui.define([
 				series.destroyItems();
 			}
 			Cap_controller._handleSeries(modelyear, appTypeVal);
-		//	Cap_controller.tableLoadFilter();
+			//	Cap_controller.tableLoadFilter();
 
 		},
 		_handleSeries: function (modelyear, appTypeVal) {
@@ -193,7 +223,7 @@ sap.ui.define([
 					}
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
-					console.log("data from Cap : " + data.d.results)
+					//console.log("data from Cap : " + data.d.results)
 					Cap_controller.getView().setModel(oModel, "seriesModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -231,7 +261,7 @@ sap.ui.define([
 					sorter: oSorter,
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
+						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer)
 						//	new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
@@ -791,14 +821,71 @@ sap.ui.define([
 		onExport: function () {
 
 			var data;
-		/*	var DataModel = Cap_controller.getView().getModel("CapTableModel");
+			var DataModel = Cap_controller.getView().getModel("CapTableModel");
 			if (DataModel != undefined) {
 				data = DataModel.getData();
-			} else {*/
+			} else {
 				data = Cap_controller.getView().byId("table_Cap").getModel("CapTableModel").getData();
-			//}
+			}
 			Cap_controller.JSONToExcelConvertor(data, "Report", true);
 
+		},
+		formatMonthDataForExcel: function (m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12) {
+			var d = new Date();
+			var n = d.getMonth() + 1;
+			Cap_controller.currentMonth = " ";
+			Cap_controller.currentMonth1 = " ";
+			Cap_controller.currentMonth2 = " ";
+			if (n == 1) {
+				Cap_controller.currentMonth = m1;
+				Cap_controller.currentMonth1 = m2;
+				Cap_controller.currentMonth2 = m3;
+			} else if (n == "2") {
+				Cap_controller.currentMonth = m2;
+				Cap_controller.currentMonth1 = m3;
+				Cap_controller.currentMonth2 = m4;
+			} else if (n == "3") {
+				Cap_controller.currentMonth = m3;
+				Cap_controller.currentMonth1 = m4;
+				Cap_controller.currentMonth2 = m5;
+			} else if (n == "4") {
+				Cap_controller.currentMonth = m4;
+				Cap_controller.currentMonth1 = m5;
+				Cap_controller.currentMonth2 = m6;
+			} else if (n == "5") {
+				Cap_controller.currentMonth = m5;
+				Cap_controller.currentMonth1 = m6;
+				Cap_controller.currentMonth2 = m7;
+			} else if (n == "6") {
+				Cap_controller.currentMonth = m6;
+				Cap_controller.currentMonth1 = m7;
+				Cap_controller.currentMonth2 = m8;
+			} else if (n == "7") {
+				Cap_controller.currentMonth = m7;
+				Cap_controller.currentMonth1 = m8;
+				Cap_controller.currentMonth2 = m9;
+			} else if (n == "8") {
+				Cap_controller.currentMonth = m8;
+				Cap_controller.currentMonth1 = m9;
+				Cap_controller.currentMonth2 = m10;
+			} else if (n == "9") {
+				Cap_controller.currentMonth = m9;
+				Cap_controller.currentMonth1 = m10;
+				Cap_controller.currentMonth2 = m11;
+			} else if (n == "10") {
+				Cap_controller.currentMonth = m10;
+				Cap_controller.currentMonth1 = m11;
+				Cap_controller.currentMonth2 = m12;
+			} else if (n == "11") {
+				Cap_controller.currentMonth = m11;
+				Cap_controller.currentMonth1 = m12;
+				Cap_controller.currentMonth2 = m1;
+			} else {
+				Cap_controller.currentMonth = m12;
+				Cap_controller.currentMonth1 = m1;
+				Cap_controller.currentMonth2 = m2;
+			}
+			//	return currentMonth;
 		},
 		JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
 			//	var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
@@ -808,45 +895,34 @@ sap.ui.define([
 				var row = "";
 				row = row.slice(0, -1);
 			}
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("appType") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("year") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("appType") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("series") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("model") + ",";
-			row += Cap_controller.getView().byId("currentmonthnameid").getText()+ ",";
-			row += Cap_controller.getView().byId("currentmonthname1id").getText()+ ",";
-			row += Cap_controller.getView().byId("currentmonthname2id").getText()+ ",";
-			//row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("year") + ",";
+			row += Cap_controller.getView().byId("currentmonthnameid").getText() + ",";
+			row += Cap_controller.getView().byId("currentmonthname1id").getText() + ",";
+			row += Cap_controller.getView().byId("currentmonthname2id").getText() + ",";
 
 			CSV += row + '\r\n';
 
-			//loop is to extract each row
 			for (var i = 0; i < arrData.length; i++) {
-				// //console.log(arrData[i]);
-				// var row = "";
+				//				console.log(arrData[i]);
+				Cap_controller.formatMonthDataForExcel(arrData[i].month01, arrData[i].month02, arrData[i].month03, arrData[i].month04, arrData[i].month05,
+					arrData[i].month06, arrData[i].month07, arrData[i].month08, arrData[i].month09, arrData[i].month10, arrData[i].month11, arrData[
+						i].month12);
 				row = " ";
-				row += arrData[i].ZzsoReqNo + ',' +
-					arrData[i].ZzendcuName + ',' +
+				row += arrData[i].Zzmoyr + ',' +
+					arrData[i].ZzappType + ',' +
 					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
-					arrData[i].ZzdealerCode + ',' +
-					arrData[i].Zzmoyr + ',' +
 					arrData[i].Zzseries + ',' +
 					arrData[i].Zzmodel + ',' +
-					arrData[i].Zzsuffix + ',' +
-
-					arrData[i].Zzextcol + ',' +
-					//	arrData[i].Zzapx +'","' + 
-					//
-					arrData[i].ZzAuditStatus + ',' +
-					arrData[i].ZzsoStatus + ',' +
-					arrData[i].Zzvtn + ',' +
-					arrData[i].Vhvin + ',';
-
-				//FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) +'",="' +
-				//FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + '",';
-
-				//}
+					arrData[i].ZzDealer + ',' +
+					arrData[i].CapYear + ',' +
+					Cap_controller.currentMonth + ',' +
+					Cap_controller.currentMonth1 + ',' +
+					Cap_controller.currentMonth2 + ',';
 				row.slice(1, row.length);
 				CSV += row + '\r\n';
 			}
@@ -855,8 +931,6 @@ sap.ui.define([
 				return;
 			}
 			var fileName = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("CapSoldOrderReport");
-			//	fileName += ReportTitle.replace(/ /g, "_");
-			// Initialize file format you want csv or xls
 
 			var blob = new Blob(["\ufeff" + CSV], {
 				type: "text/csv;charset=utf-8,"
@@ -877,7 +951,6 @@ sap.ui.define([
 		},
 		data: function (oEvent) {
 			Cap_controller.dialog.open();
-			// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", true);
 
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User" && x != "TCI_Zone_User") {

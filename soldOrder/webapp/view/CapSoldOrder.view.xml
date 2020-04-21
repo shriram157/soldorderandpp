@@ -82,16 +82,15 @@
 								<!--change 24 sep, earlier 8-->
 								<t:columns>
 									<t:Column >
-										<Label text="{i18n>dealer}" class="TableLabel"/>
-										<t:template>
-											<Text visible="true" id="tbl_lbl_dealer_Cap"
-												text="{path:'CapTableModel>ZzDealer',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}" wrapping="true"/>
-										</t:template>
-									</t:Column>
-									<t:Column >
 										<Label text="{i18n>modelYear}" class="TableLabel"/>
 										<t:template>
 											<Text text="{CapTableModel>Zzmoyr}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>appType}" class="TableLabel"/>
+										<t:template>
+											<Text text="{CapTableModel>ZzappType}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column >
@@ -106,14 +105,15 @@
 											<Text text="{CapTableModel>Zzmodel}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
-										<Label text="{i18n>appType}" class="TableLabel"/>
+									<t:Column >
+										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text text="{CapTableModel>ZzappType}" wrapping="true"/>
+											<Text visible="true" id="tbl_lbl_dealer_Cap"
+												text="{path:'CapTableModel>ZzDealer',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
-										<Label text="{i18n>year}" class="TableLabel"/>
+										<Label text="{i18n>Capyear}" class="TableLabel"/>
 										<t:template>
 											<Text text="{CapTableModel>CapYear}" wrapping="true"/>
 										</t:template>
