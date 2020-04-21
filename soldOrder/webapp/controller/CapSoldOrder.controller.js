@@ -117,27 +117,35 @@ sap.ui.define([
 			var Zzmodel = Cap_controller.getView().byId("model_Cap").getSelectedKey();
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
-			var host = Cap_controller.host();
-			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  ZzappType eq '" + ZzappType +
-				"' and  Zzseries eq '" + Zzseries + "' and  Zzmodel eq '" + Zzmodel + "' and  Zzmoyr eq '" + Zzmoyr + "'";
-			$.ajax({
-				url: url,
-				method: 'GET',
-				async: false,
-				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
-					var oModel = new sap.ui.model.json.JSONModel();
-					oModel.setData(data.d.results);
-					console.log("data from Cap Table : " + data.d.results)
-					Cap_controller.getView().setModel(oModel, "CapTableModel");
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-					var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
-					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
-						.m.MessageBox.Action.OK, null, null);
-				}
-			});
+			if (ZzappType && Zzseries && Zzmodel && ZzDealer && Zzmoyr) {
+				var host = Cap_controller.host();
+				var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  ZzappType eq '" + ZzappType +
+					"' and  Zzseries eq '" + Zzseries + "' and  Zzmodel eq '" + Zzmodel + "' and  Zzmoyr eq '" + Zzmoyr + "'";
+				$.ajax({
+					url: url,
+					method: 'GET',
+					async: false,
+					dataType: 'json',
+					success: function (data, textStatus, jqXHR) {
+						var oModel = new sap.ui.model.json.JSONModel();
+						oModel.setData(data.d.results);
+						console.log("data from Cap Table : " + data.d.results)
+						Cap_controller.getView().setModel(oModel, "CapTableModel");
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+						var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+							.m.MessageBox.Action.OK, null, null);
+					}
+				});
+			}
+			else{
+				var errMsg="Select values from drop down."
+						var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+							.m.MessageBox.Action.OK, null, null);
+			}
 		},
 		handleSelectYearPress: function (Oevent) {
 			var seriesval = Cap_controller.getView().byId('series_Cap').getSelectedKey();
@@ -200,7 +208,7 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
-			Cap_controller.tableLoadFilter();
+			//	Cap_controller.tableLoadFilter();
 		},
 		series_selected: function (oEvent) {
 
@@ -237,7 +245,7 @@ sap.ui.define([
 					})
 				});
 			}
-			Cap_controller.tableLoadFilter();
+			//	Cap_controller.tableLoadFilter();
 		},
 		model_selected: function (oEvent) {
 			Cap_controller.tableLoadFilter();
