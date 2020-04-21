@@ -111,15 +111,15 @@ sap.ui.define([
 			});
 		},
 		tableLoadFilter: function () {
-			var zappType = Cap_controller.getView().byId("app_Cap").getSelectedKey();
+			var ZzappType = Cap_controller.getView().byId("app_Cap").getSelectedKey();
 			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedKey();
 			//var	Zzmoyr
 			var Zzmodel = Cap_controller.getView().byId("model_Cap").getSelectedKey();
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var CapYear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var host = Cap_controller.host();
-			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "', zappType eq '" + zappType +
-				"', Zzseries eq '" + Zzseries + "', Zzmodel eq '" + Zzmodel + "', CapYear eq '" + CapYear + "'";
+			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  ZzappType eq '" + ZzappType +
+				"' and  Zzseries eq '" + Zzseries + "' and  Zzmodel eq '" + Zzmodel + "' and  CapYear eq '" + CapYear + "'";
 			$.ajax({
 				url: url,
 				method: 'GET',
