@@ -22,9 +22,6 @@ sap.ui.define([
 			AppController.getDealer();
 			Cap_controller.listOfApp();
 			AppController.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
-
-			var text = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("retailCapSoldOrderSummary");
-
 			Cap_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(Cap_controller._onObjectMatched, Cap_controller);
 		},
 		_onObjectMatched: function (oEvent) {
@@ -89,7 +86,6 @@ sap.ui.define([
 			Cap_controller.getView().byId("currentmonthname1id").setText(currentMonth1);
 			Cap_controller.getView().byId("currentmonthname2id").setText(currentMonth2);
 		},
-
 		tableLoad: function () {
 			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var host = Cap_controller.host();
@@ -104,7 +100,7 @@ sap.ui.define([
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
 					console.log("data from Cap Table : " + data.d.results)
-					Cap_controller.getView().setModel(oModel, "CapTableModel");
+				Cap_controller.getView().setModel(oModel, "CapTableModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
@@ -122,8 +118,8 @@ sap.ui.define([
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var CapYear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var host = Cap_controller.host();
-			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "', zappType eq'" + zappType +
-				"', Zzseries eq'" + Zzseries + "', Zzmodel eq'" + Zzmodel + "', CapYear eq'" + CapYear + "'";
+			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "', zappType eq '" + zappType +
+				"', Zzseries eq '" + Zzseries + "', Zzmodel eq '" + Zzmodel + "', CapYear eq '" + CapYear + "'";
 			$.ajax({
 				url: url,
 				method: 'GET',
@@ -149,15 +145,15 @@ sap.ui.define([
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var modelCB = Cap_controller.getView().byId("model_Cap");
 			var appType = Cap_controller.getView().byId("app_Cap");
-			var model = "";
-			if (seriesval && modelyear) {
+		//	var model;
+			if (series && modelyear) {
 				modelCB.setSelectedKey(null);
 				modelCB.destroyItems();
 				series.setSelectedKey(null);
 				series.destroyItems();
 				appType.setSelectedKey(null);
 			}
-			if (language === "FR") {
+		/*	if (language === "FR") {
 				model =
 					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
 
@@ -184,7 +180,7 @@ sap.ui.define([
 						text: model
 					})
 				});
-			}
+			}*/
 			Cap_controller.listOfApp();
 			Cap_controller.tableLoadFilter();
 		},
@@ -202,7 +198,6 @@ sap.ui.define([
 			}
 			Cap_controller._handleSeries(modelyear, appTypeVal);
 			//	Cap_controller.tableLoadFilter();
-
 		},
 		_handleSeries: function (modelyear, appTypeVal) {
 
@@ -272,7 +267,6 @@ sap.ui.define([
 			}
 			Cap_controller.tableLoadFilter();
 		},
-
 		model_selected: function (oEvent) {
 			Cap_controller.tableLoadFilter();
 		},
@@ -311,7 +305,6 @@ sap.ui.define([
 		onAfterRendering: function () {
 
 		},
-
 		onLiveSOChange: function (oEvent) {
 			Cap_controller.sSearchQuery = oEvent.getSource().getValue();
 			Cap_controller.fnSuperSearch();
@@ -340,7 +333,6 @@ sap.ui.define([
 			}
 			Cap_controller.byId("table_Cap").getBinding().filter(aFilters).sort(aSorters);
 		},
-
 		_SelectionFinish: function (oEvent) {
 			var selectedItems = oEvent.getParameter("selectedItems");
 			var messageText = "Event 'selectionFinished': [";
@@ -360,7 +352,7 @@ sap.ui.define([
 		_refreshCombo: function (evt) {
 			clicks = 0;
 			Cap_controller.dialog.open();
-			// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", true);
+			// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", true);
 
 			filter = true;
 			var oUrl = Cap_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
@@ -402,7 +394,7 @@ sap.ui.define([
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
 					Cap_controller.dialog.close();
-					// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+					// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 					var BtnNext = Cap_controller.getView().byId("buttonNext");
 					if (data.d.results.length <= 0) {
 						BtnNext.setEnabled(false);
@@ -411,7 +403,7 @@ sap.ui.define([
 						BtnNext.setEnabled(true);
 					}
 
-					var DataModel = Cap_controller.getView().getModel("CapModel");
+					var DataModel = Cap_controller.getView().getModel("CapTableModel");
 
 					DataModel.setData(data.d.results);
 
@@ -424,7 +416,7 @@ sap.ui.define([
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					Cap_controller.dialog.close();
-					// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+					// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 					// 	"error"), sap.m.MessageBox.Action.OK, null, null);
@@ -498,7 +490,7 @@ sap.ui.define([
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
 							Cap_controller.dialog.close();
-							// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+							// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 							var BtnNext = Cap_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -507,7 +499,7 @@ sap.ui.define([
 								BtnNext.setEnabled(true);
 							}
 
-							var DataModel = Cap_controller.getView().getModel("CapModel");
+							var DataModel = Cap_controller.getView().getModel("CapTableModel");
 							// if (DataModel.getData().length != undefined) {
 							// 	for (var m = 0; m < data.d.results.length; m++) {
 							// 		DataModel.getData().push(data.d.results[m]);
@@ -526,7 +518,7 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							Cap_controller.dialog.close();
-							// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+							// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageToast.show(errMsg);
 							// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
@@ -580,7 +572,7 @@ sap.ui.define([
 							dataType: "json",
 							success: function (data, textStatus, jqXHR) {
 								Cap_controller.dialog.close();
-								// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+								// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 								var BtnNext = Cap_controller.getView().byId("buttonNext");
 								if (data.d.results.length <= 0) {
 									BtnNext.setEnabled(false);
@@ -589,7 +581,7 @@ sap.ui.define([
 									BtnNext.setEnabled(true);
 								}
 
-								var DataModel = Cap_controller.getView().getModel("CapModel");
+								var DataModel = Cap_controller.getView().getModel("CapTableModel");
 								// if (DataModel.getData().length != undefined) {
 								// 	for (var m = 0; m < data.d.results.length; m++) {
 								// 		DataModel.getData().push(data.d.results[m]);
@@ -607,7 +599,7 @@ sap.ui.define([
 							},
 							error: function (jqXHR, textStatus, errorThrown) {
 								Cap_controller.dialog.close();
-								// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+								// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 								var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 								// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 								// 	"error"), sap.m.MessageBox.Action.OK, null, null);
@@ -658,7 +650,7 @@ sap.ui.define([
 							dataType: "json",
 							success: function (data, textStatus, jqXHR) {
 								Cap_controller.dialog.close();
-								// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+								// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 								var BtnNext = Cap_controller.getView().byId("buttonNext");
 								if (data.d.results.length <= 0) {
 									BtnNext.setEnabled(false);
@@ -667,7 +659,7 @@ sap.ui.define([
 									BtnNext.setEnabled(true);
 								}
 
-								var DataModel = Cap_controller.getView().getModel("CapModel");
+								var DataModel = Cap_controller.getView().getModel("CapTableModel");
 								// if (DataModel.getData().length != undefined) {
 								// 	for (var m = 0; m < data.d.results.length; m++) {
 								// 		DataModel.getData().push(data.d.results[m]);
@@ -693,7 +685,7 @@ sap.ui.define([
 							},
 							error: function (jqXHR, textStatus, errorThrown) {
 								Cap_controller.dialog.close();
-								// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+								// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 								var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 								// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 								// 	"error"), sap.m.MessageBox.Action.OK, null, null);
@@ -705,8 +697,8 @@ sap.ui.define([
 					}
 				}
 			} else {
-				Cap_controller.getView().getModel("CapModel").setData();
-				Cap_controller.getView().getModel("CapModel").updateBindings(true);
+				Cap_controller.getView().getModel("CapTableModel").setData();
+				Cap_controller.getView().getModel("CapTableModel").updateBindings(true);
 			}
 		},
 		_dispalySoldOrderDetails: function (evt) {
@@ -717,10 +709,6 @@ sap.ui.define([
 		_createNewOrder: function () {
 			Cap_controller.getOwnerComponent().getRouter().navto("RetailSoldOrderA", {}, true);
 		},
-		
-		/**
-		 *@memberOf toyota.ca.SoldOrder.controller.RetailSoldOrderSummary
-		 */
 		onActionNext: function (oEvent) {
 			Cap_controller.dialog.open();
 			//Cap_controller code was generated by the layout editor.
@@ -738,7 +726,6 @@ sap.ui.define([
 			// }
 			Cap_controller.data();
 		},
-
 		enableExportButton: function () {
 			var BtnNext = Cap_controller.getView().byId("buttonNext");
 			var BtnExport = Cap_controller.getView().byId("idBtnExportToExcel");
@@ -767,7 +754,7 @@ sap.ui.define([
 			Cap_controller.currentMonth = " ";
 			Cap_controller.currentMonth1 = " ";
 			Cap_controller.currentMonth2 = " ";
-			if (n == 1) {
+			if (n == "1") {
 				Cap_controller.currentMonth = m1;
 				Cap_controller.currentMonth1 = m2;
 				Cap_controller.currentMonth2 = m3;
@@ -819,7 +806,6 @@ sap.ui.define([
 			//	return currentMonth;
 		},
 		JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
-			//	var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
 			var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
 			var CSV = "";
 			if (ShowLabel) {
@@ -846,7 +832,6 @@ sap.ui.define([
 				row = " ";
 				row += arrData[i].Zzmoyr + ',' +
 					arrData[i].ZzappType + ',' +
-					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
 					arrData[i].Zzseries + ',' +
 					arrData[i].Zzmodel + ',' +
 					arrData[i].ZzDealer + ',' +
@@ -931,7 +916,7 @@ sap.ui.define([
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
 						Cap_controller.dialog.close();
-						// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+						// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 						var BtnNext = Cap_controller.getView().byId("buttonNext");
 						if (data.d.results.length <= 0) {
 							BtnNext.setEnabled(false);
@@ -940,7 +925,7 @@ sap.ui.define([
 							BtnNext.setEnabled(true);
 						}
 
-						var DataModel = Cap_controller.getView().getModel("CapModel");
+						var DataModel = Cap_controller.getView().getModel("CapTableModel");
 						if (DataModel.getData().length != undefined) {
 
 							for (var m = 0; m < data.d.results.length; m++) {
@@ -960,7 +945,7 @@ sap.ui.define([
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 						Cap_controller.dialog.close();
-						// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+						// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 						// var page = clicks + 1;
 						// Cap_controller.getView().byId("txtPageNum").setText("Page " + page);
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
@@ -1016,7 +1001,7 @@ sap.ui.define([
 						dataType: "json",
 						success: function (data, textStatus, jqXHR) {
 							Cap_controller.dialog.close();
-							// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+							// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 							var BtnNext = Cap_controller.getView().byId("buttonNext");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
@@ -1025,7 +1010,7 @@ sap.ui.define([
 								BtnNext.setEnabled(true);
 							}
 
-							var DataModel = Cap_controller.getView().getModel("CapModel");
+							var DataModel = Cap_controller.getView().getModel("CapTableModel");
 							if (DataModel.getData().length != undefined) {
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
@@ -1043,7 +1028,7 @@ sap.ui.define([
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							Cap_controller.dialog.close();
-							// Cap_controller.getView().getModel("CapModel").setProperty("/CapBusyIndicator", false);
+							// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
 							// 	"error"), sap.m.MessageBox.Action.OK, null, null);
@@ -1079,7 +1064,7 @@ sap.ui.define([
 		onExit: function () {
 			var oModel = new sap.ui.model.json.JSONModel();
 			oModel.updateBindings(true);
-			Cap_controller.getView().setModel(oModel, "CapModel");
+			Cap_controller.getView().setModel(oModel, "CapTableModel");
 		}
 	});
 });
