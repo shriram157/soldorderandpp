@@ -100,7 +100,7 @@ sap.ui.define([
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
 					console.log("data from Cap Table : " + data.d.results)
-				Cap_controller.getView().setModel(oModel, "CapTableModel");
+					Cap_controller.getView().setModel(oModel, "CapTableModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
@@ -116,10 +116,10 @@ sap.ui.define([
 			//var	Zzmoyr
 			var Zzmodel = Cap_controller.getView().byId("model_Cap").getSelectedKey();
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-			var CapYear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
+			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var host = Cap_controller.host();
 			var url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  ZzappType eq '" + ZzappType +
-				"' and  Zzseries eq '" + Zzseries + "' and  Zzmodel eq '" + Zzmodel + "' and  CapYear eq '" + CapYear + "'";
+				"' and  Zzseries eq '" + Zzseries + "' and  Zzmodel eq '" + Zzmodel + "' and  Zzmoyr eq '" + Zzmoyr + "'";
 			$.ajax({
 				url: url,
 				method: 'GET',
@@ -145,7 +145,7 @@ sap.ui.define([
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var modelCB = Cap_controller.getView().byId("model_Cap");
 			var appType = Cap_controller.getView().byId("app_Cap");
-		//	var model;
+
 			if (series && modelyear) {
 				modelCB.setSelectedKey(null);
 				modelCB.destroyItems();
@@ -153,36 +153,8 @@ sap.ui.define([
 				series.destroyItems();
 				appType.setSelectedKey(null);
 			}
-		/*	if (language === "FR") {
-				model =
-					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
-
-			} else {
-				model =
-					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
-			}
-
-			if (seriesval && modelyear) {
-
-				modelCB.setSelectedKey(null);
-				var oSorter = new sap.ui.model.Sorter('mainservices>model');
-				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-				modelCB.bindItems({
-					path: "mainservices>/ZVMS_Model_EXCLSet",
-					sorter: oSorter,
-					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
-						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer)
-						//	new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
-					], true),
-					template: new sap.ui.core.ListItem({
-						key: "{mainservices>model}",
-						text: model
-					})
-				});
-			}*/
 			Cap_controller.listOfApp();
-			Cap_controller.tableLoadFilter();
+			//	Cap_controller.tableLoadFilter();
 		},
 		handleSelectAppPress: function (Oevent) {
 			var series = Cap_controller.getView().byId('series_Cap');
@@ -233,9 +205,10 @@ sap.ui.define([
 		series_selected: function (oEvent) {
 
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
-			var model;
+
 			var modelCB = Cap_controller.getView().byId("model_Cap");
 			var series = Cap_controller.getView().byId('series_Cap').getSelectedKey();
+			var model;
 			if (language === "FR") {
 				model =
 					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
@@ -246,7 +219,6 @@ sap.ui.define([
 			}
 
 			if (series && modelyear) {
-
 				modelCB.setSelectedKey(null);
 				//			modelCB.destroyItems();
 				var oSorter = new sap.ui.model.Sorter('mainservices>model');
@@ -257,7 +229,7 @@ sap.ui.define([
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer)
-						//	new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
+						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>model}",
@@ -826,9 +798,9 @@ sap.ui.define([
 
 			for (var i = 0; i < arrData.length; i++) {
 				//				console.log(arrData[i]);
-				Cap_controller.formatMonthDataForExcel(arrData[i].month01, arrData[i].month02, arrData[i].month03, arrData[i].month04, arrData[i].month05,
-					arrData[i].month06, arrData[i].month07, arrData[i].month08, arrData[i].month09, arrData[i].month10, arrData[i].month11, arrData[
-						i].month12);
+				Cap_controller.formatMonthDataForExcel(arrData[i].Month01, arrData[i].Month02, arrData[i].Month03, arrData[i].Month04, arrData[i].Month05,
+					arrData[i].Month06, arrData[i].Month07, arrData[i].Month08, arrData[i].Month09, arrData[i].Month10, arrData[i].Month11, arrData[
+						i].Month12);
 				row = " ";
 				row += arrData[i].Zzmoyr + ',' +
 					arrData[i].ZzappType + ',' +
