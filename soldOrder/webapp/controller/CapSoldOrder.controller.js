@@ -301,10 +301,10 @@ sap.ui.define([
 			var data = [{
 				"key": "R",
 				"text": "Retail"
-			}, {
+			}/*, {
 				"key": "F",
 				"text": "Fleet"
-			}];
+			}*/];
 			var appModel = new JSONModel();
 			appModel.setData(data);
 			Cap_controller.getView().setModel(appModel, "appModel");
