@@ -90,7 +90,7 @@
 									<t:Column>
 										<Label text="{i18n>appType}" class="TableLabel"/>
 										<t:template>
-											<Text text="{CapTableModel>ZzappType}" wrapping="true"/>
+											<Text text="{path:'CapTableModel>ZzappType', formatter:'toyota.ca.SoldOrder.util.formatter.formatRF'}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column >
@@ -108,7 +108,7 @@
 									<t:Column >
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
-											<Text visible="true" id="tbl_lbl_dealer_Cap"
+											<Text visible="true" id="tbl_lbl_dealer_Cap" 
 												text="{path:'CapTableModel>ZzDealer',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}" wrapping="true"/>
 										</t:template>
 									</t:Column>

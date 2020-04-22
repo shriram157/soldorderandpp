@@ -238,7 +238,7 @@ sap.ui.define([
 
 			var data = [{
 				"key": "R",
-				"text": "R"
+				"text": "Retail"
 			}/*, {
 				"key": "F",
 				"text": "Fleet"
