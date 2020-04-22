@@ -20,7 +20,6 @@ sap.ui.define([
 			Cap_controller.listOfModelYear();
 			Cap_controller.formatcurrentMonthNameFun();
 			AppController.getDealer();
-			Cap_controller.listOfApp();
 			AppController.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			Cap_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(Cap_controller._onObjectMatched, Cap_controller);
 		},
@@ -99,10 +98,8 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
-					console.log("data from Cap Table : " + data.d.results)
 					Cap_controller.getView().setModel(oModel, "CapTableModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -116,34 +113,26 @@ sap.ui.define([
 		ResetCB: function () {
 			var ZzappType = Cap_controller.getView().byId("app_Cap");
 			var Zzseries = Cap_controller.getView().byId("series_Cap");
-			var Zzmodel = Cap_controller.getView().byId("model_Cap");
 			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap');
 			ZzappType.setSelectedKey(null);
 			Zzseries.setSelectedKey(null);
-			Zzmodel.setSelectedKey(null);
 			Zzmoyr.setSelectedKey(null);
 		},
 		tableLoadFilter: function () {
 			var ZzappType = Cap_controller.getView().byId("app_Cap").getSelectedKey();
 			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedKey();
-
-			var Zzmodel = Cap_controller.getView().byId("model_Cap").getSelectedKey();
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
-			//	if (ZzappType && Zzseries && Zzmodel && ZzDealer && Zzmoyr) {
 			var host = Cap_controller.host();
 			var url;
-			if(Zzmoyr && ZzappType && ZzDealer &&  Zzseries=="" && Zzmodel== ""){
+			if(Zzmoyr && ZzappType && ZzDealer &&  Zzseries==""  ){
 				url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr + "' and  ZzappType eq '" + ZzappType + "'";
 			}
-			else if(Zzmoyr && ZzappType && ZzDealer &&  Zzseries && Zzmodel== ""){
+			else if(Zzmoyr && ZzappType && ZzDealer &&  Zzseries  ){
 				url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr + "' and  ZzappType eq '" + ZzappType +
 				"' and  Zzseries eq '" + Zzseries + "'";
 			}
-			else if(Zzmoyr && ZzappType && ZzDealer &&  Zzseries && Zzmodel){
-			url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr + "' and  ZzappType eq '" + ZzappType +
-				"' and  Zzseries eq '" + Zzseries + "' and  Zzmodel eq '" + Zzmodel +  "'";	
-			}
+		
 			else{
 					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr + "' and  ZzappType eq '" + ZzappType + "'";
 			}
@@ -156,7 +145,6 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
-					console.log("data from Cap Table : " + data.d.results)
 					Cap_controller.getView().setModel(oModel, "CapTableModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -166,40 +154,26 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
-			//	}
-			/*		else{
-						var errMsg="Select values from drop down."
-								var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
-								sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
-									.m.MessageBox.Action.OK, null, null);
-					}*/
 		},
 		handleSelectYearPress: function (Oevent) {
-			var seriesval = Cap_controller.getView().byId('series_Cap').getSelectedKey();
 			var series = Cap_controller.getView().byId('series_Cap');
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
-			var modelCB = Cap_controller.getView().byId("model_Cap");
 			var appType = Cap_controller.getView().byId("app_Cap");
-
 			if (series && modelyear) {
-				modelCB.setSelectedKey(null);
-				modelCB.destroyItems();
 				series.setSelectedKey(null);
 				series.destroyItems();
 				appType.setSelectedKey(null);
+				appType.destroyItems();
 			}
 			Cap_controller.listOfApp();
-			//	Cap_controller.tableLoadFilter();
 		},
 		handleSelectAppPress: function (Oevent) {
 			var series = Cap_controller.getView().byId('series_Cap');
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
-			var modelCB = Cap_controller.getView().byId("model_Cap");
+		
 			//var appType=Cap_controller.getView().byId("app_Cap");
 			var appTypeVal = Cap_controller.getView().byId('app_Cap').getSelectedKey();
 			if (series && modelyear) {
-				modelCB.setSelectedKey(null);
-				modelCB.destroyItems();
 				series.setSelectedKey(null);
 				series.destroyItems();
 			}
@@ -238,45 +212,9 @@ sap.ui.define([
 
 		},
 		series_selected: function (oEvent) {
-
-			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
-
-			var modelCB = Cap_controller.getView().byId("model_Cap");
-			var series = Cap_controller.getView().byId('series_Cap').getSelectedKey();
-			var model;
-			if (language === "FR") {
-				model =
-					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
-
-			} else {
-				model =
-					"{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}";
-			}
-
-			if (series && modelyear) {
-				modelCB.setSelectedKey(null);
-				//			modelCB.destroyItems();
-				var oSorter = new sap.ui.model.Sorter('mainservices>model');
-				var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-				modelCB.bindItems({
-					path: "mainservices>/ZVMS_Model_EXCLSet",
-					sorter: oSorter,
-					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
-						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-						new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-						new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
-					], true),
-					template: new sap.ui.core.ListItem({
-						key: "{mainservices>model}",
-						text: model
-					})
-				});
-			}
-			Cap_controller.tableLoadFilter();
+				Cap_controller.tableLoadFilter();
 		},
-		model_selected: function (oEvent) {
-			Cap_controller.tableLoadFilter();
-		},
+	
 		listOfModelYear: function () {
 			var d = new Date();
 			var currentModelYear = d.getFullYear();
@@ -300,7 +238,7 @@ sap.ui.define([
 
 			var data = [{
 				"key": "R",
-				"text": "Retail"
+				"text": "R"
 			}/*, {
 				"key": "F",
 				"text": "Fleet"
@@ -329,7 +267,7 @@ sap.ui.define([
 					new Filter("ZzdealerCode", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
 					new Filter("Zzmoyr", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
 					new Filter("Zzseries", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					new Filter("Zzmodel", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
+			//		new Filter("Zzmodel", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
 					new Filter("Zzsuffix", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
 					new Filter("ZzAuditStatus", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
 					new Filter("ZzsoStatus", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
@@ -822,7 +760,7 @@ sap.ui.define([
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("appType") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("series") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("model") + ",";
+		//	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("model") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("year") + ",";
 			row += Cap_controller.getView().byId("currentmonthnameid").getText() + ",";
@@ -840,7 +778,7 @@ sap.ui.define([
 				row += arrData[i].Zzmoyr + ',' +
 					arrData[i].ZzappType + ',' +
 					arrData[i].Zzseries + ',' +
-					arrData[i].Zzmodel + ',' +
+				//	arrData[i].Zzmodel + ',' +
 					arrData[i].ZzDealer + ',' +
 					arrData[i].CapYear + ',' +
 					Cap_controller.currentMonth + ',' +

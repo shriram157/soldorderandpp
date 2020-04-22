@@ -55,7 +55,7 @@
 													</layoutData>
 												</ComboBox>
 											</VBox>
-											<VBox>
+										<!--	<VBox>
 												<Label wrapping="true" text="{i18n>Model}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -66,7 +66,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</ComboBox>
-											</VBox>
+											</VBox>-->
 										</f:content>
 									</f:SimpleForm>
 								</items>
@@ -99,12 +99,12 @@
 											<Text text="{CapTableModel>Zzseries}" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<!--<t:Column>
 										<Label text="{i18n>model}" class="TableLabel"/>
 										<t:template>
 											<Text text="{CapTableModel>Zzmodel}" wrapping="true"/>
 										</t:template>
-									</t:Column>
+									</t:Column>-->
 									<t:Column >
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
