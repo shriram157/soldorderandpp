@@ -32,7 +32,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<Input id="FanNo_Cap"  value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showSuggestion="false" showValueHelp="true" required="true"
+												<Input id="FanNo_Cap"  value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showSuggestion="false" showValueHelp="false" required="true"
 													liveChange="ondealerSelect" class="widthFan_Cap">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>

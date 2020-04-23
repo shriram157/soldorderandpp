@@ -17,7 +17,7 @@ sap.ui.define([
 		formatter: formatter,
 		onInit: function () {
 			Cap_controller = this;
-			Cap_controller.listOfModelYear();
+			
 			Cap_controller.formatcurrentMonthNameFun();
 			AppController.getDealer();
 			Cap_controller.listOfApp();
@@ -31,7 +31,7 @@ sap.ui.define([
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
 			});
 			var dealerVBox = Cap_controller.getView().byId("dealerVBox");
-			//dealerVBox.destroy();
+			Cap_controller.readMethod();
 		},
 		_valuehelpfanno: function (oEvent) {
 			var FanNo_Cap = Cap_controller.getView().byId('FanNo_Cap');
@@ -55,6 +55,7 @@ sap.ui.define([
 					sap.ui.getCore().setModel(oModel, "CustomerData");
 					Fan.setValue(text);
 					Cap_controller.dialog.close();
+					Cap_controller.listOfModelYear();
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					Cap_controller.dialog.close();
@@ -75,14 +76,35 @@ sap.ui.define([
 			oEvent.getSource().getBinding("items").filter(filters);
 
 		},
+			readMethod: function () {
+			var seriesCB = Cap_controller.getView().byId('series_Cap');
+			seriesCB.addEventDelegate({
+				onAfterRendering: function () {
+					seriesCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var ZzmoyrCB = Cap_controller.getView().byId("modelYr_Cap");
+			ZzmoyrCB.addEventDelegate({
+				onAfterRendering: function () {
+					ZzmoyrCB.$().find("input").attr("readonly", true);
+				}
+			});
+			var appType=Cap_controller.getView().byId('app_Cap');
+			appType.addEventDelegate({
+				onAfterRendering: function () {
+					appType.$().find("input").attr("readonly", true);
+				}
+			});
+		
+		},
 		handleSelectAppPress: function (Oevent) {
 			var series = Cap_controller.getView().byId('series_Cap');
-			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedKey();
+			var modelyear = Cap_controller.getView().byId('modelYr_Cap');
 			var ZzDealerName = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerName;
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var dealer = ZzDealer + "- " + ZzDealerName;
 			var fanNo = Cap_controller.getView().byId("FanNo_Cap");
-			var dealerVBox = Cap_controller.getView().byId("dealerVBox");
+		//	var dealerVBox = Cap_controller.getView().byId("dealerVBox");
 			var appType=Cap_controller.getView().byId('app_Cap');
 			var appTypeVal = Cap_controller.getView().byId('app_Cap').getSelectedKey();
 			appType.setSelectedKey(appTypeVal);
@@ -92,14 +114,19 @@ sap.ui.define([
 			} else {
 				fanNo.setShowValueHelp(false);
 				fanNo.setValue(dealer);
+				Cap_controller.listOfModelYear();
 			}
 			if (series && modelyear && fanNo) {
 				modelyear.setSelectedKey(null);
-				modelyear.destroyItems();
+				//modelyear.destroyItems();
 				series.setSelectedKey(null);
 				series.destroyItems();
-				fanNo.setValue(null);
+			//	fanNo.setValue(null);
 			}
+			else{
+				series.destroyItems();
+			}
+			Cap_controller.readMethod();
 		},
 		handleSelectYearPress: function (Oevent) {
 			var modelyearval = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
@@ -112,6 +139,7 @@ sap.ui.define([
 			}
 			Cap_controller._populateSeries(modelyearval, appTypeVal);
 			Cap_controller.tableLoadFilter();
+				Cap_controller.readMethod();
 		},
 
 		_populateSeries: function (modelyear, appTypeVal) {
@@ -142,10 +170,12 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
+				Cap_controller.readMethod();
 		},
 
 		series_selected: function (oEvent) {
 			Cap_controller.tableLoadFilter();
+				Cap_controller.readMethod();
 		},
 
 		listOfModelYear: function () {
@@ -893,6 +923,7 @@ sap.ui.define([
 			var host = Cap_controller.host();
 			var ZzappType = Cap_controller.getView().byId("app_Cap").getSelectedKey();
 			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedKey();
+			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			if (ZzappType == "R") {
 				if (Zzmoyr && ZzappType && ZzDealer && Zzseries == "") {
