@@ -54,6 +54,7 @@ sap.ui.define([
 					Cap_controller.getView().setModel(oModel, "Customer");
 					sap.ui.getCore().setModel(oModel, "CustomerData");
 					Fan.setValue(text);
+					Cap_controller.dialog.close();
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					Cap_controller.dialog.close();
@@ -77,13 +78,20 @@ sap.ui.define([
 		handleSelectAppPress: function (Oevent) {
 			var series = Cap_controller.getView().byId('series_Cap');
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap').getSelectedKey();
+			var ZzDealerName = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerName;
+			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var dealer = ZzDealer + "- " + ZzDealerName;
 			var fanNo = Cap_controller.getView().byId("FanNo_Cap");
 			var dealerVBox = Cap_controller.getView().byId("dealerVBox");
+			var appType=Cap_controller.getView().byId('app_Cap');
 			var appTypeVal = Cap_controller.getView().byId('app_Cap').getSelectedKey();
+			appType.setSelectedKey(appTypeVal);
 			if (appTypeVal == "F") {
-				dealerVBox.setVisible(true);
+				fanNo.setValue(null);
+				fanNo.setShowValueHelp(true);
 			} else {
-				dealerVBox.setVisible(false);
+				fanNo.setShowValueHelp(false);
+				fanNo.setValue(dealer);
 			}
 			if (series && modelyear && fanNo) {
 				modelyear.setSelectedKey(null);
@@ -203,35 +211,34 @@ sap.ui.define([
 			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedKey();
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
-			
+
 			var host = Cap_controller.host();
 			var url;
-			if(ZzappType=="R"){
-			if (Zzmoyr && ZzappType && ZzDealer && Zzseries == "") {
-				url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr +
-					"' and  ZzappType eq '" + ZzappType + "'";
-			} else if (Zzmoyr && ZzappType && ZzDealer && Zzseries) {
-				url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr +
-					"' and  ZzappType eq '" + ZzappType +
-					"' and  Zzseries eq '" + Zzseries + "'";
+			if (ZzappType == "R") {
+				if (Zzmoyr && ZzappType && ZzDealer && Zzseries == "") {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType + "'";
+				} else if (Zzmoyr && ZzappType && ZzDealer && Zzseries) {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType +
+						"' and  Zzseries eq '" + Zzseries + "'";
+				} else {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType + "'";
+				}
 			} else {
-				url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr +
-					"' and  ZzappType eq '" + ZzappType + "'";
-			}
-			}
-			else{
-			var FanDealerCap = Cap_controller.getView().byId('FanNo_Cap').getValue();
-			if (Zzmoyr && ZzappType && FanDealerCap && Zzseries == "") {
-				url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + FanDealerCap + "' and  Zzmoyr eq '" + Zzmoyr +
-					"' and  ZzappType eq '" + ZzappType + "'";
-			} else if (Zzmoyr && ZzappType && FanDealerCap && Zzseries) {
-				url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + FanDealerCap + "' and  Zzmoyr eq '" + Zzmoyr +
-					"' and  ZzappType eq '" + ZzappType +
-					"' and  Zzseries eq '" + Zzseries + "'";
-			} else {
-				url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + FanDealerCap + "' and  Zzmoyr eq '" + Zzmoyr +
-					"' and  ZzappType eq '" + ZzappType + "'";
-			}	
+				var FanDealerCap = Cap_controller.getView().byId('FanNo_Cap').getValue();
+				if (Zzmoyr && ZzappType && FanDealerCap && Zzseries == "") {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + FanDealerCap + "' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType + "'";
+				} else if (Zzmoyr && ZzappType && FanDealerCap && Zzseries) {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + FanDealerCap + "' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType +
+						"' and  Zzseries eq '" + Zzseries + "'";
+				} else {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + FanDealerCap + "' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType + "'";
+				}
 			}
 
 			$.ajax({
@@ -834,7 +841,7 @@ sap.ui.define([
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("series") + ",";
 			//	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("model") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("year") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Capyear") + ",";
 			row += Cap_controller.getView().byId("currentmonthnameid").getText() + ",";
 			row += Cap_controller.getView().byId("currentmonthname1id").getText() + ",";
 			row += Cap_controller.getView().byId("currentmonthname2id").getText() + ",";
@@ -883,181 +890,83 @@ sap.ui.define([
 			}
 		},
 		data: function (oEvent) {
+			var host = Cap_controller.host();
+			var ZzappType = Cap_controller.getView().byId("app_Cap").getSelectedKey();
+			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedKey();
+			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			if (ZzappType == "R") {
+				if (Zzmoyr && ZzappType && ZzDealer && Zzseries == "") {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$top=100&$skip=" + num + "&$filter=ZzDealer eq '" + ZzDealer +
+						"' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType + "'";
+				} else if (Zzmoyr && ZzappType && ZzDealer && Zzseries) {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$top=100&$skip=" + num + "&$filter=ZzDealer eq '" + ZzDealer +
+						"' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType +
+						"' and  Zzseries eq '" + Zzseries + "'";
+				} else {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$top=100&$skip=" + num + "&$filter=ZzDealer eq '" + ZzDealer +
+						"' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType + "'";
+				}
+			} else {
+				var FanDealerCap = Cap_controller.getView().byId('FanNo_Cap').getValue();
+				if (Zzmoyr && ZzappType && FanDealerCap && Zzseries == "") {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$top=100&$skip=" + num + "&$filter=ZzDealer eq '" + FanDealerCap +
+						"' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType + "'";
+				} else if (Zzmoyr && ZzappType && FanDealerCap && Zzseries) {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$top=100&$skip=" + num + "&$filter=ZzDealer eq '" + FanDealerCap +
+						"' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType +
+						"' and  Zzseries eq '" + Zzseries + "'";
+				} else {
+					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$top=100&$skip=" + num + "&$filter=ZzDealer eq '" + FanDealerCap +
+						"' and  Zzmoyr eq '" + Zzmoyr +
+						"' and  ZzappType eq '" + ZzappType + "'";
+				}
+			}
+
+			//		var ourl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$top=100&$skip=" + num + "&$filter=ZzDealer eq '" + dealer +
 			Cap_controller.dialog.open();
-
-			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User" && x != "TCI_Zone_User") {
-				var oUrl = Cap_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
-				for (var i = 0; i < Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length; i++) {
-					var status = Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
-					if (i == ((Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") and (";
+			$.ajax({
+				url: url,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					Cap_controller.dialog.close();
+					// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
+					var BtnNext = Cap_controller.getView().byId("buttonNext");
+					if (data.d.results.length <= 10) {
+						BtnNext.setEnabled(false);
+						Cap_controller.enableExportButton();
 					} else {
-						oUrl = oUrl + " or ";
+						BtnNext.setEnabled(true);
 					}
 
-				}
-				for (var i = 0; i < Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length; i++) {
-					var audit = Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-					if (i == ((Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") and (";
-					} else {
-						oUrl = oUrl + " or ";
-					}
-				}
-				for (var i = 0; i < Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length; i++) {
-					var series = Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(Zzseries eq '" + series + "')";
-					if (i == ((Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") and (";
-					} else {
-						oUrl = oUrl + " or ";
-					}
-				}
-				for (var i = 0; i < Cap_controller.getView().byId("mcb_dealer_Cap").getSelectedItems().length; i++) {
-					var dealer = Cap_controller.getView().byId("mcb_dealer_Cap").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
-					if (i == ((Cap_controller.getView().byId("mcb_dealer_Cap").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
-					} else {
-						oUrl = oUrl + " or ";
-					}
-				}
-				// Cap_controller.dialog.open();
-				$.ajax({
-					url: oUrl,
-					method: "GET",
-					async: false,
-					dataType: "json",
-					success: function (data, textStatus, jqXHR) {
-						Cap_controller.dialog.close();
-						// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-						var BtnNext = Cap_controller.getView().byId("buttonNext");
-						if (data.d.results.length <= 0) {
-							BtnNext.setEnabled(false);
-							Cap_controller.enableExportButton();
-						} else {
-							BtnNext.setEnabled(true);
-						}
-
-						var DataModel = Cap_controller.getView().getModel("CapTableModel");
-						if (DataModel.getData().length != undefined) {
-
-							for (var m = 0; m < data.d.results.length; m++) {
-								DataModel.getData().push(data.d.results[m]);
-								DataModel.updateBindings(true);
-								// //console.log("DataModel.getData()", DataModel.getData());
-							}
-						} else {
-							if (data.d.results.length <= 10) {
-								BtnNext.setEnabled(false);
-								Cap_controller.enableExportButton();
-							}
-							DataModel.setData(data.d.results);
+					var DataModel = Cap_controller.getView().getModel("CapTableModel");
+					if (DataModel.getData().length != undefined) {
+						for (var m = 0; m < data.d.results.length; m++) {
+							DataModel.getData().push(data.d.results[m]);
 							DataModel.updateBindings(true);
 						}
-
-					},
-					error: function (jqXHR, textStatus, errorThrown) {
-						Cap_controller.dialog.close();
-						// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-						// var page = clicks + 1;
-						// Cap_controller.getView().byId("txtPageNum").setText("Page " + page);
-						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-						// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-						// 	"error"), sap.m.MessageBox.Action.OK, null, null);
-						sap.m.MessageToast.show(errMsg);
+					} else {
+						if (data.d.results.length <= 10) {
+							BtnNext.setEnabled(false);
+							Cap_controller.enableExportButton();
+						}
+						DataModel.setData(data.d.results);
+						DataModel.updateBindings(true);
 					}
-				});
-			} else {
-				//march 10 P2 change adding below block and commenting older block 
-				if (filter == false) {
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
 					Cap_controller.dialog.close();
-
-				} else {
-
-					var oUrl = Cap_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
-					for (var i = 0; i < Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length; i++) {
-						var status = Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
-						if (i == ((Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-
-					}
-					for (var i = 0; i < Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length; i++) {
-						var audit = Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-						if (i == ((Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-					}
-					for (var i = 0; i < Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length; i++) {
-						var series = Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(Zzseries eq '" + series + "')";
-						if (i == ((Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-					}
-					// for (var i = 0; i < Cap_controller.getView().byId("cb_dealer_Cap").getSelectedItems().length; i++) {
-					var dealer = Cap_controller.getView().byId("cb_dealer_Cap").getSelectedKey();
-					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
-
-					$.ajax({
-						url: oUrl,
-						method: "GET",
-						async: false,
-						dataType: "json",
-						success: function (data, textStatus, jqXHR) {
-							Cap_controller.dialog.close();
-							// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-							var BtnNext = Cap_controller.getView().byId("buttonNext");
-							if (data.d.results.length <= 0) {
-								BtnNext.setEnabled(false);
-								Cap_controller.enableExportButton();
-							} else {
-								BtnNext.setEnabled(true);
-							}
-
-							var DataModel = Cap_controller.getView().getModel("CapTableModel");
-							if (DataModel.getData().length != undefined) {
-								for (var m = 0; m < data.d.results.length; m++) {
-									DataModel.getData().push(data.d.results[m]);
-									DataModel.updateBindings(true);
-									// //console.log("DataModel.getData()", DataModel.getData());
-								}
-							} else {
-								if (data.d.results.length <= 10) {
-									BtnNext.setEnabled(false);
-									Cap_controller.enableExportButton();
-								}
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
-							}
-						},
-						error: function (jqXHR, textStatus, errorThrown) {
-							Cap_controller.dialog.close();
-							// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-							// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							// 	"error"), sap.m.MessageBox.Action.OK, null, null);
-							sap.m.MessageToast.show(errMsg);
-
-						}
-					});
-
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageToast.show(errMsg);
 				}
-				// var page = clicks + 1;
-				// Cap_controller.getView().byId("txtPageNum").setText("Page " + page);
-			}
+			});
+
 		},
 		onLiveChange: function (oEvent) {
 			Cap_controller.sSearchQuery = oEvent.getSource().getValue();
