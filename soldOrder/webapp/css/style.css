@@ -4,7 +4,9 @@
 .clCustomFont {
     font-family: 'Raleway', sans-serif;
 }
-
+.widthFan_Cap{
+	width: 68% !important;
+}
 .sapContrastPlus.clCustomHeaderBg,
 .clCustomHeaderBg.sapMIBar {
     background-color: #fff!important;
