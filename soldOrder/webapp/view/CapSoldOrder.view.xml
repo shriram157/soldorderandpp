@@ -26,18 +26,26 @@
 													</layoutData>
 												</ComboBox>
 											</VBox>
-											<VBox  visible= "true" id="dealerVBox">
-												<Label text="{i18n>dealer}" class="TableLabel">
+											<VBox visible="true" id="dealerVBox">
+												<Label text="{i18n>dealerFan}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<Input id="FanNo_Cap"  value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showSuggestion="false" showValueHelp="false" required="true"
-													liveChange="ondealerSelect" class="widthFan_Cap">
+												<!--visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" -->
+												<Input id="FanNo_Cap"  value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showSuggestion="false" showValueHelp="false"
+													required="true" liveChange="ondealerSelect" class="widthFan_Cap">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Input>
+												<ComboBox id="cbzoneFanNo_Cap"  items="{LoginUserModel>/BpDealerModel}"  class="sapUiMediumMarginEnd">
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
+														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</ComboBox>
 											</VBox>
 											<VBox>
 												<Label text="{i18n>modelYear}" class="TableLabel">
@@ -52,7 +60,6 @@
 													</layoutData>
 												</ComboBox>
 											</VBox>
-											
 											<VBox>
 												<Label text="{i18n>series}" class="TableLabel">
 													<layoutData>
@@ -67,18 +74,6 @@
 													</layoutData>
 												</ComboBox>
 											</VBox>
-											<!--	<VBox>
-												<Label wrapping="true" text="{i18n>Model}" class="TableLabel">
-													<layoutData>
-														<l:GridData span="L2 M12 S12"/>
-													</layoutData>
-												</Label>
-												<ComboBox id="model_Cap" required="true" selectionChange="model_selected">
-													<layoutData>
-														<l:GridData span="L2 M12 S12"/>
-													</layoutData>
-												</ComboBox>
-											</VBox>-->
 										</f:content>
 									</f:SimpleForm>
 								</items>
@@ -106,22 +101,16 @@
 										</t:template>
 									</t:Column>
 									<t:Column >
-										<Label text="{i18n>series}" class="TableLabel"/>
-										<t:template>
-											<Text text="{CapTableModel>Zzseries}" wrapping="true"/>
-										</t:template>
-									</t:Column>
-									<!--<t:Column>
-										<Label text="{i18n>model}" class="TableLabel"/>
-										<t:template>
-											<Text text="{CapTableModel>Zzmodel}" wrapping="true"/>
-										</t:template>
-									</t:Column>-->
-									<t:Column >
-										<Label text="{i18n>dealer}" class="TableLabel"/>
+										<Label text="{i18n>dealerFan}" class="TableLabel"/>
 										<t:template>
 											<Text visible="true" id="tbl_lbl_dealer_Cap"
 												text="{path:'CapTableModel>ZzDealer',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column >
+										<Label text="{i18n>series}" class="TableLabel"/>
+										<t:template>
+											<Text text="{CapTableModel>Zzseries}" wrapping="true"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
@@ -158,10 +147,8 @@
 								</t:columns>
 							</t:Table>
 							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
-								
 								<l:content>
 									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
-									
 								</l:content>
 							</l:Grid>
 						</items>

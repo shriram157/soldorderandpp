@@ -17,7 +17,7 @@ sap.ui.define([
 		formatter: formatter,
 		onInit: function () {
 			Cap_controller = this;
-			
+			Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(false);
 			Cap_controller.formatcurrentMonthNameFun();
 			AppController.getDealer();
 			Cap_controller.listOfApp();
@@ -25,6 +25,8 @@ sap.ui.define([
 			Cap_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(Cap_controller._onObjectMatched, Cap_controller);
 		},
 		_onObjectMatched: function (oEvent) {
+			var oModel = new sap.ui.model.json.JSONModel();
+			Cap_controller.getView().setModel(oModel, "CapTableModel");
 			Cap_controller.tableLoad();
 			Cap_controller.ResetCB();
 			Cap_controller.dialog = new sap.m.BusyDialog({
@@ -76,7 +78,7 @@ sap.ui.define([
 			oEvent.getSource().getBinding("items").filter(filters);
 
 		},
-			readMethod: function () {
+		readMethod: function () {
 			var seriesCB = Cap_controller.getView().byId('series_Cap');
 			seriesCB.addEventDelegate({
 				onAfterRendering: function () {
@@ -89,14 +91,28 @@ sap.ui.define([
 					ZzmoyrCB.$().find("input").attr("readonly", true);
 				}
 			});
-			var appType=Cap_controller.getView().byId('app_Cap');
+			var appType = Cap_controller.getView().byId('app_Cap');
 			appType.addEventDelegate({
 				onAfterRendering: function () {
 					appType.$().find("input").attr("readonly", true);
 				}
 			});
-		
+
 		},
+
+		onzonedealerSelect: function (evt) {
+			var dealer = Cap_controller.getView().byId("cbzoneFanNo_Cap").getSelectedKey();
+			evt.getSource().getBindingContext();
+			var appTypeVal = Cap_controller.getView().byId('app_Cap').getSelectedKey();
+			if (appTypeVal) {
+
+			}
+
+		},
+		onZoneFanSelect: function () {
+
+		},
+
 		handleSelectAppPress: function (Oevent) {
 			var series = Cap_controller.getView().byId('series_Cap');
 			var modelyear = Cap_controller.getView().byId('modelYr_Cap');
@@ -104,28 +120,46 @@ sap.ui.define([
 			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var dealer = ZzDealer + "- " + ZzDealerName;
 			var fanNo = Cap_controller.getView().byId("FanNo_Cap");
-		//	var dealerVBox = Cap_controller.getView().byId("dealerVBox");
-			var appType=Cap_controller.getView().byId('app_Cap');
+			//	var dealerVBox = Cap_controller.getView().byId("dealerVBox");
+			var appType = Cap_controller.getView().byId('app_Cap');
 			var appTypeVal = Cap_controller.getView().byId('app_Cap').getSelectedKey();
 			appType.setSelectedKey(appTypeVal);
-			if (appTypeVal == "F") {
-				fanNo.setValue(null);
-				fanNo.setShowValueHelp(true);
+			var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+			if (user == "TCI_Zone_User") {
+				if (appTypeVal == "R") {
+					fanNo.setVisible(false);
+					Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(true);
+
+				} else {
+					Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(false);
+					fanNo.setVisible(true);
+					fanNo.setShowSuggestion(true);
+					fanNo.setValue(null);
+					fanNo.setShowValueHelp(true);
+				}
 			} else {
-				fanNo.setShowValueHelp(false);
-				fanNo.setValue(dealer);
-				Cap_controller.listOfModelYear();
+				Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(false);
+				fanNo.setVisible(true);
+				if (appTypeVal == "F") {
+					fanNo.setShowSuggestion(true);
+					fanNo.setValue(null);
+					fanNo.setShowValueHelp(true);
+				} else {
+					fanNo.setShowValueHelp(false);
+					fanNo.setValue(dealer);
+					Cap_controller.listOfModelYear();
+				}
 			}
 			if (series && modelyear && fanNo) {
 				modelyear.setSelectedKey(null);
 				//modelyear.destroyItems();
 				series.setSelectedKey(null);
 				series.destroyItems();
-			//	fanNo.setValue(null);
-			}
-			else{
+				//	fanNo.setValue(null);
+			} else {
 				series.destroyItems();
 			}
+			Cap_controller.getView().getModel("CapTableModel").setData([]);
 			Cap_controller.readMethod();
 		},
 		handleSelectYearPress: function (Oevent) {
@@ -139,9 +173,8 @@ sap.ui.define([
 			}
 			Cap_controller._populateSeries(modelyearval, appTypeVal);
 			Cap_controller.tableLoadFilter();
-				Cap_controller.readMethod();
+			Cap_controller.readMethod();
 		},
-
 		_populateSeries: function (modelyear, appTypeVal) {
 			var host = Cap_controller.host();
 			var div = Cap_controller.appDivision();
@@ -170,14 +203,12 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
-				Cap_controller.readMethod();
+			Cap_controller.readMethod();
 		},
-
 		series_selected: function (oEvent) {
 			Cap_controller.tableLoadFilter();
-				Cap_controller.readMethod();
+			Cap_controller.readMethod();
 		},
-
 		listOfModelYear: function () {
 			var d = new Date();
 			var currentModelYear = d.getFullYear();
@@ -210,7 +241,6 @@ sap.ui.define([
 			appModel.setData(data);
 			Cap_controller.getView().setModel(appModel, "appModel");
 		},
-
 		tableLoad: function () {
 			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var host = Cap_controller.host();
@@ -224,9 +254,10 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					var oModel = new sap.ui.model.json.JSONModel();
+
+					var oModel = Cap_controller.getView().getModel("CapTableModel");
 					oModel.setData(data.d.results);
-					Cap_controller.getView().setModel(oModel, "CapTableModel");
+
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
@@ -277,9 +308,8 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					var oModel = new sap.ui.model.json.JSONModel();
+					var oModel = Cap_controller.getView().getModel("CapTableModel");
 					oModel.setData(data.d.results);
-					Cap_controller.getView().setModel(oModel, "CapTableModel");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
@@ -356,413 +386,17 @@ sap.ui.define([
 			Cap_controller.getView().byId("currentmonthname1id").setText(currentMonth1);
 			Cap_controller.getView().byId("currentmonthname2id").setText(currentMonth2);
 		},
-		onAfterRendering: function () {
+		onAfterRendering: function () {/*
+			var user=sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+			if (user == "TCI_Zone_User") {
+				Cap_controller.getView().byId("FanNo_Cap").setVisible(false);
+				Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(true);
 
-		},
-		onLiveSOChange: function (oEvent) {
-			Cap_controller.sSearchQuery = oEvent.getSource().getValue();
-			Cap_controller.fnSuperSearch();
-		},
-		fnSuperSearch: function (oEvent) {
-			var aFilters = [],
-				aSorters = [];
-
-			aSorters.push(new Sorter("ZzsoReqNo", Cap_controller.bDescending));
-
-			if (Cap_controller.sSearchQuery) {
-				var oFilter = new Filter([
-					new Filter("ZzsoReqNo", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					new Filter("ZzendcuName", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					new Filter("ZzdealerCode", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					new Filter("Zzmoyr", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					new Filter("Zzseries", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					//		new Filter("Zzmodel", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					new Filter("Zzsuffix", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					new Filter("ZzAuditStatus", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					new Filter("ZzsoStatus", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery),
-					new Filter("Zzvtn", sap.ui.model.FilterOperator.Contains, Cap_controller.sSearchQuery)
-				], false);
-
-				var aFilters = new sap.ui.model.Filter([oFilter], true);
-			}
-			Cap_controller.byId("table_Cap").getBinding().filter(aFilters).sort(aSorters);
-		},
-		_SelectionFinish: function (oEvent) {
-			var selectedItems = oEvent.getParameter("selectedItems");
-			var messageText = "Event 'selectionFinished': [";
-
-			for (var i = 0; i < selectedItems.length; i++) {
-				messageText += "'" + selectedItems[i].getText() + "'";
-				if (i != selectedItems.length - 1) {
-					messageText += ",";
-				}
-			}
-
-			messageText += "]";
-			MessageToast.show(messageText, {
-				width: "auto"
-			});
-		},
-		_refreshCombo: function (evt) {
-			clicks = 0;
-			Cap_controller.dialog.open();
-			// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", true);
-
-			filter = true;
-			var oUrl = Cap_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
-			for (var i = 0; i < Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length; i++) {
-				var status = Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems()[i].getKey();
-				oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
-				if (i == ((Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length) - 1)) {
-					oUrl = oUrl + ") and (";
-				} else {
-					oUrl = oUrl + " or ";
-				}
-
-			}
-			for (var i = 0; i < Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length; i++) {
-				var audit = Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems()[i].getKey();
-				oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-				if (i == ((Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length) - 1)) {
-					oUrl = oUrl + ") and (";
-				} else {
-					oUrl = oUrl + " or ";
-				}
-			}
-			for (var i = 0; i < Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length; i++) {
-				var series = Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems()[i].getKey();
-				oUrl = oUrl + "(Zzseries eq '" + series + "')";
-				if (i == ((Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length) - 1)) {
-					oUrl = oUrl + ") and (";
-				} else {
-					oUrl = oUrl + " or ";
-				}
-			}
-			var dealer = Cap_controller.getView().byId("cb_dealer_Cap").getSelectedKey();
-			oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
-
-			$.ajax({
-				url: oUrl,
-				method: "GET",
-				async: false,
-				dataType: "json",
-				success: function (data, textStatus, jqXHR) {
-					Cap_controller.dialog.close();
-					// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-					var BtnNext = Cap_controller.getView().byId("buttonNext");
-					if (data.d.results.length <= 0) {
-						BtnNext.setEnabled(false);
-						Cap_controller.enableExportButton();
-					} else {
-						BtnNext.setEnabled(true);
-					}
-
-					var DataModel = Cap_controller.getView().getModel("CapTableModel");
-
-					DataModel.setData(data.d.results);
-
-					DataModel.updateBindings(true);
-					if (data.d.results.length <= 10) {
-						BtnNext.setEnabled(false);
-						Cap_controller.enableExportButton();
-					}
-					// }
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					Cap_controller.dialog.close();
-					// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-					// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-					// 	"error"), sap.m.MessageBox.Action.OK, null, null);
-					sap.m.MessageToast.show(errMsg);
-
-				}
-			});
-
-		},
-		_refresh: function (oEvent) {
-			clicks = 0;
-			if (oEvent) {
-				if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") === false)) {
-					Cap_controller.getView().byId("mcb_series_Cap").setSelectedItems();
-					Cap_controller.noData = true;
-					sap.m.MessageBox.show(sap.ui.getCore().getModel("i18n").getResourceBundle().getText("SO000016"), sap.m.MessageBox.Icon.ERROR, sap
-						.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							"error"), sap.m.MessageBox.Action.OK, null, null);
-				} else if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") == true)) {
-					Cap_controller.getView().byId("mcb_series_Cap").setSelectedItems(Cap_controller.getView().byId("mcb_series_Cap").getItems());
-					Cap_controller.noData = false;
-				} else {
-					Cap_controller.noData = false;
-				}
-			}
-			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (!Cap_controller.noData) {
-				if (x != "TCI_User" && x != "TCI_Zone_User") {
-					var oUrl = Cap_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
-					for (var i = 0; i < Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length; i++) {
-						var status = Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
-						if (i == ((Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-					}
-					for (var i = 0; i < Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length; i++) {
-						var audit = Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-						if (i == ((Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-					}
-					for (var i = 0; i < Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length; i++) {
-						var series = Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(Zzseries eq '" + series + "')";
-						if (i == ((Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-					}
-					for (var i = 0; i < Cap_controller.getView().byId("mcb_dealer_Cap").getSelectedItems().length; i++) {
-						var dealer = Cap_controller.getView().byId("mcb_dealer_Cap").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
-						if (i == ((Cap_controller.getView().byId("mcb_dealer_Cap").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-					}
-					// Cap_controller.dialog.open();
-					$.ajax({
-						url: oUrl,
-						method: "GET",
-						async: false,
-						dataType: "json",
-						success: function (data, textStatus, jqXHR) {
-							Cap_controller.dialog.close();
-							// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-							var BtnNext = Cap_controller.getView().byId("buttonNext");
-							if (data.d.results.length <= 0) {
-								BtnNext.setEnabled(false);
-								Cap_controller.enableExportButton();
-							} else {
-								BtnNext.setEnabled(true);
-							}
-
-							var DataModel = Cap_controller.getView().getModel("CapTableModel");
-							// if (DataModel.getData().length != undefined) {
-							// 	for (var m = 0; m < data.d.results.length; m++) {
-							// 		DataModel.getData().push(data.d.results[m]);
-							// 		DataModel.updateBindings(true);
-							// 		//console.log("DataModel.getData()", DataModel.getData());
-							// 	}
-							// } else {
-							DataModel.setData(data.d.results);
-
-							DataModel.updateBindings(true);
-							if (data.d.results.length <= 10) {
-								BtnNext.setEnabled(false);
-								Cap_controller.enableExportButton();
-							}
-							// }
-						},
-						error: function (jqXHR, textStatus, errorThrown) {
-							Cap_controller.dialog.close();
-							// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageToast.show(errMsg);
-							// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							// "error"), sap.m.MessageBox.Action.OK, null, null);
-
-						}
-					});
-				} else {
-					//march 10 P2 change adding below block and commenting older block 
-					if (filter == false) {
-						Cap_controller.dialog.close();
-						/*	var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
-						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
-*/
-					}
-					/*if (filter == false) {
-						var oUrl = Cap_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
-						for (var i = 0; i < Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length; i++) {
-							var status = Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems()[i].getKey();
-							oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
-							if (i == ((Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length) - 1)) {
-								oUrl = oUrl + ") and (";
-							} else {
-								oUrl = oUrl + " or ";
-							}
-
-						}
-						for (var i = 0; i < Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length; i++) {
-							var audit = Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems()[i].getKey();
-							oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-							if (i == ((Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length) - 1)) {
-								oUrl = oUrl + ") and (";
-							} else {
-								oUrl = oUrl + " or ";
-							}
-						}
-						for (var i = 0; i < Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length; i++) {
-							var series = Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems()[i].getKey();
-							oUrl = oUrl + "(Zzseries eq '" + series + "')";
-							if (i == ((Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length) - 1)) {
-								oUrl = oUrl + ") and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
-							} else {
-								oUrl = oUrl + " or ";
-							}
-						}
-						$.ajax({
-							url: oUrl,
-							method: "GET",
-							async: false,
-							dataType: "json",
-							success: function (data, textStatus, jqXHR) {
-								Cap_controller.dialog.close();
-								// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-								var BtnNext = Cap_controller.getView().byId("buttonNext");
-								if (data.d.results.length <= 0) {
-									BtnNext.setEnabled(false);
-									Cap_controller.enableExportButton();
-								} else {
-									BtnNext.setEnabled(true);
-								}
-
-								var DataModel = Cap_controller.getView().getModel("CapTableModel");
-								// if (DataModel.getData().length != undefined) {
-								// 	for (var m = 0; m < data.d.results.length; m++) {
-								// 		DataModel.getData().push(data.d.results[m]);
-								// 		DataModel.updateBindings(true);
-								// 		//console.log("DataModel.getData()", DataModel.getData());
-								// 	}
-								// } else {
-								if (data.d.results.length <= 10) {
-									BtnNext.setEnabled(false);
-									Cap_controller.enableExportButton();
-								}
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
-								// }
-							},
-							error: function (jqXHR, textStatus, errorThrown) {
-								Cap_controller.dialog.close();
-								// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-								var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-								// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-								// 	"error"), sap.m.MessageBox.Action.OK, null, null);
-								sap.m.MessageToast.show(errMsg);
-
-							}
-						});
-					} */
-					else {
-
-						var oUrl = Cap_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
-						for (var i = 0; i < Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length; i++) {
-							var status = Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems()[i].getKey();
-							oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
-							if (i == ((Cap_controller.getView().byId("mcb_rsStatus_Cap").getSelectedItems().length) - 1)) {
-								oUrl = oUrl + ") and (";
-							} else {
-								oUrl = oUrl + " or ";
-							}
-
-						}
-						for (var i = 0; i < Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length; i++) {
-							var audit = Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems()[i].getKey();
-							oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-							if (i == ((Cap_controller.getView().byId("mcb_auditStatus_Cap").getSelectedItems().length) - 1)) {
-								oUrl = oUrl + ") and (";
-							} else {
-								oUrl = oUrl + " or ";
-							}
-						}
-						for (var i = 0; i < Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length; i++) {
-							var series = Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems()[i].getKey();
-							oUrl = oUrl + "(Zzseries eq '" + series + "')";
-							if (i == ((Cap_controller.getView().byId("mcb_series_Cap").getSelectedItems().length) - 1)) {
-								oUrl = oUrl + ") and (";
-							} else {
-								oUrl = oUrl + " or ";
-							}
-						}
-						// for (var i = 0; i < Cap_controller.getView().byId("cb_dealer_Cap").getSelectedItems().length; i++) {
-						var dealer = Cap_controller.getView().byId("cb_dealer_Cap").getSelectedKey();
-						oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')) and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
-
-						$.ajax({
-							url: oUrl,
-							method: "GET",
-							async: false,
-							dataType: "json",
-							success: function (data, textStatus, jqXHR) {
-								Cap_controller.dialog.close();
-								// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-								var BtnNext = Cap_controller.getView().byId("buttonNext");
-								if (data.d.results.length <= 0) {
-									BtnNext.setEnabled(false);
-									Cap_controller.enableExportButton();
-								} else {
-									BtnNext.setEnabled(true);
-								}
-
-								var DataModel = Cap_controller.getView().getModel("CapTableModel");
-								// if (DataModel.getData().length != undefined) {
-								// 	for (var m = 0; m < data.d.results.length; m++) {
-								// 		DataModel.getData().push(data.d.results[m]);
-								// 		DataModel.updateBindings(true);
-								// 		//console.log("DataModel.getData()", DataModel.getData());
-								// 	}
-								// } else {
-								if (data.d.results.length <= 10) {
-									BtnNext.setEnabled(false);
-									Cap_controller.enableExportButton();
-								}
-								DataModel.setData(data.d.results);
-								/*	var array3={}; 
-							var array4={};
-							array3 = data.d.results;
-							array4 = sap.ui.getCore().getModel('GlobalChatModel').getData();
-							console.log( "array3");
-							console.log( array3);console.log(array4);
-							*/
-
-								DataModel.updateBindings(true);
-								// }
-							},
-							error: function (jqXHR, textStatus, errorThrown) {
-								Cap_controller.dialog.close();
-								// Cap_controller.getView().getModel("CapTableModel").setProperty("/CapBusyIndicator", false);
-								var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-								// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-								// 	"error"), sap.m.MessageBox.Action.OK, null, null);
-								sap.m.MessageToast.show(errMsg);
-
-							}
-						});
-
-					}
-				}
 			} else {
-				Cap_controller.getView().getModel("CapTableModel").setData();
-				Cap_controller.getView().getModel("CapTableModel").updateBindings(true);
+				Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(false);
+				Cap_controller.getView().byId("FanNo_Cap").setVisible(true);
 			}
-		},
-		_dispalySoldOrderDetails: function (evt) {
-			Cap_controller.getOwnerComponent().getRouter().navTo("CapView_ManageSoldOrder", {
-				Soreq: evt.getSource().getText()
-			}, true);
-		},
-		_createNewOrder: function () {
-			Cap_controller.getOwnerComponent().getRouter().navto("RetailSoldOrderA", {}, true);
-		},
+		*/},
 		onActionNext: function (oEvent) {
 			Cap_controller.dialog.open();
 			//Cap_controller code was generated by the layout editor.
@@ -859,6 +493,15 @@ sap.ui.define([
 			}
 			//	return currentMonth;
 		},
+		_formatDealer: function (deal) {
+
+			if (deal == "R") {
+				Cap_controller.formatDealer = "Reatil";
+			} else {
+				Cap_controller.formatDealer = "Fleet";
+			}
+			//return Cap_controller.formatDealer;
+		},
 		JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
 			var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
 			var CSV = "";
@@ -870,7 +513,7 @@ sap.ui.define([
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("appType") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("series") + ",";
 			//	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("model") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealerFan") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Capyear") + ",";
 			row += Cap_controller.getView().byId("currentmonthnameid").getText() + ",";
 			row += Cap_controller.getView().byId("currentmonthname1id").getText() + ",";
@@ -883,12 +526,13 @@ sap.ui.define([
 				Cap_controller.formatMonthDataForExcel(arrData[i].Month01, arrData[i].Month02, arrData[i].Month03, arrData[i].Month04, arrData[i].Month05,
 					arrData[i].Month06, arrData[i].Month07, arrData[i].Month08, arrData[i].Month09, arrData[i].Month10, arrData[i].Month11, arrData[
 						i].Month12);
+				Cap_controller._fomatDealer(arrData[i].Zzdealer);
 				row = " ";
 				row += arrData[i].Zzmoyr + ',' +
 					arrData[i].ZzappType + ',' +
 					arrData[i].Zzseries + ',' +
 					//	arrData[i].Zzmodel + ',' +
-					arrData[i].ZzDealer + ',' +
+					Cap_controller.formatDealer + ',' +
 					arrData[i].CapYear + ',' +
 					Cap_controller.currentMonth + ',' +
 					Cap_controller.currentMonth1 + ',' +

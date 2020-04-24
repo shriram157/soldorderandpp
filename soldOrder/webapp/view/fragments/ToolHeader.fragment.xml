@@ -32,7 +32,7 @@
 			</layoutData>
 		</Button>
 		
-		<Button text="{i18n>menu11}" id="idmenu11" press="handleBaseLinkPress" type="Transparent" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}">
+		<Button text="{i18n>menu11}" id="idmenu11" press="handleBaseLinkPress" type="Transparent" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}">
 			<layoutData>
 				<OverflowToolbarLayoutData priority="High"/>
 			</layoutData>
