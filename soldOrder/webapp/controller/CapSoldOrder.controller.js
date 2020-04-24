@@ -91,7 +91,7 @@ sap.ui.define([
 				}
 			});
 			var appType = Cap_controller.getView().byId('app_Cap');
-			
+
 			appType.addEventDelegate({
 				onAfterRendering: function () {
 					appType.$().find("input").attr("readonly", true);
@@ -100,17 +100,9 @@ sap.ui.define([
 
 		},
 
-		onzonedealerSelect: function (evt) {
-			var dealer = Cap_controller.getView().byId("cbzoneFanNo_Cap").getSelectedKey();
-			evt.getSource().getBindingContext();
-			var appTypeVal = Cap_controller.getView().byId('app_Cap').getSelectedKey();
-			if (appTypeVal) {
+		onZoneRetailDealerSelect: function (evt) {
 
-			}
-
-		},
-		onZoneFanSelect: function () {
-
+			Cap_controller.listOfModelYear();
 		},
 
 		handleSelectAppPress: function (Oevent) {
@@ -242,6 +234,7 @@ sap.ui.define([
 			Cap_controller.getView().setModel(appModel, "appModel");
 		},
 		tableLoad: function () {
+
 			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
 			var host = Cap_controller.host();
 			var d = new Date();
@@ -270,11 +263,18 @@ sap.ui.define([
 		tableLoadFilter: function () {
 			var ZzappType = Cap_controller.getView().byId("app_Cap").getSelectedKey();
 			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedKey();
-			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var ZzDealer;
 			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
 
 			var host = Cap_controller.host();
 			var url;
+			var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+			if (user == "TCI_Zone_User") {
+				ZzDealer = Cap_controller.getView().byId("cbzoneFanNo_Cap").getSelectedKey();
+			} else {
+				var ZzDealer1 = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				ZzDealer=ZzDealer1.substring(ZzDealer1.length - 5, ZzDealer1.length);
+			}
 			if (ZzappType == "R") {
 				if (Zzmoyr && ZzappType && ZzDealer && Zzseries == "") {
 					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$filter=ZzDealer eq '" + ZzDealer + "' and  Zzmoyr eq '" + Zzmoyr +
@@ -387,11 +387,10 @@ sap.ui.define([
 			Cap_controller.getView().byId("currentmonthname2id").setText(currentMonth2);
 		},
 		onAfterRendering: function () {
-			var user=sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+			var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (user == "TCI_Zone_User") {
 				Cap_controller.getView().byId("FanNo_Cap").setVisible(false);
 				Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(true);
-
 			} else {
 				Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(false);
 				Cap_controller.getView().byId("FanNo_Cap").setVisible(true);
@@ -568,7 +567,16 @@ sap.ui.define([
 			var ZzappType = Cap_controller.getView().byId("app_Cap").getSelectedKey();
 			var Zzseries = Cap_controller.getView().byId("series_Cap").getSelectedKey();
 			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
-			var ZzDealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var ZzDealer;
+			// = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+			if (user == "TCI_Zone_User") {
+				ZzDealer = Cap_controller.getView().byId("cbzoneFanNo_Cap").getSelectedKey();
+			} else {
+				var ZzDealer1 = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+				ZzDealer=ZzDealer1.substring(ZzDealer1.length - 5, ZzDealer1.length);
+			}
+			var url;
 			if (ZzappType == "R") {
 				if (Zzmoyr && ZzappType && ZzDealer && Zzseries == "") {
 					url = host + "/ZVMS_SOLD_ORDER_SRV/SoCapTableSet?$top=100&$skip=" + num + "&$filter=ZzDealer eq '" + ZzDealer +

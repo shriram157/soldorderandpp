@@ -32,14 +32,14 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<!--visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" -->
+												
 												<Input id="FanNo_Cap"  value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showSuggestion="false" showValueHelp="false"
 													liveChange="ondealerSelect" class="widthFan_Cap">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Input>
-												<ComboBox id="cbzoneFanNo_Cap"  items="{LoginUserModel>/BpDealerModel}"  class="sapUiMediumMarginEnd">
+												<ComboBox id="cbzoneFanNo_Cap"  items="{LoginUserModel>/BpDealerModel}"  selectionChange="onZoneRetailDealerSelect" class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
 														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
