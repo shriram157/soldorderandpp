@@ -151,6 +151,17 @@ sap.ui.define([
 			var appType = Cap_controller.getView().byId('app_Cap');
 			var appTypeVal = Cap_controller.getView().byId('app_Cap').getSelectedKey();
 			appType.setSelectedKey(appTypeVal);
+			if (series && modelyear && fanNo) {
+				modelyear.setSelectedKey(null);
+				modelyear.destroyItems();
+				series.setSelectedKey(null);
+				series.destroyItems();
+			} else {
+				series.destroyItems();
+			}
+			Cap_controller.getView().getModel("CapTableModel").setData([]);
+			Cap_controller.readMethod();
+
 			var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (user == "TCI_Zone_User") {
 				if (appTypeVal == "R") {
@@ -177,17 +188,6 @@ sap.ui.define([
 					Cap_controller.listOfModelYear();
 				}
 			}
-			if (series && modelyear && fanNo) {
-				modelyear.setSelectedKey(null);
-				modelyear.destroyItems();
-				series.setSelectedKey(null);
-				series.destroyItems();
-				//	fanNo.setValue(null);
-			} else {
-				series.destroyItems();
-			}
-			Cap_controller.getView().getModel("CapTableModel").setData([]);
-			Cap_controller.readMethod();
 		},
 		handleSelectYearPress: function (Oevent) {
 			var modelyearval = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
