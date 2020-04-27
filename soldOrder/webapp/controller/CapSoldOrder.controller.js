@@ -64,6 +64,13 @@ sap.ui.define([
 					Fan.setValue(text);
 					Cap_controller.dialog.close();
 					Cap_controller.listOfModelYear();
+					var series = Cap_controller.getView().byId('series_Cap');
+					var modelyear = Cap_controller.getView().byId('modelYr_Cap');
+					if (series && modelyear) {
+						series.setSelectedKey(null);
+						series.destroyItems();
+						modelyear.setSelectedKey(null);
+					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					Cap_controller.dialog.close();
@@ -178,7 +185,7 @@ sap.ui.define([
 			}
 			if (series && modelyear && fanNo) {
 				modelyear.setSelectedKey(null);
-				//modelyear.destroyItems();
+				modelyear.destroyItems();
 				series.setSelectedKey(null);
 				series.destroyItems();
 				//	fanNo.setValue(null);
