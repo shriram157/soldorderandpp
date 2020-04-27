@@ -19,15 +19,6 @@ sap.ui.define([
 			Cap_controller.formatcurrentMonthNameFun();
 			AppController.getDealer();
 			Cap_controller.listOfApp();
-			//AppController.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
-			var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (user == "TCI_Zone_User") {
-				Cap_controller.getView().byId("FanNo_Cap").setVisible(false);
-				Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(true);
-			} else {
-				Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(false);
-				Cap_controller.getView().byId("FanNo_Cap").setVisible(true);
-			}
 			Cap_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(Cap_controller._onObjectMatched, Cap_controller);
 		},
 		_onObjectMatched: function (oEvent) {
@@ -71,12 +62,14 @@ sap.ui.define([
 						series.destroyItems();
 						modelyear.setSelectedKey(null);
 					}
+					Cap_controller.getView().getModel("CapTableModel").setData([]);
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					Cap_controller.dialog.close();
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
 						sap.m.MessageBox.Action.OK, null, null);
+					Cap_controller.getView().getModel("CapTableModel").setData([]);
 				}
 			});
 		},
@@ -135,6 +128,7 @@ sap.ui.define([
 				series.destroyItems();
 				modelyear.setSelectedKey(null);
 			}
+			Cap_controller.getView().getModel("CapTableModel").setData([]);
 			Cap_controller.listOfModelYear();
 		},
 		ondealerSelect: function () {
