@@ -528,14 +528,14 @@ sap.ui.define([
 			}
 			//	return currentMonth;
 		},
-		_formatDealer: function (deal) {
+		_formatAppType: function (deal) {
 
 			if (deal == "R") {
-				Cap_controller.formatDealer = "Reatil";
+				Cap_controller.formatAppType = "Retail";
 			} else {
-				Cap_controller.formatDealer = "Fleet";
+				Cap_controller.formatAppType = "Fleet";
 			}
-			//return Cap_controller.formatDealer;
+
 		},
 		JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
 			var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
@@ -547,7 +547,6 @@ sap.ui.define([
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("appType") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("series") + ",";
-			//	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("model") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealerFan") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Capyear") + ",";
 			row += Cap_controller.getView().byId("currentmonthnameid").getText() + ",";
@@ -557,17 +556,16 @@ sap.ui.define([
 			CSV += row + '\r\n';
 
 			for (var i = 0; i < arrData.length; i++) {
-				//				console.log(arrData[i]);
 				Cap_controller.formatMonthDataForExcel(arrData[i].Month01, arrData[i].Month02, arrData[i].Month03, arrData[i].Month04, arrData[i].Month05,
 					arrData[i].Month06, arrData[i].Month07, arrData[i].Month08, arrData[i].Month09, arrData[i].Month10, arrData[i].Month11, arrData[
 						i].Month12);
-				Cap_controller._formatDealer(arrData[i].Zzdealer);
+				Cap_controller._formatAppType(arrData[i].ZzappType);
 				row = " ";
 				row += arrData[i].Zzmoyr + ',' +
-					arrData[i].ZzappType + ',' +
+					Cap_controller.formatAppType + ',' +
 					arrData[i].Zzseries + ',' +
-					//	arrData[i].Zzmodel + ',' +
-					Cap_controller.formatDealer + ',' +
+
+					arrData[i].Zzdealer + ',' +
 					arrData[i].CapYear + ',' +
 					Cap_controller.currentMonth + ',' +
 					Cap_controller.currentMonth1 + ',' +
