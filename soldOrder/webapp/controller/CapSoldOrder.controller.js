@@ -561,7 +561,7 @@ sap.ui.define([
 				Cap_controller.formatMonthDataForExcel(arrData[i].Month01, arrData[i].Month02, arrData[i].Month03, arrData[i].Month04, arrData[i].Month05,
 					arrData[i].Month06, arrData[i].Month07, arrData[i].Month08, arrData[i].Month09, arrData[i].Month10, arrData[i].Month11, arrData[
 						i].Month12);
-				Cap_controller._fomatDealer(arrData[i].Zzdealer);
+				Cap_controller._formatDealer(arrData[i].Zzdealer);
 				row = " ";
 				row += arrData[i].Zzmoyr + ',' +
 					arrData[i].ZzappType + ',' +
