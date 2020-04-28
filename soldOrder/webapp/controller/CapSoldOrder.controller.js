@@ -188,6 +188,10 @@ sap.ui.define([
 					Cap_controller.listOfModelYear();
 				}
 			}
+			series.setEnabled(true);
+			modelyear.setEnabled(true);
+			fanNo.setEnabled(true);
+			zoneDealer.setEnabled(true);
 		},
 		handleSelectYearPress: function (Oevent) {
 			var modelyearval = Cap_controller.getView().byId('modelYr_Cap').getSelectedItem().getText();
@@ -359,9 +363,20 @@ sap.ui.define([
 			var ZzappType = Cap_controller.getView().byId("app_Cap");
 			var Zzseries = Cap_controller.getView().byId("series_Cap");
 			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap');
+			var ZzDealer1 = Cap_controller.getView().byId("cbzoneFanNo_Cap");
+			var FanDealerCap = Cap_controller.getView().byId('FanNo_Cap');
+			
 			ZzappType.setSelectedKey(null);
 			Zzseries.setSelectedKey(null);
 			Zzmoyr.setSelectedKey(null);
+			ZzDealer1.setSelectedKey(null);
+			FanDealerCap.setValue(null);
+			
+			Zzseries.setEnabled(false);
+			Zzmoyr.setEnabled(false);
+			ZzDealer1.setEnabled(false);
+			FanDealerCap.setEnabled(false);
+			
 		},
 		formatcurrentMonthNameFun: function () {
 			var d = new Date();
@@ -431,6 +446,16 @@ sap.ui.define([
 				Cap_controller.getView().byId("cbzoneFanNo_Cap").setVisible(false);
 				Cap_controller.getView().byId("FanNo_Cap").setVisible(true);
 			}
+			
+			var Zzseries = Cap_controller.getView().byId("series_Cap");
+			var Zzmoyr = Cap_controller.getView().byId('modelYr_Cap');
+			var ZzDealer1 = Cap_controller.getView().byId("cbzoneFanNo_Cap");
+			var FanDealerCap = Cap_controller.getView().byId('FanNo_Cap');
+			
+			Zzseries.setEnabled(false);
+			Zzmoyr.setEnabled(false);
+			ZzDealer1.setEnabled(false);
+			FanDealerCap.setEnabled(false);
 		},
 		onActionNext: function (oEvent) {
 			Cap_controller.dialog.open();
