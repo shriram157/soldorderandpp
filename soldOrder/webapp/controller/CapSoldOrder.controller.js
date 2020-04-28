@@ -565,7 +565,7 @@ sap.ui.define([
 					Cap_controller.formatAppType + ',' +
 					arrData[i].Zzseries + ',' +
 
-					arrData[i].Zzdealer + ',' +
+					arrData[i].ZzDealer + ',' +
 					arrData[i].CapYear + ',' +
 					Cap_controller.currentMonth + ',' +
 					Cap_controller.currentMonth1 + ',' +
