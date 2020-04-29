@@ -22,6 +22,8 @@ sap.ui.define([
 			Cap_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(Cap_controller._onObjectMatched, Cap_controller);
 		},
 		_onObjectMatched: function (oEvent) {
+			clicks = 0;
+			num = 0;
 			var oModel = new sap.ui.model.json.JSONModel();
 			Cap_controller.getView().setModel(oModel, "CapTableModel");
 			Cap_controller.tableLoad();
@@ -293,7 +295,8 @@ sap.ui.define([
 
 					var oModel = Cap_controller.getView().getModel("CapTableModel");
 					oModel.setData(data.d.results);
-
+					clicks = 0;
+					num = 0;
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
@@ -354,6 +357,9 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					var oModel = Cap_controller.getView().getModel("CapTableModel");
 					oModel.setData(data.d.results);
+					clicks = 0;
+					num = 0;
+
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
