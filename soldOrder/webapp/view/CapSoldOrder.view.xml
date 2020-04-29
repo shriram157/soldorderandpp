@@ -148,7 +148,7 @@
 							</t:Table>
 							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
 								<l:content>
-									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
+									<Button xmlns="sap.m" id="capButtonNext" press="onActionNext" text="{i18n>more}"/>
 								</l:content>
 							</l:Grid>
 						</items>
