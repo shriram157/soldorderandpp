@@ -11,7 +11,7 @@ sap.ui.define([
 	"use strict";
 	var Cap_controller, num, clicks = 0;
 
-	//var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
+	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 	return BaseController.extend("toyota.ca.SoldOrder.controller.CapSoldOrder", {
 		formatter: formatter,
 		onInit: function () {
@@ -394,6 +394,59 @@ sap.ui.define([
 			var currentMonth = " ";
 			var currentMonth1 = " ";
 			var currentMonth2 = " ";
+			if(language=="FR"){
+			if (n == "1") {
+				currentMonth = "Janv.";
+				currentMonth1 = "Févr.";
+				currentMonth2 = "Mars";
+			} else if (n == "2") {
+				currentMonth = "Févr.";
+				currentMonth1 = "Mars";
+				currentMonth2 = "Avril";
+			} else if (n == "3") {
+				currentMonth = "Mars";
+				currentMonth1 = "Avril";
+				currentMonth2 = "Mai";
+			} else if (n == "4") {
+				currentMonth = "Avril";
+				currentMonth1 = "Mai";
+				currentMonth2 = "Juin";
+			} else if (n == "5") {
+				currentMonth = "Mai";
+				currentMonth1 = "Juin";
+				currentMonth2 = "Juil.";
+			} else if (n == "6") {
+				currentMonth = "Juin";
+				currentMonth1 = "Juil.";
+				currentMonth2 = "Août.";
+			} else if (n == "7") {
+				currentMonth = "Juil.";
+				currentMonth1 = "Août.";
+				currentMonth2 = "Sept";
+			} else if (n == "8") {
+				currentMonth = "Août.";
+				currentMonth1 = "Sept";
+				currentMonth2 = "Oct.";
+			} else if (n == "9") {
+				currentMonth = "Sept";
+				currentMonth1 = "Oct.";
+				currentMonth2 = "Nov.";
+			} else if (n == "10") {
+				currentMonth = "Oct.";
+				currentMonth1 = "Nov.";
+				currentMonth2 = "Déc.";
+			} else if (n == "11") {
+				currentMonth = "Nov.";
+				currentMonth1 = "Déc.";
+				currentMonth2 = "Janv.";
+			} else {
+				currentMonth = "Déc.";
+				currentMonth1 = "Janv.";
+				currentMonth2 = "Févr.";
+			}
+				
+			}
+			else{
 			if (n == "1") {
 				currentMonth = "JAN";
 				currentMonth1 = "FEB";
@@ -443,6 +496,8 @@ sap.ui.define([
 				currentMonth1 = "JAN";
 				currentMonth2 = "FEB";
 			}
+				
+			}
 			Cap_controller.getView().byId("currentmonthnameid").setText(currentMonth);
 			Cap_controller.getView().byId("currentmonthname1id").setText(currentMonth1);
 			Cap_controller.getView().byId("currentmonthname2id").setText(currentMonth2);
@@ -476,7 +531,7 @@ sap.ui.define([
 			} else {
 				clicks += 1;
 			}
-			num = clicks * 100; //chnage 25 sep , 50 earleir
+			num = clicks * 100; //chnage 25 Sept , 50 earleir
 
 			// if (num === count1) {
 			// 	var BtnNext = Cap_controller.getView().byId("capButtonNext");
@@ -491,7 +546,7 @@ sap.ui.define([
 				BtnExport.setEnabled(true);
 			} else {
 				//BtnExport.setEnabled(false);
-				BtnExport.setEnabled(true); // change 24 sep -requirement change
+				BtnExport.setEnabled(true); // change 24 Sept -requirement change
 			}
 		},
 		onExport: function () {
