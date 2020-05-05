@@ -47,7 +47,7 @@
 													</layoutData>
 												</ComboBox>
 											</VBox>
-											<VBox>
+											<!--<VBox>
 												<Label text="{i18n>modelYear}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -59,7 +59,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</ComboBox>
-											</VBox>
+											</VBox>-->
 											<VBox>
 												<Label text="{i18n>series}" class="TableLabel">
 													<layoutData>
@@ -88,12 +88,12 @@
 								visibleRowCount="10" class="marginCorners">
 								<!--change 24 sep, earlier 8-->
 								<t:columns>
-									<t:Column >
+								<!--	<t:Column >
 										<Label text="{i18n>modelYear}" class="TableLabel"/>
 										<t:template>
 											<Text text="{CapTableModel>Zzmoyr}" wrapping="true"/>
 										</t:template>
-									</t:Column>
+									</t:Column>-->
 									<t:Column>
 										<Label text="{i18n>appType}" class="TableLabel"/>
 										<t:template>
