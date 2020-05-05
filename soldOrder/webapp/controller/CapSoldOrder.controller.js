@@ -238,9 +238,9 @@ sap.ui.define([
 
 			var seriesCB = Cap_controller.getView().byId("series_Cap");
 			var tempModel1 = [];
-			var tempModel2 = [];
-			var tempModel3 = [];
-			var tempModel4 = [];
+			// var tempModel2 = [];
+			// var tempModel3 = [];
+			// var tempModel4 = [];
 			$.ajax({
 				url: url1,
 				method: 'GET',
@@ -307,22 +307,25 @@ sap.ui.define([
 				}
 			});
 			console.log(tempModel1);
+			
 			//var tempModel4 = tempModel1.concat(tempModel2).concat(tempModel3);
 			function removeDuplicates(tempModel4) {
-				var obj = {};
+				var obj = {}; Cap_controller.tempModel1=[];
 				//	console.log(tempModel4);
 				for (var i = 0, len = tempModel4.length; i < len; i++)
 				//	obj[tempModel4[i]['TCISeriesDescriptionFR']] = tempModel4[i];
 							obj[tempModel4[i]['ModelSeriesNo']] = tempModel4[i];
 				//			obj[tempModel4[i]['TCISeriesDescriptionEN']] = tempModel4[i];
 				for (var key in obj)
-					tempModel4.push(obj[key]);
-				console.log(tempModel4);
-				return tempModel4;
+					 Cap_controller.tempModel1.push(obj[key]);
+				console.log( Cap_controller.tempModel1);
+				return  Cap_controller.tempModel1;
 			}
 			removeDuplicates(tempModel1);
-			var oModel = new sap.ui.model.json.JSONModel(tempModel1);
+			console.log("model", Cap_controller.tempModel1);
+			var oModel = new sap.ui.model.json.JSONModel( Cap_controller.tempModel1);
 			Cap_controller.getView().setModel(oModel, "seriesModel");
+			// Cap_controller.getView().getModel("seriesModel").updateBindings(true);
 
 			Cap_controller.readMethod();
 		},
