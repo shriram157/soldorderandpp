@@ -465,8 +465,10 @@ sap.ui.define([
 			var fanNo = CFSO_controller.getView().byId("FanNo_CFSO").getValue();
 			var host = CFSO_controller.host();
 			var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
-			var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + valModelYr + "',ZzappType='F',Zzseries='" + valSeries + "',Zzmodel='" +
+		/*	var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + valModelYr + "',ZzappType='F',Zzseries='" + valSeries + "',Zzmodel='" +
 				valModelCode + "',ZzDealer='" + fanNo + "')";
+*/
+	var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(ZzappType='F',Zzseries='" + valSeries+ "',ZzDealer='" + fanNo + "')";
 
 			if (quantity.length > 0) {
 				if (quantity > 0) {

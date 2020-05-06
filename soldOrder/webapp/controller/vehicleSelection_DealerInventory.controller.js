@@ -87,7 +87,7 @@ sap.ui.define([
 			}
 		},
 		_onSelect: function (evt) {
-			
+
 			var host = vehSelDealerInvController.host();
 			var OBJ = {};
 			vehSelDealerInvController.dealer = evt.getSource().getBindingContext('mainservices').getProperty('Dealer');
@@ -101,10 +101,12 @@ sap.ui.define([
 			var dealerlogged = AppController.dealerAllocation;
 			var dealerloggeduri = dealerlogged.substring(dealerlogged.length - 5, dealerlogged.length);
 			sap.ui.getCore().setModel(oModelCore, "ModelCore");
-			var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + vehSelDealerInvController.modYear + "',ZzappType='" + AppController.apptypeAllocation +
+			/*var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + vehSelDealerInvController.modYear + "',ZzappType='" + AppController.apptypeAllocation +
 				"',Zzseries='" + vehSelDealerInvController.series + "',Zzmodel='" + vehSelDealerInvController.model + "',ZzDealer='" +
+				dealerloggeduri + "')";*/
+			var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(ZzappType='" + AppController.apptypeAllocation +
+				"',Zzseries='" + vehSelDealerInvController.series + "',ZzDealer='" +
 				dealerloggeduri + "')";
-
 			if (dealerlogged != vehSelDealerInvController.dealer) {
 				$.ajax({
 					url: zurl,
@@ -113,7 +115,7 @@ sap.ui.define([
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
 						vehSelDealerInvController.allocatedNo = data.d.Allowed;
-						var compareval=parseInt("-1");
+						var compareval = parseInt("-1");
 						if (vehSelDealerInvController.allocatedNo == compareval) {
 							if (OBJ.ZZVTN) {
 								var V_No = OBJ.ZZVTN;
@@ -141,7 +143,7 @@ sap.ui.define([
 							}
 
 						} else if (vehSelDealerInvController.allocatedNo > 0) {
-							var remVal=parseInt(vehSelDealerInvController.allocatedNo);
+							var remVal = parseInt(vehSelDealerInvController.allocatedNo);
 							var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informAllocation", [remVal]);
 							sap.m.MessageBox.show(sMsg, {
 								icon: sap.m.MessageBox.Icon.INFORMATION,
@@ -208,8 +210,8 @@ sap.ui.define([
 							}
 
 						} else {
-							var remVal2=parseInt(vehSelDealerInvController.allocatedNo);
-							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorAllocation",[remVal2]);
+							var remVal2 = parseInt(vehSelDealerInvController.allocatedNo);
+							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorAllocation", [remVal2]);
 							var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
 								.m.MessageBox.Action.OK, null, null);
