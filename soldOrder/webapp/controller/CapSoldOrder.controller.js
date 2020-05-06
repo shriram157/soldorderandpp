@@ -132,7 +132,8 @@ sap.ui.define([
 				series.destroyItems();
 				//		modelyear.setSelectedKey(null);
 			}
-			Cap_controller.getView().getModel("CapTableModel").setData([]);
+			Cap_controller.handleSelectYearPress();
+			//Cap_controller.getView().getModel("CapTableModel").setData([]);
 			//	Cap_controller.listOfModelYear();
 		},
 		ondealerSelect: function () {
@@ -176,7 +177,7 @@ sap.ui.define([
 					fanNo.setVisible(false);
 					zoneDealer.setVisible(true);
 					zoneDealer.setSelectedKey(null);
-					Cap_controller.handleSelectYearPress();
+					//Cap_controller.handleSelectYearPress();
 				} else {
 					zoneDealer.setVisible(false);
 					fanNo.setVisible(true);
@@ -235,12 +236,8 @@ sap.ui.define([
 				"',P_app_type='" + appTypeVal + "')/Set?$filter=Division eq '" + div + "'";
 			var url3 = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + nextModelYear +
 				"',P_app_type='" + appTypeVal + "')/Set?$filter=Division eq '" + div + "'";
-
 			var seriesCB = Cap_controller.getView().byId("series_Cap");
-			var tempModel1 = [];
-			// var tempModel2 = [];
-			// var tempModel3 = [];
-			// var tempModel4 = [];
+			var tempArray = [];
 			$.ajax({
 				url: url1,
 				method: 'GET',
@@ -251,9 +248,8 @@ sap.ui.define([
 						seriesCB.setSelectedKey(null);
 					}
 					for (var x = 0; x < data.d.results.length; x++) {
-						tempModel1.push(data.d.results[x]);
+						tempArray.push(data.d.results[x]);
 					}
-					console.log(tempModel1);
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Error1");
@@ -272,10 +268,8 @@ sap.ui.define([
 						seriesCB.setSelectedKey(null);
 					}
 					for (var x = 0; x < data.d.results.length; x++) {
-						tempModel1.push(data.d.results[x]);
+						tempArray.push(data.d.results[x]);
 					}
-
-					//					tempModel1.concat(data.d.results);
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Error1");
@@ -293,11 +287,9 @@ sap.ui.define([
 					if (seriesCB.getValue() !== "") {
 						seriesCB.setSelectedKey(null);
 					}
-					//						tempModel1.concat(data.d.results);
 					for (var x = 0; x < data.d.results.length; x++) {
-						tempModel1.push(data.d.results[x]);
+						tempArray.push(data.d.results[x]);
 					}
-
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Error1");
@@ -306,27 +298,21 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
-			console.log(tempModel1);
-			
-			//var tempModel4 = tempModel1.concat(tempModel2).concat(tempModel3);
 			function removeDuplicates(tempModel4) {
-				var obj = {}; Cap_controller.tempModel1=[];
-				//	console.log(tempModel4);
+				var obj = {}; Cap_controller.tempArray=[];
 				for (var i = 0, len = tempModel4.length; i < len; i++)
-				//	obj[tempModel4[i]['TCISeriesDescriptionFR']] = tempModel4[i];
 							obj[tempModel4[i]['ModelSeriesNo']] = tempModel4[i];
-				//			obj[tempModel4[i]['TCISeriesDescriptionEN']] = tempModel4[i];
 				for (var key in obj)
-					 Cap_controller.tempModel1.push(obj[key]);
-				console.log( Cap_controller.tempModel1);
-				return  Cap_controller.tempModel1;
+					Cap_controller.tempArray.push(obj[key]);
+				return  Cap_controller.tempArray;
 			}
-			removeDuplicates(tempModel1);
-			console.log("model", Cap_controller.tempModel1);
-			var oModel = new sap.ui.model.json.JSONModel( Cap_controller.tempModel1);
+			removeDuplicates(tempArray);
+			console.log("model", Cap_controller.tempArray);
+			var oModel = new sap.ui.model.json.JSONModel( );
+			oModel.setData(Cap_controller.tempArray);
 			Cap_controller.getView().setModel(oModel, "seriesModel");
-			// Cap_controller.getView().getModel("seriesModel").updateBindings(true);
-
+			Cap_controller.getView().setModel('seriesModel');
+			console.log(Cap_controller.getView().getModel('seriesModel').getData());
 			Cap_controller.readMethod();
 		},
 
