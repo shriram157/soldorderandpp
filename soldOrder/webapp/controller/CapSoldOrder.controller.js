@@ -59,7 +59,7 @@ sap.ui.define([
 					//Cap_controller.listOfModelYear();
 					var series = Cap_controller.getView().byId('series_Cap');
 					//	var modelyear = Cap_controller.getView().byId('modelYr_Cap');
-					if (series && modelyear) {
+					if (series) {
 						series.setSelectedKey(null);
 						series.destroyItems();
 						//		modelyear.setSelectedKey(null);
