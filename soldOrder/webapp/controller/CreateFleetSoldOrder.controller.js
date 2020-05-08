@@ -478,7 +478,7 @@ sap.ui.define([
 						async: false,
 						dataType: 'json',
 						success: function (data, textStatus, jqXHR) {
-							CFSO_controller.allocatedNo = data.d.Allowed;
+							CFSO_controller.allocatedNo = parseInt(data.d.Allowed);
 							 if (CFSO_controller.allocatedNo >= quantity) {
 							//	var remQ = CFSO_controller.allocatedNo - quantity;
 							//	var remVal = parseInt(remQ);
