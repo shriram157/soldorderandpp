@@ -43,8 +43,8 @@ sap.ui.define([
 				new Filter("RSO_NUM", FilterOperator.EQ, zrequest),
 				new Filter("source", FilterOperator.EQ, "RSO"),
 				new Filter("ZDIVISION", FilterOperator.EQ, vehSelDealerInvController.sDivision),
-				new Filter("Model", FilterOperator.EQ, vehicle.model),
-				new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear),
+				//new Filter("Model", FilterOperator.EQ, vehicle.model),
+				//new Filter("Modelyear", FilterOperator.EQ, vehicle.modelyear), //commenting due to odel and model year removal on cap table may 8 2002
 				new Filter("TCISeries", FilterOperator.EQ, vehicle.series),
 				new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
 				new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color)
