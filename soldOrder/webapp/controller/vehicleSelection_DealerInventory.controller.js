@@ -87,7 +87,8 @@ sap.ui.define([
 			}
 		},
 		assignVTN: function () {
-			//	var host = vehSelDealerInvController.host();
+			var oModelCore = new sap.ui.model.json.JSONModel(vehSelDealerInvController.OBJ);
+			sap.ui.getCore().setModel(oModelCore, "ModelCore");
 			if (vehSelDealerInvController.OBJ.ZZVTN) {
 				var V_No = vehSelDealerInvController.OBJ.ZZVTN;
 				vehSelDealerInvController.getView().getModel('mainservices').callFunction("/RSO_VTN_ASSIGN", {
@@ -125,10 +126,9 @@ sap.ui.define([
 			vehSelDealerInvController.OBJ.ZZVTN = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
 			vehSelDealerInvController.OBJ.ETAFrom = evt.getSource().getBindingContext('mainservices').getProperty('ETAFrom');
 			vehSelDealerInvController.OBJ.ETATo = evt.getSource().getBindingContext('mainservices').getProperty('ETATo');
-			var oModelCore = new sap.ui.model.json.JSONModel(vehSelDealerInvController.OBJ);
 			var dealerlogged = AppController.dealerAllocation;
 			var dealerloggeduri = dealerlogged.substring(dealerlogged.length - 5, dealerlogged.length);
-			sap.ui.getCore().setModel(oModelCore, "ModelCore");
+			
 			/*var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + vehSelDealerInvController.modYear + "',ZzappType='" + AppController.apptypeAllocation +
 				"',Zzseries='" + vehSelDealerInvController.series + "',Zzmodel='" + vehSelDealerInvController.model + "',ZzDealer='" +
 				dealerloggeduri + "')";*/
