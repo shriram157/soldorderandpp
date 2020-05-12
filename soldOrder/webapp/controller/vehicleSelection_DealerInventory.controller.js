@@ -176,7 +176,7 @@ sap.ui.define([
 											});
 										}
 									} else {
-										zrequest = "";
+									//	zrequest = "";
 									}
 
 								}
