@@ -92,7 +92,6 @@ sap.ui.define([
 				}
 			}
 
-			
 		},
 		_onObjectMatched: function (oEvent) {
 
@@ -163,10 +162,9 @@ sap.ui.define([
 			Apx_CFSO.$().find("input").attr("readonly", true);
 
 		},
-	
-		
+
 		_handleToDateChange: function () {
-				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+			var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 			// Handle th Validation Date "YYYYMMdd"
 			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 				pattern: "yyyy-MM-ddTHH:mm:ss"
@@ -205,10 +203,9 @@ sap.ui.define([
 			// 	sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 			// }
 		},
-	
 
 		listOfModelYear: function () {
-				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+			var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 			var d = new Date();
 			var currentModelYear = d.getFullYear();
 			var previousModelYear = currentModelYear - 1;
@@ -240,7 +237,7 @@ sap.ui.define([
 
 		},
 		_handleChange: function () {
-			
+
 			// Handle th Validation Date "YYYYMMdd"
 			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 				pattern: "yyyy-MM-ddTHH:mm:ss"
@@ -465,10 +462,10 @@ sap.ui.define([
 			var fanNo = CFSO_controller.getView().byId("FanNo_CFSO").getValue();
 			var host = CFSO_controller.host();
 			var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
-		/*	var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + valModelYr + "',ZzappType='F',Zzseries='" + valSeries + "',Zzmodel='" +
+			/*	var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + valModelYr + "',ZzappType='F',Zzseries='" + valSeries + "',Zzmodel='" +
 				valModelCode + "',ZzDealer='" + fanNo + "')";
 */
-	var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(ZzappType='F',Zzseries='" + valSeries+ "',ZzDealer='" + fanNo + "')";
+			var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(ZzappType='F',Zzseries='" + valSeries + "',ZzDealer='" + fanNo + "')";
 
 			if (quantity.length > 0) {
 				if (quantity > 0) {
@@ -479,9 +476,9 @@ sap.ui.define([
 						dataType: 'json',
 						success: function (data, textStatus, jqXHR) {
 							CFSO_controller.allocatedNo = parseInt(data.d.Allowed);
-							 if (CFSO_controller.allocatedNo >= quantity) {
-							//	var remQ = CFSO_controller.allocatedNo - quantity;
-							//	var remVal = parseInt(remQ);
+							if (CFSO_controller.allocatedNo >= quantity) {
+								//	var remQ = CFSO_controller.allocatedNo - quantity;
+								//	var remVal = parseInt(remQ);
 								var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informFleetAllocation", [CFSO_controller.allocatedNo]);
 								sap.m.MessageBox.show(sMsg, {
 									icon: sap.m.MessageBox.Icon.INFORMATION,
@@ -533,82 +530,86 @@ sap.ui.define([
 									}
 								});
 
-							} else if (CFSO_controller.allocatedNo < quantity) {
-							//	var remQ = CFSO_controller.allocatedNo - quantity;
-							//	var remVal = parseInt(remQ);
-								var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informFleetAllocation", [CFSO_controller.allocatedNo]);
-								sap.m.MessageBox.show(sMsg, {
-									icon: sap.m.MessageBox.Icon.WARNING,
-									title: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("warning"),
-									actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
-									onClose: function (oAction) {
-										if (oAction == "YES") {
-											for (var i = 0; i < quantity.length; i++) {
-												if (isNaN(quantity[i])) {
-													var errMsgNum = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorNumber");
-													sap.m.MessageBox.show(errMsgNum, sap.m.MessageBox.Icon.ERROR, errTitle, sap
-														.m.MessageBox.Action.OK, null, null);
-												}
-											}
-											if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" ||
-												etaFrom === null ||
-												etaTo === null || quantity == "") {
-												var errForm = formatter.formatErrorType("SO00003");
-												CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
-												var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
-												sap.m.MessageBox.show(errMsg, sap
-													.m.MessageBox.Icon.ERROR, errTitle, sap
-													.m.MessageBox.Action.OK, null, null);
+							} else if (CFSO_controller.allocatedNo == -1) {
 
-											} else {
-												TableData2.push({
-													modelYear: valModelYr,
-													suffix: valSuffix,
-													series: valSeries,
-													model: valModelCode,
-													colour: CFSO_controller.getView().byId("color_CFSO").getSelectedKey(),
-													APX: CFSO_controller.getView().byId("Apx_CFSO").getSelectedKey(),
-													ETAFrom: CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue(),
-													ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
-													quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
-												});
-												CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
-													items: TableData2
-												});
-												CFSO_controller.getView().getModel('SecondTable').refresh(true);
-												CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
-												CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
-											}
-											CFSO_controller.onMandatoryValChange();
-										} else {
-											CFSO_controller.onMandatoryValChange();
-										}
-
+								for (var i = 0; i < quantity.length; i++) {
+									if (isNaN(quantity[i])) {
+										var errMsgNum = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorNumber");
+										sap.m.MessageBox.show(errMsgNum, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+											.m.MessageBox.Action.OK, null, null);
 									}
-								});
+								}
+								if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" ||
+									etaFrom === null ||
+									etaTo === null || quantity == "") {
+									var errForm = formatter.formatErrorType("SO00003");
+									CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+									var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+									sap.m.MessageBox.show(errMsg, sap
+										.m.MessageBox.Icon.ERROR, errTitle, sap
+										.m.MessageBox.Action.OK, null, null);
+
+								} else {
+									TableData2.push({
+										modelYear: valModelYr,
+										suffix: valSuffix,
+										series: valSeries,
+										model: valModelCode,
+										colour: CFSO_controller.getView().byId("color_CFSO").getSelectedKey(),
+										APX: CFSO_controller.getView().byId("Apx_CFSO").getSelectedKey(),
+										ETAFrom: CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue(),
+										ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
+										quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
+									});
+									CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
+										items: TableData2
+									});
+									CFSO_controller.getView().getModel('SecondTable').refresh(true);
+									CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
+									CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+								}
+								CFSO_controller.onMandatoryValChange();
 
 							} else {
-								var remQ = CFSO_controller.allocatedNo - quantity;
-								var remVal = parseInt(remQ);
-								var remQuant="";
-								if(CFSO_controller.allocatedNo=="0"){
-									remQuant="0";
+
+								for (var i = 0; i < quantity.length; i++) {
+									if (isNaN(quantity[i])) {
+										var errMsgNum = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorNumber");
+										sap.m.MessageBox.show(errMsgNum, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+											.m.MessageBox.Action.OK, null, null);
+									}
 								}
-								else if(CFSO_controller.allocatedNo < quantity){
-									remQuant=parseInt(CFSO_controller.allocatedNo);
+								if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" ||
+									etaFrom === null ||
+									etaTo === null || quantity == "") {
+									var errForm = formatter.formatErrorType("SO00003");
+									CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+									var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+									sap.m.MessageBox.show(errMsg, sap
+										.m.MessageBox.Icon.ERROR, errTitle, sap
+										.m.MessageBox.Action.OK, null, null);
+
+								} else {
+									TableData2.push({
+										modelYear: valModelYr,
+										suffix: valSuffix,
+										series: valSeries,
+										model: valModelCode,
+										colour: CFSO_controller.getView().byId("color_CFSO").getSelectedKey(),
+										APX: CFSO_controller.getView().byId("Apx_CFSO").getSelectedKey(),
+										ETAFrom: CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue(),
+										ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
+										quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
+									});
+									CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
+										items: TableData2
+									});
+									CFSO_controller.getView().getModel('SecondTable').refresh(true);
+									CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
+									CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
 								}
-								else if(CFSO_controller.allocatedNo == quantity){
-									remQuant="0";
-								}
-								else{
-									remQuant="0";
-								}
-								
-								var _errMsg3 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorAllocation",[remQuant]);
-							//	var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
-								sap.m.MessageBox.show(_errMsg3, sap.m.MessageBox.Icon.ERROR, errTitle, sap
-									.m.MessageBox.Action.OK, null, null);
 								CFSO_controller.onMandatoryValChange();
+
 							}
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
@@ -954,7 +955,7 @@ sap.ui.define([
 
 			}
 		},
-		
+
 		_valuehelpfanno: function (oEvent) {
 			var FanNo_CFSO = CFSO_controller.getView().byId('FanNo_CFSO');
 			FanNo_CFSO.$().find("input").attr("readonly", true);
@@ -1038,46 +1039,46 @@ sap.ui.define([
 
 		},
 		onAfterRendering: function () {
-				var FanNo_CFSO = CFSO_controller.getView().byId("FanNo_CFSO");
-				FanNo_CFSO.addEventDelegate({
-					onAfterRendering: function () {
-						FanNo_CFSO.$().find("input").attr("readonly", true);
-					}
-				});
-				var modelYr_CFSO = CFSO_controller.getView().byId("modelYr_CFSO");
-				modelYr_CFSO.addEventDelegate({
-					onAfterRendering: function () {
-						modelYr_CFSO.$().find("input").attr("readonly", true);
-					}
-				});
+			var FanNo_CFSO = CFSO_controller.getView().byId("FanNo_CFSO");
+			FanNo_CFSO.addEventDelegate({
+				onAfterRendering: function () {
+					FanNo_CFSO.$().find("input").attr("readonly", true);
+				}
+			});
+			var modelYr_CFSO = CFSO_controller.getView().byId("modelYr_CFSO");
+			modelYr_CFSO.addEventDelegate({
+				onAfterRendering: function () {
+					modelYr_CFSO.$().find("input").attr("readonly", true);
+				}
+			});
 
-				var modelCode_CFSO = CFSO_controller.getView().byId("modelCode_CFSO");
-				modelCode_CFSO.addEventDelegate({
-					onAfterRendering: function () {
-						modelCode_CFSO.$().find("input").attr("readonly", true);
-					}
-				});
-				var suffix_CFSO = CFSO_controller.getView().byId("suffix_CFSO");
-				suffix_CFSO.addEventDelegate({
-					onAfterRendering: function () {
-						suffix_CFSO.$().find("input").attr("readonly", true);
-					}
-				});
-				var color_CFSO = CFSO_controller.getView().byId("color_CFSO");
-				color_CFSO.addEventDelegate({
-					onAfterRendering: function () {
-						color_CFSO.$().find("input").attr("readonly", true);
-					}
-				});
-				var Apx_CFSO = CFSO_controller.getView().byId("Apx_CFSO");
-				Apx_CFSO.addEventDelegate({
-					onAfterRendering: function () {
-						Apx_CFSO.$().find("input").attr("readonly", true);
-					}
-				});
+			var modelCode_CFSO = CFSO_controller.getView().byId("modelCode_CFSO");
+			modelCode_CFSO.addEventDelegate({
+				onAfterRendering: function () {
+					modelCode_CFSO.$().find("input").attr("readonly", true);
+				}
+			});
+			var suffix_CFSO = CFSO_controller.getView().byId("suffix_CFSO");
+			suffix_CFSO.addEventDelegate({
+				onAfterRendering: function () {
+					suffix_CFSO.$().find("input").attr("readonly", true);
+				}
+			});
+			var color_CFSO = CFSO_controller.getView().byId("color_CFSO");
+			color_CFSO.addEventDelegate({
+				onAfterRendering: function () {
+					color_CFSO.$().find("input").attr("readonly", true);
+				}
+			});
+			var Apx_CFSO = CFSO_controller.getView().byId("Apx_CFSO");
+			Apx_CFSO.addEventDelegate({
+				onAfterRendering: function () {
+					Apx_CFSO.$().find("input").attr("readonly", true);
+				}
+			});
 
-			}
-		
+		}
+
 	});
 
 });
