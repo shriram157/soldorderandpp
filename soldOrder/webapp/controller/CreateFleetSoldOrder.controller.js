@@ -570,7 +570,62 @@ sap.ui.define([
 								}
 								CFSO_controller.onMandatoryValChange();
 
-							} else {
+							} else if (CFSO_controller.allocatedNo <= quantity) {
+								//	var remQ = CFSO_controller.allocatedNo - quantity;
+								//	var remVal = parseInt(remQ);
+								var sMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("informFleetAllocation", [CFSO_controller.allocatedNo]);
+								sap.m.MessageBox.show(sMsg, {
+									icon: sap.m.MessageBox.Icon.WARNING,
+									title: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("warning"),
+									actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+									onClose: function (oAction) {
+										if (oAction == "YES") {
+											for (var i = 0; i < quantity.length; i++) {
+												if (isNaN(quantity[i])) {
+													var errMsgNum = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorNumber");
+													sap.m.MessageBox.show(errMsgNum, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+														.m.MessageBox.Action.OK, null, null);
+												}
+											}
+											if (valModelYr == "" || valSuffix == "" || valSeries == "" || valModelCode == "" || colour == "" || apx == "" ||
+												etaFrom === null ||
+												etaTo === null || quantity == "") {
+												var errForm = formatter.formatErrorType("SO00003");
+												CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", false);
+												var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+												sap.m.MessageBox.show(errMsg, sap
+													.m.MessageBox.Icon.ERROR, errTitle, sap
+													.m.MessageBox.Action.OK, null, null);
+
+											} else {
+												TableData2.push({
+													modelYear: valModelYr,
+													suffix: valSuffix,
+													series: valSeries,
+													model: valModelCode,
+													colour: CFSO_controller.getView().byId("color_CFSO").getSelectedKey(),
+													APX: CFSO_controller.getView().byId("Apx_CFSO").getSelectedKey(),
+													ETAFrom: CFSO_controller.getView().byId("etaFrom_CFSO").getDateValue(),
+													ETATime: CFSO_controller.getView().byId("etaTo_CFSO").getDateValue(),
+													quantity: CFSO_controller.getView().byId("quantity_CFSO").getValue(),
+												});
+												CFSO_controller.getView().byId("idCFSO_Table2").getModel("SecondTable").setData({
+													items: TableData2
+												});
+												CFSO_controller.getView().getModel('SecondTable').refresh(true);
+												CFSO_controller.getView().getModel('SecondTable').updateBindings(true);
+												CFSO_controller.getView().getModel('FirstTable').setProperty("/submitEnabled", true);
+											}
+											CFSO_controller.onMandatoryValChange();
+										} else {
+											CFSO_controller.onMandatoryValChange();
+										}
+
+									}
+								});
+
+							}  
+							else {
 
 								for (var i = 0; i < quantity.length; i++) {
 									if (isNaN(quantity[i])) {
