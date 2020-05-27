@@ -489,13 +489,13 @@ sap.ui.define([
 				} else if (n == "5") {
 					currentMonth = "Mai";
 					currentMonth1 = "Juin";
-					currentMonth2 = "Juil.";
+					currentMonth2 = "Juill.";
 				} else if (n == "6") {
 					currentMonth = "Juin";
-					currentMonth1 = "Juil.";
+					currentMonth1 = "Juill.";
 					currentMonth2 = "Août.";
 				} else if (n == "7") {
-					currentMonth = "Juil.";
+					currentMonth = "Juill.";
 					currentMonth1 = "Août.";
 					currentMonth2 = "Sept";
 				} else if (n == "8") {
