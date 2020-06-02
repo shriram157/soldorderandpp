@@ -385,6 +385,39 @@ sap.ui.define([
 								color: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'),
 								series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')
 							}), 'Vehicle_Selection');
+
+							RSO_MSO_controller.model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+								'Zzmodel');
+							RSO_MSO_controller.modYear = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+								'Zzmoyr');
+							AppController.dealerAllocation = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+								'ZzdealerCode');
+							RSO_MSO_controller.series = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+								'Zzseries');
+							if (RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType") == "SO") {
+								AppController.apptypeAllocation = "R";
+							} else if (RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType") == "FO") {
+								AppController.apptypeAllocation = "F";
+							} else {
+								AppController.apptypeAllocation = "R";
+							}
+							var host = RSO_MSO_controller.host();
+							var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+							if (isDivisionSent) {
+								this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+								if (this.sDivision == '10') {
+									RSO_MSO_controller.divison = "TOY";
+								} else { // set the lexus logo
+									RSO_MSO_controller.divison = "LEX";
+								}
+							}
+							/*console.log("1:"+RSO_MSO_controller.model);
+							console.log("2:"+RSO_MSO_controller.modYear);
+							console.log("3:"+RSO_MSO_controller.dealer);
+							console.log("4:"+RSO_MSO_controller.series);
+							console.log("5:"+RSO_MSO_controller.apptype);
+							*/
+
 							//Filter Data Sold Order
 							var SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
 							//For FLeet Details only
@@ -708,10 +741,13 @@ sap.ui.define([
 			},
 
 			_getVehiclesToFillSoldOrderRequest: function () {
+			//	var host = RSO_MSO_controller.host();
 				SelectVehicleOption = true;
 				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 					Soreq: zrequest
 				}, true);
+			
+
 			},
 
 			_navCancleOrder: function () {
@@ -1109,7 +1145,7 @@ sap.ui.define([
 					// else 
 					if (AppController.RSOA == true) {
 						pathAB = "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set";
-					//mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
+						//mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
 					} else {
 						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}

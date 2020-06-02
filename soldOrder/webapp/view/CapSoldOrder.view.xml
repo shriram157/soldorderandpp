@@ -1,0 +1,160 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="toyota.ca.SoldOrder.controller.CapSoldOrder">
+	<App>
+		<pages>
+			<Page showHeader="false">
+				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
+				<content>
+					<VBox busy="{CapTableModel>/CapBusyIndicator}">
+						<items>
+							<Label id="label_CapSoldOrderSummaryid" text=" " class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom fontsize"/>
+							<VBox class="marginCorners VBox_color">
+								<items>
+									<f:SimpleForm columnsL="2" columnsM="2" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="3" labelSpanM="3"
+										layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
+										<f:content>
+											<VBox>
+												<Label text="{i18n>appType}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+												<ComboBox id="app_Cap" items="{ path: 'appModel>/'}" required="true" selectionChange="handleSelectAppPress">
+													<core:Item key="{appModel>key}" text="{appModel>text}"/>
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</ComboBox>
+											</VBox>
+											<VBox visible="true" id="dealerVBox">
+												<Label text="{i18n>dealerFan}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+												
+												<Input id="FanNo_Cap"  value="{Data>/ZfanNo}" valueHelpRequest="_valuehelpfanno" showSuggestion="false" showValueHelp="false"
+													liveChange="ondealerSelect" class="widthFan_Cap">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Input>
+												<ComboBox id="cbzoneFanNo_Cap"  items="{LoginUserModel>/BpDealerModel}"  selectionChange="onZoneRetailDealerSelect" class="sapUiMediumMarginEnd">
+													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
+														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</ComboBox>
+											</VBox>
+											<!--<VBox>
+												<Label text="{i18n>modelYear}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+												<ComboBox id="modelYr_Cap" items="{ path: 'yearModel>/'}" required="true" selectionChange="handleSelectYearPress">
+													<core:Item key="{yearModel>key}" text="{yearModel>text}"/>
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</ComboBox>
+											</VBox>-->
+											<VBox>
+												<Label text="{i18n>series}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+												<ComboBox id="series_Cap" items="{ path: 'seriesModel>/'}" required="true" selectionChange="series_selected">
+													<core:Item key="{seriesModel>ModelSeriesNo}"
+														text="{=${LocalDataModel>/Lang} ==='FR' ? ${seriesModel>TCISeriesDescriptionFR} : ${seriesModel>TCISeriesDescriptionEN} }"/>
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</ComboBox>
+											</VBox>
+										</f:content>
+									</f:SimpleForm>
+								</items>
+							</VBox>
+							<HBox class="justifyContentEnd sapUiMediumMarginBegin">
+								<items>
+									<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" id="idBtnExportToExcel"
+										class="sapUiTinyMarginBegin sapUiMediumMarginEnd"></Button>
+								</items>
+							</HBox>
+							<t:Table id="table_Cap" selectionMode="None" rows="{CapTableModel>/}" enableColumnReordering="false" alternateRowColors="true"
+								visibleRowCount="10" class="marginCorners">
+								<!--change 24 sep, earlier 8-->
+								<t:columns>
+								<!--	<t:Column >
+										<Label text="{i18n>modelYear}" class="TableLabel"/>
+										<t:template>
+											<Text text="{CapTableModel>Zzmoyr}" wrapping="true"/>
+										</t:template>
+									</t:Column>-->
+									<t:Column>
+										<Label text="{i18n>appType}" class="TableLabel"/>
+										<t:template>
+											<Text text="{path:'CapTableModel>ZzappType', formatter:'toyota.ca.SoldOrder.util.formatter.formatRF'}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column >
+										<Label text="{i18n>dealerFan}" class="TableLabel"/>
+										<t:template>
+											<Text visible="true" id="tbl_lbl_dealer_Cap"
+												text="{path:'CapTableModel>ZzDealer',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column >
+										<Label text="{i18n>series}" class="TableLabel"/>
+										<t:template>
+											<Text text="{CapTableModel>Zzseries}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label text="{i18n>Capyear}" class="TableLabel"/>
+										<t:template>
+											<Text text="{CapTableModel>CapYear}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label id="currentmonthnameid" class="TableLabel" text=" "/>
+										<t:template>
+											<!--<Text text="{CapTableModel>Month04}" formatter wrapping="true"/>-->
+											<Text
+												text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonth'}"
+												wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column >
+										<Label text="" id="currentmonthname1id" class="TableLabel"/>
+										<t:template>
+											<Text
+												text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonth1'}"
+												wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column >
+										<Label text=" " id="currentmonthname2id" class="TableLabel"/>
+										<t:template>
+											<Text
+												text="{parts: [{path:'CapTableModel>Month01'},{path:'CapTableModel>Month02'},{path:'CapTableModel>Month03'},{path:'CapTableModel>Month04'},{path:'CapTableModel>Month05'},{path:'CapTableModel>Month06'},{path:'CapTableModel>Month07'},{path:'CapTableModel>Month08'},{path:'CapTableModel>Month09'},{path:'CapTableModel>Month10'},{path:'CapTableModel>Month11'},{path:'CapTableModel>Month12'}] ,formatter: 'toyota.ca.SoldOrder.util.formatter.formatcurrentMonth2'}"
+												wrapping="true"/>
+										</t:template>
+									</t:Column>
+								</t:columns>
+							</t:Table>
+							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
+								<l:content>
+									<Button xmlns="sap.m" id="capButtonNext" press="onActionNext" text="{i18n>more}"/>
+								</l:content>
+							</l:Grid>
+						</items>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
