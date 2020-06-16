@@ -9,6 +9,188 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 		return text;
 	},
+	formatRF: function (val) {
+		var j;
+		if (val == "R") {
+			j = "Retail";
+		} else if (val == "F") {
+			j = "Fleet";
+		} else {
+			j = "Retail";
+		}
+		return j;
+	},
+	formatcurrentMonth: function (m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12) {
+		var d = new Date();
+		var n = d.getMonth() + 1;
+		var currentMonth = " ";
+		var currentMonth1 = " ";
+		var currentMonth2 = " ";
+		if (n == 1) {
+			currentMonth = m1;
+			currentMonth1 = m2;
+			currentMonth2 = m3;
+		} else if (n == "2") {
+			currentMonth = m2;
+			currentMonth1 = m3;
+			currentMonth2 = m4;
+		} else if (n == "3") {
+			currentMonth = m3;
+			currentMonth1 = m4;
+			currentMonth2 = m5;
+		} else if (n == "4") {
+			currentMonth = m4;
+			currentMonth1 = m5;
+			currentMonth2 = m6;
+		} else if (n == "5") {
+			currentMonth = m5;
+			currentMonth1 = m6;
+			currentMonth2 = m7;
+		} else if (n == "6") {
+			currentMonth = m6;
+			currentMonth1 = m7;
+			currentMonth2 = m8;
+		} else if (n == "7") {
+			currentMonth = m7;
+			currentMonth1 = m8;
+			currentMonth2 = m9;
+		} else if (n == "8") {
+			currentMonth = m8;
+			currentMonth1 = m9;
+			currentMonth2 = m10;
+		} else if (n == "9") {
+			currentMonth = m9;
+			currentMonth1 = m10;
+			currentMonth2 = m11;
+		} else if (n == "10") {
+			currentMonth = m10;
+			currentMonth1 = m11;
+			currentMonth2 = m12;
+		} else if (n == "11") {
+			currentMonth = m11;
+			currentMonth1 = m12;
+			currentMonth2 = m1;
+		} else {
+			currentMonth = m12;
+			currentMonth1 = m1;
+			currentMonth2 = m2;
+		}
+		return currentMonth;
+	},
+	formatcurrentMonth1: function (m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12) {
+		var d = new Date();
+		var n = d.getMonth() + 1;
+		var currentMonth = " ";
+		var currentMonth1 = " ";
+		var currentMonth2 = " ";
+		if (n == 1) {
+			currentMonth = m1;
+			currentMonth1 = m2;
+			currentMonth2 = m3;
+		} else if (n == "2") {
+			currentMonth = m2;
+			currentMonth1 = m3;
+			currentMonth2 = m4;
+		} else if (n == "3") {
+			currentMonth = m3;
+			currentMonth1 = m4;
+			currentMonth2 = m5;
+		} else if (n == "4") {
+			currentMonth = m4;
+			currentMonth1 = m5;
+			currentMonth2 = m6;
+		} else if (n == "5") {
+			currentMonth = m5;
+			currentMonth1 = m6;
+			currentMonth2 = m7;
+		} else if (n == "6") {
+			currentMonth = m6;
+			currentMonth1 = m7;
+			currentMonth2 = m8;
+		} else if (n == "7") {
+			currentMonth = m7;
+			currentMonth1 = m8;
+			currentMonth2 = m9;
+		} else if (n == "8") {
+			currentMonth = m8;
+			currentMonth1 = m9;
+			currentMonth2 = m10;
+		} else if (n == "9") {
+			currentMonth = m9;
+			currentMonth1 = m10;
+			currentMonth2 = m11;
+		} else if (n == "10") {
+			currentMonth = m10;
+			currentMonth1 = m11;
+			currentMonth2 = m12;
+		} else if (n == "11") {
+			currentMonth = m11;
+			currentMonth1 = m12;
+			currentMonth2 = m1;
+		} else {
+			currentMonth = m12;
+			currentMonth1 = m1;
+			currentMonth2 = m2;
+		}
+		return currentMonth1;
+	},
+	formatcurrentMonth2: function (m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12) {
+		var d = new Date();
+		var n = d.getMonth() + 1;
+		var currentMonth = " ";
+		var currentMonth1 = " ";
+		var currentMonth2 = " ";
+		if (n == 1) {
+			currentMonth = m1;
+			currentMonth1 = m2;
+			currentMonth2 = m3;
+		} else if (n == "2") {
+			currentMonth = m2;
+			currentMonth1 = m3;
+			currentMonth2 = m4;
+		} else if (n == "3") {
+			currentMonth = m3;
+			currentMonth1 = m4;
+			currentMonth2 = m5;
+		} else if (n == "4") {
+			currentMonth = m4;
+			currentMonth1 = m5;
+			currentMonth2 = m6;
+		} else if (n == "5") {
+			currentMonth = m5;
+			currentMonth1 = m6;
+			currentMonth2 = m7;
+		} else if (n == "6") {
+			currentMonth = m6;
+			currentMonth1 = m7;
+			currentMonth2 = m8;
+		} else if (n == "7") {
+			currentMonth = m7;
+			currentMonth1 = m8;
+			currentMonth2 = m9;
+		} else if (n == "8") {
+			currentMonth = m8;
+			currentMonth1 = m9;
+			currentMonth2 = m10;
+		} else if (n == "9") {
+			currentMonth = m9;
+			currentMonth1 = m10;
+			currentMonth2 = m11;
+		} else if (n == "10") {
+			currentMonth = m10;
+			currentMonth1 = m11;
+			currentMonth2 = m12;
+		} else if (n == "11") {
+			currentMonth = m11;
+			currentMonth1 = m12;
+			currentMonth2 = m1;
+		} else {
+			currentMonth = m12;
+			currentMonth1 = m1;
+			currentMonth2 = m2;
+		}
+		return currentMonth2;
+	},
 	formatNFSOFlag: function (oData, apiData, nfFlag, soFlag) {
 		var empty = " ";
 		if (nfFlag == true) {
@@ -196,6 +378,14 @@ toyota.ca.SoldOrder.util.formatter = {
 			return false;
 		}
 	},
+	NonTCIorZonalusertype: function (Usertypevalue) {
+		console.log(Usertypevalue);
+		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User")) {
+			return false;
+		} else {
+			return true;
+		}
+	},
 	Nationalusertype: function (Usertypevalue) {
 		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User")) {
 			return false;
@@ -283,8 +473,8 @@ toyota.ca.SoldOrder.util.formatter = {
 			var res3 = dat2.split(" ");
 			res4 = res3[0];
 		} else {
-			dat1="";
-			res4="";
+			dat1 = "";
+			res4 = "";
 		}
 		return dat1 + " " + res4;
 	},

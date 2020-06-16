@@ -37,6 +37,21 @@ sap.ui.define([
 			return this.nodeJsUrl;
 		},
 
+		appDivision: function () {
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			var div = "";
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+				if (this.sDivision == '10') 
+				{
+					div = "TOY";
+				} else { 
+					div = "LEX";
+				}
+			}
+			return div;
+		},
+
 		handleBaseLinkPress: function (oEvent) {
 			this.oBundle = this.getView().getModel("i18n").getResourceBundle();
 			// this.getDealer();
@@ -53,6 +68,8 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
 			} else if (oGetText === this.oBundle.getText("menu9")) {
 				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer"); //page 16
+			} else if (oGetText === this.oBundle.getText("menu11")) {
+				this.getOwnerComponent().getRouter().navTo("CapSoldOrder"); //page 16
 			} else if (oGetText === this.oBundle.getText("menu7")) {
 				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderB", {
 					modelyear: '2018',
@@ -192,8 +209,9 @@ sap.ui.define([
 				success: function (oData) {
 					var LoginUserModel = new sap.ui.model.json.JSONModel();
 					sap.ui.getCore().setModel(LoginUserModel, "LoginUserModel");
+
+					//oData.loggedUserType[0] = "Dealer_User"; //for local testing, comment while deploying
 					var userType = oData.loggedUserType[0];
-					//oData.loggedUserType[0] = "Dealer_User";//for local testing, comment while deploying
 					// //console.log("logged in user dealer");
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					sap.ui.getCore().getModel("LoginUserModel").setSizeLimit(750);
@@ -236,9 +254,9 @@ sap.ui.define([
 				async: false,
 				success: function (oData) {
 					//console.log("initial BP load", oData);
-				/*	var SignatureModel = new sap.ui.model.json.JSONModel();
-					SignatureModel.setData(oData);
-					sap.ui.getCore().setModel(SignatureModel, "SignatureModel");*/
+					/*	var SignatureModel = new sap.ui.model.json.JSONModel();
+						SignatureModel.setData(oData);
+						sap.ui.getCore().setModel(SignatureModel, "SignatureModel");*/
 					var Signaturetype = oData.userProfile.id;
 					var BpDealerArr = [],
 						BpDealer = [];
@@ -288,7 +306,7 @@ sap.ui.define([
 					//console.log("BpDealer", BpDealer);
 					that.getView().getModel("LoginUserModel").setSizeLimit(750);
 					sap.ui.getCore().getModel("LoginUserModel").setSizeLimit(750);
-					
+
 					that.getView().getModel("LoginUserModel").setProperty("/Signaturetype", Signaturetype);
 					sap.ui.getCore().getModel("LoginUserModel").setProperty("/Signaturetype", Signaturetype);
 					that.getView().getModel("LoginUserModel").setProperty("/BpDealerModel", BpDealer);

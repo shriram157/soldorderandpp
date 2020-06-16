@@ -149,6 +149,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Emphasized');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
+			FSOS_controller.getView().byId("idmenu11").setType('Transparent');
 			var mcb_status_FSOS = FSOS_controller.getView().byId("mcb_status_FSOS");
 			var mcb_ordTyp_FSOS = FSOS_controller.getView().byId("mcb_ordTyp_FSOS");
 			var mcb_dealer_FSOS = FSOS_controller.getView().byId("mcb_dealer_FSOS");
@@ -162,11 +163,25 @@ sap.ui.define([
 			//==================Start Bindidng By Dealer=========================================================
 			//=====================================================================================================
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			if (x != "TCI_User" && x != "TCI_Zone_User") {
 				FSOS_controller.dialog.open();
 				//console.log("loading data");
 				FSOS_controller._refresh();
 			} else {
+				
+				if (FSOS_controller.getView().byId("cb_dealer_FSOS").getSelectedKey() != "") {
+						FSOS_controller._refreshCombo();
+
+					} else {/*
+						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
+
+					*/}
+
+				
+			
+			/*
 				FSOS_controller.dialog.open();
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
@@ -221,7 +236,10 @@ sap.ui.define([
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 					}
 				});
+			*/
+				
 			}
+			
 		},
 		onBeforeRendering: function () {
 			if (AppController.flagZoneUser == true) {
@@ -236,7 +254,7 @@ sap.ui.define([
 			//==================Start Bindidng By Dealer=========================================================
 			//=====================================================================================================
 			// var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			// if (x != "TCI_User") {
+			// if (x != "TCI_User" && x != "TCI_Zone_User") {
 			// 	FSOS_controller._refresh();
 			// } else {
 
@@ -384,7 +402,7 @@ sap.ui.define([
 			clicks = 0;
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			
-			if (x != "TCI_User") {
+			if (x != "TCI_User" && x != "TCI_Zone_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -449,6 +467,14 @@ sap.ui.define([
 				});
 			} else {
 				if (fleet == false) {
+				FSOS_controller.dialog.close();
+				// change march 10 P2
+							/*var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							"error"), sap.m.MessageBox.Action.OK, null, null); 
+*/
+					
+				/*
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -502,7 +528,7 @@ sap.ui.define([
 
 						}
 					});
-				} else {
+				*/} else {
 
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
@@ -577,7 +603,7 @@ sap.ui.define([
 		data: function (oEvent) {
 			FSOS_controller.dialog.open();
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			if (x != "TCI_User" && x != "TCI_Zone_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -643,6 +669,13 @@ sap.ui.define([
 				});
 			} else {
 				if (fleet == false) {
+					FSOS_controller.dialog.close();
+					// change march 10 P2
+						/*	var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
+						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							"error"), sap.m.MessageBox.Action.OK, null, null); 
+*/
+					/*
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -698,7 +731,7 @@ sap.ui.define([
 						}
 					});
 
-				} else {
+				*/} else {
 
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {

@@ -165,6 +165,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Transparent');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Emphasized');
+			PPD_DealerCont.getView().byId("idmenu11").setType('Transparent');
 
 			var mcb_status_PPD_D = PPD_DealerCont.getView().byId("mcb_status_PPD_D");
 			var mcb_ordTyp_PPD_D = PPD_DealerCont.getView().byId("mcb_ordTyp_PPD_D");

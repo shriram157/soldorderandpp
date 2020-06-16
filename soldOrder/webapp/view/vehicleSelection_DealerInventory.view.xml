@@ -21,8 +21,6 @@
 					</m:VBox>
 					<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"
 						alternateRowColors="true" enableColumnFreeze="false" class="marginCorners">
-						<!--<Table id="table_RSOVehicleDealer" selectionMode="None" rows="{mainservices>/InventoryDetailsSet}" enableColumnReordering="false"-->
-						<!--alternateRowColors="true" enableColumnFreeze="false" class="marginCorners" >-->
 						<columns>
 							<Column width="10%" resizable="false">
 								<m:Label text=""/>
