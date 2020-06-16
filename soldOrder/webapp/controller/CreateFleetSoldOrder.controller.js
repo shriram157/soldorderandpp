@@ -91,8 +91,23 @@ sap.ui.define([
 					// }
 				}
 			}
+			
+				this.fnDateDisabled(this.getView().byId("etaFrom_CFSO"));
+			this.fnDateDisabled(this.getView().byId("etaTo_CFSO"));
 
 		},
+		
+			fnDateDisabled : function(id){
+			
+		id.addEventDelegate({
+			onAfterRendering: function(){
+		var oDateInner = this.$().find('.sapMInputBaseInner');
+				var oID = oDateInner[0].id;
+				$('#'+oID).attr("disabled", "disabled"); 
+			}},id);
+		},
+		
+		
 		_onObjectMatched: function (oEvent) {
 
 			/*	var tableModelCreate= sap.ui.getCore().getModel('tableModelCreate');
