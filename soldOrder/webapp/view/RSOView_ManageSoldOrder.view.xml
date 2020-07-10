@@ -79,7 +79,7 @@
 							<CheckBox enabled="false" id="ChatCB" visible="false" text="Enable Post Note" select="onSelectCB"></CheckBox>
 						-->
 							<Label wrapping="true" text="{i18n>PostComment}"/>
-							<FeedInput enabled="false" visible="false" id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
+							<FeedInput placeholder="{i18n>PostMsg}" enabled="false" visible="false" id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>

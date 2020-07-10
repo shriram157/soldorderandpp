@@ -109,7 +109,20 @@ sap.ui.define([
 					// }
 				}
 			}
-
+			
+		
+			this.fnDateDisabled(this.getView().byId("etaFrom_RSOA"));
+			this.fnDateDisabled(this.getView().byId("etaTo_RSOA"));
+		},
+		
+		fnDateDisabled : function(id){
+			
+		id.addEventDelegate({
+			onAfterRendering: function(){
+		var oDateInner = this.$().find('.sapMInputBaseInner');
+				var oID = oDateInner[0].id;
+				$('#'+oID).attr("disabled", "disabled"); 
+			}},id);
 		},
 		_handleSeries: function (modelyear) {
 			//var modelyear = this.getView().byId('modelYr_RSOA').getValue();
@@ -177,7 +190,7 @@ sap.ui.define([
 			var SalesType_RSOA = this.getView().byId("SalesType_RSOA");
 			SalesType_RSOA.$().find("input").attr("readonly", true);
 			this.readyOnly();
-		//	RSOA_controller.resetAllVal();
+			//	RSOA_controller.resetAllVal();
 
 		},
 		_newService1: function () {
@@ -1022,8 +1035,12 @@ sap.ui.define([
 			});
 
 		},
+		
+		
 
 		onAfterRendering: function () {
+		
+
 			RSOA_controller.listOfModelYear();
 			var seriesCB = this.getView().byId('series_RSOA');
 			seriesCB.addEventDelegate({
