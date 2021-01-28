@@ -1027,6 +1027,7 @@ sap.ui.define([
 				RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 				// RSO_MSO_controller.getView().byId('idRSOV_MSO_fileUpl').setValue('');
 				RSO_MSO_controller.getView().byId('idComments_TA_RSO_ManageSO').setValue('');
+				c.getSource().setValue("");
 
 			},
 			getControllerInstance: function () {
