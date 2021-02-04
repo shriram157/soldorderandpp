@@ -407,7 +407,7 @@ sap.ui.define([
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "')";
 
-					oUrl = oUrl + "and &$orderby=dealer_ord desc) ";
+					oUrl = oUrl + "and $orderby=dealer_ord desc) ";
 
 					$.ajax({
 						url: oUrl,
