@@ -343,7 +343,7 @@ sap.ui.define([
 					var dealer = this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 					if (i == ((this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ")& $orderby=dealer_ord desc";
+						oUrl = oUrl + ")& $orderby=dealer_ord desc"; //Changed by singhmi 05/02/2021
 					} else {
 						oUrl = oUrl + " or ";
 					}
