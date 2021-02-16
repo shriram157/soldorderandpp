@@ -315,7 +315,7 @@ sap.ui.define([
 			// }
 		},
 
-		_refresh: function () {
+	_refresh: function () {
 
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
@@ -343,7 +343,7 @@ sap.ui.define([
 					var dealer = this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "')";
 					if (i == ((this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") &$orderby=dealer_ord desc";
+						oUrl = oUrl + ")& $orderby=dealer_ord desc"; //Changed by singhmi 05/02/2021
 					} else {
 						oUrl = oUrl + " or ";
 					}
@@ -405,9 +405,9 @@ sap.ui.define([
 						}
 					}
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
-					oUrl = oUrl + "(dealer_code eq '" + dealer + "')";
+					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 
-					oUrl = oUrl + "and &$orderby=dealer_ord desc) ";
+					oUrl = oUrl + "& $orderby=dealer_ord desc";
 
 					$.ajax({
 						url: oUrl,
@@ -645,7 +645,7 @@ sap.ui.define([
 				}
 				for (var i = 0; i < this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(dealer_code eq '" + dealer + "')";
+					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 					if (i == ((this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length) - 1)) {
 						oUrl = oUrl + ") &$orderby=dealer_ord desc";
 					} else {
@@ -765,8 +765,8 @@ sap.ui.define([
 						}
 					}
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
-					oUrl = oUrl + "(dealer_code eq '" + dealer + "')";
-					oUrl = oUrl + "and &$orderby=dealer_ord desc) ";
+					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
+					oUrl = oUrl + "&$orderby=dealer_ord desc"; //Changed by singhmi 05/02/2021
 
 					$.ajax({
 						url: oUrl,
