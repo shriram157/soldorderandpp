@@ -109,20 +109,20 @@ sap.ui.define([
 					// }
 				}
 			}
-			
-		
+
 			this.fnDateDisabled(this.getView().byId("etaFrom_RSOA"));
 			this.fnDateDisabled(this.getView().byId("etaTo_RSOA"));
 		},
-		
-		fnDateDisabled : function(id){
-			
-		id.addEventDelegate({
-			onAfterRendering: function(){
-		var oDateInner = this.$().find('.sapMInputBaseInner');
-				var oID = oDateInner[0].id;
-				$('#'+oID).attr("disabled", "disabled"); 
-			}},id);
+
+		fnDateDisabled: function (id) {
+
+			id.addEventDelegate({
+				onAfterRendering: function () {
+					var oDateInner = this.$().find('.sapMInputBaseInner');
+					var oID = oDateInner[0].id;
+					$('#' + oID).attr("disabled", "disabled");
+				}
+			}, id);
 		},
 		_handleSeries: function (modelyear) {
 			//var modelyear = this.getView().byId('modelYr_RSOA').getValue();
@@ -660,12 +660,13 @@ sap.ui.define([
 					// data: soapMessage,
 					contentType: "text/xml; charset=\"utf-8\"",
 					success: function (data, textStatus, jqXHR) {
-						oBusyDialog.close();
+
 						var phone = '';
 						//Looping on all customers that we got to match b phone and first name
 						for (var i = 0; i < data.customers.length; i++) {
 							// Check the First Name first
-							if (data.customers[i].person.firstName.toLowerCase() == CustModel.FirstName.toLowerCase()) {
+							if (data.customers[i].person.firstName.toLowerCase() == CustModel.FirstName.toLowerCase() && data.customers[i].person.familyName
+								.toLowerCase() == CustModel.SecondName.toLowerCase()) {
 								for (var z = 0; z < data.customers[i].phones.length; z++) {
 									phone = data.customers[i].phones[z].areaCode + data.customers[i].phones[z].localNumber;
 									// Check Phone No 
@@ -687,13 +688,131 @@ sap.ui.define([
 								}
 							}
 							if (Zcustomer_No && Zcustomer_No != '') {
+								oBusyDialog.close();
 								break;
 							}
 						}
 						// If no one of the fetched customer matching the searching criteria select hte first one.
 						if (!Zcustomer_No || Zcustomer_No == '') {
-							Zcustomer_No = data.customers[0].partyID; //customerNumber;
-							Zcustomer_No = Zcustomer_No.toString();
+							//	Zcustomer_No = data.customers[0].partyID; //customerNumber;
+							//	Zcustomer_No = Zcustomer_No.toString();
+							var soapMessage = {
+								"requestHeader": {
+									"source": "Toyota",
+									"userId": "LOAD",
+									"requestLanguage": "fr_CA"
+								},
+								"type": "NewProfile",
+								"customer": {
+									"person": {
+										"firstName": CustModel.FirstName,
+										"familyName": CustModel.SecondName
+									},
+									"addresses": [{
+										"line1": CustModel.Address,
+										"city": CustModel.City,
+										"provinceCode": CustModel.Province,
+										"countryCode": "CA",
+										"postalCode": CustModel.PostCode,
+										"addressType": "BUSINESS"
+									}],
+									"phones": [{
+										"localNumber": CustModel.Phone.substr(3, 7),
+										"areaCode": CustModel.Phone.substr(0, 3),
+										"useCode": "WORK"
+									}],
+									"preferredLanguageCode": "en-CA",
+									"electronicAddresses": [{
+										"uriID": CustModel.Email,
+										useCode: "PERSONAL"
+									}]
+								},
+								"source": "OICC"
+							};
+							var zdataString = JSON.stringify(
+								soapMessage
+							);
+							$.ajax({
+								url: '/node/tci/internal/api/v1.0/customer/custupdate/oicc/profileChange',
+								headers: {
+									accept: 'application/json',
+									// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
+									// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+									'content-type': 'application/json'
+								},
+								type: "POST",
+								dataType: "json",
+								data: zdataString,
+								success: function (data, textStatus, jqXHR) {
+									oBusyDialog.close();
+									if (data.customer) {
+										Zcustomer_No = data.customer.partyID; //customerNumber;
+										Zcustomer_No = Zcustomer_No.toString();
+										var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("success1");
+										title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title5");
+										icon = new sap.ui.core.Icon({
+											src: "sap-icon://success",
+											size: "2rem"
+										});
+										var msg2 = new sap.m.HBox({
+											items: [icon, new sap.m.Text({
+												text: errMsg2
+											})]
+										});
+										sap.m.MessageBox.show(msg2, {
+											icon: sap.m.MessageBox.Icon.SUCCESS,
+											title: title,
+											actions: sap.m.MessageBox.Action.OK,
+											onClose: null,
+											styleClass: "",
+											initialFocus: null,
+											textDirection: sap.ui.core.TextDirection.Inherit,
+											contentWidth: "10rem"
+										});
+
+									}
+								},
+								error: function (request, errorText, errorCode) {
+									oBusyDialog.close();
+									//if (request.responseJSON.errors.length > 0) {
+										/*if (request.responseJSON.errors[1]) {
+											sap.m.MessageBox.show(request.responseJSON.errors[1].httpMessage, {
+												icon: sap.m.MessageBox.Icon.ERROR,
+												title: request.responseJSON.errors[0].httpMessage,
+												actions: sap.m.MessageBox.Action.OK,
+												onClose: null,
+												styleClass: "",
+												initialFocus: null,
+												textDirection: sap.ui.core.TextDirection.Inherit
+													// contentWidth: "20rem"
+											});
+										} else {
+											sap.m.MessageBox.show(request.responseJSON.errors[0].httpMessage, {
+												icon: sap.m.MessageBox.Icon.ERROR,
+												actions: sap.m.MessageBox.Action.OK,
+												onClose: null,
+												styleClass: "",
+												initialFocus: null,
+												textDirection: sap.ui.core.TextDirection.Inherit
+													// contentWidth: "20rem"
+											});
+										}*/
+										
+
+									//}
+									var msgNew = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorCDMS");
+										sap.m.MessageBox.show({
+												icon: sap.m.MessageBox.Icon.ERROR,
+												title: msgNew,
+												actions: sap.m.MessageBox.Action.OK,
+												onClose: null,
+												styleClass: "",
+												initialFocus: null,
+												textDirection: sap.ui.core.TextDirection.Inherit
+											});
+									
+								}
+							});
 
 						}
 					},
@@ -1035,11 +1154,8 @@ sap.ui.define([
 			});
 
 		},
-		
-		
 
 		onAfterRendering: function () {
-		
 
 			RSOA_controller.listOfModelYear();
 			var seriesCB = this.getView().byId('series_RSOA');
