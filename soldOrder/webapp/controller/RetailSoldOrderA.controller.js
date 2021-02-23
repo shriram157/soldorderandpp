@@ -623,6 +623,7 @@ sap.ui.define([
 
 		onValidateCustomer: function () {
 			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
+			Zcustomer_No='';
 			if (CustModel.FirstName != '' && CustModel.SecondName != '' && CustModel.FirstName && CustModel.SecondName && CustModel.Phone != '' &&
 				CustModel.Phone && CustModel.City != '' && CustModel.City &&
 				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
