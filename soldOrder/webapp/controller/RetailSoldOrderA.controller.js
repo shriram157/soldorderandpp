@@ -628,7 +628,8 @@ sap.ui.define([
 				CustModel.Phone && CustModel.City != '' && CustModel.City &&
 				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
 				CustModel.PostCode) {
-
+				var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
+				
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error1");
 				var title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title5");
 				var icon = new sap.ui.core.Icon({
@@ -689,6 +690,7 @@ sap.ui.define([
 								}
 							}
 							if (Zcustomer_No && Zcustomer_No != '') {
+								submitBtn.setEnabled(true);
 								oBusyDialog.close();
 								break;
 							}
@@ -745,6 +747,7 @@ sap.ui.define([
 								dataType: "json",
 								data: zdataString,
 								success: function (data, textStatus, jqXHR) {
+									submitBtn.setEnabled(true);
 									oBusyDialog.close();
 									if (data.customer) {
 										Zcustomer_No = data.customer.partyID; //customerNumber;
@@ -801,6 +804,7 @@ sap.ui.define([
 										
 
 									//}
+									submitBtn.setEnabled(false);
 									var msgNew = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorCDMS");
 										sap.m.MessageBox.show({
 												icon: sap.m.MessageBox.Icon.ERROR,
@@ -886,6 +890,7 @@ sap.ui.define([
 								dataType: "json",
 								data: zdataString,
 								success: function (data, textStatus, jqXHR) {
+									submitBtn.setEnabled(true);
 									oBusyDialog.close();
 									if (data.customer) {
 										Zcustomer_No = data.customer.partyID; //customerNumber;
@@ -915,8 +920,9 @@ sap.ui.define([
 									}
 								},
 								error: function (request, errorText, errorCode) {
+									submitBtn.setEnabled(false);
 									oBusyDialog.close();
-									if (request.responseJSON.errors.length > 0) {
+									/*if (request.responseJSON.errors.length > 0) {
 										if (request.responseJSON.errors[1]) {
 											sap.m.MessageBox.show(request.responseJSON.errors[1].httpMessage, {
 												icon: sap.m.MessageBox.Icon.ERROR,
@@ -940,7 +946,18 @@ sap.ui.define([
 											});
 										}
 
-									}
+									}*/
+									var msgNew = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorCDMS");
+										sap.m.MessageBox.show({
+												icon: sap.m.MessageBox.Icon.ERROR,
+												title: msgNew,
+												actions: sap.m.MessageBox.Action.OK,
+												onClose: null,
+												styleClass: "",
+												initialFocus: null,
+												textDirection: sap.ui.core.TextDirection.Inherit
+											});
+									
 								}
 							});
 						}
@@ -948,13 +965,13 @@ sap.ui.define([
 
 				});
 
-				validateFlagA = true;
-				var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
+				/*IvalidateFlagA = true;
+				
 				if (validateFlagA == true) {
 					submitBtn.setEnabled(true);
 				} else {
 					submitBtn.setEnabled(false);
-				}
+				}*/
 
 			} else {
 
