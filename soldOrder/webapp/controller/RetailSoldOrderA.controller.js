@@ -965,9 +965,9 @@ sap.ui.define([
 
 				});
 
-				/*IvalidateFlagA = true;
+				validateFlagA = true;
 				
-				if (validateFlagA == true) {
+			/*	if (validateFlagA == true) {
 					submitBtn.setEnabled(true);
 				} else {
 					submitBtn.setEnabled(false);
