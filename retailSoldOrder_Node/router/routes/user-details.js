@@ -108,7 +108,6 @@ module.exports = function (appContext) {
 				"&$expand=to_Customer/to_CustomerSalesArea&$filter=(BusinessPartnerType eq 'Z001' or BusinessPartnerType eq 'Z004')" +
 				"and zstatus ne 'X' &$orderby=BusinessPartner asc &$select=BusinessPartner,BusinessPartnerName,BusinessPartnerType,OrganizationBPName1,SearchTerm2,to_Customer/Attribute1,to_Customer/to_CustomerSalesArea/SalesOffice,to_Customer/to_CustomerSalesArea/Customer,to_Customer/to_CustomerSalesArea/SalesOrganization,to_Customer/to_CustomerSalesArea/DistributionChannel,to_Customer/to_CustomerSalesArea/Division,to_Customer/to_CustomerSalesArea/SalesGroup";
 		}
-
 		tracer.debug("BP URL: %s", bpReqUrl);
 		var bpReqHeaders = {
 			"APIKey": APIKey,
