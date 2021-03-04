@@ -40,6 +40,11 @@
 		"name": "Zone",
 		"description": "restrict based on Zone",
 		"valueType": "s"
+	},
+	{
+		"name": "National",
+		"description": "restrict based on National",
+		"valueType": "s"
 	}],
 	"role-templates": [{
 		"name": "Dealer_User",
@@ -80,7 +85,7 @@
 		],
 		"attribute-references": [
 			"Language",
-			"UserType"
+			"National"
 		]
 	}, {
 		"name": "TCI_Zone_user",

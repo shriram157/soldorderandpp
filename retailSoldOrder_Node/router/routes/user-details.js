@@ -276,13 +276,9 @@ module.exports = function (appContext) {
 		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
-			role = "National_Fleet_User";
+			role = userAttributes.National ? "National_Fleet_User" : "TCI_User";
 		
-		}else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
-			viewPriceProtection &&
-			viewRetailSoldOrder) {
-			role = "TCI_User";
-		} else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
+		}else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
 			role = "TCI_Zone_User";
