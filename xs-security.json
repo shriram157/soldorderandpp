@@ -40,10 +40,6 @@
 		"name": "Zone",
 		"description": "restrict based on Zone",
 		"valueType": "s"
-	}, {
-		"name": "National",
-		"description": "restrict based on National",
-		"valueType": "s"
 	}],
 	"role-templates": [{
 		"name": "Dealer_User",
@@ -83,7 +79,6 @@
 			"$XSAPPNAME.View_Price_Protection"
 		],
 		"attribute-references": [
-			"National",
 			"Language",
 			"UserType"
 		]
