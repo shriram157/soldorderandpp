@@ -40,8 +40,7 @@
 		"name": "Zone",
 		"description": "restrict based on Zone",
 		"valueType": "s"
-	},
-	{
+	}, {
 		"name": "National",
 		"description": "restrict based on National",
 		"valueType": "s"
@@ -84,8 +83,9 @@
 			"$XSAPPNAME.View_Price_Protection"
 		],
 		"attribute-references": [
+			"National",
 			"Language",
-			"National"
+			"UserType"
 		]
 	}, {
 		"name": "TCI_Zone_user",
