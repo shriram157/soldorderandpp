@@ -69,6 +69,20 @@
 			"UserType"
 		]
 	}, {
+		"name": "National_Fleet_User",
+		"description": "National Fleet User",
+		"scope-references": [
+			"$XSAPPNAME.Approve_Fleet_Sold_Order",
+			"$XSAPPNAME.Approve_Price_Protection",
+			"$XSAPPNAME.View_Fleet_Sold_Order",
+			"$XSAPPNAME.View_Retail_Sold_Order",
+			"$XSAPPNAME.View_Price_Protection"
+		],
+		"attribute-references": [
+			"Language",
+			"UserType"
+		]
+	}, {
 		"name": "TCI_Zone_user",
 		"description": "TCI Zone User",
 		"scope-references": [
