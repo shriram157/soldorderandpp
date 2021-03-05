@@ -277,8 +277,8 @@ module.exports = function (appContext) {
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
 			role = "National_Fleet_User";
-		
-		}else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
+
+		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
 			role = "TCI_User";

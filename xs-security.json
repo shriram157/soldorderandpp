@@ -68,7 +68,7 @@
 			"Language",
 			"UserType"
 		]
-	},  {
+	}, {
 		"name": "National_Fleet_User",
 		"description": "National Fleet User",
 		"scope-references": [
