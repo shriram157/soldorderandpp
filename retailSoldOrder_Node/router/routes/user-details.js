@@ -239,6 +239,7 @@ module.exports = function (appContext) {
 		var viewFleetSoldOrder = false;
 		var viewPriceProtection = false;
 		var viewRetailSoldOrder = false;
+		var ApproveNationalFleet = false;
 
 		for (var i = 0; i < scopes.length; i++) {
 			if (scopes[i] === xsAppName + ".Approve_Fleet_Sold_Order") {
@@ -255,6 +256,8 @@ module.exports = function (appContext) {
 				viewPriceProtection = true;
 			} else if (scopes[i] === xsAppName + ".View_Retail_Sold_Order") {
 				viewRetailSoldOrder = true;
+			} else if (scopes[i] === xsAppName + ".Approve_National_Fleet") {
+				ApproveNationalFleet = true;
 			} else {
 				tracer.warning("Unrecognized scope: %s", scopes[i]);
 			}
@@ -267,6 +270,7 @@ module.exports = function (appContext) {
 		scopeLogMessage += "viewFleetSoldOrder: " + viewFleetSoldOrder + "\n";
 		scopeLogMessage += "viewPriceProtection: " + viewPriceProtection + "\n";
 		scopeLogMessage += "viewRetailSoldOrder: " + viewRetailSoldOrder + "\n";
+		scopeLogMessage += "ApproveNationalFleet" + ApproveNationalFleet + "\n";
 		tracer.debug(scopeLogMessage);
 
 		if (!approveFleetSoldOrder && !approvePriceProtection && manageFleetSoldOrder && manageRetailSoldOrder && !viewFleetSoldOrder &&
@@ -275,8 +279,12 @@ module.exports = function (appContext) {
 			role = "Dealer_User";
 		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
+			viewRetailSoldOrder && ApproveNationalFleet) {
+			role = "National_Fleet_User";
+		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
+			viewPriceProtection &&
 			viewRetailSoldOrder) {
-			role = userAttributes.Zone ? "National_Fleet_User" : "TCI_User";
+			role = "TCI_User";
 		} else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
