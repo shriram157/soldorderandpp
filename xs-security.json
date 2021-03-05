@@ -79,7 +79,8 @@
 			"$XSAPPNAME.View_Price_Protection"
 		],
 		"attribute-references": [
-			"Language"
+			"Language",
+			"UserType"
 		]
 	}, {
 		"name": "TCI_Zone_user",

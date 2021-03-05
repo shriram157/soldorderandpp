@@ -36,7 +36,7 @@ module.exports = function (appContext) {
 	var s4Client = options.apim.client;
 	var s4User = options.apim.user;
 	var s4Password = options.apim.password;
-
+	
 	router.get("/attributes", (req, res) => {
 		var logger = req.loggingContext.getLogger("/Application/Route/UserDetails/Attributes");
 		var tracer = req.loggingContext.getTracer(__filename);
@@ -276,7 +276,8 @@ module.exports = function (appContext) {
 		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
-			role = userAttributes.UserType ? "TCI_User" : "National_Fleet_User";
+			role = "TCI_User";
+			//role = userAttributes.UserType ? "TCI_User" : "National_Fleet_User" ;
 		} else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
