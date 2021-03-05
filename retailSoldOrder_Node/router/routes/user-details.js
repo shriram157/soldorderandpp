@@ -220,8 +220,6 @@ module.exports = function (appContext) {
 		var scopes = req.authInfo.scopes;
 		var userAttributes = req.authInfo.userAttributes;
 
-		console.log(userAttributes);
-
 		tracer.debug("Scopes from JWT: %s", JSON.stringify(scopes));
 		tracer.debug("User attributes from JWT: %s", JSON.stringify(userAttributes));
 
@@ -280,11 +278,11 @@ module.exports = function (appContext) {
 			viewRetailSoldOrder) {
 			role = "National_Fleet_User";
 			//role = userAttributes.UserType ? "TCI_User" : "National_Fleet_User" ;
-		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
+		
+		}else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
 			role = "TCI_User";
-			//role = userAttributes.UserType ? "TCI_User" : "National_Fleet_User" ;
 		} else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
