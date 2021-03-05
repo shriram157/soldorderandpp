@@ -276,7 +276,7 @@ module.exports = function (appContext) {
 		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
-			role = userAttributes.National ? "National_Fleet_User" : "TCI_User";
+			role = userAttributes.UserType ? "TCI_User" : "National_Fleet_User";
 		} else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
 			viewRetailSoldOrder) {
