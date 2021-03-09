@@ -126,6 +126,7 @@ sap.ui.define([
 			this.getView().byId("idmenu4").setType('Emphasized');
 			this.getView().byId("idmenu5").setType('Transparent');
 			this.getView().byId("idmenu9").setType('Transparent');
+			sap.ui.core.BusyIndicator.show();
 			FSO_PVController.getSO(requestid);
 		//	FSO_PVController.getchat();
 		},
@@ -137,6 +138,7 @@ sap.ui.define([
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet('" + req + "')";
 			zrequest = req;
 			var zmodel = FSO_PVController.getView().getModel("mainservices");
+			//FSO_PVController.getView().getModel("mainservices").bUseBatch = false;
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("procViewTitle", [req]);
@@ -190,6 +192,17 @@ sap.ui.define([
 									.m.MessageBox.Action.OK, null, null);
 							}
 						});
+					},
+					dataReceived: function (oEvent) {
+						if (oEvent.getParameter("error")) {
+							console.log("ERRor");
+							sap.ui.core.BusyIndicator.hide();
+							// error handling
+						} else {
+							console.log("Success");
+							sap.ui.core.BusyIndicator.hide();
+							// something useful
+						}
 					}
 				}
 			});

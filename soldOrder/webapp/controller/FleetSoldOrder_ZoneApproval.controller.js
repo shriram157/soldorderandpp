@@ -17,7 +17,7 @@ sap.ui.define([
 				this);
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
-			 //FSO_Z_controller.returnBrowserLanguage();
+			//FSO_Z_controller.returnBrowserLanguage();
 			if (language == "EN") {
 				Object = {
 					"FSOSummary_OrderType": [{
@@ -147,12 +147,18 @@ sap.ui.define([
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			} else {
+				var zaprvl;
+				if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") === "TCI_User") {
+					zaprvl = "ZONE APPROVED";
+				} else {
+					zaprvl = "APPROVED";
+				}
 				FSO_Z_controller.getView().getModel('mainservices').callFunction("/Approve_Fleet_Order", {
 					method: "POST",
 					urlParameters: {
 						ZSO_FLT_REQ_NO: zrequest,
 						ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey(),
-						ZSO_FLT_STATUS: 'APPROVED',
+						ZSO_FLT_STATUS: zaprvl,
 						ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
 					}, // function import parameters  
 					// 
