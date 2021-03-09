@@ -401,7 +401,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	Tciusernzonetype: function (Usertypevalue) {
-		if ((Usertypevalue === 'TCI_User') || (Usertypevalue === "TCI_Zone_User")) {
+		if ((Usertypevalue === 'TCI_User') || (Usertypevalue === "TCI_Zone_User") || (Usertypevalue === "National_Fleet_User")) {
 			return true;
 		} else {
 			return false;
