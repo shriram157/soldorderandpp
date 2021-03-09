@@ -364,7 +364,7 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	NationalorZonalusertype: function (Usertypevalue) {
 		console.log(Usertypevalue);
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User")) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User")) {
 			return true;
 		} else {
 			return false;
@@ -372,7 +372,7 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	TCIorZonalusertype: function (Usertypevalue) {
 		console.log(Usertypevalue);
-		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User")) {
+		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User") || (Usertypevalue === "National_Fleet_User")) {
 			return true;
 		} else {
 			return false;
@@ -380,14 +380,14 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	NonTCIorZonalusertype: function (Usertypevalue) {
 		console.log(Usertypevalue);
-		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User")) {
+		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User") || (Usertypevalue === "National_Fleet_User")) {
 			return false;
 		} else {
 			return true;
 		}
 	},
 	Nationalusertype: function (Usertypevalue) {
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User")) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User")) {
 			return false;
 		} else {
 			return true;
