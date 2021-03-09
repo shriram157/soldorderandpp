@@ -394,7 +394,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	Tciusertype: function (Usertypevalue) {
-		if (Usertypevalue == 'TCI_User') {
+		if ((Usertypevalue == 'TCI_User') || (Usertypevalue === "National_Fleet_User")) {
 			return true;
 		} else {
 			return false;
