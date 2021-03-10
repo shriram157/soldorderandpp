@@ -162,16 +162,32 @@ sap.ui.define([
 			var mcb_dealer_FSOS = FSOS_controller.getView().byId("mcb_dealer_FSOS");
 			var oTbl = FSOS_controller.getView().byId("tbl_FSOS");
 			var data = oTbl.getModel().getData().ProductCollection;
-			mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems());
+
 			mcb_ordTyp_FSOS.setSelectedItems(mcb_ordTyp_FSOS.getItems());
 			mcb_dealer_FSOS.setSelectedItems(mcb_dealer_FSOS.getItems());
 			// var host = FSOS_controller.host();
 			//=======================================================================================================
 			//==================Start Bindidng By Dealer=========================================================
 			//=====================================================================================================
+			var SoFleetModel = this.getOwnerComponent().getModel("mainservices");
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x == "National_Fleet_User") {
-				mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems()[4]);
+				mcb_status_FSOS.setSelectedItems([mcb_status_FSOS.getItems()[4]]);
+				if (this.getView().byId("cb_dealer_FSOS").getSelectedKey() == "") {
+					SoFleetModel.read("/SO_FLEET_HeaderSet", {
+						urlParameters: {
+							"$filter": "ZsoFltStatus eq 'ZONE APPROVED'"
+						},
+						success: $.proxy(function (sdata) {
+							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
+							DataModel.setData(sdata.results);
+							DataModel.updateBindings(true);
+						}, this),
+						error: function () {}
+					});
+				}
+			} else {
+				mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems());
 			}
 			if (x != "TCI_User" && x != "TCI_Zone_User" && x != "National_Fleet_User") {
 				FSOS_controller.dialog.open();
