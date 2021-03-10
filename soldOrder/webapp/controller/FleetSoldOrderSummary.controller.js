@@ -173,6 +173,7 @@ sap.ui.define([
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x == "National_Fleet_User") {
 				mcb_status_FSOS.setSelectedItems([mcb_status_FSOS.getItems()[4]]);
+				this.getView().byId("cb_dealer_FSOS").setSelectedKey("");
 				if (this.getView().byId("cb_dealer_FSOS").getSelectedKey() == "") {
 					SoFleetModel.read("/SO_FLEET_HeaderSet", {
 						urlParameters: {
