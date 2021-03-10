@@ -171,10 +171,7 @@ sap.ui.define([
 			//=====================================================================================================
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x == "National_Fleet_User") {
-				this.getView().getModel("globalComboModel").setProperty("/FSOSummary_Status", [{
-					"key": "ZONE APPROVED",
-					"text": "ZONE APPROVED"
-				}]);
+				mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems()[4]);
 			}
 			if (x != "TCI_User" && x != "TCI_Zone_User" && x != "National_Fleet_User") {
 				FSOS_controller.dialog.open();
