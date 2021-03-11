@@ -148,11 +148,13 @@ sap.ui.define([
 					.m.MessageBox.Action.OK, null, null);
 			} else {
 				var zaprvl;
+				//Added by singhmi DMND0002946 on 11/03/2021 start
 				if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") === "TCI_User") {
 					zaprvl = "ZONE APPROVED";
 				} else {
 					zaprvl = "APPROVED";
 				}
+				//Added by singhmi DMND0002946 on 11/03/2021 end
 				FSO_Z_controller.getView().getModel('mainservices').callFunction("/Approve_Fleet_Order", {
 					method: "POST",
 					urlParameters: {
