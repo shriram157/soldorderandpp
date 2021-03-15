@@ -143,7 +143,7 @@ sap.ui.define([
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("procViewTitle", [req]);
-			FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg);
+		
 			zmodel.refresh();
 			this.getView().bindElement({
 
@@ -180,6 +180,8 @@ sap.ui.define([
 							"Zzvtn", FilterOperator.NE, '')], true);
 						//------------------------
 						var partner = FSO_PVController.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');
+						
+							FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg + " / " + partner );
 
 						FSO_PVController.getView().getModel('mainservices').read("/Customer_infoSet('" + partner + "')", {
 							success: function (data, textStatus, jqXHR) {

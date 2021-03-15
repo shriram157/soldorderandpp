@@ -356,7 +356,7 @@ sap.ui.define([
 				var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
-				RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg);
+				
 				zmodel.refresh();
 				RSO_MSO_controller.getView().bindElement({
 					path: sObjectPath,
@@ -377,6 +377,9 @@ sap.ui.define([
 							}
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 								'Zzendcu');
+								
+							RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg + " / " + zcustomerNumber);	
+							
 							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", zcustomerNumber);
 							sap.ui.getCore().setModel(new JSONModel({
 								model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
