@@ -80,6 +80,18 @@
 											<Link text="{fleetdetailsModel>ZzsoReqNo}" wrapping="true" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
+									<t:Column width="230px" filterProperty="ZzsoFltReqNo" sortProperty="ZzsoFltReqNo">
+										<Label class="TableLabel" text="{i18n>FleetSO}"/>
+										<t:template>
+											<Text text="{fleetdetailsModel>ZzsoFltReqNo}"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="230px" filterProperty="ZZONE_APPROVAL" sortProperty="ZZONE_APPROVAL">
+										<Label class="TableLabel" text="{i18n>zoneAppNumber}"/>
+										<t:template>
+											<Text text="{fleetdetailsModel>ZZONE_APPROVAL}"/>
+										</t:template>
+									</t:Column>
 									<t:Column width="230px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
 										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>

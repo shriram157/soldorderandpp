@@ -678,6 +678,8 @@ sap.ui.define([
 				row = row.slice(0, -1);
 			}
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("orderNumber") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FleetSO") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("zoneAppNumber") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("custname") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
@@ -692,6 +694,9 @@ sap.ui.define([
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vin") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("ETAFrom") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("ETATime") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("PONumber") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FanNum") + ",";
+			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("CreationDate") + ",";
 			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
 
 			CSV += row + '\r\n';
@@ -702,6 +707,8 @@ sap.ui.define([
 				var row = "";
 				row = " ";
 				row += arrData[i].ZzsoReqNo + ',' +
+					arrData[i].ZzsoFltReqNo + ',' +
+					arrData[i].ZZONE_APPROVAL + ',' +
 					arrData[i].ZzendcuName + ',' +
 					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + ',' +
 					arrData[i].ZzdealerCode + ',' +
@@ -720,10 +727,12 @@ sap.ui.define([
 					//	arrData[i].ZzreqEtaFrom +',' +
 					//	arrData[i].ZzreqEtaTo+ '",';
 					FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) + ',' +
-					FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + ',';
-
-				//}
-				row.slice(1, row.length);
+					FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + ',' +
+					arrData[i].ZPO_NUMBER + ',' +
+					arrData[i].ZFAN_NO + ',' +
+					FSOD_controller.dateConverter(arrData[i].ZcreatedOn) + ',',
+					//}
+					row.slice(1, row.length);
 				CSV += row + '\r\n';
 			}
 			if (CSV == "") {
