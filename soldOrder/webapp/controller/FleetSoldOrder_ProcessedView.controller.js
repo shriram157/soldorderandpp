@@ -128,7 +128,7 @@ sap.ui.define([
 			this.getView().byId("idmenu9").setType('Transparent');
 			sap.ui.core.BusyIndicator.show();
 			FSO_PVController.getSO(requestid);
-		//	FSO_PVController.getchat();
+			//	FSO_PVController.getchat();
 		},
 		getSO: function (req) {
 			var host = FSO_PVController.host();
@@ -143,7 +143,7 @@ sap.ui.define([
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("procViewTitle", [req]);
-		
+
 			zmodel.refresh();
 			this.getView().bindElement({
 
@@ -180,8 +180,10 @@ sap.ui.define([
 							"Zzvtn", FilterOperator.NE, '')], true);
 						//------------------------
 						var partner = FSO_PVController.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');
-						
-							FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg + " / " + partner );
+
+						var zdealerCode = FSO_PVController.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+							'ZzdealerCode');
+						FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg + " / " + zdealerCode);
 
 						FSO_PVController.getView().getModel('mainservices').read("/Customer_infoSet('" + partner + "')", {
 							success: function (data, textStatus, jqXHR) {

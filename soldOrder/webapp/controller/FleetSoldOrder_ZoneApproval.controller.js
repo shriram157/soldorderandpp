@@ -83,7 +83,7 @@ sap.ui.define([
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("zoneApprovalTitle", [req]);
-			
+
 			zmodel.refresh();
 			this.getView().bindElement({
 
@@ -110,9 +110,10 @@ sap.ui.define([
 						});
 						items2.filter([new Filter("WithVtn", FilterOperator.EQ, '')]);
 						var partner = FSO_Z_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');
-						
-						FSO_Z_controller.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg + " / " + partner);
 
+						var zdealerCode = FSO_Z_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+							'ZzdealerCode');
+						FSO_Z_controller.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg + " / " + zdealerCode);
 						FSO_Z_controller.getView().getModel('mainservices').read("/Customer_infoSet('" + partner + "')", {
 							success: function (data, textStatus, jqXHR) {
 								var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
