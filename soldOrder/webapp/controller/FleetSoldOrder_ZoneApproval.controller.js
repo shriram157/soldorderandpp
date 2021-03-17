@@ -118,7 +118,9 @@ sap.ui.define([
 							success: function (data, textStatus, jqXHR) {
 								var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
 								FSO_Z_controller.getView().setModel(oModel, "Customer");
-								FSO_Z_controller.getView().byId('zoneapproval').setProperty("editable", false);
+								if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") === "National_Fleet_User") {
+									FSO_Z_controller.getView().byId('zoneapproval').setProperty("editable", false);
+								}
 							},
 							error: function (jqXHR, textStatus, errorThrown) {
 								sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR,
@@ -153,10 +155,10 @@ sap.ui.define([
 			} else {
 				var zaprvl;
 				//Added by singhmi DMND0002946 on 11/03/2021 start
-				if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") === "TCI_User") {
-					zaprvl = "ZONE APPROVED";
-				} else {
+				if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") === "National_Fleet_User") {
 					zaprvl = "APPROVED";
+				} else {
+					zaprvl = "ZONE APPROVED";
 				}
 				//Added by singhmi DMND0002946 on 11/03/2021 end
 				FSO_Z_controller.getView().getModel('mainservices').callFunction("/Approve_Fleet_Order", {
