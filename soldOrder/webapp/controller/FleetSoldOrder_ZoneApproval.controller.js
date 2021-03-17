@@ -118,6 +118,7 @@ sap.ui.define([
 							success: function (data, textStatus, jqXHR) {
 								var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
 								FSO_Z_controller.getView().setModel(oModel, "Customer");
+								FSO_Z_controller.getView().byId('zoneapproval').setProperty("editable", false);
 							},
 							error: function (jqXHR, textStatus, errorThrown) {
 								sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR,
