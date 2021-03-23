@@ -86,12 +86,14 @@
 											<Text text="{fleetdetailsModel>ZzsoFltReqNo}"/>
 										</t:template>
 									</t:Column>
+									<!-- added by Minakshi for DMND0002960 start -->
 									<t:Column width="230px" filterProperty="ZZONE_APPROVAL" sortProperty="ZZONE_APPROVAL">
 										<Label class="TableLabel" text="{i18n>zoneAppNumber}"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>ZZONE_APPROVAL}"/>
 										</t:template>
 									</t:Column>
+										<!-- added by Minakshi for DMND0002960 end -->
 									<t:Column width="230px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
 										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>

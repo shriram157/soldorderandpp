@@ -377,13 +377,14 @@ sap.ui.define([
 							}
 							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 								'Zzendcu');
-
+							//added by Minakshi for DMND0002960 start
 							var zdealerCode = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 								'ZzdealerCode');
 
 							RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg + " / " + zdealerCode);
-
+							//added by Minakshi for DMND0002960 end
 							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", zcustomerNumber);
+
 							sap.ui.getCore().setModel(new JSONModel({
 								model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
 								modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),

@@ -110,10 +110,12 @@ sap.ui.define([
 						});
 						items2.filter([new Filter("WithVtn", FilterOperator.EQ, '')]);
 						var partner = FSO_Z_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');
-
+						//added by Minakshi for DMND0002960 start
 						var zdealerCode = FSO_Z_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 							'ZzdealerCode');
 						FSO_Z_controller.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg + " / " + zdealerCode);
+
+						//added by Minakshi for DMND0002960 end
 						FSO_Z_controller.getView().getModel('mainservices').read("/Customer_infoSet('" + partner + "')", {
 							success: function (data, textStatus, jqXHR) {
 								var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
