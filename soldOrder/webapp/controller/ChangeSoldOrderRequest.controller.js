@@ -30,6 +30,17 @@ sap.ui.define([
 
 		},
 		_getattachRouteMatched: function (parameters) {
+			var endDate = new Date();
+			var day5 = new Date();
+			var num = 0;
+			while (num < 5) {
+				endDate = new Date(day5.setDate(day5.getDate() + 1));
+				if (endDate.getDay() != 0 && endDate.getDay() != 6) {
+					num++;
+				}
+			}
+			this.getView().byId("etaFrom_CSOR").setMinDate(day5);
+
 			requestid = parameters.getParameters().arguments.Soreq;
 			var sObjectPath = "/Retail_Sold_OrderSet('" + requestid + "')";
 			this.getView().bindElement({
@@ -68,11 +79,23 @@ sap.ui.define([
 					}
 				}
 			});
+			/////////////// added by Minakshi for INCIDENT INC0187445 Start
+			this.fnDateDisabled(this.getView().byId("etaFrom_CSOR"));
+			this.fnDateDisabled(this.getView().byId("etaTo_CSOR"));
+		},
+		
+		fnDateDisabled: function (id) {
+
+			id.addEventDelegate({
+				onAfterRendering: function () {
+					var oDateInner = this.$().find('.sapMInputBaseInner');
+					var oID = oDateInner[0].id;
+					$('#' + oID).attr("disabled", "disabled");
+				}
+			}, id);
 		},
 
 		_handleChangeDate: function () {
-			/////////////// added by Minakshi
-
 			var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 			// Handle th Validation Date "YYYYMMdd"
 			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
@@ -101,8 +124,6 @@ sap.ui.define([
 			}
 
 		},
-
-		/////////////////////////// INC0187445 Changes done by Minakshi on 25/03/2021 start
 
 		_handleChange: function () {
 
@@ -333,8 +354,8 @@ sap.ui.define([
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 				//Changes done by Minakshi on 25/03/2021 INC0187445 start
 				if (oEvent != undefined) {
-				this.getView().byId("colour_CSOR").setSelectedKey("");
-				this.getView().byId("apx_CSOR").setSelectedKey("");
+					this.getView().byId("colour_CSOR").setSelectedKey("");
+					this.getView().byId("apx_CSOR").setSelectedKey("");
 				}
 				//Changes done by Minakshi on 25/03/2021 INC0187445 end
 

@@ -91,23 +91,23 @@ sap.ui.define([
 					// }
 				}
 			}
-			
-				this.fnDateDisabled(this.getView().byId("etaFrom_CFSO"));
+
+			this.fnDateDisabled(this.getView().byId("etaFrom_CFSO"));
 			this.fnDateDisabled(this.getView().byId("etaTo_CFSO"));
 
 		},
-		
-			fnDateDisabled : function(id){
-			
-		id.addEventDelegate({
-			onAfterRendering: function(){
-		var oDateInner = this.$().find('.sapMInputBaseInner');
-				var oID = oDateInner[0].id;
-				$('#'+oID).attr("disabled", "disabled"); 
-			}},id);
+
+		fnDateDisabled: function (id) {
+
+			id.addEventDelegate({
+				onAfterRendering: function () {
+					var oDateInner = this.$().find('.sapMInputBaseInner');
+					var oID = oDateInner[0].id;
+					$('#' + oID).attr("disabled", "disabled");
+				}
+			}, id);
 		},
-		
-		
+
 		_onObjectMatched: function (oEvent) {
 
 			/*	var tableModelCreate= sap.ui.getCore().getModel('tableModelCreate');
@@ -639,8 +639,7 @@ sap.ui.define([
 									}
 								});
 
-							}  
-							else {
+							} else {
 
 								for (var i = 0; i < quantity.length; i++) {
 									if (isNaN(quantity[i])) {
