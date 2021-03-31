@@ -96,12 +96,12 @@
 										</t:template>
 									</t:Column>
 									<!-- added by Minakshi for DMND0002960 start -->
-									<t:Column filterProperty="ZzsoFltReqNo" sortProperty="ZzsoFltReqNo">
-										<Label class="TableLabel" text="{i18n>FleetSO}"/>
-										<t:template>
-											<Text text="{fleetsumModel>ZzsoFltReqNo}"/>
-										</t:template>
-									</t:Column>
+									<!--<t:Column filterProperty="ZzsoFltReqNo" sortProperty="ZzsoFltReqNo">-->
+									<!--	<Label class="TableLabel" text="{i18n>FleetSO}"/>-->
+									<!--	<t:template>-->
+									<!--		<Text text="{fleetsumModel>ZzsoFltReqNo}"/>-->
+									<!--	</t:template>-->
+									<!--</t:Column>-->
 									<!-- added by Minakshi for DMND0002960 end -->
 									<t:Column filterProperty="NameOrg1" sortProperty="NameOrg1">
 										<Label text="{i18n>CustName}" class="TableLabel"/>
