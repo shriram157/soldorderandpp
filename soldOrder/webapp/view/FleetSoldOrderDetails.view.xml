@@ -74,27 +74,27 @@
 									</Toolbar>
 								</t:extension>
 								<t:columns>
-									<t:Column filterProperty="ZzsoReqNo" sortProperty="ZzsoReqNo">
+									<t:Column width="8rem" filterProperty="ZzsoReqNo" sortProperty="ZzsoReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{fleetdetailsModel>ZzsoReqNo}" wrapping="true" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="230px" filterProperty="ZzsoFltReqNo" sortProperty="ZzsoFltReqNo">
+									<t:Column width="8rem" filterProperty="ZzsoFltReqNo" sortProperty="ZzsoFltReqNo">
 										<Label class="TableLabel" text="{i18n>FleetSO}"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>ZzsoFltReqNo}"/>
 										</t:template>
 									</t:Column>
 									<!-- added by Minakshi for DMND0002960 start -->
-									<t:Column width="230px" filterProperty="ZZONE_APPROVAL" sortProperty="ZZONE_APPROVAL">
+									<t:Column width="8rem" filterProperty="ZZONE_APPROVAL" sortProperty="ZZONE_APPROVAL">
 										<Label class="TableLabel" text="{i18n>zoneAppNumber}"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>ZZONE_APPROVAL}"/>
 										</t:template>
 									</t:Column>
 										<!-- added by Minakshi for DMND0002960 end -->
-									<t:Column width="230px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
+									<t:Column width="9rem" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
 										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>ZzendcuName}" wrapping="true"/>
