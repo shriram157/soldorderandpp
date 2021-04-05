@@ -423,9 +423,9 @@ toyota.ca.SoldOrder.util.formatter = {
 	TciApprove: function (svalue) {
 		//Added by singhmi DMND0002946 on 11/03/2021
 		var oUserType = this.getParent().getParent().oPropagatedProperties.oModels.LoginUserModel.getData().UserType;
-		if (svalue == "REQUESTED" && oUserType != "National_Fleet_User") {
+		if (svalue === "REQUESTED" && oUserType !== "National_Fleet_User") {
 			return true;
-		}else if(svalue == "ZONE APPROVED" && oUserType == "National_Fleet_User"){
+		}else if(svalue === "ZONE APPROVED" && oUserType === "National_Fleet_User"){
 			return true;
 		} else {
 			return false;

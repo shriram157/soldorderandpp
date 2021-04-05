@@ -201,11 +201,11 @@ sap.ui.define([
 					//Added by singhmi DMND0002946 on 11/03/2021 
 					dataReceived: function (oEvent) {
 						if (oEvent.getParameter("error")) {
-							console.log("ERRor");
+						
 							sap.ui.core.BusyIndicator.hide();
 							// error handling
 						} else {
-							console.log("Success");
+							
 							sap.ui.core.BusyIndicator.hide();
 							// something useful
 						}
