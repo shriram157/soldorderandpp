@@ -204,7 +204,7 @@ sap.ui.define([
 				if (FSOS_controller.getView().byId("cb_dealer_FSOS").getSelectedKey() != "") {
 					FSOS_controller._refreshCombo();
 
-				} else {
+				} 
 
 
 			}
