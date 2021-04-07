@@ -138,7 +138,7 @@ sap.ui.define([
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet('" + req + "')";
 			zrequest = req;
 			var zmodel = FSO_PVController.getView().getModel("mainservices");
-			//Added by singhmi DMND0002946 on 11/03/2021 end
+			//Added by singhmi to make the call asynchronus DMND0002946 on 11/03/2021 end
 			FSO_PVController.getView().getModel("mainservices").bUseBatch = false;
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
@@ -198,7 +198,7 @@ sap.ui.define([
 							}
 						});
 					},
-					//Added by singhmi DMND0002946 on 11/03/2021 
+					//Added by singhmi to hide busy indicator after success or error DMND0002946 on 11/03/2021 
 					dataReceived: function (oEvent) {
 						if (oEvent.getParameter("error")) {
 						

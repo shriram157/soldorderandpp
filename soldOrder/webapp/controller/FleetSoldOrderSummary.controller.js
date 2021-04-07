@@ -18,7 +18,7 @@ sap.ui.define([
 			FSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
-			//Added by singhmi DMND0002946 on 11/03/2021
+			//Added by singhmi for Zone Approved key and text DMND0002946 on 11/03/2021
 			if (language === "EN") {
 				Obj = {
 					"FSOSummary_Status": [{
@@ -170,7 +170,7 @@ sap.ui.define([
 			//=======================================================================================================
 			//==================Start Bindidng By Dealer=========================================================
 			//=====================================================================================================
-			//Added by singhmi DMND0002946 on 11/03/2021
+			//Added by singhmi added for National Fleet User DMND0002946 on 11/03/2021
 			var SoFleetModel = this.getOwnerComponent().getModel("mainservices");
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x === "National_Fleet_User") {
@@ -194,7 +194,7 @@ sap.ui.define([
 			} else {
 				mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems());
 			}
-			//Added by singhmi DMND0002946 on 11/03/2021
+			//Added by singhmi for National Fleet User DMND0002946 on 11/03/2021
 			if (x !== "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
 				FSOS_controller.dialog.open();
 				//console.log("loading data");
@@ -210,17 +210,17 @@ sap.ui.define([
 			}
 
 		},
-		onBeforeRendering: function () {
-			if (AppController.flagZoneUser == true) {
-				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
-			}
-			if (AppController.flagNationalUser == true) {
-				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
-			}
-		},
-		onAfterRendering: function () {
+		// onBeforeRendering: function () {
+		// 	if (AppController.flagZoneUser == true) {
+		// 		FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
+		// 	}
+		// 	if (AppController.flagNationalUser == true) {
+		// 		FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
+		// 	}
+		// },
+		// onAfterRendering: function () {
 			
-		},
+		// },
 		_refreshCombo: function (evt) {
 			clicks = 0;
 			fleet = true;
@@ -446,7 +446,7 @@ sap.ui.define([
 		data: function (oEvent) {
 			FSOS_controller.dialog.open();
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			//Added by singhmi DMND0002946 on 11/03/2021
+			//Added by singhmi for National Fleet User DMND0002946 on 11/03/2021
 			if (x !== "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
