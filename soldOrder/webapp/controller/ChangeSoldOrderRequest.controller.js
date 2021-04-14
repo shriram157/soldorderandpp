@@ -167,6 +167,7 @@ sap.ui.define([
 			var Zzseries = CSOR_controller.getView().byId("series_CSOR").getSelectedKey();
 			var ZcontractDate1 = CSOR_controller.getView().byId("conDate_CSOR").getValue();
 			var ZsalesType = CSOR_controller.getView().byId("salestype_CSOR").getSelectedKey();
+			var oldSoldOrderNo = CSOR_controller.getView().byId("oldSoldOrderNo").getText();
 			// var ZtcciNum = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
 			var Zsalesperson = CSOR_controller.getView().byId("salesPerson_CSOR").getText();
 			var Zsalesmanager = CSOR_controller.getView().byId("salesManager_CSOR").getText();
@@ -207,7 +208,8 @@ sap.ui.define([
 					}
 					zdata = {
 
-						"ZzsoReqNo": "SO",
+					//	"ZzsoReqNo": "SO",
+						"ZzsoReqNo": oldSoldOrderNo,//update old sold order
 						"Zzmodel": valModel, //"YZ3DCT",
 						"Zzmoyr": Zzmoyr, //"2018",
 						"Zzseries": Zzseries,
