@@ -186,13 +186,16 @@ sap.ui.define([
 			this.nodeJsUrl = this.sPrefix + "/node";
 
 			PPD_DealerCont._handleServiceSuffix_Series(this.nodeJsUrl);
+
+			//Changes done for INC0189944 by Minakshi odata call on load happen only for dealer not for other users.
 			if (x == "Dealer_User") {
 				PPD_DealerCont.dialog.open();
 				PPD_DealerCont._refresh();
 			} else {
 				PPD_DealerCont.getView().byId("cb_dealer_PPD_D").setSelectedKey("");
 			}
-
+			//Changes done for INC0189944 by Minakshi end.
+			
 			// else {
 			// 	PPD_DealerCont.dialog.open();
 			// 	var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";

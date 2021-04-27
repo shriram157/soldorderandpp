@@ -186,6 +186,8 @@ sap.ui.define([
 			// 	FSOD_controller.dialog.open();
 			// 	FSOD_controller._refresh();
 			// } else {
+			
+			//Changes done for INC0189944 by Minakshi odata call on load happen only for dealer not for other users.
 			if (x == "Dealer_User") {
 				FSOD_controller.dialog.open();
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
@@ -246,6 +248,7 @@ sap.ui.define([
 			}else{
 				FSOD_controller.getView().byId("cb_dealer_FSOD").setSelectedKey("");
 			}
+			//Changes done for INC0189944 by Minakshi end
 			//}
 			//INC0189944 end
 		},

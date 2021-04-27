@@ -220,6 +220,7 @@ sap.ui.define([
 				//==================Start Binidng By Dealer=========================================================
 				//=====================================================================================================
 				var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+				//Changes done for INC0189944 by Minakshi odata call on load happen only for dealer not for other users.
 				if (x == "Dealer_User") {
 					RSOS_controller.dialog.open();
 					// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
@@ -229,7 +230,7 @@ sap.ui.define([
 				}else{
 					RSOS_controller.getView().byId("cb_dealer_RSOS").setSelectedKey("");
 				}
-			
+			//Changes done for INC0189944 by Minakshi end
 
 			}
 
