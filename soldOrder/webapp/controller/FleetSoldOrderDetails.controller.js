@@ -243,6 +243,8 @@ sap.ui.define([
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 					}
 				});
+			}else{
+				FSOD_controller.getView().byId("cb_dealer_FSOD").setSelectedKey("");
 			}
 			//}
 			//INC0189944 end

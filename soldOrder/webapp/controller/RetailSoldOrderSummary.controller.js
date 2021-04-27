@@ -220,104 +220,16 @@ sap.ui.define([
 				//==================Start Binidng By Dealer=========================================================
 				//=====================================================================================================
 				var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-				if (x != "TCI_User" && x != "TCI_Zone_User") {
+				if (x == "Dealer_User") {
 					RSOS_controller.dialog.open();
 					// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 					//console.log("loading data");
 					RSOS_controller._refresh();
 
+				}else{
+					RSOS_controller.getView().byId("cb_dealer_RSOS").setSelectedKey("");
 				}
-				//march 10 P2 change adding below block and commenting older block 
-				else {
-					if (RSOS_controller.getView().byId("cb_dealer_RSOS").getSelectedKey() != "") {
-						RSOS_controller._refreshCombo();
-
-					} else {
-					/*	var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
-						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
-*/
-					}
-
-				}
-				/*	else {
-						RSOS_controller.dialog.open();
-						// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
-						//console.log("loading data");
-
-						var oUrl = RSOS_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
-						for (var i = 0; i < RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
-							var status = RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
-							oUrl = oUrl + "(ZzsoStatus eq '" + status + "')";
-							if (i == ((RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length) - 1)) {
-								oUrl = oUrl + ") and (";
-							} else {
-								oUrl = oUrl + " or ";
-							}
-
-						}
-						for (var i = 0; i < RSOS_controller.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length; i++) {
-							var audit = RSOS_controller.getView().byId("mcb_auditStatus_RSOS").getSelectedItems()[i].getKey();
-							oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-							if (i == ((RSOS_controller.getView().byId("mcb_auditStatus_RSOS").getSelectedItems().length) - 1)) {
-								oUrl = oUrl + ") and (";
-							} else {
-								oUrl = oUrl + " or ";
-							}
-						}
-						for (var i = 0; i < RSOS_controller.getView().byId("mcb_series_RSOS").getSelectedItems().length; i++) {
-							var series = RSOS_controller.getView().byId("mcb_series_RSOS").getSelectedItems()[i].getKey();
-							oUrl = oUrl + "(Zzseries eq '" + series + "')";
-							if (i == ((RSOS_controller.getView().byId("mcb_series_RSOS").getSelectedItems().length) - 1)) {
-								oUrl = oUrl + ") and (FleetReference eq '') and (ZzsoType eq 'SO')&$orderby=ZzsoReqNo desc";
-							} else {
-								oUrl = oUrl + " or ";
-							}
-						}
-						$.ajax({
-							url: oUrl,
-							method: "GET",
-							async: false,
-							dataType: "json",
-							success: function (data, textStatus, jqXHR) {
-								RSOS_controller.dialog.close();
-								// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-								var BtnNext = RSOS_controller.getView().byId("buttonNext");
-						//reverted		// change march 10 P2 commented below block and disabled more , export button 
-								if (data.d.results.length <= 10) {
-									BtnNext.setEnabled(false);
-									RSOS_controller.enableExportButton();
-								} else {
-									BtnNext.setEnabled(true);
-								}
-							//reverted	//BtnNext.setEnabled(false); // // change march 10 P2  code added
-								var DataModel = RSOS_controller.getView().getModel("retailsumModel");
-								if (DataModel.getData().length != undefined) {
-									for (var m = 0; m < data.d.results.length; m++) {
-										DataModel.getData().push(data.d.results[m]); // change march 10 P2 2020 //revreted
-									//reverted	//DataModel.getData().push([]);  // change march 10 P2
-										
-										DataModel.updateBindings(true);
-									}
-								} else {
-									DataModel.setData(data.d.results);
-									DataModel.updateBindings(true);
-									if (data.d.results.length <= 10) {
-										BtnNext.setEnabled(false);
-										RSOS_controller.enableExportButton();
-									}
-								}
-							},
-							error: function (jqXHR, textStatus, errorThrown) {
-								RSOS_controller.dialog.close();
-								// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-								var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-								// sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-								// 	"error"), sap.m.MessageBox.Action.OK, null, null);
-								sap.m.MessageToast.show(errMsg);
-							}
-						});
-					}*/
+			
 
 			}
 

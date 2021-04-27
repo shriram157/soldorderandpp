@@ -79,7 +79,7 @@ sap.ui.define([
 
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
-			if(window.location.search.match(/Division=([^&]*)/i)[1] == "10"){
+			if (window.location.search.match(/Division=([^&]*)/i)[1] == "10") {
 				Object = {
 					"PriceProtection_OrderType": [{
 						"key": "F1",
@@ -105,30 +105,31 @@ sap.ui.define([
 			} else {
 				Object = {
 					"PriceProtection_OrderType": [
-					// {
-					// 	"key": "F1",
-					// 	"text": "DLR RAC"
-					// }, 
-					{
-						"key": "F2",
-						"text": "DLR ELITE"
-					}, 
-					// {
-					// 	"key": "F3",
-					// 	"text": "NAT RAC"
-					// },
-					{
-						"key": "F4",
-						"text": "NAT ELITE"
-					},
-					// {
-					// 	"key": "F5",
-					// 	"text": "MOBILITY"
-					// },
-					{
-						"key": "RETAIL SOLD",
-						"text": "RETAIL SOLD"
-					}],
+						// {
+						// 	"key": "F1",
+						// 	"text": "DLR RAC"
+						// }, 
+						{
+							"key": "F2",
+							"text": "DLR ELITE"
+						},
+						// {
+						// 	"key": "F3",
+						// 	"text": "NAT RAC"
+						// },
+						{
+							"key": "F4",
+							"text": "NAT ELITE"
+						},
+						// {
+						// 	"key": "F5",
+						// 	"text": "MOBILITY"
+						// },
+						{
+							"key": "RETAIL SOLD",
+							"text": "RETAIL SOLD"
+						}
+					],
 				};
 			}
 
@@ -146,16 +147,16 @@ sap.ui.define([
 			var PPDLocalModel = new sap.ui.model.json.JSONModel();
 			PPDLocalModel.setData({
 				PPDBusyIndicator: false
-			//	enableOwnershipFlag:false
+					//	enableOwnershipFlag:false
 			});
-			
+
 			// PPD_DealerCont.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			// PPD_DealerCont.getView().getModel("LoginUserModel").setSizeLimit(750);
 			// PPD_DealerCont.getView().getModel("LoginUserModel").updateBindings(true);
 			PPD_DealerCont.dialog = new sap.m.BusyDialog({
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
 			});
-			
+
 			PPD_DealerCont.getView().setModel(PPDLocalModel, "PPDLocalModel");
 			num = 0;
 			clicks = 0;
@@ -185,66 +186,69 @@ sap.ui.define([
 			this.nodeJsUrl = this.sPrefix + "/node";
 
 			PPD_DealerCont._handleServiceSuffix_Series(this.nodeJsUrl);
-			if (x != "TCI_User") {
+			if (x == "Dealer_User") {
 				PPD_DealerCont.dialog.open();
-				console.log("loading data");
 				PPD_DealerCont._refresh();
 			} else {
-				PPD_DealerCont.dialog.open();
-				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";
-				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
-					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(status eq '" + status + "')";
-					if (i == ((this.getView().byId("mcb_status_PPD_D").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") and (";
-					} else {
-						oUrl = oUrl + " or ";
-					}
-
-				}
-				for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-					var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
-					oUrl = oUrl + "(zzordtypedesc eq '" + audit + "')";
-					if (i == ((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") &$orderby=dealer_ord desc";
-					} else {
-						oUrl = oUrl + " or ";
-					}
-				}
-				$.ajax({
-					url: oUrl,
-					method: "GET",
-					async: false,
-					dataType: "json",
-					success: function (data, textStatus, jqXHR) {
-						PPD_DealerCont.dialog.close();
-						var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-						if (data.d.results.length <= 0) {
-							BtnNext.setEnabled(false);
-						} else {
-							BtnNext.setEnabled(true);
-						}
-
-						var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
-						if (DataModel.getData().length != undefined) {
-
-							for (var m = 0; m < data.d.results.length; m++) {
-								DataModel.getData().push(data.d.results[m]);
-								DataModel.updateBindings(true);
-								console.log("DataModel.getData()", DataModel.getData());
-							}
-						} else {
-							DataModel.setData(data.d.results);
-							DataModel.updateBindings(true);
-						}
-					},
-					error: function (jqXHR, textStatus, errorThrown) {
-						PPD_DealerCont.dialog.close();
-						var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-					}
-				});
+				PPD_DealerCont.getView().byId("cb_dealer_PPD_D").setSelectedKey("");
 			}
+
+			// else {
+			// 	PPD_DealerCont.dialog.open();
+			// 	var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";
+			// 	for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
+			// 		var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
+			// 		oUrl = oUrl + "(status eq '" + status + "')";
+			// 		if (i == ((this.getView().byId("mcb_status_PPD_D").getSelectedItems().length) - 1)) {
+			// 			oUrl = oUrl + ") and (";
+			// 		} else {
+			// 			oUrl = oUrl + " or ";
+			// 		}
+
+			// 	}
+			// 	for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
+			// 		var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
+			// 		oUrl = oUrl + "(zzordtypedesc eq '" + audit + "')";
+			// 		if (i == ((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length) - 1)) {
+			// 			oUrl = oUrl + ") &$orderby=dealer_ord desc";
+			// 		} else {
+			// 			oUrl = oUrl + " or ";
+			// 		}
+			// 	}
+			// 	$.ajax({
+			// 		url: oUrl,
+			// 		method: "GET",
+			// 		async: false,
+			// 		dataType: "json",
+			// 		success: function (data, textStatus, jqXHR) {
+			// 			PPD_DealerCont.dialog.close();
+			// 			var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
+			// 			if (data.d.results.length <= 0) {
+			// 				BtnNext.setEnabled(false);
+			// 			} else {
+			// 				BtnNext.setEnabled(true);
+			// 			}
+
+			// 			var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
+			// 			if (DataModel.getData().length != undefined) {
+
+			// 				for (var m = 0; m < data.d.results.length; m++) {
+			// 					DataModel.getData().push(data.d.results[m]);
+			// 					DataModel.updateBindings(true);
+			// 					console.log("DataModel.getData()", DataModel.getData());
+			// 				}
+			// 			} else {
+			// 				DataModel.setData(data.d.results);
+			// 				DataModel.updateBindings(true);
+			// 			}
+			// 		},
+			// 		error: function (jqXHR, textStatus, errorThrown) {
+			// 			PPD_DealerCont.dialog.close();
+			// 			var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+			// 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+			// 		}
+			// 	});
+			// }
 		},
 
 		onAfterRendering: function () {
@@ -315,7 +319,7 @@ sap.ui.define([
 			// }
 		},
 
-	_refresh: function () {
+		_refresh: function () {
 
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User") {
@@ -371,8 +375,8 @@ sap.ui.define([
 						// 		console.log("DataModel.getData()", DataModel.getData());
 						// 	}
 						// } else {
-							DataModel.setData(data.d.results);
-							DataModel.updateBindings(true);
+						DataModel.setData(data.d.results);
+						DataModel.updateBindings(true);
 						// }
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
@@ -432,8 +436,8 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
+							DataModel.setData(data.d.results);
+							DataModel.updateBindings(true);
 							// }
 
 						},
@@ -489,8 +493,8 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
+							DataModel.setData(data.d.results);
+							DataModel.updateBindings(true);
 							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
@@ -556,8 +560,8 @@ sap.ui.define([
 					// 		console.log("DataModel.getData()", DataModel.getData());
 					// 	}
 					// } else {
-						DataModel.setData(data.d.results);
-						DataModel.updateBindings(true);
+					DataModel.setData(data.d.results);
+					DataModel.updateBindings(true);
 					// }
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -606,7 +610,7 @@ sap.ui.define([
 			});
 		},
 		onActionNext: function (oEvent) {
-			this .dialog.open();
+			this.dialog.open();
 			//This code was generated by the layout editor.
 			if (clicks < 0) {
 				clicks = 0;
@@ -617,7 +621,7 @@ sap.ui.define([
 			num = clicks * 100;
 			PPD_DealerCont.data();
 		},
-		
+
 		data: function (oEvent) {
 			PPD_DealerCont.dialog.open();
 
@@ -804,7 +808,7 @@ sap.ui.define([
 				}
 			}
 		},
-		onLiveSOChange:function(oEvent){
+		onLiveSOChange: function (oEvent) {
 			this.sSearchQuery = oEvent.getSource().getValue();
 			this.fnSuperSearch();
 		},
