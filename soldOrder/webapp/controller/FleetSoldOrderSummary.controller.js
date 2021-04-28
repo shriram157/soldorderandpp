@@ -195,20 +195,15 @@ sap.ui.define([
 				mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems());
 			}
 			//Added by singhmi for National Fleet User DMND0002946 on 11/03/2021
-			if (x !== "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
+			//Changes done for INC0189944 by Minakshi odata call on load happen only for dealer not for other users.
+			if (x === "Dealer_User") {
 				FSOS_controller.dialog.open();
 				//console.log("loading data");
 				FSOS_controller._refresh();
 			} else {
-
-				if (FSOS_controller.getView().byId("cb_dealer_FSOS").getSelectedKey() != "") {
-					FSOS_controller._refreshCombo();
-
-				} 
-
-
+				FSOS_controller.getView().byId("cb_dealer_FSOS").setSelectedKey("");
 			}
-
+			//Changes done for INC0189944 by Minakshi end
 		},
 		// onBeforeRendering: function () {
 		// 	if (AppController.flagZoneUser == true) {
@@ -219,7 +214,7 @@ sap.ui.define([
 		// 	}
 		// },
 		// onAfterRendering: function () {
-			
+
 		// },
 		_refreshCombo: function (evt) {
 			clicks = 0;
@@ -310,7 +305,7 @@ sap.ui.define([
 		_refresh: function (oEvent) {
 			clicks = 0;
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-//Added by singhmi DMND0002946 on 11/03/2021
+			//Added by singhmi DMND0002946 on 11/03/2021
 			if (x !== "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
@@ -417,10 +412,10 @@ sap.ui.define([
 							}
 
 							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
-							
+
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
-						
+
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							FSOS_controller.dialog.close();
@@ -514,7 +509,7 @@ sap.ui.define([
 			} else {
 				if (fleet == false) {
 					FSOS_controller.dialog.close();
-					
+
 				} else {
 
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
