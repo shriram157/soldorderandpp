@@ -835,7 +835,7 @@ sap.ui.define([
 		data: function (oEvent) {
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			FSOD_controller.dialog.open();
-			if (x != "TCI_User" || x != "National_Fleet_User") {
+			if (x != "TCI_User" && x != "National_Fleet_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
