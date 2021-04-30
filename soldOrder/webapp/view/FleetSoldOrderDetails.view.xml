@@ -165,13 +165,13 @@
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
 										<Text
-											text="{path:'fleetdetailsModel>ZzreqEtaFrom',type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'MM-dd-yyyy' },pattern: 'MM-dd-yyyy', strictParsing: true}}"/>
+											text="{path:'fleetdetailsModel>ZzreqEtaFrom', formatter:'.fnDateFormat'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
 										<Label text="{i18n>ETATime}" class="TableLabel"/>
 										<t:template>
-											<Text text="{path:'fleetdetailsModel>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'MM-dd-yyyy' }, pattern: 'MM-dd-yyyy', strictParsing: true}}"/>
+											<Text text="{path:'fleetdetailsModel>ZzreqEtaTo', formatter:'.fnDateFormat'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>

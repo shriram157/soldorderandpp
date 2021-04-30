@@ -779,7 +779,7 @@ sap.ui.define([
 		dateConverter: function (_dVal) {
 			// INC0190357 started by Minakshi 
 			var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-				pattern: "MM-dd-yyyy"
+				pattern: "MM-DD-YYYY"
 			});
 			if (_dVal !== null && _dVal !== undefined && _dVal != "") {
 				// 	var str = _dVal;
@@ -799,11 +799,22 @@ sap.ui.define([
 			} else return "";
 			// INC0190357 end by Minakshi
 		},
+		fnDateFormat: function (val) {
+			var Oval;
+			if (val) {
+				//var oText = val.toUTCString();
+				Oval = moment.utc(val).format("MM-DD-YYYY");
+			} else {
+				Oval = null;
+			}
+			return Oval;
+
+		},
 		//added by Minakshi for DMND0002960 start
 		stringDateConverter: function (val) {
 			var sval, sdate;
 			var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-				pattern: "MM-dd-yyyy"
+				pattern: "MM-DD-YYYY"
 			});
 			if (val != "") {
 				sdate = val.split(" ")[0];
