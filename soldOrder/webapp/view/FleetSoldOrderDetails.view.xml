@@ -13,7 +13,7 @@
 											<VBox>
 												<Label text="{i18n>status}" class="TableLabel">
 												</Label>
-												<MultiComboBox forceSelection= "true" width="" id="mcb_status_FSOD" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSODetails_Status', sorter: { path: 'key' } }">
+												<MultiComboBox  width="" id="mcb_status_FSOD" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSODetails_Status', sorter: { path: 'key' } }">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -23,7 +23,7 @@
 									
 											<VBox>
 												<Label text="{i18n>auditStatus}" class="TableLabel"></Label>
-												<MultiComboBox forceSelection= "true" id="mcb_auditStatus_FSOD" width="" selectionChange="_refresh" items="{ path: 'AuditModel>/FSODetail_AuditStatus', sorter: { path: 'key' } }">
+												<MultiComboBox  id="mcb_auditStatus_FSOD" width="" selectionChange="_refresh" items="{ path: 'AuditModel>/FSODetail_AuditStatus', sorter: { path: 'key' } }">
 													<core:Item key="{AuditModel>key}" text="{AuditModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -32,13 +32,13 @@
 											</VBox>
 												<VBox visible="true">
 												<Label text="{i18n>dealer}" visible="true" class="TableLabel"/>
-												<MultiComboBox forceSelection= "true" width="" id="mcb_dealer_FSOD" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
+												<MultiComboBox  width="" id="mcb_dealer_FSOD" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
-												<ComboBox forceSelection= "true" xmlns="sap.m" id="cb_dealer_FSOD" width="300px" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
+												<ComboBox  xmlns="sap.m" id="cb_dealer_FSOD" width="300px" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
 												        <core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}" id="item12"/>
 												        	<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -165,7 +165,7 @@
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
 										<Text
-												text="{path:'fleetdetailsModel>ZzreqEtaFrom',type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'MM-dd-yyyy' },pattern: 'MM-dd-yyyy', strictParsing: true}}"/>
+											text="{path:'fleetdetailsModel>ZzreqEtaFrom',type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'MM-dd-yyyy' },pattern: 'MM-dd-yyyy', strictParsing: true}}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>

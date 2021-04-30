@@ -777,6 +777,7 @@ sap.ui.define([
 			}
 		},
 		dateConverter: function (_dVal) {
+			// INC0190357 started by Minakshi 
 			var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 				pattern: "MM-dd-yyyy"
 			});
@@ -796,7 +797,7 @@ sap.ui.define([
 				var numDate = Number(sdateinMili);
 				return oDateFormat.format(new Date(numDate));
 			} else return "";
-
+			// INC0190357 end by Minakshi
 		},
 		//added by Minakshi for DMND0002960 start
 		stringDateConverter: function (val) {
@@ -834,7 +835,7 @@ sap.ui.define([
 		data: function (oEvent) {
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			FSOD_controller.dialog.open();
-			if (x != "TCI_User") {
+			if (x != "TCI_User" || x != "National_Fleet_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
@@ -848,11 +849,13 @@ sap.ui.define([
 				}
 				for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
 					var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-					if (i == ((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") and (";
-					} else {
-						oUrl = oUrl + " or ";
+					if (audit != "") {
+						oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
+						if (i == ((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length) - 1)) {
+							oUrl = oUrl + ") and (";
+						} else {
+							oUrl = oUrl + " or ";
+						}
 					}
 				}
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
@@ -927,11 +930,13 @@ sap.ui.define([
 					}
 					for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
 						var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-						if (i == ((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (FleetReference eq 'X') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc";
-						} else {
-							oUrl = oUrl + " or ";
+						if (audit != "") {
+							oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
+							if (i == ((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length) - 1)) {
+								oUrl = oUrl + ") and (FleetReference eq 'X') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc";
+							} else {
+								oUrl = oUrl + " or ";
+							}
 						}
 					}
 					$.ajax({
@@ -997,11 +1002,13 @@ sap.ui.define([
 					}
 					for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
 						var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
-						if (i == ((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
+						if (audit != "") {
+							oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
+							if (i == ((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length) - 1)) {
+								oUrl = oUrl + ") and (";
+							} else {
+								oUrl = oUrl + " or ";
+							}
 						}
 					}
 					var dealer = this.getView().byId("cb_dealer_FSOD").getSelectedKey();
