@@ -181,12 +181,12 @@ sap.ui.define([
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			//INC0189944 change done by Minakshi to restrict the unwanted loading of data the 
 			//data will default load only for dealer_user "start"
-			
+
 			// if (x != "TCI_User") {
 			// 	FSOD_controller.dialog.open();
 			// 	FSOD_controller._refresh();
 			// } else {
-			
+
 			//Changes done for INC0189944 by Minakshi odata call on load happen only for dealer not for other users.
 			if (x == "Dealer_User") {
 				FSOD_controller.dialog.open();
@@ -245,7 +245,7 @@ sap.ui.define([
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 					}
 				});
-			}else{
+			} else {
 				FSOD_controller.getView().byId("cb_dealer_FSOD").setSelectedKey("");
 			}
 			//Changes done for INC0189944 by Minakshi end
@@ -777,18 +777,26 @@ sap.ui.define([
 			}
 		},
 		dateConverter: function (_dVal) {
+			var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+				pattern: "MM-dd-yyyy"
+			});
 			if (_dVal !== null && _dVal !== undefined && _dVal != "") {
-				var str = _dVal;
-				var res = str.split(")");
-				var res2 = res[0].split("(");
-				var CDate = res2[1];
-				var strParse = parseInt(CDate);
-				var date1 = new Date(strParse);
-				var year = date1.getFullYear()
-				var month = date1.getMonth()
-				var day = date1.getDate()
-				return month + "/" + day + "/" + year;
+				// 	var str = _dVal;
+				// 	var res = str.split(")");
+				// 	var res2 = res[0].split("(");
+				// 	var CDate = res2[1];
+				// 	var strParse = parseInt(CDate);
+				// 	var date1 = new Date(strParse);
+				// 	var year = date1.getFullYear()
+				// 	var month = date1.getMonth()
+				// 	var day = date1.getDate()
+				// 	return month + "/" + day + "/" + year;
+
+				var sdateinMili = _dVal.split("/Date(")[1].split(")/")[0];
+				var numDate = Number(sdateinMili);
+				return oDateFormat.format(new Date(numDate));
 			} else return "";
+
 		},
 		//added by Minakshi for DMND0002960 start
 		stringDateConverter: function (val) {
