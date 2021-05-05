@@ -49,14 +49,14 @@
 									<HBox>
 										<items>
 											<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-											<DatePicker id="etaFrom_CSOR" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd"
+											<DatePicker id="etaFrom_CSOR" valueFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd"
 												dateValue="{mainservices>ZzreqEtaFrom}" change="_handleChangeDate"></DatePicker>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
-											<DatePicker id="etaTo_CSOR" change="_handleChange" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd"
+											<DatePicker id="etaTo_CSOR" change="_handleChange" valueFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd"
 												dateValue="{mainservices>ZzreqEtaTo}"></DatePicker>
 										</items>
 									</HBox>
