@@ -529,14 +529,20 @@ toyota.ca.SoldOrder.util.formatter = {
 
 		},
    fnValFormat : function(val){
-   	var oval;
-   		if(val && val.length < 7){
-   			oval = "0" + val;
-   		}else{
-   			oval = "";
-   		}
-   		
-   		return oval;
-   }
+   	
+   },
+   stringDateConverter: function (val) {
+			var sval, sdate;
+			var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+				pattern: "MM-DD-YYYY"
+			});
+			if (val != "") {
+				sdate = val.split(" ")[0];
+				sval = oDateFormat.format(new Date(sdate));
+			} else {
+				sval = "";
+			}
+			return sval;
+		}
 
 };

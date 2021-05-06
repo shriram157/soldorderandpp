@@ -799,7 +799,6 @@ sap.ui.define([
 						}
 					},
 					
-
 					{
 						name: oBundle.getText("FanNum"),
 						template: {
@@ -809,7 +808,7 @@ sap.ui.define([
 					{
 						name: oBundle.getText("CreationDate"),
 						template: {
-							content: "{ZcreatedOn}"
+							content: "{path:'ZcreatedOn', formatter:'toyota.ca.SoldOrder.util.formatter.stringDateConverter'}"
 						}
 					}
 				]
