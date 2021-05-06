@@ -771,7 +771,7 @@ sap.ui.define([
 					{
 						name: oBundle.getText("vtn"),
 						template: {
-							content: "{path:'Zzvtn', type : 'sap.ui.model.type.String', constraints : { maxLength : 8 }, formatter:'toyota.ca.SoldOrder.util.formatter.fnValFormat'}"
+							content: "{path:'Zzvtn', type : 'sap.ui.model.type.String', constraints : { maxLength : 8 }}"
 						}
 					},
 						{
