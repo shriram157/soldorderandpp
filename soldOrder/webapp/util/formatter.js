@@ -527,6 +527,16 @@ toyota.ca.SoldOrder.util.formatter = {
 			}
 			return Oval;
 
-		}
+		},
+   fnValFormat : function(val){
+   	var oval;
+   		if(val && val.length < 7){
+   			oval = "0" + val;
+   		}else{
+   			oval = "";
+   		}
+   		
+   		return oval;
+   }
 
 };
