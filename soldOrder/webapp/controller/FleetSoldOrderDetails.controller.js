@@ -4,9 +4,9 @@ sap.ui.define([
 	"sap/ui/model/Sorter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-		"sap/ui/core/util/Export",
+	"sap/ui/core/util/Export",
 	"sap/ui/core/util/ExportTypeCSV"
-], function (BaseController, formatter, Sorter, Filter, FilterOperator,Export,ExportTypeCSV) {
+], function (BaseController, formatter, Sorter, Filter, FilterOperator, Export, ExportTypeCSV) {
 	"use strict";
 	var FSOD_controller, zrequest,
 		clicks = 0,
@@ -697,15 +697,126 @@ sap.ui.define([
 					path: "/"
 				},
 
-				columns: [{
-					name: oBundle.getText("orderNumber"),
-					template: {
-						content: "{ZzsoReqNo}"
+				columns: [
+					{
+						name: oBundle.getText("orderNumber"),
+						template: {
+							content: "{ZzsoReqNo}"
+						}
+					},
+					{
+						name: oBundle.getText("FleetSO"),
+						template: {
+							content: "{ZzsoFltReqNo}"
+						}
+					},
+					{
+						name: oBundle.getText("zoneAppNumber"),
+						template: {
+							content: "{ZZONE_APPROVAL}"
+						}
+					},
+					{
+						name: oBundle.getText("custname"),
+						template: {
+							content: "{ZzendcuName}"
+						}
+					},
+					{
+						name: oBundle.getText("dealer"),
+						template: {
+							content: "{ZzdealerCode}"
+						}
+					},
+					{
+						name: oBundle.getText("modelYear"),
+						template: {
+							content: "{Zzmoyr}"
+						}
+					},
+					{
+						name: oBundle.getText("Model"),
+						template: {
+							content: "{Zzmodel}"
+						}
+					},
+					{
+						name: oBundle.getText("Suffix"),
+						template: {
+							content: "{Zzsuffix}"
+						}
+					},
+					{
+						name: oBundle.getText("Colour"),
+						template: {
+							content: "{Zzextcol}"
+						}
+					},
+					{
+						name: oBundle.getText("APX"),
+						template: {
+							content: "{Zzapx}"
+						}
+					},
+					{
+						name: oBundle.getText("Status"),
+						template: {
+							content: "{ZzsoStatus}"
+						}
+					},
+					{
+						name: oBundle.getText("audit"),
+						template: {
+							content: "{ZzAuditStatus}"
+						}
+					},
+					{
+						name: oBundle.getText("vtn"),
+						template: {
+							content: "{Zzvtn}"
+						}
+					},
+						{
+						name: oBundle.getText("vin"),
+						template: {
+							content: "{Vhvin}"
+						}
+					},
+					{
+						name: oBundle.getText("ETAFrom"),
+						template: {
+							content: "{ZzreqEtaFrom}"
+						}
+					},
+					{
+						name: oBundle.getText("ETATime"),
+						template: {
+							content: "{ZzreqEtaTo}"
+						}
+					},
+					{
+						name: oBundle.getText("PONumber"),
+						template: {
+							content: "{ZPO_NUMBER}"
+						}
+					},
+					
+
+					{
+						name: oBundle.getText("FanNum"),
+						template: {
+							content: "{ZFAN_NO}"
+						}
+					},
+					{
+						name: oBundle.getText("CreationDate"),
+						template: {
+							content: "{ZcreatedOn}"
+						}
 					}
-				}]
+				]
 
 			});
-
 			//* download exported file
 
 			oExport.saveFile().always(function () {
