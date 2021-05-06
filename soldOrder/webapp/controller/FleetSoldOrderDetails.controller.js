@@ -3,8 +3,10 @@ sap.ui.define([
 	"toyota/ca/SoldOrder/util/formatter",
 	"sap/ui/model/Sorter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (BaseController, formatter, Sorter, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+		"sap/ui/core/util/Export",
+	"sap/ui/core/util/ExportTypeCSV"
+], function (BaseController, formatter, Sorter, Filter, FilterOperator,Export,ExportTypeCSV) {
 	"use strict";
 	var FSOD_controller, zrequest,
 		clicks = 0,
@@ -681,7 +683,34 @@ sap.ui.define([
 			} else {
 				data = FSOD_controller.getView().byId("tbl_FSOD").getModel("fleetdetailsModel").getData();
 			}
-			FSOD_controller.JSONToExcelConvertor(data, "Report", true);
+			//FSOD_controller.JSONToExcelConvertor(data, "Report", true);
+
+			var that = this;
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
+			var oExport = new sap.ui.core.util.Export({
+				exportType: new sap.ui.core.util.ExportTypeCSV({
+					fileExtension: "csv"
+				}),
+
+				models: DataModel,
+				rows: {
+					path: "/"
+				},
+
+				columns: [{
+					name: oBundle.getText("orderNumber"),
+					template: {
+						content: "{ZzsoReqNo}"
+					}
+				}]
+
+			});
+
+			//* download exported file
+
+			oExport.saveFile().always(function () {
+				this.destroy();
+			});
 
 		},
 		JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
