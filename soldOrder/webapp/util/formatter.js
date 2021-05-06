@@ -516,6 +516,17 @@ toyota.ca.SoldOrder.util.formatter = {
 
 			return year + "-" + month + "-" + day;
 		}
-	}
+	},
+	fnDateFormat: function (val) {
+			var Oval;
+			if (val) {
+				//var oText = val.toUTCString();
+				Oval = moment.utc(val).format("MM-DD-YYYY");
+			} else {
+				Oval = null;
+			}
+			return Oval;
+
+		}
 
 };

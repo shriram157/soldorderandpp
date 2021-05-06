@@ -165,13 +165,13 @@
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
 										<Text
-											text="{path:'fleetdetailsModel>ZzreqEtaFrom', formatter:'.fnDateFormat'}"/>
+											text="{path:'fleetdetailsModel>ZzreqEtaFrom', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
 										<Label text="{i18n>ETATime}" class="TableLabel"/>
 										<t:template>
-											<Text text="{path:'fleetdetailsModel>ZzreqEtaTo', formatter:'.fnDateFormat'}"/>
+											<Text text="{path:'fleetdetailsModel>ZzreqEtaTo', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>

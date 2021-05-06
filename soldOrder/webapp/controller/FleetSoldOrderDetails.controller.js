@@ -684,8 +684,6 @@ sap.ui.define([
 				data = FSOD_controller.getView().byId("tbl_FSOD").getModel("fleetdetailsModel").getData();
 			}
 			//FSOD_controller.JSONToExcelConvertor(data, "Report", true);
-
-			var that = this;
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var oExport = new sap.ui.core.util.Export({
 				exportType: new sap.ui.core.util.ExportTypeCSV({
@@ -785,13 +783,13 @@ sap.ui.define([
 					{
 						name: oBundle.getText("ETAFrom"),
 						template: {
-							content: "{ZzreqEtaFrom}"
+							content: "{path:'ZzreqEtaFrom', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
 						}
 					},
 					{
 						name: oBundle.getText("ETATime"),
 						template: {
-							content: "{ZzreqEtaTo}"
+							content: "{path:'ZzreqEtaTo', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
 						}
 					},
 					{
