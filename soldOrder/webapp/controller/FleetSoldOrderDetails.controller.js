@@ -695,117 +695,99 @@ sap.ui.define([
 					path: "/"
 				},
 
-				columns: [
-					{
+				columns: [{
 						name: oBundle.getText("orderNumber"),
 						template: {
 							content: "{ZzsoReqNo}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("FleetSO"),
 						template: {
 							content: "{ZzsoFltReqNo}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("zoneAppNumber"),
 						template: {
 							content: "{ZZONE_APPROVAL}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("custname"),
 						template: {
 							content: "{ZzendcuName}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("dealer"),
 						template: {
 							content: "{ZzdealerCode}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("modelYear"),
 						template: {
 							content: "{Zzmoyr}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("Model"),
 						template: {
 							content: "{Zzmodel}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("Suffix"),
 						template: {
 							content: "{Zzsuffix}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("Colour"),
 						template: {
-							content: "{Zzextcol}"
+							content: "{path:'Zzextcol', constraints : { maxLength : 4 }, formatter:'toyota.ca.SoldOrder.util.formatter.fnValFormat'}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("APX"),
 						template: {
 							content: "{Zzapx}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("Status"),
 						template: {
 							content: "{ZzsoStatus}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("audit"),
 						template: {
 							content: "{ZzAuditStatus}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("vtn"),
 						template: {
-							content: "{path:'Zzvtn', type : 'sap.ui.model.type.String', constraints : { maxLength : 8 }}"
+							content: "{path:'Zzvtn', type : 'sap.ui.model.type.String', constraints : { maxLength : 8 }, formatter:'toyota.ca.SoldOrder.util.formatter.fnValFormat'}"
 						}
-					},
-						{
+					}, {
 						name: oBundle.getText("vin"),
 						template: {
 							content: "{Vhvin}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("ETAFrom"),
 						template: {
 							content: "{path:'ZzreqEtaFrom', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("ETATime"),
 						template: {
 							content: "{path:'ZzreqEtaTo', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("PONumber"),
 						template: {
 							content: "{ZPO_NUMBER}"
 						}
 					},
-					
+
 					{
 						name: oBundle.getText("FanNum"),
 						template: {
 							content: "{ZFAN_NO}"
 						}
-					},
-					{
+					}, {
 						name: oBundle.getText("CreationDate"),
 						template: {
 							content: "{path:'ZcreatedOn', formatter:'toyota.ca.SoldOrder.util.formatter.stringDateConverter'}"
@@ -821,121 +803,121 @@ sap.ui.define([
 			});
 
 		},
-		JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
-			//	var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
-			var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
-			var CSV = "";
-			if (ShowLabel) {
-				var row = "";
-				row = row.slice(0, -1);
-			}
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("orderNumber") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FleetSO") + ","; //added by Minakshi for DMND0002960 
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("zoneAppNumber") + ","; //added by Minakshi for DMND0002960 
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("custname") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
+		// JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
+		// 	//	var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
+		// 	var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+		// 	var CSV = "";
+		// 	if (ShowLabel) {
+		// 		var row = "";
+		// 		row = row.slice(0, -1);
+		// 	}
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("orderNumber") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FleetSO") + ","; //added by Minakshi for DMND0002960 
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("zoneAppNumber") + ","; //added by Minakshi for DMND0002960 
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("custname") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
 
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Model") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Suffix") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Colour") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("APX") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Status") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("audit") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vtn") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vin") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("ETAFrom") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("ETATime") + ",";
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("PONumber") + ","; //added by Minakshi for DMND0002960 
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FanNum") + ","; //added by Minakshi for DMND0002960 
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("CreationDate") + ","; //added by Minakshi for DMND0002960 
-			row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Model") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Suffix") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Colour") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("APX") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Status") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("audit") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vtn") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vin") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("ETAFrom") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("ETATime") + ",";
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("PONumber") + ","; //added by Minakshi for DMND0002960 
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FanNum") + ","; //added by Minakshi for DMND0002960 
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("CreationDate") + ","; //added by Minakshi for DMND0002960 
+		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
 
-			CSV += row + '\r\n';
+		// 	CSV += row + '\r\n';
 
-			//loop is to extract each row
-			for (var i = 0; i < arrData.length; i++) {
-				// console.log(arrData[i]);
-				var row = "";
-				row = " ";
-				row += arrData[i].ZzsoReqNo + ',' +
-					arrData[i].ZzsoFltReqNo + ',' +
-					arrData[i].ZZONE_APPROVAL + ',' +
-					arrData[i].ZzendcuName + ',' +
-					//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + ',' +
-					arrData[i].ZzdealerCode + ',' +
-					arrData[i].Zzmoyr + ',' +
+		// 	//loop is to extract each row
+		// 	for (var i = 0; i < arrData.length; i++) {
+		// 		// console.log(arrData[i]);
+		// 		var row = "";
+		// 		row = " ";
+		// 		row += arrData[i].ZzsoReqNo + ',' +
+		// 			arrData[i].ZzsoFltReqNo + ',' +
+		// 			arrData[i].ZZONE_APPROVAL + ',' +
+		// 			arrData[i].ZzendcuName + ',' +
+		// 			//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + ',' +
+		// 			arrData[i].ZzdealerCode + ',' +
+		// 			arrData[i].Zzmoyr + ',' +
 
-					arrData[i].Zzmodel + ',' +
-					arrData[i].Zzsuffix + ',' +
+		// 			arrData[i].Zzmodel + ',' +
+		// 			arrData[i].Zzsuffix + ',' +
 
-					arrData[i].Zzextcol + ',' +
-					arrData[i].Zzapx + ',' +
-					arrData[i].ZzsoStatus + ',' +
-					arrData[i].ZzAuditStatus + ',' +
+		// 			arrData[i].Zzextcol + ',' +
+		// 			arrData[i].Zzapx + ',' +
+		// 			arrData[i].ZzsoStatus + ',' +
+		// 			arrData[i].ZzAuditStatus + ',' +
 
-					arrData[i].Zzvtn + ',' +
-					arrData[i].Vhvin + ',' +
-					//	arrData[i].ZzreqEtaFrom +',' +
-					//	arrData[i].ZzreqEtaTo+ '",';
-					FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) + ',' +
-					FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + ',' +
-					arrData[i].ZPO_NUMBER + ',' +
-					arrData[i].ZFAN_NO + ',' +
-					FSOD_controller.stringDateConverter(arrData[i].ZcreatedOn) + ',',
-					//}
-					row.slice(1, row.length);
-				CSV += row + '\r\n';
-			}
-			if (CSV == "") {
-				alert("Invalid data");
-				return;
-			}
-			var fileName = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FleetSoldOrderReport");
+		// 			arrData[i].Zzvtn + ',' +
+		// 			arrData[i].Vhvin + ',' +
+		// 			//	arrData[i].ZzreqEtaFrom +',' +
+		// 			//	arrData[i].ZzreqEtaTo+ '",';
+		// 			FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) + ',' +
+		// 			FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + ',' +
+		// 			arrData[i].ZPO_NUMBER + ',' +
+		// 			arrData[i].ZFAN_NO + ',' +
+		// 			FSOD_controller.stringDateConverter(arrData[i].ZcreatedOn) + ',',
+		// 			//}
+		// 			row.slice(1, row.length);
+		// 		CSV += row + '\r\n';
+		// 	}
+		// 	if (CSV == "") {
+		// 		alert("Invalid data");
+		// 		return;
+		// 	}
+		// 	var fileName = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FleetSoldOrderReport");
 
-			//			fileName += ReportTitle.replace(/ /g, "_");
-			// Initialize file format you want csv or xls
+		// 	//			fileName += ReportTitle.replace(/ /g, "_");
+		// 	// Initialize file format you want csv or xls
 
-			var blob = new Blob(["\ufeff" + CSV], {
-				type: "text/csv;charset=utf-8,"
-			});
-			if (sap.ui.Device.browser.name === "ie" || sap.ui.Device.browser.name === "ed") { // IE 10+ , Edge (IE 12+)
-				navigator.msSaveBlob(blob, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FleetSoldOrderReport") + ".csv");
-			} else {
-				var uri = 'data:text/csv;charset=utf-8,' + "\ufeff" + encodeURIComponent(CSV); //'data:application/vnd.ms-excel,' + escape(CSV);
-				var link = document.createElement("a");
+		// 	var blob = new Blob(["\ufeff" + CSV], {
+		// 		type: "text/csv;charset=utf-8,"
+		// 	});
+		// 	if (sap.ui.Device.browser.name === "ie" || sap.ui.Device.browser.name === "ed") { // IE 10+ , Edge (IE 12+)
+		// 		navigator.msSaveBlob(blob, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("FleetSoldOrderReport") + ".csv");
+		// 	} else {
+		// 		var uri = 'data:text/csv;charset=utf-8,' + "\ufeff" + encodeURIComponent(CSV); //'data:application/vnd.ms-excel,' + escape(CSV);
+		// 		var link = document.createElement("a");
 
-				link.href = uri;
-				link.style = "visibility:hidden";
-				link.download = fileName + ".csv";
-				document.body.appendChild(link);
-				link.click();
-				document.body.removeChild(link);
-			}
-		},
-		dateConverter: function (_dVal) {
-			// INC0190357 started by Minakshi 
-			var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-				pattern: "MM-DD-YYYY"
-			});
-			if (_dVal !== null && _dVal !== undefined && _dVal != "") {
-				// 	var str = _dVal;
-				// 	var res = str.split(")");
-				// 	var res2 = res[0].split("(");
-				// 	var CDate = res2[1];
-				// 	var strParse = parseInt(CDate);
-				// 	var date1 = new Date(strParse);
-				// 	var year = date1.getFullYear()
-				// 	var month = date1.getMonth()
-				// 	var day = date1.getDate()
-				// 	return month + "/" + day + "/" + year;
+		// 		link.href = uri;
+		// 		link.style = "visibility:hidden";
+		// 		link.download = fileName + ".csv";
+		// 		document.body.appendChild(link);
+		// 		link.click();
+		// 		document.body.removeChild(link);
+		// 	}
+		// },
+		// dateConverter: function (_dVal) {
+		// 	// INC0190357 started by Minakshi 
+		// 	var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+		// 		pattern: "MM-DD-YYYY"
+		// 	});
+		// 	if (_dVal !== null && _dVal !== undefined && _dVal != "") {
+		// 		// 	var str = _dVal;
+		// 		// 	var res = str.split(")");
+		// 		// 	var res2 = res[0].split("(");
+		// 		// 	var CDate = res2[1];
+		// 		// 	var strParse = parseInt(CDate);
+		// 		// 	var date1 = new Date(strParse);
+		// 		// 	var year = date1.getFullYear()
+		// 		// 	var month = date1.getMonth()
+		// 		// 	var day = date1.getDate()
+		// 		// 	return month + "/" + day + "/" + year;
 
-				var sdateinMili = _dVal.split("/Date(")[1].split(")/")[0];
-				var numDate = Number(sdateinMili);
-				return oDateFormat.format(new Date(numDate));
-			} else return "";
-			// INC0190357 end by Minakshi
-		},
+		// 		var sdateinMili = _dVal.split("/Date(")[1].split(")/")[0];
+		// 		var numDate = Number(sdateinMili);
+		// 		return oDateFormat.format(new Date(numDate));
+		// 	} else return "";
+		// 	// INC0190357 end by Minakshi
+		// },
 		// fnDateFormat: function (val) {
 		// 	var Oval;
 		// 	if (val) {

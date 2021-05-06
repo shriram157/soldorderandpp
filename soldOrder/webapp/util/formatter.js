@@ -529,7 +529,9 @@ toyota.ca.SoldOrder.util.formatter = {
 
 	},
 	fnValFormat: function (val) {
-
+		if(val){
+			return "    " + val;
+		}
 	},
 	stringDateConverter: function (val) {
 		var sval, sdate;
