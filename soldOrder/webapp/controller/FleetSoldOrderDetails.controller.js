@@ -936,31 +936,31 @@ sap.ui.define([
 			} else return "";
 			// INC0190357 end by Minakshi
 		},
-		fnDateFormat: function (val) {
-			var Oval;
-			if (val) {
-				//var oText = val.toUTCString();
-				Oval = moment.utc(val).format("MM-DD-YYYY");
-			} else {
-				Oval = null;
-			}
-			return Oval;
+		// fnDateFormat: function (val) {
+		// 	var Oval;
+		// 	if (val) {
+		// 		//var oText = val.toUTCString();
+		// 		Oval = moment.utc(val).format("MM-DD-YYYY");
+		// 	} else {
+		// 		Oval = null;
+		// 	}
+		// 	return Oval;
 
-		},
-		//added by Minakshi for DMND0002960 start
-		stringDateConverter: function (val) {
-			var sval, sdate;
-			var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-				pattern: "MM-DD-YYYY"
-			});
-			if (val != "") {
-				sdate = val.split(" ")[0];
-				sval = oDateFormat.format(new Date(sdate));
-			} else {
-				sval = "";
-			}
-			return sval;
-		},
+		// },
+		// //added by Minakshi for DMND0002960 start
+		// stringDateConverter: function (val) {
+		// 	var sval, sdate;
+		// 	var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+		// 		pattern: "MM-DD-YYYY"
+		// 	});
+		// 	if (val != "") {
+		// 		sdate = val.split(" ")[0];
+		// 		sval = oDateFormat.format(new Date(sdate));
+		// 	} else {
+		// 		sval = "";
+		// 	}
+		// 	return sval;
+		// },
 
 		//added by Minakshi for DMND0002960 end
 
@@ -1220,7 +1220,9 @@ sap.ui.define([
 					new Filter("Zzextcol", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ZzsoStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ZzAuditStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
-					new Filter("Zzvtn", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
+					new Filter("Zzvtn", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZzsoFltReqNo", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("ZZONE_APPROVAL", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
 				], false);
 
 				aFilters = new sap.ui.model.Filter([oFilter], true);

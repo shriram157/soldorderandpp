@@ -363,7 +363,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	NationalorZonalusertype: function (Usertypevalue) {
-	
+
 		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
 		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User")) {
 			return true;
@@ -372,7 +372,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	TCIorZonalusertype: function (Usertypevalue) {
-	
+
 		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
 		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User") || (Usertypevalue === "National_Fleet_User")) {
 			return true;
@@ -381,7 +381,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	NonTCIorZonalusertype: function (Usertypevalue) {
-	//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
 		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User") || (Usertypevalue === "National_Fleet_User")) {
 			return false;
 		} else {
@@ -389,7 +389,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	Nationalusertype: function (Usertypevalue) {
-	//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
 		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User")) {
 			return false;
 		} else {
@@ -421,11 +421,11 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	TciApprove: function (svalue) {
-	//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
 		var oUserType = this.getParent().getParent().oPropagatedProperties.oModels.LoginUserModel.getData().UserType;
 		if (svalue === "REQUESTED" && oUserType !== "National_Fleet_User") {
 			return true;
-		}else if(svalue === "ZONE APPROVED" && oUserType === "National_Fleet_User"){
+		} else if (svalue === "ZONE APPROVED" && oUserType === "National_Fleet_User") {
 			return true;
 		} else {
 			return false;
@@ -518,31 +518,31 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	fnDateFormat: function (val) {
-			var Oval;
-			if (val) {
-				//var oText = val.toUTCString();
-				Oval = moment.utc(val).format("MM-DD-YYYY");
-			} else {
-				Oval = null;
-			}
-			return Oval;
-
-		},
-   fnValFormat : function(val){
-   	
-   },
-   stringDateConverter: function (val) {
-			var sval, sdate;
-			var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-				pattern: "MM-DD-YYYY"
-			});
-			if (val != "") {
-				sdate = val.split(" ")[0];
-				sval = oDateFormat.format(new Date(sdate));
-			} else {
-				sval = "";
-			}
-			return sval;
+		var Oval;
+		if (val) {
+			//var oText = val.toUTCString();
+			Oval = moment.utc(val).format("DD-MM-YYYY");
+		} else {
+			Oval = null;
 		}
+		return Oval;
+
+	},
+	fnValFormat: function (val) {
+
+	},
+	stringDateConverter: function (val) {
+		var sval, sdate;
+		// var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+		// 	pattern: "MM-DD-YYYY"
+		// });
+		if (val != "" && val != null) {
+			sdate = val.split(" ")[0];
+			sval = sdate.replaceAll(".", "-");
+		} else {
+			sval = null;
+		}
+		return sval;
+	}
 
 };
