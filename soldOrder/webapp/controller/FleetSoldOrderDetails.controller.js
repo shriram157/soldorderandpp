@@ -5,8 +5,10 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/ui/core/util/Export",
-	"sap/ui/core/util/ExportTypeCSV"
-], function (BaseController, formatter, Sorter, Filter, FilterOperator, Export, ExportTypeCSV) {
+	"sap/ui/core/util/ExportTypeCSV",
+	'sap/ui/export/library',
+	'sap/ui/export/Spreadsheet'
+], function (BaseController, formatter, Sorter, Filter, FilterOperator, Export, ExportTypeCSV, exportLibrary, Spreadsheet) {
 	"use strict";
 	var FSOD_controller, zrequest,
 		clicks = 0,
@@ -674,135 +676,291 @@ sap.ui.define([
 				BtnExport.setEnabled(true); // change 24 sep -requirement change
 			}
 		},
-		onExport: function () {
-
-			var data;
-			var DataModel = FSOD_controller.getView().getModel("fleetdetailsModel");
-			if (DataModel != undefined) {
-				data = DataModel.getData();
-			} else {
-				data = FSOD_controller.getView().byId("tbl_FSOD").getModel("fleetdetailsModel").getData();
-			}
-			//FSOD_controller.JSONToExcelConvertor(data, "Report", true);
+		createColumnConfig: function () {
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
-			var oExport = new sap.ui.core.util.Export({
-				exportType: new sap.ui.core.util.ExportTypeCSV({
-					fileExtension: "csv"
-				}),
+	var EdmType = exportLibrary.EdmType;
+			var aCols = [];
 
-				models: DataModel,
-				rows: {
-					path: "/"
-				},
-
-				columns: [{
-						name: oBundle.getText("orderNumber"),
-						template: {
-							content: "{ZzsoReqNo}"
-						}
-					}, {
-						name: oBundle.getText("FleetSO"),
-						template: {
-							content: "{ZzsoFltReqNo}"
-						}
-					}, {
-						name: oBundle.getText("zoneAppNumber"),
-						template: {
-							content: "{ZZONE_APPROVAL}"
-						}
-					}, {
-						name: oBundle.getText("custname"),
-						template: {
-							content: "{ZzendcuName}"
-						}
-					}, {
-						name: oBundle.getText("dealer"),
-						template: {
-							content: "{ZzdealerCode}"
-						}
-					}, {
-						name: oBundle.getText("modelYear"),
-						template: {
-							content: "{Zzmoyr}"
-						}
-					}, {
-						name: oBundle.getText("Model"),
-						template: {
-							content: "{Zzmodel}"
-						}
-					}, {
-						name: oBundle.getText("Suffix"),
-						template: {
-							content: "{Zzsuffix}"
-						}
-					}, {
-						name: oBundle.getText("Colour"),
-						template: {
-							content: "{path:'Zzextcol', constraints : { maxLength : 4 }, formatter:'toyota.ca.SoldOrder.util.formatter.fnValFormat'}"
-						}
-					}, {
-						name: oBundle.getText("APX"),
-						template: {
-							content: "{Zzapx}"
-						}
-					}, {
-						name: oBundle.getText("Status"),
-						template: {
-							content: "{ZzsoStatus}"
-						}
-					}, {
-						name: oBundle.getText("audit"),
-						template: {
-							content: "{ZzAuditStatus}"
-						}
-					}, {
-						name: oBundle.getText("vtn"),
-						template: {
-							content: "{path:'Zzvtn', type : 'sap.ui.model.type.String', constraints : { maxLength : 8 }, formatter:'toyota.ca.SoldOrder.util.formatter.fnValFormat'}"
-						}
-					}, {
-						name: oBundle.getText("vin"),
-						template: {
-							content: "{Vhvin}"
-						}
-					}, {
-						name: oBundle.getText("ETAFrom"),
-						template: {
-							content: "{path:'ZzreqEtaFrom', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
-						}
-					}, {
-						name: oBundle.getText("ETATime"),
-						template: {
-							content: "{path:'ZzreqEtaTo', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
-						}
-					}, {
-						name: oBundle.getText("PONumber"),
-						template: {
-							content: "{ZPO_NUMBER}"
-						}
-					},
-
-					{
-						name: oBundle.getText("FanNum"),
-						template: {
-							content: "{ZFAN_NO}"
-						}
-					}, {
-						name: oBundle.getText("CreationDate"),
-						template: {
-							content: "{path:'ZcreatedOn', formatter:'toyota.ca.SoldOrder.util.formatter.stringDateConverter'}"
-						}
-					}
-				]
-
+			aCols.push({
+				label: oBundle.getText("orderNumber"),
+				type: EdmType.String,
+				property: 'ZzsoReqNo'
 			});
-			//* download exported file
 
-			oExport.saveFile().always(function () {
-				this.destroy();
+			aCols.push({
+				label: oBundle.getText("FleetSO"),
+				type: EdmType.String,
+				property: 'ZzsoFltReqNo'
+			});
+
+			aCols.push({
+				label: oBundle.getText("zoneAppNumber"),
+				type: EdmType.String,
+				property: 'ZZONE_APPROVAL'
+			});
+
+			aCols.push({
+				label: oBundle.getText("custname"),
+				type: EdmType.String,
+				property: 'ZzendcuName'
+			});
+
+			aCols.push({
+				label: oBundle.getText("dealer"),
+				type: EdmType.String,
+				property: 'ZzdealerCode'
+			});
+
+			aCols.push({
+				label: oBundle.getText("modelYear"),
+				type: EdmType.String,
+				property: 'Zzmoyr'
+			});
+
+			aCols.push({
+				label: oBundle.getText("Model"),
+				type: EdmType.String,
+				property: 'Zzmodel'
+			});
+
+			aCols.push({
+				label: oBundle.getText("Suffix"),
+				type: EdmType.String,
+				property: 'Zzsuffix'
+			});
+
+			aCols.push({
+				label: oBundle.getText("Colour"),
+				type: EdmType.String,
+				property: 'Zzextcol'
+			});
+
+			aCols.push({
+				label: oBundle.getText("APX"),
+				type: EdmType.String,
+				property: 'Zzapx'
+			});
+			aCols.push({
+				label: oBundle.getText("Status"),
+				type: EdmType.String,
+				property: 'ZzsoStatus'
+			});
+
+			aCols.push({
+				label: oBundle.getText("audit"),
+				type: EdmType.String,
+				property: 'ZzAuditStatus'
+			});
+
+			aCols.push({
+				label: oBundle.getText("vtn"),
+				type: EdmType.String,
+				property: 'Zzvtn'
+			});
+
+			aCols.push({
+				label: oBundle.getText("vin"),
+				type: EdmType.String,
+				property: 'Vhvin'
+			});
+
+			aCols.push({
+				label: oBundle.getText("ETAFrom"),
+				type: EdmType.Date,
+				property: 'ZzreqEtaFrom',
+				template: {
+					content: "{path:'ZzreqEtaFrom', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
+				}
+			});
+
+			aCols.push({
+				label: oBundle.getText("ETATime"),
+				type: EdmType.Date,
+				property: 'ZzreqEtaTo',
+				template: {
+					content: "{path:'ZzreqEtaTo', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
+				}
+			});
+
+			aCols.push({
+				label: oBundle.getText("PONumber"),
+				type: EdmType.String,
+				property: 'ZPO_NUMBER'
+			});
+
+			aCols.push({
+				label: oBundle.getText("FanNum"),
+				type: EdmType.String,
+				property: 'ZFAN_NO'
+			});
+
+			aCols.push({
+				label: oBundle.getText("CreationDate"),
+				type: EdmType.Date,
+				property: 'ZcreatedOn',
+				template: {
+					content: "{path:'ZcreatedOn', formatter:'toyota.ca.SoldOrder.util.formatter.stringDateConverter'}"
+				}
+			});
+
+			return aCols;
+		},
+
+		onExport: function () {
+			var aCols, oRowBinding, oSettings, oSheet, oTable;
+
+			if (!this._oTable) {
+				this._oTable = this.byId('tbl_FSOD');
+			}
+
+			oTable = this._oTable;
+			oRowBinding = oTable.getBinding('rows');
+			aCols = this.createColumnConfig();
+
+			oSettings = {
+				workbook: {
+					columns: aCols
+				},
+				dataSource: oRowBinding.oList,
+				fileName: 'Table export.xlsx',
+				worker: false // We need to disable worker because we are using a MockServer as OData Service
+			};
+
+			oSheet = new sap.ui.export.Spreadsheet(oSettings);
+			oSheet.build().finally(function () {
+				oSheet.destroy();
 			});
 
 		},
+		// onExport: function () {
+
+		// 	var data;
+		// 	var DataModel = FSOD_controller.getView().getModel("fleetdetailsModel");
+		// 	if (DataModel != undefined) {
+		// 		data = DataModel.getData();
+		// 	} else {
+		// 		data = FSOD_controller.getView().byId("tbl_FSOD").getModel("fleetdetailsModel").getData();
+		// 	}
+		// 	//FSOD_controller.JSONToExcelConvertor(data, "Report", true);
+		// 	var oBundle = this.getView().getModel("i18n").getResourceBundle();
+		// 	var oExport = new sap.ui.core.util.Export({
+		// 		exportType: new sap.ui.core.util.ExportTypeCSV({
+		// 			fileExtension: "csv"
+		// 		}),
+
+		// 		models: DataModel,
+		// 		rows: {
+		// 			path: "/"
+		// 		},
+
+		// 		columns: [{
+		// 				name: oBundle.getText("orderNumber"),
+		// 				template: {
+		// 					content: "{ZzsoReqNo}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("FleetSO"),
+		// 				template: {
+		// 					content: "{ZzsoFltReqNo}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("zoneAppNumber"),
+		// 				template: {
+		// 					content: "{ZZONE_APPROVAL}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("custname"),
+		// 				template: {
+		// 					content: "{ZzendcuName}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("dealer"),
+		// 				template: {
+		// 					content: "{ZzdealerCode}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("modelYear"),
+		// 				template: {
+		// 					content: "{Zzmoyr}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("Model"),
+		// 				template: {
+		// 					content: "{Zzmodel}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("Suffix"),
+		// 				template: {
+		// 					content: "{Zzsuffix}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("Colour"),
+		// 				template: {
+		// 					content: "{path:'Zzextcol', constraints : { maxLength : 4 }, formatter:'toyota.ca.SoldOrder.util.formatter.fnValFormat'}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("APX"),
+		// 				template: {
+		// 					content: "{Zzapx}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("Status"),
+		// 				template: {
+		// 					content: "{ZzsoStatus}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("audit"),
+		// 				template: {
+		// 					content: "{ZzAuditStatus}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("vtn"),
+		// 				template: {
+		// 					content: "{path:'Zzvtn', type : 'sap.ui.model.type.String', constraints : { maxLength : 8 }, formatter:'toyota.ca.SoldOrder.util.formatter.fnValFormat'}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("vin"),
+		// 				template: {
+		// 					content: "{Vhvin}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("ETAFrom"),
+		// 				template: {
+		// 					content: "{path:'ZzreqEtaFrom', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("ETATime"),
+		// 				template: {
+		// 					content: "{path:'ZzreqEtaTo', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("PONumber"),
+		// 				template: {
+		// 					content: "{ZPO_NUMBER}"
+		// 				}
+		// 			},
+
+		// 			{
+		// 				name: oBundle.getText("FanNum"),
+		// 				template: {
+		// 					content: "{ZFAN_NO}"
+		// 				}
+		// 			}, {
+		// 				name: oBundle.getText("CreationDate"),
+		// 				template: {
+		// 					content: "{path:'ZcreatedOn', formatter:'toyota.ca.SoldOrder.util.formatter.stringDateConverter'}"
+		// 				}
+		// 			}
+		// 		]
+
+		// 	});
+		// 	//* download exported file
+
+		// 	oExport.saveFile().always(function () {
+		// 		this.destroy();
+		// 	});
+
+		// },
 		// JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
 		// 	//	var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
 		// 	var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
