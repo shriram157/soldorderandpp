@@ -796,7 +796,7 @@ sap.ui.define([
 
 			aCols.push({
 				label: oBundle.getText("CreationDate"),
-				type: EdmType.Date,
+				type: EdmType.String,
 				property: 'ZcreatedOn',
 				template: {
 					content: "{path:'ZcreatedOn', formatter:'toyota.ca.SoldOrder.util.formatter.stringDateConverter'}"
