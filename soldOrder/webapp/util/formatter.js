@@ -521,7 +521,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		var Oval;
 		if (val) {
 			//var oText = val.toUTCString();
-			Oval = moment.utc(val).format("DD-MM-YYYY");
+			Oval = moment.utc(val).format("DD.MM.YYYY");
 		} else {
 			Oval = null;
 		}
@@ -538,7 +538,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		// var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 		// 	pattern: "MM-DD-YYYY"
 		// });
-		if (val != "" && val != null) {
+		if (val != "" && val != null && val != undefined) {
 			sdate = val.split(" ")[0];
 			sval = sdate.replaceAll(".", "-");
 		} else {
