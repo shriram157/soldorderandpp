@@ -770,7 +770,8 @@ sap.ui.define([
 				property: 'ZzreqEtaFrom',
 				template: {
 					content: "{path:'ZzreqEtaFrom', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
-				}
+				},
+				format : "dd.mm.yyyy"
 			});
 
 			aCols.push({
@@ -779,7 +780,8 @@ sap.ui.define([
 				property: 'ZzreqEtaTo',
 				template: {
 					content: "{path:'ZzreqEtaTo', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
-				}
+				},
+				format : "dd.mm.yyyy"
 			});
 
 			aCols.push({
@@ -819,7 +821,7 @@ sap.ui.define([
 					columns: aCols
 				},
 				dataSource: oRowBinding.oList,
-				fileName: 'Table export.xlsx',
+				fileName: 'FleetSoldOrder export.xlsx',
 				worker: false // We need to disable worker because we are using a MockServer as OData Service
 			};
 
