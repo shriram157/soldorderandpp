@@ -157,6 +157,11 @@ sap.ui.define([
 		/////////////////////////// INC0187445 Changes done by Minakshi on 25/03/2021 end
 
 		_onSubmit: function () {
+			
+			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+				pattern: "yyyy-MM-ddTHH:mm:ss"
+			});
+			
 			var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
 			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getSelectedKey();
 			var valApx = CSOR_controller.getView().byId("apx_CSOR").getSelectedKey();
@@ -186,11 +191,8 @@ sap.ui.define([
 			var Zcustomer_phone = CSOR_controller.getView().byId("phone").getText();
 			var Zcustomer_email = CSOR_controller.getView().byId("email").getText();
 			// var Zcustomer_fname = CSOR_controller.getView().byId("etaTo_CSOR").getValue();
-
 			var Zcustomer_No = CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zcustomer_No");
-
 			var valDrive = CSOR_controller.getView().byId("drivelicense").getText();
-
 			if (valModel == "" || valSuffix == "" || valApx == "" || valColour == "" || valFrom == "" || valTo == "") {
 				var errForm = formatter.formatErrorType("SO00003");
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -217,8 +219,8 @@ sap.ui.define([
 						"Zzsuffix": valSuffix, //"ML",
 						"Zzextcol": valColour, //"01D6",
 						"Zzapx": valApx, // "00",
-						"ZzreqEtaFrom": valFrom, //null,
-						"ZzreqEtaTo": valTo, //null,
+						"ZzreqEtaFrom":   zdateFormat.parse(valFrom), //null,
+						"ZzreqEtaTo": zdateFormat.parse(valTo) , //null,
 						"ZcontractDate": ZcontractDate1, //null,
 						"ZsalesType": ZsalesType, // "",
 						// "ZtcciNum": ZtcciNum, // "",
