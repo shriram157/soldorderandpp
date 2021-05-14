@@ -158,10 +158,7 @@ sap.ui.define([
 
 		_onSubmit: function () {
 			
-			var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-				pattern: "yyyy-MM-ddTHH:mm:ss"
-			});
-			
+		
 			var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
 			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getSelectedKey();
 			var valApx = CSOR_controller.getView().byId("apx_CSOR").getSelectedKey();
@@ -211,7 +208,6 @@ sap.ui.define([
 					}
 					zdata = {
 
-					//	"ZzsoReqNo": "SO",
 						"ZzsoReqNo": oldSoldOrderNo,//update old sold order INC0187445
 						"Zzmodel": valModel, //"YZ3DCT",
 						"Zzmoyr": Zzmoyr, //"2018",
@@ -219,8 +215,8 @@ sap.ui.define([
 						"Zzsuffix": valSuffix, //"ML",
 						"Zzextcol": valColour, //"01D6",
 						"Zzapx": valApx, // "00",
-						"ZzreqEtaFrom":   zdateFormat.parse(valFrom), //null,
-						"ZzreqEtaTo": zdateFormat.parse(valTo) , //null,
+						"ZzreqEtaFrom":  valFrom+"T00:00:00", //null,
+						"ZzreqEtaTo": valTo+"T00:00:00" , //null,
 						"ZcontractDate": ZcontractDate1, //null,
 						"ZsalesType": ZsalesType, // "",
 						// "ZtcciNum": ZtcciNum, // "",
