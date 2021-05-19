@@ -206,6 +206,8 @@ sap.ui.define([
 						}
 					}
 				}
+				var dealer = this.getView().byId("mcb_dealer_FSOD").getSelectedKeys()[0];
+				oUrl = oUrl + "ZzdealerCode eq '" + dealer + "') and (";
 				for (var j = 0; j < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; j++) {
 					var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[j].getKey();
 					if (audit != "") {
@@ -217,6 +219,7 @@ sap.ui.define([
 						}
 					}
 				}
+			
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -356,7 +359,7 @@ sap.ui.define([
 		_refresh: function (oEvent) {
 			clicks = 0;
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			if (x != "TCI_User" && x != "National_Fleet_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();
@@ -678,7 +681,7 @@ sap.ui.define([
 		},
 		createColumnConfig: function () {
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
-	var EdmType = exportLibrary.EdmType;
+			var EdmType = exportLibrary.EdmType;
 			var aCols = [];
 
 			aCols.push({
@@ -771,7 +774,7 @@ sap.ui.define([
 				template: {
 					content: "{path:'ZzreqEtaFrom', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
 				},
-				format : "dd.mm.yyyy"
+				format: "dd.mm.yyyy"
 			});
 
 			aCols.push({
@@ -781,7 +784,7 @@ sap.ui.define([
 				template: {
 					content: "{path:'ZzreqEtaTo', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"
 				},
-				format : "dd.mm.yyyy"
+				format: "dd.mm.yyyy"
 			});
 
 			aCols.push({
