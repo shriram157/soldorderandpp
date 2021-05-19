@@ -13,7 +13,7 @@
 											<VBox>
 												<Label text="{i18n>status}" class="TableLabel">
 												</Label>
-												<MultiComboBox forceSelection= "true" width="" id="mcb_status_FSOD" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSODetails_Status', sorter: { path: 'key' } }">
+												<MultiComboBox  width="" id="mcb_status_FSOD" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSODetails_Status', sorter: { path: 'key' } }">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -23,7 +23,7 @@
 									
 											<VBox>
 												<Label text="{i18n>auditStatus}" class="TableLabel"></Label>
-												<MultiComboBox forceSelection= "true" id="mcb_auditStatus_FSOD" width="" selectionChange="_refresh" items="{ path: 'AuditModel>/FSODetail_AuditStatus', sorter: { path: 'key' } }">
+												<MultiComboBox  id="mcb_auditStatus_FSOD" width="" selectionChange="_refresh" items="{ path: 'AuditModel>/FSODetail_AuditStatus', sorter: { path: 'key' } }">
 													<core:Item key="{AuditModel>key}" text="{AuditModel>text}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -32,13 +32,13 @@
 											</VBox>
 												<VBox visible="true">
 												<Label text="{i18n>dealer}" visible="true" class="TableLabel"/>
-												<MultiComboBox forceSelection= "true" width="" id="mcb_dealer_FSOD" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
+												<MultiComboBox  width="" id="mcb_dealer_FSOD" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
-												<ComboBox forceSelection= "true" xmlns="sap.m" id="cb_dealer_FSOD" width="300px" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
+												<ComboBox  xmlns="sap.m" id="cb_dealer_FSOD" width="300px" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
 												        <core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}" id="item12"/>
 												        	<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -74,13 +74,27 @@
 									</Toolbar>
 								</t:extension>
 								<t:columns>
-									<t:Column filterProperty="ZzsoReqNo" sortProperty="ZzsoReqNo">
+									<t:Column width="8rem" filterProperty="ZzsoReqNo" sortProperty="ZzsoReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{fleetdetailsModel>ZzsoReqNo}" wrapping="true" press="_navToRSO"/>
 										</t:template>
 									</t:Column>
-									<t:Column width="230px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
+									<t:Column width="8rem" filterProperty="ZzsoFltReqNo" sortProperty="ZzsoFltReqNo">
+										<Label class="TableLabel" text="{i18n>FleetSO}"/>
+										<t:template>
+											<Text text="{fleetdetailsModel>ZzsoFltReqNo}"/>
+										</t:template>
+									</t:Column>
+									<!-- added by Minakshi for DMND0002960 start -->
+									<t:Column width="8rem" filterProperty="ZZONE_APPROVAL" sortProperty="ZZONE_APPROVAL">
+										<Label class="TableLabel" text="{i18n>zoneAppNumber}"/>
+										<t:template>
+											<Text text="{fleetdetailsModel>ZZONE_APPROVAL}"/>
+										</t:template>
+									</t:Column>
+										<!-- added by Minakshi for DMND0002960 end -->
+									<t:Column width="9rem" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
 										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetdetailsModel>ZzendcuName}" wrapping="true"/>
@@ -151,13 +165,13 @@
 										<Label text="{i18n>ETAFrom}" class="TableLabel"/>
 										<t:template>
 										<Text
-												text="{path:'fleetdetailsModel>ZzreqEtaFrom',type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ss' },pattern: 'dd:MM:yyyy', strictParsing: false, relative: false }}"/>
+											text="{path:'fleetdetailsModel>ZzreqEtaFrom', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
 										<Label text="{i18n>ETATime}" class="TableLabel"/>
 										<t:template>
-											<Text text="{path:'fleetdetailsModel>ZzreqEtaTo',type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ss' }, pattern: 'dd:MM:yyyy', strictParsing: false, relative: false }}"/>
+											<Text text="{path:'fleetdetailsModel>ZzreqEtaTo', formatter:'toyota.ca.SoldOrder.util.formatter.fnDateFormat'}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>

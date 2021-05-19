@@ -89,12 +89,13 @@
 									</Toolbar>
 								</t:extension>
 								<t:columns>
-									<t:Column filterProperty="ZsoFltReqNo" sortProperty="ZsoFltReqNo">
+									<t:Column width="8rem" filterProperty="ZsoFltReqNo" sortProperty="ZsoFltReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{fleetsumModel>ZsoFltReqNo}" press="_navToSoldOrder"/>
 										</t:template>
 									</t:Column>
+								
 									<t:Column filterProperty="NameOrg1" sortProperty="NameOrg1">
 										<Label text="{i18n>CustName}" class="TableLabel"/>
 										<t:template>

@@ -17,7 +17,7 @@ sap.ui.define([
 				this);
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
-			 //FSO_Z_controller.returnBrowserLanguage();
+			//FSO_Z_controller.returnBrowserLanguage();
 			if (language == "EN") {
 				Object = {
 					"FSOSummary_OrderType": [{
@@ -83,7 +83,7 @@ sap.ui.define([
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("zoneApprovalTitle", [req]);
-			FSO_Z_controller.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg);
+
 			zmodel.refresh();
 			this.getView().bindElement({
 
@@ -110,11 +110,19 @@ sap.ui.define([
 						});
 						items2.filter([new Filter("WithVtn", FilterOperator.EQ, '')]);
 						var partner = FSO_Z_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');
+						//added by Minakshi for DMND0002960 start
+						var zdealerCode = FSO_Z_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+							'ZzdealerCode');
+						FSO_Z_controller.getView().byId("label_FSO_ZoneApprovaid").setText(sMsg + " / " + zdealerCode);
 
+						//added by Minakshi for DMND0002960 end
 						FSO_Z_controller.getView().getModel('mainservices').read("/Customer_infoSet('" + partner + "')", {
 							success: function (data, textStatus, jqXHR) {
 								var oModel = new sap.ui.model.json.JSONModel(data.CustomerInfo);
 								FSO_Z_controller.getView().setModel(oModel, "Customer");
+								if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") === "National_Fleet_User") {
+									FSO_Z_controller.getView().byId('zoneapproval').setProperty("editable", false);
+								}
 							},
 							error: function (jqXHR, textStatus, errorThrown) {
 								sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR,
@@ -147,12 +155,20 @@ sap.ui.define([
 					.m.MessageBox.Icon.ERROR, "Error", sap
 					.m.MessageBox.Action.OK, null, null);
 			} else {
+				var zaprvl;
+				//Added by singhmi National Fleet User DMND0002946 on 11/03/2021 start
+				if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") === "National_Fleet_User") {
+					zaprvl = "APPROVED";
+				} else {
+					zaprvl = "ZONE APPROVED";
+				}
+				//Added by singhmi  DMND0002946 on 11/03/2021 end
 				FSO_Z_controller.getView().getModel('mainservices').callFunction("/Approve_Fleet_Order", {
 					method: "POST",
 					urlParameters: {
 						ZSO_FLT_REQ_NO: zrequest,
 						ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey(),
-						ZSO_FLT_STATUS: 'APPROVED',
+						ZSO_FLT_STATUS: zaprvl,
 						ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
 					}, // function import parameters  
 					// 

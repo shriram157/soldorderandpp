@@ -22,7 +22,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'seriesModel>/'}" class="sapUiMediumMarginEnd">
+												<MultiComboBox  id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'seriesModel>/'}" class="sapUiMediumMarginEnd">
 													<core:Item key="{seriesModel>ModelSeriesNo}"
 														text="{=${LocalDataModel>/Lang} ==='FR' ? ${seriesModel>TCISeriesDescriptionFR} : ${seriesModel>TCISeriesDescriptionEN} }"/>
 													<layoutData>
@@ -36,7 +36,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSOSummary_Status' }"
+												<MultiComboBox  id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSOSummary_Status' }"
 													class="sapUiMediumMarginEnd">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
@@ -50,7 +50,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_auditStatus_RSOS" items="{ path:'AuditModel>/AuditStatus'}" width="300px" selectionChange="_refresh"
+												<MultiComboBox  id="mcb_auditStatus_RSOS" items="{ path:'AuditModel>/AuditStatus'}" width="300px" selectionChange="_refresh"
 													class="sapUiMediumMarginEnd">
 													<core:Item key="{AuditModel>key}" text="{AuditModel>text}"/>
 													<layoutData>

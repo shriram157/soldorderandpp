@@ -23,6 +23,10 @@
 	}, {
 		"name": "$XSAPPNAME.View_Retail_Sold_Order",
 		"description": "View retail sold order"
+	},
+	{
+		"name": "$XSAPPNAME.Approve_National_Fleet",
+		"description": "Approve National Fleet"
 	}],
 	"attributes": [{
 		"name": "DealerCode",
@@ -63,6 +67,21 @@
 			"$XSAPPNAME.View_Fleet_Sold_Order",
 			"$XSAPPNAME.View_Retail_Sold_Order",
 			"$XSAPPNAME.View_Price_Protection"
+		],
+		"attribute-references": [
+			"Language",
+			"UserType"
+		]
+	}, {
+		"name": "National_Fleet_User",
+		"description": "National Fleet User",
+		"scope-references": [
+			"$XSAPPNAME.Approve_Fleet_Sold_Order",
+			"$XSAPPNAME.Approve_Price_Protection",
+			"$XSAPPNAME.View_Fleet_Sold_Order",
+			"$XSAPPNAME.View_Retail_Sold_Order",
+			"$XSAPPNAME.View_Price_Protection",
+			"$XSAPPNAME.Approve_National_Fleet"
 		],
 		"attribute-references": [
 			"Language",
