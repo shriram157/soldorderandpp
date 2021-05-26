@@ -104,9 +104,9 @@ sap.ui.define([
 							for (var i = 0; i < items2.getLength(); i++) {
 								vehicle_no = vehicle_no + parseInt(items2.getContexts()[i].getProperty('FltSOQty'), 10);
 							}
-
+// commented by Minakshi for INC0191837 reason the counter increasing the row and count of vehicle number which is wrong. start
 							//FSO_Z_controller.getView().byId('vechilecounter').setText(vehicle_no.toString());
-
+// commented by Minakshi for INC0191837 end
 						});
 						items2.filter([new Filter("WithVtn", FilterOperator.EQ, '')]);
 						var partner = FSO_Z_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');

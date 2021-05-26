@@ -196,136 +196,14 @@ sap.ui.define([
 			}
 			//Changes done for INC0189944 by Minakshi end.
 			
-			// else {
-			// 	PPD_DealerCont.dialog.open();
-			// 	var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";
-			// 	for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
-			// 		var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
-			// 		oUrl = oUrl + "(status eq '" + status + "')";
-			// 		if (i == ((this.getView().byId("mcb_status_PPD_D").getSelectedItems().length) - 1)) {
-			// 			oUrl = oUrl + ") and (";
-			// 		} else {
-			// 			oUrl = oUrl + " or ";
-			// 		}
-
-			// 	}
-			// 	for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-			// 		var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
-			// 		oUrl = oUrl + "(zzordtypedesc eq '" + audit + "')";
-			// 		if (i == ((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length) - 1)) {
-			// 			oUrl = oUrl + ") &$orderby=dealer_ord desc";
-			// 		} else {
-			// 			oUrl = oUrl + " or ";
-			// 		}
-			// 	}
-			// 	$.ajax({
-			// 		url: oUrl,
-			// 		method: "GET",
-			// 		async: false,
-			// 		dataType: "json",
-			// 		success: function (data, textStatus, jqXHR) {
-			// 			PPD_DealerCont.dialog.close();
-			// 			var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-			// 			if (data.d.results.length <= 0) {
-			// 				BtnNext.setEnabled(false);
-			// 			} else {
-			// 				BtnNext.setEnabled(true);
-			// 			}
-
-			// 			var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
-			// 			if (DataModel.getData().length != undefined) {
-
-			// 				for (var m = 0; m < data.d.results.length; m++) {
-			// 					DataModel.getData().push(data.d.results[m]);
-			// 					DataModel.updateBindings(true);
-			// 					console.log("DataModel.getData()", DataModel.getData());
-			// 				}
-			// 			} else {
-			// 				DataModel.setData(data.d.results);
-			// 				DataModel.updateBindings(true);
-			// 			}
-			// 		},
-			// 		error: function (jqXHR, textStatus, errorThrown) {
-			// 			PPD_DealerCont.dialog.close();
-			// 			var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-			// 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			// 		}
-			// 	});
-			// }
 		},
 
-		onAfterRendering: function () {
-
-			// var mcb_status_PPD_D = PPD_DealerCont.getView().byId("mcb_status_PPD_D");
-			// var mcb_ordTyp_PPD_D = PPD_DealerCont.getView().byId("mcb_ordTyp_PPD_D");
-			// var mcb_dealer_PPD_D = PPD_DealerCont.getView().byId("mcb_dealer_PPD_D");
-			// mcb_status_PPD_D.setSelectedItems(mcb_status_PPD_D.getItems());
-			// mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
-			// mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
-			// var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-
-			// if (x != "TCI_User") {
-			// 	PPD_DealerCont._refresh();
-			// } else {
-
-			// 	var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";
-			// 	for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
-			// 		var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
-			// 		oUrl = oUrl + "(status eq '" + status + "')";
-			// 		if (i == ((this.getView().byId("mcb_status_PPD_D").getSelectedItems().length) - 1)) {
-			// 			oUrl = oUrl + ") and (";
-			// 		} else {
-			// 			oUrl = oUrl + " or ";
-			// 		}
-
-			// 	}
-			// 	for (var i = 0; i < this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length; i++) {
-			// 		var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
-			// 		oUrl = oUrl + "(zzordtypedesc eq '" + audit + "')";
-			// 		if (i == ((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length) - 1)) {
-			// 			oUrl = oUrl + ") &$orderby=dealer_ord desc";
-			// 		} else {
-			// 			oUrl = oUrl + " or ";
-			// 		}
-			// 	}
-			// 	$.ajax({
-			// 		url: oUrl,
-			// 		method: "GET",
-			// 		async: false,
-			// 		dataType: "json",
-			// 		success: function (data, textStatus, jqXHR) {
-			// 			var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-			// 			if (data.d.results.length <= 0) {
-			// 				BtnNext.setEnabled(false);
-			// 			} else {
-			// 				BtnNext.setEnabled(true);
-			// 			}
-
-			// 			var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
-			// 			if (DataModel.getData().length != undefined) {
-
-			// 				for (var m = 0; m < data.d.results.length; m++) {
-			// 					DataModel.getData().push(data.d.results[m]);
-			// 					DataModel.updateBindings(true);
-			// 					//console.log("DataModel.getData()", DataModel.getData());
-			// 				}
-			// 			} else {
-			// 				DataModel.setData(data.d.results);
-			// 				DataModel.updateBindings(true);
-			// 			}
-			// 		},
-			// 		error: function (jqXHR, textStatus, errorThrown) {
-			// 			var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
-			// 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			// 		}
-			// 	});
-			// }
-		},
+	
 
 		_refresh: function () {
 
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			if (x != "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
@@ -513,7 +391,6 @@ sap.ui.define([
 		},
 		_refreshCombo: function (evt) {
 			pricepro = true;
-
 			PPD_DealerCont.dialog.open();
 			var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";
 			for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
