@@ -105,7 +105,7 @@ sap.ui.define([
 								vehicle_no = vehicle_no + parseInt(items2.getContexts()[i].getProperty('FltSOQty'), 10);
 							}
 
-							FSO_Z_controller.getView().byId('vechilecounter').setText(vehicle_no.toString());
+							//FSO_Z_controller.getView().byId('vechilecounter').setText(vehicle_no.toString());
 
 						});
 						items2.filter([new Filter("WithVtn", FilterOperator.EQ, '')]);
