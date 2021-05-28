@@ -777,6 +777,7 @@ sap.ui.define([
 						}
 					});
 				}
+				validateFlagA = true;
 			} else {
 				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 				var errForm = formatter.formatErrorType("SO000023");
