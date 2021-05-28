@@ -1741,16 +1741,23 @@ sap.ui.define([
 				var nameRegExp = new RegExp(/^[ a-zA-Z]+$/);
 				if (nameRegExp.test(name) == true) {
 					oEvt.getSource().setValueState("None");
-					RSOA_controller.flagInvalidName = false;
-					return name;
+					
+					
 				} else {
 					oEvt.getSource().setValueState("Error");
-					RSOA_controller.flagInvalidName = true;
-					return null;
+
+					name = null;
 				}
 
 			}
-
+			
+			if (RSOA_controller.getView().byId("CustName_RSOA").getValueState() == "None" && RSOA_controller.getView().byId("CustName_SSOA").getValueState() == "None"){
+				RSOA_controller.flagInvalidName = false;
+			}
+			else {
+				RSOA_controller.flagInvalidName = true;
+			}
+			return name;
 		},
 
 		/********************************End of DMND0003108********************************/
