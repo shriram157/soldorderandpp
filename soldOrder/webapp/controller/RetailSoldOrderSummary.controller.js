@@ -75,6 +75,8 @@ sap.ui.define([
 				RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var globalComboModel = new sap.ui.model.json.JSONModel();
 				var Obj;
+				
+				//Requested, approve, rejected, completed – Remove and add Changed status for demand DMND0003179 
 				if (language == "EN") {
 					Obj = {
 						"FSOSummary_Status": [{
@@ -158,7 +160,6 @@ sap.ui.define([
 				AuditModel.updateBindings(true);
 				sap.ui.getCore().setModel(AuditModel, "AuditModel");
 				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
-			
 				RSOS_controller.getView().byId("idmenu1").setType("Transparent");
 				RSOS_controller.getView().byId("idmenu2").setType("Emphasized");
 				RSOS_controller.getView().byId("idmenu3").setType("Transparent");
