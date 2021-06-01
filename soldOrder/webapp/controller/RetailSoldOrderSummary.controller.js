@@ -93,17 +93,8 @@ sap.ui.define([
 							"key": "CANCELLED",
 							"text": "CANCELLED"
 						}, {
-							"key": "REQUESTED",
-							"text": "REQUESTED"
-						}, {
-							"key": "APPROVED",
-							"text": "APPROVED"
-						}, {
-							"key": "REJECTED",
-							"text": "REJECTED"
-						}, {
-							"key": "COMPLETED",
-							"text": "COMPLETED"
+							"key": "CHANGED",
+							"text": "CHANGED"
 						}]
 					};
 				} else {
@@ -124,17 +115,8 @@ sap.ui.define([
 							"key": "CANCELLED",
 							"text": "CANCELLED"
 						}, {
-							"key": "REQUESTED",
-							"text": "REQUESTED"
-						}, {
-							"key": "APPROVED",
-							"text": "APPROVED"
-						}, {
-							"key": "REJECTED",
-							"text": "REJECTED"
-						}, {
-							"key": "COMPLETED",
-							"text": "COMPLETED"
+							"key": "CHANGED",
+							"text": "CHANGED"
 						}]
 					};
 				}
