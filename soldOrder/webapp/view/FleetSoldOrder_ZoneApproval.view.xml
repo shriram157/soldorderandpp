@@ -27,7 +27,9 @@
 							<Label wrapping="true" text="{i18n>zoneAppNumber}"/>
 							<Input value="{mainservices>ZzoneApproval}" id="zoneapproval" required="true"/>
 							<Label wrapping="true" text="{i18n>totalVehicles}"/>
-							<Text text="" id="vechilecounter"/>
+								<!--changes added by Minakshi  for INC0191837 start-->
+							<Text text="{mainservices>ZtotalVehQty}" id="vechilecounter"/>
+								<!--changes added by Minakshi  for INC0191837 end-->
 							<core:Title text="{i18n>CustomerDetails}" class="titleFontSize"/>
 							<Label wrapping="true" text="{i18n>CustName}"/>
 							<Text text="{Customer>/NameFirst}{Customer>/NameLast}"/>

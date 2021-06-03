@@ -75,6 +75,8 @@ sap.ui.define([
 				RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var globalComboModel = new sap.ui.model.json.JSONModel();
 				var Obj;
+				
+				//Requested, approve, rejected, completed – Remove and add Changed status for demand DMND0003179 
 				if (language == "EN") {
 					Obj = {
 						"FSOSummary_Status": [{
@@ -93,17 +95,8 @@ sap.ui.define([
 							"key": "CANCELLED",
 							"text": "CANCELLED"
 						}, {
-							"key": "REQUESTED",
-							"text": "REQUESTED"
-						}, {
-							"key": "APPROVED",
-							"text": "APPROVED"
-						}, {
-							"key": "REJECTED",
-							"text": "REJECTED"
-						}, {
-							"key": "COMPLETED",
-							"text": "COMPLETED"
+							"key": "CHANGED",
+							"text": "CHANGED"
 						}]
 					};
 				} else {
@@ -124,17 +117,8 @@ sap.ui.define([
 							"key": "CANCELLED",
 							"text": "CANCELLED"
 						}, {
-							"key": "REQUESTED",
-							"text": "REQUESTED"
-						}, {
-							"key": "APPROVED",
-							"text": "APPROVED"
-						}, {
-							"key": "REJECTED",
-							"text": "REJECTED"
-						}, {
-							"key": "COMPLETED",
-							"text": "COMPLETED"
+							"key": "CHANGED",
+							"text": "CHANGED"
 						}]
 					};
 				}
@@ -142,7 +126,7 @@ sap.ui.define([
 				globalComboModel.updateBindings(true);
 				sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
 				RSOS_controller.getView().setModel(globalComboModel, "globalComboModel");
-				//console.log("globalComboModel", globalComboModel);
+			
 				var AuditModel = new sap.ui.model.json.JSONModel();
 				var Object;
 				if (language == "EN") {
@@ -176,10 +160,6 @@ sap.ui.define([
 				AuditModel.updateBindings(true);
 				sap.ui.getCore().setModel(AuditModel, "AuditModel");
 				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
-				//console.log(sap.ui.getCore().getModel("AuditModel"));
-
-				// 			////////////////////////////////////////////////////////////////////////////////
-
 				RSOS_controller.getView().byId("idmenu1").setType("Transparent");
 				RSOS_controller.getView().byId("idmenu2").setType("Emphasized");
 				RSOS_controller.getView().byId("idmenu3").setType("Transparent");

@@ -359,7 +359,7 @@ sap.ui.define([
 		_refresh: function (oEvent) {
 			clicks = 0;
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User" && x != "National_Fleet_User") {
+			if (x != "TCI_User" && x != "National_Fleet_User" && x != "TCI_Zone_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOD").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOD").getSelectedItems()[i].getKey();

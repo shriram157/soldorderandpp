@@ -365,7 +365,7 @@ toyota.ca.SoldOrder.util.formatter = {
 	NationalorZonalusertype: function (Usertypevalue) {
 
 		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User")) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue == "TCI_Zone_User")) {
 			return true;
 		} else {
 			return false;
@@ -390,7 +390,7 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	Nationalusertype: function (Usertypevalue) {
 		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User")) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue === "TCI_Zone_User")) {
 			return false;
 		} else {
 			return true;
@@ -398,7 +398,7 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	Tciusertype: function (Usertypevalue) {
 		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
-		if ((Usertypevalue == 'TCI_User') || (Usertypevalue === "National_Fleet_User")) {
+		if ((Usertypevalue == 'TCI_User') || (Usertypevalue === "National_Fleet_User") || (Usertypevalue === "TCI_Zone_User")) {
 			return true;
 		} else {
 			return false;
