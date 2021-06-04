@@ -18,7 +18,7 @@ sap.ui.define([
 			AppController.RSOA = true;
 			RSOA_controller.flagInvalidPCode = false;
 			RSOA_controller.flagInvalidPhone = false;
-			RSOA_controller.flagInvalidName = false;
+		//	RSOA_controller.flagInvalidName = false; // DMND0003108
 			// RSOA_controller.getBrowserLanguage();
 			// var language = RSOA_controller.returnBrowserLanguage();
 			RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
@@ -622,7 +622,7 @@ sap.ui.define([
 			// }
 		},
 
-		// ************** Begin of DMND0003108 ****************************//
+		/************** Begin of DMND0003108 ***************************
 
 		onValidateCustomer: function () {
 			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
@@ -787,9 +787,9 @@ sap.ui.define([
 			}
 		},
 
-		// ************** End of DMND0003108 ****************************//
+		/************** End of DMND0003108 ****************************/
 
-		/*
+		
 				onValidateCustomer: function () {
 					var CustModel = RSOA_controller.getView().getModel('Customer').getData();
 					Zcustomer_No='';
@@ -969,7 +969,7 @@ sap.ui.define([
 														textDirection: sap.ui.core.TextDirection.Inherit
 															// contentWidth: "20rem"
 													});
-												}
+												}*/
 												
 
 											//}
@@ -1115,7 +1115,7 @@ sap.ui.define([
 													});
 												}
 
-											}/////
+											}*/
 											var msgNew = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorCDMS");
 												sap.m.MessageBox.show({
 														icon: sap.m.MessageBox.Icon.ERROR,
@@ -1140,7 +1140,7 @@ sap.ui.define([
 							submitBtn.setEnabled(true);
 						} else {
 							submitBtn.setEnabled(false);
-						}///
+						}*/
 
 					} else {
 
@@ -1151,7 +1151,7 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				},
-		*/
+		
 		listOfModelYear: function () {
 			//	var omodelYearModel;
 			var d = new Date();
@@ -1732,7 +1732,7 @@ sap.ui.define([
 			}
 
 		},
-		/********************************Begin of DMND0003108********************************/
+		/********************************Begin of DMND0003108*******************************
 
 		validateName: function (oEvt) {
 			var name = "";
