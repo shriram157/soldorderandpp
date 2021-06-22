@@ -79,12 +79,10 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>CustomerInformation}" class="msgStripFormat msgStripCss"/>
 							<Label wrapping="true" text="{i18n>fcustname}"/>
-							<Input id="CustName_RSOA" value="{Customer>/FirstName}" showSuggestion="false" valueState="None" required="true"  />
-							<!--<Input id="CustName_RSOA" value="{Customer>/FirstName}" showSuggestion="false" valueState="None" required="true" change="validateName" /> -->
+							<Input id="CustName_RSOA" value="{Customer>/FirstName}" showSuggestion="false" valueState="None" required="true" change="validateName" />
 						
 							<Label wrapping="true" text="{i18n>scustname}"/>
-							<Input id="CustName_SSOA" value="{Customer>/SecondName}" showSuggestion="false" valueState="None" required="true"  />
-							<!--<Input id="CustName_SSOA" value="{Customer>/SecondName}" showSuggestion="false" valueState="None" required="true" change="validateName" />-->
+							<Input id="CustName_SSOA" value="{Customer>/SecondName}" showSuggestion="false" valueState="None" required="true" change="validateName" />
 							<Label wrapping="true" text="{i18n>address}"/>
 							<Input id="Address_RSOA" value="{Customer>/Address}" showSuggestion="false" required="true"/>
 							<Label wrapping="true" text="{i18n>city}"/>
