@@ -372,13 +372,7 @@ sap.ui.define([
 							//added by Minakshi for DMND0002960 end
 							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", zcustomerNumber);
 
-							sap.ui.getCore().setModel(new JSONModel({
-								model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
-								modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
-								suffix: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix'),
-								color: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'),
-								series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries')
-							}), 'Vehicle_Selection');
+						
 
 							RSO_MSO_controller.model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 								'Zzmodel');
@@ -395,6 +389,15 @@ sap.ui.define([
 							} else {
 								RSO_MSO_controller.apptypeAllocation = "R";
 							}
+								sap.ui.getCore().setModel(new JSONModel({
+								model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
+								modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
+								suffix: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix'),
+								color: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'),
+								series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
+								dealer:RSO_MSO_controller.dealerAllocation,
+								apptypeAllocation:RSO_MSO_controller.apptypeAllocation
+							}), 'Vehicle_Selection');
 							var host = RSO_MSO_controller.host();
 							var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
 							if (isDivisionSent) {
