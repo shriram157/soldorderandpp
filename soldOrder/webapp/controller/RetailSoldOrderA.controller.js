@@ -18,7 +18,7 @@ sap.ui.define([
 			AppController.RSOA = true;
 			RSOA_controller.flagInvalidPCode = false;
 			RSOA_controller.flagInvalidPhone = false;
-		//	RSOA_controller.flagInvalidName = false; // DMND0003108
+			//RSOA_controller.flagInvalidName = false; // DMND0003108
 			// RSOA_controller.getBrowserLanguage();
 			// var language = RSOA_controller.returnBrowserLanguage();
 			RSOA_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
@@ -622,7 +622,7 @@ sap.ui.define([
 			// }
 		},
 
-		/************** Begin of DMND0003108 ***************************
+		/************** Begin of DMND0003108 **************************
 
 		onValidateCustomer: function () {
 			var CustModel = RSOA_controller.getView().getModel('Customer').getData();
@@ -1136,11 +1136,6 @@ sap.ui.define([
 
 						validateFlagA = true;
 						
-					/*	if (validateFlagA == true) {
-							submitBtn.setEnabled(true);
-						} else {
-							submitBtn.setEnabled(false);
-						}*/
 
 					} else {
 
@@ -1732,7 +1727,7 @@ sap.ui.define([
 			}
 
 		},
-		/********************************Begin of DMND0003108*******************************
+		/********************************Begin of DMND0003108******************************
 
 		validateName: function (oEvt) {
 			var name = "";
