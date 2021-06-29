@@ -829,9 +829,12 @@ sap.ui.define([
 				var oFileUploader = RSO_MSO_controller.getView().byId("idRSOV_MSO_fileUpl");
 				var zcomment = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
 				oFileUploader.removeAllHeaderParameters();
+				//INC0193457 changes done for removing special characters from the file name during upload. SinghMi 29/06/2021
+				var pattern = /[/\?*":|]/g;
+				var oFileName = oFileUploader.getValue().replace(pattern, "");
 				oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
 					name: "slug",
-					value: oFileUploader.getValue() + "," + zcomment.getValue()
+					value: oFileName + "," + zcomment.getValue()
 				}));
 
 				oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
