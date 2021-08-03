@@ -102,7 +102,7 @@
 											<Text text="{fleetsumModel>NameOrg1}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column sortProperty="ZzdealerCode">
 										<Label id="tbl_lbl_dealer_FSOS" visible="true" text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
 											<!--,{path:'/Products/0/Category'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}-->
@@ -110,19 +110,19 @@
 												text="{path:'fleetsumModel>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column sortProperty="ZsoFltStatus">
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZsoFltStatus}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column sortProperty="ZfanNo">
 										<Label text="{i18n>FanNumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZfanNo}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column sortProperty="ZpoNumber">
 										<Label text="{i18n>PONumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZpoNumber}"/>
