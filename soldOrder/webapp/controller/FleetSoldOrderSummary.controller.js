@@ -31,11 +31,12 @@ sap.ui.define([
 						"key": "REJECTED",
 						"text": "REJECTED"
 					}, {
-						"key": "PROCESSED",
-						"text": "PROCESSED"
-					}, {
 						"key": "ZONE APPROVED",
 						"text": "ZONE APPROVED"
+					},
+					{
+						"key": "PROCESSED",
+						"text": "PROCESSED"
 					}]
 				};
 			} else {
