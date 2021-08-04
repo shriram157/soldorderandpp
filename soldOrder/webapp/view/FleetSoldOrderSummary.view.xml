@@ -20,7 +20,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_status_FSOS" selectionChange="_refresh"
+												<MultiComboBox id="mcb_status_FSOS" selectionChange="_refresh"
 													items="{ path: 'globalComboModel>/FSOSummary_Status', sorter: { path: 'key' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
@@ -34,7 +34,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_ordTyp_FSOS" selectionChange="_refresh"
+												<MultiComboBox  id="mcb_ordTyp_FSOS" selectionChange="_refresh"
 													items="{ path: 'OrderTypeModel>/FSOSummary_OrderType', sorter: { path: 'key' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{OrderTypeModel>key}" text="{OrderTypeModel>text}"/>
 													<layoutData>
@@ -48,7 +48,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_dealer_FSOS"
+												<MultiComboBox  id="mcb_dealer_FSOS"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NonTCIorZonalusertype'}"
 													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
@@ -57,7 +57,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
-												<ComboBox forceSelection= "true" xmlns="sap.m" id="cb_dealer_FSOS" width="300px"
+												<ComboBox  xmlns="sap.m" id="cb_dealer_FSOS" width="300px"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.TCIorZonalusertype'}"
 													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
 													<!--<items>-->
