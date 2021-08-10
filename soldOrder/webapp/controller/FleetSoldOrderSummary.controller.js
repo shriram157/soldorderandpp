@@ -221,7 +221,7 @@ sap.ui.define([
 					}
 				}
 
-				oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc;
+				oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 
 				FSOS_controller._fleetajaxCall(oUrl);
 			} else {
@@ -267,7 +267,7 @@ sap.ui.define([
 			if (sdealer !== "") {
 				oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
 			}
-			oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc;
+			oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 			FSOS_controller._fleetajaxCall(oUrl);
 		},
 
@@ -350,7 +350,7 @@ sap.ui.define([
 					var dealer = this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 					if (i == ((this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc;
+						oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 					} else {
 						oUrl = oUrl + " or ";
 					}
@@ -420,7 +420,7 @@ sap.ui.define([
 					if (sdealer !== "") {
 						oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
 					}
-					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc;
+					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 
 					$.ajax({
 						url: oUrl,
@@ -493,7 +493,7 @@ sap.ui.define([
 					var dealer = this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 					if (i == ((this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc;
+						oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 					} else {
 						oUrl = oUrl + " or ";
 					}
@@ -563,7 +563,7 @@ sap.ui.define([
 						oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
 					}
 
-					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
+					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc"";
 
 					$.ajax({
 						url: oUrl,
