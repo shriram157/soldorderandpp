@@ -408,13 +408,18 @@ sap.ui.define([
 						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
 						if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
+							oUrl = oUrl;
 						} else {
 							oUrl = oUrl + " or ";
 						}
 					}
-					var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
+					// var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+					// oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
+
+					var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+					if (sdealer !== "") {
+						oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
+					}
 					oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
 
 					$.ajax({
