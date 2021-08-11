@@ -15,6 +15,17 @@ sap.ui.define([
 		onInit: function () {
 			FSOS_controller = this;
 			FSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			FSOS_controller.getView().getModel("LoginUserModel").getData().BpDealerModel.unshift(
+				{
+					"BusinessPartnerKey": "All",
+					"BusinessPartner": "All",
+					"BusinessPartnerName": "All",
+					"BPDivision": "All",
+					"BusinessPartnerType": "All",
+					"searchTermReceivedDealerName": "All"
+				}
+			);
+			FSOS_controller.getView().setModel(FSOS_controller.getView().getModel("LoginUserModel"), "LoginUserModel");
 			FSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
