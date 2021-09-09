@@ -579,7 +579,7 @@ sap.ui.define([
 							var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
 							oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
 							if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
-								oUrl = oUrl + ") and (";
+								oUrl = " and ("+ oUrl;
 							} else {
 								oUrl = oUrl + " or ";
 							}
