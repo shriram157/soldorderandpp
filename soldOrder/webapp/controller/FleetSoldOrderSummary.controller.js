@@ -573,6 +573,18 @@ sap.ui.define([
 
 					if (sdealer !== "") {
 						oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
+					} else {
+
+						for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+							var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+							oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+							if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+								oUrl = oUrl + ") and (";
+							} else {
+								oUrl = oUrl + " or ";
+							}
+						}
+
 					}
 
 					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
