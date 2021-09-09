@@ -15,7 +15,7 @@ sap.ui.define([
 		onInit: function () {
 			FSOS_controller = this;
 			FSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
-			
+
 			FSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
@@ -212,6 +212,17 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
+
+				for (var j = 0; j < mcb_dealer_FSOS.getItems().length; j++) {
+					var dealerkey = mcb_dealer_FSOS.getItems()[j].getKey();
+					oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+					if (j === (mcb_dealer_FSOS.getItems().length - 1)) {
+						oUrl = oUrl + ") and (";
+					} else {
+						oUrl = oUrl + " or ";
+					}
+				}
+
 				for (var i = 0; i < orderLen; i++) {
 					var orderno = orderVal[i].key;
 					oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
