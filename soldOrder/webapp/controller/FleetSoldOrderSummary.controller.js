@@ -566,7 +566,7 @@ sap.ui.define([
 					var BtnNext = FSOS_controller.getView().byId("buttonNext");
 
 					if (sdealer !== "") {
-						oUrl = oUrl + "((ZzdealerCode eq '" + sdealer + "')";
+						oUrl = oUrl + "(ZzdealerCode eq '" + sdealer + "')) and (";
 						
 					} else {
 
