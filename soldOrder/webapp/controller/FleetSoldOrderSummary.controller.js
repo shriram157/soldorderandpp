@@ -562,37 +562,45 @@ sap.ui.define([
 
 					}
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
-						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
-						if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-							oUrl = oUrl;
-						} else {
-							oUrl = oUrl + " or ";
-						}
+						// var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
+						// oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
+						// if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
+						// 	oUrl = oUrl;
+						// } else {
+						// 	oUrl = oUrl + " or ";
+						// }
+						
+					var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
+					oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
+					if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
+						oUrl = oUrl + ") and (";
+					} else {
+						oUrl = oUrl + " or ";
+					}
+						
+						
+						
+						
 					}
 					var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
 					var BtnNext = FSOS_controller.getView().byId("buttonNext");
 
 					if (sdealer !== "") {
 						oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
-						BtnNext.setEnabled(true);
-					}else{
-						BtnNext.setEnabled(false);
+						
+					} else {
+
+						for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+							var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+							oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+							if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+								oUrl = " and ("+ oUrl;
+							} else {
+								oUrl = oUrl + " or ";
+							}
+						}
+
 					}
-					
-					// else {
-
-					// 	for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
-					// 		var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
-					// 		oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
-					// 		if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
-					// 			oUrl = " and ("+ oUrl;
-					// 		} else {
-					// 			oUrl = oUrl + " or ";
-					// 		}
-					// 	}
-
-					// }
 
 					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 
