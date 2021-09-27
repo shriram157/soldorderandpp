@@ -208,7 +208,7 @@ sap.ui.define([
 					oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
 					if (i == ((this.getView().byId("mcb_status_FSOS").getSelectedItems().length) - 1)) {
 						oUrl = oUrl + ") and (";
-						//oUrl = oUrl;
+						oUrl = oUrl;
 					} else {
 						oUrl = oUrl + " or ";
 					}
@@ -561,6 +561,28 @@ sap.ui.define([
 						}
 
 					}
+					
+					var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+					var BtnNext = FSOS_controller.getView().byId("buttonNext");
+
+					if (sdealer !== "") {
+						oUrl = oUrl + "((ZzdealerCode eq '" + sdealer + "')";
+						
+					} else {
+
+						for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+							var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+							oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+							if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+								oUrl = oUrl + ") and (";
+							
+							} else {
+								oUrl = oUrl + " or ";
+							}
+						}
+
+					}
+					
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
 						// var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
 						// oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
@@ -573,7 +595,7 @@ sap.ui.define([
 					var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
 					if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") and (";
+							oUrl = oUrl;
 					} else {
 						oUrl = oUrl + " or ";
 					}
@@ -582,25 +604,7 @@ sap.ui.define([
 						
 						
 					}
-					var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-					var BtnNext = FSOS_controller.getView().byId("buttonNext");
-
-					if (sdealer !== "") {
-						oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
-						
-					} else {
-
-						for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
-							var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
-							oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
-							if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
-								oUrl = " and ("+ oUrl;
-							} else {
-								oUrl = oUrl + " or ";
-							}
-						}
-
-					}
+					
 
 					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 
