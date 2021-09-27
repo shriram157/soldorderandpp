@@ -207,8 +207,8 @@ sap.ui.define([
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
 					if (i == ((this.getView().byId("mcb_status_FSOS").getSelectedItems().length) - 1)) {
-						//oUrl = oUrl + ") and (";
-						oUrl = oUrl;
+						oUrl = oUrl + ") and (";
+						//oUrl = oUrl;
 					} else {
 						oUrl = oUrl + " or ";
 					}
