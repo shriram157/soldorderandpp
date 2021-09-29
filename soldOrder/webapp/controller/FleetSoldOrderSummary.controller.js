@@ -266,7 +266,28 @@ sap.ui.define([
 					oUrl = oUrl + " or ";
 				}
 			}
+
+			var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+			if (sdealer !== "") {
+				oUrl = oUrl + "(ZzdealerCode eq '" + sdealer + "')) and (";
+
+			} else {
+
+				for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+					var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+					oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+					if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+						oUrl = oUrl + ") and (";
+
+					} else {
+						oUrl = oUrl + " or ";
+					}
+				}
+
+			}
+
 			for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
+
 				var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
 				oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
 				if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
@@ -276,11 +297,23 @@ sap.ui.define([
 				}
 			}
 
-			var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-			if (sdealer !== "") {
-				oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
-			}
 			oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
+
+			// for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
+			// 	var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
+			// 	oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
+			// 	if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
+			// 		oUrl = oUrl;
+			// 	} else {
+			// 		oUrl = oUrl + " or ";
+			// 	}
+			// }
+
+			// var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+			// if (sdealer !== "") {
+			// 	oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
+			// }
+			// oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 			FSOS_controller._fleetajaxCall(oUrl);
 		},
 
@@ -561,13 +594,13 @@ sap.ui.define([
 						}
 
 					}
-					
+
 					var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
 					var BtnNext = FSOS_controller.getView().byId("buttonNext");
 
 					if (sdealer !== "") {
 						oUrl = oUrl + "(ZzdealerCode eq '" + sdealer + "')) and (";
-						
+
 					} else {
 
 						for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
@@ -575,36 +608,24 @@ sap.ui.define([
 							oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
 							if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
 								oUrl = oUrl + ") and (";
-							
+
 							} else {
 								oUrl = oUrl + " or ";
 							}
 						}
 
 					}
-					
+
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
-						// var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
-						// oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
-						// if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-						// 	oUrl = oUrl;
-						// } else {
-						// 	oUrl = oUrl + " or ";
-						// }
-						
-					var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
-					if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
+
+						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
+						oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
+						if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
 							oUrl = oUrl;
-					} else {
-						oUrl = oUrl + " or ";
+						} else {
+							oUrl = oUrl + " or ";
+						}
 					}
-						
-						
-						
-						
-					}
-					
 
 					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 
