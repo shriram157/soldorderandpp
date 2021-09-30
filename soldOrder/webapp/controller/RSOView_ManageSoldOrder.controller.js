@@ -244,7 +244,8 @@ sap.ui.define([
 					SOVisible: true
 				});
 				RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
-
+				/// changes done by Minakshi for INC0195063
+				RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
 				setTimeout(function () {
 					var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 					var _Eligibility1 = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
