@@ -225,6 +225,8 @@ sap.ui.define([
 				//	var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
 				var feed = RSO_MSO_controller.getView().byId("feedId");
 				var chatVBox = RSO_MSO_controller.getView().byId("chatVBox");
+				/// changes done by Minakshi for INC0195063
+				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/pageArg", parameters.getParameters().arguments.mainPG || "");
 				chatVBox.setVisible(false);
 				/*	if (cb_chat.getSelected() == true) {
 						cb_chat.setSelected(false);
@@ -433,11 +435,14 @@ sap.ui.define([
 							//----------------------------------------------------------
 							var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
 /// changes done by Minakshi for INC0195063
-				RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
+if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F"){
+	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
+}
+				
 							if (status === "Cancelled") {
 								RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
 								RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
-								//RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
+								RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
 								RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
 								RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
 								RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
