@@ -440,7 +440,7 @@ sap.ui.define([
 					FSOS_controller.dialog.close();
 				} else {
 
-					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
+					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
@@ -449,8 +449,32 @@ sap.ui.define([
 						} else {
 							oUrl = oUrl + " or ";
 						}
+
 					}
+
+					var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+					var BtnNext = FSOS_controller.getView().byId("buttonNext");
+
+					if (sdealer !== "") {
+						oUrl = oUrl + "(ZzdealerCode eq '" + sdealer + "')) and (";
+
+					} else {
+
+						for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+							var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+							oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+							if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+								oUrl = oUrl + ") and (";
+
+							} else {
+								oUrl = oUrl + " or ";
+							}
+						}
+
+					}
+
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
+
 						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
 						if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
@@ -459,15 +483,9 @@ sap.ui.define([
 							oUrl = oUrl + " or ";
 						}
 					}
-					// var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-					// oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 
-					var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-					if (sdealer !== "") {
-						oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
-					}
 					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
-
+					
 					$.ajax({
 						url: oUrl,
 						method: "GET",
