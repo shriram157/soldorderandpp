@@ -351,9 +351,11 @@ sap.ui.define([
 			// 	});
 			// }
 		},
+		// changes done by Minakshi for INC0195063
 		_navToRSO: function (evt) {
 			FSOD_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-				Soreq: evt.getSource().getText()
+				Soreq: evt.getSource().getText(),
+				mainPG : "F"
 			}, true);
 		},
 		_refresh: function (oEvent) {
