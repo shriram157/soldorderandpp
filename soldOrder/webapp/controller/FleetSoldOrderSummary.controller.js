@@ -214,13 +214,16 @@ sap.ui.define([
 					}
 				}
 
-				for (var j = 0; j < mcb_dealer_FSOS.getItems().length; j++) {
-					var dealerkey = mcb_dealer_FSOS.getItems()[j].getKey();
-					oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
-					if (j === (mcb_dealer_FSOS.getItems().length - 1)) {
-						oUrl = oUrl + ") and (";
-					} else {
-						oUrl = oUrl + " or ";
+				if (x === "TCI_Zone_User") {
+
+					for (var j = 0; j < mcb_dealer_FSOS.getItems().length; j++) {
+						var dealerkey = mcb_dealer_FSOS.getItems()[j].getKey();
+						oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+						if (j === (mcb_dealer_FSOS.getItems().length - 1)) {
+							oUrl = oUrl + ") and (";
+						} else {
+							oUrl = oUrl + " or ";
+						}
 					}
 				}
 
