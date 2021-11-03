@@ -772,7 +772,7 @@ sap.ui.define([
 			// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User" && x != "TCI_Zone_User") {
+			if (x != "TCI_User" && x != "TCI_Zone_User" && x != "National_Fleet_User") {
 				var oUrl = RSOS_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
 					var status = RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getSelectedItems()[i].getKey();
