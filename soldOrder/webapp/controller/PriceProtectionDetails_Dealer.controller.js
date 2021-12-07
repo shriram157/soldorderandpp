@@ -19,56 +19,68 @@ sap.ui.define([
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
 			if (language == "EN") {
+				// changes done for demand DMND0003456 by Minakshi
 				Obj = {
 					"PriceProtectionStatus": [{
-						"key": "OPEN",
-						"text": "OPEN"
-					}, {
-						"key": "IN PROGRESS",
-						"text": "IN PROGRESS"
-					}, {
-						"key": "PRE-APPROVED",
-						"text": "PRE-APPROVED"
-					}, {
-						"key": "UNDER-REVIEW",
-						"text": "UNDER-REVIEW"
-					}, {
 						"key": "APPROVED",
 						"text": "APPROVED"
-					}, {
-						"key": "REJECTED",
-						"text": "REJECTED"
-					}, {
+					},{
+						"key": "CANCELLED",
+						"text": "CANCELLED"
+					},{
+						"key": "CHANGED",
+						"text": "CHANGED"
+					},{
 						"key": "CLOSED",
 						"text": "CLOSED"
+					},{
+						"key": "IN PROGRESS",
+						"text": "IN PROGRESS"
+					},{
+						"key": "OPEN",
+						"text": "OPEN"
+					},{
+						"key": "PRE-APPROVED",
+						"text": "PRE-APPROVED"
+					},{
+						"key": "REJECTED",
+						"text": "REJECTED"
+					},{
+						"key": "UNDER-REVIEW",
+						"text": "UNDER-REVIEW"
 					}]
 				};
 			} else {
 				Obj = {
 					"PriceProtectionStatus": [{
-						"key": "OPEN",
-						"text": "OPEN"
-					}, {
-						"key": "IN PROGRESS",
-						"text": "IN PROGRESS"
-					}, {
-						"key": "PRE-APPROVED",
-						"text": "PRE-APPROVED"
-					}, {
-						"key": "UNDER-REVIEW",
-						"text": "UNDER-REVIEW"
-					}, {
 						"key": "APPROVED",
 						"text": "APPROVED"
-					}, {
-						"key": "REJECTED",
-						"text": "REJECTED"
-					}, {
+					},{
+						"key": "CANCELLED",
+						"text": "CANCELLED"
+					},{
+						"key": "CHANGED",
+						"text": "CHANGED"
+					},{
 						"key": "CLOSED",
 						"text": "CLOSED"
-					}],
+					},{
+						"key": "IN PROGRESS",
+						"text": "IN PROGRESS"
+					},{
+						"key": "OPEN",
+						"text": "OPEN"
+					},{
+						"key": "PRE-APPROVED",
+						"text": "PRE-APPROVED"
+					},{
+						"key": "REJECTED",
+						"text": "REJECTED"
+					},{
+						"key": "UNDER-REVIEW",
+						"text": "UNDER-REVIEW"
+					}]
 				};
-
 			}
 
 			globalComboModel.setData(Obj);
@@ -79,6 +91,7 @@ sap.ui.define([
 
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
+			// changes done for demand DMND0003456 by Minakshi
 			if (window.location.search.match(/Division=([^&]*)/i)[1] == "10") {
 				Object = {
 					"PriceProtection_OrderType": [{
@@ -88,18 +101,12 @@ sap.ui.define([
 						"key": "F2",
 						"text": "DLR ELITE"
 					}, {
-						"key": "F3",
-						"text": "NAT RAC"
-					}, {
-						"key": "F4",
-						"text": "NAT ELITE"
-					}, {
 						"key": "F5",
 						"text": "MOBILITY"
 					}, {
 						"key": "RETAIL SOLD",
 						"text": "RETAIL SOLD"
-					}],
+					}]
 				};
 
 			} else {
@@ -117,10 +124,10 @@ sap.ui.define([
 						// 	"key": "F3",
 						// 	"text": "NAT RAC"
 						// },
-						{
-							"key": "F4",
-							"text": "NAT ELITE"
-						},
+						// {
+						// 	"key": "F4",
+						// 	"text": "NAT ELITE"
+						// },
 						// {
 						// 	"key": "F5",
 						// 	"text": "MOBILITY"
@@ -129,7 +136,7 @@ sap.ui.define([
 							"key": "RETAIL SOLD",
 							"text": "RETAIL SOLD"
 						}
-					],
+					]
 				};
 			}
 
@@ -171,7 +178,8 @@ sap.ui.define([
 			var mcb_status_PPD_D = PPD_DealerCont.getView().byId("mcb_status_PPD_D");
 			var mcb_ordTyp_PPD_D = PPD_DealerCont.getView().byId("mcb_ordTyp_PPD_D");
 			var mcb_dealer_PPD_D = PPD_DealerCont.getView().byId("mcb_dealer_PPD_D");
-			mcb_status_PPD_D.setSelectedItems(mcb_status_PPD_D.getItems());
+			// changes done for demand DMND0003456 by Minakshi
+			mcb_status_PPD_D.setSelectedItems(mcb_status_PPD_D.setSelectedItems(mcb_status_PPD_D.getItems()[5], mcb_status_PPD_D.getItems()[6], mcb_status_PPD_D.getItems()[7], mcb_status_PPD_D.getItems()[8]));
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
