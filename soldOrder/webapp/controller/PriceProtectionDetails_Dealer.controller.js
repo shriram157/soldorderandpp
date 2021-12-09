@@ -179,7 +179,11 @@ sap.ui.define([
 			var mcb_ordTyp_PPD_D = PPD_DealerCont.getView().byId("mcb_ordTyp_PPD_D");
 			var mcb_dealer_PPD_D = PPD_DealerCont.getView().byId("mcb_dealer_PPD_D");
 			// changes done for demand DMND0003456 by Minakshi
-			mcb_status_PPD_D.setSelectedItems(mcb_status_PPD_D.setSelectedItems(mcb_status_PPD_D.getItems()[5], mcb_status_PPD_D.getItems()[6], mcb_status_PPD_D.getItems()[7], mcb_status_PPD_D.getItems()[8]));
+			var aSelectedStatusArr = mcb_status_PPD_D.getItems().filter(item => 
+				item.getKey() == "OPEN" || item.getKey() == "PRE-APPROVED" ||
+				item.getKey() == "REJECTED" || item.getKey() == "UNDER-REVIEW"
+			);
+			mcb_status_PPD_D.setSelectedItems(aSelectedStatusArr);
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
