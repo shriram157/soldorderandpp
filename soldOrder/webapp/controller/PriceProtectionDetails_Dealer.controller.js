@@ -245,6 +245,7 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
+				oUrl = oUrl+"and expiry eq 'X'" + "&$orderby=dealer_ord desc";
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -304,7 +305,7 @@ sap.ui.define([
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 
-					oUrl = oUrl + "& $orderby=dealer_ord desc";
+					oUrl = oUrl+"and expiry eq 'X'" + "&$orderby=dealer_ord desc";
 
 					$.ajax({
 						url: oUrl,
@@ -358,11 +359,12 @@ sap.ui.define([
 						var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
 						oUrl = oUrl + "(zzordtypedesc eq '" + audit + "')";
 						if (i == ((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") &$orderby=dealer_ord desc";
+							oUrl = oUrl + ")";
 						} else {
 							oUrl = oUrl + " or ";
 						}
 					}
+					oUrl = oUrl+"and expiry eq 'X'" + "&$orderby=dealer_ord desc";
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -427,7 +429,7 @@ sap.ui.define([
 			var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 			oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 
-			oUrl = oUrl + "&$orderby=dealer_ord desc ";
+			oUrl = oUrl+"and expiry eq 'X'" + "&$orderby=dealer_ord desc";
 
 			$.ajax({
 				url: oUrl,
@@ -543,11 +545,12 @@ sap.ui.define([
 					var dealer = this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 					if (i == ((this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + " &$orderby=dealer_ord desc";
+						oUrl = oUrl;
 					} else {
 						oUrl = oUrl + " or ";
 					}
 				}
+				oUrl = oUrl+"and expiry eq 'X'" + "&$orderby=dealer_ord desc";
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -599,11 +602,12 @@ sap.ui.define([
 						var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
 						oUrl = oUrl + "(zzordtypedesc eq '" + audit + "')";
 						if (i == ((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") &$orderby=dealer_ord desc";
+							oUrl = oUrl + ")";
 						} else {
 							oUrl = oUrl + " or ";
 						}
 					}
+					oUrl = oUrl+"and expiry eq 'X'" + "&$orderby=dealer_ord desc";
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -662,7 +666,7 @@ sap.ui.define([
 					}
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
-					oUrl = oUrl + "&$orderby=dealer_ord desc"; //Changed by singhmi 05/02/2021
+					oUrl = oUrl+"and expiry eq 'X'" + "&$orderby=dealer_ord desc"; //Changed by singhmi 05/02/2021
 
 					$.ajax({
 						url: oUrl,
