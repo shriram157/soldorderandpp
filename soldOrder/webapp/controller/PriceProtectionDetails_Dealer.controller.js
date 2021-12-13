@@ -245,6 +245,7 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
+					//	DMND0003455 changes done by Minakshi 13/12/2021
 				oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 				$.ajax({
 					url: oUrl,
@@ -304,7 +305,7 @@ sap.ui.define([
 					}
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
-
+	//	DMND0003455 changes done by Minakshi 13/12/2021
 					oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 
 					$.ajax({
@@ -364,6 +365,7 @@ sap.ui.define([
 							oUrl = oUrl + " or ";
 						}
 					}
+						//	DMND0003455 changes done by Minakshi 13/12/2021
 					oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 					$.ajax({
 						url: oUrl,
@@ -428,7 +430,7 @@ sap.ui.define([
 			}
 			var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 			oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
-
+	//	DMND0003455 changes done by Minakshi 13/12/2021
 			oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 
 			$.ajax({
@@ -550,6 +552,7 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
+			//	DMND0003455 changes done by Minakshi 13/12/2021
 				oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 				$.ajax({
 					url: oUrl,
@@ -607,6 +610,7 @@ sap.ui.define([
 							oUrl = oUrl + " or ";
 						}
 					}
+						//	DMND0003455 changes done by Minakshi 13/12/2021
 					oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 					$.ajax({
 						url: oUrl,

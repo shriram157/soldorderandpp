@@ -126,6 +126,7 @@
 											<Text text="{ppdModel>zzseries}"/>
 										</t:template>
 									</t:Column>
+										<!--//	DMND0003455 changes done by Minakshi 13/12/2021-->
 									<!--<t:Column>-->
 									<!--	<Label class="TableLabel" text="{i18n>model}"/>-->
 									<!--	<t:template>-->

@@ -84,6 +84,7 @@
 							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
 							<Text text="{mainservices>Zzvtn}" id="idVTN"/>
+							<!--DMND0003455 changes done by Minakshi 13/12/2021-->
 							<Label wrapping="true" text="{i18n>vin}"/>
 							<Text text="{mainservices>Vhvin}" id="idVIN"/>
 							<Label wrapping="true" text="{i18n>wholesaleDate}"/>
