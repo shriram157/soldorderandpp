@@ -88,6 +88,8 @@
 							<Text text="{mainservices>Vhvin}" id="idVIN"/>
 							<Label wrapping="true" text="{i18n>wholesaleDate}"/>
 							<Text text="{mainservices>VDelDate}" id="idsalesDate"/>
+							<Label wrapping="true" text="{i18n>rdrdate}"/>
+							<Text text="{mainservices>ZRDR_DATE}" id="idrdrdate"/>
 							<Label wrapping="true" text="{i18n>AuditStatus}"/>
 							<Text text="{mainservices>ZzAuditStatus}"/>
 							<Label wrapping="true" text="{i18n>DealerAcpETA}"/>
