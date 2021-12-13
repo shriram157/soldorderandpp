@@ -97,7 +97,7 @@
 										</t:template>
 									</t:Column>
 									<t:Column width="230px" filterProperty="zzendcu_name" sortProperty="zzendcu_name">
-										<Label class="TableLabel" text="{i18n>custname}"/>
+										<Label class="TableLabel" text="{i18n>rdrCustName}"/>
 										<t:template>
 											<Text text="{ppdModel>zzendcu_name}"/>
 										</t:template>
