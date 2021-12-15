@@ -103,6 +103,12 @@
 										</t:template>
 									</t:Column>
 									<t:Column>
+										<Label class="TableLabel" text="{i18n>rdrCustName}"/>
+										<t:template>
+											<Text text="{= ${ppdModel>type} === '1' ? ${ppdModel>name_first} : ${ppdModel>name_org1}}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
 										<Label class="TableLabel" text="{i18n>orderType}"/>
 										<t:template>
 											<Text text="{ppdModel>zzordtypedesc}"/>
@@ -151,12 +157,7 @@
 											<Text text="{ppdModel>zzvtn}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
-										<Label class="TableLabel" text="{i18n>rdrCustName}"/>
-										<t:template>
-											<Text text="{= ${ppdModel>type} === '1' ? ${ppdModel>name_first} : ${ppdModel>name_org1}}"/>
-										</t:template>
-									</t:Column>
+									
 									<t:Column>
 										<Label class="TableLabel" text="{i18n>status}"/>
 										<t:template>
