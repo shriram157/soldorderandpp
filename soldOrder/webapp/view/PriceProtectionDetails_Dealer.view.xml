@@ -97,7 +97,7 @@
 										</t:template>
 									</t:Column>
 									<t:Column width="230px" filterProperty="zzendcu_name" sortProperty="zzendcu_name">
-										<Label class="TableLabel" text="{i18n>rdrCustName}"/>
+										<Label class="TableLabel" text="{i18n>custname}"/>
 										<t:template>
 											<Text text="{ppdModel>zzendcu_name}"/>
 										</t:template>
@@ -149,6 +149,12 @@
 										<Label class="TableLabel" text="{i18n>vtn}"/>
 										<t:template>
 											<Text text="{ppdModel>zzvtn}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label class="TableLabel" text="{i18n>rdrCustName}"/>
+										<t:template>
+											<Text text="{= ${ppdModel>type} === '1' ? {ppdModel>name_first} : {ppdModel>name_org1}}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
