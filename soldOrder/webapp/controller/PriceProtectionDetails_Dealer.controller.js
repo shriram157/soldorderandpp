@@ -181,7 +181,7 @@ sap.ui.define([
 			// changes done for demand DMND0003456 by Minakshi
 			var aSelectedStatusArr = mcb_status_PPD_D.getItems().filter(item => 
 				item.getKey() == "OPEN" || item.getKey() == "PRE-APPROVED" ||
-				item.getKey() == "REJECTED" || item.getKey() == "UNDER-REVIEW"
+				item.getKey() == "CHANGED" || item.getKey() == "UNDER-REVIEW" || item.getKey() == "IN PROGRESS" 
 			);
 			mcb_status_PPD_D.setSelectedItems(aSelectedStatusArr);
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
