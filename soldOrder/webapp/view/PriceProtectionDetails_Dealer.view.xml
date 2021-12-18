@@ -103,7 +103,8 @@
 									<t:Column>
 										<Label class="TableLabel" text="{i18n>rdrCustName}"/>
 										<t:template>
-											<Text text="{= ${ppdModel>type} === '1' ? ${ppdModel>name_first} : ${ppdModel>name_org1}}"/>
+											<Text text="{ppdModel>zzrdrcust_name}"/>
+											<!--<Text text="{= ${ppdModel>type} === '1' ? ${ppdModel>name_first} : ${ppdModel>name_org1}}"/>-->
 										</t:template>
 									</t:Column>
 									<t:Column>
