@@ -729,7 +729,10 @@ sap.ui.define([
 					new Filter("zzsuffix", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("status", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ownership_doc", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
-					new Filter("credit_memo_doc", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
+					new Filter("credit_memo_doc", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("vhvin", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("zzvtn", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("zzrdrcust_name", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
 				], false);
 
 				aFilters = new sap.ui.model.Filter([oFilter], true);
