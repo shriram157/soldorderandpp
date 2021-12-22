@@ -19,7 +19,7 @@ sap.ui.define([
 			RSOB_controller.flagInvalidPCode = false;
 			RSOB_controller.flagInvalidPhone = false;
 			RSOB_controller.validateFlagB = false;
-			RSOB_controller.flagInvalidName = false; // DMND0003108
+			//RSOB_controller.flagInvalidName = false; // DMND0003108 //Reverting INC0201734
 			var model = new JSONModel({});
 			// AppController.getDealer();
 			RSOB_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
@@ -234,7 +234,9 @@ sap.ui.define([
 
 			// });
 		},
-/*		onValidateCustomer: function () {
+		
+		//Reverting INC0201734
+		onValidateCustomer: function () {
 			validateFlagB = true;
 			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
 			if (validateFlagB == true) {
@@ -489,10 +491,11 @@ sap.ui.define([
 					.m.MessageBox.Action.OK, null, null);
 			}
 		},
-*/
+		//Reverting INC0201734
 
-	/************** Begin of DMND0003108 **************************/
 
+	/************** Begin of DMND0003108 ************************
+	//Reverting INC0201734
 		onValidateCustomer: function () {
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
 			Zcustomer_No = '';
@@ -657,7 +660,7 @@ sap.ui.define([
 					.m.MessageBox.Action.OK, null, null);
 			}
 		},
-
+		//Reverting INC0201734
 		/************** End of DMND0003108 ****************************/
 		_onSubmit: function () {
 			var flag1 = false;
@@ -1022,8 +1025,8 @@ sap.ui.define([
 				// ], true));
 			}
 		},
-			/********************************Begin of DMND0003108******************************/
-
+	/********************************Begin of DMND0003108*****************************
+		//Reverting INC0201734
 		validateName: function (oEvt) {
 			var name = "";
 			if (oEvt) {
@@ -1049,8 +1052,8 @@ sap.ui.define([
 			}
 			return name;
 		},
-
-		/********************************End of DMND0003108********************************/
+			//Reverting INC0201734
+		****************************** End of DMND0003108********************************/
 		
 		suffix_selected: function (oEvent) {
 			//-----------------
