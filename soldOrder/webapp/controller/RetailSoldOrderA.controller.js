@@ -629,7 +629,7 @@ sap.ui.define([
 			Zcustomer_No = '';
 			var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
 			submitBtn.setEnabled(false);
-			validateFlagA = false;
+			//validateFlagA = false; // reverting INC0201904
 			if (CustModel.FirstName != '' && CustModel.SecondName != '' && CustModel.FirstName && CustModel.SecondName && CustModel.Phone != '' &&
 				CustModel.Phone && CustModel.City != '' && CustModel.City &&
 				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
@@ -734,7 +734,7 @@ sap.ui.define([
 							submitBtn.setEnabled(true);
 							oBusyDialog.close();
 							if (data.customer) {
-								validateFlagA = true;
+							//	validateFlagA = true; // reverting INC0201904
 								Zcustomer_No = data.customer.partyID; //customerNumber;
 								Zcustomer_No = Zcustomer_No.toString();
 								var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("success1");
@@ -778,7 +778,11 @@ sap.ui.define([
 
 						}
 					});
+					
 				}
+			    validateFlagA = true;	// reverting INC0201904
+
+
 				
 			} else {
 				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
