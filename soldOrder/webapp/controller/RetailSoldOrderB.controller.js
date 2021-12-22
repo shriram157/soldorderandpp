@@ -494,7 +494,7 @@ sap.ui.define([
 		//Reverting INC0201734
 
 
-	/************** Begin of DMND0003108 ************************
+	/*
 	//Reverting INC0201734
 		onValidateCustomer: function () {
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
@@ -661,7 +661,7 @@ sap.ui.define([
 			}
 		},
 		//Reverting INC0201734
-		/************** End of DMND0003108 ****************************/
+		*/
 		_onSubmit: function () {
 			var flag1 = false;
 			var flag2 = false;
@@ -1025,7 +1025,7 @@ sap.ui.define([
 				// ], true));
 			}
 		},
-	/********************************Begin of DMND0003108*****************************
+	/*
 		//Reverting INC0201734
 		validateName: function (oEvt) {
 			var name = "";
@@ -1053,7 +1053,7 @@ sap.ui.define([
 			return name;
 		},
 			//Reverting INC0201734
-		****************************** End of DMND0003108********************************/
+		*/
 		
 		suffix_selected: function (oEvent) {
 			//-----------------
