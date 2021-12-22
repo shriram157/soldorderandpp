@@ -68,8 +68,6 @@
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
-													<!--<core:Item xmlns:core="sap.ui.core" key="item-2-key" text="Item 2 Text" id="item13"/>-->
-													<!--</items>-->
 												</ComboBox>
 											</VBox>
 										</f:content>
@@ -103,6 +101,13 @@
 										</t:template>
 									</t:Column>
 									<t:Column>
+										<Label class="TableLabel" text="{i18n>rdrCustName}"/>
+										<t:template>
+											<Text text="{ppdModel>zzrdrcust_name}"/>
+											<!--<Text text="{= ${ppdModel>type} === '1' ? ${ppdModel>name_first} : ${ppdModel>name_org1}}"/>-->
+										</t:template>
+									</t:Column>
+									<t:Column>
 										<Label class="TableLabel" text="{i18n>orderType}"/>
 										<t:template>
 											<Text text="{ppdModel>zzordtypedesc}"/>
@@ -126,18 +131,32 @@
 											<Text text="{ppdModel>zzseries}"/>
 										</t:template>
 									</t:Column>
+										<!--//	DMND0003455 changes done by Minakshi 13/12/2021-->
+									<!--<t:Column>-->
+									<!--	<Label class="TableLabel" text="{i18n>model}"/>-->
+									<!--	<t:template>-->
+									<!--		<Text text="{ppdModel>zzmodel}"/>-->
+									<!--	</t:template>-->
+									<!--</t:Column>-->
+									<!--<t:Column>-->
+									<!--	<Label class="TableLabel" text="{i18n>suffix}"/>-->
+									<!--	<t:template>-->
+									<!--		<Text text="{ppdModel>zzsuffix}"/>-->
+									<!--	</t:template>-->
+									<!--</t:Column>-->
 									<t:Column>
-										<Label class="TableLabel" text="{i18n>model}"/>
+										<Label class="TableLabel" text="{i18n>vin}"/>
 										<t:template>
-											<Text text="{ppdModel>zzmodel}"/>
+											<Text text="{ppdModel>vhvin}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
-										<Label class="TableLabel" text="{i18n>suffix}"/>
+										<Label class="TableLabel" text="{i18n>vtn}"/>
 										<t:template>
-											<Text text="{ppdModel>zzsuffix}"/>
+											<Text text="{ppdModel>zzvtn}"/>
 										</t:template>
 									</t:Column>
+									
 									<t:Column>
 										<Label class="TableLabel" text="{i18n>status}"/>
 										<t:template>

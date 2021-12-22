@@ -19,56 +19,68 @@ sap.ui.define([
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
 			if (language == "EN") {
+				// changes done for demand DMND0003456 by Minakshi
 				Obj = {
 					"PriceProtectionStatus": [{
-						"key": "OPEN",
-						"text": "OPEN"
-					}, {
-						"key": "IN PROGRESS",
-						"text": "IN PROGRESS"
-					}, {
-						"key": "PRE-APPROVED",
-						"text": "PRE-APPROVED"
-					}, {
-						"key": "UNDER-REVIEW",
-						"text": "UNDER-REVIEW"
-					}, {
 						"key": "APPROVED",
 						"text": "APPROVED"
-					}, {
-						"key": "REJECTED",
-						"text": "REJECTED"
-					}, {
+					},{
+						"key": "CANCELLED",
+						"text": "CANCELLED"
+					},{
+						"key": "CHANGED",
+						"text": "CHANGED"
+					},{
 						"key": "CLOSED",
 						"text": "CLOSED"
+					},{
+						"key": "IN PROGRESS",
+						"text": "IN PROGRESS"
+					},{
+						"key": "OPEN",
+						"text": "OPEN"
+					},{
+						"key": "PRE-APPROVED",
+						"text": "PRE-APPROVED"
+					},{
+						"key": "REJECTED",
+						"text": "REJECTED"
+					},{
+						"key": "UNDER-REVIEW",
+						"text": "UNDER-REVIEW"
 					}]
 				};
 			} else {
 				Obj = {
 					"PriceProtectionStatus": [{
-						"key": "OPEN",
-						"text": "OPEN"
-					}, {
-						"key": "IN PROGRESS",
-						"text": "IN PROGRESS"
-					}, {
-						"key": "PRE-APPROVED",
-						"text": "PRE-APPROVED"
-					}, {
-						"key": "UNDER-REVIEW",
-						"text": "UNDER-REVIEW"
-					}, {
 						"key": "APPROVED",
 						"text": "APPROVED"
-					}, {
-						"key": "REJECTED",
-						"text": "REJECTED"
-					}, {
+					},{
+						"key": "CANCELLED",
+						"text": "CANCELLED"
+					},{
+						"key": "CHANGED",
+						"text": "CHANGED"
+					},{
 						"key": "CLOSED",
 						"text": "CLOSED"
-					}],
+					},{
+						"key": "IN PROGRESS",
+						"text": "IN PROGRESS"
+					},{
+						"key": "OPEN",
+						"text": "OPEN"
+					},{
+						"key": "PRE-APPROVED",
+						"text": "PRE-APPROVED"
+					},{
+						"key": "REJECTED",
+						"text": "REJECTED"
+					},{
+						"key": "UNDER-REVIEW",
+						"text": "UNDER-REVIEW"
+					}]
 				};
-
 			}
 
 			globalComboModel.setData(Obj);
@@ -79,6 +91,7 @@ sap.ui.define([
 
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
+			// changes done for demand DMND0003456 by Minakshi
 			if (window.location.search.match(/Division=([^&]*)/i)[1] == "10") {
 				Object = {
 					"PriceProtection_OrderType": [{
@@ -88,18 +101,12 @@ sap.ui.define([
 						"key": "F2",
 						"text": "DLR ELITE"
 					}, {
-						"key": "F3",
-						"text": "NAT RAC"
-					}, {
-						"key": "F4",
-						"text": "NAT ELITE"
-					}, {
 						"key": "F5",
 						"text": "MOBILITY"
 					}, {
 						"key": "RETAIL SOLD",
 						"text": "RETAIL SOLD"
-					}],
+					}]
 				};
 
 			} else {
@@ -117,10 +124,10 @@ sap.ui.define([
 						// 	"key": "F3",
 						// 	"text": "NAT RAC"
 						// },
-						{
-							"key": "F4",
-							"text": "NAT ELITE"
-						},
+						// {
+						// 	"key": "F4",
+						// 	"text": "NAT ELITE"
+						// },
 						// {
 						// 	"key": "F5",
 						// 	"text": "MOBILITY"
@@ -129,7 +136,7 @@ sap.ui.define([
 							"key": "RETAIL SOLD",
 							"text": "RETAIL SOLD"
 						}
-					],
+					]
 				};
 			}
 
@@ -171,7 +178,12 @@ sap.ui.define([
 			var mcb_status_PPD_D = PPD_DealerCont.getView().byId("mcb_status_PPD_D");
 			var mcb_ordTyp_PPD_D = PPD_DealerCont.getView().byId("mcb_ordTyp_PPD_D");
 			var mcb_dealer_PPD_D = PPD_DealerCont.getView().byId("mcb_dealer_PPD_D");
-			mcb_status_PPD_D.setSelectedItems(mcb_status_PPD_D.getItems());
+			// changes done for demand DMND0003456 by Minakshi
+			var aSelectedStatusArr = mcb_status_PPD_D.getItems().filter(item => 
+				item.getKey() == "OPEN" || item.getKey() == "PRE-APPROVED" ||
+				item.getKey() == "CHANGED" || item.getKey() == "UNDER-REVIEW" || item.getKey() == "IN PROGRESS" 
+			);
+			mcb_status_PPD_D.setSelectedItems(aSelectedStatusArr);
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
@@ -228,11 +240,13 @@ sap.ui.define([
 					var dealer = this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "')";
 					if (i == ((this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ")& $orderby=dealer_ord desc"; //Changed by singhmi 05/02/2021
+						oUrl = oUrl + ")"; //Changed by singhmi 05/02/2021
 					} else {
 						oUrl = oUrl + " or ";
 					}
 				}
+					//	DMND0003455 changes done by Minakshi 13/12/2021
+				oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -291,8 +305,8 @@ sap.ui.define([
 					}
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
-
-					oUrl = oUrl + "& $orderby=dealer_ord desc";
+	//	DMND0003455 changes done by Minakshi 13/12/2021
+					oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 
 					$.ajax({
 						url: oUrl,
@@ -346,11 +360,13 @@ sap.ui.define([
 						var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
 						oUrl = oUrl + "(zzordtypedesc eq '" + audit + "')";
 						if (i == ((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") &$orderby=dealer_ord desc";
+							oUrl = oUrl + ")";
 						} else {
 							oUrl = oUrl + " or ";
 						}
 					}
+						//	DMND0003455 changes done by Minakshi 13/12/2021
+					oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -414,8 +430,8 @@ sap.ui.define([
 			}
 			var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 			oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
-
-			oUrl = oUrl + "&$orderby=dealer_ord desc ";
+	//	DMND0003455 changes done by Minakshi 13/12/2021
+			oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 
 			$.ajax({
 				url: oUrl,
@@ -531,11 +547,13 @@ sap.ui.define([
 					var dealer = this.getView().byId("mcb_dealer_PPD_D").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 					if (i == ((this.getView().byId("mcb_dealer_PPD_D").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + " &$orderby=dealer_ord desc";
+						oUrl = oUrl;
 					} else {
 						oUrl = oUrl + " or ";
 					}
 				}
+			//	DMND0003455 changes done by Minakshi 13/12/2021
+				oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -587,11 +605,13 @@ sap.ui.define([
 						var audit = this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems()[i].getText();
 						oUrl = oUrl + "(zzordtypedesc eq '" + audit + "')";
 						if (i == ((this.getView().byId("mcb_ordTyp_PPD_D").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") &$orderby=dealer_ord desc";
+							oUrl = oUrl + ")";
 						} else {
 							oUrl = oUrl + " or ";
 						}
 					}
+						//	DMND0003455 changes done by Minakshi 13/12/2021
+					oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -650,7 +670,7 @@ sap.ui.define([
 					}
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
-					oUrl = oUrl + "&$orderby=dealer_ord desc"; //Changed by singhmi 05/02/2021
+					oUrl = oUrl+"and expiry ne 'X'" + "&$orderby=dealer_ord desc"; //Changed by singhmi 05/02/2021
 
 					$.ajax({
 						url: oUrl,
@@ -709,7 +729,10 @@ sap.ui.define([
 					new Filter("zzsuffix", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("status", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ownership_doc", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
-					new Filter("credit_memo_doc", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
+					new Filter("credit_memo_doc", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("vhvin", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("zzvtn", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("zzrdrcust_name", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
 				], false);
 
 				aFilters = new sap.ui.model.Filter([oFilter], true);

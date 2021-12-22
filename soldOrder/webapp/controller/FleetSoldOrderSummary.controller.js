@@ -214,13 +214,16 @@ sap.ui.define([
 					}
 				}
 
-				for (var j = 0; j < mcb_dealer_FSOS.getItems().length; j++) {
-					var dealerkey = mcb_dealer_FSOS.getItems()[j].getKey();
-					oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
-					if (j === (mcb_dealer_FSOS.getItems().length - 1)) {
-						oUrl = oUrl + ") and (";
-					} else {
-						oUrl = oUrl + " or ";
+				if (x === "TCI_Zone_User") {
+
+					for (var j = 0; j < mcb_dealer_FSOS.getItems().length; j++) {
+						var dealerkey = mcb_dealer_FSOS.getItems()[j].getKey();
+						oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+						if (j === (mcb_dealer_FSOS.getItems().length - 1)) {
+							oUrl = oUrl + ") and (";
+						} else {
+							oUrl = oUrl + " or ";
+						}
 					}
 				}
 
@@ -253,6 +256,7 @@ sap.ui.define([
 		},
 
 		_refreshCombo: function (evt) {
+			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			clicks = 0;
 			fleet = true;
 			FSOS_controller.dialog.open();
@@ -273,14 +277,17 @@ sap.ui.define([
 
 			} else {
 
-				for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
-					var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
-					oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
-					if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
-						oUrl = oUrl + ") and (";
+				if (x === "TCI_Zone_User") {
 
-					} else {
-						oUrl = oUrl + " or ";
+					for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+						var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+						oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+						if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+							oUrl = oUrl + ") and (";
+
+						} else {
+							oUrl = oUrl + " or ";
+						}
 					}
 				}
 
@@ -392,6 +399,7 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
+
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
@@ -460,17 +468,19 @@ sap.ui.define([
 
 					} else {
 
-						for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
-							var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
-							oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
-							if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
-								oUrl = oUrl + ") and (";
+						if (x === "TCI_Zone_User") {
 
-							} else {
-								oUrl = oUrl + " or ";
+							for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+								var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+								oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+								if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+									oUrl = oUrl + ") and (";
+
+								} else {
+									oUrl = oUrl + " or ";
+								}
 							}
 						}
-
 					}
 
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
@@ -485,7 +495,7 @@ sap.ui.define([
 					}
 
 					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
-					
+
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -621,17 +631,19 @@ sap.ui.define([
 
 					} else {
 
-						for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
-							var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
-							oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
-							if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
-								oUrl = oUrl + ") and (";
+						if (x === "TCI_Zone_User") {
 
-							} else {
-								oUrl = oUrl + " or ";
+							for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+								var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+								oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+								if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+									oUrl = oUrl + ") and (";
+
+								} else {
+									oUrl = oUrl + " or ";
+								}
 							}
 						}
-
 					}
 
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
