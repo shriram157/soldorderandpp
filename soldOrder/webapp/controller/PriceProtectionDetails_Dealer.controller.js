@@ -522,7 +522,7 @@ sap.ui.define([
 			PPD_DealerCont.dialog.open();
 
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User") {
+			if (x != "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
