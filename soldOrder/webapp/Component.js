@@ -39,7 +39,7 @@ sap.ui.define([
 			var origOpen = XMLHttpRequest.prototype.open;
 			XMLHttpRequest.prototype.open = function () {
 				this.addEventListener('load', function (event) {
-					// TODO Compare host name in URLs to ensure only app resources are checked
+					// Compare host name in URLs to ensure only app resources are checked
 					if (event.target.status === 401) {
 						if (!sessionExpDialog.isOpen()) {
 							sessionExpDialog.open();
