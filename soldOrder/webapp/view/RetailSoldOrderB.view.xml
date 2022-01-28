@@ -108,15 +108,13 @@
 							<!--<Label wrapping="true" text="{i18n>custname}"/>-->
 							<!--<Input id="CustName_RSOB" value="{Customer>/Name}" required="true"/>-->
 							<!--
-							Start Reverting changes INC0201734
+							Start  changes INC0201734-->
 							<Label wrapping="true" text="{i18n>fcustname}"/>
 							<Input id="CustName_RSOB" value="{Customer>/FirstName}" showSuggestion="false" required="true" change="validateName"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
 							<Input id="CustName_SSOB" value="{Customer>/SecondName}" showSuggestion="false" required="true" change="validateName"/>
-							End Reverting changes INC0201734
-							Previous code added as it was
-							-->
-							<Label wrapping="true" text="{i18n>fcustname}"/>
+							<!--End changes INC0201734-->
+							<!--<Label wrapping="true" text="{i18n>fcustname}"/>
 							<Input id="CustName_RSOB" value="{Customer>/FirstName}" showSuggestion="false" required="true"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
 							<Input id="CustName_SSOA" value="{Customer>/SecondName}" showSuggestion="false" required="true"/>
