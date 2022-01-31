@@ -19,7 +19,7 @@ sap.ui.define([
 			RSOB_controller.flagInvalidPCode = false;
 			RSOB_controller.flagInvalidPhone = false;
 			RSOB_controller.validateFlagB = false;
-			RSOB_controller.flagInvalidName = false; // DMND0003108 // INC0201734
+			RSOB_controller.flagInvalidName = false; // DMND0003108
 			var model = new JSONModel({});
 			// AppController.getDealer();
 			RSOB_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
@@ -234,9 +234,7 @@ sap.ui.define([
 
 			// });
 		},
-		
-		// INC0201734
-		/*onValidateCustomer: function () {
+/*		onValidateCustomer: function () {
 			validateFlagB = true;
 			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
 			if (validateFlagB == true) {
@@ -491,11 +489,10 @@ sap.ui.define([
 					.m.MessageBox.Action.OK, null, null);
 			}
 		},
-		//INC0201734*/
+*/
 
+	/************** Begin of DMND0003108 **************************/
 
-	
-	// INC0201734
 		onValidateCustomer: function () {
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
 			Zcustomer_No = '';
@@ -660,8 +657,8 @@ sap.ui.define([
 					.m.MessageBox.Action.OK, null, null);
 			}
 		},
-		
-		
+
+		/************** End of DMND0003108 ****************************/
 		_onSubmit: function () {
 			var flag1 = false;
 			var flag2 = false;
@@ -1025,8 +1022,8 @@ sap.ui.define([
 				// ], true));
 			}
 		},
-	
-		// INC0201734
+			/********************************Begin of DMND0003108******************************/
+
 		validateName: function (oEvt) {
 			var name = "";
 			if (oEvt) {
@@ -1052,8 +1049,8 @@ sap.ui.define([
 			}
 			return name;
 		},
-			// INC0201734
-		
+
+		/********************************End of DMND0003108********************************/
 		
 		suffix_selected: function (oEvent) {
 			//-----------------
@@ -1118,157 +1115,7 @@ sap.ui.define([
 				// ], true));
 
 			}
-		},
-		// 	series_selected: function (oEvent) {
-
-		// 	// var year = this.getView().byId('modelYr_RSOB').getValue();
-		// 	// items="{ path: 'oModel3>/'}"
-		// 	var modelyear = this.getView().byId('modelYr_RSOB').getValue();
-		// 	var series = this.getView().byId('series_RSOB').getSelectedKey();
-		// 	if (series && modelyear) {
-		// 		var modelCB = this.getView().byId("model_RSOB");
-		// 		var suffixCB = this.getView().byId("Suffix_RSOB");
-		// 		var apxCB = this.getView().byId("Apx_RSOB");
-		// 		var colorCB = this.getView().byId("Colour_RSOB");
-		// 		modelCB.setSelectedKey(null);
-		// 		modelCB.destroyItems();
-		// 		suffixCB.setSelectedKey(null);
-		// 		suffixCB.destroyItems();
-		// 		apxCB.setSelectedKey(null);
-		// 		apxCB.destroyItems();
-		// 		colorCB.setSelectedKey(null);
-		// 		colorCB.destroyItems();
-		// 	var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-		// 		modelCB.bindItems({
-		// 			// path: "VechileModel>/zc_model",
-		// 			path: "mainservices>/ZVMS_Model_EXCLSet",
-		// 			filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
-		// 				new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-		// 				new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-		// 				new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'PIP')
-		// 			], true),
-		// 			template: new sap.ui.core.ListItem({
-		// 				key: "{mainservices>model}",
-		// 				text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
-		// 			})
-		// 		});
-		// 		// var items_binding = this.getView().byId('model_RSOB').getBinding('items');
-		// 		// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
-		// 	}
-		// },
-		// model_selected: function (oEvent) {
-		// 	// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
-		// 	var model = oEvent.getSource().getSelectedKey();
-		// 	var language = RSOB_controller.returnBrowserLanguage();
-		// 	var modelyear = this.getView().byId('modelYr_RSOB').getValue();
-		// 	var suf;
-		// 	if (language === "FR") {
-		// 		suf =
-		// 			"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
-
-		// 	} else {
-		// 		suf =
-		// 			"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
-
-		// 	}
-		// 	if (model && modelyear) {
-		// 		var suffixCB = this.getView().byId("Suffix_RSOB");
-		// 		var apxCB = this.getView().byId("Apx_RSOB");
-		// 		var colorCB = this.getView().byId("Colour_RSOB");
-		// 		// 		modelCB.setSelectedKey(null);
-		// 		// modelCB.destroyItems();
-		// 		suffixCB.setSelectedKey(null);
-		// 		suffixCB.destroyItems();
-		// 		apxCB.setSelectedKey(null);
-		// 		apxCB.destroyItems();
-		// 		colorCB.setSelectedKey(null);
-		// 		colorCB.destroyItems();
-		// 		suffixCB.bindItems({
-		// 			// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
-		// 			path: 'mainservices>/ZVMS_CDS_SUFFIX',
-		// 			filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-		// 				new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 			], true),
-		// 			template: new sap.ui.core.ListItem({
-		// 				key: "{mainservices>suffix}",
-		// 				text: suf
-		// 			})
-		// 		});
-		// 		// ,{path:'mainservices>int_trim_desc_en'}		
-		// 		// var items_binding = this.getView().byId('Suffix_RSOB').getBinding('items');
-		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-		// 		// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 		// ], true));
-		// 	}
-		// },
-		// suffix_selected: function (oEvent) {
-		// 	//-----------------
-		// 	//----APX---------
-		// 	//----------------
-		// 	//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
-		// 	var suffix = oEvent.getSource().getSelectedKey();
-		// 	var modelyear = this.getView().byId('modelYr_RSOB').getValue();
-		// 	var model = this.getView().byId('model_RSOB').getSelectedKey();
-		// 	if (model && modelyear && suffix) {
-		// 		var apxCB = this.getView().byId("Apx_RSOB");
-		// 		var colorCB = this.getView().byId("Colour_RSOB");
-		// 		// 		modelCB.setSelectedKey(null);
-		// 		// modelCB.destroyItems();
-		// 		// suffixCB.setSelectedKey(null);
-		// 		// suffixCB.destroyItems();
-		// 		apxCB.setSelectedKey(null);
-		// 		apxCB.destroyItems();
-		// 		colorCB.setSelectedKey(null);
-		// 		colorCB.destroyItems();
-		// 		apxCB.bindItems({
-		// 			// path: 'VechileModel>/ZC_PIO_DIO',
-		// 			path: 'mainservices>/ZVMS_CDS_APX',
-		// 			filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
-		// 				new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 				new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 			], true),
-		// 			template: new sap.ui.core.ListItem({
-		// 				// key: "{VechileModel>zzapx}",
-		// 				key: "{mainservices>zzapx}",
-		// 				// text: "{VechileModel>zzapx}"
-		// 				text: "{mainservices>zzapx}"
-		// 			})
-		// 		});
-		// 		// var items_binding = this.getView().byId('Apx_RSOB').getBinding('items');
-		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
-		// 		// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 		// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 		// ], true));
-		// 		//-----------------
-		// 		//----Color---------
-		// 		//----------------
-		// 		var color;
-		// 		var language = RSOB_controller.returnBrowserLanguage();
-		// 		if (language === "FR") {
-		// 			color = "{mainservices>ext}/{mainservices>mktg_desc_fr}";
-		// 		} else {
-		// 			color = "{mainservices>ext}/{mainservices>mktg_desc_en}";
-		// 		}
-		// 		this.getView().byId('Colour_RSOB').bindItems({
-		// 			path: 'mainservices>/ZVMS_CDS_Colour',
-		// 			filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-		// 				new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 				new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 			], true),
-		// 			template: new sap.ui.core.ListItem({
-		// 				key: "{mainservices>ext}",
-		// 				text: color
-		// 					// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
-		// 			})
-		// 		});
-		// 		// var items_binding = this.getView().byId('Colour_RSOB').getBinding('items');
-		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-		// 		// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 		// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 		// ], true));
-
-		// 	}
-		// },
+		}
 
 	});
 
