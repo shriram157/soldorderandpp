@@ -106,7 +106,7 @@
 						
 									<HBox class="justifyContentEnd sapUiMediumMarginBegin">
 										<items>
-											<SearchField  class="" id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
+											<SearchField  id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
 											<layoutData>
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
