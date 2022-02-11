@@ -75,7 +75,7 @@ sap.ui.define([
 				RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var globalComboModel = new sap.ui.model.json.JSONModel();
 				var Obj;
-				
+
 				//Requested, approve, rejected, completed – Remove and add Changed status for demand DMND0003179 
 				if (language == "EN") {
 					Obj = {
@@ -126,7 +126,7 @@ sap.ui.define([
 				globalComboModel.updateBindings(true);
 				sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
 				RSOS_controller.getView().setModel(globalComboModel, "globalComboModel");
-			
+
 				var AuditModel = new sap.ui.model.json.JSONModel();
 				var Object;
 				if (language == "EN") {
@@ -178,7 +178,12 @@ sap.ui.define([
 				var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
 				var mcb_dealer_RSOS = RSOS_controller.getView().byId("mcb_dealer_RSOS");
 				mcb_series_RSOS.setSelectedItems(mcb_series_RSOS.getItems());
-				mcb_rsStatus_RSOS.setSelectedItems(mcb_rsStatus_RSOS.getItems());
+				//mcb_rsStatus_RSOS.setSelectedItems(mcb_rsStatus_RSOS.getItems());
+				var aSelectedStatusArr = mcb_rsStatus_RSOS.getItems().filter(item =>
+					item.getKey() == "IN-PROGRESS" || item.getKey() == "PENDING FULFILLMENT"
+				);
+				mcb_rsStatus_RSOS.setSelectedItems(aSelectedStatusArr);
+
 				mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
 				mcb_dealer_RSOS.setSelectedItems(mcb_dealer_RSOS.getItems());
 
@@ -207,10 +212,10 @@ sap.ui.define([
 					//console.log("loading data");
 					RSOS_controller._refresh();
 
-				}else{
+				} else {
 					RSOS_controller.getView().byId("cb_dealer_RSOS").setSelectedKey("");
 				}
-			//Changes done for INC0189944 by Minakshi end
+				//Changes done for INC0189944 by Minakshi end
 
 			}
 
@@ -490,7 +495,7 @@ sap.ui.define([
 					//march 10 P2 change adding below block and commenting older block 
 					if (filter == false) {
 						RSOS_controller.dialog.close();
-					}else {
+					} else {
 
 						var oUrl = RSOS_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=0&$filter=(";
 						for (var i = 0; i < RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
@@ -542,7 +547,7 @@ sap.ui.define([
 								}
 
 								var DataModel = RSOS_controller.getView().getModel("retailsumModel");
-								
+
 								if (data.d.results.length <= 10) {
 									BtnNext.setEnabled(false);
 									RSOS_controller.enableExportButton();
@@ -552,9 +557,9 @@ sap.ui.define([
 							},
 							error: function (jqXHR, textStatus, errorThrown) {
 								RSOS_controller.dialog.close();
-								
+
 								var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-								
+
 								sap.m.MessageToast.show(errMsg);
 
 							}
@@ -642,7 +647,7 @@ sap.ui.define([
 			}
 		},
 		closeDialog: function () {
-			
+
 		},
 		/**
 		 *@memberOf toyota.ca.SoldOrder.controller.RetailSoldOrderSummary
@@ -861,7 +866,7 @@ sap.ui.define([
 				//march 10 P2 change adding below block and commenting older block 
 				if (filter == false) {
 					RSOS_controller.dialog.close();
-				}else {
+				} else {
 
 					var oUrl = RSOS_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getSelectedItems().length; i++) {
