@@ -162,8 +162,6 @@
 		},
 		"resources": {
 			"js": [{
-				"uri": "lib/changeFabicon.js"
-			}, {
 				"uri": "lib/moment.js"
 			}],
 			"css": [{
