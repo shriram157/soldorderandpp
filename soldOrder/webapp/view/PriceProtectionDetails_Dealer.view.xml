@@ -85,6 +85,7 @@
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
+										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true"  class="sapUiTinyMarginBegin"></Button>
 									</Toolbar>
 								</t:extension>
 								<t:columns>
