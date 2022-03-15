@@ -753,6 +753,7 @@ sap.ui.define([
 			// oTable = this._oTable;
 			//oRowBinding = oTable.getBinding("items");
 			aCols = this.createColumnConfig();
+			sUri = oUrl.replace("$top=100&$skip=0&", "");
 			// icount = oRowBinding.aContexts.length;
 			// iskip = (icount > 100) ? icount - 100 : 0;
 			oSettings = {
@@ -760,7 +761,7 @@ sap.ui.define([
 					columns: aCols
 				},
 				dataSource: {
-					dataUrl: oUrl
+					dataUrl: sUri
 					
 				},
 				fileName: 'pricingData.xlsx',
