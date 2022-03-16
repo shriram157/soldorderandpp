@@ -136,18 +136,26 @@
 											<Link text="{retailsumModel>ZzsoReqNo}" press="_dispalySoldOrderDetails" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column filterProperty="ChatMessages" sortProperty="ChatMessages">
-										<Label text="{i18n>ChatNum}" class="TableLabel"/>
-										<t:template>
-											<Text text="{retailsumModel>ChatMessages}"  wrapping="true"/>
-										</t:template>
-									</t:Column>
+									<!--<t:Column filterProperty="ChatMessages" sortProperty="ChatMessages">-->
+									<!--	<Label text="{i18n>ChatNum}" class="TableLabel"/>-->
+									<!--	<t:template>-->
+									<!--		<Text text="{retailsumModel>ChatMessages}"  wrapping="true"/>-->
+									<!--	</t:template>-->
+									<!--</t:Column>-->
 									<t:Column width="210px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
 										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>ZzendcuName}" wrapping="true"/>
 										</t:template>
 									</t:Column>
+									
+									<t:Column>
+										<Label text="{i18n>salesPerName}" class="TableLabel"/>
+										<t:template>
+											<Text text="{retailsumModel>Zsalesperson}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									
 									<t:Column >
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
