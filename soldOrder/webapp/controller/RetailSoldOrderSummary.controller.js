@@ -26,10 +26,13 @@ sap.ui.define([
 			// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
 			// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
 			//	//console.log("series data", sap.ui.getCore().getModel("seriesModel"));
+				this._fnLoadInitData();
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
+		
 		},
-		_onObjectMatched: function (oEvent) {
-			if (oEvent.getParameter("name") == "RetailSoldOrderSummary") {
+		
+		_fnLoadInitData : function(){
+			//if (oEvent.getParameter("name") == "RetailSoldOrderSummary") {
 
 				// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 				// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
@@ -222,7 +225,10 @@ sap.ui.define([
 				}
 				//Changes done for INC0189944 by Minakshi end
 
-			}
+			//}
+		},
+		_onObjectMatched: function (oEvent) {
+			
 
 		},
 
@@ -777,7 +783,7 @@ sap.ui.define([
 		// 		document.body.removeChild(link);
 		// 	}
 		// },
-// DMND0003562 start 16/03/2022
+		// DMND0003562 start 16/03/2022
 		onExport: function (oEvent) {
 			var aCols, oRowBinding, oSettings, oSheet, oTable, icount, sUri, sfilter = "",
 				sorderby, sSelect, iskip;
@@ -906,7 +912,7 @@ sap.ui.define([
 
 		},
 
-			data: function (oEvent) {
+		data: function (oEvent) {
 			RSOS_controller.dialog.open();
 			// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
 
