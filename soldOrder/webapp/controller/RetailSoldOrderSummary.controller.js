@@ -777,7 +777,7 @@ sap.ui.define([
 		// 		document.body.removeChild(link);
 		// 	}
 		// },
-
+// DMND0003562 start 16/03/2022
 		onExport: function (oEvent) {
 			var aCols, oRowBinding, oSettings, oSheet, oTable, icount, sUri, sfilter = "",
 				sorderby, sSelect, iskip;
@@ -904,7 +904,7 @@ sap.ui.define([
 
 			return aCols;
 
-		}
+		},
 
 			data: function (oEvent) {
 			RSOS_controller.dialog.open();
