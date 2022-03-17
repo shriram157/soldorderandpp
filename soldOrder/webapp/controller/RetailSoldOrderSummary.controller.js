@@ -841,7 +841,7 @@ sap.ui.define([
 			});
 			aCols.push({
 				label: oBundle.getText("ContractDate"),
-				type: EdmType.String,
+				type: EdmType.Date,
 				property: 'ZcontractDate'
 			});
 			aCols.push({
