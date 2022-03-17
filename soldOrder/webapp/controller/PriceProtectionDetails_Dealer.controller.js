@@ -151,9 +151,11 @@ sap.ui.define([
 			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
 			console.log("OrderTypeModel", OrderTypeModel);
 			// PPD_DealerCont.getBrowserLanguage();
+			this._fnInitDataLoad();
 			this.getOwnerComponent().getRouter().getRoute("PriceProtectionDetails_Dealer").attachPatternMatched(this._onObjectMatched, this);
 		},
-		_onObjectMatched: function (oEvent) {
+		
+		_fnInitDataLoad : function(){
 			var oModel = new sap.ui.model.json.JSONModel();
 			PPD_DealerCont.getView().setModel(oModel, "ppdModel");
 			var PPDLocalModel = new sap.ui.model.json.JSONModel();
@@ -212,6 +214,10 @@ sap.ui.define([
 				PPD_DealerCont.getView().byId("cb_dealer_PPD_D").setSelectedKey("");
 			}
 			//Changes done for INC0189944 by Minakshi end.
+		},
+		
+		_onObjectMatched: function (oEvent) {
+			
 
 		},
 
