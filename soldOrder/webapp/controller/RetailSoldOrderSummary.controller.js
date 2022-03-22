@@ -794,7 +794,15 @@ sap.ui.define([
 			// oTable = this._oTable;
 			//oRowBinding = oTable.getBinding("items");
 			aCols = this.createColumnConfig();
+			// var dtwoyrpv = moment().subtract(2, 'years').format("YYYY-MM-DDT00:00:00");
+			// var dcurrent = moment().format("YYYY-MM-DDT00:00:00");
 			sUri = oUrl.replace("$top=100&$skip=0&", "");
+				if(sUri.includes("REGISTERED" && "CANCELLED" && "CHANGED")){
+					sUri = sUri.replace("&$orderby=ZzsoReqNo desc", "");
+					sUri = sUri + " and (ZzeffDate ge datetime'" + moment().subtract(2, 'years').format("YYYY-MM-DDT00:00:00") +
+							"'and ZzeffDate le datetime'" + moment().format("YYYY-MM-DDT00:00:00") +
+							"')";
+				}
 			// icount = oRowBinding.aContexts.length;
 			// iskip = (icount > 100) ? icount - 100 : 0;
 			oSettings = {
