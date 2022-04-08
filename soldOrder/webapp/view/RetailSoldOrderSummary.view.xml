@@ -111,7 +111,9 @@
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
-										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" id="idBtnExportToExcel" class="sapUiTinyMarginBegin sapUiMediumMarginEnd"></Button>
+										<Button  icon="sap-icon://excel-attachment" tooltip="*In-progress, Pending Fulfillment, Filled display all results on export. 
+										All Other types present rolling 2 years." press="onExport"  id="idBtnExportToExcel" 
+										class="sapUiTinyMarginBegin sapUiMediumMarginEnd"></Button>
 									
 										</items>
 									</HBox>
@@ -119,16 +121,15 @@
 								<t:extension>
 									<Toolbar visible="false">
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>
-										<Label text="*In-progress, Pending Fulfillment, Filled display all results on export. 
-										All Other types present rolling 2 years."/>
+										<!--<Label text="*In-progress, Pending Fulfillment, Filled display all results on export. -->
+										<!--All Other types present rolling 2 years."/>-->
 										<ToolbarSpacer/>
 										<SearchField id="searchOrders3" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
 											<layoutData>
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
-										<Button text="{i18n>exportToExcel}"  tooltip="*In-progress, Pending Fulfillment, Filled display all results on export. 
-										All Other types present rolling 2 years." press="onExport"  id="idBtnExportToExcel3" class="sapUiTinyMarginBegin"></Button>
+										<Button text="{i18n>exportToExcel}"  press="onExport" enabled="true" id="idBtnExportToExcel3" class="sapUiTinyMarginBegin"></Button>
 									<ToolbarSpacer/>
 									</Toolbar>
 								</t:extension>
