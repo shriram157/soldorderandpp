@@ -797,7 +797,7 @@ sap.ui.define([
 			// var dtwoyrpv = moment().subtract(2, 'years').format("YYYY-MM-DDT00:00:00");
 			// var dcurrent = moment().format("YYYY-MM-DDT00:00:00");
 			sUri = oUrl.replace("$top=100&$skip=0&", "");
-				if(sUri.includes("REGISTERED" || "CANCELLED" || "CHANGED")){
+				if(sUri.includes("CANCELLED") || sUri.includes("CHANGED") || sUri.includes("REGISTERED")){
 					sUri = sUri.replace("&$orderby=ZzsoReqNo desc", "");
 					sUri = sUri + " and (ZzeffDate ge datetime'" + moment().subtract(2, 'years').format("YYYY-MM-DDT00:00:00") +
 							"'and ZzeffDate le datetime'" + moment().format("YYYY-MM-DDT00:00:00") +
