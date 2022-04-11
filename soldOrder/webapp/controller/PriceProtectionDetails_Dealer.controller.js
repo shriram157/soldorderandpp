@@ -749,6 +749,7 @@ sap.ui.define([
 			this.byId("table_PPD_Dealer").getBinding().filter(aFilters).sort(aSorters);
 		},
 
+// DMND0003562 changes done by Minakshi
 		onExport: function (oEvent) {
 			var aCols, oRowBinding, oSettings, oSheet, oTable, icount, sUri, sfilter = "",
 				sorderby, sSelect, iskip;
@@ -854,5 +855,7 @@ sap.ui.define([
 			return aCols;
 
 		}
+		
+		// DMND0003562 changes done by Minakshi
 	});
 });
