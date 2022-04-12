@@ -761,6 +761,7 @@ sap.ui.define([
 			//oRowBinding = oTable.getBinding("items");
 			aCols = this.createColumnConfig();
 			sUri = oUrl.replace("$top=100&$skip=0&", "");
+			sUri = sUri + "&$select=dealer_ord,zzendcu_name,zzrdrcust_name,zzordtypedesc,zzmoyr,zzseries,vhvin,zzvtn,status,ownership_doc,credit_memo_doc";
 			// icount = oRowBinding.aContexts.length;
 			// iskip = (icount > 100) ? icount - 100 : 0;
 			oSettings = {

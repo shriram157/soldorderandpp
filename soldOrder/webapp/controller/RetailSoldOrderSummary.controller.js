@@ -803,6 +803,8 @@ sap.ui.define([
 							"'and ZzeffDate le datetime'" + moment().format("YYYY-MM-DDT00:00:00") +
 							"')";
 				}
+				
+			sUri = sUri + "&$select=ZzsoReqNo,ZzendcuName,Zsalesperson,ZcontractDate,Comment,ZzdealerCode,Zzmoyr,Zzseries,Zzmodel,Zzsuffix,Zzextcol,ZzAuditStatus,ZzsoStatus,Zzvtn,Vhvin";
 			// icount = oRowBinding.aContexts.length;
 			// iskip = (icount > 100) ? icount - 100 : 0;
 			oSettings = {
