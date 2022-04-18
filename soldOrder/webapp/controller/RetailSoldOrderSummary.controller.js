@@ -427,6 +427,9 @@ sap.ui.define([
 				if((oEvent.getParameter("changedItem").getKey() == "All-STATUS") && (oEvent.getParameter("selected") == true)){
 					RSOS_controller.getView().byId("mcb_rsStatus_RSOS").setSelectedItems(RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getItems());
 					this.noData = false;
+				}else if((oEvent.getParameter("changedItem").getKey() == "All-STATUS") && (oEvent.getParameter("selected") == false)){
+					RSOS_controller.getView().byId("mcb_rsStatus_RSOS").setSelectedItems();
+					this.noData = true;
 				}else{
 					this.noData = false;
 				}
