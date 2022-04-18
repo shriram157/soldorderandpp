@@ -105,6 +105,9 @@ sap.ui.define([
 						}, {
 							"key": "CHANGED",
 							"text": "CHANGED"
+						},{
+							"key": "All-STATUS",
+							"text": "ALL"
 						}]
 					};
 				} else {
@@ -127,6 +130,9 @@ sap.ui.define([
 						}, {
 							"key": "CHANGED",
 							"text": "CHANGED"
+						},{
+							"key": "All-STATUS",
+							"text": "ALL"
 						}]
 					};
 				}
@@ -415,6 +421,13 @@ sap.ui.define([
 					RSOS_controller.getView().byId("mcb_series_RSOS").setSelectedItems(RSOS_controller.getView().byId("mcb_series_RSOS").getItems());
 					this.noData = false;
 				} else {
+					this.noData = false;
+				}
+				
+				if((oEvent.getParameter("changedItem").getKey() == "All-STATUS") && (oEvent.getParameter("selected") == true)){
+					RSOS_controller.getView().byId("mcb_rsStatus_RSOS").setSelectedItems(RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getItems());
+					this.noData = false;
+				}else{
 					this.noData = false;
 				}
 			}
