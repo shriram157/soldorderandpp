@@ -454,7 +454,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	ordercancelled: function (orderstatus) {
-		if (orderstatus == "CANCELLED") {
+		if (orderstatus == "CANCELLED" || orderstatus == "CHANGED") {
 			return false;
 		} else {
 			return true;
