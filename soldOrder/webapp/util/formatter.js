@@ -453,6 +453,7 @@ toyota.ca.SoldOrder.util.formatter = {
 			return dealerno.slice(-5);
 		}
 	},
+	// changes done for incident INC0207766 by Minakshi on 20/04/2022
 	ordercancelled: function (orderstatus) {
 		if (orderstatus == "CANCELLED" || orderstatus == "CHANGED") {
 			return false;
@@ -460,6 +461,7 @@ toyota.ca.SoldOrder.util.formatter = {
 			return true;
 		}
 	},
+	// changes done for incident INC0207766 by Minakshi on 20/04/2022
 	orderFilled: function (orderstatus) {
 		if (orderstatus == "CANCELLED" || orderstatus == "FILLED" || orderstatus == "CHANGED") {
 			return false;

@@ -85,6 +85,7 @@ sap.ui.define([
 				var Obj;
 
 				//Requested, approve, rejected, completed – Remove and add Changed status for demand DMND0003179 
+				//DMND0003562 added "ALL" filter option added for status
 				if (language == "EN") {
 					Obj = {
 						"FSOSummary_Status": [{
@@ -423,7 +424,7 @@ sap.ui.define([
 				} else {
 					this.noData = false;
 				}
-				
+				//DMND0003562 Filter condition for "ALL" added
 				if((oEvent.getParameter("changedItem").getKey() == "All-STATUS") && (oEvent.getParameter("selected") == true)){
 					RSOS_controller.getView().byId("mcb_rsStatus_RSOS").setSelectedItems(RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getItems());
 					this.noData = false;
@@ -707,111 +708,12 @@ sap.ui.define([
 				BtnExport.setEnabled(true); // change 24 sep -requirement change
 			}
 		},
-		// onExport: function () {
-
-		// 	var data;
-		// 	var DataModel = RSOS_controller.getView().getModel("retailsumModel");
-		// 	if (DataModel != undefined) {
-		// 		data = DataModel.getData();
-		// 	} else {
-		// 		data = RSOS_controller.getView().byId("table_RSOS").getModel("retailsumModel").getData();
-		// 	}
-		// 	RSOS_controller.JSONToExcelConvertor(data, "Report", true);
-
-		// },
-		// JSONToExcelConvertor: function (JSONData, ReportTitle, ShowLabel) {
-		// 	//	var arrData = typeof JSONData.results != 'object' ? JSON.parse(JSONData.results) : JSONData.results;
-		// 	var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
-		// 	var CSV = "";
-		// 	if (ShowLabel) {
-		// 		var row = "";
-		// 		row = row.slice(0, -1);
-		// 	}
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("orderNumber") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("custname") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("dealer") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("modelYear") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("series") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Model") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Suffix") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Colour") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("audit") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("Status") + ",";
-
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vtn") + ",";
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("vin") + ",";
-
-		// 	row += sap.ui.getCore().getModel("i18n").getResourceBundle().getText("linkVehicle") + ",";
-
-		// 	CSV += row + '\r\n';
-
-		// 	//loop is to extract each row
-		// 	for (var i = 0; i < arrData.length; i++) {
-		// 		// //console.log(arrData[i]);
-		// 		// var row = "";
-		// 		row = " ";
-		// 		row += arrData[i].ZzsoReqNo + ',' +
-		// 			arrData[i].ZzendcuName + ',' +
-		// 			//'="' + arrData[i].Dealer.substring(5, arrData[i].Dealer.length) + '",="' +
-		// 			arrData[i].ZzdealerCode + ',' +
-		// 			arrData[i].Zzmoyr + ',' +
-		// 			arrData[i].Zzseries + ',' +
-		// 			arrData[i].Zzmodel + ',' +
-		// 			arrData[i].Zzsuffix + ',' +
-
-		// 			arrData[i].Zzextcol + ',' +
-		// 			//	arrData[i].Zzapx +'","' + 
-		// 			//
-		// 			arrData[i].ZzAuditStatus + ',' +
-		// 			arrData[i].ZzsoStatus + ',' +
-		// 			arrData[i].Zzvtn + ',' +
-		// 			arrData[i].Vhvin + ',';
-
-		// 		//FSOD_controller.dateConverter(arrData[i].ZzreqEtaFrom) +'",="' +
-		// 		//FSOD_controller.dateConverter(arrData[i].ZzreqEtaTo) + '",';
-
-		// 		//}
-		// 		row.slice(1, row.length);
-		// 		CSV += row + '\r\n';
-		// 	}
-		// 	if (CSV == "") {
-		// 		alert("Invalid data");
-		// 		return;
-		// 	}
-		// 	var fileName = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("RetailSoldOrderReport");
-		// 	//	fileName += ReportTitle.replace(/ /g, "_");
-		// 	// Initialize file format you want csv or xls
-
-		// 	var blob = new Blob(["\ufeff" + CSV], {
-		// 		type: "text/csv;charset=utf-8,"
-		// 	});
-		// 	if (sap.ui.Device.browser.name === "ie" || sap.ui.Device.browser.name === "ed") { // IE 10+ , Edge (IE 12+)
-		// 		navigator.msSaveBlob(blob, sap.ui.getCore().getModel("i18n").getResourceBundle().getText("RetailSoldOrderReport") + ".csv");
-		// 	} else {
-		// 		var uri = 'data:text/csv;charset=utf-8,' + "\ufeff" + encodeURIComponent(CSV); //'data:application/vnd.ms-excel,' + escape(CSV);
-		// 		var link = document.createElement("a");
-
-		// 		link.href = uri;
-		// 		link.style = "visibility:hidden";
-		// 		link.download = fileName + ".csv";
-		// 		document.body.appendChild(link);
-		// 		link.click();
-		// 		document.body.removeChild(link);
-		// 	}
-		// },
-		// DMND0003562 start 16/03/2022
+		
+		// DMND0003562 start 16/03/2022 by Minakshi
 		onExport: function (oEvent) {
 			var aCols, oRowBinding, oSettings, oSheet, oTable, icount, sUri, sfilter = "",
 				sorderby, sSelect, iskip;
-			// if (!this._oTable) {
-			// 	this._oTable = this.byId("list");
-			// }
-
-			// oTable = this._oTable;
-			//oRowBinding = oTable.getBinding("items");
 			aCols = this.createColumnConfig();
-			// var dtwoyrpv = moment().subtract(2, 'years').format("YYYY-MM-DDT00:00:00");
-			// var dcurrent = moment().format("YYYY-MM-DDT00:00:00");
 			sUri = oUrl.replace("$top=100&$skip=0&", "");
 				if(sUri.includes("CANCELLED") || sUri.includes("CHANGED") || sUri.includes("REGISTERED")){
 					sUri = sUri.replace("&$orderby=ZzsoReqNo desc", "");
@@ -821,8 +723,6 @@ sap.ui.define([
 				}
 				
 			sUri = sUri + "&$select=ZzsoReqNo,ZzendcuName,Zsalesperson,ZcontractDate,Comment,ZzdealerCode,Zzmoyr,Zzseries,Zzmodel,Zzsuffix,Zzextcol,ZzAuditStatus,ZzsoStatus,Zzvtn,Vhvin";
-			// icount = oRowBinding.aContexts.length;
-			// iskip = (icount > 100) ? icount - 100 : 0;
 			oSettings = {
 				workbook: {
 					columns: aCols
