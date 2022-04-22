@@ -153,7 +153,7 @@
 										</t:template>
 									</t:Column>
 									
-									<t:Column>
+									<t:Column filterProperty="Zsalesperson" sortProperty="Zsalesperson">
 										<Label text="{i18n>salesPerName}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>Zsalesperson}" wrapping="true"/>

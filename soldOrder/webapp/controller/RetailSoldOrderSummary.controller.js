@@ -264,7 +264,8 @@ sap.ui.define([
 					new Filter("Zzsuffix", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ZzAuditStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
 					new Filter("ZzsoStatus", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
-					new Filter("Zzvtn", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
+					new Filter("Zzvtn", sap.ui.model.FilterOperator.Contains, this.sSearchQuery),
+					new Filter("Zsalesperson", sap.ui.model.FilterOperator.Contains, this.sSearchQuery)
 				], false);
 
 				var aFilters = new sap.ui.model.Filter([oFilter], true);
