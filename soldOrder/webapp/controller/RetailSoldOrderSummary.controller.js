@@ -715,9 +715,9 @@ sap.ui.define([
 				sorderby, sSelect, iskip;
 			aCols = this.createColumnConfig();
 			sUri = oUrl.replace("$top=100&$skip=0&", "");
-			sUri = oUrl.replace("$top=100&$skip=100&", "");
-			sUri = oUrl.replace("$top=100&$skip=200&", "");
-			sUri = oUrl.replace("$top=100&$skip=300&", "");
+			sUri = sUri.replace("$top=100&$skip=100&", "");
+			sUri = sUri.replace("$top=100&$skip=200&", "");
+			sUri = sUri.replace("$top=100&$skip=300&", "");
 			if (sUri.includes("CANCELLED") || sUri.includes("CHANGED") || sUri.includes("REGISTERED")) {
 				sUri = sUri.replace("&$orderby=ZzsoReqNo desc", "");
 				sUri = sUri + " and (ZzeffDate ge datetime'" + moment().subtract(2, 'years').format("YYYY-MM-DDT00:00:00") +
