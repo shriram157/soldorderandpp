@@ -26,216 +26,215 @@ sap.ui.define([
 			// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
 			// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
 			//	//console.log("series data", sap.ui.getCore().getModel("seriesModel"));
-				this._fnLoadInitData();
+			this._fnLoadInitData();
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
-		
+
 		},
-		
-		_fnLoadInitData : function(){
+
+		_fnLoadInitData: function () {
 			//if (oEvent.getParameter("name") == "RetailSoldOrderSummary") {
 
-				// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
-				// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
-				// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
-				var seriesModel = new sap.ui.model.json.JSONModel();
-				var data = sap.ui.getCore().getModel("seriesModel").getData();
-				seriesModel.setData(data);
-				RSOS_controller.getView().setModel(seriesModel, "seriesModel");
-				if (data[0].ModelSeriesNo !== "ALL") {
-					seriesModel.getData().unshift({
-						"Division": "",
-						"ModelSeriesNo": "ALL",
-						"ProductHierarchy": "",
-						"ProfitCenter": "",
-						"SeriesSequenceNumber": "",
-						"TCIModelDescriptionEN": "",
-						"TCIModelDescriptionFR": "",
-						"TCISeriesDescriptionEN": "All",
-						"TCISeriesDescriptionFR": "Toute",
-						"zzzadddata2": "X",
-						"zzzadddata4": "100"
-					});
-				}
-				RSOS_controller.getView().getModel("seriesModel").updateBindings(true);
-				//console.log(RSOS_controller.getView().getModel("seriesModel").getData());
-				num = 0;
-				clicks = 0;
-				RSOS_controller = this;
-				var RSOModel = new sap.ui.model.json.JSONModel();
-				RSOModel.setData({
-					RSOBusyIndicator: false
+			// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
+			// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
+			var seriesModel = new sap.ui.model.json.JSONModel();
+			var data = sap.ui.getCore().getModel("seriesModel").getData();
+			seriesModel.setData(data);
+			RSOS_controller.getView().setModel(seriesModel, "seriesModel");
+			if (data[0].ModelSeriesNo !== "ALL") {
+				seriesModel.getData().unshift({
+					"Division": "",
+					"ModelSeriesNo": "ALL",
+					"ProductHierarchy": "",
+					"ProfitCenter": "",
+					"SeriesSequenceNumber": "",
+					"TCIModelDescriptionEN": "",
+					"TCIModelDescriptionFR": "",
+					"TCISeriesDescriptionEN": "All",
+					"TCISeriesDescriptionFR": "Toute",
+					"zzzadddata2": "X",
+					"zzzadddata4": "100"
 				});
+			}
+			RSOS_controller.getView().getModel("seriesModel").updateBindings(true);
+			//console.log(RSOS_controller.getView().getModel("seriesModel").getData());
+			num = 0;
+			clicks = 0;
+			RSOS_controller = this;
+			var RSOModel = new sap.ui.model.json.JSONModel();
+			RSOModel.setData({
+				RSOBusyIndicator: false
+			});
 
-				RSOS_controller.dialog = new sap.m.BusyDialog({
-					text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
-				});
+			RSOS_controller.dialog = new sap.m.BusyDialog({
+				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
+			});
 
-				RSOS_controller.getView().setModel(RSOModel, "RSOModel");
-				//console.log(sap.ui.getCore().getModel("LoginUserModel"));
-				// RSOS_controller._handleServiceSuffix_Series();
-				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			RSOS_controller.getView().setModel(RSOModel, "RSOModel");
+			//console.log(sap.ui.getCore().getModel("LoginUserModel"));
+			// RSOS_controller._handleServiceSuffix_Series();
+			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 
-				var oModel = new sap.ui.model.json.JSONModel();
-				RSOS_controller.getView().setModel(oModel, "retailsumModel");
-				//console.log(language);
-				var BtnExport = RSOS_controller.getView().byId("idBtnExportToExcel");
-				//	BtnExport.setEnabled(false); // change 24 sep 
-				RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
-				var globalComboModel = new sap.ui.model.json.JSONModel();
-				var Obj;
+			var oModel = new sap.ui.model.json.JSONModel();
+			RSOS_controller.getView().setModel(oModel, "retailsumModel");
+			//console.log(language);
+			var BtnExport = RSOS_controller.getView().byId("idBtnExportToExcel");
+			//	BtnExport.setEnabled(false); // change 24 sep 
+			RSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
+			var globalComboModel = new sap.ui.model.json.JSONModel();
+			var Obj;
 
-				//Requested, approve, rejected, completed – Remove and add Changed status for demand DMND0003179 
-				//DMND0003562 added "ALL" filter option added for status
-				if (language == "EN") {
-					Obj = {
-						"FSOSummary_Status": [{
-							"key": "IN-PROGRESS",
-							"text": "IN-PROGRESS"
-						}, {
-							"key": "PENDING FULFILLMENT",
-							"text": "PENDING FULFILLMENT"
-						}, {
-							"key": "FILLED",
-							"text": "FILLED"
-						}, {
-							"key": "REGISTERED",
-							"text": "REGISTERED"
-						}, {
-							"key": "CANCELLED",
-							"text": "CANCELLED"
-						}, {
-							"key": "CHANGED",
-							"text": "CHANGED"
-						},{
-							"key": "All-STATUS",
-							"text": "ALL"
-						}]
-					};
-				} else {
-					Obj = {
-						"FSOSummary_Status": [{
-							"key": "IN-PROGRESS",
-							"text": "IN-PROGRESS"
-						}, {
-							"key": "PENDING FULFILLMENT",
-							"text": "PENDING FULFILLMENT"
-						}, {
-							"key": "FILLED",
-							"text": "FILLED"
-						}, {
-							"key": "REGISTERED",
-							"text": "REGISTERED"
-						}, {
-							"key": "CANCELLED",
-							"text": "CANCELLED"
-						}, {
-							"key": "CHANGED",
-							"text": "CHANGED"
-						},{
-							"key": "All-STATUS",
-							"text": "ALL"
-						}]
-					};
-				}
-				globalComboModel.setData(Obj);
-				globalComboModel.updateBindings(true);
-				sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
-				RSOS_controller.getView().setModel(globalComboModel, "globalComboModel");
+			//Requested, approve, rejected, completed – Remove and add Changed status for demand DMND0003179 
+			//DMND0003562 added "ALL" filter option added for status
+			if (language == "EN") {
+				Obj = {
+					"FSOSummary_Status": [{
+						"key": "IN-PROGRESS",
+						"text": "IN-PROGRESS"
+					}, {
+						"key": "PENDING FULFILLMENT",
+						"text": "PENDING FULFILLMENT"
+					}, {
+						"key": "FILLED",
+						"text": "FILLED"
+					}, {
+						"key": "REGISTERED",
+						"text": "REGISTERED"
+					}, {
+						"key": "CANCELLED",
+						"text": "CANCELLED"
+					}, {
+						"key": "CHANGED",
+						"text": "CHANGED"
+					}, {
+						"key": "All-STATUS",
+						"text": "ALL"
+					}]
+				};
+			} else {
+				Obj = {
+					"FSOSummary_Status": [{
+						"key": "IN-PROGRESS",
+						"text": "IN-PROGRESS"
+					}, {
+						"key": "PENDING FULFILLMENT",
+						"text": "PENDING FULFILLMENT"
+					}, {
+						"key": "FILLED",
+						"text": "FILLED"
+					}, {
+						"key": "REGISTERED",
+						"text": "REGISTERED"
+					}, {
+						"key": "CANCELLED",
+						"text": "CANCELLED"
+					}, {
+						"key": "CHANGED",
+						"text": "CHANGED"
+					}, {
+						"key": "All-STATUS",
+						"text": "ALL"
+					}]
+				};
+			}
+			globalComboModel.setData(Obj);
+			globalComboModel.updateBindings(true);
+			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
+			RSOS_controller.getView().setModel(globalComboModel, "globalComboModel");
 
-				var AuditModel = new sap.ui.model.json.JSONModel();
-				var Object;
-				if (language == "EN") {
-					Object = {
-						"AuditStatus": [{
-							"key": "IN-PROGRESS",
-							"text": "IN-PROGRESS"
-						}, {
-							"key": "COMPLETE",
-							"text": "COMPLETE"
-						}, {
-							"key": "",
-							"text": "ALL"
-						}]
-					};
-				} else {
-					Object = {
-						"AuditStatus": [{
-							"key": "IN-PROGRESS",
-							"text": "IN-PROGRESS"
-						}, {
-							"key": "COMPLETE",
-							"text": "COMPLETE"
-						}, {
-							"key": "",
-							"text": "ALL"
-						}]
-					};
-				}
-				AuditModel.setData(Object);
-				AuditModel.updateBindings(true);
-				sap.ui.getCore().setModel(AuditModel, "AuditModel");
-				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
-				RSOS_controller.getView().byId("idmenu1").setType("Transparent");
-				RSOS_controller.getView().byId("idmenu2").setType("Emphasized");
-				RSOS_controller.getView().byId("idmenu3").setType("Transparent");
-				RSOS_controller.getView().byId("idmenu4").setType("Transparent");
-				RSOS_controller.getView().byId("idmenu5").setType("Transparent");
-				RSOS_controller.getView().byId("idmenu9").setType("Transparent");
-				RSOS_controller.getView().byId("idmenu11").setType("Transparent");
-				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("globalComboModel"), "globalComboModel");
-				RSOS_controller.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
+			var AuditModel = new sap.ui.model.json.JSONModel();
+			var Object;
+			if (language == "EN") {
+				Object = {
+					"AuditStatus": [{
+						"key": "IN-PROGRESS",
+						"text": "IN-PROGRESS"
+					}, {
+						"key": "COMPLETE",
+						"text": "COMPLETE"
+					}, {
+						"key": "",
+						"text": "ALL"
+					}]
+				};
+			} else {
+				Object = {
+					"AuditStatus": [{
+						"key": "IN-PROGRESS",
+						"text": "IN-PROGRESS"
+					}, {
+						"key": "COMPLETE",
+						"text": "COMPLETE"
+					}, {
+						"key": "",
+						"text": "ALL"
+					}]
+				};
+			}
+			AuditModel.setData(Object);
+			AuditModel.updateBindings(true);
+			sap.ui.getCore().setModel(AuditModel, "AuditModel");
+			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
+			RSOS_controller.getView().byId("idmenu1").setType("Transparent");
+			RSOS_controller.getView().byId("idmenu2").setType("Emphasized");
+			RSOS_controller.getView().byId("idmenu3").setType("Transparent");
+			RSOS_controller.getView().byId("idmenu4").setType("Transparent");
+			RSOS_controller.getView().byId("idmenu5").setType("Transparent");
+			RSOS_controller.getView().byId("idmenu9").setType("Transparent");
+			RSOS_controller.getView().byId("idmenu11").setType("Transparent");
+			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("globalComboModel"), "globalComboModel");
+			RSOS_controller.getView().setModel(sap.ui.getCore().getModel("AuditModel"), "AuditModel");
 
-				/////////////////////////////// changes done 
+			/////////////////////////////// changes done 
 
-				// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
-				var mcb_series_RSOS = RSOS_controller.getView().byId("mcb_series_RSOS");
-				var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
-				var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
-				var mcb_dealer_RSOS = RSOS_controller.getView().byId("mcb_dealer_RSOS");
-				mcb_series_RSOS.setSelectedItems(mcb_series_RSOS.getItems());
-				//mcb_rsStatus_RSOS.setSelectedItems(mcb_rsStatus_RSOS.getItems());
-				var aSelectedStatusArr = mcb_rsStatus_RSOS.getItems().filter(item =>
-					item.getKey() == "IN-PROGRESS" || item.getKey() == "PENDING FULFILLMENT"
-				);
-				mcb_rsStatus_RSOS.setSelectedItems(aSelectedStatusArr);
+			// RSOS_controller.getView().setModel(sap.ui.getCore().getModel("globalComboModel"),"globalComboModel");
+			var mcb_series_RSOS = RSOS_controller.getView().byId("mcb_series_RSOS");
+			var mcb_rsStatus_RSOS = RSOS_controller.getView().byId("mcb_rsStatus_RSOS");
+			var mcb_auditStatus_RSOS = RSOS_controller.getView().byId("mcb_auditStatus_RSOS");
+			var mcb_dealer_RSOS = RSOS_controller.getView().byId("mcb_dealer_RSOS");
+			mcb_series_RSOS.setSelectedItems(mcb_series_RSOS.getItems());
+			//mcb_rsStatus_RSOS.setSelectedItems(mcb_rsStatus_RSOS.getItems());
+			var aSelectedStatusArr = mcb_rsStatus_RSOS.getItems().filter(item =>
+				item.getKey() == "IN-PROGRESS" || item.getKey() == "PENDING FULFILLMENT"
+			);
+			mcb_rsStatus_RSOS.setSelectedItems(aSelectedStatusArr);
 
-				mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
-				mcb_dealer_RSOS.setSelectedItems(mcb_dealer_RSOS.getItems());
+			mcb_auditStatus_RSOS.setSelectedItems(mcb_auditStatus_RSOS.getItems());
+			mcb_dealer_RSOS.setSelectedItems(mcb_dealer_RSOS.getItems());
 
-				var sLocation = window.location.host;
-				var sLocation_conf = sLocation.search("webide");
-				if (sLocation_conf == 0) {
-					RSOS_controller.sPrefix = "/soldorder_node";
-				} else {
-					RSOS_controller.sPrefix = "";
-				}
-				RSOS_controller.nodeJsUrl = RSOS_controller.sPrefix + "/node";
+			var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				RSOS_controller.sPrefix = "/soldorder_node";
+			} else {
+				RSOS_controller.sPrefix = "";
+			}
+			RSOS_controller.nodeJsUrl = RSOS_controller.sPrefix + "/node";
 
-				var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-				if (isDivisionSent) {
-					this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
-				}
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+			}
 
-				//=======================================================================================================
-				//==================Start Binidng By Dealer=========================================================
-				//=====================================================================================================
-				var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-				//Changes done for INC0189944 by Minakshi odata call on load happen only for dealer not for other users.
-				if (x == "Dealer_User") {
-					RSOS_controller.dialog.open();
-					// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
-					//console.log("loading data");
-					RSOS_controller._refresh();
+			//=======================================================================================================
+			//==================Start Binidng By Dealer=========================================================
+			//=====================================================================================================
+			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+			//Changes done for INC0189944 by Minakshi odata call on load happen only for dealer not for other users.
+			if (x == "Dealer_User") {
+				RSOS_controller.dialog.open();
+				// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", true);
+				//console.log("loading data");
+				RSOS_controller._refresh();
 
-				} else {
-					RSOS_controller.getView().byId("cb_dealer_RSOS").setSelectedKey("");
-				}
-				//Changes done for INC0189944 by Minakshi end
+			} else {
+				RSOS_controller.getView().byId("cb_dealer_RSOS").setSelectedKey("");
+			}
+			//Changes done for INC0189944 by Minakshi end
 
 			//}
 		},
 		_onObjectMatched: function (oEvent) {
-			
 
 		},
 
@@ -426,13 +425,13 @@ sap.ui.define([
 					this.noData = false;
 				}
 				//DMND0003562 Filter condition for "ALL" added
-				if((oEvent.getParameter("changedItem").getKey() == "All-STATUS") && (oEvent.getParameter("selected") == true)){
+				if ((oEvent.getParameter("changedItem").getKey() == "All-STATUS") && (oEvent.getParameter("selected") == true)) {
 					RSOS_controller.getView().byId("mcb_rsStatus_RSOS").setSelectedItems(RSOS_controller.getView().byId("mcb_rsStatus_RSOS").getItems());
 					this.noData = false;
-				}else if((oEvent.getParameter("changedItem").getKey() == "All-STATUS") && (oEvent.getParameter("selected") == false)){
+				} else if ((oEvent.getParameter("changedItem").getKey() == "All-STATUS") && (oEvent.getParameter("selected") == false)) {
 					RSOS_controller.getView().byId("mcb_rsStatus_RSOS").setSelectedItems();
 					this.noData = true;
-				}else{
+				} else {
 					this.noData = false;
 				}
 			}
@@ -709,33 +708,34 @@ sap.ui.define([
 				BtnExport.setEnabled(true); // change 24 sep -requirement change
 			}
 		},
-		
+
 		// DMND0003562 start 16/03/2022 by Minakshi
 		onExport: function (oEvent) {
 			var aCols, oRowBinding, oSettings, oSheet, oTable, icount, sUri, sfilter = "",
 				sorderby, sSelect, iskip;
 			aCols = this.createColumnConfig();
 			sUri = oUrl.replace("$top=100&$skip=0&", "");
-				if(sUri.includes("CANCELLED") || sUri.includes("CHANGED") || sUri.includes("REGISTERED")){
-					sUri = sUri.replace("&$orderby=ZzsoReqNo desc", "");
-					sUri = sUri + " and (ZzeffDate ge datetime'" + moment().subtract(2, 'years').format("YYYY-MM-DDT00:00:00") +
-							"'and ZzeffDate le datetime'" + moment().format("YYYY-MM-DDT00:00:00") +
-							"')";
-				}
-				
-			sUri = sUri + "&$select=ZzsoReqNo,ZzendcuName,Zsalesperson,ZcontractDate,Comment,ZzdealerCode,Zzmoyr,Zzseries,Zzmodel,Zzsuffix,Zzextcol,ZzAuditStatus,ZzsoStatus,Zzvtn,Vhvin";
+			if (sUri.includes("CANCELLED") || sUri.includes("CHANGED") || sUri.includes("REGISTERED")) {
+				sUri = sUri.replace("&$orderby=ZzsoReqNo desc", "");
+				sUri = sUri + " and (ZzeffDate ge datetime'" + moment().subtract(2, 'years').format("YYYY-MM-DDT00:00:00") +
+					"'and ZzeffDate le datetime'" + moment().format("YYYY-MM-DDT00:00:00") +
+					"')";
+			}
+
+			sUri = sUri +
+				"&$select=ZzsoReqNo,ZzendcuName,Zsalesperson,ZcontractDate,Comment,ZzdealerCode,Zzmoyr,Zzseries,Zzmodel,Zzsuffix,Zzextcol,ZzAuditStatus,ZzsoStatus,Zzvtn,Vhvin";
 			oSettings = {
 				workbook: {
 					columns: aCols
 				},
 				dataSource: {
 					dataUrl: sUri,
-					useBatch : false,
-					type : 'odata'
+					useBatch: true,
 				},
 				fileName: 'RetailSoldOrder.xlsx',
 				worker: true,
-				showProgress : false
+				showProgress: false,
+				sizeLimit: 5000
 
 			};
 
