@@ -715,6 +715,9 @@ sap.ui.define([
 				sorderby, sSelect, iskip;
 			aCols = this.createColumnConfig();
 			sUri = oUrl.replace("$top=100&$skip=0&", "");
+			sUri = oUrl.replace("$top=100&$skip=100&", "");
+			sUri = oUrl.replace("$top=100&$skip=200&", "");
+			sUri = oUrl.replace("$top=100&$skip=300&", "");
 			if (sUri.includes("CANCELLED") || sUri.includes("CHANGED") || sUri.includes("REGISTERED")) {
 				sUri = sUri.replace("&$orderby=ZzsoReqNo desc", "");
 				sUri = sUri + " and (ZzeffDate ge datetime'" + moment().subtract(2, 'years').format("YYYY-MM-DDT00:00:00") +
@@ -724,27 +727,47 @@ sap.ui.define([
 
 			sUri = sUri +
 				"&$select=ZzsoReqNo,ZzendcuName,Zsalesperson,ZcontractDate,Comment,ZzdealerCode,Zzmoyr,Zzseries,Zzmodel,Zzsuffix,Zzextcol,ZzAuditStatus,ZzsoStatus,Zzvtn,Vhvin";
-			oSettings = {
-				workbook: {
-					columns: aCols
+
+			$.ajax({
+				url: sUri,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+
+					if (data.d.results.length <= 0) {
+						oSettings = {
+							workbook: {
+								columns: aCols
+							},
+							dataSource: data.d.results,
+							fileName: 'RetailSoldOrder.xlsx',
+							worker: false,
+							showProgress: true
+
+						};
+
+						//count: icount
+
+						oSheet = new Spreadsheet(oSettings);
+						oSheet.build().finally(function () {
+							oSheet.destroy();
+						});
+					} else {
+
+					}
+
 				},
-				dataSource: {
-					dataUrl: sUri,
-					useBatch: true,
-				},
-				fileName: 'RetailSoldOrder.xlsx',
-				worker: true,
-				showProgress: false,
-				sizeLimit: 5000
+				error: function (jqXHR, textStatus, errorThrown) {
+					RSOS_controller.dialog.close();
 
-			};
+					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 
-			//count: icount
+					sap.m.MessageToast.show(errMsg);
 
-			oSheet = new Spreadsheet(oSettings);
-			oSheet.build().finally(function () {
-				oSheet.destroy();
+				}
 			});
+
 		},
 		createColumnConfig: function () {
 
