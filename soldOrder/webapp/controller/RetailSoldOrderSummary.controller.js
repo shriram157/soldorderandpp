@@ -729,11 +729,13 @@ sap.ui.define([
 					columns: aCols
 				},
 				dataSource: {
-					dataUrl: sUri
-
+					dataUrl: sUri,
+					useBatch : false,
+					type : 'odata'
 				},
 				fileName: 'RetailSoldOrder.xlsx',
-				worker: false
+				worker: true,
+				showProgress : false
 
 			};
 
