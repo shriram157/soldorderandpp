@@ -735,22 +735,22 @@ sap.ui.define([
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
 
-					if (data.d.results.length <= 0) {
+					if (data.d.results.length > 0) {
 						oSettings = {
 							workbook: {
 								columns: aCols
 							},
 							dataSource: data.d.results,
-							fileName: 'RetailSoldOrder.xlsx',
-							worker: false,
-							showProgress: true
+							fileName: 'RetailSoldOrder.xlsx'
 
 						};
 
 						//count: icount
 
 						oSheet = new Spreadsheet(oSettings);
-						oSheet.build().finally(function () {
+						oSheet.build().then(function () {
+							sap.m.MessageToast.show('Spreadsheet export has finished');
+						}).finally(function () {
 							oSheet.destroy();
 						});
 					} else {
