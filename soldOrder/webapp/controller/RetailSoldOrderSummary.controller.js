@@ -26,7 +26,7 @@ sap.ui.define([
 			// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
 			// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
 			//	//console.log("series data", sap.ui.getCore().getModel("seriesModel"));
-			this._fnLoadInitData();
+			
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 
 		},
@@ -235,7 +235,7 @@ sap.ui.define([
 			//}
 		},
 		_onObjectMatched: function (oEvent) {
-
+			this._fnLoadInitData();
 		},
 
 		onAfterRendering: function () {
@@ -711,6 +711,7 @@ sap.ui.define([
 
 		// DMND0003562 start 16/03/2022 by Minakshi
 		onExport: function (oEvent) {
+			sap.ui.core.BusyIndicator.show(100);
 			var aCols, oRowBinding, oSettings, oSheet, oTable, icount, sUri, sfilter = "",
 				sorderby, sSelect, iskip;
 			aCols = this.createColumnConfig();
@@ -724,8 +725,6 @@ sap.ui.define([
 					"'and ZzeffDate le datetime'" + moment().format("YYYY-MM-DDT00:00:00") +
 					"')";
 			}
-			
-			sap.ui.core.BusyIndicator.show();
 
 			sUri = sUri +
 				"&$select=ZzsoReqNo,ZzendcuName,Zsalesperson,ZcontractDate,Comment,ZzdealerCode,Zzmoyr,Zzseries,Zzmodel,Zzsuffix,Zzextcol,ZzAuditStatus,ZzsoStatus,Zzvtn,Vhvin";
@@ -736,7 +735,6 @@ sap.ui.define([
 				async: false,
 				dataType: "json",
 				success: function (data, textStatus, jqXHR) {
-
 					if (data.d.results.length > 0) {
 						oSettings = {
 							workbook: {
