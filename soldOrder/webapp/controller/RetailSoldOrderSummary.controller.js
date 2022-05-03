@@ -26,7 +26,7 @@ sap.ui.define([
 			// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
 			// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
 			//	//console.log("series data", sap.ui.getCore().getModel("seriesModel"));
-			
+
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 
 		},
@@ -753,14 +753,12 @@ sap.ui.define([
 						}).finally(function () {
 							oSheet.destroy();
 						});
-					} else {
-
 					}
 
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					RSOS_controller.dialog.close();
-
+					sap.ui.core.BusyIndicator.hide();
 					var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 
 					sap.m.MessageToast.show(errMsg);
