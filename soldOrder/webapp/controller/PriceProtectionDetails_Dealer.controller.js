@@ -151,7 +151,7 @@ sap.ui.define([
 			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
 			console.log("OrderTypeModel", OrderTypeModel);
 			// PPD_DealerCont.getBrowserLanguage();
-			this._fnInitDataLoad();
+			
 			this.getOwnerComponent().getRouter().getRoute("PriceProtectionDetails_Dealer").attachPatternMatched(this._onObjectMatched, this);
 		},
 		
@@ -217,7 +217,7 @@ sap.ui.define([
 		},
 		
 		_onObjectMatched: function (oEvent) {
-			
+			this._fnInitDataLoad();
 
 		},
 
