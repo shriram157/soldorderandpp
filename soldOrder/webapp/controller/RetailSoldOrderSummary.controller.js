@@ -724,6 +724,8 @@ sap.ui.define([
 					"'and ZzeffDate le datetime'" + moment().format("YYYY-MM-DDT00:00:00") +
 					"')";
 			}
+			
+			sap.ui.core.BusyIndicator.show();
 
 			sUri = sUri +
 				"&$select=ZzsoReqNo,ZzendcuName,Zsalesperson,ZcontractDate,Comment,ZzdealerCode,Zzmoyr,Zzseries,Zzmodel,Zzsuffix,Zzextcol,ZzAuditStatus,ZzsoStatus,Zzvtn,Vhvin";
@@ -749,7 +751,7 @@ sap.ui.define([
 
 						oSheet = new Spreadsheet(oSettings);
 						oSheet.build().then(function () {
-							sap.m.MessageToast.show('Spreadsheet export has finished');
+							sap.ui.core.BusyIndicator.hide();
 						}).finally(function () {
 							oSheet.destroy();
 						});
