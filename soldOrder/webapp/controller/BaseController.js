@@ -63,17 +63,25 @@ sap.ui.define([
 					refresh : true
 				}); //page 10
 			} else if (oGetText === this.oBundle.getText("menu3")) {
-				this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
+				this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {
+					refresh : true
+				}); //page 11
 			} else if (oGetText === this.oBundle.getText("menu4")) { //dicey sol, check it again 
-				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary");
+				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary", {
+					refresh : true
+				});
 			} else if (oGetText === this.oBundle.getText("menu5")) {
-				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
+				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails", {
+					refresh : true
+				}); //page 16
 			} else if (oGetText === this.oBundle.getText("menu9")) {
 				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {
 					refresh : true
 				}); //page 16
 			} else if (oGetText === this.oBundle.getText("menu11")) {
-				this.getOwnerComponent().getRouter().navTo("CapSoldOrder"); //page 16
+				this.getOwnerComponent().getRouter().navTo("CapSoldOrder", {
+					refresh : true
+				}); //page 16
 			} else if (oGetText === this.oBundle.getText("menu7")) {
 				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderB", {
 					modelyear: '2018',

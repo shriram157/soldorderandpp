@@ -231,7 +231,7 @@
 				"target": "home10",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page11",
+				"pattern": "page11/:refresh:",
 				"name": "CreateFleetSoldOrder",
 				"target": "home11",
 				"clearTarget": "true"
@@ -251,12 +251,12 @@
 				"target": "home14",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page15",
+				"pattern": "page15/:refresh:",
 				"name": "FleetSoldOrderSummary",
 				"target": "home15",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page16",
+				"pattern": "page16/:refresh:",
 				"name": "FleetSoldOrderDetails",
 				"target": "home16",
 				"clearTarget": "true"
@@ -276,7 +276,7 @@
 				"target": "home19",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page20",
+				"pattern": "page20/:refresh:",
 				"name": "CapSoldOrder",
 				"target": "home20",
 				"clearTarget": "true"
