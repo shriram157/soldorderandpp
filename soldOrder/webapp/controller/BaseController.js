@@ -59,7 +59,9 @@ sap.ui.define([
 			if (oGetText === this.oBundle.getText("menu1")) {
 				this.getOwnerComponent().getRouter().navTo("RouteView1", {}, true); //page 1
 			} else if (oGetText === this.oBundle.getText("menu2")) {
-				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary"); //page 10
+				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary",{
+					refresh : true
+				}); //page 10
 			} else if (oGetText === this.oBundle.getText("menu3")) {
 				this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
 			} else if (oGetText === this.oBundle.getText("menu4")) { //dicey sol, check it again 

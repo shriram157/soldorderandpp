@@ -226,7 +226,7 @@
 				"target": "home9",
 				"clearTarget": "true"
 			}, {
-				"pattern": "",
+				"pattern": ":refresh:",
 				"name": "RetailSoldOrderSummary",
 				"target": "home10",
 				"clearTarget": "true"
