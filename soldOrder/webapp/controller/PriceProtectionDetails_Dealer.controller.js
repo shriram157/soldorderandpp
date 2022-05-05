@@ -92,7 +92,7 @@ sap.ui.define([
 			globalComboModel.updateBindings(true);
 			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
 			this.getView().setModel(globalComboModel, "globalComboModel");
-			console.log("globalComboModel", globalComboModel);
+			
 
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
@@ -149,9 +149,8 @@ sap.ui.define([
 			OrderTypeModel.updateBindings(true);
 			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
 			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
-			console.log("OrderTypeModel", OrderTypeModel);
 			// PPD_DealerCont.getBrowserLanguage();
-
+			this._fnInitDataLoad();
 			this.getOwnerComponent().getRouter().getRoute("PriceProtectionDetails_Dealer").attachPatternMatched(this._onObjectMatched, this);
 		},
 
@@ -217,7 +216,9 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
+			if (oEvent.getParameters().arguments.refresh == 'true') {
 			this._fnInitDataLoad();
+			}
 
 		},
 
@@ -583,7 +584,7 @@ sap.ui.define([
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
-								console.log("DataModel.getData()", DataModel.getData());
+								
 							}
 						} else {
 							DataModel.setData(data.d.results);
@@ -641,7 +642,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
+									
 								}
 							} else {
 								DataModel.setData(data.d.results);
@@ -701,7 +702,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									console.log("DataModel.getData()", DataModel.getData());
+								
 								}
 							} else {
 								DataModel.setData(data.d.results);

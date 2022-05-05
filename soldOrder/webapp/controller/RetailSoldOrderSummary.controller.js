@@ -26,7 +26,7 @@ sap.ui.define([
 			// RSOS_controller.getView().getModel("LoginUserModel").setSizeLimit(750);
 			// RSOS_controller.getView().getModel("LoginUserModel").updateBindings(true);
 			//	//console.log("series data", sap.ui.getCore().getModel("seriesModel"));
-
+			this._fnLoadInitData();
 			RSOS_controller.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onObjectMatched, RSOS_controller);
 
 		},
@@ -235,7 +235,10 @@ sap.ui.define([
 			//}
 		},
 		_onObjectMatched: function (oEvent) {
-			this._fnLoadInitData();
+			if (oEvent.getParameters().arguments.refresh == 'true') {
+				this._fnLoadInitData();
+			}
+
 		},
 
 		onAfterRendering: function () {

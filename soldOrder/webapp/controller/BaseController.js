@@ -69,7 +69,9 @@ sap.ui.define([
 			} else if (oGetText === this.oBundle.getText("menu5")) {
 				this.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails"); //page 16
 			} else if (oGetText === this.oBundle.getText("menu9")) {
-				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer"); //page 16
+				this.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {
+					refresh : true
+				}); //page 16
 			} else if (oGetText === this.oBundle.getText("menu11")) {
 				this.getOwnerComponent().getRouter().navTo("CapSoldOrder"); //page 16
 			} else if (oGetText === this.oBundle.getText("menu7")) {

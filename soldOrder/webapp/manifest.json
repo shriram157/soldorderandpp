@@ -261,7 +261,7 @@
 				"target": "home16",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page17",
+				"pattern": "page17/:refresh:",
 				"name": "PriceProtectionDetails_Dealer",
 				"target": "home17",
 				"clearTarget": "true"
