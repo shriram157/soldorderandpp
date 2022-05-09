@@ -1062,12 +1062,12 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					if (ppdFlages.getData().openCommentBox == 'X') {
 						ppdFlages.getData().openCommentBox = '';
 						sap.ui.getCore().setModel(ppdFlages, "ppdFlages");
-						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer");
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {refresh : false});
 					} else {
-						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary");
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {refresh : false});
 					}
 				} else {
-					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary");
+					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {refresh : false});
 				}
 			},
 			//---------------------------------------
