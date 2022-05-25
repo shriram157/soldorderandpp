@@ -211,7 +211,7 @@ sap.ui.define([
 			});
 			Model.refresh(); // 22 sep change 
 
-			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 11
+			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {refresh : true}); //page 11
 		},
 
 		filter_change: function (Oevent) {
@@ -406,7 +406,7 @@ sap.ui.define([
 			}
 		},
 		onNavBack: function (oEvent) {
-			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {}, true); //page 3		
+			InvVehSel_controller.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder", {refresh : false}); //page 3		
 		},
 		series_selected: function (oEvent) {
 

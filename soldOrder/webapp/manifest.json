@@ -236,7 +236,7 @@
 				"target": "home11",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page12",
+				"pattern": "page12/:refresh:",
 				"name": "InventoryVehicleSelection",
 				"target": "home12",
 				"clearTarget": "true"
