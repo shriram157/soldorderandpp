@@ -230,7 +230,7 @@ sap.ui.define([
 			// FSO_PVController.getView().byId("label_FSO_ProcessedViewid").setText(sMsg);
 		},
 		onNavBack: function (Oevent) {
-			FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary", {}, true);
+			FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrderSummary", {refresh : false});
 		},
 		onApprove: function (Oevent) {
 			FSO_PVController.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ZoneApproval", {
