@@ -873,14 +873,14 @@ sap.ui.define([
 				}
 				for (var i = 0; i < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; i++) {
 					var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[i].getKey();
-					if (audit != "") {
+					//if (audit != "") {
 						oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
 						if (i == ((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length) - 1)) {
 							oUrl = oUrl + ") and (";
 						} else {
 							oUrl = oUrl + " or ";
 						}
-					}
+					//}
 				}
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOD").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("mcb_dealer_FSOD").getSelectedItems()[i].getKey();
