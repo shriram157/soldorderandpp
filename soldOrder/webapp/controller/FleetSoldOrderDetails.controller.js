@@ -210,14 +210,14 @@ sap.ui.define([
 				oUrl = oUrl + "ZzdealerCode eq '" + dealer + "') and (";
 				for (var j = 0; j < this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length; j++) {
 					var audit = this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems()[j].getKey();
-					if (audit != "") {
+					// if (audit != "") {
 						oUrl = oUrl + "(ZzAuditStatus eq '" + audit + "')";
 						if (j == ((this.getView().byId("mcb_auditStatus_FSOD").getSelectedItems().length) - 1)) {
 							oUrl = oUrl + ") and (FleetReference eq 'X') and (ZzsoType ne 'SO')&$orderby=ZzsoReqNo desc";
 						} else {
 							oUrl = oUrl + " or ";
 						}
-					}
+					//}
 				}
 
 				$.ajax({
