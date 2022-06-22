@@ -7,8 +7,9 @@ sap.ui.define([
 	"sap/ui/core/util/Export",
 	"sap/ui/core/util/ExportTypeCSV",
 	'sap/ui/export/library',
-	'sap/ui/export/Spreadsheet'
-], function (BaseController, formatter, Sorter, Filter, FilterOperator, Export, ExportTypeCSV, exportLibrary, Spreadsheet) {
+	'sap/ui/export/Spreadsheet',
+	"sap/ui/core/routing/History"
+], function (BaseController, formatter, Sorter, Filter, FilterOperator, Export, ExportTypeCSV, exportLibrary, Spreadsheet, History) {
 	"use strict";
 	var PPD_DealerCont, clicks = 0,
 		num = 0,
