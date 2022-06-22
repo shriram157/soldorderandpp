@@ -92,7 +92,6 @@ sap.ui.define([
 			globalComboModel.updateBindings(true);
 			sap.ui.getCore().setModel(globalComboModel, "globalComboModel");
 			this.getView().setModel(globalComboModel, "globalComboModel");
-			
 
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
@@ -217,7 +216,7 @@ sap.ui.define([
 
 		_onObjectMatched: function (oEvent) {
 			if (oEvent.getParameters().arguments.refresh == 'true') {
-			this._fnInitDataLoad();
+				this._fnInitDataLoad();
 			}
 
 		},
@@ -584,7 +583,7 @@ sap.ui.define([
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
-								
+
 							}
 						} else {
 							DataModel.setData(data.d.results);
@@ -642,7 +641,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-									
+
 								}
 							} else {
 								DataModel.setData(data.d.results);
@@ -702,7 +701,7 @@ sap.ui.define([
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
 									DataModel.updateBindings(true);
-								
+
 								}
 							} else {
 								DataModel.setData(data.d.results);
@@ -879,7 +878,34 @@ sap.ui.define([
 
 			return aCols;
 
-		}
+		},
+		onNavBack: function (Oevent) {
+
+			var Flags = {
+				openCommentBox: "X"
+			};
+			var oFlagsModel = new sap.ui.model.json.JSONModel(Flags); // created a JSON model       
+			sap.ui.getCore().setModel(oFlagsModel, "ppdFlages");
+
+			var oHistory, sPreviousHash;
+			oHistory = History.getInstance();
+			//console.log(oHistory);
+			sPreviousHash = oHistory.getPreviousHash();
+			//console.log(sPreviousHash);
+			//console.log(window.history);
+			if (sPreviousHash !== undefined) {
+				if (sPreviousHash == "page11") {
+					this.getOwnerComponent().getRouter().navTo("CreateFleetSoldOrder"); //page 11
+
+				} else {
+					window.history.go(-1);
+				}
+			} else {
+				basCont.getRouter().navTo("RetailSoldOrderA", {}, true); // has the value true and makes sure that the
+				//	hash is replaced /*no history
+			}
+
+		},
 
 		// DMND0003562 changes done by Minakshi
 	});
