@@ -295,7 +295,7 @@ sap.ui.define([
 			oEvent.preventDefault();
 		},
 		_addVehiclesToInventory: function () {
-			CFSO_controller.getOwnerComponent().getRouter().navTo("InventoryVehicleSelection", {}, true); //page 12
+			CFSO_controller.getOwnerComponent().getRouter().navTo("InventoryVehicleSelection", {refresh : true}); //page 12
 		},
 		_onDelete1: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table1");

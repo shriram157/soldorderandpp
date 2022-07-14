@@ -836,7 +836,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				var zcomment = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
 				oFileUploader.removeAllHeaderParameters();
 				//INC0193457 changes done for removing special characters from the file name during upload. SinghMi 29/06/2021
-				var pattern = /[/\?*":|]/g;
+				var pattern = /[^\w\d\.\s]/gi;
 				var oFileName = oFileUploader.getValue().replace(pattern, "");
 				oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
 					name: "slug",
@@ -1062,12 +1062,12 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					if (ppdFlages.getData().openCommentBox == 'X') {
 						ppdFlages.getData().openCommentBox = '';
 						sap.ui.getCore().setModel(ppdFlages, "ppdFlages");
-						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {}, true);
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {refresh : false});
 					} else {
-						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {}, true);
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {refresh : false});
 					}
 				} else {
-					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {}, true);
+					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {refresh : false});
 				}
 			},
 			//---------------------------------------
