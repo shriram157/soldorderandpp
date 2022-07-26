@@ -360,7 +360,7 @@ sap.ui.define([
 					model: "mainservices",
 					events: {
 						change: function (oEvent) {
-							RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
+							RSO_MSO_controller.getView().getModel('mainservices')._refresh;
 							// Filter for Display Data Sold Order
 							var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 							/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
@@ -1171,6 +1171,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				//----------------
 				//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+				this.getView().getElementBinding('mainservices')._refresh;
 
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
