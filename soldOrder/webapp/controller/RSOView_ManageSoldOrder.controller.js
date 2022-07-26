@@ -1103,7 +1103,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					}
 					var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 					var dealer = dealerno.slice(-5);
-					RSO_MSO_controller.getView().getModel('mainservices')._refresh;
+					this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('model_CSOR').bindItems({
 						path: "mainservices>/ZVMS_Model_EXCLSet",
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
@@ -1151,7 +1151,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					} else {
 						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
-					RSO_MSO_controller.getView().getModel('mainservices')._refresh;
+					this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 						filters: new sap.ui.model.Filter([
@@ -1178,7 +1178,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-					RSO_MSO_controller.getView().getModel('mainservices')._refresh;
+					this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('apx_CSOR').bindItems({
 						path: 'mainservices>/ZVMS_CDS_APX',
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
@@ -1197,7 +1197,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					} else {
 						color = "{mainservices>ext}/{mainservices>mktg_desc_en}";
 					}
-					RSO_MSO_controller.getView().getModel('mainservices')._refresh;
+					this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('colour_CSOR').bindItems({
 						path: 'mainservices>/ZVMS_CDS_Colour',
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
@@ -1213,7 +1213,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 			},
 			_handleServiceSuffix_Series: function () {
 				var host = RSO_MSO_controller.host();
-				RSO_MSO_controller.getView().getModel('mainservices')._refresh;
+				
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
 				$.ajax({
 					url: oUrl,
