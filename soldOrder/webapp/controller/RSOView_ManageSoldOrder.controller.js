@@ -246,6 +246,12 @@ sap.ui.define([
 					SOVisible: true
 				});
 				RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
+				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzmodel', "");
+				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzmoyr', "");
+				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzsuffix', "");
+				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzextcol', "");
+				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzseries', "");
+								
 				
 				setTimeout(function () {
 					var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
