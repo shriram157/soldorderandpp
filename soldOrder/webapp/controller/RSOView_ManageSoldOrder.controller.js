@@ -246,12 +246,7 @@ sap.ui.define([
 					SOVisible: true
 				});
 				RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
-				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzmodel', "");
-				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzmoyr', "");
-				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzsuffix', "");
-				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzextcol', "");
-				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().setProperty('Zzseries', "");
-								
+			
 				
 				setTimeout(function () {
 					var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
@@ -351,6 +346,13 @@ sap.ui.define([
 				var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
+				
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmodel', "");
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmoyr', "");
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzsuffix', "");
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzextcol', "");
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
+								
 
 				zmodel.refresh();
 				RSO_MSO_controller.getView().bindElement({
