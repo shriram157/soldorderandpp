@@ -355,6 +355,8 @@ sap.ui.define([
 								
 
 				zmodel.refresh();
+				this.getOwnerComponent().getModel('mainservices').refresh();
+				this.getOwnerComponent().getModel("mainservices").updateBindings();
 				RSO_MSO_controller.getView().bindElement({
 					path: sObjectPath,
 					model: "mainservices",
@@ -1178,7 +1180,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-					this.getView().getModel('mainservices')._refresh;
+					this.getOwnerComponent().getModel('mainservices').refresh();
 					this.getOwnerComponent().getModel("mainservices").updateBindings();
 					this.getView().byId('apx_CSOR').bindItems({
 						path: 'mainservices>/ZVMS_CDS_APX',
