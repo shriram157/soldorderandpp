@@ -365,7 +365,7 @@ sap.ui.define([
 					model: "mainservices",
 					events: {
 						change: function (oEvent) {
-							RSO_MSO_controller.getView().getModel('mainservices')._refresh;
+							//RSO_MSO_controller.getView().getModel('mainservices')._refresh;
 							// Filter for Display Data Sold Order
 							var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 							/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
