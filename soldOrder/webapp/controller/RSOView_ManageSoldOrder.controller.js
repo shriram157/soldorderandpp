@@ -358,8 +358,8 @@ sap.ui.define([
 								
 
 				zmodel.refresh();
-				this.getOwnerComponent().getModel('mainservices').refresh();
-				this.getOwnerComponent().getModel("mainservices").updateBindings();
+				// this.getOwnerComponent().getModel('mainservices').refresh();
+				// this.getOwnerComponent().getModel("mainservices").updateBindings();
 				RSO_MSO_controller.getView().bindElement({
 					path: sObjectPath,
 					model: "mainservices",
@@ -1183,8 +1183,8 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-					this.getOwnerComponent().getModel('mainservices').refresh();
-					this.getOwnerComponent().getModel("mainservices").updateBindings();
+					// this.getOwnerComponent().getModel('mainservices').refresh();
+					// this.getOwnerComponent().getModel("mainservices").updateBindings();
 					this.getView().byId('apx_CSOR').bindItems({
 						path: 'mainservices>/ZVMS_CDS_APX',
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
@@ -1242,7 +1242,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 			onExit: function () {
 				SelectVehicleOption = false;
 				sap.ui.getCore().getModel('ModelCore').getData().ZZVTN = "";
-				sap.ui.getCore().getModel('ModelCore').updateBindings();
+				//sap.ui.getCore().getModel('ModelCore').updateBindings();
 			}
 		});
 	});
