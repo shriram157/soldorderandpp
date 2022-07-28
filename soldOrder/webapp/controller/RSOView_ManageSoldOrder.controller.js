@@ -461,7 +461,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 								RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
 							}
 							//changes by Swetha 
-							if (status == "Filled" && user == "Dealer_User" ) {
+							if (user == "Dealer_User" && SOType == "NF" ) {
 								RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);		
 							}
 							// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
