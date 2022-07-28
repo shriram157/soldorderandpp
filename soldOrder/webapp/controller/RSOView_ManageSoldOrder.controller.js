@@ -451,7 +451,6 @@ sap.ui.define([
 if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F"){
 	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
 }
-				
 							if (status === "Cancelled") {
 								RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
 								RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
@@ -460,6 +459,10 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 								RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
 								RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
 								RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
+							}
+							//changes by Swetha 
+							if (status == "Filled" && user == "Dealer_User" ) {
+								RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);		
 							}
 							// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 							// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
