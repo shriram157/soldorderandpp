@@ -228,7 +228,7 @@ sap.ui.define([
 				/// changes done by Minakshi for INC0195063
 				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/pageArg", parameters.getParameters().arguments.mainPG ||
 					"");
-				let pageNum = parameters.getParameters().arguments.pageNum || "";
+				RSO_MSO_controller.pageNum = parameters.getParameters().arguments.pageNum || "";
 				chatVBox.setVisible(false);
 				/*	if (cb_chat.getSelected() == true) {
 						cb_chat.setSelected(false);
@@ -260,10 +260,8 @@ sap.ui.define([
 					}
 
 				}, (1 * 1000));
-				
-				// if(!pageNum){
-					RSO_MSO_controller.getSO(requestid);
-				//}
+
+				RSO_MSO_controller.getSO(requestid);
 
 				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
 					var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
@@ -339,8 +337,10 @@ sap.ui.define([
 				//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$format=json";
 				//attachPatternMatched
 				// changes done for INC0217519 start by Minakshi
-				this.byId("suffix_CSOR").setSelectedKey("");
-				this.byId("colour_CSOR").setSelectedKey("");
+				if (!RSO_MSO_controller.pageNum) {
+					this.byId("suffix_CSOR").setSelectedKey("");
+					this.byId("colour_CSOR").setSelectedKey("");
+				}
 				// changes done for INC0217519 end by Minakshi
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
 				zrequest = req;

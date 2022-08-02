@@ -191,7 +191,7 @@
 				"target": "home2",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page3/{Soreq}/:mainPG:",
+				"pattern": "page3/{Soreq}/:mainPG:/:pageNum:",
 				"name": "RSOView_ManageSoldOrder",
 				"target": "home3",
 				"clearTarget": "true"
