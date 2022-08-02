@@ -151,7 +151,7 @@ sap.ui.define([
 
 					},
 					success: function (data, textStatus, jqXHR) {
-						
+
 						RSO_MSO_controller.getchat();
 					},
 					error: function (oError) {
@@ -226,7 +226,9 @@ sap.ui.define([
 				var feed = RSO_MSO_controller.getView().byId("feedId");
 				var chatVBox = RSO_MSO_controller.getView().byId("chatVBox");
 				/// changes done by Minakshi for INC0195063
-				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/pageArg", parameters.getParameters().arguments.mainPG || "");
+				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/pageArg", parameters.getParameters().arguments.mainPG ||
+					"");
+				let pageNum = parameters.getParameters().arguments.pageNum || "";
 				chatVBox.setVisible(false);
 				/*	if (cb_chat.getSelected() == true) {
 						cb_chat.setSelected(false);
@@ -246,8 +248,7 @@ sap.ui.define([
 					SOVisible: true
 				});
 				RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
-			
-				
+
 				setTimeout(function () {
 					var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 					var _Eligibility1 = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
@@ -259,7 +260,10 @@ sap.ui.define([
 					}
 
 				}, (1 * 1000));
-				RSO_MSO_controller.getSO(requestid);
+				
+				if(!pageNum){
+					RSO_MSO_controller.getSO(requestid);
+				}
 
 				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
 					var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
@@ -313,9 +317,6 @@ sap.ui.define([
 				}
 			},
 
-			onSelectCB: function () {
-			
-			},
 			getSO: function (req) {
 				ppdFlages = sap.ui.getCore().getModel("ppdFlages");
 				if (ppdFlages) {
@@ -349,13 +350,12 @@ sap.ui.define([
 				var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
-				
+
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmodel', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmoyr', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzsuffix', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzextcol', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
-								
 
 				zmodel.refresh();
 				// this.getOwnerComponent().getModel('mainservices').refresh();
@@ -387,8 +387,6 @@ sap.ui.define([
 							//added by Minakshi for DMND0002960 end
 							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", zcustomerNumber);
 
-						
-
 							RSO_MSO_controller.model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 								'Zzmodel');
 							RSO_MSO_controller.modYear = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
@@ -404,14 +402,14 @@ sap.ui.define([
 							} else {
 								RSO_MSO_controller.apptypeAllocation = "R";
 							}
-								sap.ui.getCore().setModel(new JSONModel({
+							sap.ui.getCore().setModel(new JSONModel({
 								model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
 								modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
 								suffix: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix'),
 								color: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'),
 								series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
-								dealer:RSO_MSO_controller.dealerAllocation,
-								apptypeAllocation:RSO_MSO_controller.apptypeAllocation
+								dealer: RSO_MSO_controller.dealerAllocation,
+								apptypeAllocation: RSO_MSO_controller.apptypeAllocation
 							}), 'Vehicle_Selection');
 							var host = RSO_MSO_controller.host();
 							var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
@@ -447,10 +445,10 @@ sap.ui.define([
 
 							//----------------------------------------------------------
 							var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
-/// changes done by Minakshi for INC0195063
-if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F"){
-	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
-}
+							/// changes done by Minakshi for INC0195063
+							if (RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F") {
+								RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
+							}
 							if (status === "Cancelled") {
 								RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
 								RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
@@ -460,9 +458,9 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 								RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
 								RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
 							}
-				//changes done by Swetha for INC0213630
-							if (user == "Dealer_User" && SOType == "NF" ) {
-								RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);		
+							//changes done by Swetha for INC0213630
+							if (user == "Dealer_User" && SOType == "NF") {
+								RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
 							}
 							// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 							// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
@@ -520,12 +518,12 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 								zinventoryModel.setData(OBJNew);
 								zinventoryModel.updateBindings(true);
 								sap.ui.getCore().getModel('ModelCore').setData({});
-							
+
 							} else {
 								SelectVehicleOption = false;
 								zinventoryModel.setData({});
 								zinventoryModel.updateBindings(true);
-							
+
 							}
 							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 								var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
@@ -576,8 +574,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					}
 				});
 			},
-			onAfterRendering: function () {},
-
 			_updateSoldOrderRequest: function () {
 				var comment = RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").getValue();
 				var _data = {
@@ -625,7 +621,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				});
 				// window.location.reload();
 			},
-
 			_updateAuditSoldOrderRequest: function () {
 				this.btnAudit = RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO");
 				var that = this;
@@ -652,7 +647,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				});
 				// AppController.flgSoldOrderReqStatus = "Audit - Complete";
 			},
-
 			_approvePriceProtectionDetails: function () {
 				if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
 
@@ -702,7 +696,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 						.m.MessageBox.Action.OK, null, null);
 				}
 			},
-
 			_rejectPriceProtectionDetails: function () {
 				//AppController.flgPriceProtectionStatus = "Rejected";
 				RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Reject_Price_Details", {
@@ -745,7 +738,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					}
 				});
 			},
-
 			_getVehiclesToFillSoldOrderRequest: function () {
 				//	var host = RSO_MSO_controller.host();
 				SelectVehicleOption = true;
@@ -754,7 +746,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				}, true);
 
 			},
-
 			_navCancleOrder: function () {
 				var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorCancel");
 				var title = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("title4");
@@ -786,7 +777,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					contentWidth: "10rem"
 				});
 			},
-
 			_onDeleteAttachment: function (evt) {
 				var evtContext = evt.getSource().getBindingContext('mainservices'); // "/ProductCollection/0"
 				var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("deleteError");
@@ -818,7 +808,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					contentWidth: "10rem"
 				});
 			},
-
 			deleteAtt: function (evtContext, index) {
 				var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 				var sPath = evtContext.sPath;
@@ -833,17 +822,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					}
 				});
 			},
-			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-			// var model = oTable.getModel();
-			// var data = model.getProperty("/AttachmentSet");
-			// data.splice(index, 1);
-			// model.setProperty("/AttachmentSet", data);
-
-			_openFile: function (oEvent) {
-				// var fileUrl = "https://google.com";
-				// parent.window.open(fileUrl, '_blank');
-			},
-
 			_addAttachment: function () {
 				var com = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").getValue();
 				var textArea = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
@@ -866,8 +844,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 
 				oFileUploader.setSendXHR(true);
 				oFileUploader.upload();
-
-				// }
 			},
 
 			_navToRSOrderChange: function () {
@@ -1078,12 +1054,18 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					if (ppdFlages.getData().openCommentBox == 'X') {
 						ppdFlages.getData().openCommentBox = '';
 						sap.ui.getCore().setModel(ppdFlages, "ppdFlages");
-						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {refresh : false});
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {
+							refresh: false
+						});
 					} else {
-						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {refresh : false});
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
+							refresh: false
+						});
 					}
 				} else {
-					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {refresh : false});
+					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
+						refresh: false
+					});
 				}
 			},
 			//---------------------------------------
@@ -1181,7 +1163,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				//----------------
 				//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
-				
 
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
@@ -1222,7 +1203,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 			},
 			_handleServiceSuffix_Series: function () {
 				var host = RSO_MSO_controller.host();
-				
+
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
 				$.ajax({
 					url: oUrl,
