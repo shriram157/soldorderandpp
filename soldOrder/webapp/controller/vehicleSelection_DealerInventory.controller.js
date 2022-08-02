@@ -184,8 +184,7 @@ sap.ui.define([
 
 		onNavBack: function (oEvent) {
 			vehSelDealerInvController.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-				Soreq: zrequest,
-				pageNum : "P5"
+				Soreq: zrequest
 			}, true);
 		}
 

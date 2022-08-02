@@ -261,9 +261,9 @@ sap.ui.define([
 
 				}, (1 * 1000));
 				
-				if(!pageNum){
+				// if(!pageNum){
 					RSO_MSO_controller.getSO(requestid);
-				}
+				//}
 
 				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
 					var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
