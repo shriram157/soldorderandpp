@@ -28,8 +28,8 @@ sap.ui.define([
 				zinventoryModel = new JSONModel({});
 				RSO_MSO_controller.getView().setModel(zcustomerModel, 'Customer');
 				RSO_MSO_controller.getView().setModel(zinventoryModel, 'Inventory');
-				RSO_MSO_controller.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(RSO_MSO_controller._getattachRouteMatched,
-					RSO_MSO_controller);
+				//RSO_MSO_controller.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(RSO_MSO_controller._getattachRouteMatched, this);
+				this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._getattachRouteMatched, this);
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var salesTypeModel = new sap.ui.model.json.JSONModel();
@@ -342,7 +342,7 @@ sap.ui.define([
 					this.byId("colour_CSOR").setSelectedKey("");
 				}
 				// changes done for INC0217519 end by Minakshi
-				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
+				//var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
 				zrequest = req;
 				// var _Eligilibity = " ";
 				var zmodel = RSO_MSO_controller.getView().getModel("mainservices");
