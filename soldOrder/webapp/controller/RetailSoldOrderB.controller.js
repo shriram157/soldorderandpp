@@ -15,7 +15,7 @@ sap.ui.define([
 		onInit: function () {
 			RSOB_controller = this;
 			// RSOB_controller.getBrowserLanguage();
-			AppController.RSOB = true;
+			RSOB_controller.RSOB = true;
 			RSOB_controller.flagInvalidPCode = false;
 			RSOB_controller.flagInvalidPhone = false;
 			RSOB_controller.validateFlagB = false;

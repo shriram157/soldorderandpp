@@ -1135,7 +1135,7 @@ sap.ui.define([
 					// 	 pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					// }
 					// else 
-					if (AppController.RSOA == true) {
+					if (this.RSOA == true) {
 						pathAB = "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set";
 						//mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
 					} else {
