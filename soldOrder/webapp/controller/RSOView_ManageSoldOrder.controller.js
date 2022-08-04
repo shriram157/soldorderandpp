@@ -372,7 +372,7 @@ sap.ui.define([
 						dataRequested: function (oEvent) {
 							//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 						},
-						change: RSO_MSO_controller._getSOChangeEvt(sObjectPath, req),
+						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
 						dataReceived: function (oEvent) {
 							console.log(oEvent);
 						}
