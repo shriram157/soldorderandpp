@@ -388,22 +388,21 @@ sap.ui.define([
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
 				/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 						'ChatMessages');*/
-			
 
 				//added by Minakshi for DMND0002960 start
-				var zdealerCode = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-					'ZzdealerCode');
 
 				RSO_MSO_controller.getOwnerComponent().getModel("mainservices").read(sObjectPath, {
 					success: $.proxy(function (soOData) {
 						console.log(soOData);
-							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-					"Eligilibity");
-				if (_Eligilibity == "YES") {
-					attachButton.setEnabled(true);
-				} else {
-					attachButton.setEnabled(false);
-				}
+						var zdealerCode = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+							'ZzdealerCode');
+						var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+							"Eligilibity");
+						if (_Eligilibity == "YES") {
+							attachButton.setEnabled(true);
+						} else {
+							attachButton.setEnabled(false);
+						}
 						RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg + " / " + zdealerCode);
 						//added by Minakshi for DMND0002960 end
 						var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
