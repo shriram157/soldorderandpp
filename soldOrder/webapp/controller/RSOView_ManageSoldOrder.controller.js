@@ -371,7 +371,11 @@ sap.ui.define([
 					path: sObjectPath,
 					model: "mainservices",
 					events: {
+						dataRequested : function(oEvent){
+							oEvent.getSource().refresh(true);
+						},
 						change: function (oEvent) {
+							oEvent.getSource().refresh(true);
 							//RSO_MSO_controller.getView().getModel('mainservices')._refresh;
 							// Filter for Display Data Sold Order
 							var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
@@ -577,7 +581,9 @@ sap.ui.define([
 								// }
 							}
 						},
-						dataReceived: function (oData) {}
+						dataReceived: function (oData) {
+							
+						}
 					}
 				});
 			},
