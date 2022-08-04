@@ -388,8 +388,7 @@ sap.ui.define([
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
 				/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 						'ChatMessages');*/
-				var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-					"Eligilibity");
+				var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
 				if (_Eligilibity == "YES") {
 					attachButton.setEnabled(true);
 				} else {
@@ -592,7 +591,7 @@ sap.ui.define([
 				
 				RSO_MSO_controller.getOwnerComponent().getModel("mainservices").read(sObjectPath, {
 					success : function(soOData){
-						console.log(soOData);
+						this.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
 					},
 					error : function(){}
 				});
