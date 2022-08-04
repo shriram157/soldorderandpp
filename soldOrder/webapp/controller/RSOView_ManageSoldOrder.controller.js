@@ -196,11 +196,11 @@ sap.ui.define([
 						oModel.updateBindings(true);
 						sap.ui.getCore().setModel(oModel, 'GlobalChatModel');
 						//console.log(sap.ui.getCore().getModel('GlobalChatModel').getData());
-						AppController.chatNum = sap.ui.getCore().getModel('GlobalChatModel').getData().length;
+						RSO_MSO_controller.chatNum = sap.ui.getCore().getModel('GlobalChatModel').getData().length;
 
 						// for (var i = 0; i < RSO_MSO_controller.getView().byId("chatList").getItems().length; i++) {
 						if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
-							RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(AppController.chatNum);
+							RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(RSO_MSO_controller.chatNum);
 						}
 						/*if (AppController.chatNum !== undefined) {
 
@@ -223,96 +223,103 @@ sap.ui.define([
 			},
 			_getattachRouteMatched: function (parameters) {
 				//	var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
+				RSO_MSO_controller = this;
 				var feed = RSO_MSO_controller.getView().byId("feedId");
 				var chatVBox = RSO_MSO_controller.getView().byId("chatVBox");
-				/// changes done by Minakshi for INC0195063
-				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/pageArg", parameters.getParameters().arguments.mainPG ||
-					"");
-				RSO_MSO_controller.pageNum = parameters.getParameters().arguments.pageNum || "";
-				chatVBox.setVisible(false);
-				/*	if (cb_chat.getSelected() == true) {
-						cb_chat.setSelected(false);
-					} else {
-						cb_chat.setSelected(false);
-					}*/
 				var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
-				if (oDivision == "10") {
-					RSO_MSO_controller.sDivision = "TOY";
-				} else {
-					RSO_MSO_controller.sDivision = "LEX";
-				}
 				var requestid = parameters.getParameters().arguments.Soreq;
-				var RSO_MSO_Model = new sap.ui.model.json.JSONModel();
-				RSO_MSO_Model.setData({
-					NFVisible: false,
-					SOVisible: true
-				});
-				RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
-
-				setTimeout(function () {
-					var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
-					var _Eligibility1 = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
-					//	_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
-					if (_Eligibility1.getText() == "YES") {
-						attachButton.setEnabled(true);
-					} else {
-						attachButton.setEnabled(false);
-					}
-
-				}, (1 * 1000));
-
-				RSO_MSO_controller.getSO(requestid);
-
-				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
-					var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
-					// 	//console.log("So status", SOType);
-					//For FLeet Details only
-					if (SOType == "NF" || SOType == "FO") {
-						RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
-						// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
-					} else {
-						RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
-						// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-					}
-				}
-				//	console.log(RSO_MSO_controller.getView().byId("chatList").getItems());
-				RSO_MSO_controller.getView().byId("feedId").setValue(null);
-				if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
-					RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus();
-				}
-				RSO_MSO_controller.getchat();
 				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-
-				if (userType == "TCI_User") {
-					feed.setVisible(true);
-					feed.setEnabled(true);
-					//	cb_chat.setVisible(true);
-					chatVBox.setVisible(true);
-					//	cb_chat.setEnabled(true);
-					/*	if (AppController.chatNum !== undefined) {
-							if (AppController.chatNum > 0) {
-								cb_chat.setSelected(true);
-								feed.setEnabled(true);
-							} else {
-								cb_chat.setSelected(false);
-								feed.setEnabled(false);
-							}
-						}*/
-				} else {
-					if (AppController.chatNum !== undefined) {
-						if (AppController.chatNum > 0) {
-							feed.setEnabled(true);
-							feed.setVisible(true);
-							//	cb_chat.setVisible(false);
-							chatVBox.setVisible(true);
+				if (requestid) {
+					/// changes done by Minakshi for INC0195063
+					RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/pageArg", parameters.getParameters().arguments.mainPG ||
+						"");
+					//	RSO_MSO_controller.pageNum = parameters.getParameters().arguments.pageNum || "";
+					chatVBox.setVisible(false);
+					/*	if (cb_chat.getSelected() == true) {
+							cb_chat.setSelected(false);
 						} else {
-							feed.setEnabled(false);
-							feed.setVisible(false);
-							//	cb_chat.setVisible(false);
-							chatVBox.setVisible(false);
+							cb_chat.setSelected(false);
+						}*/
+
+					if (oDivision == "10") {
+						RSO_MSO_controller.sDivision = "TOY";
+					} else {
+						RSO_MSO_controller.sDivision = "LEX";
+					}
+
+					var RSO_MSO_Model = new sap.ui.model.json.JSONModel();
+					RSO_MSO_Model.setData({
+						NFVisible: false,
+						SOVisible: true
+					});
+					RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
+
+					setTimeout(function () {
+						var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
+						var _Eligibility1 = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
+						//	_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+						if (_Eligibility1.getText() == "YES") {
+							attachButton.setEnabled(true);
+						} else {
+							attachButton.setEnabled(false);
+						}
+
+					}, (1 * 1000));
+
+					RSO_MSO_controller.getSO(requestid);
+
+					if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
+						var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
+						// 	//console.log("So status", SOType);
+						//For FLeet Details only
+						if (SOType == "NF" || SOType == "FO") {
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+							// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+						} else {
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+							// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 						}
 					}
+					//	console.log(RSO_MSO_controller.getView().byId("chatList").getItems());
+					RSO_MSO_controller.getView().byId("feedId").setValue(null);
+					if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
+						RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus();
+					}
+					RSO_MSO_controller.getchat();
+
+					if (userType == "TCI_User") {
+						feed.setVisible(true);
+						feed.setEnabled(true);
+						//	cb_chat.setVisible(true);
+						chatVBox.setVisible(true);
+						//	cb_chat.setEnabled(true);
+						/*	if (AppController.chatNum !== undefined) {
+								if (AppController.chatNum > 0) {
+									cb_chat.setSelected(true);
+									feed.setEnabled(true);
+								} else {
+									cb_chat.setSelected(false);
+									feed.setEnabled(false);
+								}
+							}*/
+					} else {
+						if (RSO_MSO_controller.chatNum !== undefined) {
+							if (RSO_MSO_controller.chatNum > 0) {
+								feed.setEnabled(true);
+								feed.setVisible(true);
+								//	cb_chat.setVisible(false);
+								chatVBox.setVisible(true);
+							} else {
+								feed.setEnabled(false);
+								feed.setVisible(false);
+								//	cb_chat.setVisible(false);
+								chatVBox.setVisible(false);
+							}
+						}
+					}
+
 				}
+
 			},
 
 			getSO: function (req) {
@@ -337,10 +344,10 @@ sap.ui.define([
 				//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$format=json";
 				//attachPatternMatched
 				// changes done for INC0217519 start by Minakshi
-				if (!RSO_MSO_controller.pageNum) {
-					this.byId("suffix_CSOR").setSelectedKey("");
-					this.byId("colour_CSOR").setSelectedKey("");
-				}
+				// if (!RSO_MSO_controller.pageNum) {
+				this.byId("suffix_CSOR").setSelectedKey("");
+				this.byId("colour_CSOR").setSelectedKey("");
+				//	}
 				// changes done for INC0217519 end by Minakshi
 				//var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
 				zrequest = req;
