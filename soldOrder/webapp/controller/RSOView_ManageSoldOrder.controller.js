@@ -372,11 +372,10 @@ sap.ui.define([
 					model: "mainservices",
 					events: {
 						dataRequested : function(oEvent){
-							oEvent.getSource().refresh(true);
+							RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 						},
 						change: function (oEvent) {
-							oEvent.getSource().refresh(true);
-							//RSO_MSO_controller.getView().getModel('mainservices')._refresh;
+							RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 							// Filter for Display Data Sold Order
 							var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 							/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
@@ -581,9 +580,7 @@ sap.ui.define([
 								// }
 							}
 						},
-						dataReceived: function (oData) {
-							
-						}
+						dataReceived: function (oData) {}
 					}
 				});
 			},
