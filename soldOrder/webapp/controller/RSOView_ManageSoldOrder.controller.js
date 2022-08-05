@@ -586,6 +586,9 @@ sap.ui.define([
 				RSO_MSO_controller.getOwnerComponent().getModel("mainservices").read(sObjectPath, {
 					success: $.proxy(function (soOData) {
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
+						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
+						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", soOData.Zzextcol);
+						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzapx", soOData.Zzapx);
 						RSO_MSO_controller.series_selected();
 						RSO_MSO_controller.model_selected();
 						RSO_MSO_controller.suffix_selected();
@@ -1113,7 +1116,7 @@ sap.ui.define([
 					}
 					var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 					var dealer = dealerno.slice(-5);
-					this.getView().getModel('mainservices')._refresh;
+					//this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('model_CSOR').bindItems({
 						path: "mainservices>/ZVMS_Model_EXCLSet",
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
@@ -1133,6 +1136,11 @@ sap.ui.define([
 				// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+				if(!suffix){
+					this.getView().byId('suffix_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/zzSuffix"));
+					
+				}
+				
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				var suf;
 				if (language === "FR") {
@@ -1161,7 +1169,7 @@ sap.ui.define([
 					} else {
 						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
-					this.getView().getModel('mainservices')._refresh;
+					//this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 						filters: new sap.ui.model.Filter([
@@ -1183,7 +1191,10 @@ sap.ui.define([
 				//----------------
 				//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
-
+				if(!suffix){
+					this.getView().byId('suffix_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/zzSuffix"));
+				}
+				
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
@@ -1207,7 +1218,7 @@ sap.ui.define([
 					} else {
 						color = "{mainservices>ext}/{mainservices>mktg_desc_en}";
 					}
-					this.getView().getModel('mainservices')._refresh;
+					//this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('colour_CSOR').bindItems({
 						path: 'mainservices>/ZVMS_CDS_Colour',
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
