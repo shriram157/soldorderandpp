@@ -374,7 +374,7 @@ sap.ui.define([
 						},
 						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
 						dataReceived: function (oEvent) {
-							console.log(oEvent);
+
 						}
 					}
 				});
@@ -399,8 +399,6 @@ sap.ui.define([
 				//added by Minakshi for DMND0002960 start
 				var zdealerCode = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 					'ZzdealerCode');
-					
-				
 
 				RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg + " / " + zdealerCode);
 				//added by Minakshi for DMND0002960 end
@@ -457,10 +455,6 @@ sap.ui.define([
 					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 				}
-
-				RSO_MSO_controller.series_selected();
-				RSO_MSO_controller.model_selected();
-				RSO_MSO_controller.suffix_selected();
 
 				//----------------------------------------------------------
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
@@ -588,12 +582,15 @@ sap.ui.define([
 					// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
 					// }
 				}
-				
+
 				RSO_MSO_controller.getOwnerComponent().getModel("mainservices").read(sObjectPath, {
-					success : function(soOData){
-						this.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
-					},
-					error : function(){}
+					success: $.proxy(function (soOData) {
+						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
+						RSO_MSO_controller.series_selected();
+						RSO_MSO_controller.model_selected();
+						RSO_MSO_controller.suffix_selected();
+					}, this),
+					error: function () {}
 				});
 			},
 
@@ -696,7 +693,7 @@ sap.ui.define([
 								});
 
 							} else {
-								var sMsg = oData.Message;
+								sMsg = oData.Message;
 								sap.m.MessageBox.show(sMsg, {
 									icon: sap.m.MessageBox.Icon.SUCCESS,
 									title: "SUCCESS",
@@ -742,7 +739,7 @@ sap.ui.define([
 							});
 
 						} else {
-							var sMsg = oData.Message;
+							sMsg = oData.Message;
 
 							sap.m.MessageBox.show(sMsg, {
 								icon: sap.m.MessageBox.Icon.SUCCESS,
