@@ -1138,7 +1138,6 @@ sap.ui.define([
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
 				if(!suffix){
 					this.getView().byId('suffix_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/zzSuffix"));
-					
 				}
 				
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
