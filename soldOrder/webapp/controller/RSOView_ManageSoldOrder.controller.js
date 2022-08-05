@@ -1136,10 +1136,11 @@ sap.ui.define([
 				// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
-				if(!suffix){
-					this.getView().byId('suffix_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/zzSuffix"));
+				if (!suffix) {
+					this.getView().byId('suffix_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
+						"/zzSuffix"));
 				}
-				
+
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				var suf;
 				if (language === "FR") {
@@ -1190,10 +1191,16 @@ sap.ui.define([
 				//----------------
 				//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
-				if(!suffix){
-					this.getView().byId('suffix_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/zzSuffix"));
+				if (!suffix) {
+					this.getView().byId('suffix_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
+						"/zzSuffix"));
 				}
-				
+
+				this.getView().byId('colour_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
+					"/Zzextcol"));
+				this.getView().byId('apx_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
+					"/Zzapx"));
+
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
