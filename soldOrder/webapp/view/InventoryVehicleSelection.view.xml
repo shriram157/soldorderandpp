@@ -127,12 +127,12 @@
 								</l:content>
 							</l:Grid>
 				</content>
-					<footer class="sitefooter">
-					<Toolbar>
-						<ToolbarSpacer/>
+				<!--	<footer class="sitefooter">-->
+				<!--	<Toolbar>-->
+				<!--		<ToolbarSpacer/>-->
 						<!--<Button text="{i18n>Back}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" type="Emphasized" press="onback"></Button>-->
-					</Toolbar>
-				</footer>
+				<!--	</Toolbar>-->
+				<!--</footer>-->
 				</Page>
 			</pages>
 		</App>

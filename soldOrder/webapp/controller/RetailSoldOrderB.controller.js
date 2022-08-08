@@ -104,7 +104,7 @@ sap.ui.define([
 		},
 		_getattachRouteMatched: function (parameters) {
 			validateFlagB = false;
-			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
+			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOA");
 			if (validateFlagB == true) {
 				submitBtn.setEnabled(true);
 			} else {
@@ -236,7 +236,7 @@ sap.ui.define([
 		},
 /*		onValidateCustomer: function () {
 			validateFlagB = true;
-			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
+			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOA");
 			if (validateFlagB == true) {
 				submitBtn.setEnabled(true);
 			} else {
@@ -496,7 +496,7 @@ sap.ui.define([
 		onValidateCustomer: function () {
 			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
 			Zcustomer_No = '';
-			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
+			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOA");
 			submitBtn.setEnabled(false);
 			RSOB_controller.validateFlagB = false;
 			if (CustModel.FirstName != '' && CustModel.SecondName != '' && CustModel.FirstName && CustModel.SecondName && CustModel.Phone != '' &&

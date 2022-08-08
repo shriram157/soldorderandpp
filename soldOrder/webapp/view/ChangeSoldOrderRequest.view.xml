@@ -1,4 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
 	controllerName="toyota.ca.SoldOrder.controller.ChangeSoldOrderRequest" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
@@ -123,117 +123,9 @@
 					</f:SimpleForm>
 				</content>
 				<footer class="sitefooter">
-					<Toolbar>
-						<ToolbarSpacer/>
-						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized"></Button>
-					</Toolbar>
+					<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.retailSoldFooter" type="XML"/>
 				</footer>
 			</Page>
 		</pages>
 	</App>
 </mvc:View>
-<!--<HBox class="marginCorners">
-	<items>
-		<VBox width="100%">
-			<items>
-				<MessageStrip text="{i18n>VehicleInformation}" class="msgStripCss marginCornersRight"></MessageStrip >
-				<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
-					<f:content>
-						<Label text="{i18n>modelYear}"/>
-						<Text text="{/Products/Name}"/>
-						<Label text="{i18n>Series}"/>
-						<Text text="{DimUnit}"/>
-						<Label text="{i18n>Model}"/>
-						<ComboBox id="model_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-							<core:Item key="{ProductId}" text="{Name}"/>
-						</ComboBox>
-						<Label text="{i18n>Suffix}"/>
-						<ComboBox id="suffix_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-							<core:Item key="{ProductId}"
-								text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
-						</ComboBox>
-						<Label text="{i18n>APX}"/>
-						<ComboBox id="apx_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-							<core:Item key="{ProductId}" text="{Name}"/>
-						</ComboBox>
-						<Label text="{i18n>Colour}"/>
-						<ComboBox id="colour_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-							<core:Item key="{ProductId}"
-								text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
-						</ComboBox>
-						<Label text="{i18n>ETA}" required="true"/>
-						<VBox>
-							<items>
-								<HBox>
-									<items>
-										<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-										<DatePicker id="etaFrom_CSOR" placeholder="dd/MMM/yy"></DatePicker>
-									</items>
-								</HBox>
-								<HBox>
-									<items>
-										<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
-										<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy" navigate="_handleChange"></DatePicker>
-									</items>
-								</HBox>
-							</items>
-						</VBox>
-					</f:content>
-				</f:SimpleForm>
-				<MessageStrip text="{i18n>CustomerInformation}" class="msgStripCss marginCornersRight"></MessageStrip >
-				<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
-					<f:content>
-						<Label text="{i18n>custname}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>address}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>city}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>province}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>postalcode}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>phnNo}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>email}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>driverLic}"/>
-						<Text text="{address>/Name}"/>
-					</f:content>
-				</f:SimpleForm>
-			</items>
-		</VBox>
-		<VBox width="100%">
-			<items>
-				<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripCss marginCornersLeft"></MessageStrip >
-				<f:SimpleForm editable="true" width="100%" class="formhieghtcss_cso" layout="ResponsiveLayout">
-					<f:content>
-						<Label text="{i18n>contractDate}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>salesType}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>salesPerName}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>salesManName}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>tradeInModelYr}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>tradeInMake}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>tradeInModel}"/>
-						<Text text="{address>/Name}"/>
-					</f:content>
-				</f:SimpleForm>
-				<MessageStrip text="{i18n>Comments}" class="msgStripCss marginCornersLeft"></MessageStrip >
-				<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
-					<f:content>
-						<Label text="{i18n>PreSoldOrder}"/>
-						<Link text="S092999"></Link>
-						<Label text="{i18n>Comments}"/>
-						<TextArea value="{address>/Name}"/>
-					</f:content>
-				</f:SimpleForm>
-			</items>
-		</VBox>
-	</items>
-</HBox>-->

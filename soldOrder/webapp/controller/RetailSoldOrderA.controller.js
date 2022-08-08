@@ -59,7 +59,7 @@ sap.ui.define([
 			salesTypeModel.updateBindings(true);
 			sap.ui.getCore().setModel(salesTypeModel, "salesTypeModel");
 			this.getView().setModel(sap.ui.getCore().getModel("salesTypeModel"), "salesTypeModel");
-			console.log(sap.ui.getCore().getModel("salesTypeModel"));
+		
 			// var zdateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 			// 	pattern: "yyyy-MM-ddTHH:mm:ss"
 			// });
@@ -126,8 +126,7 @@ sap.ui.define([
 			}, id);
 		},
 		_handleSeries: function (modelyear) {
-			//var modelyear = this.getView().byId('modelYr_RSOA').getValue();
-			//console.log(modelyear);
+		
 			var host = RSOA_controller.host();
 			var url = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_SoldOrder_Series(P_moyr='" + modelyear +
 				"',P_app_type='R')/Set?$filter=Division eq '" + RSOA_controller.divison + "'";
@@ -148,7 +147,7 @@ sap.ui.define([
 					//	var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
 					oModel.setData(data.d.results);
-					console.log("data from RSOA : " + data.d.results)
+				
 					RSOA_controller.getView().setModel(oModel, "seriesModel");
 
 				},
@@ -203,8 +202,7 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					// console.log("Result from zc_configuration");
-					// console.log(data.d.results);
+				
 					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					RSOA_controller.getView().setModel(oModel, "oModel1");
 				},
@@ -225,8 +223,7 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					// console.log("Result from zc_exterior_trim");
-					// console.log(data.d.results);
+				
 					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					RSOA_controller.getView().setModel(oModel, "oModel2");
 				},
@@ -248,10 +245,9 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					// console.log("Result from ZC_BRAND_MODEL_DETAIL");
-					// console.log(data.d.results);
+					
 					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
-					//	RSOA_controller.getView().byId("model_RSOA").setSizeLimit(oModel.getData().length);
+				
 					RSOA_controller.getView().setModel(oModel, "oModel3");
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -271,8 +267,7 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					// console.log("Result from ZC_PIO_DIO");
-					// console.log(data.d.results);
+				
 					var oModel = new sap.ui.model.json.JSONModel(data.d.results);
 					RSOA_controller.getView().setModel(oModel, "mode_Model");
 				},
@@ -294,8 +289,7 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-					// console.log("Result from zc_mc_year");
-					// console.log(data.d.results);
+					
 					var oModel = new sap.ui.model.json.JSONModel();
 
 					var arr = [];
@@ -313,8 +307,7 @@ sap.ui.define([
 					oModel.setData(arr);
 					RSOA_controller.getView().setModel(oModel, "modelYear_Model");
 					RSOA_controller.getView().getModel("modelYear_Model");
-					// console.log(RSOA_controller.getView().getModel("modelYear_Model").getData());
-
+				
 					var oModel2 = new sap.ui.model.json.JSONModel();
 
 					var arr2 = [''];
@@ -327,7 +320,7 @@ sap.ui.define([
 							}
 						}
 					}
-					// console.log(arr2);
+					
 					oModel2.setData(arr2);
 					RSOA_controller.getView().setModel(oModel2, "model_Model");
 				},
@@ -348,9 +341,6 @@ sap.ui.define([
 				async: false,
 				dataType: 'json',
 				success: function (data, textStatus, jqXHR) {
-
-					// console.log("Result from ZC_MODEL_DETAILS ");
-					// console.log(data.d.results);
 					var oModel = new sap.ui.model.json.JSONModel();
 
 					var arr = [];
@@ -367,7 +357,6 @@ sap.ui.define([
 
 					oModel.setData(arr);
 					RSOA_controller.getView().setModel(oModel, "seriesModel");
-					// console.log(RSOA_controller.getView().getModel("seriesModel").getData());
 
 					var oModel2 = new sap.ui.model.json.JSONModel();
 
@@ -381,7 +370,7 @@ sap.ui.define([
 							}
 						}
 					}
-					// console.log(arr2);
+					
 					oModel2.setData(arr2);
 					RSOA_controller.getView().setModel(oModel2, "suffix_Model");
 
@@ -448,10 +437,7 @@ sap.ui.define([
 			var Zzapx = RSOA_controller.getView().byId("Apx_RSOA").getSelectedKey();
 			var Zzextcol = RSOA_controller.getView().byId("Colour_RSOA").getSelectedKey();
 			var ZzreqEtaFrom1 = RSOA_controller.getView().byId("etaFrom_RSOA").getValue();
-			// console.log(ZzreqEtaFrom1);
-			// console.log(RSOA_controller.getView().byId("etaFrom_RSOA").getDateValue());
-			// var ZzreqEtaFrom2 = Date.now(ZzreqEtaFrom1);
-			// var ZzreqEtaFrom = "Date(" + ZzreqEtaFrom2 + ")";
+			
 			var ZzreqEtaTo1 = RSOA_controller.getView().byId("etaTo_RSOA").getValue();
 			// var ZzreqEtaTo2 = Date.now(ZzreqEtaTo1);
 			// var ZzreqEtaTo = "Date(" + ZzreqEtaTo2 + ")";
@@ -549,37 +535,7 @@ sap.ui.define([
 						.m.MessageBox.Action.OK, null, null);
 				}
 			});
-			//---------------------------------------
-			//---------Old Code-----------------------
-			//---------------------------------------
-			// 			$.ajax({
-			// 				type: 'POST',
-			// 				url: oURL,
-			// 				cache: false,
-			// 				data: dataString,
-			// 				dataType: 'json',
-			// 				headers: {
-			// // 							accept: 'application/json',
-			// 							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
-			// 							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
-			// 							'content-type': 'application/json'
-			// 						},
-			// 				success: function (data) {
-			// 					// console.log(data);
-			// 					// sap.m.MessageBox.show("Successfully Request Created", sap.m.MessageBox.Icon.SUCCESS, "Success", sap.m.MessageBox.Action.OK,
-			// 					// 	null, null);
-			// 					if (data.d.ZzsoReqNo) {
-			// 						RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-			// 							Soreq: data.d.ZzsoReqNo
-			// 						}, true);
-			// 					} //page 3
-			// 				},
-			// 				error: function (data) {
-			// 					sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-			// 						.MessageBox.Action.OK, null, null);
-			// 				}
-
-			// 			});
+		
 		},
 
 		_handleToDateChange: function () {

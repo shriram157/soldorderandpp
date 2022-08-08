@@ -88,12 +88,12 @@
 						</columns>
 					</Table>
 				</m:content>
-				<m:footer class="sitefooter">
-					<m:Toolbar>
-						<m:ToolbarSpacer/>
+				<!--<m:footer class="sitefooter">-->
+				<!--	<m:Toolbar>-->
+				<!--		<m:ToolbarSpacer/>-->
 						<!--<m:Button text="{i18n>Back}" class="sapUiTinyMarginTop sapUiLargeMarginBegin" type="Emphasized" press="onback"></m:Button>-->
-					</m:Toolbar>
-				</m:footer>
+				<!--	</m:Toolbar>-->
+				<!--</m:footer>-->
 			</m:Page>
 		</m:pages>
 	</m:App>

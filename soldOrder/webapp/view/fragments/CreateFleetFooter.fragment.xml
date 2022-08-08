@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Toolbar>
+		<ToolbarSpacer/>
+		<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight" enabled="{FirstTable>/submitEnabled}"></Button>
+		<!--<Button text="{i18n>Back}" press="onNavBack" class="sapUiSmallMarginBegin marginCornersRight"></Button>-->
+	</Toolbar>
+</core:FragmentDefinition>
