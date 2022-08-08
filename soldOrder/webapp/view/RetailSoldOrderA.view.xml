@@ -3,7 +3,7 @@
 	height="100%">
 	<App>
 		<pages>
-			<Page showHeader="false" showFooter="true" floatingFooter="true">
+			<Page showHeader="false"  enableScrolling="true">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
 					<Label text="{i18n>createSoldOrderTitle}" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"></Label>
