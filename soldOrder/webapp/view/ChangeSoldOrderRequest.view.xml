@@ -1,4 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
 	controllerName="toyota.ca.SoldOrder.controller.ChangeSoldOrderRequest" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
@@ -123,7 +123,10 @@
 					</f:SimpleForm>
 				</content>
 				<footer class="sitefooter">
-					<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.retailSoldFooter" type="XML"/>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized"></Button>
+					</OverflowToolbar>
 				</footer>
 			</Page>
 		</pages>

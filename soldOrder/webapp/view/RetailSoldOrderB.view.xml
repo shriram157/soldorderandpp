@@ -147,11 +147,10 @@
 					</f:SimpleForm>
 				</content>
 				<footer class="sitefooter">
-					<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.retailSoldFooter" type="XML"/>
-					<!--<Toolbar>-->
-					<!--	<ToolbarSpacer/>-->
-					<!--	<Button text="{i18n>submit}" type="Emphasized" press="_onSubmit" id="Btn_submit_RSOB"></Button>-->
-					<!--</Toolbar>-->
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>submit}" type="Emphasized" press="_onSubmit" id="Btn_submit_RSOB"></Button>
+					</OverflowToolbar>
 				</footer>
 			</Page>
 		</pages>

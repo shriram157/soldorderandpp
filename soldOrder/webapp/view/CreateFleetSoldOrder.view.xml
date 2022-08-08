@@ -248,7 +248,11 @@
 					<!--</HBox>-->
 				</content>
 				<footer class="sitefooter">
-					<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.CreateFleetFooter" type="XML"/>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight" enabled="{FirstTable>/submitEnabled}"></Button>
+						<!--<Button text="{i18n>Back}" press="onNavBack" class="sapUiSmallMarginBegin marginCornersRight"></Button>-->
+					</OverflowToolbar>
 				</footer>
 			</Page>
 		</pages>
