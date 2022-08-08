@@ -3,7 +3,7 @@
 	height="100%">
 	<App>
 		<pages>
-			<Page showHeader="false" showFooter="true">
+			<Page showHeader="false" showFooter="true" floatingFooter="true">
 				<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.ToolHeader" type="XML"/>
 				<content>
 					<Label text="{i18n>createSoldOrderTitle}" class="sapUiSmallMarginTop sapUiSmallMarginBegin fontsize"></Label>
@@ -116,15 +116,15 @@
 						</f:content>
 					</f:SimpleForm>
 				</content>
-				<footer class="sitefooter">
-					<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.retailSoldFooter" type="XML"/>
-				</footer>
 				<!--<footer class="sitefooter">-->
-				<!--	<Toolbar>-->
-				<!--		<ToolbarSpacer/>-->
-				<!--		<Button text="{i18n>submit}" press="_onSubmit" enabled="false" id="Btn_submit_RSOA" type="Emphasized"></Button>-->
-				<!--	</Toolbar>-->
+				<!--	<core:Fragment fragmentName="toyota.ca.SoldOrder.view.fragments.retailSoldFooter" type="XML"/>-->
 				<!--</footer>-->
+				<footer class="sitefooter">
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>submit}" press="_onSubmit" enabled="false" id="Btn_submit_RSOA" type="Emphasized"></Button>
+					</OverflowToolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>
