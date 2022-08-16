@@ -190,7 +190,7 @@ sap.ui.define([
 					window.history.go(-1);
 				}
 			} else {
-				basCont.getRouter().navTo("RetailSoldOrderA", {}, true); // has the value true and makes sure that the
+				this.getOwnerComponent().getRouter().navTo("RetailSoldOrderA", {}, true); // has the value true and makes sure that the
 				//	hash is replaced /*no history
 			}
 		},
