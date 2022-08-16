@@ -1073,24 +1073,25 @@ sap.ui.define([
 				return a;
 			},
 			onNavBack: function (Oevent) {
-				window.history.go(-1);
-				// if (ppdFlages) {
-				// 	if (ppdFlages.getData().openCommentBox == 'X') {
-				// 		ppdFlages.getData().openCommentBox = '';
-				// 		sap.ui.getCore().setModel(ppdFlages, "ppdFlages");
-				// 		RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {
-				// 			refresh: false
-				// 		});
-				// 	} else {
-				// 		RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
-				// 			refresh: false
-				// 		});
-				// 	}
-				// } else {
-				// 	RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
-				// 		refresh: false
-				// 	});
-				// }
+				
+				if (ppdFlages) {
+					if (ppdFlages.getData().openCommentBox == 'X') {
+						ppdFlages.getData().openCommentBox = '';
+						sap.ui.getCore().setModel(ppdFlages, "ppdFlages");
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {
+							refresh: false
+						});
+					} else {
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
+							refresh: false
+						});
+					}
+				} else {
+					window.history.go(-1);
+					// RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
+					// 	refresh: false
+					// });
+				}
 			},
 			//---------------------------------------
 			//--------Handling Filter---------------
