@@ -80,6 +80,8 @@ sap.ui.define([
 		UpdateSoldOrderRequest: function () {
 			var resonCancelId_val = SOCR_controller.getView().byId("resonCancelId").getValue();
 			var comment_ch_res = SOCR_controller.getView().byId("comment_ch_res").getValue();
+			this.getOwnerComponent().getModel("LocalDataModel").setProperty("/resonCancelId_val", resonCancelId_val);
+			this.getOwnerComponent().getModel("LocalDataModel").setProperty("/comment_ch_res", comment_ch_res);
 			// var reqTypeId_SOCR_val = SOCR_controller.getView().byId("reqTypeId_SOCR").getValue();
 			var cbVal = SOCR_controller.getView().byId("resonCancelId").getSelectedKey();
 			// if (cbVal == 2) {
@@ -87,29 +89,29 @@ sap.ui.define([
 			// 	Soreq: requestid
 			// }, true); 
 			// } else if (cbVal == 1 || cbVal == 3) {
-			SOCR_controller.getView().getModel('mainservices').callFunction("/RSO_Change", {
-				method: "POST",
-				urlParameters: {
-					Reason: resonCancelId_val,
-					Reason_comment: comment_ch_res,
-					// Request_Type: reqTypeId_SOCR_val,
-					ZzsoReqNo: requestid
-				}, // function import parameters
-				success: function (data, response) {
-					if (data.Type == 'E') {
-						sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-							.MessageBox.Action.OK, null, null);
-					} else {
-						SOCR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
-							Soreq: requestid
-						}, true); //page8
-					}
-				},
-				error: function (oData, oResponse) {
-					sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-						.MessageBox.Action.OK, null, null);
-				}
-			});
+			// SOCR_controller.getView().getModel('mainservices').callFunction("/RSO_Change", {
+			// 	method: "POST",
+			// 	urlParameters: {
+			// 		Reason: resonCancelId_val,
+			// 		Reason_comment: comment_ch_res,
+			// 		// Request_Type: reqTypeId_SOCR_val,
+			// 		ZzsoReqNo: requestid
+			// 	}, // function import parameters
+			// 	success: function (data, response) {
+			// 		if (data.Type == 'E') {
+			// 			sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+			// 				.MessageBox.Action.OK, null, null);
+			// 		} else {
+			// 			SOCR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
+			// 				Soreq: requestid
+			// 			}, true); //page8
+			// 		}
+			// 	},
+			// 	error: function (oData, oResponse) {
+			// 		sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+			// 			.MessageBox.Action.OK, null, null);
+			// 	}
+			// });
 
 		},
 		onNavBack: function () {

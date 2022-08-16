@@ -83,7 +83,7 @@ sap.ui.define([
 			this.fnDateDisabled(this.getView().byId("etaFrom_CSOR"));
 			this.fnDateDisabled(this.getView().byId("etaTo_CSOR"));
 		},
-		
+
 		fnDateDisabled: function (id) {
 
 			id.addEventDelegate({
@@ -157,8 +157,7 @@ sap.ui.define([
 		/////////////////////////// INC0187445 Changes done by Minakshi on 25/03/2021 end
 
 		_onSubmit: function () {
-			
-		
+
 			var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
 			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getSelectedKey();
 			var valApx = CSOR_controller.getView().byId("apx_CSOR").getSelectedKey();
@@ -208,15 +207,15 @@ sap.ui.define([
 					}
 					zdata = {
 
-						"ZzsoReqNo": oldSoldOrderNo,//update old sold order INC0187445
+						"ZzsoReqNo": oldSoldOrderNo, //update old sold order INC0187445
 						"Zzmodel": valModel, //"YZ3DCT",
 						"Zzmoyr": Zzmoyr, //"2018",
 						"Zzseries": Zzseries,
 						"Zzsuffix": valSuffix, //"ML",
 						"Zzextcol": valColour, //"01D6",
 						"Zzapx": valApx, // "00",
-						"ZzreqEtaFrom":  valFrom+"T00:00:00", //null,
-						"ZzreqEtaTo": valTo+"T00:00:00" , //null,
+						"ZzreqEtaFrom": valFrom + "T00:00:00", //null,
+						"ZzreqEtaTo": valTo + "T00:00:00", //null,
 						"ZcontractDate": ZcontractDate1, //null,
 						"ZsalesType": ZsalesType, // "",
 						// "ZtcciNum": ZtcciNum, // "",
@@ -245,6 +244,32 @@ sap.ui.define([
 					if (!CSOR_controller.getView().getModel('mainservices').getSecurityToken()) {
 						CSOR_controller.getView().getModel('mainservices').refreshSecurityToken();
 					}
+
+					CSOR_controller.getView().getModel('mainservices').callFunction("/RSO_Change", {
+						method: "POST",
+						urlParameters: {
+							Reason: CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/resonCancelId_val"),
+							Reason_comment: CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/comment_ch_res"),
+							// Request_Type: reqTypeId_SOCR_val,
+							ZzsoReqNo: requestid
+						}, // function import parameters
+						success: function (data, response) {
+							if (data.Type == 'E') {
+								sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+									.MessageBox.Action.OK, null, null);
+							}
+							// else {
+							// 	CSOR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
+							// 		Soreq: requestid
+							// 	}, true); //page8
+							// }
+						},
+						error: function (oData, oResponse) {
+							sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+								.MessageBox.Action.OK, null, null);
+						}
+					});
+
 					CSOR_controller.getView().getModel('mainservices').create(URI, zdata, {
 						success: function (data) {
 							// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",
