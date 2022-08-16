@@ -478,7 +478,9 @@ sap.ui.define([
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
-				this.getOwnerComponent().getRouter().navTo("SoldOrderChangeReason"); // has the value true and makes sure that the
+				this.getOwnerComponent().getRouter().navTo("SoldOrderChangeReason", {
+				Soreq: requestid
+			}, true); // has the value true and makes sure that the
 				//	hash is replaced /*no history
 			}
 		}
