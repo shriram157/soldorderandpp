@@ -467,6 +467,21 @@ sap.ui.define([
 				}
 			});
 		},
+		
+		onNavBack: function (oEvent) {
+			var oHistory, sPreviousHash;
+			oHistory = History.getInstance();
+			//console.log(oHistory);
+			sPreviousHash = oHistory.getPreviousHash();
+			//console.log(sPreviousHash);
+			//console.log(window.history);
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				this.getOwnerComponent().getRouter().navTo("SoldOrderChangeReason"); // has the value true and makes sure that the
+				//	hash is replaced /*no history
+			}
+		}
 
 	});
 
