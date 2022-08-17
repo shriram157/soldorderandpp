@@ -1192,14 +1192,15 @@ sap.ui.define([
 				//----APX---------
 				//----------------
 				//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
-				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
-				if (!suffix) {
-					this.getView().byId('suffix_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
-						"/zzSuffix"));
+				let suffix = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/zzSuffix");
+				let extcolor = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzextcol");
+				if (suffix) {
+					this.getView().byId('suffix_CSOR').setSelectedKey(suffix);
 				}
-
-				this.getView().byId('colour_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
-					"/Zzextcol"));
+				if(extcolor){
+					this.getView().byId('colour_CSOR').setSelectedKey(extcolor);
+				}
+				
 				this.getView().byId('apx_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
 					"/Zzapx"));
 
@@ -1231,7 +1232,8 @@ sap.ui.define([
 						path: 'mainservices>/ZVMS_CDS_Colour',
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 							new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
-							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+							new sap.ui.model.Filter("ext", sap.ui.model.FilterOperator.EQ, extcolor)
 						], true),
 						template: new sap.ui.core.ListItem({
 							key: "{mainservices>ext}",
