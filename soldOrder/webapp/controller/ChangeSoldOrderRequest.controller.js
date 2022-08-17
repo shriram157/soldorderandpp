@@ -374,9 +374,16 @@ sap.ui.define([
 			//----APX---------
 			//----------------
 			//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
-			var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+			let suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
 
-			var model = this.getView().byId('model_CSOR').getSelectedKey();
+			let model = this.getView().byId('model_CSOR').getSelectedKey();
+			let color;
+			if (language === "FR") {
+				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarketingDescriptionEXTColorFR}";
+			} else {
+				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarketingDescriptionEXTColorEN}";
+			}
+
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 				//Changes done by Minakshi on 25/03/2021 INC0187445 start
 				if (oEvent != undefined) {
@@ -421,9 +428,11 @@ sap.ui.define([
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{VechileModel>ExteriorColorCode}",
-						text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+						text: color
 					})
 				});
+				
+				
 				// var items_binding = this.getView().byId('colour_CSOR').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
