@@ -12,11 +12,11 @@
 					<f:SimpleForm id="simpleFormChange" editable="true" width="90%" layout="ResponsiveLayout" >
 						<f:content>
 							<Label text="{i18n>ReasonChange}"/>
-							<ComboBox id="resonCancelId" items="{ path: 'changeReasonModel>/CancellationReason', sorter: { path: 'key' } }" required="true">
+							<ComboBox id="resonCancelId" selectedKey="{LocalDataModel>/changeRsKey}" items="{ path: 'changeReasonModel>/CancellationReason', sorter: { path: 'key' } }" required="true">
 								<core:Item key="{changeReasonModel>key}" text="{changeReasonModel>text}"/>
 							</ComboBox>
 							<Label text="{i18n>Comments}"/>
-							<TextArea id="comment_ch_res" maxLength="150"/>
+							<TextArea value="{LocalDataModel>/comment_ch_res}" id="comment_ch_res" maxLength="150"/>
 							<!--<Label text="{i18n>ReqType}"/>-->
 							<!--<ComboBox id="reqTypeId_SOCR" items="{ path: '/RequestType', sorter: { path: 'key' } }" required="true">-->
 							<!--	<core:Item key="{key}" text="{text}"/>-->

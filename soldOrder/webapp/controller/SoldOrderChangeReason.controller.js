@@ -57,7 +57,7 @@ sap.ui.define([
 			changeReasonModel.updateBindings(true);
 			sap.ui.getCore().setModel(changeReasonModel, "changeReasonModel");
 			this.getView().setModel(sap.ui.getCore().getModel("changeReasonModel"), "changeReasonModel");
-			console.log(sap.ui.getCore().getModel("changeReasonModel"));
+			
 		},
 		_getattachRouteMatched: function (parameters) {
 			requestid = parameters.getParameters().arguments.Soreq;
@@ -67,9 +67,6 @@ sap.ui.define([
 			SOCR_controller.getView().byId("label_SoldOrderid").setText(sMsg);
 			var resonCancelId = SOCR_controller.getView().byId("resonCancelId");
 			var comment_ch_res = SOCR_controller.getView().byId("comment_ch_res");
-			// var reqTypeId_SOCR_val = SOCR_controller.getView().byId("reqTypeId_SOCR").getValue();
-			var cbVal = SOCR_controller.getView().byId("resonCancelId").getSelectedKey();
-
 			resonCancelId.setSelectedKey();
 			comment_ch_res.setValue(null);
 		},
@@ -83,7 +80,7 @@ sap.ui.define([
 			this.getOwnerComponent().getModel("LocalDataModel").setProperty("/resonCancelId_val", resonCancelId_val);
 			this.getOwnerComponent().getModel("LocalDataModel").setProperty("/comment_ch_res", comment_ch_res);
 			// var reqTypeId_SOCR_val = SOCR_controller.getView().byId("reqTypeId_SOCR").getValue();
-			var cbVal = SOCR_controller.getView().byId("resonCancelId").getSelectedKey();
+			//var cbVal = SOCR_controller.getView().byId("resonCancelId").getSelectedKey();
 			// if (cbVal == 2) {
 			// 	SOCR_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 			// 	Soreq: requestid
