@@ -67,11 +67,7 @@ sap.ui.define([
 			SOCR_controller.getView().byId("label_SoldOrderid").setText(sMsg);
 			var resonCancelId = SOCR_controller.getView().byId("resonCancelId");
 			var comment_ch_res = SOCR_controller.getView().byId("comment_ch_res");
-			resonCancelId.setSelectedKey();
-			comment_ch_res.setValue(null);
-		},
-		onAfterRendering: function () {
-
+		
 		},
 
 		UpdateSoldOrderRequest: function () {

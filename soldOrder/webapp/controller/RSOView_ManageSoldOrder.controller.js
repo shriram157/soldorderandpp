@@ -886,7 +886,9 @@ sap.ui.define([
 					actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 					onClose: function (sAction) {
 						if (sAction == "YES") {
-							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setData([]);
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/changeRsKey", "");
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/comment_ch_res", "");
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/resonCancelId_val", "");
 							RSO_MSO_controller.getOwnerComponent().getRouter().navTo("SoldOrderChangeReason", {
 								Soreq: zrequest
 							}, true); //page7
