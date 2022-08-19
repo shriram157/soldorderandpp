@@ -50,6 +50,7 @@ sap.ui.define([
 				events: {
 					change: function (OEvent) {
 						//Filter Data Sold Order
+						CSOR_controller.byId("model_CSOR").setSelectedKey(CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzmodel"));
 						CSOR_controller.series_selected();
 						CSOR_controller.model_selected();
 						CSOR_controller.suffix_selected();
