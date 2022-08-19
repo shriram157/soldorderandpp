@@ -22,7 +22,7 @@ sap.ui.define([
 			// var today = new Date();
 			// var day1 = new Date();
 			// day1.setDate(today.getDate() + 1);
-			// CSOR_controller.getView().byId("etaFrom_CSOR").setMinDate(day1);
+			// CSOR_controller.getView().byId("etaFrom_CSOR").setDateValue(day1);
 			zcustomerModel = new JSONModel({});
 			this.getView().setModel(zcustomerModel, 'Customer');
 			CSOR_controller.getOwnerComponent().getRouter().getRoute("ChangeSoldOrderRequest").attachPatternMatched(this._getattachRouteMatched,
@@ -39,7 +39,8 @@ sap.ui.define([
 					num++;
 				}
 			}
-			this.getView().byId("etaFrom_CSOR").setMinDate(day5);
+			//this.getView().byId("etaFrom_CSOR").setMinDate(day5);
+			this.getView().byId("etaFrom_CSOR").setDateValue(day5);       
 
 			requestid = parameters.getParameters().arguments.Soreq;
 			var sObjectPath = "/Retail_Sold_OrderSet('" + requestid + "')";
@@ -115,7 +116,7 @@ sap.ui.define([
 					}
 				}
 
-				CSOR_controller.getView().byId("etaTo_CSOR").setMinDate(CDate);
+				CSOR_controller.getView().byId("etaTo_CSOR").setDateValue(CDate);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -145,7 +146,7 @@ sap.ui.define([
 					}
 				}
 
-				CSOR_controller.getView().byId("etaTo_CSOR").setMinDate(CDate);
+				CSOR_controller.getView().byId("etaTo_CSOR").setDateValue(CDate);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
