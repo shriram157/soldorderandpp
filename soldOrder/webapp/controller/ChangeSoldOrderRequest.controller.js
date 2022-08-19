@@ -337,7 +337,9 @@ sap.ui.define([
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
 			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-
+			var pathAB = "";
+			var suf;
+			
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				// this.getView().byId('suffix_CSOR').bindItems('oModel1>/', new sap.ui.core.ListItem({
@@ -351,16 +353,31 @@ sap.ui.define([
 					this.getView().byId("colour_CSOR").setSelectedKey("");
 					this.getView().byId("apx_CSOR").setSelectedKey("");
 				}
+				
+				if (CSOR_controller.RSOA == true) {
+					pathAB = "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set";
+				} else {
+					pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
+				}
+				
+					if (language === "FR") {
+					suf = "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+
+				} else {
+					suf = "{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+
+				}
+				
 				//Changes done by Minakshi on 25/03/2021 INC0187445 end
 				this.getView().byId('suffix_CSOR').bindItems({
 					//		path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
-					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set",
+					path: pathAB,
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
-						text: "{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
+						text: suf
 					})
 				});
 				// var items_binding = this.getView().byId('suffix_CSOR').getBinding('items');
