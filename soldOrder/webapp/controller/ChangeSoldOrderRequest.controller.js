@@ -237,7 +237,9 @@ sap.ui.define([
 						"TelNumber": Zcustomer_phone,
 						"SmtpAddr": Zcustomer_email,
 						"Qausp": valDrive,
-						"Zzendcu": Zcustomer_No
+						"Zzendcu": Zcustomer_No,
+						"ZzcancelComment" : CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/comment_ch_res"),
+						"ZzcancelRsn" : CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/resonCancelId_val")
 							// "ZdriverLiNum": valDrive
 					};
 					var URI = "/Retail_Sold_OrderSet";
