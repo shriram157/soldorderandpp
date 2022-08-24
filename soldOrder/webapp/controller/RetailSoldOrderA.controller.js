@@ -15,7 +15,7 @@ sap.ui.define([
 		onInit: function () {
 			RSOA_controller = this;
 			//	RSOA_controller.divison = "TOY";
-			RSOA_controller.RSOA = true;
+			AppController.RSOA = true;
 			RSOA_controller.flagInvalidPCode = false;
 			RSOA_controller.flagInvalidPhone = false;
 			RSOA_controller.flagInvalidName = false; // DMND0003108
