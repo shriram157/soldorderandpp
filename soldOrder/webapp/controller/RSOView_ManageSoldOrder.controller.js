@@ -199,9 +199,9 @@ sap.ui.define([
 						RSO_MSO_controller.chatNum = sap.ui.getCore().getModel('GlobalChatModel').getData().length;
 
 						// for (var i = 0; i < RSO_MSO_controller.getView().byId("chatList").getItems().length; i++) {
-						if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
-							RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(RSO_MSO_controller.chatNum);
-						}
+						// if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
+						// 	RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(RSO_MSO_controller.chatNum);
+						// }
 						/*if (AppController.chatNum !== undefined) {
 
 							var feed = RSO_MSO_controller.getView().byId("feedId");
@@ -282,9 +282,9 @@ sap.ui.define([
 					}
 					//	console.log(RSO_MSO_controller.getView().byId("chatList").getItems());
 					RSO_MSO_controller.getView().byId("feedId").setValue(null);
-					if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
-						RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus();
-					}
+					// if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
+					// 	RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus();
+					// }
 					RSO_MSO_controller.getchat();
 
 					if (userType == "TCI_User") {
