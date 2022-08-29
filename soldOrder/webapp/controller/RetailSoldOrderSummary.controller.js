@@ -40,8 +40,8 @@ sap.ui.define([
 			var seriesModel = new sap.ui.model.json.JSONModel();
 			var data = sap.ui.getCore().getModel("seriesModel").getData();
 			seriesModel.setData(data);
-			RSOS_controller.getView().setModel(seriesModel, "seriesModel");
-			if (data[0].ModelSeriesNo !== "ALL") {
+			RSOS_controller.getView().setModel(seriesModel, "seriesModel");                   
+			if (data[0].seriesModel !== "ALL") {                             //changes by Swetha seriesModel(ModelSeriesNo)
 				seriesModel.getData().unshift({
 					"Division": "",
 					"ModelSeriesNo": "ALL",
