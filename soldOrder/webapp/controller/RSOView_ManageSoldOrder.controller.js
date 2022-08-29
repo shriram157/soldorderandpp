@@ -468,6 +468,8 @@ sap.ui.define([
 							RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
 							RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
 							RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
+						}else {
+							RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(true);
 						}
 						//changes done by Swetha for INC0213630
 						if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") == "Dealer_User" && SOType == "NF") {
