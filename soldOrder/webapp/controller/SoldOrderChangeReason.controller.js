@@ -82,33 +82,30 @@ sap.ui.define([
 			// 	Soreq: requestid
 			// }, true); 
 			// } else if (cbVal == 1 || cbVal == 3) {
-			// SOCR_controller.getView().getModel('mainservices').callFunction("/RSO_Change", {
-			// 	method: "POST",
-			// 	urlParameters: {
-			// 		Reason: resonCancelId_val,
-			// 		Reason_comment: comment_ch_res,
-			// 		// Request_Type: reqTypeId_SOCR_val,
-			// 		ZzsoReqNo: requestid
-			// 	}, // function import parameters
-			// 	success: function (data, response) {
-			// 		if (data.Type == 'E') {
-			// 			sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-			// 				.MessageBox.Action.OK, null, null);
-			// 		} else {
-			// 			SOCR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
-			// 				Soreq: requestid
-			// 			}, true); //page8
-			// 		}
-			// 	},
-			// 	error: function (oData, oResponse) {
-			// 		sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-			// 			.MessageBox.Action.OK, null, null);
-			// 	}
-			// });
+			SOCR_controller.getView().getModel('mainservices').callFunction("/RSO_Next", {
+				method: "GET",
+				urlParameters: {
+					ZzsoReqNo: requestid
+				}, // function import parameters
+				success: function (data, response) {
+					if (data.MessageV1 == 'S400') {
+						sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+							.MessageBox.Action.OK, null, null);
+					} else {
+						SOCR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
+							Soreq: requestid
+						}, true); //page8
+					}
+				},
+				error: function (oData, oResponse) {
+					sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+						.MessageBox.Action.OK, null, null);
+				}
+			});
 
-			SOCR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
-				Soreq: requestid
-			}, true);
+			// SOCR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
+			// 	Soreq: requestid
+			// }, true);
 
 		},
 		onNavBack: function () {
