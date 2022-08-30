@@ -591,7 +591,7 @@ sap.ui.define([
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
-						if(soOData.Zzsuffix == 'xx'){
+						if(soOData.Zzsuffix == 'XX'){
 							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", '');
 						}else{
 							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", soOData.Zzextcol);
