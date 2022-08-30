@@ -1205,12 +1205,13 @@ sap.ui.define([
 				//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
 				let suffix = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/zzSuffix");
 				let extcolor = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzextcol");
-				if (suffix) {
+				if (suffix != "XX" && suffix != "") {
 					this.getView().byId('suffix_CSOR').setSelectedKey(suffix);
-				}
-				if(extcolor){
 					this.getView().byId('colour_CSOR').setSelectedKey(extcolor);
+				}else{
+					this.getView().byId('colour_CSOR').setSelectedKey('');
 				}
+			
 				
 				this.getView().byId('apx_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
 					"/Zzapx"));
