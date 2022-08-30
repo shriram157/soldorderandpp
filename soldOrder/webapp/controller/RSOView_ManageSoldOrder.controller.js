@@ -470,6 +470,8 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
 					RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
 					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
+				}else {
+					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(true);
 				}
 				//changes done by Swetha for INC0213630
 				if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") == "Dealer_User" && SOType == "NF") {
@@ -589,7 +591,11 @@ sap.ui.define([
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
-						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", soOData.Zzextcol);
+						if(soOData.Zzsuffix == 'xx'){
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", '');
+						}else{
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", soOData.Zzextcol);
+						}
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzapx", soOData.Zzapx);
 						RSO_MSO_controller.series_selected();
 						RSO_MSO_controller.model_selected();
