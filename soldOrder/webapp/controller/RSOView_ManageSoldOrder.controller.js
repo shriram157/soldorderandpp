@@ -1097,6 +1097,10 @@ sap.ui.define([
 							refresh: false
 						});
 					}
+				}else if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F"){
+					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails", {
+						refresh: false
+					});
 				} else {
 					//window.history.go(-1);
 					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
