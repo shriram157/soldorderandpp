@@ -186,7 +186,7 @@
 				"pattern": "page10",
 				"target": "home1"
 			}, {
-				"pattern": "page2/{modelyear}/{modelkey}/{serieskey}/{sufkey}/{apxkey}/{colorkey}/{vtnn}/{fromdate}/{todate}",
+				"pattern": "page2/{modelyear}/{modelkey}/{serieskey}/{suffixkey}/{apxkey}/{colorkey}/{vtnn}/{fromdate}/{todate}",
 				"name": "RetailSoldOrderB",
 				"target": "home2",
 				"clearTarget": "true"

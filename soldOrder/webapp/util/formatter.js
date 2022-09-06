@@ -219,13 +219,13 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 
 	},
-	formatSuffix: function (Suffix, SuffixDescriptionEN) {
+/*	formatSuffix: function (Suffix, SuffixDescriptionEN) {
 		// "Suffix - " +  
 		var text = Suffix + "/ " + SuffixDescriptionEN; //InteriorColourDescription;
 		if (Suffix) {
 			return text;
 		}
-	},
+	},*/
 	formatSuffix1: function (Suffix, Option, SuffixDescriptionEN) {
 		// "Suffix - " + dd 
 		var text = Suffix + "/ " + Option + "/ " + SuffixDescriptionEN; //InteriorColourDescription;
