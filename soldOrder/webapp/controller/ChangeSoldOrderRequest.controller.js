@@ -449,7 +449,7 @@ sap.ui.define([
 				this.getView().byId('colour_CSOR').bindItems({
 					path: 'VechileModel>/zc_exterior_trim',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-						new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),			
+						new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
 						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
