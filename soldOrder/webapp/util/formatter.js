@@ -226,13 +226,13 @@ toyota.ca.SoldOrder.util.formatter = {
 			return text;
 		}
 	},
-	formatSuffix1: function (Suffix, Option, SuffixDescriptionEN) {
+	//formatSuffix1: function (Suffix, Option, SuffixDescriptionEN) {
 		// "Suffix - " + dd 
-		var text = Suffix + "/ " + Option + "/ " + SuffixDescriptionEN; //InteriorColourDescription;
-		if (Suffix) {
-			return text;
-		}
-	},
+	//	var text = Suffix + "/ " + Option + "/ " + SuffixDescriptionEN; //InteriorColourDescription;
+	//	if (Suffix) {
+	//		return text;
+	//	}
+	//},
 	formatColour: function (ColorCode, ColourDescription) {
 
 		if (ColorCode) {
