@@ -364,16 +364,16 @@ sap.ui.define([
 				if (CSOR_controller.RSOA == true) {
 					pathAB = "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set";
 				} else {
-					pathAB = "mainservices>/ZVMS_SUFFIX";
+					pathAB = "mainservices>/ZVMS_SUFFIX_PIPELINE";
 				}
 
 				if (language === "FR") {
 					suf =
-						"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+						"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}";
 
 				} else {
 					suf =
-						"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+						"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}";
 
 				}
 
@@ -386,7 +386,7 @@ sap.ui.define([
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
-						text: suf
+						text: "{mainservices>suffix}"         //changes by swetha for suffix in place of text:suf
 					})
 				});
 				// var items_binding = this.getView().byId('suffix_CSOR').getBinding('items');
@@ -449,7 +449,7 @@ sap.ui.define([
 				this.getView().byId('colour_CSOR').bindItems({
 					path: 'VechileModel>/zc_exterior_trim',
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-						new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
+						//new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),			//changes by swetha
 						new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
 					], true),
 					template: new sap.ui.core.ListItem({
