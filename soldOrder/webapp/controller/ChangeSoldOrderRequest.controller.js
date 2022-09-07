@@ -364,7 +364,7 @@ sap.ui.define([
 				if (CSOR_controller.RSOA == true) {
 					pathAB = "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set";
 				} else {
-					pathAB = "mainservices>/ZVMS_SUFFIX_PIPELINE";
+					pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 				}
 
 				if (language === "FR") {
