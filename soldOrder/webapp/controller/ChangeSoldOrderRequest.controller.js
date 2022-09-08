@@ -30,17 +30,17 @@ sap.ui.define([
 
 		},
 		_getattachRouteMatched: function (parameters) {
-			var endDate = new Date();
-			var day5 = new Date();
-			var num = 0;
-			while (num < 5) {
-				endDate = new Date(day5.setDate(day5.getDate() + 1));
-				if (endDate.getDay() != 0 && endDate.getDay() != 6) {
-					num++;
-				}
-			}
-			//this.getView().byId("etaFrom_CSOR").setMinDate(day5);
-			this.getView().byId("etaFrom_CSOR").setDateValue(day5);
+			// var endDate = new Date();
+			// var day5 = new Date();
+			// var num = 0;
+			// while (num < 5) {
+			// 	endDate = new Date(day5.setDate(day5.getDate() + 1));
+			// 	if (endDate.getDay() != 0 && endDate.getDay() != 6) {
+			// 		num++;
+			// 	}
+			// }
+			// //this.getView().byId("etaFrom_CSOR").setMinDate(day5);
+			// this.getView().byId("etaFrom_CSOR").setDateValue(day5);
 
 			requestid = parameters.getParameters().arguments.Soreq;
 			var sObjectPath = "/Retail_Sold_OrderSet('" + requestid + "')";
