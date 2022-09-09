@@ -16,7 +16,7 @@
 								<core:Item key="{changeReasonModel>key}" text="{changeReasonModel>text}"/>
 							</ComboBox>
 							<Label text="{i18n>Comments}"/>
-							<TextArea value="{LocalDataModel>/comment_ch_res}" id="comment_ch_res" maxLength="150"/>
+							<TextArea value="{LocalDataModel>/comment_ch_res}" id="comment_ch_res" maxLength="20"/>
 							<!--<Label text="{i18n>ReqType}"/>-->
 							<!--<ComboBox id="reqTypeId_SOCR" items="{ path: '/RequestType', sorter: { path: 'key' } }" required="true">-->
 							<!--	<core:Item key="{key}" text="{text}"/>-->
