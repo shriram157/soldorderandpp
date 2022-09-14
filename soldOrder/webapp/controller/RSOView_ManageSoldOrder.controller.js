@@ -477,8 +477,8 @@ sap.ui.define([
 				if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") == "Dealer_User" && SOType == "NF") {
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
 				}
-				if (soStatus == "Changed") {
-						RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);	 //changes by swetha
+				if (ZzsoStatus == "CHANGED") {
+					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);	 //changes by swetha
 				}
 				// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 				// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
