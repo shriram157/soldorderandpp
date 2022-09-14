@@ -477,7 +477,7 @@ sap.ui.define([
 				if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") == "Dealer_User" && SOType == "NF") {
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
 				}
-				if (soStatus == "CHANGED") {
+				if (SOStatus == "CHANGED") {
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);	 //changes by swetha
 				}
 				// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
