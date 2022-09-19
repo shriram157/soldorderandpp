@@ -1321,6 +1321,8 @@ sap.ui.define([
 
 				// var year = this.getView().byId('modelYr_RSOA').getValue();
 				// items="{ path: 'oModel3>/'}"
+				
+				var modelkey = this.getView().byId('model_CSOR').getSelectedKey();
 
 				if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries') && this.getView().getElementBinding(
 						'mainservices').getBoundContext().getProperty('Zzmoyr')) {
@@ -1343,6 +1345,8 @@ sap.ui.define([
 					this.getView().byId('model_CSOR').bindItems({
 						path: "mainservices>/ZVMS_Model_EXCLSet",
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
+							
+							new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, modelkey),
 							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 							new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
 							new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
