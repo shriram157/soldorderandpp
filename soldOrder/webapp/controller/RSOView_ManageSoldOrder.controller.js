@@ -254,7 +254,7 @@ sap.ui.define([
 					});
 					RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
 
-					//setTimeout(function () {
+					setTimeout(function () {
 						var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 						var _Eligibility1 = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
 						//	_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
@@ -264,7 +264,7 @@ sap.ui.define([
 							attachButton.setEnabled(false);
 						}
 
-					//}, (1 * 1000));
+					}, (1 * 1000));
 					
 
 					RSO_MSO_controller.getSO(requestid);
