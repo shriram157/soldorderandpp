@@ -568,7 +568,25 @@ sap.ui.define([
 					});
 				}
 				
-				///added getsochangeevt data
+				
+				RSO_MSO_controller.getView().bindElement({
+					path: sObjectPath,
+					model: "mainservices",
+					events: {
+						dataRequested: function (oEvent) {
+							//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
+						},
+						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
+						dataReceived: function (oEvent) {
+
+						}
+					}
+				});
+			},
+
+			_getSOChangeEvt: function (sObjectPath, req) {
+				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
+				// Filter for Display Data Sold Order
 				var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
@@ -768,28 +786,11 @@ sap.ui.define([
 							//	//console.log("empty data", data);// change 16 sep
 						}
 					});
+					// } else {
+					// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+					// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+					// }
 				}
-				
-				//evt data end
-				RSO_MSO_controller.getView().bindElement({
-					path: sObjectPath,
-					model: "mainservices",
-					events: {
-						dataRequested: function (oEvent) {
-							//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
-						},
-						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
-						dataReceived: function (oEvent) {
-
-						}
-					}
-				});
-			},
-
-			_getSOChangeEvt: function (sObjectPath, req) {
-				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
-				// Filter for Display Data Sold Order
-				
 
 				RSO_MSO_controller.getOwnerComponent().getModel("mainservices").read(sObjectPath, {
 					success: $.proxy(function (soOData) {
