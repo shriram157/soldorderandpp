@@ -1118,9 +1118,9 @@ sap.ui.define([
 
 				// var year = this.getView().byId('modelYr_RSOA').getValue();
 				// items="{ path: 'oModel3>/'}"
-				this.getView().byId('model_CSOR').setSelectedKey("");
+				
 				var modelkey = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzmodel");
-
+				this.getView().byId('model_CSOR').setSelectedKey(modelkey);
 				if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries') && this.getView().getElementBinding(
 						'mainservices').getBoundContext().getProperty('Zzmoyr')) {
 					var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
