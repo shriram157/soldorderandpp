@@ -347,7 +347,7 @@ sap.ui.define([
 				// if (!RSO_MSO_controller.pageNum) {
 				this.byId("suffix_CSOR").setSelectedKey("");
 				this.byId("colour_CSOR").setSelectedKey("");
-				this.byId('model_CSOR').setSelectedItem().setValue("");
+				
 				//	}
 				// changes done for INC0217519 end by Minakshi
 				//var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
@@ -362,7 +362,7 @@ sap.ui.define([
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzsuffix', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzextcol', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
-
+				this.byId('model_CSOR').setSelectedItem().setValue("");
 				zmodel.refresh();
 				// this.getOwnerComponent().getModel('mainservices').refresh();
 				// this.getOwnerComponent().getModel("mainservices").updateBindings();
@@ -371,6 +371,7 @@ sap.ui.define([
 					model: "mainservices",
 					events: {
 						dataRequested: function (oEvent) {
+							RSO_MSO_controller.byId('model_CSOR').setSelectedItem().setValue("");
 							//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 						},
 						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
