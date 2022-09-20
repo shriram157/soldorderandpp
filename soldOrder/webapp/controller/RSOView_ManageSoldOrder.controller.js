@@ -347,6 +347,7 @@ sap.ui.define([
 				// if (!RSO_MSO_controller.pageNum) {
 				this.byId("suffix_CSOR").setSelectedKey("");
 				this.byId("colour_CSOR").setSelectedKey("");
+				this.byId('model_CSOR').setSelectedItem().setValue("");
 				//	}
 				// changes done for INC0217519 end by Minakshi
 				//var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
