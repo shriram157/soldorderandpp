@@ -384,6 +384,7 @@ sap.ui.define([
 			_getSOChangeEvt: function (sObjectPath, req) {
 				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 				// Filter for Display Data Sold Order
+				this.byId('model_CSOR').setSelectedItem().setValue("");
 				var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
@@ -593,6 +594,7 @@ sap.ui.define([
 					success: $.proxy(function (soOData) {
 						RSO_MSO_controller.byId("model_CSOR").setSelectedKey(soOData.Zzmodel);
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
+						this.byId('model_CSOR').setSelectedItem().setValue("");
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
 						if(soOData.Zzsuffix == 'XX'){
