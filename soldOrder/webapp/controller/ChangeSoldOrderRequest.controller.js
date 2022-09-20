@@ -22,7 +22,7 @@ sap.ui.define([
 			// var today = new Date();
 			// var day1 = new Date();
 			// day1.setDate(today.getDate() + 1);
-			// CSOR_controller.getView().byId("etaFrom_CSOR").setMinDate(day1);
+			// CSOR_controller.getView().byId("etaFrom_CSOR").setDateValue(day1);
 			zcustomerModel = new JSONModel({});
 			this.getView().setModel(zcustomerModel, 'Customer');
 			CSOR_controller.getOwnerComponent().getRouter().getRoute("ChangeSoldOrderRequest").attachPatternMatched(this._getattachRouteMatched,
@@ -30,16 +30,17 @@ sap.ui.define([
 
 		},
 		_getattachRouteMatched: function (parameters) {
-			var endDate = new Date();
-			var day5 = new Date();
-			var num = 0;
-			while (num < 5) {
-				endDate = new Date(day5.setDate(day5.getDate() + 1));
-				if (endDate.getDay() != 0 && endDate.getDay() != 6) {
-					num++;
-				}
-			}
-			this.getView().byId("etaFrom_CSOR").setMinDate(day5);
+			// var endDate = new Date();
+			// var day5 = new Date();
+			// var num = 0;
+			// while (num < 5) {
+			// 	endDate = new Date(day5.setDate(day5.getDate() + 1));
+			// 	if (endDate.getDay() != 0 && endDate.getDay() != 6) {
+			// 		num++;
+			// 	}
+			// }
+			// //this.getView().byId("etaFrom_CSOR").setMinDate(day5);
+			// this.getView().byId("etaFrom_CSOR").setDateValue(day5);
 
 			requestid = parameters.getParameters().arguments.Soreq;
 			var sObjectPath = "/Retail_Sold_OrderSet('" + requestid + "')";
@@ -49,6 +50,8 @@ sap.ui.define([
 				events: {
 					change: function (OEvent) {
 						//Filter Data Sold Order
+						CSOR_controller.byId("model_CSOR").setSelectedKey(CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
+							"/Zzmodel"));
 						CSOR_controller.series_selected();
 						CSOR_controller.model_selected();
 						CSOR_controller.suffix_selected();
@@ -83,7 +86,7 @@ sap.ui.define([
 			this.fnDateDisabled(this.getView().byId("etaFrom_CSOR"));
 			this.fnDateDisabled(this.getView().byId("etaTo_CSOR"));
 		},
-		
+
 		fnDateDisabled: function (id) {
 
 			id.addEventDelegate({
@@ -115,7 +118,7 @@ sap.ui.define([
 					}
 				}
 
-				CSOR_controller.getView().byId("etaTo_CSOR").setMinDate(CDate);
+				CSOR_controller.getView().byId("etaTo_CSOR").setDateValue(CDate);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -145,7 +148,7 @@ sap.ui.define([
 					}
 				}
 
-				CSOR_controller.getView().byId("etaTo_CSOR").setMinDate(CDate);
+				CSOR_controller.getView().byId("etaTo_CSOR").setDateValue(CDate);
 			} else {
 				var errForm = formatter.formatErrorType("SO00002");
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -157,8 +160,7 @@ sap.ui.define([
 		/////////////////////////// INC0187445 Changes done by Minakshi on 25/03/2021 end
 
 		_onSubmit: function () {
-			
-		
+
 			var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
 			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getSelectedKey();
 			var valApx = CSOR_controller.getView().byId("apx_CSOR").getSelectedKey();
@@ -208,15 +210,15 @@ sap.ui.define([
 					}
 					zdata = {
 
-						"ZzsoReqNo": oldSoldOrderNo,//update old sold order INC0187445
+						"ZzsoReqNo": oldSoldOrderNo, //update old sold order INC0187445
 						"Zzmodel": valModel, //"YZ3DCT",
 						"Zzmoyr": Zzmoyr, //"2018",
 						"Zzseries": Zzseries,
 						"Zzsuffix": valSuffix, //"ML",
 						"Zzextcol": valColour, //"01D6",
 						"Zzapx": valApx, // "00",
-						"ZzreqEtaFrom":  valFrom+"T00:00:00", //null,
-						"ZzreqEtaTo": valTo+"T00:00:00" , //null,
+						"ZzreqEtaFrom": valFrom + "T00:00:00", //null,
+						"ZzreqEtaTo": valTo + "T00:00:00", //null,
 						"ZcontractDate": ZcontractDate1, //null,
 						"ZsalesType": ZsalesType, // "",
 						// "ZtcciNum": ZtcciNum, // "",
@@ -236,7 +238,9 @@ sap.ui.define([
 						"TelNumber": Zcustomer_phone,
 						"SmtpAddr": Zcustomer_email,
 						"Qausp": valDrive,
-						"Zzendcu": Zcustomer_No
+						"Zzendcu": Zcustomer_No,
+						"ZzcancelComment": CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/comment_ch_res"),
+						"ZzcancelRsn": CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/resonCancelId_val")
 							// "ZdriverLiNum": valDrive
 					};
 					var URI = "/Retail_Sold_OrderSet";
@@ -245,21 +249,49 @@ sap.ui.define([
 					if (!CSOR_controller.getView().getModel('mainservices').getSecurityToken()) {
 						CSOR_controller.getView().getModel('mainservices').refreshSecurityToken();
 					}
-					CSOR_controller.getView().getModel('mainservices').create(URI, zdata, {
-						success: function (data) {
-							// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",
-							// 	sap.m.MessageBox.Action.OK, null, null);
-							if (data.ZzsoReqNo) {
-								CSOR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-									Soreq: data.ZzsoReqNo
-								}, true);
+
+					CSOR_controller.getView().getModel('mainservices').callFunction("/RSO_Change", {
+						method: "POST",
+						urlParameters: {
+							Reason: CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/resonCancelId_val"),
+							Reason_comment: CSOR_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/comment_ch_res"),
+							// Request_Type: reqTypeId_SOCR_val,
+							ZzsoReqNo: requestid
+						}, // function import parameters
+						success: function (data, response) {
+							if (data.Type == 'E') {
+								sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+									.MessageBox.Action.OK, null, null);
+							} else {
+								CSOR_controller.getView().getModel('mainservices').create(URI, zdata, {
+									success: function (data) {
+										// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",
+										// 	sap.m.MessageBox.Action.OK, null, null);
+										if (data.ZzsoReqNo) {
+											CSOR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
+												Soreq: data.ZzsoReqNo
+											}, true);
+										}
+									},
+									error: function (data) {
+										sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR,
+											"Error",
+											sap.m.MessageBox.Action.OK, null, null);
+									}
+								});
 							}
+							// else {
+							// 	CSOR_controller.getOwnerComponent().getRouter().navTo("ChangeSoldOrderRequest", {
+							// 		Soreq: requestid
+							// 	}, true); //page8
+							// }
 						},
-						error: function (data) {
-							sap.m.MessageBox.show("Error occurred while sending data. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error",
-								sap.m.MessageBox.Action.OK, null, null);
+						error: function (oData, oResponse) {
+							sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+								.MessageBox.Action.OK, null, null);
 						}
 					});
+
 				}
 			}
 		},
@@ -310,8 +342,28 @@ sap.ui.define([
 		},
 		model_selected: function (oEvent) {
 			// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
+
+			///code added on 07/09/2022 to get brand
+			var brand;
+			var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+			if (isDivisionSent) {
+				this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+
+				if (this.sDivision == '10') // set the toyoto logo
+				{
+					brand = "TOYOTA";
+
+				} else { // set the lexus logo
+					brand = "LEXUS";
+
+					// }
+				}
+			}
+			// end of brand
 			var model = this.getView().byId('model_CSOR').getSelectedKey();
 			var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
+			var pathAB = "";
+			var suf;
 
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr')) {
 				var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
@@ -326,16 +378,35 @@ sap.ui.define([
 					this.getView().byId("colour_CSOR").setSelectedKey("");
 					this.getView().byId("apx_CSOR").setSelectedKey("");
 				}
+
+				if (CSOR_controller.RSOA == true) {
+					pathAB = "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set";
+				} else {
+					pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
+				}
+
+				if (language === "FR") {
+					suf =
+						"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+
+				} else {
+					suf =
+						"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
+
+				}
+
 				//Changes done by Minakshi on 25/03/2021 INC0187445 end
 				this.getView().byId('suffix_CSOR').bindItems({
 					//		path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 					path: "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set",
+					//path: pathAB,
 					filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+						new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+						new sap.ui.model.Filter("brand", sap.ui.model.FilterOperator.EQ, brand)
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{mainservices>suffix}",
-						text: "{parts: [{path:'mainservices>suffix'},{path:'mainservices>option_1_desc_en'},{path:'mainservices>suffix_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}"
+						text: suf
 					})
 				});
 				// var items_binding = this.getView().byId('suffix_CSOR').getBinding('items');
@@ -349,9 +420,16 @@ sap.ui.define([
 			//----APX---------
 			//----------------
 			//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
-			var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+			let suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
 
-			var model = this.getView().byId('model_CSOR').getSelectedKey();
+			let model = this.getView().byId('model_CSOR').getSelectedKey();
+			let color;
+			if (language === "FR") {
+				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarketingDescriptionEXTColorFR}";
+			} else {
+				color = "{VechileModel>ExteriorColorCode}/{VechileModel>MarketingDescriptionEXTColorEN}";
+			}
+
 			if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 				//Changes done by Minakshi on 25/03/2021 INC0187445 start
 				if (oEvent != undefined) {
@@ -396,9 +474,10 @@ sap.ui.define([
 					], true),
 					template: new sap.ui.core.ListItem({
 						key: "{VechileModel>ExteriorColorCode}",
-						text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
+						text: color
 					})
 				});
+
 				// var items_binding = this.getView().byId('colour_CSOR').getBinding('items');
 				// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
 				// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
@@ -442,6 +521,12 @@ sap.ui.define([
 				}
 			});
 		},
+
+		onNavBack: function (oEvent) {
+			this.getOwnerComponent().getRouter().navTo("SoldOrderChangeReason", {
+				Soreq: requestid
+			}, true);
+		}
 
 	});
 

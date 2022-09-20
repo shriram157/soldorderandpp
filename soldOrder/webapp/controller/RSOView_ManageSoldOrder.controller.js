@@ -28,8 +28,8 @@ sap.ui.define([
 				zinventoryModel = new JSONModel({});
 				RSO_MSO_controller.getView().setModel(zcustomerModel, 'Customer');
 				RSO_MSO_controller.getView().setModel(zinventoryModel, 'Inventory');
-				RSO_MSO_controller.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(RSO_MSO_controller._getattachRouteMatched,
-					RSO_MSO_controller);
+				//RSO_MSO_controller.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(RSO_MSO_controller._getattachRouteMatched, this);
+				this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._getattachRouteMatched, this);
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 				var salesTypeModel = new sap.ui.model.json.JSONModel();
@@ -151,7 +151,7 @@ sap.ui.define([
 
 					},
 					success: function (data, textStatus, jqXHR) {
-						
+
 						RSO_MSO_controller.getchat();
 					},
 					error: function (oError) {
@@ -196,11 +196,11 @@ sap.ui.define([
 						oModel.updateBindings(true);
 						sap.ui.getCore().setModel(oModel, 'GlobalChatModel');
 						//console.log(sap.ui.getCore().getModel('GlobalChatModel').getData());
-						AppController.chatNum = sap.ui.getCore().getModel('GlobalChatModel').getData().length;
+						RSO_MSO_controller.chatNum = sap.ui.getCore().getModel('GlobalChatModel').getData().length;
 
 						// for (var i = 0; i < RSO_MSO_controller.getView().byId("chatList").getItems().length; i++) {
 						if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
-							RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(AppController.chatNum);
+							RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus(RSO_MSO_controller.chatNum);
 						}
 						/*if (AppController.chatNum !== undefined) {
 
@@ -223,98 +223,105 @@ sap.ui.define([
 			},
 			_getattachRouteMatched: function (parameters) {
 				//	var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
+				RSO_MSO_controller = this;
 				var feed = RSO_MSO_controller.getView().byId("feedId");
 				var chatVBox = RSO_MSO_controller.getView().byId("chatVBox");
-				/// changes done by Minakshi for INC0195063
-				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/pageArg", parameters.getParameters().arguments.mainPG || "");
-				chatVBox.setVisible(false);
-				/*	if (cb_chat.getSelected() == true) {
-						cb_chat.setSelected(false);
-					} else {
-						cb_chat.setSelected(false);
-					}*/
 				var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
-				if (oDivision == "10") {
-					RSO_MSO_controller.sDivision = "TOY";
-				} else {
-					RSO_MSO_controller.sDivision = "LEX";
-				}
 				var requestid = parameters.getParameters().arguments.Soreq;
-				var RSO_MSO_Model = new sap.ui.model.json.JSONModel();
-				RSO_MSO_Model.setData({
-					NFVisible: false,
-					SOVisible: true
-				});
-				RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
-				
-				setTimeout(function () {
-					var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
-					var _Eligibility1 = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
-					//	_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
-					if (_Eligibility1.getText() == "YES") {
-						attachButton.setEnabled(true);
-					} else {
-						attachButton.setEnabled(false);
-					}
-
-				}, (1 * 1000));
-				RSO_MSO_controller.getSO(requestid);
-
-				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
-					var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
-					// 	//console.log("So status", SOType);
-					//For FLeet Details only
-					if (SOType == "NF" || SOType == "FO") {
-						RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
-						// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
-					} else {
-						RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
-						// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-					}
-				}
-				//	console.log(RSO_MSO_controller.getView().byId("chatList").getItems());
-				RSO_MSO_controller.getView().byId("feedId").setValue(null);
-				if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
-					RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus();
-				}
-				RSO_MSO_controller.getchat();
 				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-
-				if (userType == "TCI_User") {
-					feed.setVisible(true);
-					feed.setEnabled(true);
-					//	cb_chat.setVisible(true);
-					chatVBox.setVisible(true);
-					//	cb_chat.setEnabled(true);
-					/*	if (AppController.chatNum !== undefined) {
-							if (AppController.chatNum > 0) {
-								cb_chat.setSelected(true);
-								feed.setEnabled(true);
-							} else {
-								cb_chat.setSelected(false);
-								feed.setEnabled(false);
-							}
-						}*/
-				} else {
-					if (AppController.chatNum !== undefined) {
-						if (AppController.chatNum > 0) {
-							feed.setEnabled(true);
-							feed.setVisible(true);
-							//	cb_chat.setVisible(false);
-							chatVBox.setVisible(true);
+				if (requestid) {
+					/// changes done by Minakshi for INC0195063
+					RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/pageArg", parameters.getParameters().arguments.mainPG ||
+						"");
+					//	RSO_MSO_controller.pageNum = parameters.getParameters().arguments.pageNum || "";
+					chatVBox.setVisible(false);
+					/*	if (cb_chat.getSelected() == true) {
+							cb_chat.setSelected(false);
 						} else {
-							feed.setEnabled(false);
-							feed.setVisible(false);
-							//	cb_chat.setVisible(false);
-							chatVBox.setVisible(false);
+							cb_chat.setSelected(false);
+						}*/
+
+					if (oDivision == "10") {
+						RSO_MSO_controller.sDivision = "TOY";
+					} else {
+						RSO_MSO_controller.sDivision = "LEX";
+					}
+
+					var RSO_MSO_Model = new sap.ui.model.json.JSONModel();
+					RSO_MSO_Model.setData({
+						NFVisible: false,
+						SOVisible: true
+					});
+					RSO_MSO_controller.getView().setModel(RSO_MSO_Model, "RSO_MSO_Model");
+
+					setTimeout(function () {
+						var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
+						var _Eligibility1 = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity");
+						//	_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+						if (_Eligibility1.getText() == "YES") {
+							attachButton.setEnabled(true);
+						} else {
+							attachButton.setEnabled(false);
+						}
+
+					}, (1 * 1000));
+
+					RSO_MSO_controller.getSO(requestid);
+
+					if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext() !== null) {
+						var SOType = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZzsoType");
+						// 	//console.log("So status", SOType);
+						//For FLeet Details only
+						if (SOType == "NF" || SOType == "FO") {
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+							// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+						} else {
+							RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+							// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 						}
 					}
+					//	console.log(RSO_MSO_controller.getView().byId("chatList").getItems());
+					RSO_MSO_controller.getView().byId("feedId").setValue(null);
+					if (RSO_MSO_controller.getView().byId("chatList").getItems()[0]) {
+						RSO_MSO_controller.getView().byId("chatList").getItems()[0].focus();
+					}
+					RSO_MSO_controller.getchat();
+
+					if (userType == "TCI_User") {
+						feed.setVisible(true);
+						feed.setEnabled(true);
+						//	cb_chat.setVisible(true);
+						chatVBox.setVisible(true);
+						//	cb_chat.setEnabled(true);
+						/*	if (AppController.chatNum !== undefined) {
+								if (AppController.chatNum > 0) {
+									cb_chat.setSelected(true);
+									feed.setEnabled(true);
+								} else {
+									cb_chat.setSelected(false);
+									feed.setEnabled(false);
+								}
+							}*/
+					} else {
+						if (RSO_MSO_controller.chatNum !== undefined) {
+							if (RSO_MSO_controller.chatNum > 0) {
+								feed.setEnabled(true);
+								feed.setVisible(true);
+								//	cb_chat.setVisible(false);
+								chatVBox.setVisible(true);
+							} else {
+								feed.setEnabled(false);
+								feed.setVisible(false);
+								//	cb_chat.setVisible(false);
+								chatVBox.setVisible(false);
+							}
+						}
+					}
+
 				}
+
 			},
 
-			onSelectCB: function () {
-			
-			},
 			getSO: function (req) {
 				ppdFlages = sap.ui.getCore().getModel("ppdFlages");
 				if (ppdFlages) {
@@ -336,231 +343,274 @@ sap.ui.define([
 				var host = RSO_MSO_controller.host();
 				//	var oURL = host + "/ZVMS_SOLD_ORDER_SRV/ZVMS_SOLD_ORDERSet?$format=json";
 				//attachPatternMatched
-
-				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
+				// changes done for INC0217519 start by Minakshi
+				// if (!RSO_MSO_controller.pageNum) {
+				this.byId("suffix_CSOR").setSelectedKey("");
+				this.byId("colour_CSOR").setSelectedKey("");
+				
+				//	}
+				// changes done for INC0217519 end by Minakshi
+				//var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
 				zrequest = req;
 				// var _Eligilibity = " ";
 				var zmodel = RSO_MSO_controller.getView().getModel("mainservices");
 				RSO_MSO_controller.getView().getModel("mainservices").bUseBatch = false;
 				var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
-				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
-				var sMsg = oBundle.getText("mangSoldOrder", [req]);
 
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmodel', "");
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmoyr', "");
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzsuffix', "");
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzextcol', "");
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
+				this.byId('model_CSOR').setSelectedItem().setValue("");
 				zmodel.refresh();
+				// this.getOwnerComponent().getModel('mainservices').refresh();
+				// this.getOwnerComponent().getModel("mainservices").updateBindings();
 				RSO_MSO_controller.getView().bindElement({
 					path: sObjectPath,
 					model: "mainservices",
 					events: {
-						change: function (oEvent) {
-							RSO_MSO_controller.getView().getElementBinding('mainservices').refresh();
-							// Filter for Display Data Sold Order
-							var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
-							/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-									'ChatMessages');*/
-							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-								"Eligilibity");
-							if (_Eligilibity == "YES") {
-								attachButton.setEnabled(true);
-							} else {
-								attachButton.setEnabled(false);
-							}
-							var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-								'Zzendcu');
-							//added by Minakshi for DMND0002960 start
-							var zdealerCode = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-								'ZzdealerCode');
-
-							RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg + " / " + zdealerCode);
-							//added by Minakshi for DMND0002960 end
-							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", zcustomerNumber);
-
-						
-
-							RSO_MSO_controller.model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-								'Zzmodel');
-							RSO_MSO_controller.modYear = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-								'Zzmoyr');
-							RSO_MSO_controller.dealerAllocation = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-								'ZzdealerCode');
-							RSO_MSO_controller.series = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-								'Zzseries');
-							if (RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType") == "SO") {
-								RSO_MSO_controller.apptypeAllocation = "R";
-							} else if (RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType") == "FO") {
-								RSO_MSO_controller.apptypeAllocation = "F";
-							} else {
-								RSO_MSO_controller.apptypeAllocation = "R";
-							}
-								sap.ui.getCore().setModel(new JSONModel({
-								model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
-								modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
-								suffix: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix'),
-								color: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'),
-								series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
-								dealer:RSO_MSO_controller.dealerAllocation,
-								apptypeAllocation:RSO_MSO_controller.apptypeAllocation
-							}), 'Vehicle_Selection');
-							var host = RSO_MSO_controller.host();
-							var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
-							if (isDivisionSent) {
-								this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
-								if (this.sDivision == '10') {
-									RSO_MSO_controller.divison = "TOY";
-								} else { // set the lexus logo
-									RSO_MSO_controller.divison = "LEX";
-								}
-							}
-							/*console.log("1:"+RSO_MSO_controller.model);
-							console.log("2:"+RSO_MSO_controller.modYear);
-							console.log("3:"+RSO_MSO_controller.dealer);
-							console.log("4:"+RSO_MSO_controller.series);
-							console.log("5:"+RSO_MSO_controller.apptype);
-							*/
-
-							//Filter Data Sold Order
-							var SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
-							//For FLeet Details only
-							if (SOType == "NF" || SOType == "FO") {
-								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
-								// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
-							} else {
-								RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
-								// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-							}
-
-							RSO_MSO_controller.series_selected();
-							RSO_MSO_controller.model_selected();
-							RSO_MSO_controller.suffix_selected();
-
-							//----------------------------------------------------------
-							var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
-/// changes done by Minakshi for INC0195063
-if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F"){
-	RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
-}
-				
-							if (status === "Cancelled") {
-								RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
-								RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
-								RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
-								RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
-								RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
-								RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
-								RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
-							}
-							// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-							// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
-
-							var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-								"Eligilibity");
-							if (_Eligilibity == "YES") {
-								attachButton.setEnabled(true);
-							} else {
-								attachButton.setEnabled(false);
-							}
-							var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
-							if (zvtn != "") {
-								var OBJNew = {};
-								var _oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-									pattern: "yyyy-MM-dd"
-								});
-								var ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom"); //ETAFrom earleir
-								var ETATo = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo"); //ETATo
-								if (ETAFrom == null && ETATo == null) {
-									var datemodel = sap.ui.getCore().getModel("dateSO_BModel");
-									var etaToText = RSO_MSO_controller.getView().byId("idtoText").getText();
-									var etaFromText = RSO_MSO_controller.getView().byId("idfromText").getText();
-									var data = datemodel.getData();
-									var ETAFrom1 = data.fromDate;
-									var ETATo1 = data.toDate;
-									OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom1));
-									OBJNew.ETATo = _oDateFormat.format(new Date(ETATo1));
-									SelectVehicleOption = false;
-									zinventoryModel.setData(OBJNew);
-									zinventoryModel.updateBindings(true);
-								} else {
-									OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
-									OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
-									SelectVehicleOption = false;
-									zinventoryModel.setData(OBJNew);
-									zinventoryModel.updateBindings(true);
-								}
-							} else if (zvtn == "" && !!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore')) {
-								var OBJNew = {};
-								var year = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(0, 4);
-								var month = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(4, 6);
-								var day = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(6, 8);
-								var ETAFrom = year + "-" + month + "-" + day;
-
-								var year = sap.ui.getCore().getModel('ModelCore').getData().ETATo.substring(0, 4);
-								var month = sap.ui.getCore().getModel('ModelCore').getData().ETATo.substring(4, 6);
-								var day = sap.ui.getCore().getModel('ModelCore').getData().ETATo.substring(6, 8);
-								var ETATo = year + "-" + month + "-" + day;
-
-								RSO_MSO_controller.getView().byId("idVTN").setText(sap.ui.getCore().getModel('ModelCore').getData().ZZVTN);
-								OBJNew.ETAFrom = ETAFrom;
-								OBJNew.ETATo = ETATo;
-								SelectVehicleOption = false;
-								zinventoryModel.setData(OBJNew);
-								zinventoryModel.updateBindings(true);
-								sap.ui.getCore().getModel('ModelCore').setData({});
-							
-							} else {
-								SelectVehicleOption = false;
-								zinventoryModel.setData({});
-								zinventoryModel.updateBindings(true);
-							
-							}
-							if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
-								var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
-									'Zzendcu');
-								var regFlag = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('CustAtReg');
-
-								RSO_MSO_controller._SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty(
-									"ZzsoType");
-								// if (_SOType == "SO") {
-								// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
-								// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-								var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
-
-								$.ajax({
-									url: url,
-									headers: {
-										accept: 'application/json'
-									},
-									type: "GET",
-									dataType: "json",
-									contentType: "text/xml; charset=\"utf-8\"",
-									success: function (data, textStatus, jqXHR) {
-										//console.log("customer data", data);
-										if (data.customer) {
-											data.customer.phones[0].phoneNumber = data.customer.phones[0].areaCode + data.customer.phones[0].localNumber;
-											zcustomerModel.setData(data.customer);
-										}
-									},
-									error: function (request, errorText, errorCode) {
-										if (RSO_MSO_controller._SOType !== "NF" && RSO_MSO_controller._SOType !== "FO") {
-											zcustomerModel.setData([]); // change 16 sep
-											//console.log(request.responseText);
-											var str = request.responseText;
-											//	var obj = JSON.stringify(str);
-											var obj2 = JSON.parse(str);
-											sap.m.MessageToast.show(obj2.messages[0].errorText); // 17 sep change 
-										}
-										//	//console.log("empty data", data);// change 16 sep
-									}
-								});
-								// } else {
-								// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
-								// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
-								// }
-							}
+						dataRequested: function (oEvent) {
+							RSO_MSO_controller.byId('model_CSOR').setSelectedItem().setValue("");
+							//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 						},
-						dataReceived: function (oData) {}
+						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
+						dataReceived: function (oEvent) {
+
+						}
 					}
 				});
 			},
-			onAfterRendering: function () {},
+
+			_getSOChangeEvt: function (sObjectPath, req) {
+				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
+				// Filter for Display Data Sold Order
+				this.byId('model_CSOR').setSelectedItem().setValue("");
+				var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
+				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
+				var sMsg = oBundle.getText("mangSoldOrder", [req]);
+				/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+						'ChatMessages');*/
+				var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+				if (_Eligilibity == "YES") {
+					attachButton.setEnabled(true);
+				} else {
+					attachButton.setEnabled(false);
+				}
+				var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+					'Zzendcu');
+				//added by Minakshi for DMND0002960 start
+				var zdealerCode = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+					'ZzdealerCode');
+
+				RSO_MSO_controller.getView().byId("label_MangSoldOrderid").setText(sMsg + " / " + zdealerCode);
+				//added by Minakshi for DMND0002960 end
+				RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zcustomer_No", zcustomerNumber);
+
+				RSO_MSO_controller.model = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+					'Zzmodel');
+				RSO_MSO_controller.modYear = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+					'Zzmoyr');
+				RSO_MSO_controller.dealerAllocation = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+					'ZzdealerCode');
+				RSO_MSO_controller.series = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+					'Zzseries');
+				if (RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType") == "SO") {
+					RSO_MSO_controller.apptypeAllocation = "R";
+				} else if (RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType") == "FO") {
+					RSO_MSO_controller.apptypeAllocation = "F";
+				} else {
+					RSO_MSO_controller.apptypeAllocation = "R";
+				}
+				sap.ui.getCore().setModel(new JSONModel({
+					model: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmodel'),
+					modelyear: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
+					suffix: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix'),
+					color: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'),
+					series: RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
+					dealer: RSO_MSO_controller.dealerAllocation,
+					apptypeAllocation: RSO_MSO_controller.apptypeAllocation
+				}), 'Vehicle_Selection');
+				var host = RSO_MSO_controller.host();
+				var isDivisionSent = window.location.search.match(/Division=([^&]*)/i);
+				if (isDivisionSent) {
+					this.sDivision = window.location.search.match(/Division=([^&]*)/i)[1];
+					if (this.sDivision == '10') {
+						RSO_MSO_controller.divison = "TOY";
+					} else { // set the lexus logo
+						RSO_MSO_controller.divison = "LEX";
+					}
+				}
+				/*console.log("1:"+RSO_MSO_controller.model);
+				console.log("2:"+RSO_MSO_controller.modYear);
+				console.log("3:"+RSO_MSO_controller.dealer);
+				console.log("4:"+RSO_MSO_controller.series);
+				console.log("5:"+RSO_MSO_controller.apptype);
+				*/
+
+				//Filter Data Sold Order
+				var SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZzsoType");
+				//For FLeet Details only
+				if (SOType == "NF" || SOType == "FO") {
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+				} else {
+					RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
+				}
+
+				//----------------------------------------------------------
+				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
+				/// changes done by Minakshi for INC0195063
+				if (RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F") {
+					RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
+				}
+				if (status === "Cancelled") {
+					RSO_MSO_controller.getView().byId("btn_update").setEnabled(false);
+					RSO_MSO_controller.getView().byId("btn_selectVehicle_RSO_MSO").setEnabled(false);
+					RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
+					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
+					RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
+					RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
+					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
+				}else {
+					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(true);
+				}
+				//changes done by Swetha for INC0213630
+				if (sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType") == "Dealer_User" && SOType == "NF") {
+					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
+				}
+				if (status == "CHANGED") {
+					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);	 //changes by swetha
+				}
+				// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
+				// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+
+				_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+					"Eligilibity");
+				if (_Eligilibity == "YES") {
+					attachButton.setEnabled(true);
+				} else {
+					attachButton.setEnabled(false);
+				}
+				var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
+				if (zvtn != "") {
+					var OBJNew = {};
+					var _oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+						pattern: "yyyy-MM-dd"
+					});
+					var ETAFrom = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaFrom"); //ETAFrom earleir
+					var ETATo = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("EtaTo"); //ETATo
+					if (ETAFrom === null && ETATo === null) {
+						var datemodel = sap.ui.getCore().getModel("dateSO_BModel");
+						var etaToText = RSO_MSO_controller.getView().byId("idtoText").getText();
+						var etaFromText = RSO_MSO_controller.getView().byId("idfromText").getText();
+						var data = datemodel.getData();
+						var ETAFrom1 = data.fromDate;
+						var ETATo1 = data.toDate;
+						OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom1));
+						OBJNew.ETATo = _oDateFormat.format(new Date(ETATo1));
+						SelectVehicleOption = false;
+						zinventoryModel.setData(OBJNew);
+						zinventoryModel.updateBindings(true);
+					} else {
+						OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
+						OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
+						SelectVehicleOption = false;
+						zinventoryModel.setData(OBJNew);
+						zinventoryModel.updateBindings(true);
+					}
+				} else if (zvtn == "" && !!SelectVehicleOption && sap.ui.getCore().getModel('ModelCore')) {
+					OBJNew = {};
+					var year = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(0, 4);
+					var month = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(4, 6);
+					var day = sap.ui.getCore().getModel('ModelCore').getData().ETAFrom.substring(6, 8);
+					ETAFrom = year + "-" + month + "-" + day;
+
+					year = sap.ui.getCore().getModel('ModelCore').getData().ETATo.substring(0, 4);
+					month = sap.ui.getCore().getModel('ModelCore').getData().ETATo.substring(4, 6);
+					day = sap.ui.getCore().getModel('ModelCore').getData().ETATo.substring(6, 8);
+					ETATo = year + "-" + month + "-" + day;
+
+					RSO_MSO_controller.getView().byId("idVTN").setText(sap.ui.getCore().getModel('ModelCore').getData().ZZVTN);
+					OBJNew.ETAFrom = ETAFrom;
+					OBJNew.ETATo = ETATo;
+					SelectVehicleOption = false;
+					zinventoryModel.setData(OBJNew);
+					zinventoryModel.updateBindings(true);
+					sap.ui.getCore().getModel('ModelCore').setData({});
+
+				} else {
+					SelectVehicleOption = false;
+					zinventoryModel.setData({});
+					zinventoryModel.updateBindings(true);
+
+				}
+				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
+					var zcustomerNumber = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
+						'Zzendcu');
+					var regFlag = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('CustAtReg');
+
+					RSO_MSO_controller._SOType = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty(
+						"ZzsoType");
+					// if (_SOType == "SO") {
+					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
+					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
+					var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
+
+					$.ajax({
+						url: url,
+						headers: {
+							accept: 'application/json'
+						},
+						type: "GET",
+						dataType: "json",
+						contentType: "text/xml; charset=\"utf-8\"",
+						success: function (data, textStatus, jqXHR) {
+							//console.log("customer data", data);
+							if (data.customer) {
+								data.customer.phones[0].phoneNumber = data.customer.phones[0].areaCode + data.customer.phones[0].localNumber;
+								zcustomerModel.setData(data.customer);
+							}
+						},
+						error: function (request, errorText, errorCode) {
+							if (RSO_MSO_controller._SOType !== "NF" && RSO_MSO_controller._SOType !== "FO") {
+								zcustomerModel.setData([]); // change 16 sep
+								//console.log(request.responseText);
+								var str = request.responseText;
+								//	var obj = JSON.stringify(str);
+								var obj2 = JSON.parse(str);
+								sap.m.MessageToast.show(obj2.messages[0].errorText); // 17 sep change 
+							}
+							//	//console.log("empty data", data);// change 16 sep
+						}
+					});
+					// } else {
+					// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", true);
+					// 	RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", false);
+					// }
+				}
+
+				RSO_MSO_controller.getOwnerComponent().getModel("mainservices").read(sObjectPath, {
+					success: $.proxy(function (soOData) {
+						RSO_MSO_controller.byId("model_CSOR").setSelectedKey(soOData.Zzmodel);
+						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
+						this.byId('model_CSOR').setSelectedItem().setValue("");
+						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
+						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
+						if(soOData.Zzsuffix == 'XX'){
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", '');
+						}else{
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", soOData.Zzextcol);
+						}
+						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzapx", soOData.Zzapx);
+						RSO_MSO_controller.series_selected();
+						RSO_MSO_controller.model_selected();
+						RSO_MSO_controller.suffix_selected();
+					}, this),
+					error: function () {}
+				});
+			},
 
 			_updateSoldOrderRequest: function () {
 				var comment = RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").getValue();
@@ -609,7 +659,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				});
 				// window.location.reload();
 			},
-
 			_updateAuditSoldOrderRequest: function () {
 				this.btnAudit = RSO_MSO_controller.getView().byId("btn_AuditComp_RSO_MSO");
 				var that = this;
@@ -636,7 +685,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				});
 				// AppController.flgSoldOrderReqStatus = "Audit - Complete";
 			},
-
 			_approvePriceProtectionDetails: function () {
 				if (RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText() === "YES") {
 
@@ -663,7 +711,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 								});
 
 							} else {
-								var sMsg = oData.Message;
+								sMsg = oData.Message;
 								sap.m.MessageBox.show(sMsg, {
 									icon: sap.m.MessageBox.Icon.SUCCESS,
 									title: "SUCCESS",
@@ -686,7 +734,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 						.m.MessageBox.Action.OK, null, null);
 				}
 			},
-
 			_rejectPriceProtectionDetails: function () {
 				//AppController.flgPriceProtectionStatus = "Rejected";
 				RSO_MSO_controller.getView().getModel("mainservices").callFunction("/Reject_Price_Details", {
@@ -710,7 +757,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 							});
 
 						} else {
-							var sMsg = oData.Message;
+							sMsg = oData.Message;
 
 							sap.m.MessageBox.show(sMsg, {
 								icon: sap.m.MessageBox.Icon.SUCCESS,
@@ -729,7 +776,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					}
 				});
 			},
-
 			_getVehiclesToFillSoldOrderRequest: function () {
 				//	var host = RSO_MSO_controller.host();
 				SelectVehicleOption = true;
@@ -738,7 +784,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				}, true);
 
 			},
-
 			_navCancleOrder: function () {
 				var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorCancel");
 				var title = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("title4");
@@ -770,7 +815,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					contentWidth: "10rem"
 				});
 			},
-
 			_onDeleteAttachment: function (evt) {
 				var evtContext = evt.getSource().getBindingContext('mainservices'); // "/ProductCollection/0"
 				var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("deleteError");
@@ -802,7 +846,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					contentWidth: "10rem"
 				});
 			},
-
 			deleteAtt: function (evtContext, index) {
 				var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 				var sPath = evtContext.sPath;
@@ -817,17 +860,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					}
 				});
 			},
-			// var oIndex = parseInt(sPath.substring(sPath.lastIndexOf('/') + 1));
-			// var model = oTable.getModel();
-			// var data = model.getProperty("/AttachmentSet");
-			// data.splice(index, 1);
-			// model.setProperty("/AttachmentSet", data);
-
-			_openFile: function (oEvent) {
-				// var fileUrl = "https://google.com";
-				// parent.window.open(fileUrl, '_blank');
-			},
-
 			_addAttachment: function () {
 				var com = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").getValue();
 				var textArea = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO");
@@ -850,8 +882,6 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 
 				oFileUploader.setSendXHR(true);
 				oFileUploader.upload();
-
-				// }
 			},
 
 			_navToRSOrderChange: function () {
@@ -871,6 +901,9 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 					onClose: function (sAction) {
 						if (sAction == "YES") {
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/changeRsKey", "");
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/comment_ch_res", "");
+							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/resonCancelId_val", "");
 							RSO_MSO_controller.getOwnerComponent().getRouter().navTo("SoldOrderChangeReason", {
 								Soreq: zrequest
 							}, true); //page7
@@ -1058,16 +1091,28 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				return a;
 			},
 			onNavBack: function (Oevent) {
+				
 				if (ppdFlages) {
 					if (ppdFlages.getData().openCommentBox == 'X') {
 						ppdFlages.getData().openCommentBox = '';
 						sap.ui.getCore().setModel(ppdFlages, "ppdFlages");
-						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {refresh : false});
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("PriceProtectionDetails_Dealer", {
+							refresh: false
+						});
 					} else {
-						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {refresh : false});
+						RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
+							refresh: false
+						});
 					}
+				}else if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F"){
+					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails", {
+						refresh: false
+					});
 				} else {
-					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {refresh : false});
+					//window.history.go(-1);
+					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
+						refresh: false
+					});
 				}
 			},
 			//---------------------------------------
@@ -1077,11 +1122,14 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 
 				// var year = this.getView().byId('modelYr_RSOA').getValue();
 				// items="{ path: 'oModel3>/'}"
-
+				
+				var modelkey = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzmodel");
+				this.getView().byId('model_CSOR').setSelectedKey(modelkey);
 				if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries') && this.getView().getElementBinding(
 						'mainservices').getBoundContext().getProperty('Zzmoyr')) {
 					var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+					modelkey = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzmodel");
 					// var language = RSO_MSO_controller.returnBrowserLanguage();
 					var model;
 					if (language === "FR") {
@@ -1095,9 +1143,12 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					}
 					var dealerno = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 					var dealer = dealerno.slice(-5);
+					//this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('model_CSOR').bindItems({
 						path: "mainservices>/ZVMS_Model_EXCLSet",
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
+							
+							new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, modelkey),
 							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 							new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
 							new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
@@ -1114,6 +1165,11 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+				if (!suffix) {
+					this.getView().byId('suffix_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
+						"/zzSuffix"));
+				}
+
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
 				var suf;
 				if (language === "FR") {
@@ -1136,12 +1192,13 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					// 	 pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					// }
 					// else 
-					if (AppController.RSOA == true) {
+					if (this.RSOA == true) {
 						pathAB = "mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "',typ='R')/Set";
 						//mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set";
 					} else {
 						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
+					//this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 						filters: new sap.ui.model.Filter([
@@ -1162,12 +1219,24 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 				//----APX---------
 				//----------------
 				//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
-				var suffix = this.getView().byId('suffix_CSOR').getSelectedKey();
+				let suffix = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/zzSuffix");
+				let extcolor = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzextcol");
+				if (suffix != "XX" && suffix != "") {
+					this.getView().byId('suffix_CSOR').setSelectedKey(suffix);
+					this.getView().byId('colour_CSOR').setSelectedKey(extcolor);
+				}else{
+					this.getView().byId('colour_CSOR').setSelectedKey('');
+				}
+			
+				
+				this.getView().byId('apx_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
+					"/Zzapx"));
 
 				var model = this.getView().byId('model_CSOR').getSelectedKey();
 				if (model && this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr') && suffix) {
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-
+					// this.getOwnerComponent().getModel('mainservices').refresh();
+					// this.getOwnerComponent().getModel("mainservices").updateBindings();
 					this.getView().byId('apx_CSOR').bindItems({
 						path: 'mainservices>/ZVMS_CDS_APX',
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
@@ -1186,11 +1255,13 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 					} else {
 						color = "{mainservices>ext}/{mainservices>mktg_desc_en}";
 					}
+					//this.getView().getModel('mainservices')._refresh;
 					this.getView().byId('colour_CSOR').bindItems({
 						path: 'mainservices>/ZVMS_CDS_Colour',
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
 							new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
-							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
+							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+							new sap.ui.model.Filter("ext", sap.ui.model.FilterOperator.EQ, extcolor)
 						], true),
 						template: new sap.ui.core.ListItem({
 							key: "{mainservices>ext}",
@@ -1201,6 +1272,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 			},
 			_handleServiceSuffix_Series: function () {
 				var host = RSO_MSO_controller.host();
+
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/SoldOrderSeriesSet?$format=json";
 				$.ajax({
 					url: oUrl,
@@ -1223,7 +1295,7 @@ if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty
 			onExit: function () {
 				SelectVehicleOption = false;
 				sap.ui.getCore().getModel('ModelCore').getData().ZZVTN = "";
-				sap.ui.getCore().getModel('ModelCore').updateBindings();
+				//sap.ui.getCore().getModel('ModelCore').updateBindings();
 			}
 		});
 	});

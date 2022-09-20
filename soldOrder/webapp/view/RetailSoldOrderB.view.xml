@@ -147,10 +147,10 @@
 					</f:SimpleForm>
 				</content>
 				<footer class="sitefooter">
-					<Toolbar>
+					<OverflowToolbar>
 						<ToolbarSpacer/>
 						<Button text="{i18n>submit}" type="Emphasized" press="_onSubmit" id="Btn_submit_RSOB"></Button>
-					</Toolbar>
+					</OverflowToolbar>
 				</footer>
 			</Page>
 		</pages>

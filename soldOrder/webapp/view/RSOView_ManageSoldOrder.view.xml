@@ -362,7 +362,7 @@
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_orderChange_RSO_MSO"
+					    <Button id="btn_orderChange_RSO_MSO"
 							enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" text="{i18n>OrderChange}"
 							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navToRSOrderChange">
 							<layoutData>
@@ -371,7 +371,7 @@
 						</Button>
 						<Button id="btn_cancelOrder_RSO_MSO"
 							enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" text="{i18n>CancelOrder}"
-							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder">
+						    visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>
