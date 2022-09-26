@@ -850,6 +850,7 @@ sap.ui.define([
 				var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 				var sPath = evtContext.sPath;
 				RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
+					method: "DELETE",
 					success: function (data, oResponse) {
 						oTable.getModel('mainservices').refresh();
 						//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
