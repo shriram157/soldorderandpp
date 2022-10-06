@@ -767,7 +767,7 @@ sap.ui.define([
 				}
 				this.getOwnerComponent().getModel("mainservices").create('/Retail_Sold_OrderSet', _data, {
 					success: function (data, oResponse) {
-						RSOB_controller.getView().byId("Btn_submit_RSOB").setEnabled(false);
+						
 						if (data.ZzsoReqNo) {
 							RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 								Soreq: data.ZzsoReqNo
