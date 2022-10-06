@@ -347,6 +347,7 @@ sap.ui.define([
 				// if (!RSO_MSO_controller.pageNum) {
 				this.byId("suffix_CSOR").setSelectedKey("");
 				this.byId("colour_CSOR").setSelectedKey("");
+				
 				//	}
 				// changes done for INC0217519 end by Minakshi
 				//var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
@@ -361,7 +362,7 @@ sap.ui.define([
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzsuffix', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzextcol', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
-
+				this.byId('model_CSOR').setSelectedItem().setValue("");
 				zmodel.refresh();
 				// this.getOwnerComponent().getModel('mainservices').refresh();
 				// this.getOwnerComponent().getModel("mainservices").updateBindings();
@@ -370,6 +371,7 @@ sap.ui.define([
 					model: "mainservices",
 					events: {
 						dataRequested: function (oEvent) {
+							RSO_MSO_controller.byId('model_CSOR').setSelectedItem().setValue("");
 							//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 						},
 						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
@@ -383,6 +385,7 @@ sap.ui.define([
 			_getSOChangeEvt: function (sObjectPath, req) {
 				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 				// Filter for Display Data Sold Order
+				this.byId('model_CSOR').setSelectedItem().setValue("");
 				var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
@@ -592,6 +595,7 @@ sap.ui.define([
 					success: $.proxy(function (soOData) {
 						RSO_MSO_controller.byId("model_CSOR").setSelectedKey(soOData.Zzmodel);
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
+						this.byId('model_CSOR').setSelectedItem().setValue("");
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
 						if(soOData.Zzsuffix == 'XX'){
@@ -846,6 +850,7 @@ sap.ui.define([
 				var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 				var sPath = evtContext.sPath;
 				RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
+					method: "DELETE",
 					success: function (data, oResponse) {
 						oTable.getModel('mainservices').refresh();
 						//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
@@ -1118,11 +1123,14 @@ sap.ui.define([
 
 				// var year = this.getView().byId('modelYr_RSOA').getValue();
 				// items="{ path: 'oModel3>/'}"
-
+				
+				var modelkey = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzmodel");
+				this.getView().byId('model_CSOR').setSelectedKey(modelkey);
 				if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries') && this.getView().getElementBinding(
 						'mainservices').getBoundContext().getProperty('Zzmoyr')) {
 					var series = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 					var modelyear = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
+					modelkey = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzmodel");
 					// var language = RSO_MSO_controller.returnBrowserLanguage();
 					var model;
 					if (language === "FR") {
@@ -1140,6 +1148,8 @@ sap.ui.define([
 					this.getView().byId('model_CSOR').bindItems({
 						path: "mainservices>/ZVMS_Model_EXCLSet",
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
+							
+							new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, modelkey),
 							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 							new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
 							new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ, 'RSO')
