@@ -26,7 +26,7 @@
 							<Text text="{mainservices>ZsoFltStatus}"/>
 							<Label wrapping="true" text="{i18n>zoneAppNumber}"/>
 							<!--<Input value="{mainservices>ZzoneApproval}" id="zoneapproval" required="true"/>-->
-							<Input value="{ZzoneApproval} " id="zoneapproval1" required="true"/>
+							<!--<Input value="{ZzoneApproval} " id="zoneapproval1" required="true"/>-->
 							<Input value=" " id="zoneapproval" required="true"/>
 							
 							<Label wrapping="true" text="{i18n>totalVehicles}"/>
