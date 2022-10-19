@@ -103,6 +103,8 @@ sap.ui.define([
 			});
 		},
 		_getattachRouteMatched: function (parameters) {
+			
+			this.getDealer();
 			validateFlagB = false;
 			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
 			if (validateFlagB == true) {
