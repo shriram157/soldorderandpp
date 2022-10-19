@@ -22,7 +22,7 @@ sap.ui.define([
 			RSOB_controller.flagInvalidName = false; // DMND0003108
 			var model = new JSONModel({});
 			// AppController.getDealer();
-		//	RSOB_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+			RSOB_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			RSOB_controller._handleServiceSuffix_Series();
 			RSOB_controller.getView().setModel(model, 'Customer');
 			var todayDate = new Date();
