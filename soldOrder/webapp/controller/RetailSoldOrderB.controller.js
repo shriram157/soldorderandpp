@@ -103,8 +103,9 @@ sap.ui.define([
 			});
 		},
 		_getattachRouteMatched: function (parameters) {
-			
+			// Work Around for P2 issue by Aarti Dhamat  Code Start
 			this.getDealer();
+			// Work Around for P2 issue by Aarti Dhamat  Code End
 			validateFlagB = false;
 			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
 			if (validateFlagB == true) {
