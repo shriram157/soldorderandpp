@@ -139,7 +139,7 @@ sap.ui.define([
 			zrequest = req;
 			var zmodel = FSO_PVController.getView().getModel("mainservices");
 			//Added by singhmi to make the call asynchronus DMND0002946 on 11/03/2021 end
-			FSO_PVController.getView().getModel("mainservices").bUseBatch = true;
+			//FSO_PVController.getView().getModel("mainservices").bUseBatch = true;
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var sMsg = oBundle.getText("procViewTitle", [req]);
@@ -151,7 +151,7 @@ sap.ui.define([
 				model: "mainservices",
 				events: {
 					change: function (oEvent) {
-					//	FSO_PVController.getView().getElementBinding('mainservices').refresh();
+						FSO_PVController.getView().getElementBinding('mainservices').refresh();
 						vehicle_no1 = 0;
 						vehicle_no2 = 0;
 						var table1 = FSO_PVController.getView().byId('table1');
