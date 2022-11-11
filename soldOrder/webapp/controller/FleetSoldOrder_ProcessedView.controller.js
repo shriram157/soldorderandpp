@@ -152,8 +152,8 @@ sap.ui.define([
 				events: {
 					change: function (oEvent) {
 						FSO_PVController.getView().getElementBinding('mainservices').refresh();
-						vehicle_no1 = 0;
-						vehicle_no2 = 0;
+						//vehicle_no1 = 0;
+						//vehicle_no2 = 0;
 						var table1 = FSO_PVController.getView().byId('table1');
 						var items1 = table1.getBinding('rows');
 						// items1.attachChange(function (sReason) {
