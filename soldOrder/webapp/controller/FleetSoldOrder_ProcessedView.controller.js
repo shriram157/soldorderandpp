@@ -151,7 +151,7 @@ sap.ui.define([
 				model: "mainservices",
 				events: {
 					//change: function (oEvent) {
-						dataRequested: function(){
+						dataRequested: function(oEvent){
 						FSO_PVController.getView().getElementBinding('mainservices').refresh();
 						//vehicle_no1 = 0;
 						//vehicle_no2 = 0;
