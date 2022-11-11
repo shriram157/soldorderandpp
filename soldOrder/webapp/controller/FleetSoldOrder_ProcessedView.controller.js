@@ -137,12 +137,13 @@ sap.ui.define([
 
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet('" + req + "')";
 			zrequest = req;
+			req=req.replaceAll("&","%26");
 			var zmodel = FSO_PVController.getView().getModel("mainservices");
 			//Added by singhmi to make the call asynchronus DMND0002946 on 11/03/2021 end
 			//FSO_PVController.getView().getModel("mainservices").bUseBatch = true;
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
-			var sMsg = oBundle.getText("procViewTitle", [req]);
+			var sMsg = oBundle.getText("procViewTitle", [req.replaceAll("%26","&")]);
 
 			zmodel.refresh();
 			this.getView().bindElement({
