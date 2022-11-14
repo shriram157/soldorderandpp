@@ -181,6 +181,7 @@ sap.ui.define([
 						items.filter([new Filter("ZzsoFltReqNo", FilterOperator.EQ, req), new Filter("FleetReference", FilterOperator.EQ, 'X'), new Filter(
 							"Zzvtn", FilterOperator.NE, '')], true);
 						//------------------------
+						if(FSO_PVController.getView().getElementBinding('mainservices').getBoundContext() != null){
 						var partner = FSO_PVController.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');
 
 						var zdealerCode = FSO_PVController.getView().getElementBinding('mainservices').getBoundContext().getProperty(
@@ -198,7 +199,7 @@ sap.ui.define([
 									sap
 									.m.MessageBox.Action.OK, null, null);
 							}
-						});
+						})};
 					},
 					//Added by singhmi to hide busy indicator after success or error DMND0002946 on 11/03/2021 
 					dataReceived: function (oEvent) {
