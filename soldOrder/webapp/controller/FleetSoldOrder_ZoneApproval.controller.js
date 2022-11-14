@@ -134,11 +134,14 @@ sap.ui.define([
 					}
 				}
 			});
-
-			this.getView().byId("zoneapproval").bindElement({
-				path: sObjectPath+"/ZzoneApproval",
-				model: "mainservices"
-			});
+            this.getView().byId("zoneapproval").bindValue({
+			 	path: sObjectPath+"/ZzoneApproval",
+			 	model: "mainservices"
+			 });
+			// this.getView().byId("zoneapproval").bindElement({
+			// 	path: sObjectPath+"/ZzoneApproval",
+			// 	model: "mainservices"
+			// });
 		},
 
 		/*zoneUserToTrue:function(){
