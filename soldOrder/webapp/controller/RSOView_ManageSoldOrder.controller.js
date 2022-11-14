@@ -483,7 +483,7 @@ sap.ui.define([
 				if (status == "CHANGED") {
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
-				//changes by swetha for service task TASK0179454 on 9/11/2022
+				//changes by swetha for service task TASK0179454 on 9/11/2022.
 				if (status == "APPROVED" || status=="PRE-APPROVED" || status=="DEMO-VEHICLE") {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);	
 				} else {
