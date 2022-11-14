@@ -484,8 +484,11 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022
-				if (status == "OPEN" || status == "CHANGED" || status == "CANCELLED" || status == "REJECT") {  
+				if (status == "OPEN" || status == "CHANGED" || status == "CANCELLED" || status == "REJECT" || status == "CLOSED" || status == "DEMO-VEHICLE") {  
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);	
+				}
+				if (status == "CLOSED" || status == "REJECTED" || status =="DEMO-VEHICLE") {
+					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);	
 				}
 				// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 				// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
