@@ -484,7 +484,7 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022.
-				if (status == "APPROVED" || status=="PRE-APPROVED" || status=="DEMO-VEHICLE") {
+				if (status == "APPROVED" || status=="PRE-APPROVED" || status=="UNDER-REVIEW") {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);	
 				} else {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
