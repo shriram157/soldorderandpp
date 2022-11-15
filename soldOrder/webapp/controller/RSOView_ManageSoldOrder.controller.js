@@ -484,7 +484,7 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022.
-				if (status == "OPEN") {
+				if (status == "OPENED") {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);	
 				} else if (status == "CANCELLED") {
@@ -493,10 +493,10 @@ sap.ui.define([
 				} else if (status == "CHANGED") {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);	
-				} else if (status == "PREAPPROVED") {
+				} else if (status == "PRE-APPROVED") {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);	
-				} else if (status == "UNDERREVIEW") {
+				} else if (status == "UNDER-REVIEW") {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);	
 				} else if (status == "APPROVED") {
