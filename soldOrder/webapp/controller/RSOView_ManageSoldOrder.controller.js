@@ -484,34 +484,18 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022.
-				if (status == "OPEN") {
-					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
-					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);	
-				} else if (status == "CANCELLED") {
-					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
-					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);	
-				} else if (status == "CHANGED") {
-					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
-					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);	
-				} else if (status == "PRE-APPROVED") {
+				var PStatus = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('PriceStatus');
+				if (PStatus == "APPROVED" || PStatus == "PRE-APPROVED" || PStatus == "UNDER-REVIEW" ) {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
-					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);	
-				} else if (status == "UNDER-REVIEW") {
-					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
-					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true)	
-				} else if (status == "APPROVED") {
-					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
-					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);	
-				} else if (status == "CLOSED") {
-					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
-					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);	
-				} else if (status == "REJECT") {
-					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
+				} else {
+					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);	
+				}
+				if (PStatus == "CLOSED" || PStatus == "REJECTED" || PStatus == "DEMO-VEHICLE") {
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);	
 				} else {
-					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
-					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);	
-				}	
+					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);		
+				}
+				
 				// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 				// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 
