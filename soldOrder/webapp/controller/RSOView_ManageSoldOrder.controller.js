@@ -493,7 +493,7 @@ sap.ui.define([
 				if (PStatus == "CLOSED" || PStatus == "REJECTED" || PStatus == "DEMO-VEHICLE") {
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);	
 				} else {
-					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);		
+					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);		
 				}
 				
 				// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
