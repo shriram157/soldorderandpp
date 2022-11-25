@@ -173,7 +173,9 @@ sap.ui.define([
 			FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
 		},*/
 		_approveFleetSoldRequest: function () {
-			if (FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey() == "" || FSO_Z_controller.getView().byId('zoneapproval').getValue() ==
+			//FSO_Z_controller.getView().byId('zoneapproval').getValue() ==""
+			this.getView().getModel("oZoneAppNumModel").getProperty("/ZzoneApproval")
+			if (FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey() == "" || FSO_Z_controller.getView().getModel("oZoneAppNumModel").getProperty("/ZzoneApproval") ==
 				"") {
 				var errForm = formatter.formatErrorType("SO00003");
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -198,9 +200,10 @@ sap.ui.define([
 						ZSO_FLT_REQ_NO: zrequest,
 						ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey(),
 						ZSO_FLT_STATUS: zaprvl,
-						ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
+						ZZONE_APPROVAL: FSO_Z_controller.getView().getModel("oZoneAppNumModel").getProperty("/ZzoneApproval")
 					}, // function import parameters  
 					// 
+					//ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
 					success: function (oData, response) {
 						FSO_Z_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
 							Soreq: zrequest
