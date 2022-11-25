@@ -134,10 +134,10 @@ sap.ui.define([
 					}
 				}
 			});
-            this.getView().byId("zoneapproval").bindValue({
-			 	path: sObjectPath+"/ZzoneApproval",
-			 	model: "mainservices"
-			 });
+            // this.getView().byId("zoneapproval").bindValue({
+			//  	path: sObjectPath+"/ZzoneApproval",
+			//  	model: "mainservices"
+			//  });
             	FSO_Z_controller.getView().getModel('mainservices').read(sObjectPath+"/ZzoneApproval", {
 							success: function (data, textStatus, jqXHR) {
 								var oZoneAppNumModel = new sap.ui.model.json.JSONModel(data);
