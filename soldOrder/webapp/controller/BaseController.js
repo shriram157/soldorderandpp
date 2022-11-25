@@ -341,7 +341,7 @@ sap.ui.define([
 			req=req.replaceAll("@","%40");
 			req=req.replaceAll("#","%23");
 			req=req.replaceAll("$","%24");
-			req=req.replaceAll("%","%25");
+			//req=req.replaceAll("%","%25");
 			req=req.replaceAll("^","%5E");
 			req=req.replaceAll("&","%26");
 			req=req.replaceAll("*","%2A");
