@@ -140,7 +140,7 @@ sap.ui.define([
 			 });
             	FSO_Z_controller.getView().getModel('mainservices').read(sObjectPath+"/ZzoneApproval", {
 							success: function (data, textStatus, jqXHR) {
-								var oZoneAppNumModel = new sap.ui.model.json.JSONModel(data.ZzoneApprovalLocal);
+								var oZoneAppNumModel = new sap.ui.model.json.JSONModel(data);
 								FSO_Z_controller.getView().setModel(oZoneAppNumModel, "oZoneAppNumModel");
 								
 							},
