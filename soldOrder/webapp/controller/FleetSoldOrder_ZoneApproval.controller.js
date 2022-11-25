@@ -138,6 +138,27 @@ sap.ui.define([
 			 	path: sObjectPath+"/ZzoneApproval",
 			 	model: "mainservices"
 			 });
+            	FSO_Z_controller.getView().getModel('mainservices').read(sObjectPath+"/ZzoneApproval", {
+							success: function (data, textStatus, jqXHR) {
+								var oZoneAppNumModel = new sap.ui.model.json.JSONModel(data.ZzoneApprovalLocal);
+								FSO_Z_controller.getView().setModel(oZoneAppNumModel, "oZoneAppNumModel");
+								
+							},
+							error: function (jqXHR, textStatus, errorThrown) {
+								sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR,
+									"Error",
+									sap
+									.m.MessageBox.Action.OK, null, null);
+							}
+						});
+
+
+
+
+
+
+
+
 			// this.getView().byId("zoneapproval").bindElement({
 			// 	path: sObjectPath+"/ZzoneApproval",
 			// 	model: "mainservices"
