@@ -349,16 +349,16 @@ sap.ui.define([
 			req=req.replaceAll(")","%29");
 			req=req.replaceAll("“","%E2%80%9C");
 			req=req.replaceAll(",","%2C");
-			req=req.replaceAll("/","+%2F+");
-			req=req.replaceAll("\ ","%5C+");
+			req=req.replaceAll("/","%2F");
+			req=req.replaceAll("\ ","%5C");
 			req=req.replaceAll("|","%7C");
-			req=req.replaceAll("[","%5B+");
+			req=req.replaceAll("[","%5B");
 			req=req.replaceAll("]","%5D");
 			req=req.replaceAll("~","%7E");
-			req=req.replaceAll(":","%3A+");
+			req=req.replaceAll(":","%3A");
 			req=req.replaceAll("<","%3C");
 			req=req.replaceAll(">","%3E");
-			req=req.replaceAll(";","+%3B");
+			req=req.replaceAll(";","%3B");
 			req=req.replaceAll("'","%27");
 
 			return req;
