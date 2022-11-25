@@ -174,7 +174,7 @@ sap.ui.define([
 		},*/
 		_approveFleetSoldRequest: function () {
 			//FSO_Z_controller.getView().byId('zoneapproval').getValue() ==""
-			this.getView().getModel("oZoneAppNumModel").getProperty("/ZzoneApproval")
+			//this.getView().getModel("oZoneAppNumModel").getProperty("/ZzoneApproval")
 			if (FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey() == "" || FSO_Z_controller.getView().getModel("oZoneAppNumModel").getProperty("/ZzoneApproval") ==
 				"") {
 				var errForm = formatter.formatErrorType("SO00003");
