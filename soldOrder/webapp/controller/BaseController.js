@@ -360,7 +360,11 @@ sap.ui.define([
 			req=req.replaceAll(">","%3E");
 			req=req.replaceAll(";","%3B");
 			req=req.replaceAll("'","%27");
-
+			req=req.replaceAll("+","%2B");
+			req=req.replaceAll("=","%3D");
+			req=req.replaceAll("?","%3F");
+			req=req.replaceAll("-","%96");
+			
 			return req;
 		}
 	});
