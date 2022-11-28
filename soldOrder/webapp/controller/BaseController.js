@@ -333,7 +333,7 @@ sap.ui.define([
 				sap.ui.getCore().getModel("LoginUserModel").setProperty("/BPDealerDetails", data.attributes[0]);
 			});
 		},
-		encodeSpecialCharacter:function(req)
+		encodeSpecialCharacter:function(req)		//changes by Shriram for INC0221704 special characters in zone approval page
 		{
 			req=req.replaceAll("&","%26");
 			req=req.replaceAll("'","%27");
@@ -341,7 +341,7 @@ sap.ui.define([
 			req=req.replaceAll("@","%40");
 			req=req.replaceAll("#","%23");
 			req=req.replaceAll("$","%24");
-			//req=req.replaceAll("%","%25");
+			req=req.replaceAll("%","%25");
 			req=req.replaceAll("^","%5E");
 			req=req.replaceAll("&","%26");
 			req=req.replaceAll("*","%2A");
