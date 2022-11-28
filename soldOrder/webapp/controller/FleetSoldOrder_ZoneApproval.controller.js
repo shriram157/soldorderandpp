@@ -79,10 +79,12 @@ sap.ui.define([
 
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet('" + req + "')";
 			zrequest = req;
+			req=this.encodeSpecialCharacter(req);
+			req=req.replaceAll("%27","''");
 			var zmodel = FSO_Z_controller.getView().getModel("mainservices");
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
-			var sMsg = oBundle.getText("zoneApprovalTitle", [req]);
+			var sMsg = oBundle.getText("zoneApprovalTitle", [zrequest]);
 
 			zmodel.refresh();
 			this.getView().bindElement({
