@@ -141,7 +141,7 @@ sap.ui.define([
 			req=this.encodeSpecialCharacter(req);
 			//req=req.replaceAll("&","%26");
 			//req=req.replaceAll("'","%27%27");
-			//req=req.replaceAll("%27","%27%27");
+			req=req.replaceAll("%27","''");
 			var zmodel = FSO_PVController.getView().getModel("mainservices");
 			//Added by singhmi to make the call asynchronus DMND0002946 on 11/03/2021 end
 			//FSO_PVController.getView().getModel("mainservices").bUseBatch = true;
