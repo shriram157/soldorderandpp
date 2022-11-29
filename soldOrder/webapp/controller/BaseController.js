@@ -341,7 +341,7 @@ sap.ui.define([
 			req=req.replaceAll("@","%40");
 			req=req.replaceAll("#","%23");
 			req=req.replaceAll("$","%24");
-			req=req.replaceAll("%","%25");
+			//req=req.replaceAll("%","%25");
 			req=req.replaceAll("^","%5E");
 			req=req.replaceAll("&","%26");
 			req=req.replaceAll("*","%2A");
@@ -359,7 +359,7 @@ sap.ui.define([
 			req=req.replaceAll("<","%3C");
 			req=req.replaceAll(">","%3E");
 			req=req.replaceAll(";","%3B");
-			req=req.replaceAll("'","%27");
+			req=req.replaceAll("'","''");
 			req=req.replaceAll("+","%2B");
 			req=req.replaceAll("=","%3D");
 			req=req.replaceAll("?","%3F");
