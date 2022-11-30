@@ -79,8 +79,8 @@ sap.ui.define([
 
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet('" + req + "')";
 			zrequest = req;										//changes by Shriram for INC0223199 start
-			req=this.encodeSpecialCharacter(req);
-			req=req.replaceAll("%27","''");						//changes by Shriram for INC0223199 end
+			//req=this.encodeSpecialCharacter(req);
+			//req=req.replaceAll("%27","''");						//changes by Shriram for INC0223199 end
 			var zmodel = FSO_Z_controller.getView().getModel("mainservices");
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
