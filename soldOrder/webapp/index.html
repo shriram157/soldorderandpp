@@ -1,73 +1,35 @@
 <!DOCTYPE HTML>
 <html>
-
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta charset="UTF-8" />
-
-		<title id="oTitleText" titleStyle="H3" width="auto" textAlign="Left">Sold Order and Price Protection</title>
-
-		<!--
-		 When upgrading SAPUI5 to >= 1.54, make sure to update compatVersion in Gruntfile.js according to
-		 https://github.com/SAP/grunt-openui5#compatversion to ensure Component-preload.js format is updated
-		 -->
-		 <!--"-->
-		 <!--src="https://sapui5.hana.ondemand.com/1.63.1/resources/sap-ui-cachebuster/sap-ui-core.js"  1.52.22-->
-		<!-- <script>
-    window["sap-ushell-config"] = {
-        defaultRenderer : "fiori2",
-        renderers: {
-            fiori2: {
-                componentData: {
-                    config: {
-                        search: "hidden"
-                    }
-                }
-            }
-        },
-        applications: {
-            "SoldOrder-display": {
-                additionalInformation: "SAPUI5.Component=toyota.ca.SoldOrder",
-                applicationType: "URL",
-                url: ".",
-                title: "SoldOrder"
-            }
-        }
-    };
-</script>-->
-<!--<script src="https://sapui5.hana.ondemand.com/1.63.1/resources/sap/ushell_abap/bootstrap/abap.js"></script>-->
-
-<!--<script src="https://sapui5.hana.ondemand.com/1.63.1/resources/sap/ushell_abap/bootstrap/abap.js"></script>-->
-
+		<meta http-equiv='cache-control' content='no-cache'/>
+        <meta http-equiv='expires' content='0'/>
+        <meta http-equiv='pragma' content='no-cache'/>
+		<title>Sold Order and Price Protection</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<!--changes done for demand DMND0003799-->
 		<script id="sap-ui-bootstrap"
-			src="https://sapui5.hana.ondemand.com/1.63.1/resources/sap-ui-cachebuster/sap-ui-core.js"
-			data-sap-ui-libs="sap.ushell,sap.m,sap.tnt,sap.ui.layout,sap.ui.table,sap.ui.unified"
-			data-sap-ui-preload="async"
+			src="https://sapui5.hana.ondemand.com/1.71/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-async="true"
 			data-sap-ui-theme="sap_belize"
 			data-sap-ui-compatVersion="edge"
 			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-frameOptions="trusted"
+			data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
 			data-sap-ui-resourceroots='{"toyota.ca.SoldOrder": "./"}'>
 		</script>
-	
-	
-	
-		<link rel="stylesheet" type="text/css" href="css/style.css">
 
-		<script>
-			sap.ui.getCore().attachInit(function() {
-				new sap.m.Shell({
-					app: new sap.ui.core.ComponentContainer({
-						height : "100%",
-						name : "toyota.ca.SoldOrder",
-						propagateModel:true
-					}),
-					appWidthLimited : false
-				}).placeAt("content");
-			});
-		</script>
 	</head>
-
 	<body class="sapUiBody" id="content">
+			<div data-sap-ui-component
+		data-name="toyota.ca.SoldOrder"
+		data-height="100%"
+		data-id="container"
+		data-settings='{"id" : "toyota.ca.SoldOrder"}'
+		style="height: 100%">
+	</div>
 	</body>
 
 </html>

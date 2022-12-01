@@ -141,7 +141,7 @@
 									<l:GridData span="L1 M1 S1"/>
 								</layoutData>
 							</Text>
-							<DatePicker id="etaFrom_CFSO" required="true" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" change="_handleToDateChange">
+							<DatePicker id="etaFrom_CFSO"  required="true" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" change="_handleToDateChange">
 								<layoutData>
 									<l:GridData span="L4 M4 S12"/>
 								</layoutData>
@@ -248,11 +248,11 @@
 					<!--</HBox>-->
 				</content>
 				<footer class="sitefooter">
-					<Toolbar>
+					<OverflowToolbar>
 						<ToolbarSpacer/>
 						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" class="marginCornersRight" enabled="{FirstTable>/submitEnabled}"></Button>
 						<!--<Button text="{i18n>Back}" press="onNavBack" class="sapUiSmallMarginBegin marginCornersRight"></Button>-->
-					</Toolbar>
+					</OverflowToolbar>
 				</footer>
 			</Page>
 		</pages>

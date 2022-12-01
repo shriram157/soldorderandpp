@@ -16,7 +16,8 @@
 			"$XSAPPNAME.Manage_Retail_Sold_Order",
 			"$XSAPPNAME.View_Fleet_Sold_Order",
 			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order"
+			"$XSAPPNAME.View_Retail_Sold_Order",
+			"$XSAPPNAME.Approve_National_Fleet"
 		]
 	}, {
 		"source": "^/soldorderandpp/(.*)$",
@@ -29,7 +30,8 @@
 			"$XSAPPNAME.Manage_Retail_Sold_Order",
 			"$XSAPPNAME.View_Fleet_Sold_Order",
 			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order"
+			"$XSAPPNAME.View_Retail_Sold_Order",
+			"$XSAPPNAME.Approve_National_Fleet"
 		]
 	}, {
 		"source": "/apiProxy(.*)",
@@ -42,7 +44,8 @@
 			"$XSAPPNAME.Manage_Retail_Sold_Order",
 			"$XSAPPNAME.View_Fleet_Sold_Order",
 			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order"
+			"$XSAPPNAME.View_Retail_Sold_Order",
+			"$XSAPPNAME.Approve_National_Fleet"
 		]
 	}, {
 		"source": "/node(.*)",
@@ -55,7 +58,8 @@
 			"$XSAPPNAME.Manage_Retail_Sold_Order",
 			"$XSAPPNAME.View_Fleet_Sold_Order",
 			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order"
+			"$XSAPPNAME.View_Retail_Sold_Order",
+			"$XSAPPNAME.Approve_National_Fleet"
 		]
 	}, {
 		"source": "/userDetails(.*)",
@@ -68,7 +72,8 @@
 			"$XSAPPNAME.Manage_Retail_Sold_Order",
 			"$XSAPPNAME.View_Fleet_Sold_Order",
 			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order"
+			"$XSAPPNAME.View_Retail_Sold_Order",
+			"$XSAPPNAME.Approve_National_Fleet"
 		]
 	}]
 }

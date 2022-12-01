@@ -239,6 +239,7 @@ module.exports = function (appContext) {
 		var viewFleetSoldOrder = false;
 		var viewPriceProtection = false;
 		var viewRetailSoldOrder = false;
+		var approveNationalFleet = false;
 
 		for (var i = 0; i < scopes.length; i++) {
 			if (scopes[i] === xsAppName + ".Approve_Fleet_Sold_Order") {
@@ -255,6 +256,8 @@ module.exports = function (appContext) {
 				viewPriceProtection = true;
 			} else if (scopes[i] === xsAppName + ".View_Retail_Sold_Order") {
 				viewRetailSoldOrder = true;
+			} else if (scopes[i] === xsAppName + ".Approve_National_Fleet") {
+				approveNationalFleet = true;
 			} else {
 				tracer.warning("Unrecognized scope: %s", scopes[i]);
 			}
@@ -267,19 +270,24 @@ module.exports = function (appContext) {
 		scopeLogMessage += "viewFleetSoldOrder: " + viewFleetSoldOrder + "\n";
 		scopeLogMessage += "viewPriceProtection: " + viewPriceProtection + "\n";
 		scopeLogMessage += "viewRetailSoldOrder: " + viewRetailSoldOrder + "\n";
+		scopeLogMessage += "approveNationalFleet" + approveNationalFleet + "\n";
 		tracer.debug(scopeLogMessage);
 
 		if (!approveFleetSoldOrder && !approvePriceProtection && manageFleetSoldOrder && manageRetailSoldOrder && !viewFleetSoldOrder &&
 			viewPriceProtection &&
-			!viewRetailSoldOrder) {
+			!viewRetailSoldOrder && !approveNationalFleet) {
 			role = "Dealer_User";
 		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
-			viewRetailSoldOrder) {
+			viewRetailSoldOrder && approveNationalFleet) {
+			role = "National_Fleet_User";
+		} else if (approveFleetSoldOrder && approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
+			viewPriceProtection &&
+			viewRetailSoldOrder && !approveNationalFleet) {
 			role = "TCI_User";
 		} else if (approveFleetSoldOrder && !approvePriceProtection && !manageFleetSoldOrder && !manageRetailSoldOrder && viewFleetSoldOrder &&
 			viewPriceProtection &&
-			viewRetailSoldOrder) {
+			viewRetailSoldOrder && !approveNationalFleet) {
 			role = "TCI_Zone_User";
 		}
 		tracer.debug("role: %s", role);

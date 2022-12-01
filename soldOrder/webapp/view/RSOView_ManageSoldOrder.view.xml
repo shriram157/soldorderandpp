@@ -79,11 +79,18 @@
 							<CheckBox enabled="false" id="ChatCB" visible="false" text="Enable Post Note" select="onSelectCB"></CheckBox>
 						-->
 							<Label wrapping="true" text="{i18n>PostComment}"/>
-							<FeedInput enabled="false" visible="false" id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
+							<FeedInput placeholder="{i18n>PostMsg}" enabled="false" visible="false" id="feedId" post="onPost" icon="" class="sapUiSmallMarginTopBottom"/>
 							<core:Title text="" class="titleFontSize"/>
 							<MessageStrip text="{i18n>statusTitle}" class="msgStripFormat msgStripCss "/>
 							<Label wrapping="true" text="{i18n>VehTrackNo}"/>
 							<Text text="{mainservices>Zzvtn}" id="idVTN"/>
+							<!--DMND0003455 changes done by Minakshi 13/12/2021-->
+							<Label wrapping="true" text="{i18n>vin}"/>
+							<Text text="{mainservices>Vhvin}" id="idVIN"/>
+							<Label wrapping="true" text="{i18n>wholesaleDate}"/>
+							<Text text="{path:'mainservices>VDelDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}" id="idsalesDate"/>
+							<Label wrapping="true" text="{i18n>rdrdate}"/>
+							<Text text="{path:'mainservices>ZRDR_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}" id="idrdrdate"/>
 							<Label wrapping="true" text="{i18n>AuditStatus}"/>
 							<Text text="{mainservices>ZzAuditStatus}"/>
 							<Label wrapping="true" text="{i18n>DealerAcpETA}"/>
@@ -355,7 +362,7 @@
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>
 						</Button>
-						<Button id="btn_orderChange_RSO_MSO"
+					    <Button id="btn_orderChange_RSO_MSO"
 							enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" text="{i18n>OrderChange}"
 							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navToRSOrderChange">
 							<layoutData>
@@ -364,7 +371,7 @@
 						</Button>
 						<Button id="btn_cancelOrder_RSO_MSO"
 							enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" text="{i18n>CancelOrder}"
-							visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder">
+						    visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>

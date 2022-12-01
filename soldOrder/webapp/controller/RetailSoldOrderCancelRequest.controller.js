@@ -62,10 +62,10 @@ sap.ui.define([
 			var sRecipient = requestid; // RSOCancel_controller.getView().getModel().getProperty("/recipient/name");
 			var sMsg = oBundle.getText("CancelReq", [sRecipient]);
 			RSOCancel_controller.getView().byId("label_CancelSoldOrderid").setText(sMsg);
+			RSOCancel_controller.getView().byId("comm_CancelSO").setValue("");
+			RSOCancel_controller.getView().byId("resonCancelId").setSelectedKey("");
 		},
-		onAfterRendering: function () {
-
-		},
+	
 
 		UpdateSoldOrderRequest: function () {
 

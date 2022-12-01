@@ -20,7 +20,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_status_FSOS" selectionChange="_refresh"
+												<MultiComboBox id="mcb_status_FSOS" selectionChange="_refresh"
 													items="{ path: 'globalComboModel>/FSOSummary_Status', sorter: { path: 'key' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
@@ -34,7 +34,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_ordTyp_FSOS" selectionChange="_refresh"
+												<MultiComboBox  id="mcb_ordTyp_FSOS" selectionChange="_refresh"
 													items="{ path: 'OrderTypeModel>/FSOSummary_OrderType', sorter: { path: 'key' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{OrderTypeModel>key}" text="{OrderTypeModel>text}"/>
 													<layoutData>
@@ -48,7 +48,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_dealer_FSOS"
+												<MultiComboBox  id="mcb_dealer_FSOS"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NonTCIorZonalusertype'}"
 													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refresh" class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
@@ -57,7 +57,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
-												<ComboBox forceSelection= "true" xmlns="sap.m" id="cb_dealer_FSOS" width="300px"
+												<ComboBox  xmlns="sap.m" id="cb_dealer_FSOS" width="300px"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.TCIorZonalusertype'}"
 													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
 													<!--<items>-->
@@ -89,19 +89,20 @@
 									</Toolbar>
 								</t:extension>
 								<t:columns>
-									<t:Column filterProperty="ZsoFltReqNo" sortProperty="ZsoFltReqNo">
+									<t:Column width="8rem" filterProperty="ZsoFltReqNo" sortProperty="ZsoFltReqNo">
 										<Label text="{i18n>orderNum}" class="TableLabel"/>
 										<t:template>
 											<Link text="{fleetsumModel>ZsoFltReqNo}" press="_navToSoldOrder"/>
 										</t:template>
 									</t:Column>
+								
 									<t:Column filterProperty="NameOrg1" sortProperty="NameOrg1">
 										<Label text="{i18n>CustName}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>NameOrg1}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column sortProperty="ZzdealerCode">
 										<Label id="tbl_lbl_dealer_FSOS" visible="true" text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>
 											<!--,{path:'/Products/0/Category'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}-->
@@ -109,19 +110,19 @@
 												text="{path:'fleetsumModel>ZzdealerCode',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealerno'}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column sortProperty="ZsoFltStatus">
 										<Label text="{i18n>status}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZsoFltStatus}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column sortProperty="ZfanNo">
 										<Label text="{i18n>FanNumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZfanNo}"/>
 										</t:template>
 									</t:Column>
-									<t:Column>
+									<t:Column sortProperty="ZpoNumber">
 										<Label text="{i18n>PONumber}" class="TableLabel"/>
 										<t:template>
 											<Text text="{fleetsumModel>ZpoNumber}"/>

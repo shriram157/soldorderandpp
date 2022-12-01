@@ -168,7 +168,7 @@ html.sap-desktop .sapMBtn:focus > .sapMFocusable {
     line-height: 1rem;
 }
 .sapMPageFooter 
-{ position: fixed !important; }
+{ position: fixed !important; height: 96px; }
 .sapMPageWithFooter>section {
     bottom: 6rem !important;
 }
@@ -215,4 +215,8 @@ html.sap-desktop .sapMBtn:focus > .sapMFocusable {
 	overflow:auto;
 	height:5rem;
 	margin-top:1rem;
+}
+
+.marginCorners .sapMInputBaseIconContainer {
+	float:right;
 }

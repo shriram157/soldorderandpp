@@ -21,7 +21,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_status_PPD_D" selectionChange="_refresh"
+												<MultiComboBox id="mcb_status_PPD_D" selectionChange="_refresh"
 													items="{ path: 'globalComboModel>/PriceProtectionStatus', sorter: { path: 'key' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
@@ -35,7 +35,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_ordTyp_PPD_D" selectionChange="_refresh"
+												<MultiComboBox  id="mcb_ordTyp_PPD_D" selectionChange="_refresh"
 													items="{ path: 'OrderTypeModel>/PriceProtection_OrderType', sorter: { path: 'key' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{OrderTypeModel>key}" text="{OrderTypeModel>text}"/>
 													<layoutData>
@@ -49,7 +49,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_dealer_PPD_D"
+												<MultiComboBox  id="mcb_dealer_PPD_D"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" selectionChange="_refresh"
 													items="{LoginUserModel>/BpDealerModel}" class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
@@ -58,7 +58,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
-												<ComboBox forceSelection= "true" xmlns="sap.m" id="cb_dealer_PPD_D" width="300px"
+												<ComboBox  xmlns="sap.m" id="cb_dealer_PPD_D" width="300px"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}"
 													items="{LoginUserModel>/BpDealerModel}" selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
 													<!--<items>-->
@@ -68,8 +68,6 @@
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
-													<!--<core:Item xmlns:core="sap.ui.core" key="item-2-key" text="Item 2 Text" id="item13"/>-->
-													<!--</items>-->
 												</ComboBox>
 											</VBox>
 										</f:content>
@@ -87,6 +85,8 @@
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
+										<!--DMND0003562 changes done by Minakshi-->
+										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true"  class="sapUiTinyMarginBegin"></Button>
 									</Toolbar>
 								</t:extension>
 								<t:columns>
@@ -100,6 +100,13 @@
 										<Label class="TableLabel" text="{i18n>custname}"/>
 										<t:template>
 											<Text text="{ppdModel>zzendcu_name}"/>
+										</t:template>
+									</t:Column>
+									<t:Column>
+										<Label class="TableLabel" text="{i18n>rdrCustName}"/>
+										<t:template>
+											<Text text="{ppdModel>zzrdrcust_name}"/>
+											<!--<Text text="{= ${ppdModel>type} === '1' ? ${ppdModel>name_first} : ${ppdModel>name_org1}}"/>-->
 										</t:template>
 									</t:Column>
 									<t:Column>
@@ -126,18 +133,32 @@
 											<Text text="{ppdModel>zzseries}"/>
 										</t:template>
 									</t:Column>
+										<!--//	DMND0003455 changes done by Minakshi 13/12/2021-->
+									<!--<t:Column>-->
+									<!--	<Label class="TableLabel" text="{i18n>model}"/>-->
+									<!--	<t:template>-->
+									<!--		<Text text="{ppdModel>zzmodel}"/>-->
+									<!--	</t:template>-->
+									<!--</t:Column>-->
+									<!--<t:Column>-->
+									<!--	<Label class="TableLabel" text="{i18n>suffix}"/>-->
+									<!--	<t:template>-->
+									<!--		<Text text="{ppdModel>zzsuffix}"/>-->
+									<!--	</t:template>-->
+									<!--</t:Column>-->
 									<t:Column>
-										<Label class="TableLabel" text="{i18n>model}"/>
+										<Label class="TableLabel" text="{i18n>vin}"/>
 										<t:template>
-											<Text text="{ppdModel>zzmodel}"/>
+											<Text text="{ppdModel>vhvin}"/>
 										</t:template>
 									</t:Column>
 									<t:Column>
-										<Label class="TableLabel" text="{i18n>suffix}"/>
+										<Label class="TableLabel" text="{i18n>vtn}"/>
 										<t:template>
-											<Text text="{ppdModel>zzsuffix}"/>
+											<Text text="{ppdModel>zzvtn}"/>
 										</t:template>
 									</t:Column>
+									
 									<t:Column>
 										<Label class="TableLabel" text="{i18n>status}"/>
 										<t:template>

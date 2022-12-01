@@ -13,10 +13,10 @@
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>VehicleInformation}" class="msgStripFormat msgStripCss "/>
 							<Label text="{i18n>modelYear}"/>
-							<Text id = "moyr_CSOR" text="{mainservices>Zzmoyr}"/>
+							<Text id="moyr_CSOR" text="{mainservices>Zzmoyr}"/>
 							<Label text="{i18n>Series}"/>
-							<ComboBox id = "series_CSOR" editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo" selectedKey="{mainservices>Zzseries}"
-								modelContextChange="onSeriesnum">
+							<ComboBox id="series_CSOR" editable="false" width="100%" items="{ path: 'seriesModel>/'}" class="readonlycombo"
+								selectedKey="{mainservices>Zzseries}" modelContextChange="onSeriesnum">
 								<items>
 									<core:Item key="{seriesModel>ModelSeriesNo}" text="{seriesModel>TCISeriesDescriptionEN}"/>
 								</items>
@@ -43,21 +43,21 @@
 							<ComboBox id="apx_CSOR" required="true" selectedKey="{mainservices>Zzapx}">
 								<!--<core:Item key="{VechileModel>zzapx}" text="{VechileModel>zzapx}"/>-->
 							</ComboBox>
-							
 							<Label text="{i18n>ETA}" required="true"/>
 							<VBox>
 								<items>
 									<HBox>
 										<items>
 											<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-											<DatePicker id="etaFrom_CSOR" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" dateValue="{mainservices>ZzreqEtaFrom}"
-												change="_handleChangeDate"></DatePicker>
+											<DatePicker id="etaFrom_CSOR" valueFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd"
+												dateValue="{mainservices>ZzreqEtaFrom}" change="_handleChangeDate"></DatePicker>
 										</items>
 									</HBox>
 									<HBox>
 										<items>
 											<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
-											<DatePicker id="etaTo_CSOR" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" dateValue="{mainservices>ZzreqEtaTo}"></DatePicker>
+											<DatePicker id="etaTo_CSOR" change="_handleChange" valueFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd"
+												dateValue="{mainservices>ZzreqEtaTo}"></DatePicker>
 										</items>
 									</HBox>
 								</items>
@@ -68,23 +68,23 @@
 							<Label text="{i18n>contractDate}"/>
 							<!--<Text-->
 							<!--	id = "conDate_CSOR" valueFormat="yyyy-MM-ddTHH:mm:ss" text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM d, y', strictParsing: false, relative: false }}"/>-->
-							<DatePicker id="conDate_CSOR" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" dateValue="{mainservices>ZcontractDate}" editable="false" ></DatePicker>
-
+							<DatePicker id="conDate_CSOR" valueFormat="yyyy-MM-ddTHH:mm:ss" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd"
+								dateValue="{mainservices>ZcontractDate}" editable="false"></DatePicker>
 							<Label text="{i18n>salesType}"/>
 							<ComboBox id="salestype_CSOR" items="{ path: '/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
 								<core:Item key="{key}" text="{text}"/>
 							</ComboBox>
 							<!--<Text text="{mainservices>ZsalesType}"/>-->
-							<Label  text="{i18n>salesPerName}"/>
-							<Text id = "salesPerson_CSOR" text="{mainservices>Zsalesperson}"/>
+							<Label text="{i18n>salesPerName}"/>
+							<Text id="salesPerson_CSOR" text="{mainservices>Zsalesperson}"/>
 							<Label text="{i18n>salesManName}"/>
-							<Text id = "salesManager_CSOR" text="{mainservices>Zsalesmanager}"/>
-							<Label  text="{i18n>tradeInModelYr}"/>
-							<Text id = "tradeyr_CSOR" text="{mainservices>ZtradeModelYr}"/>
-							<Label  text="{i18n>tradeInMake}"/>
-							<Text id = "trademake_CSOR" text="{mainservices>ZtradeMake}"/>
-							<Label  text="{i18n>tradeInModel}"/>
-							<Text id = "trademodel_CSOR" text="{mainservices>ZtradeModel}"/>
+							<Text id="salesManager_CSOR" text="{mainservices>Zsalesmanager}"/>
+							<Label text="{i18n>tradeInModelYr}"/>
+							<Text id="tradeyr_CSOR" text="{mainservices>ZtradeModelYr}"/>
+							<Label text="{i18n>tradeInMake}"/>
+							<Text id="trademake_CSOR" text="{mainservices>ZtradeMake}"/>
+							<Label text="{i18n>tradeInModel}"/>
+							<Text id="trademodel_CSOR" text="{mainservices>ZtradeModel}"/>
 						</f:content>
 					</f:SimpleForm>
 					<f:SimpleForm class="FormTitle" title="" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
@@ -96,144 +96,39 @@
 							<!--<Label text="{i18n>CustName}"/>-->
 							<!--<Text text="{Customer>/person/firstName}{Customer>/person/familyName}"/>-->
 							<Label wrapping="true" text="{i18n>fcustname}"/>
-							<Text id = "firstName" text="{Customer>/person/firstName}"/>
+							<Text id="firstName" text="{Customer>/person/firstName}"/>
 							<Label wrapping="true" text="{i18n>scustname}"/>
-							<Text id = "lastName" text="{Customer>/person/familyName}"/>
+							<Text id="lastName" text="{Customer>/person/familyName}"/>
 							<Label text="{i18n>address}"/>
-							<Text id = "address" text="{Customer>/addresses/0/line1}"/>
+							<Text id="address" text="{Customer>/addresses/0/line1}"/>
 							<Label text="{i18n>city}"/>
-							<Text id = "city" text="{Customer>/addresses/0/city}"/>
+							<Text id="city" text="{Customer>/addresses/0/city}"/>
 							<Label text="{i18n>province}"/>
-							<Text id = "province" text="{Customer>/addresses/0/provinceCode}"/>
+							<Text id="province" text="{Customer>/addresses/0/provinceCode}"/>
 							<Label text="{i18n>postalcode}"/>
-							<Text id = "postalCode" text="{Customer>/addresses/0/postalCode}"/>
+							<Text id="postalCode" text="{Customer>/addresses/0/postalCode}"/>
 							<Label text="{i18n>phnNo}"/>
-							<Text id = "phone" text = "{Customer>/phones/0/localNumber}"/>
+							<Text id="phone" text="{Customer>/phones/0/localNumber}"/>
 							<Label text="{i18n>email}"/>
-							<Text id = "email" text="{Customer>/electronicAddresses/0/uriID}"/>
+							<Text id="email" text="{Customer>/electronicAddresses/0/uriID}"/>
 							<Label text="{i18n>driverLic}"/>
-							<Text id = "drivelicense" text="{mainservices>ZdriverLiNum}"/>
+							<Text id="drivelicense" text="{mainservices>ZdriverLiNum}"/>
 							<core:Title text=""/>
 							<MessageStrip text="{i18n>Comments}" class="msgStripFormat msgStripCss"></MessageStrip >
 							<Label text="{i18n>PreSoldOrder}"/>
-							<Link text="{mainservices>ZzsoReqNo}"></Link>
+							<Link id="oldSoldOrderNo" text="{mainservices>ZzsoReqNo}"></Link>
 							<Label text="{i18n>Comments}"/>
-							<TextArea id="Comment" value="{mainservices>Comment}"  maxLength="40"/>
+							<TextArea id="Comment" value="{mainservices>Comment}" maxLength="40"/>
 						</f:content>
 					</f:SimpleForm>
 				</content>
 				<footer class="sitefooter">
-					<Toolbar>
+					<OverflowToolbar>
 						<ToolbarSpacer/>
 						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized"></Button>
-					</Toolbar>
+					</OverflowToolbar>
 				</footer>
 			</Page>
 		</pages>
 	</App>
 </mvc:View>
-<!--<HBox class="marginCorners">
-	<items>
-		<VBox width="100%">
-			<items>
-				<MessageStrip text="{i18n>VehicleInformation}" class="msgStripCss marginCornersRight"></MessageStrip >
-				<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
-					<f:content>
-						<Label text="{i18n>modelYear}"/>
-						<Text text="{/Products/Name}"/>
-						<Label text="{i18n>Series}"/>
-						<Text text="{DimUnit}"/>
-						<Label text="{i18n>Model}"/>
-						<ComboBox id="model_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-							<core:Item key="{ProductId}" text="{Name}"/>
-						</ComboBox>
-						<Label text="{i18n>Suffix}"/>
-						<ComboBox id="suffix_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-							<core:Item key="{ProductId}"
-								text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix'}"/>
-						</ComboBox>
-						<Label text="{i18n>APX}"/>
-						<ComboBox id="apx_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-							<core:Item key="{ProductId}" text="{Name}"/>
-						</ComboBox>
-						<Label text="{i18n>Colour}"/>
-						<ComboBox id="colour_CSOR" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true">
-							<core:Item key="{ProductId}"
-								text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"/>
-						</ComboBox>
-						<Label text="{i18n>ETA}" required="true"/>
-						<VBox>
-							<items>
-								<HBox>
-									<items>
-										<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-										<DatePicker id="etaFrom_CSOR" placeholder="dd/MMM/yy"></DatePicker>
-									</items>
-								</HBox>
-								<HBox>
-									<items>
-										<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiMediumMarginEnd"/>
-										<DatePicker id="etaTo_CSOR" placeholder="dd/MMM/yy" navigate="_handleChange"></DatePicker>
-									</items>
-								</HBox>
-							</items>
-						</VBox>
-					</f:content>
-				</f:SimpleForm>
-				<MessageStrip text="{i18n>CustomerInformation}" class="msgStripCss marginCornersRight"></MessageStrip >
-				<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
-					<f:content>
-						<Label text="{i18n>custname}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>address}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>city}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>province}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>postalcode}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>phnNo}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>email}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>driverLic}"/>
-						<Text text="{address>/Name}"/>
-					</f:content>
-				</f:SimpleForm>
-			</items>
-		</VBox>
-		<VBox width="100%">
-			<items>
-				<MessageStrip text="{i18n>AdditionalInformation}" class="msgStripCss marginCornersLeft"></MessageStrip >
-				<f:SimpleForm editable="true" width="100%" class="formhieghtcss_cso" layout="ResponsiveLayout">
-					<f:content>
-						<Label text="{i18n>contractDate}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>salesType}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>salesPerName}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>salesManName}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>tradeInModelYr}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>tradeInMake}"/>
-						<Text text="{address>/Name}"/>
-						<Label text="{i18n>tradeInModel}"/>
-						<Text text="{address>/Name}"/>
-					</f:content>
-				</f:SimpleForm>
-				<MessageStrip text="{i18n>Comments}" class="msgStripCss marginCornersLeft"></MessageStrip >
-				<f:SimpleForm editable="true" width="100%" layout="ResponsiveLayout">
-					<f:content>
-						<Label text="{i18n>PreSoldOrder}"/>
-						<Link text="S092999"></Link>
-						<Label text="{i18n>Comments}"/>
-						<TextArea value="{address>/Name}"/>
-					</f:content>
-				</f:SimpleForm>
-			</items>
-		</VBox>
-	</items>
-</HBox>-->

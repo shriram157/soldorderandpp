@@ -15,10 +15,12 @@ sap.ui.define([
 		onInit: function () {
 			FSOS_controller = this;
 			FSOS_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
+
 			FSOS_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var globalComboModel = new sap.ui.model.json.JSONModel();
 			var Obj;
-			if (language == "EN") {
+			//Added by singhmi for Zone Approved key and text DMND0002946 on 11/03/2021
+			if (language === "EN") {
 				Obj = {
 					"FSOSummary_Status": [{
 						"key": "REQUESTED",
@@ -29,6 +31,9 @@ sap.ui.define([
 					}, {
 						"key": "REJECTED",
 						"text": "REJECTED"
+					}, {
+						"key": "ZONE APPROVED",
+						"text": "ZONE APPROVED"
 					}, {
 						"key": "PROCESSED",
 						"text": "PROCESSED"
@@ -46,6 +51,9 @@ sap.ui.define([
 						"key": "REJECTED",
 						"text": "REJECTED"
 					}, {
+						"key": "ZONE APPROVED",
+						"text": "ZONE APPROVED"
+					}, {
 						"key": "PROCESSED",
 						"text": "PROCESSED"
 					}]
@@ -61,7 +69,7 @@ sap.ui.define([
 			var OrderTypeModel = new sap.ui.model.json.JSONModel();
 			var Object;
 			// if (language == "EN") {
-			if(window.location.search.match(/Division=([^&]*)/i)[1] == "10"){
+			if (window.location.search.match(/Division=([^&]*)/i)[1] == "10") {
 				Object = {
 					"FSOSummary_OrderType": [{
 						"key": "F1",
@@ -84,27 +92,27 @@ sap.ui.define([
 			} else {
 				Object = {
 					"FSOSummary_OrderType": [
-					// 	{
-					// 	"key": "F1",
-					// 	"text": "DLR RAC"
-					// }, 
-					{
-						"key": "F2",
-						"text": "DLR ELITE"
-					}, 
-					// {
-					// 	"key": "F3",
-					// 	"text": "NAT RAC"
-					// }, 
-					{
-						"key": "F4",
-						"text": "NAT ELITE"
-					}
-					// , 
-					// {
-					// 	"key": "F5",
-					// 	"text": "MOBILITY"
-					// }
+						// 	{
+						// 	"key": "F1",
+						// 	"text": "DLR RAC"
+						// }, 
+						{
+							"key": "F2",
+							"text": "DLR ELITE"
+						},
+						// {
+						// 	"key": "F3",
+						// 	"text": "NAT RAC"
+						// }, 
+						{
+							"key": "F4",
+							"text": "NAT ELITE"
+						}
+						// , 
+						// {
+						// 	"key": "F5",
+						// 	"text": "MOBILITY"
+						// }
 					],
 				};
 
@@ -120,7 +128,7 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			var oModel = new sap.ui.model.json.JSONModel();
 			FSOS_controller.getView().setModel(oModel, "fleetsumModel");
-			
+
 			// FSOLocalModel.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
 			// FSOLocalModel.getView().getModel("LoginUserModel").setSizeLimit(750);
 			// FSOLocalModel.getView().getModel("LoginUserModel").updateBindings(true);
@@ -131,8 +139,9 @@ sap.ui.define([
 			FSOS_controller.dialog = new sap.m.BusyDialog({
 				text: sap.ui.getCore().getModel("i18n").getResourceBundle().getText("loadingData")
 			});
-			
-			num = 0;clicks = 0;
+
+			num = 0;
+			clicks = 0;
 			var sLocation = window.location.host;
 			var sLocation_conf = sLocation.search("webide");
 			if (sLocation_conf == 0) {
@@ -155,164 +164,99 @@ sap.ui.define([
 			var mcb_dealer_FSOS = FSOS_controller.getView().byId("mcb_dealer_FSOS");
 			var oTbl = FSOS_controller.getView().byId("tbl_FSOS");
 			var data = oTbl.getModel().getData().ProductCollection;
-			mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems());
+
 			mcb_ordTyp_FSOS.setSelectedItems(mcb_ordTyp_FSOS.getItems());
 			mcb_dealer_FSOS.setSelectedItems(mcb_dealer_FSOS.getItems());
 			// var host = FSOS_controller.host();
 			//=======================================================================================================
 			//==================Start Bindidng By Dealer=========================================================
 			//=====================================================================================================
+			//Added by singhmi added for National Fleet User DMND0002946 on 11/03/2021
+			var SoFleetModel = this.getOwnerComponent().getModel("mainservices");
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User" && x != "TCI_Zone_User") {
+			if (x === "National_Fleet_User") {
+				//mcb_status_FSOS.setSelectedItems([mcb_status_FSOS.getItems()[3]]);
+				mcb_status_FSOS.setSelectedKeys(["ZONE APPROVED"]);
+				this.getView().byId("cb_dealer_FSOS").setSelectedKey("");
+				if (this.getView().byId("cb_dealer_FSOS").getSelectedKey() == "") {
+					SoFleetModel.read("/SO_FLEET_HeaderSet", {
+						urlParameters: {
+							"$filter": "ZsoFltStatus eq 'ZONE APPROVED'"
+						},
+						success: $.proxy(function (sdata) {
+							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
+							DataModel.setData(sdata.results);
+							DataModel.updateBindings(true);
+						}, this),
+						error: function (err) {
+							sap.m.MessageToast.show(err);
+						}
+					});
+				}
+			} else if (x === "TCI_Zone_User" || x === "TCI_User") {
+				mcb_status_FSOS.setSelectedKeys(["REQUESTED", "APPROVED", "ZONE APPROVED", "REJECTED"]);
+				clicks = 0;
+				fleet = true;
+
+				var orderVal = FSOS_controller.getView().getModel("OrderTypeModel").getData().FSOSummary_OrderType;
+				var orderLen = orderVal.length;
 				FSOS_controller.dialog.open();
-				//console.log("loading data");
-				FSOS_controller._refresh();
-			} else {
-				
-				if (FSOS_controller.getView().byId("cb_dealer_FSOS").getSelectedKey() != "") {
-						FSOS_controller._refreshCombo();
 
-					} else {/*
-						var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
-						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							"error"), sap.m.MessageBox.Action.OK, null, null); // change march 10 P2
-
-					*/}
-
-				
-			
-			/*
-				FSOS_controller.dialog.open();
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
 					if (i == ((this.getView().byId("mcb_status_FSOS").getSelectedItems().length) - 1)) {
 						oUrl = oUrl + ") and (";
+						oUrl = oUrl;
 					} else {
 						oUrl = oUrl + " or ";
 					}
-
 				}
-				for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
-					var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
+
+				if (x === "TCI_Zone_User") {
+
+					for (var j = 0; j < mcb_dealer_FSOS.getItems().length; j++) {
+						var dealerkey = mcb_dealer_FSOS.getItems()[j].getKey();
+						oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+						if (j === (mcb_dealer_FSOS.getItems().length - 1)) {
+							oUrl = oUrl + ") and (";
+						} else {
+							oUrl = oUrl + " or ";
+						}
+					}
+				}
+
+				for (var i = 0; i < orderLen; i++) {
+					var orderno = orderVal[i].key;
 					oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
-					if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ")&$orderby=ZsoFltReqNo desc";
+					if (i == ((orderLen) - 1)) {
+						oUrl = oUrl;
 					} else {
 						oUrl = oUrl + " or ";
 					}
 				}
-				$.ajax({
-					url: oUrl,
-					method: "GET",
-					async: false,
-					dataType: "json",
-					success: function (data, textStatus, jqXHR) {
-						FSOS_controller.dialog.close();
-						var BtnNext = FSOS_controller.getView().byId("buttonNext");
-						if (data.d.results.length <= 0) {
-							BtnNext.setEnabled(false);
-						} else {
-							BtnNext.setEnabled(true);
-						}
 
-						var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
-						if (DataModel.getData().length != undefined) {
+				oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 
-							for (var m = 0; m < data.d.results.length; m++) {
-								DataModel.getData().push(data.d.results[m]);
-								DataModel.updateBindings(true);
-								// console.log("DataModel.getData()", DataModel.getData());
-							}
-						} else {
-							DataModel.setData(data.d.results);
-							DataModel.updateBindings(true);
-						}
-					},
-					error: function (jqXHR, textStatus, errorThrown) {
-						FSOS_controller.dialog.close();
-						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-					}
-				});
-			*/
-				
+				FSOS_controller._fleetajaxCall(oUrl);
+			} else {
+				mcb_status_FSOS.setSelectedItems(mcb_status_FSOS.getItems());
 			}
-			
-		},
-		onBeforeRendering: function () {
-			if (AppController.flagZoneUser == true) {
-				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
+			//Added by singhmi for National Fleet User DMND0002946 on 11/03/2021
+			//Changes done for INC0189944 by Minakshi odata call on load happen only for dealer not for other users.
+			if (x === "Dealer_User") {
+				FSOS_controller.dialog.open();
+				//console.log("loading data");
+				FSOS_controller._refresh();
+			} else {
+				FSOS_controller.getView().byId("cb_dealer_FSOS").setSelectedKey("");
 			}
-			if (AppController.flagNationalUser == true) {
-				FSOS_controller.getView().byId("mcb_dealer_FSOS").setVisible(true);
-			}
+			//Changes done for INC0189944 by Minakshi end
 		},
-		onAfterRendering: function () {
-			//=======================================================================================================
-			//==================Start Bindidng By Dealer=========================================================
-			//=====================================================================================================
-			// var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			// if (x != "TCI_User" && x != "TCI_Zone_User") {
-			// 	FSOS_controller._refresh();
-			// } else {
 
-			// 	var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
-			// 	for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
-			// 		var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
-			// 		oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
-			// 		if (i == ((this.getView().byId("mcb_status_FSOS").getSelectedItems().length) - 1)) {
-			// 			oUrl = oUrl + ") and (";
-			// 		} else {
-			// 			oUrl = oUrl + " or ";
-			// 		}
-
-			// 	}
-			// 	for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
-			// 		var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
-			// 		oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
-			// 		if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-			// 			oUrl = oUrl + ")&$orderby=ZsoFltReqNo desc";
-			// 		} else {
-			// 			oUrl = oUrl + " or ";
-			// 		}
-			// 	}
-			// 	$.ajax({
-			// 		url: oUrl,
-			// 		method: "GET",
-			// 		async: false,
-			// 		dataType: "json",
-			// 		success: function (data, textStatus, jqXHR) {
-			// 			// FSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
-			// 			var BtnNext = FSOS_controller.getView().byId("buttonNext");
-			// 			if (data.d.results.length <= 0) {
-			// 				BtnNext.setEnabled(false);
-			// 			} else {
-			// 				BtnNext.setEnabled(true);
-			// 			}
-
-			// 			var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
-			// 			if (DataModel.getData().length != undefined) {
-
-			// 				for (var m = 0; m < data.d.results.length; m++) {
-			// 					DataModel.getData().push(data.d.results[m]);
-			// 					DataModel.updateBindings(true);
-			// 					console.log("DataModel.getData()", DataModel.getData());
-			// 				}
-			// 			} else {
-			// 				DataModel.setData(data.d.results);
-			// 				DataModel.updateBindings(true);
-			// 			}
-			// 		},
-			// 		error: function (jqXHR, textStatus, errorThrown) {
-			// 			var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-			// 			sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-			// 		}
-			// 	});
-			// }
-		},
 		_refreshCombo: function (evt) {
+			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			clicks = 0;
 			fleet = true;
 			FSOS_controller.dialog.open();
@@ -326,19 +270,61 @@ sap.ui.define([
 					oUrl = oUrl + " or ";
 				}
 			}
+
+			var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+			if (sdealer !== "") {
+				oUrl = oUrl + "(ZzdealerCode eq '" + sdealer + "')) and (";
+
+			} else {
+
+				if (x === "TCI_Zone_User") {
+
+					for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+						var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+						oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+						if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+							oUrl = oUrl + ") and (";
+
+						} else {
+							oUrl = oUrl + " or ";
+						}
+					}
+				}
+
+			}
+
 			for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
+
 				var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
 				oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
 				if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-					oUrl = oUrl + ") and (";
+					oUrl = oUrl;
 				} else {
 					oUrl = oUrl + " or ";
 				}
 			}
-			var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-			oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 
-			oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
+			oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
+
+			// for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
+			// 	var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
+			// 	oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
+			// 	if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
+			// 		oUrl = oUrl;
+			// 	} else {
+			// 		oUrl = oUrl + " or ";
+			// 	}
+			// }
+
+			// var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+			// if (sdealer !== "") {
+			// 	oUrl = oUrl + ") and ((ZzdealerCode eq '" + sdealer + "')";
+			// }
+			// oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
+			FSOS_controller._fleetajaxCall(oUrl);
+		},
+
+		_fleetajaxCall: function (oUrl) {
 			$.ajax({
 				url: oUrl,
 				method: "GET",
@@ -354,17 +340,9 @@ sap.ui.define([
 					}
 
 					var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
-					// if (DataModel.getData().length != undefined) {
+					DataModel.setData(data.d.results);
+					DataModel.updateBindings(true);
 
-					// 	for (var m = 0; m < data.d.results.length; m++) {
-					// 		DataModel.getData().push(data.d.results[m]);
-					// 		DataModel.updateBindings(true);
-					// 		console.log("DataModel.getData()", DataModel.getData());
-					// 	}
-					// } else {
-						DataModel.setData(data.d.results);
-						DataModel.updateBindings(true);
-					// }
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					FSOS_controller.dialog.close();
@@ -374,6 +352,7 @@ sap.ui.define([
 				}
 			});
 		},
+
 		_navToSoldOrder: function (evt) {
 			FSOS_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
 				Soreq: evt.getSource().getText()
@@ -390,8 +369,6 @@ sap.ui.define([
 			dialog.close();
 		},
 		_searchNLink: function () {
-			var vinVal = FSOS_controller.getView().byId("vin_FSOS").getValue();
-			var vtinVal = FSOS_controller.getView().byId("vtin_FSOS").getValue();
 
 			var errForm = formatter.formatErrorType("SO000010");
 			var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -401,8 +378,8 @@ sap.ui.define([
 		_refresh: function (oEvent) {
 			clicks = 0;
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			
-			if (x != "TCI_User" && x != "TCI_Zone_User") {
+			//Added by singhmi DMND0002946 on 11/03/2021
+			if (x !== "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -422,16 +399,17 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
+
 				for (var i = 0; i < this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length; i++) {
 					var dealer = this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 					if (i == ((this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
+						oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 					} else {
 						oUrl = oUrl + " or ";
 					}
 				}
-				
+
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -454,8 +432,8 @@ sap.ui.define([
 						// 		console.log("DataModel.getData()", DataModel.getData());
 						// 	}
 						// } else {
-							DataModel.setData(data.d.results);
-							DataModel.updateBindings(true);
+						DataModel.setData(data.d.results);
+						DataModel.updateBindings(true);
 						// }
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
@@ -467,14 +445,9 @@ sap.ui.define([
 				});
 			} else {
 				if (fleet == false) {
-				FSOS_controller.dialog.close();
-				// change march 10 P2
-							/*var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
-						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							"error"), sap.m.MessageBox.Action.OK, null, null); 
-*/
-					
-				/*
+					FSOS_controller.dialog.close();
+				} else {
+
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -484,17 +457,45 @@ sap.ui.define([
 						} else {
 							oUrl = oUrl + " or ";
 						}
+
 					}
+
+					var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+					var BtnNext = FSOS_controller.getView().byId("buttonNext");
+
+					if (sdealer !== "") {
+						oUrl = oUrl + "(ZzdealerCode eq '" + sdealer + "')) and (";
+
+					} else {
+
+						if (x === "TCI_Zone_User") {
+
+							for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+								var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+								oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+								if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+									oUrl = oUrl + ") and (";
+
+								} else {
+									oUrl = oUrl + " or ";
+								}
+							}
+						}
+					}
+
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
+
 						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
 						if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
+							oUrl = oUrl;
 						} else {
 							oUrl = oUrl + " or ";
 						}
 					}
-					
+
+					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
+
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -510,74 +511,10 @@ sap.ui.define([
 							}
 
 							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
-							// if (DataModel.getData().length != undefined) {
-							// 	for (var m = 0; m < data.d.results.length; m++) {
-							// 		DataModel.getData().push(data.d.results[m]);
-							// 		DataModel.updateBindings(true);
-							// 		console.log("DataModel.getData()", DataModel.getData());
-							// 	}
-							// } else {
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
-							// }
-						},
-						error: function (jqXHR, textStatus, errorThrown) {
-							FSOS_controller.dialog.close();
-							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 
-						}
-					});
-				*/} else {
+							DataModel.setData(data.d.results);
+							DataModel.updateBindings(true);
 
-					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=0&$filter=(";
-					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
-						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
-						if (i == ((this.getView().byId("mcb_status_FSOS").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-					}
-					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
-						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
-						if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-					}
-					var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
-					oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
-					
-					$.ajax({
-						url: oUrl,
-						method: "GET",
-						async: false,
-						dataType: "json",
-						success: function (data, textStatus, jqXHR) {
-							FSOS_controller.dialog.close();
-							var BtnNext = FSOS_controller.getView().byId("buttonNext");
-							if (data.d.results.length <= 0) {
-								BtnNext.setEnabled(false);
-							} else {
-								BtnNext.setEnabled(true);
-							}
-
-							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
-							// if (DataModel.getData().length != undefined) {
-							// 	for (var m = 0; m < data.d.results.length; m++) {
-							// 		DataModel.getData().push(data.d.results[m]);
-							// 		DataModel.updateBindings(true);
-							// 		console.log("DataModel.getData()", DataModel.getData());
-							// 	}
-							// } else {
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
-							// }
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							FSOS_controller.dialog.close();
@@ -603,7 +540,8 @@ sap.ui.define([
 		data: function (oEvent) {
 			FSOS_controller.dialog.open();
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
-			if (x != "TCI_User" && x != "TCI_Zone_User") {
+			//Added by singhmi for National Fleet User DMND0002946 on 11/03/2021
+			if (x !== "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
 				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
 				for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -629,12 +567,12 @@ sap.ui.define([
 					var dealer = this.getView().byId("mcb_dealer_FSOS").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
 					if (i == ((this.getView().byId("mcb_dealer_FSOS").getSelectedItems().length) - 1)) {
-						oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
+						oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 					} else {
 						oUrl = oUrl + " or ";
 					}
 				}
-				
+
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -670,12 +608,9 @@ sap.ui.define([
 			} else {
 				if (fleet == false) {
 					FSOS_controller.dialog.close();
-					// change march 10 P2
-						/*	var errMsgDropdown = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorSelectDealer"); // change march 10 P2
-						sap.m.MessageBox.show(errMsgDropdown, sap.m.MessageBox.Icon.ERROR, sap.ui.getCore().getModel("i18n").getResourceBundle().getText(
-							"error"), sap.m.MessageBox.Action.OK, null, null); 
-*/
-					/*
+
+				} else {
+
 					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
 					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
@@ -687,75 +622,42 @@ sap.ui.define([
 						}
 
 					}
-					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
-						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
-						if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-					}
 
-					$.ajax({
-						url: oUrl,
-						method: "GET",
-						async: false,
-						dataType: "json",
-						success: function (data, textStatus, jqXHR) {
-							FSOS_controller.dialog.close();
-							var BtnNext = FSOS_controller.getView().byId("buttonNext");
-							if (data.d.results.length <= 0) {
-								BtnNext.setEnabled(false);
-							} else {
-								BtnNext.setEnabled(true);
-							}
+					var sdealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
+					var BtnNext = FSOS_controller.getView().byId("buttonNext");
 
-							var DataModel = FSOS_controller.getView().getModel("fleetsumModel");
-							if (DataModel.getData().length != undefined) {
-								for (var m = 0; m < data.d.results.length; m++) {
-									DataModel.getData().push(data.d.results[m]);
-									DataModel.updateBindings(true);
-									// console.log("DataModel.getData()", DataModel.getData());
+					if (sdealer !== "") {
+						oUrl = oUrl + "(ZzdealerCode eq '" + sdealer + "')) and (";
+
+					} else {
+
+						if (x === "TCI_Zone_User") {
+
+							for (var j = 0; j < this.getView().byId("cb_dealer_FSOS").getItems().length; j++) {
+								var dealerkey = this.getView().byId("cb_dealer_FSOS").getItems()[j].getKey();
+								oUrl = oUrl + "(ZzdealerCode eq '" + dealerkey + "')";
+								if (j === (this.getView().byId("cb_dealer_FSOS").getItems().length - 1)) {
+									oUrl = oUrl + ") and (";
+
+								} else {
+									oUrl = oUrl + " or ";
 								}
-							} else {
-								DataModel.setData(data.d.results);
-								DataModel.updateBindings(true);
 							}
-						},
-						error: function (jqXHR, textStatus, errorThrown) {
-							FSOS_controller.dialog.close();
-							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-
 						}
-					});
-
-				*/} else {
-
-					var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet?$top=100&$skip=" + num + "&$filter=(";
-					for (var i = 0; i < this.getView().byId("mcb_status_FSOS").getSelectedItems().length; i++) {
-						var status = this.getView().byId("mcb_status_FSOS").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(ZsoFltStatus eq '" + status + "')";
-						if (i == ((this.getView().byId("mcb_status_FSOS").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
-						} else {
-							oUrl = oUrl + " or ";
-						}
-
 					}
+
 					for (var i = 0; i < this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length; i++) {
+
 						var orderno = this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(Zadd1 eq '" + orderno + "')";
 						if (i == ((this.getView().byId("mcb_ordTyp_FSOS").getSelectedItems().length) - 1)) {
-							oUrl = oUrl + ") and (";
+							oUrl = oUrl;
 						} else {
 							oUrl = oUrl + " or ";
 						}
 					}
-					var dealer = this.getView().byId("cb_dealer_FSOS").getSelectedKey();
-					oUrl = oUrl + "(ZzdealerCode eq '" + dealer + "')";
-					oUrl = oUrl + ") &$orderby=ZsoFltReqNo desc";
+
+					oUrl = oUrl + ") &$orderby=ZzdealerCode asc,ZfanNo asc,ZpoNumber asc,ZsoFltStatus asc";
 
 					$.ajax({
 						url: oUrl,
@@ -792,7 +694,7 @@ sap.ui.define([
 				}
 			}
 		},
-		onLiveSOChange:function(oEvent){
+		onLiveSOChange: function (oEvent) {
 			this.sSearchQuery = oEvent.getSource().getValue();
 			this.fnSuperSearch();
 		},

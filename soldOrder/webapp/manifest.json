@@ -162,7 +162,7 @@
 		},
 		"resources": {
 			"js": [{
-				"uri": "lib/changeFabicon.js"
+				"uri": "lib/moment.js"
 			}],
 			"css": [{
 				"uri": "css/style.css"
@@ -191,7 +191,7 @@
 				"target": "home2",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page3/{Soreq}",
+				"pattern": "page3/{Soreq}/:mainPG:",
 				"name": "RSOView_ManageSoldOrder",
 				"target": "home3",
 				"clearTarget": "true"
@@ -226,17 +226,17 @@
 				"target": "home9",
 				"clearTarget": "true"
 			}, {
-				"pattern": "",
+				"pattern": ":refresh:",
 				"name": "RetailSoldOrderSummary",
 				"target": "home10",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page11",
+				"pattern": "page11/:refresh:",
 				"name": "CreateFleetSoldOrder",
 				"target": "home11",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page12",
+				"pattern": "page12/:refresh:",
 				"name": "InventoryVehicleSelection",
 				"target": "home12",
 				"clearTarget": "true"
@@ -251,17 +251,17 @@
 				"target": "home14",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page15",
+				"pattern": "page15/:refresh:",
 				"name": "FleetSoldOrderSummary",
 				"target": "home15",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page16",
+				"pattern": "page16/:refresh:",
 				"name": "FleetSoldOrderDetails",
 				"target": "home16",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page17",
+				"pattern": "page17/:refresh:",
 				"name": "PriceProtectionDetails_Dealer",
 				"target": "home17",
 				"clearTarget": "true"
@@ -276,7 +276,7 @@
 				"target": "home19",
 				"clearTarget": "true"
 			}, {
-				"pattern": "page20",
+				"pattern": "page20/:refresh:",
 				"name": "CapSoldOrder",
 				"target": "home20",
 				"clearTarget": "true"

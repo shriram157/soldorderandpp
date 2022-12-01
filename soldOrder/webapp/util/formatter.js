@@ -363,45 +363,50 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	NationalorZonalusertype: function (Usertypevalue) {
-		console.log(Usertypevalue);
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User")) {
+
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue == "TCI_Zone_User")) {
 			return true;
 		} else {
 			return false;
 		}
 	},
 	TCIorZonalusertype: function (Usertypevalue) {
-		console.log(Usertypevalue);
-		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User")) {
+
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User") || (Usertypevalue === "National_Fleet_User")) {
 			return true;
 		} else {
 			return false;
 		}
 	},
 	NonTCIorZonalusertype: function (Usertypevalue) {
-		console.log(Usertypevalue);
-		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User")) {
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		if ((Usertypevalue === "TCI_User") || (Usertypevalue == "TCI_Zone_User") || (Usertypevalue === "National_Fleet_User")) {
 			return false;
 		} else {
 			return true;
 		}
 	},
 	Nationalusertype: function (Usertypevalue) {
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User")) {
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue === "TCI_Zone_User")) {
 			return false;
 		} else {
 			return true;
 		}
 	},
 	Tciusertype: function (Usertypevalue) {
-		if (Usertypevalue == 'TCI_User') {
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		if ((Usertypevalue == 'TCI_User') || (Usertypevalue === "National_Fleet_User") || (Usertypevalue === "TCI_Zone_User")) {
 			return true;
 		} else {
 			return false;
 		}
 	},
 	Tciusernzonetype: function (Usertypevalue) {
-		if ((Usertypevalue === 'TCI_User') || (Usertypevalue === "TCI_Zone_User")) {
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		if ((Usertypevalue === 'TCI_User') || (Usertypevalue === "TCI_Zone_User") || (Usertypevalue === "National_Fleet_User")) {
 			return true;
 		} else {
 			return false;
@@ -416,7 +421,11 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	TciApprove: function (svalue) {
-		if (svalue == 'REQUESTED') {
+		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
+		var oUserType = this.getParent().getParent().oPropagatedProperties.oModels.LoginUserModel.getData().UserType;
+		if (svalue === "REQUESTED" && oUserType !== "National_Fleet_User") {
+			return true;
+		} else if (svalue === "ZONE APPROVED" && oUserType === "National_Fleet_User") {
 			return true;
 		} else {
 			return false;
@@ -444,15 +453,17 @@ toyota.ca.SoldOrder.util.formatter = {
 			return dealerno.slice(-5);
 		}
 	},
+	// changes done for incident INC0207766 by Minakshi on 20/04/2022
 	ordercancelled: function (orderstatus) {
-		if (orderstatus == "CANCELLED") {
+		if (orderstatus == "CANCELLED" || orderstatus == "CHANGED") {
 			return false;
 		} else {
 			return true;
 		}
 	},
+	// changes done for incident INC0207766 by Minakshi on 20/04/2022
 	orderFilled: function (orderstatus) {
-		if (orderstatus == "CANCELLED" || orderstatus == "FILLED") {
+		if (orderstatus == "CANCELLED" || orderstatus == "FILLED" || orderstatus == "CHANGED") {
 			return false;
 		} else {
 			return true;
@@ -507,6 +518,35 @@ toyota.ca.SoldOrder.util.formatter = {
 
 			return year + "-" + month + "-" + day;
 		}
+	},
+	fnDateFormat: function (val) {
+		var Oval;
+		if (val) {
+			//var oText = val.toUTCString();
+			Oval = moment.utc(val).format("DD.MM.YYYY");
+		} else {
+			Oval = null;
+		}
+		return Oval;
+
+	},
+	fnValFormat: function (val) {
+		if(val){
+			return "    " + val;
+		}
+	},
+	stringDateConverter: function (val) {
+		var sval, sdate;
+		// var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+		// 	pattern: "MM-DD-YYYY"
+		// });
+		if (val != "" && val != null && val != undefined) {
+			sdate = val.split(" ")[0];
+			sval = sdate.replaceAll(".", "-");
+		} else {
+			sval = null;
+		}
+		return sval;
 	}
 
 };

@@ -19,6 +19,7 @@ sap.ui.define([
 			RSOB_controller.flagInvalidPCode = false;
 			RSOB_controller.flagInvalidPhone = false;
 			RSOB_controller.validateFlagB = false;
+			RSOB_controller.flagInvalidName = false; // DMND0003108
 			var model = new JSONModel({});
 			// AppController.getDealer();
 			RSOB_controller.getView().setModel(sap.ui.getCore().getModel("LoginUserModel"), "LoginUserModel");
@@ -233,7 +234,7 @@ sap.ui.define([
 
 			// });
 		},
-		onValidateCustomer: function () {
+/*		onValidateCustomer: function () {
 			validateFlagB = true;
 			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
 			if (validateFlagB == true) {
@@ -488,7 +489,176 @@ sap.ui.define([
 					.m.MessageBox.Action.OK, null, null);
 			}
 		},
+*/
 
+	/************** Begin of DMND0003108 **************************/
+
+		onValidateCustomer: function () {
+			var CustModel = RSOB_controller.getView().getModel('Customer').getData();
+			Zcustomer_No = '';
+			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
+			submitBtn.setEnabled(false);
+			RSOB_controller.validateFlagB = false;
+			if (CustModel.FirstName != '' && CustModel.SecondName != '' && CustModel.FirstName && CustModel.SecondName && CustModel.Phone != '' &&
+				CustModel.Phone && CustModel.City != '' && CustModel.City &&
+				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
+				CustModel.PostCode) {
+				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+			
+
+				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error1");
+				var title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title5");
+				var icon = new sap.ui.core.Icon({
+					src: "sap-icon://alert",
+					size: "2rem"
+				});
+				var msg = new sap.m.HBox({
+					items: [icon, new sap.m.Text({
+						text: errMsg
+					})]
+				});
+				var oBusyDialog = new sap.m.BusyDialog({
+					showCancelButton: false
+				});
+				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+					"&lastName=" + CustModel.SecondName;
+				//lastName=" + CustModel.Name;
+				var msg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("msgcustomer1");
+				
+				if (RSOB_controller.flagInvalidPCode == true && RSOB_controller.flagInvalidPhone == false) {
+
+					var errMsg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPostalCode");
+					sap.m.MessageBox.show(errMsg1, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else if (RSOB_controller.flagInvalidPCode == false && RSOB_controller.flagInvalidPhone == true) {
+
+					var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPhone");
+					sap.m.MessageBox.show(errMsg2, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else if (RSOB_controller.flagInvalidPCode == true && RSOB_controller.flagInvalidPhone == true) {
+
+					var errMsg3 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPhonePostalCode");
+					sap.m.MessageBox.show(errMsg3, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else if (RSOB_controller.flagInvalidName == true) {
+					var errMsg3 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorName");
+					sap.m.MessageBox.show(errMsg3, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+						.m.MessageBox.Action.OK, null, null);
+				} else {
+
+					oBusyDialog.open();
+					var soapMessage = {
+						"requestHeader": {
+							"source": "Toyota",
+							"userId": "LOAD",
+							"requestLanguage": "fr_CA"
+						},
+						"type": "NewProfile",
+						"customer": {
+							"person": {
+								"firstName": CustModel.FirstName,
+								"familyName": CustModel.SecondName
+							},
+							"addresses": [{
+								"line1": CustModel.Address,
+								"city": CustModel.City,
+								"provinceCode": CustModel.Province,
+								"countryCode": "CA",
+								"postalCode": CustModel.PostCode,
+								"addressType": "BUSINESS"
+							}],
+							"phones": [{
+								"localNumber": CustModel.Phone.substr(3, 7),
+								"areaCode": CustModel.Phone.substr(0, 3),
+								"useCode": "WORK"
+							},
+							{
+								"localNumber": CustModel.Phone.substr(3, 7),
+								"areaCode": CustModel.Phone.substr(0, 3),
+								"useCode": "MOBILE"
+							}],
+							"preferredLanguageCode": "en-CA",
+							"electronicAddresses": [{
+								"uriID": CustModel.Email,
+								useCode: "PERSONAL"
+							}]
+						},
+						"source": "OICC"
+					};
+					var zdataString = JSON.stringify(
+						soapMessage
+					);
+					$.ajax({
+						url: '/node/tci/internal/api/v1.0/customer/custupdate/customerProfile',
+						headers: {
+							accept: 'application/json',
+							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
+							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+							'content-type': 'application/json'
+						},
+						type: "POST",
+						dataType: "json",
+						data: zdataString,
+						success: function (data, textStatus, jqXHR) {
+							submitBtn.setEnabled(true);
+							oBusyDialog.close();
+							if (data.customer) {
+								RSOB_controller.validateFlagB = true;
+								Zcustomer_No = data.customer.partyID; //customerNumber;
+								Zcustomer_No = Zcustomer_No.toString();
+								var errMsg2 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("success1");
+								title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title5");
+								icon = new sap.ui.core.Icon({
+									src: "sap-icon://success",
+									size: "2rem"
+								});
+								var msg2 = new sap.m.HBox({
+									items: [icon, new sap.m.Text({
+										text: errMsg2
+									})]
+								});
+								sap.m.MessageBox.show(msg2, {
+									icon: sap.m.MessageBox.Icon.SUCCESS,
+									title: title,
+									actions: sap.m.MessageBox.Action.OK,
+									onClose: null,
+									styleClass: "",
+									initialFocus: null,
+									textDirection: sap.ui.core.TextDirection.Inherit,
+									contentWidth: "10rem"
+								});
+
+							}
+						},
+						error: function (request, errorText, errorCode) {
+							oBusyDialog.close();
+
+							submitBtn.setEnabled(false);
+							var msgNew = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorCDMS");
+							sap.m.MessageBox.show({
+								icon: sap.m.MessageBox.Icon.ERROR,
+								title: msgNew,
+								actions: sap.m.MessageBox.Action.OK,
+								onClose: null,
+								styleClass: "",
+								initialFocus: null,
+								textDirection: sap.ui.core.TextDirection.Inherit
+							});
+
+						}
+					});
+				}
+				
+			} else {
+				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
+				var errForm = formatter.formatErrorType("SO000023");
+				errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
+				sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, errTitle, sap
+					.m.MessageBox.Action.OK, null, null);
+			}
+		},
+
+		/************** End of DMND0003108 ****************************/
 		_onSubmit: function () {
 			var flag1 = false;
 			var flag2 = false;
@@ -852,6 +1022,36 @@ sap.ui.define([
 				// ], true));
 			}
 		},
+			/********************************Begin of DMND0003108******************************/
+
+		validateName: function (oEvt) {
+			var name = "";
+			if (oEvt) {
+				name = oEvt.getParameters().newValue;
+				var nameRegExp = new RegExp(/^[ a-zA-Z]+$/);
+				if (nameRegExp.test(name) == true) {
+					oEvt.getSource().setValueState("None");
+					
+					
+				} else {
+					oEvt.getSource().setValueState("Error");
+
+					name = null;
+				}
+
+			}
+			
+			if (RSOB_controller.getView().byId("CustName_RSOB").getValueState() == "None" && RSOB_controller.getView().byId("CustName_SSOB").getValueState() == "None"){
+				RSOB_controller.flagInvalidName = false;
+			}
+			else {
+				RSOB_controller.flagInvalidName = true;
+			}
+			return name;
+		},
+
+		/********************************End of DMND0003108********************************/
+		
 		suffix_selected: function (oEvent) {
 			//-----------------
 			//----APX---------
@@ -915,157 +1115,7 @@ sap.ui.define([
 				// ], true));
 
 			}
-		},
-		// 	series_selected: function (oEvent) {
-
-		// 	// var year = this.getView().byId('modelYr_RSOB').getValue();
-		// 	// items="{ path: 'oModel3>/'}"
-		// 	var modelyear = this.getView().byId('modelYr_RSOB').getValue();
-		// 	var series = this.getView().byId('series_RSOB').getSelectedKey();
-		// 	if (series && modelyear) {
-		// 		var modelCB = this.getView().byId("model_RSOB");
-		// 		var suffixCB = this.getView().byId("Suffix_RSOB");
-		// 		var apxCB = this.getView().byId("Apx_RSOB");
-		// 		var colorCB = this.getView().byId("Colour_RSOB");
-		// 		modelCB.setSelectedKey(null);
-		// 		modelCB.destroyItems();
-		// 		suffixCB.setSelectedKey(null);
-		// 		suffixCB.destroyItems();
-		// 		apxCB.setSelectedKey(null);
-		// 		apxCB.destroyItems();
-		// 		colorCB.setSelectedKey(null);
-		// 		colorCB.destroyItems();
-		// 	var dealer = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartner;
-		// 		modelCB.bindItems({
-		// 			// path: "VechileModel>/zc_model",
-		// 			path: "mainservices>/ZVMS_Model_EXCLSet",
-		// 			filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
-		// 				new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-		// 				new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
-		// 				new sap.ui.model.Filter("source", sap.ui.model.FilterOperator.EQ,'PIP')
-		// 			], true),
-		// 			template: new sap.ui.core.ListItem({
-		// 				key: "{mainservices>model}",
-		// 				text: "{parts: [{path:'mainservices>model'},{path:'mainservices>model_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatModel'}"
-		// 			})
-		// 		});
-		// 		// var items_binding = this.getView().byId('model_RSOB').getBinding('items');
-		// 		// items_binding.filter(new sap.ui.model.Filter("TCIModelSeriesNo", sap.ui.model.FilterOperator.EQ, series));
-		// 	}
-		// },
-		// model_selected: function (oEvent) {
-		// 	// zc_configuration(Model='ZZZZZZ',ModelYear='2030',Suffix='AM')
-		// 	var model = oEvent.getSource().getSelectedKey();
-		// 	var language = RSOB_controller.returnBrowserLanguage();
-		// 	var modelyear = this.getView().byId('modelYr_RSOB').getValue();
-		// 	var suf;
-		// 	if (language === "FR") {
-		// 		suf =
-		// 			"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_fr'},{path:'mainservices>int_trim_desc_fr'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
-
-		// 	} else {
-		// 		suf =
-		// 			"{parts: [{path:'mainservices>suffix'},{path:'mainservices>suffix_desc_en'},{path:'mainservices>int_trim_desc_en'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatSuffix1'}";
-
-		// 	}
-		// 	if (model && modelyear) {
-		// 		var suffixCB = this.getView().byId("Suffix_RSOB");
-		// 		var apxCB = this.getView().byId("Apx_RSOB");
-		// 		var colorCB = this.getView().byId("Colour_RSOB");
-		// 		// 		modelCB.setSelectedKey(null);
-		// 		// modelCB.destroyItems();
-		// 		suffixCB.setSelectedKey(null);
-		// 		suffixCB.destroyItems();
-		// 		apxCB.setSelectedKey(null);
-		// 		apxCB.destroyItems();
-		// 		colorCB.setSelectedKey(null);
-		// 		colorCB.destroyItems();
-		// 		suffixCB.bindItems({
-		// 			// path: 'VechileModel>/zc_configuration',ZVMS_CDS_SUFFIX
-		// 			path: 'mainservices>/ZVMS_CDS_SUFFIX',
-		// 			filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-		// 				new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 			], true),
-		// 			template: new sap.ui.core.ListItem({
-		// 				key: "{mainservices>suffix}",
-		// 				text: suf
-		// 			})
-		// 		});
-		// 		// ,{path:'mainservices>int_trim_desc_en'}		
-		// 		// var items_binding = this.getView().byId('Suffix_RSOB').getBinding('items');
-		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-		// 		// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 		// ], true));
-		// 	}
-		// },
-		// suffix_selected: function (oEvent) {
-		// 	//-----------------
-		// 	//----APX---------
-		// 	//----------------
-		// 	//items="{ path: 'mode_Model>/', sorter: { path: 'key' } }"
-		// 	var suffix = oEvent.getSource().getSelectedKey();
-		// 	var modelyear = this.getView().byId('modelYr_RSOB').getValue();
-		// 	var model = this.getView().byId('model_RSOB').getSelectedKey();
-		// 	if (model && modelyear && suffix) {
-		// 		var apxCB = this.getView().byId("Apx_RSOB");
-		// 		var colorCB = this.getView().byId("Colour_RSOB");
-		// 		// 		modelCB.setSelectedKey(null);
-		// 		// modelCB.destroyItems();
-		// 		// suffixCB.setSelectedKey(null);
-		// 		// suffixCB.destroyItems();
-		// 		apxCB.setSelectedKey(null);
-		// 		apxCB.destroyItems();
-		// 		colorCB.setSelectedKey(null);
-		// 		colorCB.destroyItems();
-		// 		apxCB.bindItems({
-		// 			// path: 'VechileModel>/ZC_PIO_DIO',
-		// 			path: 'mainservices>/ZVMS_CDS_APX',
-		// 			filters: new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
-		// 				new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 				new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 			], true),
-		// 			template: new sap.ui.core.ListItem({
-		// 				// key: "{VechileModel>zzapx}",
-		// 				key: "{mainservices>zzapx}",
-		// 				// text: "{VechileModel>zzapx}"
-		// 				text: "{mainservices>zzapx}"
-		// 			})
-		// 		});
-		// 		// var items_binding = this.getView().byId('Apx_RSOB').getBinding('items');
-		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("zzmodel", sap.ui.model.FilterOperator.EQ, model),
-		// 		// 	new sap.ui.model.Filter("zzsuffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 		// 	new sap.ui.model.Filter("zzmoyr", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 		// ], true));
-		// 		//-----------------
-		// 		//----Color---------
-		// 		//----------------
-		// 		var color;
-		// 		var language = RSOB_controller.returnBrowserLanguage();
-		// 		if (language === "FR") {
-		// 			color = "{mainservices>ext}/{mainservices>mktg_desc_fr}";
-		// 		} else {
-		// 			color = "{mainservices>ext}/{mainservices>mktg_desc_en}";
-		// 		}
-		// 		this.getView().byId('Colour_RSOB').bindItems({
-		// 			path: 'mainservices>/ZVMS_CDS_Colour',
-		// 			filters: new sap.ui.model.Filter([new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-		// 				new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 				new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 			], true),
-		// 			template: new sap.ui.core.ListItem({
-		// 				key: "{mainservices>ext}",
-		// 				text: color
-		// 					// text: "{parts: [{path:'VechileModel>ExteriorColorCode'},{path:'VechileModel>ExteriorDescriptionEN'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatColour'}"
-		// 			})
-		// 		});
-		// 		// var items_binding = this.getView().byId('Colour_RSOB').getBinding('items');
-		// 		// items_binding.filter(new sap.ui.model.Filter([new sap.ui.model.Filter("Model", sap.ui.model.FilterOperator.EQ, model),
-		// 		// 	new sap.ui.model.Filter("Suffix", sap.ui.model.FilterOperator.EQ, suffix),
-		// 		// 	new sap.ui.model.Filter("ModelYear", sap.ui.model.FilterOperator.EQ, modelyear)
-		// 		// ], true));
-
-		// 	}
-		// },
+		}
 
 	});
 

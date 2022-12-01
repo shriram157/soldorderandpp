@@ -22,7 +22,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'seriesModel>/'}" class="sapUiMediumMarginEnd">
+												<MultiComboBox  id="mcb_series_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'seriesModel>/'}" class="sapUiMediumMarginEnd">
 													<core:Item key="{seriesModel>ModelSeriesNo}"
 														text="{=${LocalDataModel>/Lang} ==='FR' ? ${seriesModel>TCISeriesDescriptionFR} : ${seriesModel>TCISeriesDescriptionEN} }"/>
 													<layoutData>
@@ -36,7 +36,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSOSummary_Status' }"
+												<MultiComboBox  id="mcb_rsStatus_RSOS" width="300px" selectionChange="_refresh" items="{ path: 'globalComboModel>/FSOSummary_Status' }"
 													class="sapUiMediumMarginEnd">
 													<core:Item key="{globalComboModel>key}" text="{globalComboModel>text}"/>
 													<layoutData>
@@ -50,7 +50,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox forceSelection= "true" id="mcb_auditStatus_RSOS" items="{ path:'AuditModel>/AuditStatus'}" width="300px" selectionChange="_refresh"
+												<MultiComboBox  id="mcb_auditStatus_RSOS" items="{ path:'AuditModel>/AuditStatus'}" width="300px" selectionChange="_refresh"
 													class="sapUiMediumMarginEnd">
 													<core:Item key="{AuditModel>key}" text="{AuditModel>text}"/>
 													<layoutData>
@@ -106,12 +106,14 @@
 						
 									<HBox class="justifyContentEnd sapUiMediumMarginBegin">
 										<items>
-											<SearchField  class="" id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
+											<SearchField  id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
 											<layoutData>
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
-										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" id="idBtnExportToExcel" class="sapUiTinyMarginBegin sapUiMediumMarginEnd"></Button>
+										<!--DMND0003562 changes done by Minakshi-->
+										<Button  text="{i18n>exportToExcel}"  tooltip="{i18n>textforexportlimit}" press="onExport"  id="idBtnExportToExcel" 
+										class="sapUiTinyMarginBegin sapUiMediumMarginEnd"></Button>
 									
 										</items>
 									</HBox>
@@ -119,13 +121,15 @@
 								<t:extension>
 									<Toolbar visible="false">
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>
+										<!--<Label text="*In-progress, Pending Fulfillment, Filled display all results on export. -->
+										<!--All Other types present rolling 2 years."/>-->
 										<ToolbarSpacer/>
 										<SearchField id="searchOrders3" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
 											<layoutData>
 												<OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/>
 											</layoutData>
 										</SearchField>
-										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" id="idBtnExportToExcel3" class="sapUiTinyMarginBegin"></Button>
+										<Button text="{i18n>exportToExcel}"  press="onExport" enabled="true" id="idBtnExportToExcel3" class="sapUiTinyMarginBegin"></Button>
 									<ToolbarSpacer/>
 									</Toolbar>
 								</t:extension>
@@ -136,18 +140,26 @@
 											<Link text="{retailsumModel>ZzsoReqNo}" press="_dispalySoldOrderDetails" wrapping="true"/>
 										</t:template>
 									</t:Column>
-									<t:Column filterProperty="ChatMessages" sortProperty="ChatMessages">
-										<Label text="{i18n>ChatNum}" class="TableLabel"/>
-										<t:template>
-											<Text text="{retailsumModel>ChatMessages}"  wrapping="true"/>
-										</t:template>
-									</t:Column>
+									<!--<t:Column filterProperty="ChatMessages" sortProperty="ChatMessages">-->
+									<!--	<Label text="{i18n>ChatNum}" class="TableLabel"/>-->
+									<!--	<t:template>-->
+									<!--		<Text text="{retailsumModel>ChatMessages}"  wrapping="true"/>-->
+									<!--	</t:template>-->
+									<!--</t:Column>-->
 									<t:Column width="210px" filterProperty="ZzendcuName" sortProperty="ZzendcuName">
 										<Label text="{i18n>custname}" class="TableLabel"/>
 										<t:template>
 											<Text text="{retailsumModel>ZzendcuName}" wrapping="true"/>
 										</t:template>
 									</t:Column>
+									
+									<t:Column filterProperty="Zsalesperson" sortProperty="Zsalesperson">
+										<Label text="{i18n>salesPerName}" class="TableLabel"/>
+										<t:template>
+											<Text text="{retailsumModel>Zsalesperson}" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									
 									<t:Column >
 										<Label text="{i18n>dealer}" class="TableLabel"/>
 										<t:template>

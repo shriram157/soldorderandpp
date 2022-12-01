@@ -126,13 +126,13 @@ sap.ui.define([
 			vehSelDealerInvController.OBJ.ZZVTN = evt.getSource().getBindingContext('mainservices').getProperty('ZZVTN');
 			vehSelDealerInvController.OBJ.ETAFrom = evt.getSource().getBindingContext('mainservices').getProperty('ETAFrom');
 			vehSelDealerInvController.OBJ.ETATo = evt.getSource().getBindingContext('mainservices').getProperty('ETATo');
-			var dealerlogged = AppController.dealerAllocation;
+			var dealerlogged = vehicle.dealer;
 			var dealerloggeduri = dealerlogged.substring(dealerlogged.length - 5, dealerlogged.length);
 			
 			/*var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(Zzmoyr='" + vehSelDealerInvController.modYear + "',ZzappType='" + AppController.apptypeAllocation +
 				"',Zzseries='" + vehSelDealerInvController.series + "',Zzmodel='" + vehSelDealerInvController.model + "',ZzDealer='" +
 				dealerloggeduri + "')";*/
-			var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(ZzappType='" + AppController.apptypeAllocation +
+			var zurl = host + "/ZVMS_SOLD_ORDER_SRV/SoCapSet(ZzappType='" + vehicle.apptypeAllocation +
 				"',Zzseries='" + vehSelDealerInvController.series + "',ZzDealer='" +
 				dealerloggeduri + "')";
 			if (dealerlogged != vehSelDealerInvController.dealer) {
@@ -184,7 +184,8 @@ sap.ui.define([
 
 		onNavBack: function (oEvent) {
 			vehSelDealerInvController.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
-				Soreq: zrequest
+				Soreq: zrequest,
+				pageNum : "P5"
 			}, true);
 		}
 

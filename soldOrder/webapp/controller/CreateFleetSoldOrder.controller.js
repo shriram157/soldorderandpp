@@ -92,7 +92,22 @@ sap.ui.define([
 				}
 			}
 
+			this.fnDateDisabled(this.getView().byId("etaFrom_CFSO"));
+			this.fnDateDisabled(this.getView().byId("etaTo_CFSO"));
+
 		},
+
+		fnDateDisabled: function (id) {
+
+			id.addEventDelegate({
+				onAfterRendering: function () {
+					var oDateInner = this.$().find('.sapMInputBaseInner');
+					var oID = oDateInner[0].id;
+					$('#' + oID).attr("disabled", "disabled");
+				}
+			}, id);
+		},
+
 		_onObjectMatched: function (oEvent) {
 
 			/*	var tableModelCreate= sap.ui.getCore().getModel('tableModelCreate');
@@ -280,7 +295,7 @@ sap.ui.define([
 			oEvent.preventDefault();
 		},
 		_addVehiclesToInventory: function () {
-			CFSO_controller.getOwnerComponent().getRouter().navTo("InventoryVehicleSelection", {}, true); //page 12
+			CFSO_controller.getOwnerComponent().getRouter().navTo("InventoryVehicleSelection", {refresh : true}); //page 12
 		},
 		_onDelete1: function () {
 			var oTable = CFSO_controller.getView().byId("idCFSO_Table1");
@@ -624,8 +639,7 @@ sap.ui.define([
 									}
 								});
 
-							}  
-							else {
+							} else {
 
 								for (var i = 0; i < quantity.length; i++) {
 									if (isNaN(quantity[i])) {
