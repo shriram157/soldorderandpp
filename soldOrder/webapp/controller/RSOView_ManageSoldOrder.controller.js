@@ -485,12 +485,12 @@ sap.ui.define([
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022.
 				//var PStatus = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('PriceStatus');
-				if (status == "APPROVED" || status == "PRE-APPROVED" || status == "UNDER-REVIEW" ) {
+				if (PriceStatus == "APPROVED" || PriceStatus == "PRE-APPROVED" || PriceStatus == "UNDER-REVIEW" ) {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
 				} else {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);	
 				}
-				if (status == "CLOSED" || status == "DEMO-VEHICLE" || status == "REJECTED" || status == "") {
+				if (PriceStatus == "CLOSED" || PriceStatus == "DEMO-VEHICLE" || PriceStatus == "REJECTED" || PriceStatus == "") {
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);	
 				} else {
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);		
