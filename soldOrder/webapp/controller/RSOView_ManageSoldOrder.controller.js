@@ -9,7 +9,7 @@ sap.ui.define([
 	function (BaseController, ResourceModel, formatter, Filter, FilterOperator, JSONModel) {
 		"use strict";
 		var RSO_MSO_controller;
-		var PPD_DealerCont;
+		var PPD
 		var zrequest;
 		//	var aEntries = [];
 		var ppdFlages;
@@ -485,7 +485,7 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022.
-				var PStatus = PPD_DealerCont.getView().getModel('ppdModel').getProperty('status');
+				var PStatus = sap.ui.getCore.getModel('ppdModel').getProperty('status');
 				if (PStatus == "APPROVED" || PStatus == "PRE-APPROVED" || PStatus == "UNDER-REVIEW" ) {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
 				} else {
