@@ -484,13 +484,13 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022.
-				//var PStatus = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('PriceStatus');
-				if (PriceStatus == "APPROVED" || PriceStatus == "PRE-APPROVED" || PriceStatus == "UNDER-REVIEW" ) {
+				var PStatus = RSO_MSO_controller.getView().getModel('ppdModel').getProperty('status');
+				if (PStatus == "APPROVED" || PStatus == "PRE-APPROVED" || PStatus == "UNDER-REVIEW" ) {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
 				} else {
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);	
 				}
-				if (PriceStatus == "CLOSED" || PriceStatus == "DEMO-VEHICLE" || PriceStatus == "REJECTED" || PriceStatus == "") {
+				if (PStatus == "CLOSED" || PStatus == "DEMO-VEHICLE" || PStatus == "REJECTED" || PStatus == "") {
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);	
 				} else {
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);		
