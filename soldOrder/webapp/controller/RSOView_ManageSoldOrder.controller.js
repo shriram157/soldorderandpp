@@ -484,7 +484,7 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022.
-					for (i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
+					for (var i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
 					if (sap.ui.getCore().getModel('ppdModel').getData()[i].dealer_ord == req) {
 						var sStatusValue = sap.ui.getCore().getModel('ppdModel').getData()[i].status;
 						if (sStatusValue == "APPROVED" || sStatusValue == "PRE-APPROVED" || sStatusValue == "UNDER-REVIEW") {
