@@ -363,8 +363,6 @@ sap.ui.define([
 			req=req.replaceAll("+","%2B");
 			req=req.replaceAll("=","%3D");
 			req=req.replaceAll("?","%3F");
-			
-			//req=req.replaceAll("-","%2D");
 			req=req.replaceAll("-","-");
 			
 			
