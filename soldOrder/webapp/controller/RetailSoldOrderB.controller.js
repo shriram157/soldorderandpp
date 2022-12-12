@@ -103,6 +103,9 @@ sap.ui.define([
 			});
 		},
 		_getattachRouteMatched: function (parameters) {
+			// Work Around for P2 issue by Aarti Dhamat  Code Start
+			this.getDealer();
+			// Work Around for P2 issue by Aarti Dhamat  Code End
 			validateFlagB = false;
 			var submitBtn = RSOB_controller.getView().byId("Btn_submit_RSOB");
 			if (validateFlagB == true) {
@@ -733,7 +736,7 @@ sap.ui.define([
 				var Zzextcol = RSOB_controller.getView().byId("colour_RSOB").getSelectedKey();
 				// SOcreateSet;
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
-				var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 				var _data = {
 					"ZzsoReqNo": "SO",
 					"Zzmodel": Zzmodel, //"YZ3DCT",
@@ -767,6 +770,7 @@ sap.ui.define([
 				}
 				this.getOwnerComponent().getModel("mainservices").create('/Retail_Sold_OrderSet', _data, {
 					success: function (data, oResponse) {
+						
 						if (data.ZzsoReqNo) {
 							RSOB_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 								Soreq: data.ZzsoReqNo

@@ -217,7 +217,7 @@
 						</t:columns>
 					</t:Table>
 					<Label text="{i18n>allocVeh}" class="marginCorners fontsize"></Label>
-					<t:Table id="tble_FSO_PV" selectionMode="None" rows="{mainservices>/Retail_Sold_OrderSet}" enableColumnReordering="false" alternateRowColors="true"
+					<t:Table id="tble_FSO_PV" selectionMode="None" rows="" enableColumnReordering="false" alternateRowColors="true"
 						enableColumnFreeze="false" class="sapUiLargeMarginBottom marginCorners">
 						<t:columns>
 							<t:Column width="11.11%" resizable="false">

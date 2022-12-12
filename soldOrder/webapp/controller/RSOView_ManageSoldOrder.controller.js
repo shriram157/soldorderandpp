@@ -481,8 +481,38 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
 				}
 				if (status == "CHANGED") {
-					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);	 //changes by swetha
+					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
+				//changes by swetha for service task TASK0179454 on 9/11/2022.
+					for (var i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
+					if (sap.ui.getCore().getModel('ppdModel').getData()[i].dealer_ord == req) {
+						var sStatusValue = sap.ui.getCore().getModel('ppdModel').getData()[i].status;
+						if (sStatusValue == "APPROVED" || sStatusValue == "PRE-APPROVED" || sStatusValue == "UNDER-REVIEW") {
+							RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
+						} else {
+							RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
+						}
+						if (sStatusValue == "CLOSED" || sStatusValue == "DEMO-VEHICLE" || sStatusValue == "REJECTED") {
+							RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);
+						} else {
+							RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
+						}
+
+					}
+				}
+				// var PStatus = sap.ui.getCore().getModel('ppdModel').getProperty('status');
+				
+				// if (PStatus == "APPROVED" || PStatus == "PRE-APPROVED" || PStatus == "UNDER-REVIEW" ) {
+				// 	RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
+				// } else {
+				// 	RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);	
+				// }
+				// if (PStatus == "CLOSED" || PStatus == "DEMO-VEHICLE" || PStatus == "REJECTED" || PStatus == "") {
+				// 	RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);	
+				// } else {
+				// 	RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);		
+				// }
+				
 				// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 				// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 
@@ -850,6 +880,7 @@ sap.ui.define([
 				var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 				var sPath = evtContext.sPath;
 				RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
+					method: "DELETE",
 					success: function (data, oResponse) {
 						oTable.getModel('mainservices').refresh();
 						//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);

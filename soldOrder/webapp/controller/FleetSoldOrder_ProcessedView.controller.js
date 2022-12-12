@@ -137,12 +137,19 @@ sap.ui.define([
 
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet('" + req + "')";
 			zrequest = req;
+			//INC0223199  Special character issue
+			req=this.encodeSpecialCharacter(req);
+			//req=req.replaceAll("&","%26");
+			//req=req.replaceAll("'","%27%27");
+			req=req.replaceAll("%27","''");
 			var zmodel = FSO_PVController.getView().getModel("mainservices");
 			//Added by singhmi to make the call asynchronus DMND0002946 on 11/03/2021 end
-			FSO_PVController.getView().getModel("mainservices").bUseBatch = false;
+			//FSO_PVController.getView().getModel("mainservices").bUseBatch = true;
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
+			
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
-			var sMsg = oBundle.getText("procViewTitle", [req]);
+			//var sMsg = oBundle.getText("procViewTitle", [req.replaceAll("%26","&")]);
+			var sMsg = oBundle.getText("procViewTitle", [zrequest]);
 
 			zmodel.refresh();
 			this.getView().bindElement({
@@ -151,9 +158,10 @@ sap.ui.define([
 				model: "mainservices",
 				events: {
 					change: function (oEvent) {
+						
 						FSO_PVController.getView().getElementBinding('mainservices').refresh();
-						vehicle_no1 = 0;
-						vehicle_no2 = 0;
+						//vehicle_no1 = 0;
+						//vehicle_no2 = 0;
 						var table1 = FSO_PVController.getView().byId('table1');
 						var items1 = table1.getBinding('rows');
 						// items1.attachChange(function (sReason) {
@@ -175,10 +183,12 @@ sap.ui.define([
 						items2.filter([new Filter("WithVtn", FilterOperator.EQ, '')]);
 						//-----------------------
 						var oTbl = FSO_PVController.getView().byId("tble_FSO_PV");
+						oTbl.bindRows("mainservices>/Retail_Sold_OrderSet");
 						var items = oTbl.getBinding('rows');
 						items.filter([new Filter("ZzsoFltReqNo", FilterOperator.EQ, req), new Filter("FleetReference", FilterOperator.EQ, 'X'), new Filter(
 							"Zzvtn", FilterOperator.NE, '')], true);
 						//------------------------
+						if(FSO_PVController.getView().getElementBinding('mainservices').getBoundContext() != null){
 						var partner = FSO_PVController.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zendcu');
 
 						var zdealerCode = FSO_PVController.getView().getElementBinding('mainservices').getBoundContext().getProperty(
@@ -196,7 +206,7 @@ sap.ui.define([
 									sap
 									.m.MessageBox.Action.OK, null, null);
 							}
-						});
+						})};
 					},
 					//Added by singhmi to hide busy indicator after success or error DMND0002946 on 11/03/2021 
 					dataReceived: function (oEvent) {
