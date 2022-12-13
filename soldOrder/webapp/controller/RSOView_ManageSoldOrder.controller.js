@@ -887,7 +887,7 @@ sap.ui.define([
 				this.sPrefix = "";
 			}
 			this.nodeJsUrl = this.sPrefix + "/node";
-			var oUrl = nodeJsUrl +"/ZVMS_SOLD_ORDER_SRV"+sPath;
+			var oUrl = this.nodeJsUrl +"/ZVMS_SOLD_ORDER_SRV"+sPath;
 				$.ajax({
     url: oUrl,
     type: 'DELETE',
