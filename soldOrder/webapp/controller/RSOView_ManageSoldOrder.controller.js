@@ -879,8 +879,17 @@ sap.ui.define([
 			deleteAtt: function (evtContext, index) {
 				var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 				var sPath = evtContext.sPath;
+				var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				this.sPrefix = "/soldorder_node";
+			} else {
+				this.sPrefix = "";
+			}
+			this.nodeJsUrl = this.sPrefix + "/node";
+			var oUrl = nodeJsUrl +"/ZVMS_SOLD_ORDER_SRV"+sPath;
 				$.ajax({
-    url: sPath,
+    url: oUrl,
     type: 'DELETE',
     success: function(result) {
 		console("DELETED");
