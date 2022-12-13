@@ -879,17 +879,26 @@ sap.ui.define([
 			deleteAtt: function (evtContext, index) {
 				var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 				var sPath = evtContext.sPath;
-				RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
-					method: "DELETE",
-					success: function (data, oResponse) {
-						oTable.getModel('mainservices').refresh();
-						//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
-					},
-					error: function (oData, oResponse) {
-						sap.m.MessageBox.show("Error Remove File. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-							.MessageBox.Action.OK, null, null);
-					}
-				});
+				$.ajax({
+    url: sPath,
+    type: 'DELETE',
+    success: function(result) {
+		console("DELETED");
+        // Do something with the result
+    }
+});
+
+				// RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
+				// 	method: "DELETE",
+				// 	success: function (data, oResponse) {
+				// 		oTable.getModel('mainservices').refresh();
+				// 		//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
+				// 	},
+				// 	error: function (oData, oResponse) {
+				// 		sap.m.MessageBox.show("Error Remove File. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+				// 			.MessageBox.Action.OK, null, null);
+				// 	}
+				// });
 			},
 			_addAttachment: function () {
 				var com = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").getValue();
