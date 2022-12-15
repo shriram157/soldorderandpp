@@ -373,6 +373,23 @@ sap.ui.define([
 						dataRequested: function (oEvent) {
 							RSO_MSO_controller.byId('model_CSOR').setSelectedItem().setValue("");
 							//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
+                                for (var i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
+								if (sap.ui.getCore().getModel('ppdModel').getData()[i].dealer_ord == req) {
+									var sStatusValue = sap.ui.getCore().getModel('ppdModel').getData()[i].status;
+									if (sStatusValue == "APPROVED" || sStatusValue == "PRE-APPROVED" || sStatusValue == "UNDER-REVIEW") {
+										RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
+									} else {
+										RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
+									}
+									if (sStatusValue == "CLOSED" || sStatusValue == "DEMO-VEHICLE" || sStatusValue == "REJECTED") {
+										RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);
+									} else {
+										RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
+									}
+
+								}
+							}
+
 						},
 						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
 						dataReceived: function (oEvent) {
