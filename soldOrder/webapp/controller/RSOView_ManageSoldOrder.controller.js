@@ -373,6 +373,8 @@ sap.ui.define([
 						dataRequested: function (oEvent) {
 							RSO_MSO_controller.byId('model_CSOR').setSelectedItem().setValue("");
 							//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
+							if(sap.ui.getCore().getModel('ppdModel') != undefined)
+							{
                                 for (var i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
 								if (sap.ui.getCore().getModel('ppdModel').getData()[i].dealer_ord == req) {
 									var sStatusValue = sap.ui.getCore().getModel('ppdModel').getData()[i].status;
@@ -389,7 +391,7 @@ sap.ui.define([
 
 								}
 							}
-
+							}
 						},
 						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
 						dataReceived: function (oEvent) {
@@ -501,6 +503,7 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022.
+				if(sap.ui.getCore().getModel('ppdModel') != undefined){
 					for (var i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
 					if (sap.ui.getCore().getModel('ppdModel').getData()[i].dealer_ord == req) {
 						var sStatusValue = sap.ui.getCore().getModel('ppdModel').getData()[i].status;
@@ -516,7 +519,7 @@ sap.ui.define([
 						}
 
 					}
-				}
+				}}
 				// var PStatus = sap.ui.getCore().getModel('ppdModel').getProperty('status');
 				
 				// if (PStatus == "APPROVED" || PStatus == "PRE-APPROVED" || PStatus == "UNDER-REVIEW" ) {
