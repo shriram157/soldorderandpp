@@ -377,6 +377,7 @@ sap.ui.define([
 							if(sap.ui.getCore().getModel('ppdModel') != undefined)
 							{
                                 for (var i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
+									if(sap.ui.getCore().getModel('ppdModel').getData()[i] != undefined){
 								if (sap.ui.getCore().getModel('ppdModel').getData()[i].dealer_ord == req) {
 									var sStatusValue = sap.ui.getCore().getModel('ppdModel').getData()[i].status;
 									if (sStatusValue == "APPROVED" || sStatusValue == "PRE-APPROVED" || sStatusValue == "UNDER-REVIEW") {
@@ -390,7 +391,7 @@ sap.ui.define([
 										RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
 									}
 
-								}
+								}}
 							}
 							}
 							//Commenting above code 15-12-22
