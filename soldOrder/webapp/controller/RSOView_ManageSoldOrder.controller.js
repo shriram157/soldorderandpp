@@ -373,6 +373,28 @@ sap.ui.define([
 						dataRequested: function (oEvent) {
 							RSO_MSO_controller.byId('model_CSOR').setSelectedItem().setValue("");
 							//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
+							//Commeting the below code 15-12-22
+							// if(sap.ui.getCore().getModel('ppdModel') != undefined)
+							// {
+                            //     for (var i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
+							// 		if(sap.ui.getCore().getModel('ppdModel').getData()[i] != undefined){
+							// 	if (sap.ui.getCore().getModel('ppdModel').getData()[i].dealer_ord == req) {
+							// 		var sStatusValue = sap.ui.getCore().getModel('ppdModel').getData()[i].status;
+							// 		if (sStatusValue == "APPROVED" || sStatusValue == "PRE-APPROVED" || sStatusValue == "UNDER-REVIEW") {
+							// 			RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
+							// 		} else {
+							// 			RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
+							// 		}
+							// 		if (sStatusValue == "CLOSED" || sStatusValue == "DEMO-VEHICLE" || sStatusValue == "REJECTED") {
+							// 			RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);
+							// 		} else {
+							// 			RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
+							// 		}
+
+							// 	}}
+							// }
+							// }
+							//Commenting above code 15-12-22
 						},
 						change: RSO_MSO_controller._getSOChangeEvt.bind(this, sObjectPath, req),
 						dataReceived: function (oEvent) {
@@ -484,22 +506,24 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				//changes by swetha for service task TASK0179454 on 9/11/2022.
-					for (var i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
-					if (sap.ui.getCore().getModel('ppdModel').getData()[i].dealer_ord == req) {
-						var sStatusValue = sap.ui.getCore().getModel('ppdModel').getData()[i].status;
-						if (sStatusValue == "APPROVED" || sStatusValue == "PRE-APPROVED" || sStatusValue == "UNDER-REVIEW") {
-							RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
-						} else {
-							RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
-						}
-						if (sStatusValue == "CLOSED" || sStatusValue == "DEMO-VEHICLE" || sStatusValue == "REJECTED") {
-							RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);
-						} else {
-							RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
-						}
+				// if(sap.ui.getCore().getModel('ppdModel') != undefined){
+				// 	for (var i = 0; i <= sap.ui.getCore().getModel('ppdModel').getData().length; i++) {
+				// 	if (sap.ui.getCore().getModel('ppdModel').getData()[i].dealer_ord == req) {
+				// 		var sStatusValue = sap.ui.getCore().getModel('ppdModel').getData()[i].status;
+				// 		if (sStatusValue == "APPROVED" || sStatusValue == "PRE-APPROVED" || sStatusValue == "UNDER-REVIEW") {
+				// 			RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(true);
+				// 		} else {
+				// 			RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setEnabled(false);
+				// 		}
+				// 		if (sStatusValue == "CLOSED" || sStatusValue == "DEMO-VEHICLE" || sStatusValue == "REJECTED") {
+				// 			RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(false);
+				// 		} else {
+				// 			RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setEnabled(true);
+				// 		}
 
-					}
-				}
+				// 	}
+				// }}
+				//Commenting the above code 15-12-22
 				// var PStatus = sap.ui.getCore().getModel('ppdModel').getProperty('status');
 				
 				// if (PStatus == "APPROVED" || PStatus == "PRE-APPROVED" || PStatus == "UNDER-REVIEW" ) {
@@ -879,17 +903,35 @@ sap.ui.define([
 			deleteAtt: function (evtContext, index) {
 				var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 				var sPath = evtContext.sPath;
-				RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
-					method: "DELETE",
-					success: function (data, oResponse) {
-						oTable.getModel('mainservices').refresh();
-						//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
-					},
-					error: function (oData, oResponse) {
-						sap.m.MessageBox.show("Error Remove File. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-							.MessageBox.Action.OK, null, null);
-					}
-				});
+				var sLocation = window.location.host;
+			var sLocation_conf = sLocation.search("webide");
+			if (sLocation_conf == 0) {
+				this.sPrefix = "/soldorder_node";
+			} else {
+				this.sPrefix = "";
+			}
+			this.nodeJsUrl = this.sPrefix + "/node";
+			var oUrl = this.nodeJsUrl +"/ZVMS_SOLD_ORDER_SRV"+sPath;
+				$.ajax({
+    url: oUrl,
+    type: 'DELETE',
+    success: function(result) {
+		console("DELETED");
+        // Do something with the result
+    }
+});
+
+				// RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
+				// 	method: "DELETE",
+				// 	success: function (data, oResponse) {
+				// 		oTable.getModel('mainservices').refresh();
+				// 		//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
+				// 	},
+				// 	error: function (oData, oResponse) {
+				// 		sap.m.MessageBox.show("Error Remove File. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+				// 			.MessageBox.Action.OK, null, null);
+				// 	}
+				// });
 			},
 			_addAttachment: function () {
 				var com = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").getValue();
