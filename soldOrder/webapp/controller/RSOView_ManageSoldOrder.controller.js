@@ -920,7 +920,7 @@ sap.ui.define([
 //         // Do something with the result
 //     }
 // });
-
+               // Commented DELETE method below
 				RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
 					// method: "DELETE",
 					success: function (data, oResponse) {
