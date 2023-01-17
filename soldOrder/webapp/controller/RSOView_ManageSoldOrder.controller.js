@@ -559,6 +559,8 @@ sap.ui.define([
 						var datemodel = sap.ui.getCore().getModel("dateSO_BModel");
 						var etaToText = RSO_MSO_controller.getView().byId("idtoText").getText();
 						var etaFromText = RSO_MSO_controller.getView().byId("idfromText").getText();
+						if(datemodel != undefined)
+						{
 						var data = datemodel.getData();
 						var ETAFrom1 = data.fromDate;
 						var ETATo1 = data.toDate;
@@ -567,6 +569,7 @@ sap.ui.define([
 						SelectVehicleOption = false;
 						zinventoryModel.setData(OBJNew);
 						zinventoryModel.updateBindings(true);
+						}
 					} else {
 						OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
 						OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
