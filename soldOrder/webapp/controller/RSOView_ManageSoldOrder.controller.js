@@ -559,6 +559,9 @@ sap.ui.define([
 						var datemodel = sap.ui.getCore().getModel("dateSO_BModel");
 						var etaToText = RSO_MSO_controller.getView().byId("idtoText").getText();
 						var etaFromText = RSO_MSO_controller.getView().byId("idfromText").getText();
+
+						//INC0225765 SOPP and PEIS show wrong Suffix descriptions for some order---Shriram 18-Jan-2023 Code Start
+						// Since the model is defined in RetailSoldOrderB.controller.js,when this controller is not loaded before, datemodel comes as undefined
 						if(datemodel != undefined)
 						{
 						var data = datemodel.getData();
@@ -570,6 +573,7 @@ sap.ui.define([
 						zinventoryModel.setData(OBJNew);
 						zinventoryModel.updateBindings(true);
 						}
+						//INC0225765 SOPP and PEIS show wrong Suffix descriptions for some order---Shriram 18-Jan-2023 Code End
 					} else {
 						OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
 						OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
