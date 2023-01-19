@@ -842,7 +842,7 @@ sap.ui.define([
 				SelectVehicleOption = true;
 				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 					Soreq: zrequest
-				}, true);
+				}, false);
 
 			},
 			_navCancleOrder: function () {
