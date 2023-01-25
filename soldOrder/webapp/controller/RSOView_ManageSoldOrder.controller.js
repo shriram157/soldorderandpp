@@ -402,6 +402,13 @@ sap.ui.define([
 						}
 					}
 				});
+				console.log("sObjectPath__"+sObjectPath);
+				console.log("Suffix"+this.getView().byId("suffix_CSOR").getValue());
+				console.log("Colour"+this.getView().byId("colour_CSOR").getValue());
+				console.log("Model_Suffix:"+sap.ui.getCore().getModel('Vehicle_Selection').getData().suffix);
+				console.log("Model_Colour:"+sap.ui.getCore().getModel('Vehicle_Selection').getData().color);
+				console.log("Context__:"+RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix'));
+				console.log("Context__:"+RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'));
 			},
 
 			_getSOChangeEvt: function (sObjectPath, req) {
