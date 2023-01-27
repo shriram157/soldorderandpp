@@ -345,8 +345,8 @@ sap.ui.define([
 				//attachPatternMatched
 				// changes done for INC0217519 start by Minakshi
 				// if (!RSO_MSO_controller.pageNum) {
-				this.byId("suffix_CSOR").setSelectedKey("");
-				this.byId("colour_CSOR").setSelectedKey("");
+				//this.byId("suffix_CSOR").setSelectedKey("");
+				//this.byId("colour_CSOR").setSelectedKey("");
 				
 				//	}
 				// changes done for INC0217519 end by Minakshi
