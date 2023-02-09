@@ -345,8 +345,8 @@ sap.ui.define([
 				//attachPatternMatched
 				// changes done for INC0217519 start by Minakshi
 				// if (!RSO_MSO_controller.pageNum) {
-				this.byId("suffix_CSOR").setSelectedKey("");
-				this.byId("colour_CSOR").setSelectedKey("");
+				//this.byId("suffix_CSOR").setSelectedKey("");//commented this line--- changes by swetha for INC225765 on 27/01/2023
+				//this.byId("colour_CSOR").setSelectedKey("");//commented this line--- changes by swetha for INC225765 on 27/01/2023
 				
 				//	}
 				// changes done for INC0217519 end by Minakshi
@@ -402,6 +402,13 @@ sap.ui.define([
 						}
 					}
 				});
+				//console.log("sObjectPath__"+sObjectPath);
+				//console.log("Suffix"+this.getView().byId("suffix_CSOR").getValue());
+				//console.log("Colour"+this.getView().byId("colour_CSOR").getValue());
+				//console.log("Model_Suffix:"+sap.ui.getCore().getModel('Vehicle_Selection').getData().suffix);
+				//console.log("Model_Colour:"+sap.ui.getCore().getModel('Vehicle_Selection').getData().color);
+				//console.log("Context__:"+RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzsuffix'));
+				//console.log("Context__:"+RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzextcol'));
 			},
 
 			_getSOChangeEvt: function (sObjectPath, req) {
@@ -559,6 +566,11 @@ sap.ui.define([
 						var datemodel = sap.ui.getCore().getModel("dateSO_BModel");
 						var etaToText = RSO_MSO_controller.getView().byId("idtoText").getText();
 						var etaFromText = RSO_MSO_controller.getView().byId("idfromText").getText();
+
+						//INC0225765 SOPP and PEIS show wrong Suffix descriptions for some order---Shriram 18-Jan-2023 Code Start
+						// Since the model is defined in RetailSoldOrderB.controller.js,when this controller is not loaded before, datemodel comes as undefined
+						if(datemodel != undefined)
+						{
 						var data = datemodel.getData();
 						var ETAFrom1 = data.fromDate;
 						var ETATo1 = data.toDate;
@@ -567,6 +579,8 @@ sap.ui.define([
 						SelectVehicleOption = false;
 						zinventoryModel.setData(OBJNew);
 						zinventoryModel.updateBindings(true);
+						}
+						//INC0225765 SOPP and PEIS show wrong Suffix descriptions for some order---Shriram 18-Jan-2023 Code End
 					} else {
 						OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
 						OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
@@ -912,26 +926,26 @@ sap.ui.define([
 			}
 			this.nodeJsUrl = this.sPrefix + "/node";
 			var oUrl = this.nodeJsUrl +"/ZVMS_SOLD_ORDER_SRV"+sPath;
-				$.ajax({
-    url: oUrl,
-    type: 'DELETE',
-    success: function(result) {
-		console("DELETED");
-        // Do something with the result
-    }
-});
-
-				// RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
-				// 	method: "DELETE",
-				// 	success: function (data, oResponse) {
-				// 		oTable.getModel('mainservices').refresh();
-				// 		//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
-				// 	},
-				// 	error: function (oData, oResponse) {
-				// 		sap.m.MessageBox.show("Error Remove File. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-				// 			.MessageBox.Action.OK, null, null);
-				// 	}
-				// });
+// 				$.ajax({
+//     url: oUrl,
+//     type: 'DELETE',
+//     success: function(result) {
+// 		console("DELETED");
+//         // Do something with the result
+//     }
+// });
+               // Commented DELETE method below
+				RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
+					// method: "DELETE",
+					success: function (data, oResponse) {
+						oTable.getModel('mainservices').refresh();
+						//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
+					},
+					error: function (oData, oResponse) {
+						sap.m.MessageBox.show("Error Remove File. Please try again later.", sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+							.MessageBox.Action.OK, null, null);
+					}
+				});
 			},
 			_addAttachment: function () {
 				var com = RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").getValue();
