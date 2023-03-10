@@ -46,6 +46,14 @@
 									<m:Text text="{mainservices>ZZVTN}" wrapping="false"/>
 								</template>
 							</Column>
+							<!--changes by swetha for DMND0003618 adding VIN field  code start 23/02/2023-->
+							<Column width="10%" resizable="false">
+								<m:Label text="{i18n>VIN}" class="TableLabel"/>
+								<template>
+									<m:Text text="{mainservices>VHVIN}" wrapping="false"/>
+								</template>
+							</Column>
+							<!--changes by swetha for DMND0003618 adding VIN field  code end  23/02/2023-->
 							<Column width="10%" resizable="false">
 								<m:Label text="{i18n>orderNumber}" class="TableLabel"/>
 								<template>

@@ -333,5 +333,40 @@ sap.ui.define([
 				sap.ui.getCore().getModel("LoginUserModel").setProperty("/BPDealerDetails", data.attributes[0]);
 			});
 		},
+		encodeSpecialCharacter:function(req)		//changes by Shriram for INC0221704, INC0223227, INC0223199 special characters in zone approval page
+		{
+			req=req.replaceAll("&","%26");
+			req=req.replaceAll("'","%27");
+			req=req.replaceAll("!","%21");
+			req=req.replaceAll("@","%40");
+			req=req.replaceAll("#","%23");
+			req=req.replaceAll("$","%24");
+			//req=req.replaceAll("%","%25");
+			req=req.replaceAll("^","%5E");
+			req=req.replaceAll("&","%26");
+			req=req.replaceAll("*","%2A");
+			req=req.replaceAll("(","%28");
+			req=req.replaceAll(")","%29");
+			req=req.replaceAll("“","%E2%80%9C");
+			req=req.replaceAll(",","%2C");
+			req=req.replaceAll("/","%2F");
+			req=req.replaceAll("\ ","%5C");
+			req=req.replaceAll("|","%7C");
+			req=req.replaceAll("[","%5B");
+			req=req.replaceAll("]","%5D");
+			req=req.replaceAll("~","%7E");
+			req=req.replaceAll(":","%3A");
+			req=req.replaceAll("<","%3C");
+			req=req.replaceAll(">","%3E");
+			req=req.replaceAll(";","%3B");
+			req=req.replaceAll("'","''");
+			req=req.replaceAll("+","%2B");
+			req=req.replaceAll("=","%3D");
+			req=req.replaceAll("?","%3F");
+			req=req.replaceAll("-","-");
+			
+			
+			return req;
+		}
 	});
 });

@@ -345,8 +345,8 @@ sap.ui.define([
 				//attachPatternMatched
 				// changes done for INC0217519 start by Minakshi
 				// if (!RSO_MSO_controller.pageNum) {
-				this.byId("suffix_CSOR").setSelectedKey("");
-				this.byId("colour_CSOR").setSelectedKey("");
+		    	//this.byId("suffix_CSOR").setSelectedKey("");//commented this line--- changes by swetha for INC225765 on 27/01/2023 
+				//this.byId("colour_CSOR").setSelectedKey("");//commented this line--- changes by swetha for INC225765 on 27/01/2023
 				
 				//	}
 				// changes done for INC0217519 end by Minakshi
@@ -505,6 +505,10 @@ sap.ui.define([
 						var datemodel = sap.ui.getCore().getModel("dateSO_BModel");
 						var etaToText = RSO_MSO_controller.getView().byId("idtoText").getText();
 						var etaFromText = RSO_MSO_controller.getView().byId("idfromText").getText();
+						//INC0225765 SOPP and PEIS show wrong Suffix descriptions for some order---Shriram 18-Jan-2023 Code Start
+						// Since the model is defined in RetailSoldOrderB.controller.js,when this controller is not loaded before, datemodel comes as undefined
+						if(datemodel != undefined)
+						{
 						var data = datemodel.getData();
 						var ETAFrom1 = data.fromDate;
 						var ETATo1 = data.toDate;
@@ -513,6 +517,8 @@ sap.ui.define([
 						SelectVehicleOption = false;
 						zinventoryModel.setData(OBJNew);
 						zinventoryModel.updateBindings(true);
+						}
+						//INC0225765 SOPP and PEIS show wrong Suffix descriptions for some order---Shriram 18-Jan-2023 Code End
 					} else {
 						OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom));
 						OBJNew.ETATo = _oDateFormat.format(new Date(ETATo));
@@ -849,7 +855,26 @@ sap.ui.define([
 			deleteAtt: function (evtContext, index) {
 				var oTable = RSO_MSO_controller.getView().byId("table_RSOViewManageSO");
 				var sPath = evtContext.sPath;
+				var sLocation = window.location.host;
+				var sLocation_conf = sLocation.search("webide");
+				if (sLocation_conf == 0) {
+					this.sPrefix = "/soldorder_node";
+				} else {
+					this.sPrefix = "";
+				}
+				this.nodeJsUrl = this.sPrefix + "/node";
+				var oUrl = this.nodeJsUrl +"/ZVMS_SOLD_ORDER_SRV"+sPath;
+// 				$.ajax({
+//     url: oUrl,
+//     type: 'DELETE',
+//     success: function(result) {
+// 		console("DELETED");
+//         // Do something with the result
+//     }
+// });
+               // Commented DELETE method below
 				RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
+					// method: "DELETE",
 					success: function (data, oResponse) {
 						oTable.getModel('mainservices').refresh();
 						//RSO_MSO_controller.getView().getModel('mainservices').refresh(true);

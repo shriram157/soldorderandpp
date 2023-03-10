@@ -70,7 +70,7 @@ sap.ui.define([
 		},
 		_getattachRouteMatched: function (parameters) {
 			var requestid = parameters.getParameters().arguments.Soreq;
-			FSO_Z_controller.getSO(requestid);
+			FSO_Z_controller.getSO(requestid);        
 		},
 		getSO: function (req) {
 			var host = FSO_Z_controller.host();
@@ -78,11 +78,14 @@ sap.ui.define([
 			//attachPatternMatched
 
 			var oURL = host + "/ZVMS_SOLD_ORDER_SRV/SO_FLEET_HeaderSet('" + req + "')";
-			zrequest = req;
+			zrequest = req;                                     //changes by Shriram for INC0223199 start
+			req=this.encodeSpecialCharacter(req);
+			req=req.replaceAll("%27","''");						//changes by Shriram for INC0223199 end
+			
 			var zmodel = FSO_Z_controller.getView().getModel("mainservices");
 			var sObjectPath = "/SO_FLEET_HeaderSet('" + req + "')";
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
-			var sMsg = oBundle.getText("zoneApprovalTitle", [req]);
+			var sMsg = oBundle.getText("zoneApprovalTitle", [zrequest]);
 
 			zmodel.refresh();
 			this.getView().bindElement({
@@ -134,6 +137,35 @@ sap.ui.define([
 					}
 				}
 			});
+			// this.getView().byId("zoneapproval").bindValue({
+			//  	path: sObjectPath+"/ZzoneApproval",
+			//  	model: "mainservices"
+			//  });
+            	FSO_Z_controller.getView().getModel('mainservices').read(sObjectPath+"/ZzoneApproval", {
+							success: function (data, textStatus, jqXHR) {
+								var oZoneAppNumModel = new sap.ui.model.json.JSONModel(data);
+								FSO_Z_controller.getView().setModel(oZoneAppNumModel, "oZoneAppNumModel");
+								
+							},
+							error: function (jqXHR, textStatus, errorThrown) {
+								sap.m.MessageBox.show("Error occurred while fetching data. Please try again later.", sap.m.MessageBox.Icon.ERROR,
+									"Error",
+									sap
+									.m.MessageBox.Action.OK, null, null);
+							}
+						});
+
+
+
+
+
+
+
+
+			// this.getView().byId("zoneapproval").bindElement({
+			// 	path: sObjectPath+"/ZzoneApproval",
+			// 	model: "mainservices"
+			// });
 		},
 
 		/*zoneUserToTrue:function(){
@@ -144,7 +176,9 @@ sap.ui.define([
 			FSO_Z_controller.getView().byId("orderType_FSOZA").setEnabled(true);
 		},*/
 		_approveFleetSoldRequest: function () {
-			if (FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey() == "" || FSO_Z_controller.getView().byId('zoneapproval').getValue() ==
+			//FSO_Z_controller.getView().byId('zoneapproval').getValue() ==""
+			//this.getView().getModel("oZoneAppNumModel").getProperty("/ZzoneApproval")
+			if (FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey() == "" || FSO_Z_controller.getView().getModel("oZoneAppNumModel").getProperty("/ZzoneApproval") ==
 				"") {
 				var errForm = formatter.formatErrorType("SO00003");
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText(errForm);
@@ -169,9 +203,10 @@ sap.ui.define([
 						ZSO_FLT_REQ_NO: zrequest,
 						ZZORDER_TYPE: FSO_Z_controller.getView().byId('orderType_FSOZA').getSelectedKey(),
 						ZSO_FLT_STATUS: zaprvl,
-						ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
+						ZZONE_APPROVAL: FSO_Z_controller.getView().getModel("oZoneAppNumModel").getProperty("/ZzoneApproval")
 					}, // function import parameters  
 					// 
+					//ZZONE_APPROVAL: FSO_Z_controller.getView().byId('zoneapproval').getValue()
 					success: function (oData, response) {
 						FSO_Z_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrder_ProcessedView", {
 							Soreq: zrequest

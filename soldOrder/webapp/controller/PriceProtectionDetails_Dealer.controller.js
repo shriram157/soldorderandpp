@@ -157,6 +157,7 @@ sap.ui.define([
 		_fnInitDataLoad: function () {
 			var oModel = new sap.ui.model.json.JSONModel();
 			PPD_DealerCont.getView().setModel(oModel, "ppdModel");
+			sap.ui.getCore().setModel(oModel, "ppdModel");      //changes for TASK0179454
 			var PPDLocalModel = new sap.ui.model.json.JSONModel();
 			PPDLocalModel.setData({
 				PPDBusyIndicator: false
