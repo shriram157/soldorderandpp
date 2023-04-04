@@ -25,7 +25,7 @@
 							<Label wrapping="true" text="{i18n>status}"/>
 							<Text text="{mainservices>ZsoFltStatus}"/>
 							<Label wrapping="true" text="{i18n>zoneAppNumber}"/>
-							<Input value="{oZoneAppNumModel>ZzoneApproval}" id="zoneapproval" required="true"/>
+							<Input value="{oZoneAppNumModel>/ZzoneApproval}" id="zoneapproval" required="true"/>       <!--changes for Fleet Summary Zone Approval Number-->
 							<Label wrapping="true" text="{i18n>totalVehicles}"/>
 								<!--changes added by Minakshi  for INC0191837 start-->
 							<Text text="{mainservices>ZtotalVehQty}" id="vechilecounter"/>
