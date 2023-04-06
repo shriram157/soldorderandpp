@@ -736,7 +736,8 @@ sap.ui.define([
 				var Zzextcol = RSOB_controller.getView().byId("colour_RSOB").getSelectedKey();
 				// SOcreateSet;
 				var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet";
-				var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
+				//var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;     ---------- Code replication same as QA
+				var dealer_no = this.getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 				var _data = {
 					"ZzsoReqNo": "SO",
 					"Zzmodel": Zzmodel, //"YZ3DCT",
