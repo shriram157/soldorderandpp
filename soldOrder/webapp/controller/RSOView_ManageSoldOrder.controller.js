@@ -663,6 +663,8 @@ sap.ui.define([
 					success: $.proxy(function (soOData) {
 						RSO_MSO_controller.byId("model_CSOR").setSelectedKey(soOData.Zzmodel);
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
+						RSO_MSO_controller.byId("RSOV_MSO_SoStatus").setText(soOData.ZzsoStatus);//13-Apr-2023 Shriram
+						
 						this.byId('model_CSOR').setSelectedItem().setValue("");
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
