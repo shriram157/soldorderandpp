@@ -72,7 +72,8 @@
 							<Label wrapping="true" text="{i18n>TradeInModel}"/>
 							<Text text="{mainservices>ZtradeModel}"/>
 							<Label wrapping="true" text="{i18n>SoldOrdStatus}"/>
-							<Text id="RSOV_MSO_SoStatus" text="{mainservices>ZzsoStatus}"/>
+							<!-- <Text id="RSOV_MSO_SoStatus" text="{mainservices>ZzsoStatus}"/>	 -->
+							<Text id="RSOV_MSO_SoStatus" text=""/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="40" value="{mainservices>Comment}"/>
 							<!--	<Label wrapping="true" text=""/>
