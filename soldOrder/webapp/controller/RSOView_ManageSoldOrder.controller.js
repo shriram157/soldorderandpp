@@ -461,6 +461,7 @@ sap.ui.define([
 
 				//----------------------------------------------------------
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
+				console.log("status:"+status+"BoundContext:"+RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext())//14-Apr-2023 Shriram
 				/// changes done by Minakshi for INC0195063
 				if (RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F") {
 					RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
