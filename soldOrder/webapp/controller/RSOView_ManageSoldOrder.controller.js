@@ -328,6 +328,7 @@ sap.ui.define([
 					if (ppdFlages.getData().openCommentBox == 'X') {
 						RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
 						RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setVisible(true);
+						RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue();
 					}
 				}
 				var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
@@ -765,7 +766,8 @@ sap.ui.define([
 						urlParameters: {
 							ZzsoReqNo: zrequest,
 							comment: RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue()
-						}, // function import parameters
+						}, 
+						// function import parameters
 						success: function (oData, response) {
 							if (oData.Type == 'E') {
 								// var oBundle = VehSel_DealerInv_controller.getView().getModel("i18n").getResourceBundle();
