@@ -328,9 +328,9 @@ sap.ui.define([
 					if (ppdFlages.getData().openCommentBox == 'X') {
 						RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setEnabled(true);
 						RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setVisible(true);
-						RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue();
 					}
 				}
+				RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("ZpriceApproval");
 				var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				// var status = RSO_MSO_controller.getView().getModel('mainservices').getData().ZzsoStatus;
 				if (user == "Dealer_User") //&& status !="Cancelled"
