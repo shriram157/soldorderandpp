@@ -330,7 +330,7 @@ sap.ui.define([
 						RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").setVisible(true);
 					}
 				}
-				var comment3 = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZpriceApproval');
+				var comment3 = RSO_MSO_controller.getView().getElementBinding("mainservices").getBoundContext().getProperty("ZpriceApproval");
 				var user = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				// var status = RSO_MSO_controller.getView().getModel('mainservices').getData().ZzsoStatus;
 				if (user == "Dealer_User") //&& status !="Cancelled"
@@ -357,12 +357,13 @@ sap.ui.define([
 				var zmodel = RSO_MSO_controller.getView().getModel("mainservices");
 				RSO_MSO_controller.getView().getModel("mainservices").bUseBatch = false;
 				var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
-
+				
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmodel', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmoyr', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzsuffix', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzextcol', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/ZpriceApproval',comment3);
 				this.byId('model_CSOR').setSelectedItem().setValue("");
 				zmodel.refresh();
 				// this.getOwnerComponent().getModel('mainservices').refresh();
