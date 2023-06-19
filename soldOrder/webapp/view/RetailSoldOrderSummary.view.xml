@@ -120,7 +120,8 @@
 							<t:Table id="table_RSOS" selectionMode="None" rows="{retailsumModel>/}" enableColumnReordering="false" alternateRowColors="true" visibleRowCount="10" class="marginCorners" threshold="50"> <!--change 24 sep, earlier 8-->
 								<t:extension>
 									<Toolbar visible="false">
-										<Title id="tableHeader" text="{detailView>/tableCount}"/>
+										<!--<Title id="tableHeader" text="{detailView>/tableCount}"/>-->
+										<Title id="tableHeader" text=""/>
 										<!--<Label text="*In-progress, Pending Fulfillment, Filled display all results on export. -->
 										<!--All Other types present rolling 2 years."/>-->
 										<ToolbarSpacer/>
