@@ -488,7 +488,7 @@ sap.ui.define([
 							RSOS_controller.dialog.close();
 							// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
 							var BtnNext = RSOS_controller.getView().byId("buttonNext");
-							RSOS_controller.getView().byId("tableHeader").setText("Count :("+data.d.results.length+")");
+							// RSOS_controller.getView().byId("tableHeader").setText("Count :("+data.d.results.length+")");
 							if (data.d.results.length <= 0) {
 								BtnNext.setEnabled(false);
 								RSOS_controller.enableExportButton();
@@ -571,7 +571,7 @@ sap.ui.define([
 								RSOS_controller.dialog.close();
 								// RSOS_controller.getView().getModel("RSOModel").setProperty("/RSOBusyIndicator", false);
 								var BtnNext = RSOS_controller.getView().byId("buttonNext");
-								RSOS_controller.getView().byId("tableHeader").setText("Count :("+data.d.results.length+")");
+							//	RSOS_controller.getView().byId("tableHeader").setText("Count :("+data.d.results.length+")");
 								if (data.d.results.length <= 0) {
 									BtnNext.setEnabled(false);
 									RSOS_controller.enableExportButton();
