@@ -766,8 +766,8 @@ sap.ui.define([
 			sUri = oUrl.replace("$top=100&$skip=0&", "");
 			sUri = sUri.replace("$top=100&$skip=100&", "");
 			sUri = sUri.replace("$top=100&$skip=200&", "");
-			sUri = sUri +
-				"&$select=dealer_ord,zzendcu_name,zzrdrcust_name,zzordtypedesc,zzmoyr,zzseries,vhvin,zzvtn,status,ownership_doc,credit_memo_doc";
+			//changes by Swetha for INC0234397 on 25th June, 2023 --- commented line 770 for export to excel in Price Protection tab zzrdrcust_name value
+			//sUri = sUri +"&$select=dealer_ord,zzendcu_name,zzrdrcust_name,zzordtypedesc,zzmoyr,zzseries,vhvin,zzvtn,status,ownership_doc,credit_memo_doc";
 			// icount = oRowBinding.aContexts.length;
 			// iskip = (icount > 100) ? icount - 100 : 0;
 
