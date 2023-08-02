@@ -257,7 +257,7 @@
 							<Label wrapping="true" text="{i18n>CreditMemo}"/>
 							<Text text="{mainservices>CreditMemoDoc}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
-							<TextArea id="RSOV_MSO_comment3" enabled="false" maxLength="150" value="{mainservices>ZpriceApproval}"/>   <!--changes by swetha for INC0232556 on 31st May, 2023 added value -->
+							<TextArea id="RSOV_MSO_comment3" enabled="false" maxLength="150" value="{mainservices>ZpriceApproval}"/>   <!--changes by swetha for INC0232556 on 31st May, 2023 added value-->
 							<Label wrapping="true" text="{i18n>App/RejDate}"/>
 							<Text
 								text="{path:'mainservices>AppRejDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
