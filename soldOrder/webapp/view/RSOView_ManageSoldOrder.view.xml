@@ -325,7 +325,7 @@
 										<l:GridData span="L1 M3 S6"/>
 									</layoutData>
 								</Label>
-								<TextArea id="idComments_TA_RSO_ManageSO"
+								<TextArea id="idComments_TA_RSO_ManageSO" value=" "
 									editable="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}"
 									enabled="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" maxLength="40">
 									<layoutData>
