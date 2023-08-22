@@ -224,6 +224,8 @@ sap.ui.define([
 			_getattachRouteMatched: function (parameters) {
 				//	var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
 				RSO_MSO_controller = this;
+				// INC0238832 sold order comments (SOPP issue)  Shriram  9-Aug-2023  setting TextArea value blank file loading  line 228
+				RSO_MSO_controller.getView().byId('idComments_TA_RSO_ManageSO').setValue('');
 				var feed = RSO_MSO_controller.getView().byId("feedId");
 				var chatVBox = RSO_MSO_controller.getView().byId("chatVBox");
 				var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
