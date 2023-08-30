@@ -196,6 +196,9 @@ sap.ui.define([
 				} else {
 					zaprvl = "ZONE APPROVED";
 				}
+				//Changes by Swetha for INC0239372 on 30th Aug,2023 --- we simply needs to cut off digits 13 onward--fleet order zone approval number misplaced in system --Code Start
+				FSO_Z_controller.getView().getModel("oZoneAppNumModel").setProperty("/ZzoneApproval",FSO_Z_controller.getView().getModel("oZoneAppNumModel").getData().ZzoneApproval.slice(0,12));
+				//Changes by Swetha for INC0239372 on 30th Aug,2023 --- we simply needs to cut off digits 13 onward--fleet order zone approval number misplaced in system --Code End
 				//Added by singhmi  DMND0002946 on 11/03/2021 end
 				FSO_Z_controller.getView().getModel('mainservices').callFunction("/Approve_Fleet_Order", {
 					method: "POST",
