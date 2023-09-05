@@ -791,7 +791,7 @@ sap.ui.define([
 				//	var host = RSO_MSO_controller.host();
 				SelectVehicleOption = true;
 				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
-					Soreq: zrequest
+					Soreq: zrequest,
 					refresh: true                                                                                //changes for INC0237472
 				}, true);
 
