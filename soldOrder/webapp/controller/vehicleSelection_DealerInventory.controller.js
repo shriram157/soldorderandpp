@@ -50,6 +50,7 @@ sap.ui.define([
 				new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
 				new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color)
 			], true)]);
+			sap.ui.core.BusyIndicator.hide();
 			
 		},
 		onAfterRendering: function () {},
