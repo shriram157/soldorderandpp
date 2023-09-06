@@ -34,7 +34,7 @@ sap.ui.define([
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-			sap.ui.core.BusyIndicator.show();  //changes for INC0237472                                                                     
+			sap.ui.core.BusyIndicator.show(5);  //changes by swetha for INC0237472 on 6th Sept, 2023                                                                     
 			vechile_items.filter([new Filter([
 				//	(MATRIX eq 'A205') and (Dealer eq '2400001116') and (RSO_NUM eq 'SO0000000119') and (source eq 'RSO') and (ZDIVISION eq 'TOY') and (Model eq 'B11HLT') and (Modelyear eq '2019') and (TCISeries eq 'CAM') and (Suffix eq 'AM')
 
