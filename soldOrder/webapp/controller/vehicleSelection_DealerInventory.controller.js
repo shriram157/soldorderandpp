@@ -26,6 +26,7 @@ sap.ui.define([
 			} else {
 				vehSelDealerInvController.sDivision = "LEX";
 			}
+			sap.ui.core.BusyIndicator.show();
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var Msg = oBundle.getText("novehicletable");
 			vehSelDealerInvController.getView().byId("table_RSOVehicleDealer").setNoData(Msg);
@@ -33,7 +34,7 @@ sap.ui.define([
 			var vechile_items = vehSelDealerInvController.getView().byId("table_RSOVehicleDealer").getBinding('rows');
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
-			sap.ui.core.BusyIndicator.show(1000);  //changes by swetha for INC0237472 on 6th Sept, 2023 
+			  //changes by swetha for INC0237472 on 6th Sept, 2023 
 			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 			                                                                    
 			vechile_items.filter([new Filter([
@@ -50,7 +51,6 @@ sap.ui.define([
 				new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
 				new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color)
 			], true)]);
-			sap.ui.core.BusyIndicator.hide();
 			
 		},
 		onAfterRendering: function () {},
