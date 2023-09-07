@@ -793,7 +793,7 @@ sap.ui.define([
 				RSO_MSO_controller.getOwnerComponent().getRouter().navTo("vehicleSelection_DealerInventory", {
 					Soreq: zrequest                                                                               
 				}, true);
-				sap.ui.core.BusyIndicator.show();         
+				sap.ui.core.BusyIndicator.show();    
 
 			},
 			_navCancleOrder: function () {

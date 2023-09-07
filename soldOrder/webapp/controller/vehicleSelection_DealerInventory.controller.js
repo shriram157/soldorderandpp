@@ -26,7 +26,6 @@ sap.ui.define([
 			} else {
 				vehSelDealerInvController.sDivision = "LEX";
 			}
-			sap.ui.core.BusyIndicator.show();
 			var oBundle = sap.ui.getCore().getModel("i18n").getResourceBundle();
 			var Msg = oBundle.getText("novehicletable");
 			vehSelDealerInvController.getView().byId("table_RSOVehicleDealer").setNoData(Msg);
