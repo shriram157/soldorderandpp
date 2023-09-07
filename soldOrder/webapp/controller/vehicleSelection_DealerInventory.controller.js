@@ -33,7 +33,7 @@ sap.ui.define([
 			var vechile_items = vehSelDealerInvController.getView().byId("table_RSOVehicleDealer").getBinding('rows');
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
-			  //changes by swetha for INC0237472 on 6th Sept, 2023 
+			sap.ui.core.BusyIndicator.hide();  //changes by swetha for INC0237472 on 6th Sept, 2023 
 			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 			                                                                    
 			vechile_items.filter([new Filter([
