@@ -70,6 +70,7 @@ sap.ui.define([
 		},
 		_getattachRouteMatched: function (parameters) {
 			var requestid = parameters.getParameters().arguments.Soreq;
+			sap.ui.core.BusyIndicator.show();                            //changes by Swetha for INC0239372
 			FSO_Z_controller.getSO(requestid);        
 		},
 		getSO: function (req) {
