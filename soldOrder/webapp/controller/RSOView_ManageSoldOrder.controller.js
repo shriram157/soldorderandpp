@@ -493,8 +493,10 @@ sap.ui.define([
 					"Eligilibity");
 				if (_Eligilibity == "YES") {
 					attachButton.setEnabled(true);
+					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setEnabled(true);  //changes by swetha for DMND0003239
 				} else {
 					attachButton.setEnabled(false);
+					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setEnabled(false);  //changes by swetha for DMND0003239
 				}
 				var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 				if (zvtn != "") {
@@ -606,6 +608,11 @@ sap.ui.define([
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
 						console.log("Read: "+sObjectPath+"ZzsoStatus :"+soOData.ZzsoStatus);//14-Apr-2023 Shriram
 						RSO_MSO_controller.byId("RSOV_MSO_SoStatus").setText(soOData.ZzsoStatus);//13-Apr-2023 Shriram
+						if(soOData.ZzsoStatus == "UNDER-REVIEW") {
+							RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);  //changes by swetha for DMND0003239	
+						} else {
+							RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);  //changes by swetha for DMND0003239	
+						}
 						this.byId('model_CSOR').setSelectedItem().setValue("");
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
