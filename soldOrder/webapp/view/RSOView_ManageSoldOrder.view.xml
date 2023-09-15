@@ -259,11 +259,8 @@
 							<Text text="{mainservices>Eligilibity}" id="RSO_PRC_Eligilibity"/>
 							<Label wrapping="true" text="{i18n>Status}"/>
 							<Text text="{mainservices>PriceStatus}"/>
-							<Button text="{i18n>LINKRDRVIN}" id="btn_linkrdrvin">    <!--changes by swetha for DMND0003239-->
-								<layoutData>
-                        			<l:GridData span="L2 M2 S4"/>
-                    			</layoutData>   
-                    		</Button>
+							<Label/>
+							<Button text="{i18n>LINKRDRVIN}" id="btn_linkrdrvin"/>    <!--changes by swetha for DMND0003239-->
 							<Label wrapping="true" text="{i18n>CreditMemo}"/>
 							<Text text="{mainservices>CreditMemoDoc}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
@@ -276,11 +273,8 @@
 								text="{path:'mainservices>PaymentDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>PayAmount}"/>
 							<Text text="{path:'mainservices>PaymentAmmount',formatter:'toyota.ca.SoldOrder.util.formatter.formatAmount'}"/>
-							<Button text="{i18n>SimulatePrice}" id="btn_SimulatePrice"> <!--changes by swetha for DMND0003239-->
-								<layoutData>
-                        			<l:GridData span="L2 M2 S4"/>
-                    			</layoutData>
-                    		</Button>
+							<Label/>
+							<Button text="{i18n>SimulatePrice}" id="btn_SimulatePrice"/> <!--changes by swetha for DMND0003239-->
 						</f:content>
 					</f:SimpleForm>
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCornersRSO msgStripCss2"/>
