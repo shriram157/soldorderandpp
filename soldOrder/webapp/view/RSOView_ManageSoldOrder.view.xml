@@ -263,6 +263,9 @@
 							<Text text="{mainservices>PriceStatus}"/>
 							<Label/>
 							<Button text="{i18n>LINKRDRVIN}" id="btn_linkrdrvin"/>    <!--changes by swetha for DMND0003239-->
+							<layoutData>
+								<l:GridData span="L4"/>
+							</layoutData>
 							<Label wrapping="true" text="{i18n>CreditMemo}"/>
 							<Text text="{mainservices>CreditMemoDoc}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
@@ -277,6 +280,9 @@
 							<Text text="{path:'mainservices>PaymentAmmount',formatter:'toyota.ca.SoldOrder.util.formatter.formatAmount'}"/>
 							<Label/>
 							<Button text="{i18n>SimulatePrice}" id="btn_SimulatePrice"/> <!--changes by swetha for DMND0003239-->
+							<layoutData>
+								<l:GridData span="L4"/>
+							</layoutData>
 						</f:content>
 					</f:SimpleForm>
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCornersRSO msgStripCss2"/>
