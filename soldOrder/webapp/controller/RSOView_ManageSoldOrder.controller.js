@@ -28,6 +28,7 @@ sap.ui.define([
 				zinventoryModel = new JSONModel({});
 				RSO_MSO_controller.getView().setModel(zcustomerModel, 'Customer');
 				RSO_MSO_controller.getView().setModel(zinventoryModel, 'Inventory');
+				this.getOwnerComponent().getModel("ppdModel");                              //changes by swetha for DMND0003239
 				//RSO_MSO_controller.getOwnerComponent().getRouter().getRoute("RSOView_ManageSoldOrder").attachPatternMatched(RSO_MSO_controller._getattachRouteMatched, this);
 				this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._getattachRouteMatched, this);
 				// var language = RSO_MSO_controller.returnBrowserLanguage();
@@ -608,11 +609,6 @@ sap.ui.define([
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
 						console.log("Read: " + sObjectPath + "ZzsoStatus :" + soOData.ZzsoStatus); //14-Apr-2023 Shriram
 						RSO_MSO_controller.byId("RSOV_MSO_SoStatus").setText(soOData.ZzsoStatus); //13-Apr-2023 Shriram
-						if (soOData.ZzsoStatus == "UNDER-REVIEW") {
-							RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true); //changes by swetha for DMND0003239	
-						} else {
-							RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false); //changes by swetha for DMND0003239	
-						}
 						this.byId('model_CSOR').setSelectedItem().setValue("");
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
