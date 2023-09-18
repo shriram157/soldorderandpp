@@ -179,13 +179,11 @@
 									</t:Column>
 								</t:columns>
 							</t:Table>
-							<List>
 							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
 								<l:content>
 									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}" growing="true" growingThreshold="15" growingScrollToLoad="false"/>  <!--changes by Swetha for DMND0003239-->
 								</l:content>
 							</l:Grid>
-							</List>
 							<!--	<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">-->
 							<!--<Button xmlns="sap.m" id="buttonPrev" press="onActionPrevious" icon="sap-icon://navigation-left-arrow"/>-->
 							<!--	<l:content>-->
