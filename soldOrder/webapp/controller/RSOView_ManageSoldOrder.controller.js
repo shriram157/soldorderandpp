@@ -628,32 +628,33 @@ function (BaseController, ResourceModel, formatter, Filter, FilterOperator, JSON
 						}, this),
 						error: function () {}
 					});
-					//changes by swetha for DMND0003239 Start
-					var soStatus = RSO_MSO_controller.getView().byId("RSOV_MSO_SoStatus").getValue();
-					if (soStatus) {
-						RSO_MSO_controller.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
-									method: "GET",
-									urlParameters: {
-										ZzsoReqNo: requestid
-									}, // function import parameters
-									success: function (data, response) {
-										if (data.MessageV1 == 'X') {
-											RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);
-										} else {
-											RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
-										}, true); //page
-									}
-								});
-								error: function (oData, oResponse) {
-									sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-										.MessageBox.Action.OK, null, null);
+					//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
+					if (soOData.ZzsoStatus == "UNDER-REVIEW") {
+							RSO_MSO_controller.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
+								method: "GET",
+								urlParameters: {
+									ZzsoReqNo: requestid
+								}, // function import parameters
+								success: function (data, response) {
+									if (data.MessageV1 == 'X') {
+										RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);
+									} else {
+										RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
+									} //page
 								}
-					} else {
-						sap.m.MessageBox.show(oBundle.getText("CompleteAllFields"), sap.m.MessageBox.Icon.ERROR, "Error", sap.m
-							.MessageBox.Action.OK, null, null);
-					}
-			//changes by swetha for DMND0003239 End
-			},
+							
+							error: function (oData, oResponse) {
+								sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+									.MessageBox.Action.OK, null, null);
+							}
+							});
+						} else {
+							sap.m.MessageBox.show(oBundle.getText("CompleteAllFields"), sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+								.MessageBox.Action.OK, null, null);
+						}
+					//changes by swetha for DMND0003239 on 18th Sept, 2023 End
+						
+	},
 
 		_updateSoldOrderRequest: function () {
 			var comment = RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").getValue();
