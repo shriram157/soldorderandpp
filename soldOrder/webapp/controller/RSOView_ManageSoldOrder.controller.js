@@ -382,6 +382,7 @@ sap.ui.define([
 						}
 					}
 				});
+				
 			},
 
 			_getSOChangeEvt: function (sObjectPath, req) {
@@ -608,11 +609,11 @@ sap.ui.define([
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
 						console.log("Read: "+sObjectPath+"ZzsoStatus :"+soOData.ZzsoStatus);//14-Apr-2023 Shriram
 						RSO_MSO_controller.byId("RSOV_MSO_SoStatus").setText(soOData.ZzsoStatus);//13-Apr-2023 Shriram
-						if(soOData.ZzsoStatus == "UNDER-REVIEW") {
-							RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);  //changes by swetha for DMND0003239	
-						} else {
-							RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);  //changes by swetha for DMND0003239	
-						}
+						//if(soOData.ZzsoStatus == "UNDER-REVIEW") {
+						//	RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);  //changes by swetha for DMND0003239	
+						//} else {
+						//	RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);  //changes by swetha for DMND0003239	
+						//}
 						this.byId('model_CSOR').setSelectedItem().setValue("");
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
@@ -628,6 +629,32 @@ sap.ui.define([
 					}, this),
 					error: function () {}
 				});
+				//changes by swetha for DMND0003239 Start
+				var soOData.ZzsoStatus = RSO_MSO_controller.getView().byId("RSOV_MSO_SoStatus").getValue();
+				if (soOData.ZzsoStatus) {
+					RSO_MSO_controller.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
+						method: "GET",
+						urlParameters: {
+							ZzsoReqNo: requestid
+						}, // function import parameters
+						success: function (data, response) {
+							if (data.MessageV1 == 'X') {
+								RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);  	
+							} else {
+								RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);  
+							}, true); //page
+						}
+					},
+					error: function (oData, oResponse) {
+						sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+							.MessageBox.Action.OK, null, null);
+					}
+				});
+			} else {
+				sap.m.MessageBox.show(oBundle.getText("CompleteAllFields"), sap.m.MessageBox.Icon.ERROR, "Error", sap.m
+					.MessageBox.Action.OK, null, null);
+			}
+			//changes by swetha for DMND0003239 End
 			},
 
 			_updateSoldOrderRequest: function () {
