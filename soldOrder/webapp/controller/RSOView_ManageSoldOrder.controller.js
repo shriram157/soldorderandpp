@@ -630,7 +630,7 @@ sap.ui.define([
 				});
 				//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
 				if (soOData.ZzsoStatus == "UNDER-REVIEW") {
-					RSO_MSO_controller.getView().get Model('mainservices').callFunction("/RSO_RDR_LINK", {
+					RSO_MSO_controller.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
 						method: "GET",
 						urlParameters: {
 							ZzsoReqNo: requestid
