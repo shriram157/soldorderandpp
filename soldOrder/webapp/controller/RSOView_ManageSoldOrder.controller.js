@@ -630,8 +630,8 @@ sap.ui.define([
 					error: function () {}
 				});
 				//changes by swetha for DMND0003239 Start
-				var soOData.ZzsoStatus = RSO_MSO_controller.getView().byId("RSOV_MSO_SoStatus").getValue();
-				if (soOData.ZzsoStatus) {
+				var soStatus = RSO_MSO_controller.getView().byId("RSOV_MSO_SoStatus").getValue();
+				if (soStatus) {
 					RSO_MSO_controller.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
 						method: "GET",
 						urlParameters: {
