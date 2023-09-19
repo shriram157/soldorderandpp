@@ -632,7 +632,9 @@ sap.ui.define([
 								that.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
 									method: "GET",
 									urlParameters: {
-										ZzsoReqNo: req
+										ZzsoReqNo: req,
+										    Vhvin:that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin'),
+										   Status:sap.ui.getCore().getModel("ppdModel").getData()[i].status
 									}, // function import parameters
 									success: function (data, response) {
 										if (data.MessageV1 == 'X') {
