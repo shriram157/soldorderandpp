@@ -1,21 +1,15 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
 	<Dialog draggable="true" title='LINK RDR VIN'> 
 	<content>
-		<VBox>
 			<items>
-				<HBox class="justifyContentCenter">
+				<HBox>
 					<items>
 						<Label text="{i18n>Providelast8CharacterofVIN}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
 						<Input id="rdrvin"></Input>
-					</items>
-				</HBox>
-				<HBox class="justifyContentCenter">
-					<items>
 						<Button text="{i18n>ValidateVIN}" press="_validateVIN"></Button>
 					</items>
 				</HBox>
 			</items>
-		</VBox>	
 	</content>
 	</Dialog>
 </core:FragmentDefinition>
