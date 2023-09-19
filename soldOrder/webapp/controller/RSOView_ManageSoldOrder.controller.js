@@ -625,7 +625,9 @@ sap.ui.define([
 					error: function () {}
 				});
 				//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
-				if (soOData.ZzsoStatus == "UNDER-REVIEW") {
+				var zppdModel = sap.ui.getCore().setModel(ppdModel,"ppdModel");
+				var ppdModel = sap.ui.getCore().getModel("ppdModel").getData();
+				if (ppdModel.status == "UNDER-REVIEW") {
 					RSO_MSO_controller.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
 						method: "GET",
 						urlParameters: {
