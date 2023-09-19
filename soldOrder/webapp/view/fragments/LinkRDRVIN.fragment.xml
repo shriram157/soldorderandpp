@@ -14,4 +14,8 @@
 						<Button text="{i18n>ValidateVIN}" press="_validateVIN"></Button>
 					</items>
 				</HBox>
+			</items>
+		</VBox>	
+	</content>
+	</Dialog>
 </core:FragmentDefinition>
