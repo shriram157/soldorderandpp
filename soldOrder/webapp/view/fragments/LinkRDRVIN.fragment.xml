@@ -6,7 +6,7 @@
 				<Title text="LINK RDR VIN"/>
 			</contentMiddle>
 			<contentRight>
-				<Button text="Close" press="handlePress"/>
+				<Button text="Close" press="onClose"/>
 			</contentRight>
 		</Bar>
 	</customHeader>
@@ -16,7 +16,7 @@
 				<Label text="{i18n>Providelast8CharacterofVIN}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
 				<Input id="rdrvin" maxlength="8" value="" placeholder="Enter here"/>
 			</items>
-				<Button text="{i18n>ValidateVIN}" press="_validateVIN"></Button>
+				<Button text="{i18n>ValidateVIN}" press="_validateVIN" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Button>
 		</HBox>
 	</content>
 	</Dialog>
