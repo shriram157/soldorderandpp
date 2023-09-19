@@ -627,7 +627,7 @@ sap.ui.define([
 					var ppdModellength = sap.ui.getCore().getModel("ppdModel").getData().length;
 					for (var i = 0; i < ppdModellength; i++) {
 						if (sap.ui.getCore().getModel("ppdModel").getData()[i].dealer_ord == req) {
-							if (sap.ui.getCore().getModel("ppdModel").getData()[i].statu == "UNDER-REVIEW") {
+							if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW") {
 								RSO_MSO_controller.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
 									method: "GET",
 									urlParameters: {
@@ -644,10 +644,6 @@ sap.ui.define([
 										sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
 									}
 								});
-							} else {
-								sap.m.MessageBox.show(oBundle.getText("CompleteAllFields"),
-									sap.m.MessageBox.Icon.ERROR, "Error",
-									sap.m.MessageBox.Action.OK, null, null);
 							}
 						}
 							//changes by swetha for DMND0003239 on 18th Sept, 2023 End
