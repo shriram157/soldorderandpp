@@ -625,11 +625,11 @@ sap.ui.define([
 					});
 					//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
 					var ppdModellength = sap.ui.getCore().getModel("ppdModel").getData().length;
-					var RSO_MSO_controller = this;
+					var that = this;
 					for (var i = 0; i < ppdModellength; i++) {
 						if (sap.ui.getCore().getModel("ppdModel").getData()[i].dealer_ord == req) {
 							if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW") {
-								RSO_MSO_controller.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
+								that.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
 									method: "GET",
 									urlParameters: {
 										ZzsoReqNo: req
