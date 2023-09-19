@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
-	<Dialog draggable="true" title='LINK RDR VIN' contentWidth="400px" contentHeight="260px"> 
+	<Dialog draggable="true" title='LINK RDR VIN'> 
 	<content>
 		<VBox>
 			<items>
