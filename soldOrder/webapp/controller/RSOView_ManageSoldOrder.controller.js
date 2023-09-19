@@ -631,7 +631,7 @@ sap.ui.define([
 								RSO_MSO_controller.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
 									method: "GET",
 									urlParameters: {
-										ZzsoReqNo: requestid
+										ZzsoReqNo: req
 									}, // function import parameters
 									success: function (data, response) {
 										if (data.MessageV1 == 'X') {
