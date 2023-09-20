@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
-	<Dialog draggable="true" stretch="true" class="sapUiPopupWithPadding" id="RDRVIN_dialog" contentWidth="800px" contentHeight="500px"> 
+	<Dialog draggable="true" class="sapUiPopupWithPadding" id="RDRVIN_dialog" width="500px" height="1000px" verticalScrolling='true'> 
 	<customHeader>
 		<Bar>
 			<contentMiddle>
@@ -13,7 +13,7 @@
 	<content>
 		<HBox>
 			<items>
-				<Label text="{i18n>Providelast8CharacterofVIN}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+				<Label text="{i18n>Providelast8CharacterofVIN}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
 				<Input id="rdrvin" maxlength="8" value="" placeholder="Enter here"/>
 			</items>
 				<Button text="{i18n>ValidateVIN}" press="_validateVIN" class="sapUiSmallMarginBegin"></Button>
