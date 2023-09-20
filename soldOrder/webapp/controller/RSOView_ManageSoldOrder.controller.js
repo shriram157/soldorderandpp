@@ -1365,9 +1365,13 @@ sap.ui.define([
 			this.getView().addDependent(oDialogBox);
 			oDialogBox.open();
 		},
-		onClose: function(oAction) {
-    		RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder");
+		onCancel : function(oEvent){
+    		var sType1 = oEvent.getSource().data("dialogType");
+			this[sType1].close();
 		}
+	//	_validateVIN: function() {
+			
+	//	}
 		//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
 		});
 	});
