@@ -5,9 +5,6 @@
 			<contentMiddle>
 				<Title text="LINK RDR VIN"/>
 			</contentMiddle>
-			<contentRight>
-				<Button text="Cancel" press="onCancel" type="Reject" dialogType="LINKRDRVIN" class ="componentCancel"/>
-			</contentRight>
 		</Bar>
 	</customHeader>
 	<content>
@@ -17,7 +14,7 @@
 				<Input id="rdrvin" maxlength="8" value="" placeholder="Enter here"/>
 			</items>
 				<Button text="{i18n>ValidateVIN}" press="_validateVIN" class="sapUiSmallMarginBegin"></Button>
-		</HBox
+		</HBox>
 	</content>
 	<ToolbarSpacer/>
 	</Dialog>

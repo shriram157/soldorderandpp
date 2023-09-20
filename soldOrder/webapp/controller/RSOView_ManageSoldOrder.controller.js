@@ -1364,11 +1364,8 @@ sap.ui.define([
 			var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 			this.getView().addDependent(oDialogBox);
 			oDialogBox.open();
-		},
-		onCancel : function(oEvent){
-    		var sType1 = oEvent.getSource().data("dialogType");
-			this[sType1].close();
 		}
+	
 	//	_validateVIN: function() {
 			
 	//	}
