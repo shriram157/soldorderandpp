@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
-	<Dialog draggable="true" stretch="true" class="sapUiPopupWithPadding"> 
+	<Dialog draggable="true" stretch="true" class="sapUiPopupWithPadding" id="RDRVIN_dialog" contentWidth="800px" contentHeight="500px"> 
 	<customHeader>
 		<Bar>
 			<contentMiddle>
@@ -19,11 +19,7 @@
 				<Button text="{i18n>ValidateVIN}" press="_validateVIN" class="sapUiSmallMarginBegin"></Button>
 		</HBox>
 	</content>
-	<footer>
-		<OverflowToolbar>
-			<ToolbarSpacer/>
-		</OverflowToolbar>
-	</footer>
+	<ToolbarSpacer/>
 	</Dialog>
 </core:FragmentDefinition>
 
