@@ -260,7 +260,7 @@
 							<Label wrapping="true" text="{i18n>Status}"/>
 							<Text text="{mainservices>PriceStatus}"/>
 							<Label/>
-							<Button text="{i18n>LINKRDRVIN}" id="btn_linkrdrvin" press="_onlinkrdrvin">    <!--changes by swetha for DMND0003239-->
+							<Button text="{i18n>LINKRDRVIN}" id="btn_linkrdrvin" width="230px" press=".onDefaultDialogPress" ariaHasPopup="Dialog">    <!--changes by swetha for DMND0003239-->
 							<layoutData>
 								<l:GridData span="L4"/>
 							</layoutData>
@@ -278,7 +278,7 @@
 							<Label wrapping="true" text="{i18n>PayAmount}"/>
 							<Text text="{path:'mainservices>PaymentAmmount',formatter:'toyota.ca.SoldOrder.util.formatter.formatAmount'}"/>
 							<Label/>
-							<Button text="{i18n>SimulatePrice}" id="btn_SimulatePrice"> <!--changes by swetha for DMND0003239-->
+							<Button text="{i18n>SimulatePrice}" id="btn_SimulatePrice" press="_simulateprice"> <!--changes by swetha for DMND0003239-->
 							<layoutData>
 								<l:GridData span="L4"/>
 							</layoutData>
