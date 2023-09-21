@@ -1367,7 +1367,7 @@ sap.ui.define([
     				linkrdrvin = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
     			//this.getView().addDependent(pressDialog);
     				linkrdrvin.setModel(this.getView().getModel());
-    				linkrdr.open();
+    				linkrdrvin.open();
 				}
 			//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 			//	this.getView().addDependent(oDialogBox);
@@ -1375,8 +1375,8 @@ sap.ui.define([
 			},
 
 			onClose: function () {
-				linkrdr.close();
-				linkrdr.destroy();
+				linkrdrvin.close();
+				linkrdrvin.destroy();
 			},
 			_simulateprice: function() {
 				var host = RSO_MSO_controller.host();
