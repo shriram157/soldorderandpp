@@ -260,7 +260,7 @@
 							<Label wrapping="true" text="{i18n>Status}"/>
 							<Text text="{mainservices>PriceStatus}"/>
 							<Label/>
-							<Button text="{i18n>LINKRDRVIN}" id="btn_linkrdrvin" width="500px" press=".onDefaultDialogPress" ariaHasPopup="Dialog">    <!--changes by swetha for DMND0003239-->
+							<Button text="{i18n>LINKRDRVIN}" id="btn_linkrdrvin" press="_onlinkrdrvin">    <!--changes by swetha for DMND0003239-->
 							<layoutData>
 								<l:GridData span="L4"/>
 							</layoutData>
