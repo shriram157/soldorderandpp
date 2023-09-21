@@ -1364,7 +1364,7 @@ sap.ui.define([
 			_onlinkrdrvin: function () {
 				var linkrdrvin = this.getView().byId("RDRVIN_dialog");
 				if (!linkrdrvin) {
-    				linkrdrvin = sap.ui.xmlfragment("RSOView_ManageSoldOrder/LinkRDRVIN", this);
+    				linkrdrvin = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
     			//this.getView().addDependent(pressDialog);
     				linkrdrvin.setModel(this.getView().getModel());
     				linkrdr.open();
