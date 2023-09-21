@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
-	<Dialog title="Credit Simulation" contentWidth="60%" contentHeight="60%">
+	<Dialog title="Credit Simulation" contentWidth="50%" contentHeight="100%">
 		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" width="100%">
 			<f:content>
 				<Label text="{i18n>SOCreated}"></Label>

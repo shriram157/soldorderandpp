@@ -1362,13 +1362,21 @@ sap.ui.define([
 			},
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----Start
 			_onlinkrdrvin: function () {
-				var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
-				this.getView().addDependent(oDialogBox);
-				oDialogBox.open();
+				var linkrdrvin = this.getView().byId("RDRVIN_dialog");
+				if (!linkrdrvin) {
+    				linkrdrvin = sap.ui.xmlfragment("RSOView_ManageSoldOrder/LinkRDRVIN", this);
+    			//this.getView().addDependent(pressDialog);
+    				linkrdrvin.setModel(this.getView().getModel());
+    				linkrdr.open();
+				}
+			//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
+			//	this.getView().addDependent(oDialogBox);
+			//	oDialogBox.open();
 			},
 
 			onClose: function () {
-				RSOView_ManageSoldOrder.controller.dialog.close();
+				linkrdr.close();
+				linkrdr.destroy();
 			},
 			_simulateprice: function() {
 				var host = RSO_MSO_controller.host();
