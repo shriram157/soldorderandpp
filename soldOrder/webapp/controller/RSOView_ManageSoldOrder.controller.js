@@ -1368,13 +1368,35 @@ sap.ui.define([
 
 			onClose: function () {
 				var closeDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
-				ocloseDialog.close();
+				closeDialog.close();
+			},
+			_simulateprice: function() {
+				var host = RSO_MSO_controller.host();
+				var Zzsoreq = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet/?$format=json" + Zzsoreq;
+				$.ajax({
+					url: oUrl,
+					method: 'READ',
+					async: false,
+					dataType: 'json',
+					success: function (data, textStatus, jqXHR) {
+						var oModel = new sap.ui.model.json.JSONModel();
+						oModel.setData(data.d.results);
+						RSO_MSO_controller.getView().setModel(oModel, "mainservices");
+						
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+							.m.MessageBox.Action.OK, null, null);
+					}
+				});	
+				var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
+				this.getView().addDependent(oDialogBox);
+				oDialogBox.open();
 			}
 			
-
-			//	_validateVIN: function() {
-
-			//	}
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
 		});
 	});

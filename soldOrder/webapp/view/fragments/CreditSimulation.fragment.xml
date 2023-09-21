@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
+	<Dialog title="Credit Simulation">
+		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="5" emptySpanM="5">
+			<f:content>
+				<Label text="{i18n>SOCreated}"></Label>
+				<Text text="{mainservices>SO_CREATION_DATE}"/> 
+			</f:content>
+		</f:SimpleForm>
+		<Table id="SimulateTable" inset="false" items="{ path: 'mainservices>/items', sorter: { path: 'Type', descending:true } }">
+		<columns>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="End">
+				<Text text="Effective Date" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="Credit Amount" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{mainservices>EFFET_DATE}"/>
+					<Text text="{mainservices>CREDIT_AMOUNT}"/>
+				</cells>
+			</ColumnListItem>
+		</items>	
+		</Table>
+		<VBOX>
+			<Label text="{i18n>VIN}"></Label>
+			<Text text="{mainservices>Vhvin}"/>
+			<Label text="{i18n>VehicleWholesaleDate}"></Label>
+			<Text text="{mainservices>WHOLESALE_DATE}"/>
+			<Label text="{i18n>EligibleClaim}"></Label>
+			<Text text="{mainservices>TOTAL}"/>
+		</VBOX>
+		<endButton>
+			<Button text="Close" press="onClose"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
