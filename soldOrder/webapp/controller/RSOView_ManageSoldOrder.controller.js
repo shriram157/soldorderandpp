@@ -1376,7 +1376,7 @@ sap.ui.define([
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet('" + Zzsoreq + "')";
 				$.ajax({
 					url: oUrl,
-					method: 'READ',
+					method: 'GET',
 					async: false,
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
