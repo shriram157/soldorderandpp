@@ -1373,7 +1373,7 @@ sap.ui.define([
 			_simulateprice: function() {
 				var host = RSO_MSO_controller.host();
 				var Zzsoreq = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet/?$format=json" + Zzsoreq;
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet('" + Zzsoreq + "')";
 				$.ajax({
 					url: oUrl,
 					method: 'READ',
