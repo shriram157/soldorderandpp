@@ -1367,7 +1367,7 @@ sap.ui.define([
 			},
 
 			onClose: function () {
-				var closeDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this");
+				var closeDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 				this.closeDialog.close();
 				});
 			}
