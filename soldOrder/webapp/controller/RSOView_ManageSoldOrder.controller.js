@@ -3,10 +3,11 @@ sap.ui.define([
 		"sap/ui/model/resource/ResourceModel",
 		"toyota/ca/SoldOrder/util/formatter",
 		"sap/ui/model/Filter",
+		"sap/ui/core/Fragment",
 		"sap/ui/model/FilterOperator",
 		"sap/ui/model/json/JSONModel"
 	],
-	function (BaseController, ResourceModel, formatter, Filter, FilterOperator, JSONModel) {
+	function (BaseController, ResourceModel, formatter, Filter, Fragment, FilterOperator, JSONModel) {
 		"use strict";
 		var RSO_MSO_controller;
 		var zrequest;
@@ -1367,7 +1368,7 @@ sap.ui.define([
 			},
 
 			onClose: function () {
-				var closeDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
+				var closeDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this.getView().getController());
 				closeDialog.close();
 			},
 			_simulateprice: function() {
@@ -1376,13 +1377,12 @@ sap.ui.define([
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet?$filter=(ZZSO_REQ_NO eq '" + zrequest + "')";
 				$.ajax({
 					url: oUrl,
-					method: 'GET',
+					method: "GET",
 					async: false,
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
 						var oModel = new sap.ui.model.json.JSONModel();
 						oModel.setData(data.d.results);
-						RSO_MSO_controller.getView().setModel(oModel, "mainservices");
 						
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
