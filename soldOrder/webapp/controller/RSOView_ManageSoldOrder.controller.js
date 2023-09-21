@@ -1362,7 +1362,6 @@ sap.ui.define([
 			},
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----Start
 			_onlinkrdrvin: function () {
-				var rdr_vin = RSO_MSO_controller.getView().byId("rdrvin").getValue();
 				var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 				this.getView().addDependent(oDialogBox);
 				oDialogBox.open();
