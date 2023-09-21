@@ -1,10 +1,12 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
-	<Dialog title="LINK RDR VIN" draggable="true" class="sapUiPopupWithPadding" id="RDRVIN_dialog" contentWidth="60%" contentHeight="60%"> 
-	<f:SimpleForm editable="true" layout="ResponsiveGridLayout" width="100%">
+	<Dialog title="LINK RDR VIN" draggable="true" class="sapUiPopupWithPadding" id="RDRVIN_dialog" contentWidth="80%" contentHeight="80%"> 
+	<f:SimpleForm editable="true" layout="ResponsiveGridLayout">
 			<f:content>
+				<f:HBox>
 				<Label text="{i18n>Providelast8CharacterofVIN}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
 				<Input id="rdrvin" maxlength="8" value="" placeholder="Enter here"/>
 				<Button text="{i18n>ValidateVIN}" press="_validateVIN" class="sapUiSmallMarginBegin"></Button>
+			</f:HBox>
 			</f:content>
 	</f:SimpleForm>
 	<endButton>
