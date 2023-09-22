@@ -1397,11 +1397,17 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				});	
-				var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
-				this.getView().addDependent(oDialogBox);
-				oDialogBox.open();
+				if (!this._soDialog) {
+					this._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
+					this.getView().addDependent(this._soDialog);
+				}
+				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
+				this._soDialog.open();
 
-			}
+			},
+			onCloseSDialog: function (oEvent) {
+				this._soDialog.close();
+			},
 			
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
 		});

@@ -3,10 +3,10 @@
 		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" width="100%">
 			<f:content>
 				<Label text="{i18n>SOCreated}"></Label>
-				<Text text="{path:'mainservices>SO_CREATION_DATE'}"/>
+				<Text text="{path:'mainservices>SO_CREATION_DATE'} type:'sap.ui.model.type.Date', formatOptions: { pattern: 'YYYY-MM-DD', strictParsing: true, UTC: true, relative: false }}"/>
 			</f:content>
 		</f:SimpleForm>
-		<Table inset="false" items="{ path: 'mainservices>/items', sorter: { path: 'Type', descending:true } }">
+		<Table inset="false" items="{ path: 'mainservices>/', sorter: { path: 'Type', descending:true } }">
 		<columns>
 			<Column
 				width="12em">
@@ -20,7 +20,7 @@
 		<items>
 			<ColumnListItem>
 				<cells>
-					<Text text="{path:'mainservices>EFFET_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
+					<Text text="{path:'mainservices>EFFET_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'YYYY-MM-DD', strictParsing: true, UTC: true, relative: false }}"/>
 					<Text text="{mainservices>CREDIT_AMOUNT}"/>
 				</cells>
 			</ColumnListItem>
@@ -33,21 +33,21 @@
 				<HBox>
 					<items>
 						<Text/>
-							<Label wrapping="true" text="{i18n>VIN}"/>
+							<Label  text="{i18n>VIN}"/>
 							<Text  text="{mainservices>Vhvin}"/>
 					</items>
 				</HBox>
 				<HBox>
 					<items>
 						<Text/>
-							<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="2rem"/>
+							<Label text="{i18n>VehicleWholesaleDate}"/>
 							<Text text="{path:'mainservices>WHOLESALE_DATE'}"/>
 					</items>
 				</HBox>
 				<HBox>
 					<items>
 						<Text/>
-							<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="2rem"/>
+							<Label text="{i18n>EligibleClaim}"/>
 							<Text text="{mainservices>TOTAL}"/>
 					</items>
 				</HBox>
@@ -56,7 +56,7 @@
 		</f:content>
 		</f:SimpleForm>
 		<endButton>
-			<Button text="Close" press="onCloseDialog"></Button>
+			<Button text="Close" press="onCloseSDialog"></Button>
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
