@@ -1392,6 +1392,8 @@ sap.ui.define([
 						sap.ui.getCore().setModel(oModel, "SimulatePriceModel");
 						// that.getView().setModel(oModel, "SimulatePriceModel");
 						RSO_MSO_controller.getView().setModel(oModel,"SimulatePriceModel");
+						sap.ui.getCore().byId("idVhin").setText(data.d.results[0].Vhvin);
+						sap.ui.getCore().byId("idTotal").setText(data.d.results[0].TOTAL);
 
 					
 
