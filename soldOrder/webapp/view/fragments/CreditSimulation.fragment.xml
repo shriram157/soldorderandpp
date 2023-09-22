@@ -3,8 +3,7 @@
 		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" width="100%">
 			<f:content>
 				<Label text="{i18n>SOCreated}"></Label>
-			<!--	<Text text="{path:'mainservices>SO_CREATION_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>-->
-				<DatePicker valueFormat="yyyy-MM-dd" placeholder="YYYY-MM-DD" displayFormat="yyyy-MM-dd" dateValue="{mainservices>SO_CREATION_DATE}"></DatePicker>
+				<Text text="{path:'mainservices>SO_CREATION_DATE'}"/>
 			</f:content>
 		</f:SimpleForm>
 		<Table inset="false" items="{ path: 'mainservices>/items', sorter: { path: 'Type', descending:true } }">
