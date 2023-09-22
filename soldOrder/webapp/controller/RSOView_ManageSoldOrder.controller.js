@@ -1376,12 +1376,15 @@ sap.ui.define([
 
 			onClose: function () {
 				var linkrdrvin = this.getView().byId("RDRVIN_dialog");
-				linkrdrvin.close();
-				linkrdrvin.destroy();
+				this.linkrdrvin.close();
+				this.linkrdrvin.destroy();
 			},
 			_simulateprice: function() {
 				var host = RSO_MSO_controller.host();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
+				var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
+				this.getView().addDependent(oDialogBox);
+				oDialogBox.open();
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet?$filter=(ZZSO_REQ_NO eq '" + zrequest + "')";
 				$.ajax({
 					url: oUrl,
@@ -1400,9 +1403,7 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				});	
-				var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
-				this.getView().addDependent(oDialogBox);
-				oDialogBox.open();
+				
 			}
 			
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
