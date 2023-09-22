@@ -1390,15 +1390,15 @@ sap.ui.define([
 						var oModel = new sap.ui.model.json.JSONModel();
 						oModel.setData(data.d);
 						sap.ui.getCore().setModel(oModel, "SimulatePriceModel");
-						that.getView().setModel(oModel, "SimulatePriceModel");
-						RSO_MSO_controller.getView().setModel(oModel, "SimulatePriceModel");
+						// that.getView().setModel(oModel, "SimulatePriceModel");
+						RSO_MSO_controller.getView().setModel(oModel,"SimulatePriceModel");
 
-						if (!that._soDialog) {
-							that._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation",that);
-							that.getView().addDependent(that._soDialog);
+						if (!RSO_MSO_controller._soDialog) {
+							RSO_MSO_controller._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation",RSO_MSO_controller);
+							RSO_MSO_controller.getView().addDependent(RSO_MSO_controller._soDialog);
 						}
 						// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
-						that._soDialog.open();
+						RSO_MSO_controller._soDialog.open();
 
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
