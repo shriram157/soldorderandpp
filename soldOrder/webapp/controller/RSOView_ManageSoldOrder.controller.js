@@ -1391,11 +1391,9 @@ sap.ui.define([
 						oModel.setData(data.d);
 						sap.ui.getCore().setModel(oModel, "SimulatePriceModel");
 						// that.getView().setModel(oModel, "SimulatePriceModel");
-						RSO_MSO_controller.getView().setModel(oModel,"SimulatePriceModel");
-						sap.ui.getCore().byId("idVhin").setText(data.d.results[0].Vhvin);
-						sap.ui.getCore().byId("idTotal").setText(data.d.results[0].TOTAL);
-
-					
+						RSO_MSO_controller.getView().setModel(oModel, "SimulatePriceModel");
+						//	sap.ui.getCore().byId("idVhin").setText(data.d.results[0].Vhvin);
+						//	sap.ui.getCore().byId("idTotal").setText(data.d.results[0].TOTAL);
 
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
@@ -1405,13 +1403,15 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				});
-					if (!this._soDialog) {
-						console.log("SimulatePriceModel data"+ sap.ui.getCore().getModel("SimulatePriceModel").getData());
-							this._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation",this);
-							this.getView().addDependent(this._soDialog);
-						}
-						// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
-						this._soDialog.open();
+				if (!this._soDialog) {
+					console.log("SimulatePriceModel data" + sap.ui.getCore().getModel("SimulatePriceModel").getData());
+					this._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
+					this.getView().addDependent(this._soDialog);
+				}
+				// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
+				this._soDialog.open();
+				sap.ui.getCore().byId("idVhin").setText(sap.ui.getCore().getModel("SimulatePriceModel").getData().results[0].Vhvin);
+				sap.ui.getCore().byId("idTotal").setText(sap.ui.getCore().getModel("SimulatePriceModel").getData().results[0].TOTAL);
 
 			},
 			onCloseSDialog: function (oEvent) {

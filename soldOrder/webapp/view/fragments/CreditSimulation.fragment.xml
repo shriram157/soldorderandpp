@@ -6,7 +6,7 @@
 				<f:SimpleForm id="s1" editable="true" layout="ResponsiveGridLayout" width="100%">
 					<f:content>
 						<Label text="{i18n>SOCreated}"></Label>
-						<Text text="{path:'SimulatePriceModel>/results/"+0+"/SO_CREATION_DATE'}"/>
+						<Text text=""/>
 					</f:content>
 				</f:SimpleForm>
 				<Table id="t1" items="{path:'SimulatePriceModel>/results'}" inset="false">
