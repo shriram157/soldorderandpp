@@ -2,14 +2,15 @@
 	xmlns:tnt="sap.tnt">
 	<Dialog title="Credit Simulation" contentWidth="50%" contentHeight="100%">
 		<content>
-			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" width="100%">
-				<f:content>
-					<Label text="{i18n>SOCreated}"></Label>
-					<Text
-						text="{path:'SimulatePriceModel>/results[0]/SO_CREATION_DATE'} type:'sap.ui.model.type.Date', formatOptions: { pattern: 'YYYY-MM-DD', strictParsing: true, UTC: true, relative: false }}"/>
-				</f:content>
-			</f:SimpleForm>
-			<Table items="{path:'SimulatePriceModel>/results'}" inset="false">
+			<VBox>
+			<!--<f:SimpleForm id="s1" editable="true" layout="ResponsiveGridLayout" width="100%">-->
+			<!--	<f:content>-->
+			<!--		<Label text="{i18n>SOCreated}"></Label>-->
+			<!--		<Text-->
+			<!--			text="{path:'SimulatePriceModel>/results[0]/SO_CREATION_DATE'} type:'sap.ui.model.type.Date', formatOptions: { pattern: 'YYYY-MM-DD', strictParsing: true, UTC: true, relative: false }}"/>-->
+			<!--	</f:content>-->
+			<!--</f:SimpleForm>-->
+			<Table id="t1" items="{path:'SimulatePriceModel>/results'}" inset="false">
 				<columns>
 					<Column width="12em">
 						<Label text="{i18n>EffectiveDate}"/>
@@ -28,35 +29,36 @@
 					</ColumnListItem>
 				</items>
 			</Table>
-			<f:SimpleForm>
-				<f:content>
-					<VBox>
-						<items>
-							<HBox>
-								<items>
+			<!--<f:SimpleForm id="s2">-->
+			<!--	<f:content>-->
+			<!--		<VBox>-->
+			<!--			<items>-->
+			<!--				<HBox>-->
+			<!--					<items>-->
 									<!--<Text/>-->
-									<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-									<Text text="{}"/>
-								</items>
-							</HBox>
-							<HBox>
-								<items>
+			<!--						<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>-->
+			<!--						<Text text="{}"/>-->
+			<!--					</items>-->
+			<!--				</HBox>-->
+			<!--				<HBox>-->
+			<!--					<items>-->
 									<!--<Text/>-->
-									<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-									<Text text="{}"/>
-								</items>
-							</HBox>
-							<HBox>
-								<items>
+			<!--						<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>-->
+			<!--						<Text text="{}"/>-->
+			<!--					</items>-->
+			<!--				</HBox>-->
+			<!--				<HBox>-->
+			<!--					<items>-->
 									<!--<Text/>-->
-									<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-									<Text text="{}"/>
-								</items>
-							</HBox>
-						</items>
-					</VBox>
-				</f:content>
-			</f:SimpleForm>
+			<!--						<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>-->
+			<!--						<Text text="{}"/>-->
+			<!--					</items>-->
+			<!--				</HBox>-->
+			<!--			</items>-->
+			<!--		</VBox>-->
+			<!--	</f:content>-->
+			<!--</f:SimpleForm>-->
+			</VBox>
 		</content>
 		<endButton>
 			<Button text="Close" press="onCloseSDialog"></Button>
