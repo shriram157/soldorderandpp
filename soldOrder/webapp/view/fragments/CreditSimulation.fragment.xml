@@ -26,6 +26,7 @@
 			</ColumnListItem>
 		</items>	
 		</Table>
+		<f:SimpleForm>
 		<f:content>
 		<VBox>
 			<items>
@@ -53,6 +54,7 @@
 			</items>
 		</VBox>
 		</f:content>
+		</f:SimpleForm>
 		<endButton>
 			<Button text="Close" press="onCloseDialog"></Button>
 		</endButton>
