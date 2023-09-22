@@ -1397,12 +1397,9 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				});	
-				if (!this._oDialog) {
-					this._oDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
-					this.getView().addDependent(this._oDialog);
-				}
-				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-				this._oDialog.open();
+				var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
+				this.getView().addDependent(oDialogBox);
+				oDialogBox.open();
 
 			}
 			
