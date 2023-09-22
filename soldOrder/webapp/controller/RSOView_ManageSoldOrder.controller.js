@@ -1393,12 +1393,7 @@ sap.ui.define([
 						// that.getView().setModel(oModel, "SimulatePriceModel");
 						RSO_MSO_controller.getView().setModel(oModel,"SimulatePriceModel");
 
-						if (!RSO_MSO_controller._soDialog) {
-							RSO_MSO_controller._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation",RSO_MSO_controller);
-							RSO_MSO_controller.getView().addDependent(RSO_MSO_controller._soDialog);
-						}
-						// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
-						RSO_MSO_controller._soDialog.open();
+					
 
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
@@ -1408,6 +1403,13 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				});
+					if (!this._soDialog) {
+						console.log("SimulatePriceModel data"+ sap.ui.getCore().getModel("SimulatePriceModel").getData());
+							this._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation",this);
+							this.getView().addDependent(this._soDialog);
+						}
+						// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
+						RSO_MSO_controller._soDialog.open();
 
 			},
 			onCloseSDialog: function (oEvent) {
