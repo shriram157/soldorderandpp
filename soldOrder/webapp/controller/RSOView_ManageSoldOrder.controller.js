@@ -1375,6 +1375,7 @@ sap.ui.define([
 			},
 
 			onClose: function () {
+				var linkrdrvin = this.getView().byId("RDRVIN_dialog");
 				linkrdrvin.close();
 				linkrdrvin.destroy();
 			},
