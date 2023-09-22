@@ -26,17 +26,33 @@
 			</ColumnListItem>
 		</items>	
 		</Table>
-		<f:SimpleForm>
 		<f:content>
-				<Label text="{i18n>VIN}"></Label>
-				<Text text="{mainservices>Vhvin}"/>
-				<Label text="{i18n>VehicleWholesaleDate}"></Label>
-				<Text text="{mainservices>WHOLESALE_DATE}"/>
-				<Label text="{i18n>EligibleClaim}"></Label>
-				<Text text="{mainservices>TOTAL}"/>
-
+		<VBox>
+			<items>
+				<HBox>
+					<items>
+						<Text/>
+							<Label wrapping="true" text="{i18n>VIN}"/>
+							<Text  text="{mainservices>Vhvin}"/>
+					</items>
+				</HBox>
+				<HBox>
+					<items>
+						<Text/>
+							<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="2rem"/>
+							<Text text="{path:'mainservices>WHOLESALE_DATE'}"/>
+					</items>
+				</HBox>
+				<HBox>
+					<items>
+						<Text/>
+							<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="2rem"/>
+							<Text text="{mainservices>TOTAL}"/>
+					</items>
+				</HBox>
+			</items>
+		</VBox>
 		</f:content>
-		</f:SimpleForm>
 		<endButton>
 			<Button text="Close" press="onCloseDialog"></Button>
 		</endButton>
