@@ -6,7 +6,7 @@
 				<f:SimpleForm id="s1" editable="true" layout="ResponsiveGridLayout" width="100%">
 					<f:content>
 						<Label text="{i18n>SOCreated}"></Label>
-						<Text text="{path:'SimulatePriceModel>results["+0+"]/SO_CREATION_DATE'}"/>
+						<Text text="{path:'SimulatePriceModel>results[0]/SO_CREATION_DATE'}"/>
 					</f:content>
 				</f:SimpleForm>
 				<Table id="t1" items="{path:'SimulatePriceModel>/results'}" inset="false">
@@ -35,21 +35,21 @@
 									<items>
 										<Text/>
 										<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-										<Text text="{SimulatePriceModel>results["+0+"]/Vhvin}"/>
+										<Text text="{SimulatePriceModel>results[0]/Vhvin}"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
 										<Text/>
 										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-										<Text text="{path:'SimulatePriceModel>results["+0+"]/WHOLESALE_DATE'}"/>
+										<Text text="{path:'SimulatePriceModel>results[0]/WHOLESALE_DATE'}"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
 										<Text/>
 										<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-										<Text text="{SimulatePriceModel>results["+0+"]/TOTAL}"/>
+										<Text text="{SimulatePriceModel>results[0]/TOTAL}"/>
 									</items>
 								</HBox>
 							</items>
