@@ -1,60 +1,63 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	xmlns:tnt="sap.tnt">
 	<Dialog title="Credit Simulation" contentWidth="50%" contentHeight="100%">
-		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" width="100%">
-			<f:content>
-				<Label text="{i18n>SOCreated}"></Label>
-				<Text text="{path:'mainservices>SO_CREATION_DATE'} type:'sap.ui.model.type.Date', formatOptions: { pattern: 'YYYY-MM-DD', strictParsing: true, UTC: true, relative: false }}"/>
-			</f:content>
-		</f:SimpleForm>
-		<Table items="{path:'mainservices>/items', sorter: { path: 'Type', descending:true}}" inset="false">
-		<columns>
-			<Column
-				width="12em">
-				<Text text="{i18n>EffectiveDate}" />
-			</Column>
-			<Column
-				width="12em">
-				<Text text="{i18n>CreditAmount}" />
-			</Column>
-		</columns>
-		<items>
-			<ColumnListItem>
-				<cells>
-					<Text text="{path:'mainservices>EFFET_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'YYYY-MM-DD', strictParsing: true, UTC: true, relative: false }}"/>
-					<Text text="{mainservices>CREDIT_AMOUNT}"/>
-				</cells>
-			</ColumnListItem>
-		</items>	
-		</Table>
-		<f:SimpleForm>
-		<f:content>
-		<VBox>
-			<items>
-				<HBox>
-					<items>
-						<Text/>
-							<Label wrapping="true" text="{i18n>VIN}"class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-							<Text  text="{mainservices>Vhvin}"/>
-					</items>
-				</HBox>
-				<HBox>
-					<items>
-						<Text/>
-							<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-							<Text text="{path:'mainservices>WHOLESALE_DATE'}"/>
-					</items>
-				</HBox>
-				<HBox>
-					<items>
-						<Text/>
-							<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-							<Text text="{mainservices>TOTAL}"/>
-					</items>
-				</HBox>
-			</items>
-		</VBox>
-		</f:content>
-		</f:SimpleForm>
+		<content>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" width="100%">
+				<f:content>
+					<Label text="{i18n>SOCreated}"></Label>
+					<Text
+						text="{path:'SimulatePriceModel>/results[0]/SO_CREATION_DATE'} type:'sap.ui.model.type.Date', formatOptions: { pattern: 'YYYY-MM-DD', strictParsing: true, UTC: true, relative: false }}"/>
+				</f:content>
+			</f:SimpleForm>
+			<Table items="{path:'SimulatePriceModel>/results'}" inset="false">
+				<columns>
+					<Column width="12em">
+						<Label text="{i18n>EffectiveDate}"/>
+					</Column>
+					<Column width="12em">
+						<Label text="{i18n>CreditAmount}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text
+								text="{path:'SimulatePriceModel>EFFET_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'YYYY-MM-DD', strictParsing: true, UTC: true, relative: false }}"/>
+							<Text text="{SimulatePriceModel>CREDIT_AMOUNT}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<f:SimpleForm>
+				<f:content>
+					<VBox>
+						<items>
+							<HBox>
+								<items>
+									<!--<Text/>-->
+									<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
+									<Text text="{}"/>
+								</items>
+							</HBox>
+							<HBox>
+								<items>
+									<!--<Text/>-->
+									<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
+									<Text text="{}"/>
+								</items>
+							</HBox>
+							<HBox>
+								<items>
+									<!--<Text/>-->
+									<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
+									<Text text="{}"/>
+								</items>
+							</HBox>
+						</items>
+					</VBox>
+				</f:content>
+			</f:SimpleForm>
+		</content>
 		<endButton>
 			<Button text="Close" press="onCloseSDialog"></Button>
 		</endButton>

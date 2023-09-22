@@ -1387,7 +1387,11 @@ sap.ui.define([
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
 						var oModel = new sap.ui.model.json.JSONModel();
-						oModel.setData(data.d.results);
+						oModel.setData(data.d);
+						sap.ui.getCore().setModel(oModel,"SimulatePriceModel");
+						this.getView().setModel(oModel,"SimulatePriceModel");
+						RSO_MSO_controller.getView().setModel(oModel,"SimulatePriceModel");
+						
 						
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
