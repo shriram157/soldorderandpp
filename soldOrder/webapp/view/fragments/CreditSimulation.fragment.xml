@@ -6,7 +6,7 @@
 				<Text text="{path:'mainservices>SO_CREATION_DATE'} type:'sap.ui.model.type.Date', formatOptions: { pattern: 'YYYY-MM-DD', strictParsing: true, UTC: true, relative: false }}"/>
 			</f:content>
 		</f:SimpleForm>
-		<Table inset="false" items="{ path: 'mainservices>/', sorter: { path: 'Type', descending:true } }">
+		<Table items="{path:'mainservices>/items', sorter: { path: 'Type', descending:true}}" inset="false">
 		<columns>
 			<Column
 				width="12em">
@@ -33,21 +33,21 @@
 				<HBox>
 					<items>
 						<Text/>
-							<Label  text="{i18n>VIN}"/>
+							<Label wrapping="true" text="{i18n>VIN}"/>
 							<Text  text="{mainservices>Vhvin}"/>
 					</items>
 				</HBox>
 				<HBox>
 					<items>
 						<Text/>
-							<Label text="{i18n>VehicleWholesaleDate}"/>
+							<Label wrapping="true" text="{i18n>VehicleWholesaleDate}"/>
 							<Text text="{path:'mainservices>WHOLESALE_DATE'}"/>
 					</items>
 				</HBox>
 				<HBox>
 					<items>
 						<Text/>
-							<Label text="{i18n>EligibleClaim}"/>
+							<Label wrapping="true" text="{i18n>EligibleClaim}"/>
 							<Text text="{mainservices>TOTAL}"/>
 					</items>
 				</HBox>
