@@ -1361,28 +1361,25 @@ sap.ui.define([
 				//sap.ui.getCore().getModel('ModelCore').updateBindings();
 			},
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----Start
-			_onlinkrdrvin: function () {
-				var linkrdrvin = this.getView().byId("RDRVIN_dialog");
-				if (!linkrdrvin) {
-    				linkrdrvin = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
-    			//this.getView().addDependent(pressDialog);
-    				linkrdrvin.setModel(this.getView().getModel());
-    				linkrdrvin.open();
+			_onlinkrdrvin: function (oEvent) {
+				if (!this._oDialog) {
+					this._oDialog = sap.ui.core.fragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
+					this.getView().addDependent(this._oDialog);
 				}
+				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);m
+				this._oDialog.open();
 			//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 			//	this.getView().addDependent(oDialogBox);
 			//	oDialogBox.open();
 			},
 
-			onClose: function () {
-				var linkrdrvin = this.getView().byId("RDRVIN_dialog");
-				this.linkrdrvin.close();
-				this.linkrdrvin.destroy();
+			onCloseDialog: function (oEvent) {
+				this._oDialog.close();
 			},
 			_simulateprice: function() {
 				var host = RSO_MSO_controller.host();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
-				var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
+				var oDialogBox = sap.ui.core.fragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
 				this.getView().addDependent(oDialogBox);
 				oDialogBox.open();
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet?$filter=(ZZSO_REQ_NO eq '" + zrequest + "')";

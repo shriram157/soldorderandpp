@@ -38,7 +38,7 @@
 			</f:content>
 		</f:Simpleform>
 		<endButton>
-			<Button text="Close" press="onClose"></Button>
+			<Button text="Close" press="onCloseDialog"></Button>
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
