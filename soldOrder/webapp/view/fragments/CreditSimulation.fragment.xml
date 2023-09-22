@@ -1,23 +1,42 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
 	<Dialog title="Credit Simulation" contentWidth="50%" contentHeight="100%">
-		<VBox>
 		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" width="100%">
 			<f:content>
-				<Label text="{i18n>SOCreated}"/>
-				<Text text="{path:'mainservices>SO_CREATION_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
-				<Label text="{i18n>EffectiveDate}"/>
-				<Text text="{path:'mainservices>EFFET_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
-				<Label text="{i18n>CreditAmount}"/>
-				<Text text="{mainservices>CREDIT_AMOUNT}"/>
+				<Label text="{i18n>SOCreated}"></Label>
+				<Text text="{path:'mainservices>SO_CREATION_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/> 
+			</f:content>
+		</f:SimpleForm>
+		<Table inset="false" items="{ path: 'mainservices>/items', sorter: { path: 'Type', descending:true } }">
+		<columns>
+			<Column
+				width="12em">
+				<Text text="{i18n>EffectiveDate}" />
+			</Column>
+			<Column
+				width="12em">
+				<Text text="{i18n>CreditAmount}" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{path:'mainservices>EFFET_DATE', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
+					<Text text="{mainservices>CREDIT_AMOUNT}"/>
+				</cells>
+			</ColumnListItem>
+		</items>	
+		</Table>
+		<f:Simpleform>
+		<f:content>
 				<Label text="{i18n>VIN}"></Label>
 				<Text text="{mainservices>Vhvin}"/>
 				<Label text="{i18n>VehicleWholesaleDate}"></Label>
 				<Text text="{mainservices>WHOLESALE_DATE}"/>
 				<Label text="{i18n>EligibleClaim}"></Label>
 				<Text text="{mainservices>TOTAL}"/>
-			</f:content>
-		</f:SimpleForm>
-		</VBox>		
+
+		</f:content>
+		</f:Simpleform>
 		<endButton>
 			<Button text="Close" press="onCloseDialog"></Button>
 		</endButton>
