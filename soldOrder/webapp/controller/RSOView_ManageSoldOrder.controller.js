@@ -1368,18 +1368,19 @@ sap.ui.define([
 				}
 				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
 				this._oDialog.open();
-			//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
-			//	this.getView().addDependent(oDialogBox);
-			//	oDialogBox.open();
+				//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
+				//	this.getView().addDependent(oDialogBox);
+				//	oDialogBox.open();
 			},
 
 			onCloseDialog: function (oEvent) {
 				this._oDialog.close();
 			},
-			_simulateprice: function() {
+			_simulateprice: function () {
 				var host = RSO_MSO_controller.host();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet?$filter=(ZZSO_REQ_NO eq '" + zrequest + "')";
+				var that = this;
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -1388,11 +1389,17 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						var oModel = new sap.ui.model.json.JSONModel();
 						oModel.setData(data.d);
-						sap.ui.getCore().setModel(oModel,"SimulatePriceModel");
-						this.getView().setModel(oModel,"SimulatePriceModel");
-						RSO_MSO_controller.getView().setModel(oModel,"SimulatePriceModel");
-						
-						
+						sap.ui.getCore().setModel(oModel, "SimulatePriceModel");
+						that.getView().setModel(oModel, "SimulatePriceModel");
+						RSO_MSO_controller.getView().setModel(oModel, "SimulatePriceModel");
+
+						if (!that._soDialog) {
+							that._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation",that);
+							that.getView().addDependent(that._soDialog);
+						}
+						// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
+						that._soDialog.open();
+
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 						var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
@@ -1400,19 +1407,13 @@ sap.ui.define([
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
 							.m.MessageBox.Action.OK, null, null);
 					}
-				});	
-				if (!this._soDialog) {
-					this._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
-					this.getView().addDependent(this._soDialog);
-				}
-				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
-				this._soDialog.open();
+				});
 
 			},
 			onCloseSDialog: function (oEvent) {
 				this._soDialog.close();
 			},
-			
+
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
 		});
 	});
