@@ -33,21 +33,21 @@
 				<HBox>
 					<items>
 						<Text/>
-							<Label wrapping="true" text="{i18n>VIN}"/>
+							<Label wrapping="true" text="{i18n>VIN}"class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
 							<Text  text="{mainservices>Vhvin}"/>
 					</items>
 				</HBox>
 				<HBox>
 					<items>
 						<Text/>
-							<Label wrapping="true" text="{i18n>VehicleWholesaleDate}"/>
+							<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
 							<Text text="{path:'mainservices>WHOLESALE_DATE'}"/>
 					</items>
 				</HBox>
 				<HBox>
 					<items>
 						<Text/>
-							<Label wrapping="true" text="{i18n>EligibleClaim}"/>
+							<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
 							<Text text="{mainservices>TOTAL}"/>
 					</items>
 				</HBox>
