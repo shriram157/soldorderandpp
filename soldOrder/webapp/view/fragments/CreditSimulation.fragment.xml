@@ -10,11 +10,11 @@
 		<columns>
 			<Column
 				width="12em">
-				<Text text="Effective Date" />
+				<Text text="{i18n>EffectiveDate}" />
 			</Column>
 			<Column
 				width="12em">
-				<Text text="Credit Amount" />
+				<Text text="{i18n>CreditAmount}" />
 			</Column>
 		</columns>
 		<items>
