@@ -26,7 +26,8 @@
 			</ColumnListItem>
 		</items>	
 		</Table>
-		<f:content>
+		<f:Simpleform>
+		<content>
 				<Label text="{i18n>VIN}"></Label>
 				<Text text="{mainservices>Vhvin}"/>
 				<Label text="{i18n>VehicleWholesaleDate}"></Label>
@@ -34,7 +35,8 @@
 				<Label text="{i18n>EligibleClaim}"></Label>
 				<Text text="{mainservices>TOTAL}"/>
 
-		</f:content>
+		</content>
+		</f:Simpleform>
 		<endButton>
 			<Button text="Close" press="onCloseDialog"></Button>
 		</endButton>

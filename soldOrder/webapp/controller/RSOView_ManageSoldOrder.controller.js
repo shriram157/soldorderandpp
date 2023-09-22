@@ -1379,6 +1379,12 @@ sap.ui.define([
 			_simulateprice: function() {
 				var host = RSO_MSO_controller.host();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
+				if (!this._oDialog) {
+					this._oDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
+					this.getView().addDependent(this._oDialog);
+				}
+				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+				this._oDialog.open();
 				var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
 				this.getView().addDependent(oDialogBox);
 				oDialogBox.open();
