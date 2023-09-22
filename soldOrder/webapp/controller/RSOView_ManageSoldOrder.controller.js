@@ -1409,7 +1409,7 @@ sap.ui.define([
 							this.getView().addDependent(this._soDialog);
 						}
 						// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
-						RSO_MSO_controller._soDialog.open();
+						this._soDialog.open();
 
 			},
 			onCloseSDialog: function (oEvent) {
