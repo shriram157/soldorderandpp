@@ -5,10 +5,10 @@
 			<VBox>
 				<f:SimpleForm id="s1" editable="true">
 					<f:content>
-						<HBOX>
+						<HBox>
 						<Label text="{i18n>SOCreated}"></Label>
 						<Text text="{path:'SimulatePriceModel>/results/0/SO_CREATION_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"/>
-						</HBOX>
+						</HBox>
 					</f:content>
 				</f:SimpleForm>
 				<Table id="t1" items="{path:'SimulatePriceModel>/results'}" inset="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
