@@ -149,6 +149,28 @@ sap.ui.define([
 			OrderTypeModel.updateBindings(true);
 			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
 			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
+			//changes by swetha for DMND0003239 ---- added series filter on 23-09-23----Start
+			var PPDseriesModel = new sap.ui.model.json.JSONModel();
+			var data = sap.ui.getCore().getModel("PPDseriesModel").getData();
+			PPDseriesModel.setData(data);
+			RSOS_controller.getView().setModel(PPDseriesModel, "PPDseriesModel");                   
+			if (data[0].ModelSeriesNo !== "ALL") {                            
+				PPDseriesModel.getData().unshift({
+					"Division": "",
+					"ModelSeriesNo": "ALL",
+					"ProductHierarchy": "",
+					"ProfitCenter": "",
+					"SeriesSequenceNumber": "",
+					"TCIModelDescriptionEN": "",
+					"TCIModelDescriptionFR": "",
+					"TCISeriesDescriptionEN": "All",
+					"TCISeriesDescriptionFR": "Toute",
+					"zzzadddata2": "X",
+					"zzzadddata4": "100"
+				});
+			}
+			RSOS_controller.getView().getModel("PPDseriesModel").updateBindings(true);
+			//changes by swetha for DMND0003239 ---- added series filter on 23-09-23----End
 			// PPD_DealerCont.getBrowserLanguage();
 			this._fnInitDataLoad();
 			this.getOwnerComponent().getRouter().getRoute("PriceProtectionDetails_Dealer").attachPatternMatched(this._onObjectMatched, this);
