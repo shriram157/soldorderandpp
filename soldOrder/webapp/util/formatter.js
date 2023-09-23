@@ -556,34 +556,34 @@ toyota.ca.SoldOrder.util.formatter = {
 			var month = oDate.substring(4, 6);
 			var day = oDate.substring(6, 8);
 			if (month == "01") {
-				month = "January";
+				month = "Jan";
 			} else if (month == "02") {
-				month = "Febuary";
+				month = "Feb";
 			}
 			if (month == "03") {
-				month = "March";
+				month = "Mar";
 			} else if (month == "04") {
-				month = "April";
+				month = "Apr";
 			}
 			if (month == "05") {
 				month = "May";
 			} else if (month == "06") {
-				month = "June";
+				month = "Jun";
 			}
 			if (month == "07") {
-				month = "July";
+				month = "Jul";
 			} else if (month == "08") {
-				month = "August";
+				month = "Aug";
 			}
 			if (month == "09") {
-				month = "September";
+				month = "Sep";
 			} else if (month == "10") {
-				month = "Octomber";
+				month = "Oct";
 			}
 			if (month == "11") {
-				month = "November";
+				month = "Nov";
 			} else if (month == "12") {
-				month = "December";
+				month = "Dec";
 			}
 
 			return  month +" "+ day+","+ year ;

@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m"
 	xmlns:tnt="sap.tnt">
-	<Dialog title="Credit Simulation" contentWidth="30%" contentHeight="100%">
+	<Dialog title="Credit Simulation" contentWidth="50%" contentHeight="100%">
 		<content>
 			<VBox>
 				<f:SimpleForm id="s1">
@@ -69,14 +69,14 @@
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="2rem" required="true"/>
-										<Text text="{path:'SimulatePriceModel>/results/0/ELIGIBLE_CLAIM'}" class="sapUiSmallMarginTop"/>
+										<Label wrapping="true" class="sapUiSmallMarginTop" width="2rem"/>
+										<Text text="{path:'SimulatePriceModel>/results/0/ELIGIBLE_CLAIM'}" class="sapUiSmallMarginTop"  required="true"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="2rem" required="true"/>
+										<Label wrapping="true" text="{}" class="sapUiSmallMarginTop" width="2rem" required="true"/>
 										<Text  text="{path:'SimulatePriceModel>/results/0/DISCRIPTION'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
