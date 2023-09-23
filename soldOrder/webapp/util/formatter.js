@@ -594,5 +594,6 @@ toyota.ca.SoldOrder.util.formatter = {
 			var value = ovalue;
 		}
 			return "$"+value;
+	}
 
 };
