@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m"
 	xmlns:tnt="sap.tnt">
-	<Dialog title="Credit Simulation" contentWidth="30%" contentHeight="100%">
+	<Dialog title="Credit Simulation" contentWidth="50%" contentHeight="100%">
 		<content>
 			<VBox>
 				<f:SimpleForm id="s1">
@@ -18,7 +18,7 @@
 						</VBox>
 					</f:content>
 				</f:SimpleForm>
-				<Table id="t1" items="{path:'SimulatePriceModel>/results'}" inset="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="90%">
+				<Table id="t1" items="{path:'SimulatePriceModel>/results'}" inset="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%">
 					<columns>
 						<!--	<Column width="12em">-->
 						<!--	<Label text=""/>-->
