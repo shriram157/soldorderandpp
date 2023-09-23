@@ -34,21 +34,21 @@
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
+										<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginEnd" width="12rem"/>
 										<Text id="idVhin" text="}"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
+										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class= sapUiSmallMarginEnd" width="12rem"/>
 										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE'}"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
+										<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginEnd" width="12rem"/>
 										<Text id="idTotal" text=""/>
 									</items>
 								</HBox>
