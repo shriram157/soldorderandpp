@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m"
 	xmlns:tnt="sap.tnt">
-	<Dialog title="Credit Simulation" contentWidth="50%" contentHeight="100%">
+	<Dialog title="Credit Simulation" contentWidth="30%" contentHeight="100%">
 		<content>
 			<VBox>
 				<f:SimpleForm id="s1" editable="true" layout="ResponsiveGridLayout" width="100%">
@@ -11,6 +11,9 @@
 				</f:SimpleForm>
 				<Table id="t1" items="{path:'SimulatePriceModel>/results'}" inset="false">
 					<columns>
+							<Column width="12em">
+							<Label text=""/>
+						</Column>
 						<Column width="12em">
 							<Label text="{i18n>EffectiveDate}"/>
 						</Column>
@@ -21,6 +24,7 @@
 					<items>
 						<ColumnListItem>
 							<cells>
+								<Text text=""/>
 								<Text text="{SimulatePriceModel>EFFET_DATE}"/>
 								<Text text="{SimulatePriceModel>CREDIT_AMOUNT}"/>
 							</cells>
@@ -41,7 +45,7 @@
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class= sapUiSmallMarginEnd" width="12rem"/>
+										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginEnd" width="12rem"/>
 										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE'}"/>
 									</items>
 								</HBox>
