@@ -10,7 +10,7 @@
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label text="{i18n>SOCreated}"  class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="12rem"></Label>
+										<Label text="{i18n>SOCreated}"  class="sapUiSmallMarginBegin" width="6rem"></Label>
 										<Text text="{path:'SimulatePriceModel>/results/0/SO_CREATION_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"/>
 									</items>
 								</HBox>
