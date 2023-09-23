@@ -169,7 +169,8 @@ sap.ui.define([
 					"zzzadddata4": "100"
 				});
 			}
-			RSOS_controller.getView().getModel("PPDseriesModel").updateBindings(true);
+			PPD_DealerCont.getView().getModel("PPDseriesModel").updateBindings(true);
+			PPD_DealerCont.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			//changes by swetha for DMND0003239 ---- added series filter on 23-09-23----End
 			// PPD_DealerCont.getBrowserLanguage();
 			this._fnInitDataLoad();
