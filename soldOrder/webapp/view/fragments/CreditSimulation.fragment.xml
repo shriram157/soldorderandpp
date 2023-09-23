@@ -21,7 +21,7 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<Text text=""/>
+								<Text text="{SimulatePriceModel>EFFET_DATE}"/>
 								<Text text="{SimulatePriceModel>CREDIT_AMOUNT}"/>
 							</cells>
 						</ColumnListItem>
@@ -42,7 +42,7 @@
 									<items>
 										<!--<Text/>-->
 										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" width="12rem"/>
-										<Text text="{path:'SimulatePriceModel/>results/0/WHOLESALE_DATE'}"/>
+										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE'}"/>
 									</items>
 								</HBox>
 								<HBox>
