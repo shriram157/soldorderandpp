@@ -365,7 +365,8 @@ toyota.ca.SoldOrder.util.formatter = {
 	NationalorZonalusertype: function (Usertypevalue) {
 
 		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue == "TCI_Zone_User")) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue ==
+				"TCI_Zone_User")) {
 			return true;
 		} else {
 			return false;
@@ -390,7 +391,8 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	Nationalusertype: function (Usertypevalue) {
 		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue === "TCI_Zone_User")) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue ===
+				"TCI_Zone_User")) {
 			return false;
 		} else {
 			return true;
@@ -531,7 +533,7 @@ toyota.ca.SoldOrder.util.formatter = {
 
 	},
 	fnValFormat: function (val) {
-		if(val){
+		if (val) {
 			return "    " + val;
 		}
 	},
@@ -547,6 +549,45 @@ toyota.ca.SoldOrder.util.formatter = {
 			sval = null;
 		}
 		return sval;
+	},
+	_PriceDateFomatter: function (oDate) {
+		if (oDate) {
+			var year = oDate.substring(0, 4);
+			var month = oDate.substring(4, 6);
+			var day = oDate.substring(6, 8);
+			if (month == "01") {
+				month = "January";
+			} else if (month == "02") {
+				month = "Febuary";
+			}
+			if (month == "03") {
+				month = "March";
+			} else if (month == "04") {
+				month = "April";
+			}
+			if (month == "05") {
+				month = "May";
+			} else if (month == "06") {
+				month = "June";
+			}
+			if (month == "07") {
+				month = "July";
+			} else if (month == "08") {
+				month = "August";
+			}
+			if (month == "09") {
+				month = "September";
+			} else if (month == "10") {
+				month = "Octomber";
+			}
+			if (month == "11") {
+				month = "November";
+			} else if (month == "12") {
+				month = "December";
+			}
+
+			return  month +" "+ day+","+ year ;
+		}
 	}
 
 };
