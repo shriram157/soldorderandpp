@@ -47,14 +47,14 @@
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="12rem"/>
+										<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="2rem"/>
 										<Text id="idVhin" text="{path:'SimulatePriceModel>/results/0/Vhvin'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="12rem"/>
+										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="10rem"/>
 										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"
 											class="sapUiSmallMarginTop"/>
 									</items>
@@ -62,21 +62,21 @@
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="12rem"/>
+										<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="21rem"/>
 										<Text id="idTotal" text="{path:'SimulatePriceModel>/results/0/TOTAL'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" class="sapUiSmallMarginTop" width="2rem"/>
-										<Text text="{path:'SimulatePriceModel>/results/0/ELIGIBLE_CLAIM'}" class="sapUiSmallMarginTop"  required="true"/>
+								<!--		<Label wrapping="true" class="sapUiLargeMarginTop" width="2rem"/>-->
+										<Text text="{path:'SimulatePriceModel>/results/0/ELIGIBLE_CLAIM'}" class="sapUiLargeMarginTop"  required="true"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
 										<!--<Text/>-->
-										<Label wrapping="true" text="{}" class="sapUiSmallMarginTop" width="2rem" required="true"/>
+										<Label wrapping="true" class="sapUiSmallMarginTop" width="2rem" required="true"/>
 										<Text  text="{path:'SimulatePriceModel>/results/0/DISCRIPTION'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
