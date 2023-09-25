@@ -630,8 +630,10 @@ toyota.ca.SoldOrder.util.formatter = {
 			} else if (month == "12") {
 				month = "December";
 			}
+		
+			return  month+" "+day+","+year ;
 		}
-		return  year +"-"+ month+"-"+ day ;
+		
 	}
 
 };
