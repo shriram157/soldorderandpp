@@ -1180,7 +1180,6 @@ sap.ui.define([
 		},
 
 		_onSubmit: function () {
-			sap.ui.core.BusyIndicator.show();                                  //changes by swetha for INC0241290 on 25th Sept, 2023
 			var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
 			var flag1 = false;
 			var flag2 = false;
@@ -1203,7 +1202,8 @@ sap.ui.define([
 			var valProvince = RSOA_controller.getView().byId("Province_RSOA").getValue();
 			var valPostalCode = RSOA_controller.getView().byId("PostalCode_RSOA").getValue();
 			// var valLicense = RSOA_controller.getView().byId("License_RSOA").getValue();
-
+			sap.ui.core.BusyIndicator.show();
+			
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valCustName == "" || valETATo == "" || valETAFrom == "" ||
 				valColour ==
 				"" || valModel == "" || valApx == "" || valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
