@@ -508,6 +508,7 @@ sap.ui.define([
 			}
 			RSOA_controller.getView().getModel('mainservices').create('/Retail_Sold_OrderSet', _data, {
 				success: function (data, oResponse) {
+					sap.ui.core.BusyIndicator.hide();                                 //changes by swetha for INC0241290 on 25th Sept, 2023
 					RSOA_controller.getView().byId("modelYr_RSOA").setValue("");
 					RSOA_controller.getView().byId("Suffix_RSOA").setSelectedKey(null);
 					RSOA_controller.getView().byId("series_RSOA").setSelectedKey(null);
@@ -535,7 +536,7 @@ sap.ui.define([
 					RSOA_controller.getView().byId("City_RSOA").setValue("");
 					RSOA_controller.getView().byId("Province_RSOA").setValue("");
 					RSOA_controller.getView().byId("PostalCode_RSOA").setValue("");
-					sap.ui.core.BusyIndicator.hide();                                 //changes by swetha for INC0241290 on 25th Sept, 2023
+					
 					if (data.ZzsoReqNo) {
 						RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 							Soreq: data.ZzsoReqNo
