@@ -603,11 +603,43 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 		return  year +"-"+ month+"-"+ day ;
 	},
-	_EffConDateFormat: function(oDate) {
-		if (oDate) {
-			var Date = oDate.substring(0,11);
-		}
-		return Date;
+	_EffConDateFormat: function(data) {
+		if(data) {
+			var year = data.slice(11,16);
+			var month = data.slice(4,8);
+			var day = data.slice(8,11);
+			if (month == "Jan") {
+				month = "01";
+			} else if (month == "Feb") {
+				month = "02";
+			}
+			if (month == "Mar") {
+				month = "03";
+			} else if (month == "Apr") {
+				month = "04";
+			}
+			if (month == "May") {
+				month = "05";
+			} else if (month == "Jun") {
+				month = "06";
+			}
+			if (month == "Jul") {
+				month = "07";
+			} else if (month == "Aug") {
+				month = "08";
+			}
+			if (month == "Sep") {
+				month = "09";
+			} else if (month == "Oct") {
+				month = "10";
+			}
+			if (month == "Nov") {
+				month = "11";
+			} else if (month == "Dec") {
+				month = "12";
+			}
+			return  year +"-"+ month+"-"+ day ;
+		}	
 	}
 
 };
