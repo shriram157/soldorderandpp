@@ -535,6 +535,7 @@ sap.ui.define([
 					RSOA_controller.getView().byId("City_RSOA").setValue("");
 					RSOA_controller.getView().byId("Province_RSOA").setValue("");
 					RSOA_controller.getView().byId("PostalCode_RSOA").setValue("");
+					sap.ui.core.BusyIndicator.hide();                                 //changes by swetha for INC0241290 on 25th Sept, 2023
 					if (data.ZzsoReqNo) {
 						RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 							Soreq: data.ZzsoReqNo
@@ -1178,6 +1179,7 @@ sap.ui.define([
 		},
 
 		_onSubmit: function () {
+			sap.ui.core.BusyIndicator.show();                                  //changes by swetha for INC0241290 on 25th Sept, 2023
 			var submitBtn = RSOA_controller.getView().byId("Btn_submit_RSOA");
 			var flag1 = false;
 			var flag2 = false;
