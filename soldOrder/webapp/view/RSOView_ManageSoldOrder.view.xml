@@ -74,11 +74,11 @@
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="40" value="{mainservices>Comment}"/>
 							<!-- changes for DMND000xxx Added Effective Date and Created On fields and Moved Contract date from Vehicle Information to Sold Order Information by Swetha on 12th Sept, 2023 Start-->
 							<Label wrapping="true" text="{i18n>EffectiveDate}"/>
-							<Text text="{path:'mainservices>ZzeffDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
+							<Text text="{path:'mainservices>ZzeffDate', type:'sap.ui.model.type.Date', formatter:'toyota.ca.SoldOrder.util.formatter._EffConDateFormat'}"/>
 							<Label wrapping="true" text="{i18n>CreatedOn}"/> 
 							<Text text="{path:'mainservices>ZcreatedOn',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>                    
-							<Text text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
+							<Text text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.Date', formatter:'toyota.ca.SoldOrder.util.formatter._EffConDateFormat'}"/>
 							<!-- changes for DMND000xxx Added Effective Date and Created On fields and Moved Contract date from Vehicle Information to Sold Order Information by Swetha on 12th Sept, 2023 End-->
 							<!--	<Label wrapping="true" text=""/>
 							<CheckBox enabled="false" id="ChatCB" visible="false" text="Enable Post Note" select="onSelectCB"></CheckBox>
