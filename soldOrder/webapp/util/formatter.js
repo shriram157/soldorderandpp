@@ -605,8 +605,9 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	_EffConDateFormat: function(oDate) {
 		if (oDate) {
-			return oDate.substring(0,11);
+			var Date = oDate.substring(0,11);
 		}
+		return Date;
 	}
 
 };
