@@ -604,10 +604,10 @@ toyota.ca.SoldOrder.util.formatter = {
 		return  year +"-"+ month+"-"+ day ;
 	},
 	_EffConDateFormat: function(data) {
-		if(data) {
-			var year = data.slice(11,16);
-			var month = data.slice(4,8);
-			var day = data.slice(8,11);
+		if (data) {
+			var year = data.substring(11,16);
+			var month = data.substring(4,8);
+			var day = data.substring(8,11);
 			if (month == "Jan") {
 				month = "01";
 			} else if (month == "Feb") {
