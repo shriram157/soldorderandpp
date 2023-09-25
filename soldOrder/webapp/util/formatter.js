@@ -600,46 +600,38 @@ toyota.ca.SoldOrder.util.formatter = {
 			var year = oDate.substring(6,10);
 			var month = oDate.substring(3,5);
 			var day = oDate.substring(0,2);
+			if (month == "01") {
+				month = "January";
+			} else if (month == "02") {
+				month = "February";
+			}
+			if (month == "03") {
+				month = "March";
+			} else if (month == "04") {
+				month = "April";
+			}
+			if (month == "05") {
+				month = "May";
+			} else if (month == "06") {
+				month = "June";
+			}
+			if (month == "07") {
+				month = "July";
+			} else if (month == "08") {
+				month = "August";
+			}
+			if (month == "09") {
+				month = "September";
+			} else if (month == "10") {
+				month = "October";
+			}
+			if (month == "11") {
+				month = "November";
+			} else if (month == "12") {
+				month = "December";
+			}
 		}
 		return  year +"-"+ month+"-"+ day ;
-	},
-	_EffConDateFormat: function(data) {
-		if (data) {
-			var year = data.substring(11,16);
-			var month = data.substring(4,8);
-			var day = data.substring(8,11);
-			if (month == "Jan") {
-				month = "01";
-			} else if (month == "Feb") {
-				month = "02";
-			}
-			if (month == "Mar") {
-				month = "03";
-			} else if (month == "Apr") {
-				month = "04";
-			}
-			if (month == "May") {
-				month = "05";
-			} else if (month == "Jun") {
-				month = "06";
-			}
-			if (month == "Jul") {
-				month = "07";
-			} else if (month == "Aug") {
-				month = "08";
-			}
-			if (month == "Sep") {
-				month = "09";
-			} else if (month == "Oct") {
-				month = "10";
-			}
-			if (month == "Nov") {
-				month = "11";
-			} else if (month == "Dec") {
-				month = "12";
-			}
-			return  year +"-"+ month+"-"+ day ;
-		}	
 	}
 
 };
