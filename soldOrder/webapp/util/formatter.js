@@ -631,7 +631,7 @@ toyota.ca.SoldOrder.util.formatter = {
 				month = "December";
 			}
 		
-			return  month+" "+day+","+year ;
+			return  month+" "+day+","+" "+year ;
 		}
 		
 	}
