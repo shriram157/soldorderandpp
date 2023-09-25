@@ -594,6 +594,44 @@ toyota.ca.SoldOrder.util.formatter = {
 			var value = ovalue;
 		}
 			return "$"+value;
+	},
+	_CreatedOnFormatter: function(oDate) {
+		if (oDate) {
+			var year = oDate.substring(6,10);
+			var month = oDate.substring(3,5);
+			var day = oDate.substring(0,2);
+			if (month == "01") {
+				month = "January";
+			} else if (month == "02") {
+				month = "February";
+			}
+			if (month == "03") {
+				month = "March";
+			} else if (month == "04") {
+				month = "April";
+			}
+			if (month == "05") {
+				month = "May";
+			} else if (month == "06") {
+				month = "June";
+			}
+			if (month == "07") {
+				month = "July";
+			} else if (month == "08") {
+				month = "August";
+			}
+			if (month == "09") {
+				month = "September";
+			} else if (month == "10") {
+				month = "October";
+			}
+			if (month == "11") {
+				month = "November";
+			} else if (month == "12") {
+				month = "December";
+			}
+			return  month +" "+ day+","+" "+ year ;
+		}
 	}
 
 };
