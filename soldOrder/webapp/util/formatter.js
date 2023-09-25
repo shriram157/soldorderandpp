@@ -601,7 +601,7 @@ toyota.ca.SoldOrder.util.formatter = {
 			var month = oDate.substring(3,5);
 			var day = oDate.substring(0,2);
 		}
-		return  year +"-"+ month+"-"+ date ;
+		return  year +"-"+ month+"-"+ day ;
 	},
 	_EffConDateFormat: function(oDate) {
 		if (oDate) {
