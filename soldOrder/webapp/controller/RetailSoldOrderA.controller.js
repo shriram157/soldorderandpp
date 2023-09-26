@@ -508,7 +508,7 @@ sap.ui.define([
 			}
 			RSOA_controller.getView().getModel('mainservices').create('/Retail_Sold_OrderSet', _data, {
 				success: function (data, oResponse) {
-					sap.ui.core.BusyIndicator.hide();                                 //changes by swetha for INC0241290 on 25th Sept, 2023
+					sap.ui.core.BusyIndicator.show();                                 //changes by swetha for INC0241290 on 25th Sept, 2023
 					RSOA_controller.getView().byId("modelYr_RSOA").setValue("");
 					RSOA_controller.getView().byId("Suffix_RSOA").setSelectedKey(null);
 					RSOA_controller.getView().byId("series_RSOA").setSelectedKey(null);
@@ -1202,7 +1202,6 @@ sap.ui.define([
 			var valProvince = RSOA_controller.getView().byId("Province_RSOA").getValue();
 			var valPostalCode = RSOA_controller.getView().byId("PostalCode_RSOA").getValue();
 			// var valLicense = RSOA_controller.getView().byId("License_RSOA").getValue();
-			sap.ui.core.BusyIndicator.show();
 			
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valCustName == "" || valETATo == "" || valETAFrom == "" ||
 				valColour ==
