@@ -56,7 +56,15 @@
 										<!--<Text/>-->
 										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="10rem"/>
 										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"
-											class="sapUiSmallMarginTop"/>
+											class="sapUiSmallMarginTop" visible="false" id="idWhoDate"/>
+									</items>
+								</HBox>
+								<HBox>
+									<items>
+										<!--<Text/>-->
+										<Label wrapping="true" text="{i18n>SystemDate}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="10rem"/>
+										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"
+											class="sapUiSmallMarginTop" visible="false" id="idSysDate"/>
 									</items>
 								</HBox>
 								<HBox>

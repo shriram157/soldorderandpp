@@ -493,6 +493,7 @@ sap.ui.define([
 
 				_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 					"Eligilibity");
+				//changes by swetha for DMND0003239
 				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW") && (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "")) {
 					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(true);	
 					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(true);	
@@ -1414,6 +1415,14 @@ sap.ui.define([
 					this.getView().addDependent(this._soDialog);
 				}
 				// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
+				//changes by swetha for DMND0003239 for Vehicle Wholesale date field	
+				if (RSO_MSO_controller.getView().getModel("SimulatePriceModel").getData().results[0].WHOLESALE_DATE_FLAG=="W"){
+					RSO_MSO_controller.getView().byId("idWhoDate").setVisible(true);
+					RSO_MSO_controller.getView().byId("idSysDate").setVisible(false);
+				} else {
+					RSO_MSO_controller.getView().byId("idSysDate").setVisible(true);
+					RSO_MSO_controller.getView().byId("idWhoDate").setVisible(false);
+				}
 				this._soDialog.open();
 				// sap.ui.getCore().byId("idVhin").setText(sap.ui.getCore().getModel("SimulatePriceModel").getData().results[0].Vhvin);
 				// sap.ui.getCore().byId("idTotal").setText(sap.ui.getCore().getModel("SimulatePriceModel").getData().results[0].TOTAL);
