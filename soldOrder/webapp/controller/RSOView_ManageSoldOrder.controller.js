@@ -1419,9 +1419,9 @@ sap.ui.define([
 				//changes by swetha for DMND0003239 for Vehicle Wholesale date field
 				if (RSO_MSO_controller.getView().getModel("SimulatePriceModel").getData().results[0].WHOLESALE_DATE_FLAG=="W"){
 					RSO_MSO_controller.getView().byId("idWhoDate").setVisible(true);
-					RSO_MSO_controller.getView().byId("idSysDate").setVisible(false);
+					RSO_MSO_controller.getView().byId("idSimulationDate").setVisible(false);
 				} else {
-					RSO_MSO_controller.getView().byId("idSysDate").setVisible(true);
+					RSO_MSO_controller.getView().byId("idSimulationDate").setVisible(true);
 					RSO_MSO_controller.getView().byId("idWhoDate").setVisible(false);
 				}
 				
