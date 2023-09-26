@@ -1415,7 +1415,8 @@ sap.ui.define([
 					this.getView().addDependent(this._soDialog);
 				}
 				// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
-				//changes by swetha for DMND0003239 for Vehicle Wholesale date field	
+				this._soDialog.open();
+				//changes by swetha for DMND0003239 for Vehicle Wholesale date field
 				if (RSO_MSO_controller.getView().getModel("SimulatePriceModel").getData().results[0].WHOLESALE_DATE_FLAG=="W"){
 					RSO_MSO_controller.getView().byId("idWhoDate").setVisible(true);
 					RSO_MSO_controller.getView().byId("idSysDate").setVisible(false);
@@ -1423,7 +1424,7 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("idSysDate").setVisible(true);
 					RSO_MSO_controller.getView().byId("idWhoDate").setVisible(false);
 				}
-				this._soDialog.open();
+				
 				// sap.ui.getCore().byId("idVhin").setText(sap.ui.getCore().getModel("SimulatePriceModel").getData().results[0].Vhvin);
 				// sap.ui.getCore().byId("idTotal").setText(sap.ui.getCore().getModel("SimulatePriceModel").getData().results[0].TOTAL);
 
