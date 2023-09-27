@@ -274,7 +274,7 @@ sap.ui.define([
 				//changes by swetha for series filter for DMND0003239---start
 				for (var i = 0; i < this.getView().byId("mcb_series_PPD_D").getSelectedItems().length; i++) {
 					var series = this.getView().byId("mcb_series_PPD_D").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(Zzseries eq '" + series + "')";
+					oUrl = oUrl + "(zzseries eq '" + series + "')";
 					if (i == ((this.getView().byId("mcb_series_PPD_D").getSelectedItems().length) - 1)) {
 						oUrl = oUrl + ") and (";
 					} else {
@@ -353,7 +353,7 @@ sap.ui.define([
 					//changes by swetha for series filter for DMND0003239---start
 					for (var i = 0; i < this.getView().byId("mcb_series_PPD_D").getSelectedItems().length; i++) {
 						var series = this.getView().byId("mcb_series_PPD_D").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(Zzseries eq '" + series + "')";
+						oUrl = oUrl + "(zzseries eq '" + series + "')";
 						if (i == ((this.getView().byId("mcb_series_PPD_D").getSelectedItems().length) - 1)) {
 							oUrl = oUrl + ") and (";
 						} else {
@@ -426,7 +426,7 @@ sap.ui.define([
 					//changes by swetha for series filter for DMND0003239---start
 					for (var i = 0; i < this.getView().byId("mcb_series_PPD_D").getSelectedItems().length; i++) {
 						var series = this.getView().byId("mcb_series_PPD_D").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(Zzseries eq '" + series + "')";
+						oUrl = oUrl + "(zzseries eq '" + series + "')";
 						if (i == ((this.getView().byId("mcb_series_PPD_D").getSelectedItems().length) - 1)) {
 							oUrl = oUrl + ") and (";
 						} else {
@@ -500,7 +500,7 @@ sap.ui.define([
 			//changes by swetha for series filter for DMND0003239---start
 			for (var i = 0; i < this.getView().byId("mcb_series_PPD_D").getSelectedItems().length; i++) {
 				var series = this.getView().byId("mcb_series_PPD_D").getSelectedItems()[i].getKey();
-				oUrl = oUrl + "(Zzseries eq '" + series + "')";
+				oUrl = oUrl + "(zzseries eq '" + series + "')";
 				if (i == ((this.getView().byId("mcb_series_PPD_D").getSelectedItems().length) - 1)) {
 					oUrl = oUrl + ") and (";
 				} else {
@@ -626,7 +626,7 @@ sap.ui.define([
 				//changes by swetha for series filter for DMND0003239---start
 				for (var i = 0; i < this.getView().byId("mcb_series_PPD_D").getSelectedItems().length; i++) {
 					var series = this.getView().byId("mcb_series_PPD_D").getSelectedItems()[i].getKey();
-					oUrl = oUrl + "(Zzseries eq '" + series + "')";
+					oUrl = oUrl + "(zzseries eq '" + series + "')";
 					if (i == ((this.getView().byId("mcb_series_PPD_D").getSelectedItems().length) - 1)) {
 						oUrl = oUrl + ") and (";
 					} else {
@@ -705,7 +705,7 @@ sap.ui.define([
 					//changes by swetha for series filter for DMND0003239---start
 					for (var i = 0; i < this.getView().byId("mcb_series_PPD_D").getSelectedItems().length; i++) {
 						var series = this.getView().byId("mcb_series_PPD_D").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(Zzseries eq '" + series + "')";
+						oUrl = oUrl + "(zzseries eq '" + series + "')";
 						if (i == ((this.getView().byId("mcb_series_PPD_D").getSelectedItems().length) - 1)) {
 							oUrl = oUrl + ") and (";
 						} else {
@@ -774,7 +774,7 @@ sap.ui.define([
 					//changes by swetha for series filter for DMND0003239---start
 					for (var i = 0; i < this.getView().byId("mcb_series_PPD_D").getSelectedItems().length; i++) {
 						var series = this.getView().byId("mcb_series_PPD_D").getSelectedItems()[i].getKey();
-						oUrl = oUrl + "(Zzseries eq '" + series + "')";
+						oUrl = oUrl + "(zzseries eq '" + series + "')";
 						if (i == ((this.getView().byId("mcb_series_PPD_D").getSelectedItems().length) - 1)) {
 							oUrl = oUrl + ") and (";
 						} else {
