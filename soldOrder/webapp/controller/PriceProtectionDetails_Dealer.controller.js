@@ -151,7 +151,7 @@ sap.ui.define([
 			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
 			//changes by swetha for DMND0003239 for adding series filter
 			var PPDseriesModel = new sap.ui.model.json.JSONModel();
-			var data = sap.ui.getCore().getModel("PPDseriesModel").getData();
+			var data = sap.ui.getCore().getModel("seriesModel").getData();
 			PPDseriesModel.setData(data);
 			PPD_DealerCont.getView().setModel(PPDseriesModel, "PPDseriesModel");                   
 			if (data[0].ModelSeriesNo !== "ALL") {                            
@@ -280,6 +280,17 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
+				//changes by swetha for series filter for DMND0003239---start
+			//	for (var i = 0; i < this.getView().byId("mcb_series_PPD_D").getSelectedItems().length; i++) {
+			//		var dealer = this.getView().byId("mcb_series_PPD_D").getSelectedItems()[i].getKey();
+			//		oUrl = oUrl + "(dealer_code eq '" + dealer + "')";
+			//		if (i == ((this.getView().byId("mcb_series_PPD_D").getSelectedItems().length) - 1)) {
+			//			oUrl = oUrl + ")"; //Changed by singhmi 05/02/2021
+			//		} else {
+			//			oUrl = oUrl + " or ";
+			//		}
+			//	}
+				//changes by swetha for series filter for DMND0003239---end
 				//	DMND0003455 changes done by Minakshi 13/12/2021
 				oUrl = oUrl + "and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 				$.ajax({
