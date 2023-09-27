@@ -151,7 +151,7 @@ sap.ui.define([
 			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
 			//changes by swetha for DMND0003239 for adding series filter
 			var PPDseriesModel = new sap.ui.model.json.JSONModel();
-			var data = sap.ui.getCore().getModel("seriesModel").getData();
+			var data = sap.ui.getCore().getModel("PPDseriesModel").getData();
 			PPDseriesModel.setData(data);
 			PPD_DealerCont.getView().setModel(PPDseriesModel, "PPDseriesModel");                   
 			if (data[0].ModelSeriesNo !== "ALL") {                            
