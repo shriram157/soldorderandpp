@@ -247,8 +247,23 @@ sap.ui.define([
 
 		},
 
-		_refresh: function () {
-
+		_refresh: function (oEvent) {
+			//changes by swetha for DMND0003239 for series filter start
+			if (oEvent) {
+				if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") === false)) {
+					PPD_DealerCont.getView().byId("mcb_series_PPD_D").setSelectedItems();
+					this.noData = true;
+					sap.m.MessageBox.show(sap.ui.getCore().getModel("i18n").getResourceBundle().getText("SO000016"), sap.m.MessageBox.Icon.ERROR, sap
+						.ui.getCore().getModel("i18n").getResourceBundle().getText(
+							"error"), sap.m.MessageBox.Action.OK, null, null);
+				} else if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") == true)) {
+					PPD_DealerCont.getView().byId("mcb_series_PPD_D").setSelectedItems(PPD_DealerCont.getView().byId("mcb_series_PPD_D").getItems());
+					this.noData = false;
+				} else {
+					this.noData = false;
+				}
+			}
+			//changes by swetha for DMND0003239 for series filter end
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
 				oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";
