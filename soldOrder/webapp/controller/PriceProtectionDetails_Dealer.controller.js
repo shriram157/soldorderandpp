@@ -149,7 +149,28 @@ sap.ui.define([
 			OrderTypeModel.updateBindings(true);
 			sap.ui.getCore().setModel(OrderTypeModel, "OrderTypeModel");
 			this.getView().setModel(OrderTypeModel, "OrderTypeModel");
-			
+			//changes by swetha for DMND0003239 for adding series filter
+			var PPDseriesModel = new sap.ui.model.json.JSONModel();
+			var data = sap.ui.getCore().getModel("seriesModel").getData();
+			PPDseriesModel.setData(data);
+			PPD_DealerCont.getView().setModel(PPDseriesModel, "PPDseriesModel");                   
+			if (data[0].ModelSeriesNo !== "ALL") {                            
+				PPDseriesModel.getData().unshift({
+					"Division": "",
+					"ModelSeriesNo": "ALL",
+					"ProductHierarchy": "",
+					"ProfitCenter": "",
+					"SeriesSequenceNumber": "",
+					"TCIModelDescriptionEN": "",
+					"TCIModelDescriptionFR": "",
+					"TCISeriesDescriptionEN": "All",
+					"TCISeriesDescriptionFR": "Toute",
+					"zzzadddata2": "X",
+					"zzzadddata4": "100"
+				});
+			}
+			PPD_DealerCont.getView().getModel("PPDseriesModel").updateBindings(true);
+	
 			// PPD_DealerCont.getBrowserLanguage();
 			this._fnInitDataLoad();
 			this.getOwnerComponent().getRouter().getRoute("PriceProtectionDetails_Dealer").attachPatternMatched(this._onObjectMatched, this);
@@ -186,6 +207,7 @@ sap.ui.define([
 			var mcb_status_PPD_D = PPD_DealerCont.getView().byId("mcb_status_PPD_D");
 			var mcb_ordTyp_PPD_D = PPD_DealerCont.getView().byId("mcb_ordTyp_PPD_D");
 			var mcb_dealer_PPD_D = PPD_DealerCont.getView().byId("mcb_dealer_PPD_D");
+			var mcb_series_PPD_D = PPD_DealerCont.getView().byId("mcb_series_PPD_D");   //changes by swetha for Series filter for DMND0003239
 			// changes done for demand DMND0003456 by Minakshi
 			var aSelectedStatusArr = mcb_status_PPD_D.getItems().filter(item =>
 				item.getKey() == "OPEN" || item.getKey() == "PRE-APPROVED" ||
@@ -194,6 +216,7 @@ sap.ui.define([
 			mcb_status_PPD_D.setSelectedItems(aSelectedStatusArr);
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
+			mcb_series_PPD_D.setSelectedItems(mcb_series_PPD_D.getItems());           //changes by swetha for Series filter for DMND0003239
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 
 			var sLocation = window.location.host;

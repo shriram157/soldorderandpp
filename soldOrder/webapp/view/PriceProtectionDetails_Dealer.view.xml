@@ -15,6 +15,22 @@
 									<f:SimpleForm columnsL="3" columnsM="3" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="4" labelSpanM="4"
 										layout="ResponsiveGridLayout">
 										<f:content>
+											<!--changes by swetha for adding series filter in Price Protection Screen for DMND0003239-->
+											<VBox>
+												<Label text="{i18n>series}" class="TableLabel">
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</Label>
+												<MultiComboBox  id="mcb_series_PPD_D" width="300px" selectionChange="_refresh" items="{ path: 'PPDseriesModel>/'}" class="sapUiMediumMarginEnd">
+													<core:Item key="{PPDseriesModel>ModelSeriesNo}"
+														text="{=${LocalDataModel>/Lang} ==='FR' ? ${PPDseriesModel>TCISeriesDescriptionFR} : ${PPDseriesModel>TCISeriesDescriptionEN} }"/>
+													<layoutData>
+														<l:GridData span="L2 M12 S12"/>
+													</layoutData>
+												</MultiComboBox>
+											</VBox>
+											<!--changes by swetha for adding series filter in Price Protection Screen for DMND0003239-->
 											<VBox>
 												<Label text="{i18n>status}" class="TableLabel">
 													<layoutData>
