@@ -598,8 +598,8 @@ toyota.ca.SoldOrder.util.formatter = {
 	_CreatedOnFormatter: function(oDate) {
 		if (oDate) {
 			var year = oDate.substring(6,10);
-			var month = oDate.substring(3,5);
-			var day = oDate.substring(0,2);
+			var month = oDate.substring(0,2);
+			var day = oDate.substring(3,5);
 			if (month == "01") {
 				month = "January";
 			} else if (month == "02") {
