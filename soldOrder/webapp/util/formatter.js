@@ -631,27 +631,27 @@ toyota.ca.SoldOrder.util.formatter = {
 				month = "December";
 			}
 			if (day = "01") {
-				day = "1"
+				day = "1";
 			} else if (day = "02") {
-				day = "2"	
+				day = "2";	
 			}
 			if (day = "03") {
-				day = "3"
+				day = "3";
 			} else if (day = "04") {
-				day = "4"
+				day = "4";
 			} 
 			if (day = "05") {
-				day = "5"
+				day = "5";
 			} else if (day = "06") {
-				day = "6"
+				day = "6";
 			} 
 			if (day = "07") {
-				day ="7"
+				day ="7";
 			} else if(day = "08") {
-				day = "8"
+				day = "8";
 			} 
 			if (day = "09") {
-				day = "9"
+				day = "9";
 			}
 			return  month+" "+day+","+" "+year ;
 		}
