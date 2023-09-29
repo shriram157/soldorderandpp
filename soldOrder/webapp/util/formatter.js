@@ -550,7 +550,7 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 		return sval;
 	},
-	_PriceDateFomatter: function (oDate) {
+	_PriceDateFomatter: function (oDate) {       //changes by Swetha for DMND0003239 for Effective date in Credit simulate screen on 22nd Sept, 2023
 		if (oDate) {
 			var year = oDate.substring(0, 4);
 			var month = oDate.substring(4, 6);
@@ -589,13 +589,13 @@ toyota.ca.SoldOrder.util.formatter = {
 			return  month +" "+ day+","+" "+ year ;
 		}
 	},
-	_PriceSymbolFormatter: function (ovalue) {
+	_PriceSymbolFormatter: function (ovalue) {   //changes by Swetha for DMND0003239 for Eligible claim $ symbol on 29th Sept, 2023
 		if (ovalue) {
 			var value = ovalue;
 		}
-			return "$"+value;
+		return "$"+value;	
 	},
-	_CreatedOnFormatter: function(oDate) {
+	_CreatedOnFormatter: function(oDate) {          //changes by swetha for DMND0003239 for Created On date on 29th Sept, 2023
 		if (oDate) {
 			var year = oDate.substring(6,10);
 			var month = oDate.substring(0,2);
@@ -630,10 +630,39 @@ toyota.ca.SoldOrder.util.formatter = {
 			} else if (month == "12") {
 				month = "December";
 			}
-		
+			if (day = "01") {
+				day = "1"
+			} else if (day = "02") {
+				day = "2"	
+			}
+			if (day = "03") {
+				day = "3"
+			} else if (day = "04") {
+				day = "4"
+			} 
+			if (day = "05") {
+				day = "5"
+			} else if (day = "06") {
+				day = "6"
+			} 
+			if (day = "07") {
+				day ="7"
+			} else if(day = "08") {
+				day = "8"
+			} 
+			if (day = "09") {
+				day = "9"
+			}
 			return  month+" "+day+","+" "+year ;
 		}
 		
+	},
+	_VINValueformatter: function(oValue) {    //changes by swetha for DMND0003239 for VIN on 29th Sept, 2023
+		if (oValue) {
+			return oValue;
+		} else {
+			return "TBD";
+		}
 	}
 
 };

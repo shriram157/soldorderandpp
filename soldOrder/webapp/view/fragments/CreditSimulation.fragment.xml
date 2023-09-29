@@ -9,7 +9,6 @@
 							<items>
 								<HBox>
 									<items>
-										<!--<Text/>-->
 										<Label text="{i18n>SOCreated}"  class="sapUiSmallMarginBegin" width="6rem"></Label>
 										<Text text="{path:'SimulatePriceModel>/results/0/SO_CREATION_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"/>
 									</items>
@@ -20,9 +19,6 @@
 				</f:SimpleForm>
 				<Table id="t1" items="{path:'SimulatePriceModel>/results'}" inset="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="95%">
 					<columns>
-						<!--	<Column width="12em">-->
-						<!--	<Label text=""/>-->
-						<!--</Column>-->
 						<Column width="12em">
 							<Label text="{i18n>EffectiveDate}"/>
 						</Column>
@@ -33,7 +29,6 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<!--<Text text="{SimulatePriceModel>EFFET_DATE}"/>-->
 								<Text text="{path:'SimulatePriceModel>EFFET_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"/>
 								<Text text="{path:'SimulatePriceModel>CREDIT_AMOUNT',formatter:'toyota.ca.SoldOrder.util.formatter._PriceSymbolFormatter'}"/>
 							</cells>
@@ -46,14 +41,12 @@
 							<items>
 								<HBox>
 									<items>
-										<!--<Text/>-->
 										<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="2rem"/>
-										<Text id="idVhin" text="{path:'SimulatePriceModel>/results/0/Vhvin'}" class="sapUiSmallMarginTop"/>
+										<Text id="idVhin" text="{path:'SimulatePriceModel>/results/0/Vhvin',formatter:'toyota.ca.SoldOrder.util.formatter._VINValueformatter'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 								<HBox  id="idWhoDate"  visible="false">
 									<items>
-										<!--<Text/>-->
 										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="10rem"/>
 										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"
 											class="sapUiSmallMarginTop"/>
@@ -61,7 +54,6 @@
 								</HBox>
 								<HBox id ="idSimulationDate"  visible="false">
 									<items>
-										<!--<Text/>-->
 										<Label wrapping="true" text="{i18n>SimulationDate}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="10rem"/>
 										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"
 											class="sapUiSmallMarginTop"/>
@@ -69,22 +61,13 @@
 								</HBox>
 								<HBox>
 									<items>
-										<!--<Text/>-->
 										<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="6rem"/>
 										<Text id="idTotal" text="{path:'SimulatePriceModel>/results/0/TOTAL',formatter:'toyota.ca.SoldOrder.util.formatter._PriceSymbolFormatter'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
-										<!--<Text/>-->
-										<Label wrapping="true" class="sapUiLargeMarginTop sapUiNoMarginBegin" required="true"/>
-										<Text text="{path:'SimulatePriceModel>/results/0/ELIGIBLE_CLAIM'}" class="sapUiLargeMarginTop"  required="true"/>
-									</items>
-								</HBox>
-								<HBox>
-									<items>
-										<!--<Text/>-->
-										<Label wrapping="true" class="sapUiSmallMarginTop sapUiNoMarginBegin" required="true"/>
+										<Label wrapping="true" class="sapUiSmallMarginTop sapUiNoMarginBegin"/>
 										<Text  text="{path:'SimulatePriceModel>/results/0/DISCRIPTION'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
