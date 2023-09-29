@@ -630,27 +630,27 @@ toyota.ca.SoldOrder.util.formatter = {
 			} else if (month == "12") {
 				month = "December";
 			}
-			if (day = "01") {
+			if (day == "01") {
 				day = "1";
-			} else if (day = "02") {
+			} else if (day == "02") {
 				day = "2";	
 			}
-			if (day = "03") {
+			if (day == "03") {
 				day = "3";
-			} else if (day = "04") {
+			} else if (day == "04") {
 				day = "4";
 			} 
-			if (day = "05") {
+			if (day == "05") {
 				day = "5";
-			} else if (day = "06") {
+			} else if (day == "06") {
 				day = "6";
 			} 
-			if (day = "07") {
+			if (day == "07") {
 				day ="7";
-			} else if(day = "08") {
+			} else if(day == "08") {
 				day = "8";
 			} 
-			if (day = "09") {
+			if (day == "09") {
 				day = "9";
 			}
 			return  month+" "+day+","+" "+year ;
