@@ -76,7 +76,7 @@
 							<Label wrapping="true" text="{i18n>EffectiveDate}"/>
 							<Text text="{path:'mainservices>ZzeffDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>CreatedOn}"/> 
-							<Text text="{path:'mainservices>ZcreatedOn',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
+							<Text text="{path:'mainservices>Zcreated_on_raw',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
 							<Label wrapping="true" text="{i18n>ContractDate}"/>                    
 							<Text text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 							<!-- changes for DMND000xxx Added Effective Date and Created On fields and Moved Contract date from Vehicle Information to Sold Order Information by Swetha on 12th Sept, 2023 End-->

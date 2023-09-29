@@ -597,9 +597,9 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	_CreatedOnFormatter: function(oDate) {          //changes by swetha for DMND0003239 for Created On date on 29th Sept, 2023
 		if (oDate) {
-			var year = oDate.substring(6,10);
-			var month = oDate.substring(0,2);
-			var day = oDate.substring(3,5);
+			var year = oDate.substring(0,4);
+			var month = oDate.substring(4,6);
+			var day = oDate.substring(6,8);
 			if (month == "01") {
 				month = "January";
 			} else if (month == "02") {
