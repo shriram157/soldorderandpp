@@ -67,7 +67,7 @@
 								</HBox>
 								<HBox>
 									<items>
-										<Label wrapping="true" class="sapUiSmallMarginTop sapUiNoMarginBegin"/>
+										<Label wrapping="true" class="sapUiLargeMarginTop sapUiNoMarginBegin"/>
 										<Text  text="{path:'SimulatePriceModel>/results/0/DISCRIPTION'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
