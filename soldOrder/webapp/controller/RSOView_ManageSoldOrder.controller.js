@@ -1456,11 +1456,7 @@ sap.ui.define([
 					error: function (oError) {
 
 					}
-
-				}
-			}
-			
-
-		
-		});
+			});
+		}
 	});
+});
