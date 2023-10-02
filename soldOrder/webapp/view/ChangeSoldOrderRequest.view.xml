@@ -125,7 +125,7 @@
 				<footer class="sitefooter">
 					<OverflowToolbar>
 						<ToolbarSpacer/>
-						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" id="Btn_submit_CSOR"></Button> <!--added id for INC0241290 by swetha-->
+						<Button text="{i18n>submit}" press="_onSubmit" type="Emphasized" id="Btn_submit_CSOR"></Button> <!--added id for INC0241290 by swetha on 2nd Oct, 2023-->
 					</OverflowToolbar>
 				</footer>
 			</Page>
