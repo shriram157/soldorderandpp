@@ -1438,7 +1438,7 @@ sap.ui.define([
 				var ZModel_Year = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				var ZDealercode =  this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5);
 				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SERIES eq '" +Zseries + "' and MODEL_YEAR eq '" +ZModel_Year+ "' and SO_Dealer eq '" +ZDealercode+ "')" ;
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SERIES eq '" +Zseries + "' and MODEL_YEAR eq '" +ZModel_Year+ "' and SO_DEALER eq '" +ZDealercode+ "')" ;
 				$.ajax({
 					url: oUrl,
 					method: "GET",
