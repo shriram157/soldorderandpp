@@ -20,7 +20,7 @@
 					</VBox>
 					,</f:content>
 			</f:SimpleForm>
-			<f:SimpleForm id="s2">
+			<f:SimpleForm>
 				<f:content>
 					<VBox>
 						<items>
