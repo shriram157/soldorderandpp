@@ -40,7 +40,7 @@
 								<HBox id="iderrmsg" visible="false">
 									<items>
 										<Label text="{i18n>ErrMsg}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-										<Text text="{path:'LinkRDRModel>/results/0/MESSAGE}" class="sapUiSmallMarginTop"/>
+										<Text text="{path:'LinkRDRModel>/results/0/MESSAGE'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 							</items>

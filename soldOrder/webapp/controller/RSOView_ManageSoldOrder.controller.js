@@ -1380,10 +1380,13 @@ sap.ui.define([
 				//	this.getView().addDependent(oDialogBox);
 				//	oDialogBox.open();
 			},
-
+			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End
+			//changes by swetha for DMND0003239 to close the Dialog on 19th Sept, 2023-----Start
 			onCloseDialog: function (oEvent) {
 				this._oDialog.close();
 			},
+			//changes by swetha for DMND0003239 to close the Dialog on 19th Sept, 2023-----End
+			//changes by swetha for DMND0003239 for Credit Simulation Screen on 23rd Sept, 2023-----Start
 			_simulateprice: function () {
 				var host = RSO_MSO_controller.host();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
@@ -1426,10 +1429,13 @@ sap.ui.define([
 				}
 
 			},
+			//changes by swetha for DMND0003239 for Credit Simulation Screen on 23rd Sept, 2023-----End
+			//changes by swetha for DMND0003239 for Credit Simulation Screen  Close Dialog on 23rd Sept, 2023-----Start
 			onCloseSDialog: function (oEvent) {
 				this._soDialog.close();
 			},
-			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
+			//changes by swetha for DMND0003239 for Credit Simulation Screen CLose Dialog on 23rd Sept, 2023-----End
+			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 2nd Oct, 2023-----Start
 			_validateVIN: function () {
 				var that = this;
 				var host = RSO_MSO_controller.host();
@@ -1462,5 +1468,6 @@ sap.ui.define([
 					}
 				});
 			},
+			//changes by Swetha for DMND0003239 added fragment on click of Link RDR VIN button on 2nd Oct, 2023-----End
 		});
 	});
