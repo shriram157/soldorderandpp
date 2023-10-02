@@ -41,7 +41,7 @@ sap.ui.define([
 			// }
 			// //this.getView().byId("etaFrom_CSOR").setMinDate(day5);
 			// this.getView().byId("etaFrom_CSOR").setDateValue(day5);
-
+			submitBtn.setEnabled(true);
 			requestid = parameters.getParameters().arguments.Soreq;
 			var sObjectPath = "/Retail_Sold_OrderSet('" + requestid + "')";
 			this.getView().bindElement({
@@ -269,7 +269,7 @@ sap.ui.define([
 										// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",
 										// 	sap.m.MessageBox.Action.OK, null, null);
 										if (data.ZzsoReqNo) {
-											submitBtn.setEnabled(true);
+											
 											CSOR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 												Soreq: data.ZzsoReqNo
 											}, true);
