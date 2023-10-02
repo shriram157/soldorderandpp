@@ -1457,7 +1457,7 @@ sap.ui.define([
 						xhr.setRequestHeader('X-CSRF-Token', token);
 						xhr.setRequestHeader('Content-Type', "application/json");
 
-					}
+					},
 					success: function (oData, response) {
 						//console.log(oData); //17 sep change 
 						//console.log(oData.Message); //18 sep change
