@@ -1,51 +1,53 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
 	<Dialog title="LINK RDR VIN" contentWidth="50%" contentHeight="50%">
 		<content>
-			<f:SimpleForm>
-				<f:content>
-					<VBox>
-						<items>
-							<HBox>
-								<items>
-									<Label text="{i18n>Providelast8CharacterofVIN}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-									<Input id="rdrvin" maxLength="8" value="" placeholder="Enter here"/>
-								</items>
-								<Button text="{i18n>ValidateVIN}" press="_validateVIN" class="sapUiSmallMarginBegin">
-									<layoutData>
-										<l:GridData span="L2"/>
-									</layoutData>
-								</Button>
-							</HBox>
-						</items>
-					</VBox>
-					,</f:content>
-			</f:SimpleForm>
-			<f:SimpleForm>
-				<f:content>
-					<VBox>
-						<items>
-							<HBox id="idrdr_date" visible="false">
-								<items>
-									<Label text="{i18n>RDRDate}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-									<Text text="{path:'LinkRDRModel>/RDR_DATE'}" class="sapUiSmallMarginTop"/>
-								</items>
-							</HBox>
-							<HBox id="idrdrcustname" visible="false">
-								<items>
-									<Label text="{i18n>RDRCustName}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-									<Text text="{path:'LinkRDRModel>/RDR_CUSTOMER'}" class="sapUiSmallMarginTop"/>
-								</items>
-							</HBox>
-							<HBox id="iderrmsg" visible="false">
-								<items>
-									<Label text="{i18n>ErrMsg}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-									<Text text="{path:'LinkRDRModel>/MESSAGE}" class="sapUiSmallMarginTop"/>
-								</items>
-							</HBox>
-						</items>
-					</VBox>
-				</f:content>
-			</f:SimpleForm>
+			<VBox>
+				<f:SimpleForm>
+					<f:content>
+						<VBox>
+							<items>
+								<HBox>
+									<items>
+										<Label text="{i18n>Providelast8CharacterofVIN}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Input id="rdrvin" maxLength="8" value="" placeholder="Enter here"/>
+									</items>
+									<Button text="{i18n>ValidateVIN}" press="_validateVIN" class="sapUiSmallMarginBegin">
+										<layoutData>
+											<l:GridData span="L2"/>
+										</layoutData>
+									</Button>
+								</HBox>
+							</items>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+				<f:SimpleForm>
+					<f:content>
+						<VBox>
+							<items>
+								<HBox id="idrdr_date" visible="false">
+									<items>
+										<Label text="{i18n>RDRDate}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{path:'LinkRDRModel>/RDR_DATE'}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox id="idrdrcustname" visible="false">
+									<items>
+										<Label text="{i18n>RDRCustName}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{path:'LinkRDRModel>/RDR_CUSTOMER'}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox id="iderrmsg" visible="false">
+									<items>
+										<Label text="{i18n>ErrMsg}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{path:'LinkRDRModel>/MESSAGE}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+							</items>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
 		</content>
 		<endButton>
 			<Button text="Close" press="onCloseDialog"></Button>
