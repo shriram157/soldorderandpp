@@ -359,7 +359,6 @@ sap.ui.define([
 				var zmodel = RSO_MSO_controller.getView().getModel("mainservices");
 				RSO_MSO_controller.getView().getModel("mainservices").bUseBatch = false;
 				var sObjectPath = "/Retail_Sold_OrderSet('" + req + "')";
-
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmodel', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzmoyr', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzsuffix', "");
@@ -1425,14 +1424,43 @@ sap.ui.define([
 					sap.ui.getCore().byId("idWhoDate").setVisible(false);
 				}
 				
-				// sap.ui.getCore().byId("idVhin").setText(sap.ui.getCore().getModel("SimulatePriceModel").getData().results[0].Vhvin);
-				// sap.ui.getCore().byId("idTotal").setText(sap.ui.getCore().getModel("SimulatePriceModel").getData().results[0].TOTAL);
-
-			},
+				},
 			onCloseSDialog: function (oEvent) {
 				this._soDialog.close();
 			},
+		//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
+			_validateVIN: function() {
+				var that = this;
+				var Zlinkrdrvin = RSO_MSO_controller.getView().byId("rdrvin").getValue();         //changes by swetha for DMND0003239 for VIN validation	
+				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Vin_ValidationSet", {
+					method: "POST",
+					urlParameters: {
+						VHVIN: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin'),
+						SERIES: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
+						MODEL_YEAR: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
+						SO_DEALER: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5);
+					}, // function import parameters
+					success: function (oData, response) {
+						//console.log(oData); //17 sep change 
+						//console.log(oData.Message); //18 sep change
+						var oModel = new sap.ui.model.json.JSONModel();
+						oModel.setData(data.d);
+						sap.ui.getCore().setModel(oModel, "LinkRDRModel");
+						// that.getView().setModel(oModel, "SimulatePriceModel");
+						RSO_MSO_controller.getView().setModel(oModel, "LinkRDRModel");
+						sap.ui.getCore().byId("idrdr_date").setVisible(true);
+						sap.ui.getCore().byId("idrdrcustname").setVisible(true);
+						sap.ui.getCore().byId("iderrmsg").setVisible(true);
 
-			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
+					},
+					error: function (oError) {
+
+					}
+
+				}
+			}
+			
+
+		
 		});
 	});
