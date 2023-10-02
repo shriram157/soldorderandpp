@@ -493,11 +493,12 @@ sap.ui.define([
 				_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 					"Eligilibity");
 				//changes by swetha for DMND0003239
-				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW") && (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "")) {
-					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(true);	
-					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(true);	
+				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW") &&
+					(RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "")) {
+					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(true);
+					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(true);
 				} else {
-					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(false);		
+					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(false);
 					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(false);
 				}
 				if (_Eligilibity == "YES") {
@@ -1399,7 +1400,7 @@ sap.ui.define([
 						sap.ui.getCore().setModel(oModel, "SimulatePriceModel");
 						// that.getView().setModel(oModel, "SimulatePriceModel");
 						RSO_MSO_controller.getView().setModel(oModel, "SimulatePriceModel");
-						
+
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 						var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
@@ -1409,36 +1410,36 @@ sap.ui.define([
 					}
 				});
 				if (!this._soDialog) {
-				
+
 					this._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
 					this.getView().addDependent(this._soDialog);
 				}
 				// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
 				this._soDialog.open();
 				//changes by swetha for DMND0003239 for Vehicle Wholesale date field
-				if (RSO_MSO_controller.getView().getModel("SimulatePriceModel").getData().results[0].WHOLESALE_DATE_FLAG=="W"){
+				if (RSO_MSO_controller.getView().getModel("SimulatePriceModel").getData().results[0].WHOLESALE_DATE_FLAG == "W") {
 					sap.ui.getCore().byId("idWhoDate").setVisible(true);
 					sap.ui.getCore().byId("idSimulationDate").setVisible(false);
 				} else {
 					sap.ui.getCore().byId("idSimulationDate").setVisible(true);
 					sap.ui.getCore().byId("idWhoDate").setVisible(false);
 				}
-				
-				},
+
+			},
 			onCloseSDialog: function (oEvent) {
 				this._soDialog.close();
 			},
-		//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
-			_validateVIN: function() {
+			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
+			_validateVIN: function () {
 				var that = this;
-				var Zlinkrdrvin = RSO_MSO_controller.getView().byId("rdrvin").getValue();         //changes by swetha for DMND0003239 for VIN validation	
+				var Zlinkrdrvin = RSO_MSO_controller.getView().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation	
 				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Vin_ValidationSet", {
 					method: "POST",
 					urlParameters: {
 						VHVIN: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin'),
 						SERIES: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
 						MODEL_YEAR: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
-						SO_DEALER: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5);
+						SO_DEALER: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5)
 					}, // function import parameters
 					success: function (oData, response) {
 						//console.log(oData); //17 sep change 
@@ -1456,7 +1457,7 @@ sap.ui.define([
 					error: function (oError) {
 
 					}
-			});
-		},
+				});
+			},
+		});
 	});
-});
