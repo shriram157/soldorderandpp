@@ -28,19 +28,19 @@
 								<HBox id="idrdr_date" visible="false">
 									<items>
 										<Label text="{i18n>RDRDate}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-										<Text text="{path:'LinkRDRModel>/RDR_DATE'}" class="sapUiSmallMarginTop"/>
+										<Text text="{path:'LinkRDRModel>/results/0/RDR_DATE'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 								<HBox id="idrdrcustname" visible="false">
 									<items>
 										<Label text="{i18n>RDRCustName}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-										<Text text="{path:'LinkRDRModel>/RDR_CUSTOMER'}" class="sapUiSmallMarginTop"/>
+										<Text text="{path:'LinkRDRModel>/results/0/RDR_CUSTOMER'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 								<HBox id="iderrmsg" visible="false">
 									<items>
 										<Label text="{i18n>ErrMsg}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-										<Text text="{path:'LinkRDRModel>/MESSAGE}" class="sapUiSmallMarginTop"/>
+										<Text text="{path:'LinkRDRModel>/results/0/MESSAGE}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 							</items>
