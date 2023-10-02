@@ -1432,11 +1432,16 @@ sap.ui.define([
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
 			_validateVIN: function () {
 				var that = this;
-				var Zlinkrdrvin = RSO_MSO_controller.getView().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation	
+				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation	
+				$.ajax({
+					url: oUrl,
+					type: "POST",
+					dataType: "json",
+					data: zdataString,
 				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Vin_ValidationSet", {
 					method: "POST",
 					urlParameters: {
-						VHVIN: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin'),
+						VHVIN: Zlinkrdrvin,
 						SERIES: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
 						MODEL_YEAR: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
 						SO_DEALER: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5)
