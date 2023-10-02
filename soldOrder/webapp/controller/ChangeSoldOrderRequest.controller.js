@@ -160,7 +160,8 @@ sap.ui.define([
 		/////////////////////////// INC0187445 Changes done by Minakshi on 25/03/2021 end
 
 		_onSubmit: function () {
-
+			var submitBtn = CSOR_controller.getView().byId("Btn_submit_CSOR");
+			submitBtn.setEnabled(false);                                          //changes by swetha for Submit button for INC0241290
 			var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
 			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getSelectedKey();
 			var valApx = CSOR_controller.getView().byId("apx_CSOR").getSelectedKey();
