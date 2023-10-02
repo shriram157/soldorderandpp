@@ -1453,7 +1453,6 @@ sap.ui.define([
 					},
 					type: "POST",
 					dataType: "json",
-					data: zdataString,
 					success: function (oData, response) {
 						//console.log(oData); //17 sep change 
 						//console.log(oData.Message); //18 sep change
