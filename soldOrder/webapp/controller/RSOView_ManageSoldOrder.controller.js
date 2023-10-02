@@ -1432,34 +1432,19 @@ sap.ui.define([
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End	
 			_validateVIN: function () {
 				var that = this;
+				var host = RSO_MSO_controller.host();
 				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation
 				var Zseries = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 				var ZModel_Year = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				var ZDealercode =  this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5);
 				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
-				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SERIES eq '" +Zseries + "' and MODEL_YEAR eq '" +ZModel_Year+ "' and SO_Dealer eq '" +ZDealercode+ "')" ;
-				//RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Vin_ValidationSet", {
-				//	method: "POST",
-				//	urlParameters: {
-				//		VHVIN: Zlinkrdrvin,
-				//		SERIES: this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
-				//		MODEL_YEAR: this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
-				//		SO_DEALER: this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5)
-				//	}, // function import parameters
-					$.ajax({
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SERIES eq '" +Zseries + "' and MODEL_YEAR eq '" +ZModel_Year+ "' and SO_Dealer eq '" +ZDealercode+ "')" ;
+				$.ajax({
 					url: oUrl,
-					headers: {
-						accept: 'application/json',
-						'content-type': 'application/json'
-					},
-					type: "POST",
-					dataType: "json",
-					beforeSend: function (xhr) {
-						xhr.setRequestHeader('X-CSRF-Token', token);
-						xhr.setRequestHeader('Content-Type', "application/json");
-
-					},
-					success: function (oData, response) {
+					method: "GET",
+					async: false,
+					dataType: 'json',
+					success: function (data, textStatus, jqXHR) {
 						//console.log(oData); //17 sep change 
 						//console.log(oData.Message); //18 sep change
 						var oModel = new sap.ui.model.json.JSONModel();
