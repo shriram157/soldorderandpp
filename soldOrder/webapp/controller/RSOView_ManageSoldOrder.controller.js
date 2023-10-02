@@ -1436,6 +1436,7 @@ sap.ui.define([
 				var Zseries = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 				var ZModel_Year = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				var ZDealercode =  this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5);
+				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
 				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SERIES eq '" +Zseries + "' and MODEL_YEAR eq '" +ZModel_Year+ "' and SO_Dealer eq '" +ZDealercode+ "')" ;
 				//RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Vin_ValidationSet", {
 				//	method: "POST",
