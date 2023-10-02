@@ -1437,9 +1437,9 @@ sap.ui.define([
 					method: "POST",
 					urlParameters: {
 						VHVIN: Zlinkrdrvin,
-						SERIES: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
-						MODEL_YEAR: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
-						SO_DEALER: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5)
+						SERIES: this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries'),
+						MODEL_YEAR: this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr'),
+						SO_DEALER: this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5)
 					}, // function import parameters
 					success: function (oData, response) {
 						//console.log(oData); //17 sep change 

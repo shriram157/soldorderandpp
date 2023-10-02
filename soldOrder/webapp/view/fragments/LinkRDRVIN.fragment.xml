@@ -18,19 +18,19 @@
 				<HBox id="idrdr_date" visible="false">
 					<items>
 						<Label text="{i18n>RDRDate}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-						<Text text="{path:'SimulatePriceModel>/rdr_date'}" class="sapUiSmallMarginTop"/>
+						<Text text="{path:'LinkRDRModel>/rdr_date'}" class="sapUiSmallMarginTop"/>
 					</items>	
 				</HBox>
 				<HBox id="idrdrcustname" visible="false">
 					<items>
 						<Label text="{i18n>RDRCustName}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-						<Text text="{path:'SimulatePriceModel>/rdr_customer'}" class="sapUiSmallMarginTop"/>
+						<Text text="{path:'LinkRDRModel>/rdr_customer'}" class="sapUiSmallMarginTop"/>
 					</items>	
 				</HBox>
 				<HBox id="iderrmsg" visible="false">
 					<items>
 						<Label text="{i18n>ErrMsg}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-						<Text  text="{path:'SimulatePriceModel>/msg_flag}" class="sapUiSmallMarginTop"/>
+						<Text  text="{path:'LinkRDRModel>/msg_flag}" class="sapUiSmallMarginTop"/>
 					</items>	
 				</HBox>
 				</VBox>
