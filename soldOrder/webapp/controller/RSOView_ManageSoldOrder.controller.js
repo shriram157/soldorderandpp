@@ -1433,11 +1433,6 @@ sap.ui.define([
 			_validateVIN: function () {
 				var that = this;
 				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation	
-				$.ajax({
-					url: oUrl,
-					type: "POST",
-					dataType: "json",
-					data: zdataString,
 				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/Vin_ValidationSet", {
 					method: "POST",
 					urlParameters: {
