@@ -496,16 +496,16 @@ sap.ui.define([
 				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW") &&
 					(RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "")) {
 					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(true);
-					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(true);
 				} else {
 					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(false);
-					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(false);
 				}
 				if (_Eligilibity == "YES") {
 					attachButton.setEnabled(true);
+					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(true);
 					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setEnabled(true); //changes by swetha for DMND0003239
 				} else {
 					attachButton.setEnabled(false);
+					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(false)
 					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setEnabled(false); //changes by swetha for DMND0003239
 				}
 				var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
