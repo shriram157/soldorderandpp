@@ -388,7 +388,6 @@ sap.ui.define([
 			_getSOChangeEvt: function (sObjectPath, req) {
 				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 				// Filter for Display Data Sold Order
-				sap.ui.getCore().byId("rdrvin").setValue('');          //changes by swetha for DMND0003239
 				this.byId('model_CSOR').setSelectedItem().setValue("");
 				var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
@@ -1377,6 +1376,7 @@ sap.ui.define([
 				}
 				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
 				this._oDialog.open();
+				sap.ui.getCore().byId("rdrvin").setValue('');
 				//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 				//	this.getView().addDependent(oDialogBox);
 				//	oDialogBox.open();
