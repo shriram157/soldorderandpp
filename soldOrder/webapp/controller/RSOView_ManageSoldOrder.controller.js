@@ -388,7 +388,7 @@ sap.ui.define([
 			_getSOChangeEvt: function (sObjectPath, req) {
 				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 				// Filter for Display Data Sold Order
-				this.getView().byId('rdrvin').setValue("");          //changes by swetha for DMND0003239
+				sap.ui.getCore().byId('rdrvin').setValue("");          //changes by swetha for DMND0003239
 				this.byId('model_CSOR').setSelectedItem().setValue("");
 				var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
@@ -1459,10 +1459,12 @@ sap.ui.define([
 						sap.ui.getCore().setModel(oModel, "LinkRDRModel");
 						// that.getView().setModel(oModel, "SimulatePriceModel");
 						RSO_MSO_controller.getView().setModel(oModel, "LinkRDRModel");
-						sap.ui.getCore().byId("idrdr_date").setVisible(true);
-						sap.ui.getCore().byId("idrdrcustname").setVisible(true);
-						sap.ui.getCore().byId("iderrmsg").setVisible(true);
-
+						if (Zlinkrdrvin != "") {
+							sap.ui.getCore().byId("idrdr_date").setVisible(true);
+							sap.ui.getCore().byId("idrdrcustname").setVisible(true);
+							sap.ui.getCore().byId("iderrmsg").setVisible(true);	
+						}
+						
 					},
 					error: function (oError) {
 
