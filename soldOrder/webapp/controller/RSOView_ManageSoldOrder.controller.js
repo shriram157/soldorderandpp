@@ -1377,12 +1377,6 @@ sap.ui.define([
 				}
 				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
 				this._oDialog.open();
-				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation
-				if (Zlinkrdrvin != "") {
-					sap.ui.getCore().byId("idrdr_date").setVisible(true);
-					sap.ui.getCore().byId("idrdrcustname").setVisible(true);
-					sap.ui.getCore().byId("iderrmsg").setVisible(true);	
-				}		
 				//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 				//	this.getView().addDependent(oDialogBox);
 				//	oDialogBox.open();
@@ -1447,6 +1441,11 @@ sap.ui.define([
 				var that = this;
 				var host = RSO_MSO_controller.host();
 				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation
+				if (Zlinkrdrvin != "") {
+					sap.ui.getCore().byId("idrdr_date").setVisible(true);
+					sap.ui.getCore().byId("idrdrcustname").setVisible(true);
+					sap.ui.getCore().byId("iderrmsg").setVisible(true);	
+				}
 				var Zseries = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 				var ZModel_Year = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				var ZDealercode =  this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode').slice(-5);
