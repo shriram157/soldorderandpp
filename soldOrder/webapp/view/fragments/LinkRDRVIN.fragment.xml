@@ -9,7 +9,7 @@
 								<HBox>
 									<items>
 										<Label text="{i18n>Providelast8CharacterofVIN}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-										<Input id="rdrvin" maxLength="8" value="" placeholder="Enter here" width="50%"/>
+										<Input id="rdrvin" maxLength="8" value="" placeholder="Enter here" width="50%" valueState="None"/>
 									</items>
 									<Button text="{i18n>ValidateVIN}" press="_validateVIN">
 										<layoutData>
