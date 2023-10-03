@@ -1451,11 +1451,6 @@ sap.ui.define([
 				var that = this;
 				var host = RSO_MSO_controller.host();
 				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation
-			//	if (Zlinkrdrvin != "") {
-			//		sap.ui.getCore().byId("idrdr_date").setVisible(true);
-			//		sap.ui.getCore().byId("idrdrcustname").setVisible(true);
-			//		sap.ui.getCore().byId("iderrmsg").setVisible(true);	
-			//	}
 				var Zseries = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 				var ZModel_Year = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
 				var ZDealercode =  this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
@@ -1467,27 +1462,27 @@ sap.ui.define([
 					async: false,
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
-						//console.log(oData); //17 sep change 
-						//console.log(oData.Message); //18 sep change
 						var oModel = new sap.ui.model.json.JSONModel();
 						oModel.setData(data.d);
 						sap.ui.getCore().setModel(oModel, "LinkRDRModel");
-						// that.getView().setModel(oModel, "SimulatePriceModel");
 						RSO_MSO_controller.getView().setModel(oModel, "LinkRDRModel");
 						var msg = RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MESSAGE;
-						if (Zlinkrdrvin !="") {
-						if (RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "E") { 
+						if (Zlinkrdrvin !="" && RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "E") {
 							sap.m.MessageToast.show(msg);
+							sap.ui.getCore().byId("rdrvin").setValueState("None");	
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
 							sap.ui.getCore().byId("iderrmsg").setVisible(false);	
-						} else {
+						} else if(Zlinkrdrvin !="" && RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "S") {
+							sap.ui.getCore().byId("rdrvin").setValueState("None");	
 							sap.ui.getCore().byId("idrdr_date").setVisible(true);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(true);
 							sap.ui.getCore().byId("iderrmsg").setVisible(true);	
-						}
 						} else {
 							sap.ui.getCore().byId("rdrvin").setValueState("Error");	
+							sap.ui.getCore().byId("idrdr_date").setVisible(false);
+							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
+							sap.ui.getCore().byId("iderrmsg").setVisible(false);
 						}
 						
 					},
