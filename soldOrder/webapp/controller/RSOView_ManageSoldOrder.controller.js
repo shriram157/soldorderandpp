@@ -1475,6 +1475,7 @@ sap.ui.define([
 						// that.getView().setModel(oModel, "SimulatePriceModel");
 						RSO_MSO_controller.getView().setModel(oModel, "LinkRDRModel");
 						var msg = RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MESSAGE;
+						if (Zlinkrdrvin !="") {
 						if (RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "E") { 
 							sap.m.MessageToast.show(msg);
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
@@ -1485,7 +1486,9 @@ sap.ui.define([
 							sap.ui.getCore().byId("idrdrcustname").setVisible(true);
 							sap.ui.getCore().byId("iderrmsg").setVisible(true);	
 						}
-						
+						} else {
+							sap.ui.getCore().byId("rdrvin").setValueState("Error");	
+						}
 						
 					},
 					error: function (oError) {
