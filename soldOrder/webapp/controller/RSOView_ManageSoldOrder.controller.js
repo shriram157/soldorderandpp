@@ -1371,11 +1371,17 @@ sap.ui.define([
 			},
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----Start
 			_onlinkrdrvin: function (oEvent) {
+				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation
 				if (!this._oDialog) {
 					this._oDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 					this.getView().addDependent(this._oDialog);
 				}
 				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+				if (Zlinkrdrvin != "") {
+							sap.ui.getCore().byId("idrdr_date").setVisible(true);
+							sap.ui.getCore().byId("idrdrcustname").setVisible(true);
+							sap.ui.getCore().byId("iderrmsg").setVisible(true);	
+				}
 				this._oDialog.open();
 				//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 				//	this.getView().addDependent(oDialogBox);
@@ -1459,11 +1465,7 @@ sap.ui.define([
 						sap.ui.getCore().setModel(oModel, "LinkRDRModel");
 						// that.getView().setModel(oModel, "SimulatePriceModel");
 						RSO_MSO_controller.getView().setModel(oModel, "LinkRDRModel");
-						if (Zlinkrdrvin != "") {
-							sap.ui.getCore().byId("idrdr_date").setVisible(true);
-							sap.ui.getCore().byId("idrdrcustname").setVisible(true);
-							sap.ui.getCore().byId("iderrmsg").setVisible(true);	
-						}
+						
 						
 					},
 					error: function (oError) {
