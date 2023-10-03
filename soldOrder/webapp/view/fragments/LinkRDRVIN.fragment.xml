@@ -28,7 +28,7 @@
 								<HBox id="idrdr_date" visible="false">
 									<items>
 										<Label text="{i18n>RDRDate}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-										<Text text="{path:'LinkRDRModel>/results/0/RDR_DATE'}" class="sapUiSmallMarginTop"/>
+										<Text text="{path:'LinkRDRModel>/results/0/RDR_DATE', formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 								<HBox id="idrdrcustname" visible="false">
