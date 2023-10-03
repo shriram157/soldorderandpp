@@ -1375,8 +1375,14 @@ sap.ui.define([
 					this.getView().addDependent(this._oDialog);
 				}
 				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-				this._oDialog.open();
 				sap.ui.getCore().byId("rdrvin").setValue('');
+				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation
+				if (Zlinkrdrvin != "") {
+					sap.ui.getCore().byId("idrdr_date").setVisible(true);
+					sap.ui.getCore().byId("idrdrcustname").setVisible(true);
+					sap.ui.getCore().byId("iderrmsg").setVisible(true);	
+				}
+				this._oDialog.open();
 				//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
 				//	this.getView().addDependent(oDialogBox);
 				//	oDialogBox.open();
