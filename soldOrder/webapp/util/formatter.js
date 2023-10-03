@@ -590,10 +590,13 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 	},
 	_PriceSymbolFormatter: function (ovalue) {   //changes by Swetha for DMND0003239 for Eligible claim $ symbol on 29th Sept, 2023
-		if (ovalue) {
+		if (ovalue != undefined) {
 			var value = ovalue;
+			return "$"+value;
+		} else {
+			return "$"+"0.00";
 		}
-		return "$"+value;	
+			
 	},
 	_CreatedOnFormatter: function(oDate) {          //changes by swetha for DMND0003239 for Created On date on 29th Sept, 2023
 		if (oDate) {
