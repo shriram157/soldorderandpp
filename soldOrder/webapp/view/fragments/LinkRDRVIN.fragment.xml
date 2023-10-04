@@ -63,10 +63,12 @@
 										<layoutData>
 											<l:GridData span="S2"/>
 										</layoutData>
+										</Button>
 										<Button text="{i18n>No}" press="onclickNo" class="sapuiSmallMarginBegin">
 										<layoutData>
 											<l:GridData span="S2"/>
 										</layoutData>
+										</Button>
 									</items>
 								</HBox>
 							</items>
