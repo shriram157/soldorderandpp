@@ -1500,22 +1500,11 @@ sap.ui.define([
 			onclickYes: function(){
 				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
-				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
-				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet";
-				//?$filter=(VHVIN '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +zrequest+ "')";
+				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +zrequest+ "')";
 				$.ajax({
 					url: oUrl,
-					headers: {
-						accept: 'application/json',
-						'content-type': 'application/json'
-					},
 					type: "POST",
 					dataType: "json",
-					beforeSend: function (xhr) {
-						xhr.setRequestHeader('X-CSRF-Token', token);
-						xhr.setRequestHeader('Content-Type', "application/json");
-
-					},
 					success: function (data, textStatus, jqXHR) {
 						var oModel = new sap.ui.model.json.JSONModel();
 						oModel.setData(data.d);
