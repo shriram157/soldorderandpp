@@ -59,12 +59,12 @@
 								</HBox>
 								<HBox id="idYesNo" visible="false">
 									<items>
-										<Button text="{i18n>Yes}" press="onclickYes" class="sapUiLargeMarginBegin">
+										<Button text="{i18n>Yes}" press="onclickYes" class="sapUiSmallMarginBegin sapUiSmallMarginTop" width="20%">
 										<layoutData>
 											<l:GridData span="S2"/>
 										</layoutData>
 										</Button>
-										<Button text="{i18n>No}" press="onclickNo" class="sapuiSmallMarginBegin">
+										<Button text="{i18n>No}" press="onclickNo" class="sapuiSmallMarginBegin sapUiSmallMarginTop">
 										<layoutData>
 											<l:GridData span="S2"/>
 										</layoutData>
