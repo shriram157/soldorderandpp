@@ -1497,6 +1497,39 @@ sap.ui.define([
 					}
 				});
 			},
+			onclickYes: function(){
+				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
+				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
+				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
+				var oUrl = RSO_MSO_controller.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +ZzsoReqNo + "')";
+				$.ajax({
+					url: oUrl,
+					headers: {
+						accept: 'application/json',
+						'content-type': 'application/json'
+					},
+					type: "POST",
+					dataType: "json",
+					data: zdataString,
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader('X-CSRF-Token', token);
+						xhr.setRequestHeader('Content-Type', "application/json");
+
+					},
+					success: function (data, textStatus, jqXHR) {
+						var oModel = new sap.ui.model.json.JSONModel();
+						oModel.setData(data.d);
+						sap.ui.getCore().setModel(oModel, "ClickYesModel");
+						RSO_MSO_controller.getView().setModel(oModel, "ClickYesModel");	
+					},
+					error: function (oError) {
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
+							sap.m.MessageBox.Action.OK, null, null);
+					}
+
+				});	
+			},
 			//changes by Swetha for DMND0003239 added fragment on click of Link RDR VIN button on 2nd Oct, 2023-----End
 		});
 	});
