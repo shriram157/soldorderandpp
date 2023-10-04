@@ -47,6 +47,32 @@
 						</VBox>
 					</f:content>
 				</f:SimpleForm>
+				<f:SimpleForm>
+					<f:content>
+						<VBox>
+							<items>
+								<HBox id="idconfirm" visible="false">
+									<items>
+										<Label wrapping="true" text="{i18n>ConfirmationMsg}" class="sapUiLargeMarginTop sapUiSmallMarginBegin"/>
+										<Text/>
+									</items>
+								</HBox>
+								<HBox id="idYesNo" visible="false">
+									<items>
+										<Button text="{i18n>Yes}" press="onclickYes" class="sapUiLargeMarginBegin">
+										<layoutData>
+											<l:GridData span="S2"/>
+										</layoutData>
+										<Button text="{i18n>No}" press="onclickNo" class="sapuiSmallMarginBegin">
+										<layoutData>
+											<l:GridData span="S2"/>
+										</layoutData>
+									</items>
+								</HBox>
+							</items>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
 			</VBox>
 		</content>
 		<endButton>

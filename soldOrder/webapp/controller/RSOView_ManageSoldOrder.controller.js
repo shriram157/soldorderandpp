@@ -1472,17 +1472,23 @@ sap.ui.define([
 							sap.ui.getCore().byId("rdrvin").setValueState("None");	
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
-							sap.ui.getCore().byId("iderrmsg").setVisible(false);	
+							sap.ui.getCore().byId("iderrmsg").setVisible(false);
+							sap.ui.getCore().byId("idconfirm").setVisible(false);
+							sap.ui.getCore().byId("idYesNo").setVisible(false);
 						} else if(Zlinkrdrvin !="" && RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "S") {
 							sap.ui.getCore().byId("rdrvin").setValueState("None");	
 							sap.ui.getCore().byId("idrdr_date").setVisible(true);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(true);
 							sap.ui.getCore().byId("iderrmsg").setVisible(true);	
+							sap.ui.getCore().byId("idconfirm").setVisible(true);
+							sap.ui.getCore().byId("idYesNo").setVisible(true);
 						} else {
 							sap.ui.getCore().byId("rdrvin").setValueState("Error");	
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
 							sap.ui.getCore().byId("iderrmsg").setVisible(false);
+							sap.ui.getCore().byId("idconfirm").setVisible(false);
+							sap.ui.getCore().byId("idYesNo").setVisible(false);
 						}
 						
 					},
