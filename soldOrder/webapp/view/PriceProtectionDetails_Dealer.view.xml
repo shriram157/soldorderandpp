@@ -90,7 +90,7 @@
 									</f:SimpleForm>
 								</items>
 							</VBox>
-							<t:Table id="table_PPD_Dealer" selectionMode="None" rows="{ppdModel>/}" enableColumnReordering="false" alternateRowColors="true"
+							<t:Table id="table_PPD_Dealer" selectionMode="None" items="{ppdModel>/}" enableColumnReordering="false" alternateRowColors="true"
 								class="marginCorners" visibleRowCount="10" growing ="true" growingThreshold="10"> <!--change 24 sep, earlier 7-->
 								<t:extension>
 									<Toolbar>
