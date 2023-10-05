@@ -1501,11 +1501,33 @@ sap.ui.define([
 				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var host = RSO_MSO_controller.host();
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +zrequest+ "')";
+				var _data = {
+					"VHVIN": Zlinkrdrvin,
+					"SO_NUMBER": zrequest
+
+				};
+				var dataString = JSON.stringify(
+					_data
+				);
+				if (!RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken()) {
+					RSO_MSO_controller.getView().getModel('mainservices').refreshSecurityToken();
+				}
+				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet";
+			//	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +zrequest+ "')";
 				$.ajax({
 					url: oUrl,
 					type: "POST",
-					async: false,
+					headers: {
+						accept: 'application/json',
+						'content-type': 'application/json'
+					},
+					data: zdataString,
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader('X-CSRF-Token', token);
+						xhr.setRequestHeader('Content-Type', "application/json");
+
+					},
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
 						var oModel = new sap.ui.model.json.JSONModel();
