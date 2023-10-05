@@ -1541,7 +1541,7 @@ sap.ui.define([
 						} else if (sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING_FLAG == "S") {
 							var sMsg = sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING;
 							sap.m.MessageBox.show(sMsg,sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
-						    sap.m.MessageBox.Action.OK, null, null),
+						    sap.m.MessageBox.Action.OK, null, null);
 						} else {
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
