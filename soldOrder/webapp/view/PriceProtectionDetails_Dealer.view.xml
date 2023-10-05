@@ -91,7 +91,7 @@
 								</items>
 							</VBox>
 							<t:Table id="table_PPD_Dealer" selectionMode="None" rows="{ppdModel>/}" enableColumnReordering="false" alternateRowColors="true"
-								class="marginCorners" visibleRowCount="10" visibleRowCount : {type : "int", group : "Appearance", defaultValue : 10}, threshold : {type : "int", group : "Appearance", defaultValue : 100},> <!--change 24 sep, earlier 7-->
+								class="marginCorners"> <!--change 24 sep, earlier 7-->
 								<t:extension>
 									<Toolbar>
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>
