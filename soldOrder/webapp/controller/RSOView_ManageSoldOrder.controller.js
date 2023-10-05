@@ -1501,7 +1501,7 @@ sap.ui.define([
 				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var host = RSO_MSO_controller.host();
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +zrequest+ "')";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +zrequest+ "')";
 				$.ajax({
 					url: oUrl,
 					type: "POST",
