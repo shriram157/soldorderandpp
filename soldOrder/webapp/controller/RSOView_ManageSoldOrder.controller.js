@@ -1501,10 +1501,24 @@ sap.ui.define([
 				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var host = RSO_MSO_controller.host();
+				var zdataString = JSON.stringify(
+					soapMessage1
+				);
+				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +zrequest+ "')";
 				$.ajax({
 					url: oUrl,
+					headers: {
+						accept: 'application/json',
+						'content-type': 'application/json'
+					},
 					type: "POST",
+					data: zdataString,
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader('X-CSRF-Token', token);
+						xhr.setRequestHeader('Content-Type', "application/json");
+
+					},
 					async: false,
 					dataType: 'json',
 					success: function (data, textStatus, jqXHR) {
