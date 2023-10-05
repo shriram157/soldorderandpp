@@ -1503,11 +1503,11 @@ sap.ui.define([
 			},
 			onclickYes: function(){
 				//var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
-				var Vhvin = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin');
+				var rdrvin = sap.ui.getCore().getModel("LinkRDRModel").getData().results[0].VHVIN;
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var host = RSO_MSO_controller.host();
 				var _data = {
-					"VHVIN": Vhvin ,
+					"VHVIN": rdrvin ,
 					"SO_NUMBER": zrequest
 
 				};
