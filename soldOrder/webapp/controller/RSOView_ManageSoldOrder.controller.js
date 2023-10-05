@@ -1522,7 +1522,7 @@ sap.ui.define([
 						accept: 'application/json',
 						'content-type': 'application/json'
 					},
-					data: zdataString,
+					data: dataString,
 					beforeSend: function (xhr) {
 						xhr.setRequestHeader('X-CSRF-Token', token);
 						xhr.setRequestHeader('Content-Type', "application/json");
