@@ -91,7 +91,7 @@
 								</items>
 							</VBox>
 							<t:Table id="table_PPD_Dealer" selectionMode="None" rows="{ppdModel>/}" enableColumnReordering="false" alternateRowColors="true"
-								class="marginCorners" visibleRowCount="10" growing  ="true" growingThreshold="10"> <!--change 24 sep, earlier 7-->
+								class="marginCorners" visibleRowCount="10" growing ="true" growingThreshold="10"> <!--change 24 sep, earlier 7-->
 								<t:extension>
 									<Toolbar>
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>
@@ -197,7 +197,7 @@
 							</t:Table>
 							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
 								<l:content>
-									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
+									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}" growing="true" growingThreshold="15" growingScrollToLoad="true"/>
 								</l:content>
 							</l:Grid>
 							<!--	<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">-->
