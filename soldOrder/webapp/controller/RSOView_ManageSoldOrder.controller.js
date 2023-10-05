@@ -1380,11 +1380,15 @@ sap.ui.define([
 				if (Zlinkrdrvin != "") {
 					sap.ui.getCore().byId("idrdr_date").setVisible(true);
 					sap.ui.getCore().byId("idrdrcustname").setVisible(true);
-					sap.ui.getCore().byId("idvin").setVisible(true);	
+					sap.ui.getCore().byId("idvin").setVisible(true);
+					sap.ui.getCore().byId("idconfirm").setVisible(false);
+					sap.ui.getCore().byId("idYesNo").setVisible(false);
 				} else {
 					sap.ui.getCore().byId("idrdr_date").setVisible(false);
 					sap.ui.getCore().byId("idrdrcustname").setVisible(false);
-					sap.ui.getCore().byId("idvin").setVisible(false);	
+					sap.ui.getCore().byId("idvin").setVisible(false);
+					sap.ui.getCore().byId("idconfirm").setVisible(false);
+					sap.ui.getCore().byId("idYesNo").setVisible(false);
 				}
 				this._oDialog.open();
 				//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
