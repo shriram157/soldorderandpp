@@ -37,7 +37,7 @@
 										<Text text="{path:'LinkRDRModel>/results/0/RDR_CUSTOMER'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
-								<HBox id="iderrmsg" visible="false">
+								<HBox id="idvin" visible="false">
 									<items>
 										<Label text="{i18n>VIN}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
 										<Text text="{path:'LinkRDRModel>/results/0/VHVIN'}" class="sapUiSmallMarginTop"/>

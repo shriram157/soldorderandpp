@@ -1380,11 +1380,11 @@ sap.ui.define([
 				if (Zlinkrdrvin != "") {
 					sap.ui.getCore().byId("idrdr_date").setVisible(true);
 					sap.ui.getCore().byId("idrdrcustname").setVisible(true);
-					sap.ui.getCore().byId("iderrmsg").setVisible(true);	
+					sap.ui.getCore().byId("idvin").setVisible(true);	
 				} else {
 					sap.ui.getCore().byId("idrdr_date").setVisible(false);
 					sap.ui.getCore().byId("idrdrcustname").setVisible(false);
-					sap.ui.getCore().byId("iderrmsg").setVisible(false);	
+					sap.ui.getCore().byId("idvin").setVisible(false);	
 				}
 				this._oDialog.open();
 				//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
@@ -1472,21 +1472,21 @@ sap.ui.define([
 							sap.ui.getCore().byId("rdrvin").setValueState("None");	
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
-							sap.ui.getCore().byId("iderrmsg").setVisible(false);
+							sap.ui.getCore().byId("idvin").setVisible(false);
 							sap.ui.getCore().byId("idconfirm").setVisible(false);
 							sap.ui.getCore().byId("idYesNo").setVisible(false);
 						} else if(Zlinkrdrvin !="" && RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "S") {
 							sap.ui.getCore().byId("rdrvin").setValueState("None");	
 							sap.ui.getCore().byId("idrdr_date").setVisible(true);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(true);
-							sap.ui.getCore().byId("iderrmsg").setVisible(true);	
+							sap.ui.getCore().byId("idvin").setVisible(true);	
 							sap.ui.getCore().byId("idconfirm").setVisible(true);
 							sap.ui.getCore().byId("idYesNo").setVisible(true);
 						} else {
 							sap.ui.getCore().byId("rdrvin").setValueState("Error");	
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
-							sap.ui.getCore().byId("iderrmsg").setVisible(false);
+							sap.ui.getCore().byId("idvin").setVisible(false);
 							sap.ui.getCore().byId("idconfirm").setVisible(false);
 							sap.ui.getCore().byId("idYesNo").setVisible(false);
 						}
@@ -1557,5 +1557,14 @@ sap.ui.define([
 				});	
 			},
 			//changes by Swetha for DMND0003239 added fragment on click of Link RDR VIN button on 2nd Oct, 2023-----End
+			onclickNo:function() {
+				//sap.ui.getCore().byId("rdrvin").setValue('');
+				sap.ui.getCore().byId("rdrvin").setValueState("None");	
+				sap.ui.getCore().byId("idrdr_date").setVisible(false);
+				sap.ui.getCore().byId("idrdrcustname").setVisible(false);
+				sap.ui.getCore().byId("idvin").setVisible(false);
+				sap.ui.getCore().byId("idconfirm").setVisible(false);
+				sap.ui.getCore().byId("idYesNo").setVisible(false);
+			},
 		});
 	});
