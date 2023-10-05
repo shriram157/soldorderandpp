@@ -1502,11 +1502,12 @@ sap.ui.define([
 				});
 			},
 			onclickYes: function(){
-				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
+				//var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
+				var Vhvin = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin');
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var host = RSO_MSO_controller.host();
 				var _data = {
-					"VHVIN": Zlinkrdrvin,
+					"VHVIN": Vhvin ,
 					"SO_NUMBER": zrequest
 
 				};
