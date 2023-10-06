@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
-	<Dialog title="LINK RDR VIN" contentWidth="50%" contentHeight="50%">
+	<Dialog title="{i18n>LINKRDRVIN}" contentWidth="50%" contentHeight="50%">
 		<content>
 			<VBox>
 				<f:SimpleForm>

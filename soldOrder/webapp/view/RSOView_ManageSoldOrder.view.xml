@@ -278,7 +278,7 @@
 							<Label wrapping="true" text="{i18n>PayAmount}"/>
 							<Text text="{path:'mainservices>PaymentAmmount',formatter:'toyota.ca.SoldOrder.util.formatter.formatAmount'}"/>
 							<Label/>
-							<Button text="{i18n>SimulatePrice}" id="btn_SimulatePrice" press="_simulateprice"> <!--changes by swetha for DMND0003239-->
+							<Button text="{i18n>CreditSimulation}" id="btn_SimulatePrice" press="_simulateprice"> <!--changes by swetha for DMND0003239-->
 							<layoutData>
 								<l:GridData span="L4"/>
 							</layoutData>

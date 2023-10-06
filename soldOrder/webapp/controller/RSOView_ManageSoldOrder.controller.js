@@ -1416,7 +1416,6 @@ sap.ui.define([
 						var oModel = new sap.ui.model.json.JSONModel();
 						oModel.setData(data.d);
 						sap.ui.getCore().setModel(oModel, "SimulatePriceModel");
-						// that.getView().setModel(oModel, "SimulatePriceModel");
 						RSO_MSO_controller.getView().setModel(oModel, "SimulatePriceModel");
 
 					},
@@ -1432,7 +1431,6 @@ sap.ui.define([
 					this._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CreditSimulation", this);
 					this.getView().addDependent(this._soDialog);
 				}
-				// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._soDialog);
 				this._soDialog.open();
 				//changes by swetha for DMND0003239 for Vehicle Wholesale date field
 				if (RSO_MSO_controller.getView().getModel("SimulatePriceModel").getData().results[0].WHOLESALE_DATE_FLAG == "W") {
@@ -1501,6 +1499,8 @@ sap.ui.define([
 					}
 				});
 			},
+			//changes by Swetha for DMND0003239 added fragment on click of Link RDR VIN button on 2nd Oct, 2023-----End
+			//changes by Swetha for DMND0003239 for RDR VIN validation on 3rd Oct, 2023 START 
 			onclickYes: function(){
 				//var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
 				var rdrvin = sap.ui.getCore().getModel("LinkRDRModel").getData().results[0].VHVIN;
@@ -1561,7 +1561,7 @@ sap.ui.define([
 
 				});	
 			},
-			//changes by Swetha for DMND0003239 added fragment on click of Link RDR VIN button on 2nd Oct, 2023-----End
+			
 			onclickNo:function() {
 				//sap.ui.getCore().byId("rdrvin").setValue('');
 				sap.ui.getCore().byId("rdrvin").setValueState("None");	
@@ -1571,5 +1571,6 @@ sap.ui.define([
 				sap.ui.getCore().byId("idconfirm").setVisible(false);
 				sap.ui.getCore().byId("idYesNo").setVisible(false);
 			},
+			//changes by Swetha for DMND0003239 for RDR VIN validation on 3rd Oct, 2023 END
 		});
 	});
