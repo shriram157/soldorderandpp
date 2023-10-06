@@ -1391,9 +1391,7 @@ sap.ui.define([
 					sap.ui.getCore().byId("idYesNo").setVisible(false);
 				}
 				this._oDialog.open();
-				//	var oDialogBox = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.LinkRDRVIN", this);
-				//	this.getView().addDependent(oDialogBox);
-				//	oDialogBox.open();
+				
 			},
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End
 			//changes by swetha for DMND0003239 to close the Dialog on 19th Sept, 2023-----Start
