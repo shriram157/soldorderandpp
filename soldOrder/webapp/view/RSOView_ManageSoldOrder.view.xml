@@ -280,7 +280,7 @@
 							<Label/>
 							<Button text="{i18n>CreditSimulation}" id="btn_SimulatePrice" press="_simulateprice"> <!--changes by swetha for DMND0003239-->
 							<layoutData>
-								<l:GridData span="L4"/>
+								<l:GridData span="L6"/>
 							</layoutData>
 							</Button>
 						</f:content>
