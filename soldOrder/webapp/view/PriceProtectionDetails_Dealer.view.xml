@@ -78,7 +78,7 @@
 								class="marginCorners" visibleRowCount="10"> <!--change 24 sep, earlier 7-->
 								<t:extension>
 									<Toolbar>
-										<Title id="tableHeader" text="{detailView>/tableCount}"/>
+										<Title id="tableHeader" text="{oCountModel>/num}/{oCountModel>/totalCount}"/>
 										<ToolbarSpacer/>
 										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
 											<layoutData>
