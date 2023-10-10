@@ -269,7 +269,7 @@ sap.ui.define([
 					console.log("data....."+data);
 					console.log("clicks...."+clicks);
 					var oCountModel =new sap.ui.model.json.JSONModel();
-				     oCountModel.setData({"totalCount":data,"current":num });
+				     oCountModel.setData({recipient :{totalCount:data,current:num} });
 				     sap.ui.getCore().setModel(oCountModel,"oCountModel");
 					
 					},
@@ -550,7 +550,7 @@ sap.ui.define([
 				clicks += 1;
 			}
 			num = clicks * 100;
-			sap.ui.getCore().getModel("oCountModel").setProperty("/current",num);
+			sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current",num);
 			PPD_DealerCont.data();
 			console.log("num......"+num);
 		},
