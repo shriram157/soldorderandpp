@@ -271,6 +271,7 @@ sap.ui.define([
 					var oCountModel =new sap.ui.model.json.JSONModel();
 				     oCountModel.setData({recipient :{totalCount:data,current:num} });
 				     sap.ui.getCore().setModel(oCountModel,"oCountModel");
+				     PPD_DealerCont.getView().setModel(oCountModel, "oCountModel");
 					
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
