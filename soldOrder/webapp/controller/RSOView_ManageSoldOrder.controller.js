@@ -394,7 +394,8 @@ sap.ui.define([
 				var sMsg = oBundle.getText("mangSoldOrder", [req]);
 				/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 						'ChatMessages');*/
-				var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
+				//var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");    //changes by Swetha for DMND0003239 for Credit Simulation button
+				var _Eligilibity = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText("Eligibility");
 				if (_Eligilibity == "YES") {
 					attachButton.setEnabled(true);
 				} else {
