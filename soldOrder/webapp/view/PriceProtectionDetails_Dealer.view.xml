@@ -16,8 +16,8 @@
 										layout="ResponsiveGridLayout">
 										<f:content>
 											<VBox>
-												<Label text="{oCountModel/num}"/>
-												<Text text="{oCountModel/totalCount}"/>
+												<!--<Label text="{oCountModel/num}"/>-->
+												<!--<Text text="{oCountModel/totalCount}"/>-->
 												<Label text="{i18n>status}" class="TableLabel">
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
@@ -81,9 +81,10 @@
 								<!--change 24 sep, earlier 7-->
 								<t:extension>
 									<Toolbar>
-										<Label text="{oCountModel>num}"/>
-										<Label text="{oCountModel>totalCount}"/>
-										<Text text="{oCountModel/num}/{oCountModel/totalCount}"/>
+										<!--<Label text="{oCountModel>num}"/>-->
+										<!--<Label text="{oCountModel>totalCount}"/>-->
+										<!--parts: [{path: "oCountModel/num" },{path: "oCountModel/totalCount"}],-->
+										<Text text="{	parts: [{path: "oCountModel/num" },{path: "oCountModel/totalCount"}]}"/>
 										<!--<Title id="tableHeader" text="{oCountModel>/num}/{oCountModel>/totalCount}"/>-->
 										<ToolbarSpacer/>
 										<SearchField id="searchOrders" liveChange="onLiveSOChange" showSearchButton="true" placeholder="{i18n>SearchPlaceholder}">
@@ -186,7 +187,7 @@
 							</t:Table>
 							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
 								<l:content>
-									<Label text="{oCountModel/num}/{oCountModel/totalCount}"/>
+									<Label text="{parts: [{path: "oCountModel/num" },{path: "oCountModel/totalCount"}]}"/>
 									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
 								</l:content>
 							</l:Grid>
