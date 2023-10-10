@@ -76,7 +76,7 @@
 												</MultiComboBox>
 												<ComboBox  xmlns="sap.m" id="cb_dealer_PPD_D" width="300px"  showSecondaryValues="true" filterSecondaryValues="true" value=""
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}"
-													items="{path: 'BpDealerModel>/', sorter: { path: 'BusinessPartner' }, length:750 }"selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
+													items="{path: 'LoginUserModel>/', sorter: { path: 'BusinessPartner' }, length:750 }"selectionChange="_refreshCombo" class="sapUiMediumMarginEnd">
 													<!--<items>--><!--items="{LoginUserModel>/BpDealerModel}"-->
 													<core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}"
 														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
