@@ -187,7 +187,7 @@
 							</t:Table>
 							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
 								<l:content>
-									<Label text="{parts: [{path: 'oCountModel/recipient/current'},{path: 'oCountModel/recipient/totalCount'}],formatter:.tableCount}"/>
+									<Label text="{parts: [{path: 'oCountModel/recipient/current'},{path: 'oCountModel/recipient/totalCount'}],formatter:'toyota.ca.SoldOrder.util.formatter.tableCount'}"/>
 								<!--<Label text="{oCountModel>/recipient/current}"/>-->
 									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
 								</l:content>
