@@ -550,8 +550,9 @@ sap.ui.define([
 				clicks += 1;
 			}
 			num = clicks * 100;
-			sap.ui.getCore().getModel("oCountModel").setProperty("current",num);
+			sap.ui.getCore().getModel("oCountModel").setProperty("/current",num);
 			PPD_DealerCont.data();
+			console.log("num......"+num);
 		},
 
 		data: function (oEvent) {
