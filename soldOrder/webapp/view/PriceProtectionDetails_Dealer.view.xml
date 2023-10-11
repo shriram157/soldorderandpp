@@ -82,7 +82,7 @@
 													<!--<items>--><!--items="{LoginUserModel>/BpDealerModel}"--><!--	text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"-->
 													<core:ListItem xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}"
 													text="{parts:{[path:'LoginUserModel>BusinessPartnerKey'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
-													additionalText="{parts:{[path:'LoginUserModel&gt;BusinessPartnerName'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
+													additionalText="{parts:[{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter:'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
 														id="item12"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
