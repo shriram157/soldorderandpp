@@ -721,6 +721,8 @@ sap.ui.define([
 								currentCallData = currentCallData + data.d.results.length;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
 								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
+								PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 							}
 
 							for (var m = 0; m < data.d.results.length; m++) {
@@ -733,14 +735,20 @@ sap.ui.define([
 								if (data.d.results.length > 1) {
 									currentCallData = data.d.results.length;
 									sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+									PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 								} else {
 									currentCallData = 0;
 									sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+									PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 								}
 
 							} else {
 								currentCallData = currentCallData + data.d.results.length;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 							}
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
@@ -826,14 +834,20 @@ sap.ui.define([
 									if (data.d.results.length > 1) {
 										currentCallData = data.d.results.length;
 										sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+										PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 									} else {
 										currentCallData = 0;
 										sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+										PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 									}
 
 								} else {
 									currentCallData = currentCallData + data.d.results.length;
 									sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+									PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 								}
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
@@ -907,6 +921,8 @@ sap.ui.define([
 									currentCallData = currentCallData + data.d.results.length;
 									sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
 									sap.ui.getCore().getModel("oCountModel").updateBindings(true);
+									PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 								}
 
 								for (var m = 0; m < data.d.results.length; m++) {
@@ -919,14 +935,20 @@ sap.ui.define([
 									if (data.d.results.length > 1) {
 										currentCallData = data.d.results.length;
 										sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+										PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 									} else {
 										currentCallData = 0;
 										sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+										PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 									}
 
 								} else {
 									currentCallData = currentCallData + data.d.results.length;
 									sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+									PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+										PPD_DealerCont.getView().getModel("oCountModel").refresh();
 								}
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
