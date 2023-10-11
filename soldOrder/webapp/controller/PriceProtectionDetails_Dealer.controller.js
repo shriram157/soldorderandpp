@@ -323,8 +323,8 @@ sap.ui.define([
 						// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
 						// 	} else {
 						currentCallData = 0;
-						sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results);
-						PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results);
+						sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+						PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
 						sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 						PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
 						PPD_DealerCont.getView().getModel("oCountModel").refresh();
@@ -411,8 +411,8 @@ sap.ui.define([
 							// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
 							// 	} else {
 							currentCallData = 0;
-							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results);
-							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results);
+							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
 							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
 							PPD_DealerCont.getView().getModel("oCountModel").refresh();
@@ -497,8 +497,8 @@ sap.ui.define([
 							// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
 							// 	} else {
 							currentCallData = 0;
-							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results);
-							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results);
+							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
 							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
 							PPD_DealerCont.getView().getModel("oCountModel").refresh();
@@ -590,8 +590,8 @@ sap.ui.define([
 					// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
 					// 	} else {
 							currentCallData = 0;
-							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData+data.d.results);
-							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData+data.d.results);
+							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData+data.d.results.length);
+							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData+data.d.results.length);
 							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
 							PPD_DealerCont.getView().getModel("oCountModel").refresh();
