@@ -67,16 +67,16 @@
 												</Label>
 												<MultiComboBox  id="mcb_dealer_PPD_D" width="300px" showSecondaryValues="true" filterSecondaryValues="true"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" selectionChange="_refresh"
-													items="{LoginUserModel>/BpDealerModel}" class="sapUiMediumMarginEnd">
+													items="{path: 'LoginUserModel>/', sorter: { path: 'BusinessPartner' }, length:750 }" class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
 														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
-												<ComboBox  xmlns="sap.m" id="cb_dealer_PPD_D" width="300px"  showSecondaryValues="true" filterSecondaryValues="true" value=""
+												<ComboBox  xmlns="sap.m" id="cb_dealer_PPD_D" width="300px"  showSecondaryValues="true" filterSecondaryValues="true"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}"
-													selectionChange="_refreshCombo" class="sapUiMediumMarginEnd" items="{LoginUserModel>/BpDealerModel}">
+													selectionChange="_refreshCombo" class="sapUiMediumMarginEnd" items="{path: 'LoginUserModel>/', sorter: { path: 'BusinessPartner' }, length:750 }">
 													<!--<items>--><!--items="{LoginUserModel>/BpDealerModel}"-->
 													<core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}"
 														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
