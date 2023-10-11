@@ -315,14 +315,17 @@ sap.ui.define([
 							if (data.d.results.length > 1) {
 								currentCallData = data.d.results.length;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							} else {
 								currentCallData = 0;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							}
 
 						} else {
 							currentCallData = currentCallData + data.d.results.length;
 							sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 						}
 						DataModel.setData(data.d.results);
 						DataModel.updateBindings(true);
@@ -389,14 +392,17 @@ sap.ui.define([
 							if (data.d.results.length > 1) {
 								currentCallData = data.d.results.length;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							} else {
 								currentCallData = 0;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							}
 
 						} else {
 							currentCallData = currentCallData + data.d.results.length;
 							sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 						}
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
@@ -461,14 +467,17 @@ sap.ui.define([
 							if (data.d.results.length > 1) {
 								currentCallData = data.d.results.length;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							} else {
 								currentCallData = 0;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							}
 
 						} else {
 							currentCallData = currentCallData + data.d.results.length;
 							sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 						}
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
@@ -540,14 +549,17 @@ sap.ui.define([
 							if (data.d.results.length > 1) {
 								currentCallData = data.d.results.length;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							} else {
 								currentCallData = 0;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							}
 
 						} else {
 							currentCallData = currentCallData + data.d.results.length;
 							sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 						}
 					DataModel.setData(data.d.results);
 					DataModel.updateBindings(true);
@@ -669,14 +681,17 @@ sap.ui.define([
 							if (data.d.results.length > 1) {
 								currentCallData = data.d.results.length;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							} else {
 								currentCallData = 0;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							}
 
 						} else {
 							currentCallData = currentCallData + data.d.results.length;
 							sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 						}
 
 							for (var m = 0; m < data.d.results.length; m++) {
@@ -753,14 +768,17 @@ sap.ui.define([
 							if (data.d.results.length > 1) {
 								currentCallData = data.d.results.length;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current",currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							} else {
 								currentCallData = 0;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							}
 
 						} else {
 							currentCallData = currentCallData + data.d.results.length;
 							sap.ui.getCore().getModel("oCountModel").setProperty("/current",currentCallData);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 						}
 
 								for (var m = 0; m < data.d.results.length; m++) {
@@ -839,14 +857,17 @@ sap.ui.define([
 							if (data.d.results.length > 1) {
 								currentCallData = data.d.results.length;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							} else {
 								currentCallData = 0;
 								sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 							}
 
 						} else {
 							currentCallData = currentCallData + data.d.results.length;
 							sap.ui.getCore().getModel("oCountModel").setProperty("/current", currentCallData);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
 						}
 
 								for (var m = 0; m < data.d.results.length; m++) {
