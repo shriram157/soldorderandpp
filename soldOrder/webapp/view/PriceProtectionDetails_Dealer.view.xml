@@ -69,7 +69,9 @@
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" selectionChange="_refresh"
 													items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}" class="sapUiMediumMarginEnd">
 													<core:ListItem key="{LoginUserModel>BusinessPartnerKey}"
-														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
+													text="{path:'LoginUserModel>BusinessPartnerKey', formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
+													additionaltext="{path:'LoginUserModel>BusinessPartnerName',formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
+													<!--text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>-->
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -77,9 +79,10 @@
 												<ComboBox  xmlns="sap.m" id="cb_dealer_PPD_D" width="300px"  showSecondaryValues="true" 
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}"
 													selectionChange="_refreshCombo" class="sapUiMediumMarginEnd" items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}">
-													<!--<items>--><!--items="{LoginUserModel>/BpDealerModel}"-->
+													<!--<items>--><!--items="{LoginUserModel>/BpDealerModel}"--><!--	text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"-->
 													<core:ListItem xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}"
-														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
+													text="{path:'LoginUserModel>BusinessPartnerKey',formatter:'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
+													additionaltext="{path:'LoginUserModel&gt;BusinessPartnerName',formatter:'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
 														id="item12"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
