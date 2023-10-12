@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m"
 xmlns:tnt="sap.tnt">
-	<Dialog title="{i18n>CancelPP}"contentWidth="50%" contentHeight="30%">
+	<Dialog title="{i18n>CancelPP}" contentWidth="50%" contentHeight="30%">
 		<content>
 			<VBox>
 				<f:SimpleForm>

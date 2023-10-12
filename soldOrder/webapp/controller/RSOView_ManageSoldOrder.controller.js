@@ -1600,6 +1600,62 @@ sap.ui.define([
 			},
 			onclickCancelPPNo:function(oEvent) {
 				this._CPPoDialog.close();	
-			}
+			},
+			onclickCancelPPYes:function() {
+				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
+				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus");
+				var _data = {
+					"ZzsoReqNo": zrequest,
+					"Status": status 
+				};
+				var dataString = JSON.stringify(
+					_data
+				);
+				if (!RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken()) {
+					RSO_MSO_controller.getView().getModel('mainservices').refreshSecurityToken();
+				}
+				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/PP_Cancel";
+				$.ajax({
+					url: oUrl,
+					type: "POST",
+					headers: {
+						accept: 'application/json',
+						'content-type': 'application/json'
+					},
+					data: dataString,
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader('X-CSRF-Token', token);
+						xhr.setRequestHeader('Content-Type', "application/json");
+
+					},
+					dataType: 'json',
+					success: function (data, textStatus, jqXHR) {
+						var oModel = new sap.ui.model.json.JSONModel();
+						oModel.setData(data.d);
+						sap.ui.getCore().setModel(oModel, "CancelPPModel");
+						RSO_MSO_controller.getView().setModel(oModel, "CancelPPModel");	
+					//	if (sap.ui.getCore().getModel("CancelPPModel").getData().MSG_POSTING_FLAG == "E") {
+					//		var errMsg = sap.ui.getCore().getModel("CancelPPModel").getData().MSG_POSTING;
+					//		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
+					//		sap.m.MessageBox.Action.OK, null, null);	
+					//	} else if (sap.ui.getCore().getModel("CancelPPModel").getData().MSG_POSTING_FLAG == "S") {
+					//		var sMsg = sap.ui.getCore().getModel("CancelPPModel").getData().MSG_POSTING;
+					//		sap.m.MessageBox.show(sMsg,sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
+					//	    sap.m.MessageBox.Action.OK, null, null);
+					//	} else {
+					//		var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+					//		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
+					//		sap.m.MessageBox.Action.OK, null, null);	
+					//	}
+					},
+					error: function (oError) {
+						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
+							sap.m.MessageBox.Action.OK, null, null);
+					}
+
+				});	
+			},
 		});
 	});
