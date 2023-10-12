@@ -34,7 +34,7 @@ xmlns:tnt="sap.tnt">
 			</VBox>
 		</content>
 		<endButton>
-			<Button text="Close" press="onCloseSDialog"></Button>
+			<Button text="Close" press="onclickCancelPPNo"></Button>
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
