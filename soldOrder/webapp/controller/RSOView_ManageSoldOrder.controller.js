@@ -1606,8 +1606,8 @@ sap.ui.define([
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus");
 				var host = RSO_MSO_controller.host();
 				var _data = {
-					"ZzsoReqNo": zrequest,
-					"Status": status 
+					"Status": status,
+					"ZzsoReqNo": zrequest
 				};
 				var dataString = JSON.stringify(
 					_data
