@@ -1411,7 +1411,8 @@ sap.ui.define([
 			_simulateprice: function () {
 				var host = RSO_MSO_controller.host();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet?$filter=(ZZSO_REQ_NO eq '" + zrequest + "')";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet?$filter=(ZZSO_REQ_NO eq '" + zrequest + "' and Language eq '" +language+ "')";
+																													
 				var that = this;
 				$.ajax({
 					url: oUrl,
