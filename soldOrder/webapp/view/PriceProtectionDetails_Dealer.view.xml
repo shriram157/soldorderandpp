@@ -55,14 +55,14 @@
 													items="{ path: 'OrderTypeModel>/PriceProtection_OrderType', sorter: { path: 'key' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{OrderTypeModel>key}" text="{OrderTypeModel>text}"/>
 													<layoutData>
-														<l:GridData span="L2 M12 S12"/>
+														<l:GridData span="L1 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
 											</VBox>
 											<VBox>
 												<Label visible="true" text="{i18n>dealer}" class="TableLabel">
 													<layoutData>
-														<l:GridData span="L2 M12 S12"/>
+														<l:GridData span="L1 M12 S12"/>
 													</layoutData>
 												</Label>
 												<MultiComboBox  id="mcb_dealer_PPD_D" width="300px" showSecondaryValues="true" 
@@ -77,7 +77,7 @@
 												<ComboBox  xmlns="sap.m" id="cb_dealer_PPD_D" width="300px"  showSecondaryValues="true" 
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}"
 													change="_refreshCombo" class="sapUiMediumMarginEnd" items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}">
-													<!--<items>--><!--items="{LoginUserModel>/BpDealerModel}"--><!--	text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"-->
+													<!--<items>--><!--changed selectionChange to change for DMND0003239 by Swetha on 11th Oct, 2023-->
 													<core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}"
 														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
 														id="item12"/>

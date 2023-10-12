@@ -509,6 +509,13 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(false)
 					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setEnabled(false); //changes by swetha for DMND0003239
 				}
+				//changes by swetha for DMND0003239 on 12th Oct, 2023 Zone user should not be able to see Approve Price Protection and Reject Price Protection Buttons.
+				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
+				if (userType == "TCI_Zone_User") {
+					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setVisible(false);
+					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setVisible(false);
+				}
+				
 				var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 				if (zvtn != "") {
 					var OBJNew = {};
