@@ -1613,11 +1613,11 @@ sap.ui.define([
 						Status: status
 					}, // function import parameters
 					success: function (data, response) {
-						if (data.type=='S') {
-							sap.m.MessageBox.show(data.message, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
+						if (data.Type=='S') {
+							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
 								sap.m.MessageBox.Action.OK, null, null);		
 						} else {
-							sap.m.MessageBox.show(data.message, sap.m.MessageBox.Icon.ERROR, "Error",
+							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error",
 							sap.m.MessageBox.Action.OK, null, null);	
 						}
 					//	var oModel = new sap.ui.model.json.JSONModel();
