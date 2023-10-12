@@ -393,6 +393,12 @@
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>
 						</Button>
+						<!--changes for DMND0003239 for Cancel PP claim-->
+						<Button id="btn_cancelPPClaim_RSO_MSO" text="{i18n>CancelPP}" press="onCancelPP">
+							<layoutData>
+								<l:GridData span="L2 M4 S6"/>
+							</layoutData>
+						</Button>
 					</l:Grid>
 					<!--	<HBox class="justifyContentEnd marginCornercsBottom marginCornersRight">
 						<items>

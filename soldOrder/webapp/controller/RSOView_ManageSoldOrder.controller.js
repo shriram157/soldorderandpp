@@ -515,7 +515,18 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_ApprPriceProt_RSO_MSO").setVisible(false);
 					RSO_MSO_controller.getView().byId("btn_RejPriceProt_RSO_MSO").setVisible(false);
 				}
-				
+				//Changes by swetha for DMND0003239 on 12th Oct, 2023 Cancel PP Claim
+				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "") {
+					if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW") || 
+						(RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "OPEN") ||
+						(RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "PRE-APPROVED")) {
+							RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setVisible(true);
+							RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setEnabled(true);
+							
+					} else {
+						RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setEnabled(false);	
+					}
+				}
 				var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 				if (zvtn != "") {
 					var OBJNew = {};
@@ -1579,5 +1590,16 @@ sap.ui.define([
 				sap.ui.getCore().byId("idYesNo").setVisible(false);
 			},
 			//changes by Swetha for DMND0003239 for RDR VIN validation on 3rd Oct, 2023 END
+			onCancelPP:function() {
+				if (!this._CPPoDialog) {
+
+					this._CPPoDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CancelPP", this);
+					this.getView().addDependent(this._CPPoDialog);
+				}
+				this._CPPoDialog.open();
+			},
+			onclickCancelPPNo:function(oEvent) {
+				this._CPPoDialog.close();	
+			}
 		});
 	});
