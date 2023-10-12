@@ -1612,7 +1612,7 @@ sap.ui.define([
 						ZzsoReqNo: zrequest,
 						Status: status
 					}, // function import parameters
-					success: function (data, textStatus, jqXHR) {
+					success: function (data, response) {
 						var oModel = new sap.ui.model.json.JSONModel();
 						oModel.setData(data.d);
 						sap.ui.getCore().setModel(oModel, "CancelPPModel");
