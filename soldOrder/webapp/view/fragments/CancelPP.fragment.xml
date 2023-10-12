@@ -33,6 +33,8 @@ xmlns:tnt="sap.tnt">
 				</f:SimpleForm>
 			</VBox>
 		</content>
-		
+		<endButton>
+			<Button text="Close" press="onCloseSDialog"></Button>
+		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
