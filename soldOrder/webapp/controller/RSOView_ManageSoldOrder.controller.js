@@ -395,7 +395,7 @@ sap.ui.define([
 				/*	AppController.chatMessageNum = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 						'ChatMessages');*/
 				var _Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("Eligilibity");
-			//	var _Eligilibity = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText("Eligibility");
+				//	var _Eligilibity = RSO_MSO_controller.getView().byId("RSO_PRC_Eligilibity").getText("Eligibility");
 				if (_Eligilibity == "YES") {
 					attachButton.setEnabled(true);
 				} else {
@@ -517,14 +517,14 @@ sap.ui.define([
 				}
 				//Changes by swetha for DMND0003239 on 12th Oct, 2023 Cancel PP Claim
 				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "") {
-					if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW") || 
+					if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW") ||
 						(RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "OPEN") ||
 						(RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "PRE-APPROVED")) {
-							RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setVisible(true);
-							RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setEnabled(true);
-							
+						RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setVisible(true);
+						RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setEnabled(true);
+
 					} else {
-						RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setEnabled(false);	
+						RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setEnabled(false);
 					}
 				}
 				var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
@@ -1410,7 +1410,7 @@ sap.ui.define([
 					sap.ui.getCore().byId("idYesNo").setVisible(false);
 				}
 				this._oDialog.open();
-				
+
 			},
 			//changes by swetha for DMND0003239 added fragment on click of Link RDR VIN button on 19th Sept, 2023-----End
 			//changes by swetha for DMND0003239 to close the Dialog on 19th Sept, 2023-----Start
@@ -1422,8 +1422,9 @@ sap.ui.define([
 			_simulateprice: function () {
 				var host = RSO_MSO_controller.host();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet?$filter=(ZZSO_REQ_NO eq '" + zrequest + "' and Language eq '" +language+ "')";
-																													
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Simulate_PriceSet?$filter=(ZZSO_REQ_NO eq '" + zrequest + "' and Language eq '" + language +
+					"')";
+
 				var that = this;
 				$.ajax({
 					url: oUrl,
@@ -1473,9 +1474,10 @@ sap.ui.define([
 				var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue(); //changes by swetha for DMND0003239 for VIN validation
 				var Zseries = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries');
 				var ZModel_Year = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzmoyr');
-				var ZDealercode =  this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
+				var ZDealercode = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SERIES eq '" +Zseries + "' and MODEL_YEAR eq '" +ZModel_Year+ "' and SO_DEALER eq '" +ZDealercode+ "')" ;
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin + "' and SERIES eq '" + Zseries +
+					"' and MODEL_YEAR eq '" + ZModel_Year + "' and SO_DEALER eq '" + ZDealercode + "')";
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -1487,30 +1489,30 @@ sap.ui.define([
 						sap.ui.getCore().setModel(oModel, "LinkRDRModel");
 						RSO_MSO_controller.getView().setModel(oModel, "LinkRDRModel");
 						var msg = RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MESSAGE;
-						if (Zlinkrdrvin !="" && RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "E") {
+						if (Zlinkrdrvin != "" && RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "E") {
 							sap.m.MessageToast.show(msg);
-							sap.ui.getCore().byId("rdrvin").setValueState("None");	
+							sap.ui.getCore().byId("rdrvin").setValueState("None");
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
 							sap.ui.getCore().byId("idvin").setVisible(false);
 							sap.ui.getCore().byId("idconfirm").setVisible(false);
 							sap.ui.getCore().byId("idYesNo").setVisible(false);
-						} else if(Zlinkrdrvin !="" && RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "S") {
-							sap.ui.getCore().byId("rdrvin").setValueState("None");	
+						} else if (Zlinkrdrvin != "" && RSO_MSO_controller.getView().getModel("LinkRDRModel").getData().results[0].MSG_FLAG == "S") {
+							sap.ui.getCore().byId("rdrvin").setValueState("None");
 							sap.ui.getCore().byId("idrdr_date").setVisible(true);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(true);
-							sap.ui.getCore().byId("idvin").setVisible(true);	
+							sap.ui.getCore().byId("idvin").setVisible(true);
 							sap.ui.getCore().byId("idconfirm").setVisible(true);
 							sap.ui.getCore().byId("idYesNo").setVisible(true);
 						} else {
-							sap.ui.getCore().byId("rdrvin").setValueState("Error");	
+							sap.ui.getCore().byId("rdrvin").setValueState("Error");
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
 							sap.ui.getCore().byId("idvin").setVisible(false);
 							sap.ui.getCore().byId("idconfirm").setVisible(false);
 							sap.ui.getCore().byId("idYesNo").setVisible(false);
 						}
-						
+
 					},
 					error: function (oError) {
 
@@ -1519,13 +1521,13 @@ sap.ui.define([
 			},
 			//changes by Swetha for DMND0003239 added fragment on click of Link RDR VIN button on 2nd Oct, 2023-----End
 			//changes by Swetha for DMND0003239 for RDR VIN validation on 3rd Oct, 2023 START 
-			onclickYes: function(){
+			onclickYes: function () {
 				//var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
 				var rdrvin = sap.ui.getCore().getModel("LinkRDRModel").getData().results[0].VHVIN;
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var host = RSO_MSO_controller.host();
 				var _data = {
-					"VHVIN": rdrvin ,
+					"VHVIN": rdrvin,
 					"SO_NUMBER": zrequest
 
 				};
@@ -1537,7 +1539,7 @@ sap.ui.define([
 				}
 				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet";
-			//	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +zrequest+ "')";
+				//	var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin +"' and SO_NUMBER eq '" +zrequest+ "')";
 				$.ajax({
 					url: oUrl,
 					type: "POST",
@@ -1556,19 +1558,19 @@ sap.ui.define([
 						var oModel = new sap.ui.model.json.JSONModel();
 						oModel.setData(data.d);
 						sap.ui.getCore().setModel(oModel, "ClickYesModel");
-						RSO_MSO_controller.getView().setModel(oModel, "ClickYesModel");	
+						RSO_MSO_controller.getView().setModel(oModel, "ClickYesModel");
 						if (sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING_FLAG == "E") {
 							var errMsg = sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING;
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
-							sap.m.MessageBox.Action.OK, null, null);	
+								sap.m.MessageBox.Action.OK, null, null);
 						} else if (sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING_FLAG == "S") {
 							var sMsg = sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING;
-							sap.m.MessageBox.show(sMsg,sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
-						    sap.m.MessageBox.Action.OK, null, null);
+							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
+								sap.m.MessageBox.Action.OK, null, null);
 						} else {
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
-							sap.m.MessageBox.Action.OK, null, null);	
+								sap.m.MessageBox.Action.OK, null, null);
 						}
 					},
 					error: function (oError) {
@@ -1577,12 +1579,12 @@ sap.ui.define([
 							sap.m.MessageBox.Action.OK, null, null);
 					}
 
-				});	
+				});
 			},
-			
-			onclickNo:function() {
+
+			onclickNo: function () {
 				//sap.ui.getCore().byId("rdrvin").setValue('');
-				sap.ui.getCore().byId("rdrvin").setValueState("None");	
+				sap.ui.getCore().byId("rdrvin").setValueState("None");
 				sap.ui.getCore().byId("idrdr_date").setVisible(false);
 				sap.ui.getCore().byId("idrdrcustname").setVisible(false);
 				sap.ui.getCore().byId("idvin").setVisible(false);
@@ -1590,7 +1592,7 @@ sap.ui.define([
 				sap.ui.getCore().byId("idYesNo").setVisible(false);
 			},
 			//changes by Swetha for DMND0003239 for RDR VIN validation on 3rd Oct, 2023 END
-			onCancelPP:function() {
+			onCancelPP: function () {
 				if (!this._CPPoDialog) {
 
 					this._CPPoDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.CancelPP", this);
@@ -1598,65 +1600,30 @@ sap.ui.define([
 				}
 				this._CPPoDialog.open();
 			},
-			onclickCancelPPNo:function(oEvent) {
-				this._CPPoDialog.close();	
+			onclickCancelPPNo: function (oEvent) {
+				this._CPPoDialog.close();
 			},
-			onclickCancelPPYes:function() {
+			onclickCancelPPYes: function () {
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus");
-				var host = RSO_MSO_controller.host();
-				var _data = {
-					"Status": status,
-					"ZzsoReqNo": zrequest
-				};
-				var dataString = JSON.stringify(
-					_data
-				);
-				if (!RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken()) {
-					RSO_MSO_controller.getView().getModel('mainservices').refreshSecurityToken();
-				}
-				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/PP_Cancel";
-				$.ajax({
-					url: oUrl,
-					type: "POST",
-					headers: {
-						accept: 'application/json',
-						'content-type': 'application/json'
-					},
-					data: dataString,
-					beforeSend: function (xhr) {
-						xhr.setRequestHeader('X-CSRF-Token', token);
-						xhr.setRequestHeader('Content-Type', "application/json");
-
-					},
-					dataType: 'json',
+				that.getView().getModel('mainservices').callFunction("/PP_Cancel", {
+					method: "POST",
+					urlParameters: {
+						ZzsoReqNo: zrequest,
+						Status: status
+					}, // function import parameters
 					success: function (data, textStatus, jqXHR) {
 						var oModel = new sap.ui.model.json.JSONModel();
 						oModel.setData(data.d);
 						sap.ui.getCore().setModel(oModel, "CancelPPModel");
-						RSO_MSO_controller.getView().setModel(oModel, "CancelPPModel");	
-					//	if (sap.ui.getCore().getModel("CancelPPModel").getData().MSG_POSTING_FLAG == "E") {
-					//		var errMsg = sap.ui.getCore().getModel("CancelPPModel").getData().MSG_POSTING;
-					//		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
-					//		sap.m.MessageBox.Action.OK, null, null);	
-					//	} else if (sap.ui.getCore().getModel("CancelPPModel").getData().MSG_POSTING_FLAG == "S") {
-					//		var sMsg = sap.ui.getCore().getModel("CancelPPModel").getData().MSG_POSTING;
-					//		sap.m.MessageBox.show(sMsg,sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
-					//	    sap.m.MessageBox.Action.OK, null, null);
-					//	} else {
-					//		var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-					//		sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
-					//		sap.m.MessageBox.Action.OK, null, null);	
-					//	}
+						RSO_MSO_controller.getView().setModel(oModel, "CancelPPModel");
 					},
 					error: function (oError) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
 							sap.m.MessageBox.Action.OK, null, null);
 					}
-
-				});	
+				});
 			},
 		});
 	});
