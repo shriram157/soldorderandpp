@@ -1613,10 +1613,17 @@ sap.ui.define([
 						Status: status
 					}, // function import parameters
 					success: function (data, response) {
-						var oModel = new sap.ui.model.json.JSONModel();
-						oModel.setData(data.d);
-						sap.ui.getCore().setModel(oModel, "CancelPPModel");
-						RSO_MSO_controller.getView().setModel(oModel, "CancelPPModel");
+						if (data.type=='S') {
+							sap.m.MessageBox.show(data.message, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
+								sap.m.MessageBox.Action.OK, null, null);		
+						} else {
+							sap.m.MessageBox.show(data.message, sap.m.MessageBox.Icon.ERROR, "Error",
+							sap.m.MessageBox.Action.OK, null, null);	
+						}
+					//	var oModel = new sap.ui.model.json.JSONModel();
+					//	oModel.setData(data.d);
+					//	sap.ui.getCore().setModel(oModel, "CancelPPModel");
+					//	RSO_MSO_controller.getView().setModel(oModel, "CancelPPModel");
 					},
 					error: function (oError) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
