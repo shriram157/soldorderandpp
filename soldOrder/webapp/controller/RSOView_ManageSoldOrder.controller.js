@@ -1606,7 +1606,7 @@ sap.ui.define([
 			onclickCancelPPYes: function () {
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus");
-				that.getView().getModel('mainservices').callFunction("/PP_Cancel", {
+				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/PP_Cancel", {
 					method: "POST",
 					urlParameters: {
 						ZzsoReqNo: zrequest,
