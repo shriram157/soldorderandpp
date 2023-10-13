@@ -12,7 +12,7 @@ sap.ui.define([
 ], function (BaseController, formatter, Sorter, Filter, FilterOperator, Export, ExportTypeCSV, exportLibrary, Spreadsheet, History) {
 	"use strict";
 	var PPD_DealerCont, clicks = 0,
-		currentCallData,
+	
 		num = 0,
 		oUrl,
 		pricepro = false;
@@ -312,33 +312,7 @@ sap.ui.define([
 						// 		console.log("DataModel.getData()", DataModel.getData());
 						// 	}
 						// } else {
-						//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////				
-						// if (currentCallData == undefined) {
-						// 	if (data.d.results.length > 1) {
-						// 		currentCallData = data.d.results.length;
-						// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-						// 		 PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-						// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-						// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-						// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-						// 	} else {
-						currentCallData = 0;
-						sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
-						PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
-						sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-						PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-						PPD_DealerCont.getView().getModel("oCountModel").refresh();
-						// }
-
-						// } else {
-						// 	currentCallData = currentCallData + data.d.results.length;
-						// 	sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-						// 	PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-						// 	sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-						// 	PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-						// 	PPD_DealerCont.getView().getModel("oCountModel").refresh();
-						// }
-						//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////				
+									
 						DataModel.setData(data.d.results);
 						DataModel.updateBindings(true);
 						// }
@@ -400,33 +374,6 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
-							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////				
-							// if (currentCallData == undefined) {
-							// 	if (data.d.results.length > 1) {
-							// 		currentCallData = data.d.results.length;
-							// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// 	} else {
-							currentCallData = 0;
-							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
-							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
-							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// 	}
-
-							// } else {
-							// 	currentCallData = currentCallData + data.d.results.length;
-							// 	sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 	PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 	sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-							// 	PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							// 	PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// }
-							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////			
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
 							// }
@@ -486,33 +433,7 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
-							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////			
-							// if (currentCallData == undefined) {
-							// 	if (data.d.results.length > 1) {
-							// 		currentCallData = data.d.results.length;
-							// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// 	} else {
-							currentCallData = 0;
-							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
-							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
-							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// 	}
-
-							// } else {
-							// 	currentCallData = currentCallData + data.d.results.length;
-							// 	sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 	PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 	sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-							// 	PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							// 	PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// }
-							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////				
+										
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
 							// }
@@ -579,33 +500,7 @@ sap.ui.define([
 					// 		console.log("DataModel.getData()", DataModel.getData());
 					// 	}
 					// } else {
-					//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////		
-					// if (currentCallData == undefined) {
-					// 	if (data.d.results.length > 1) {
-					// 		currentCallData = data.d.results.length;
-					// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-					// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-					// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-					// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-					// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-					// 	} else {
-							currentCallData = 0;
-							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData+data.d.results.length);
-							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData+data.d.results.length);
-							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							PPD_DealerCont.getView().getModel("oCountModel").refresh();
-					// 	}
-
-					// } else {
-					// 	currentCallData = currentCallData + data.d.results.length;
-					// 	sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-					// 	PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-					// 	sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-					// 	PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-					// 	PPD_DealerCont.getView().getModel("oCountModel").refresh();
-					// }
-					//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////	
+				
 					DataModel.setData(data.d.results);
 					DataModel.updateBindings(true);
 					// }
@@ -664,10 +559,10 @@ sap.ui.define([
 			} else {
 				clicks += 1;
 			}
-			//	num = clicks * 100;
-			// sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", num);
+				num = clicks * 100;
+		
 			PPD_DealerCont.data();
-			//console.log("num......" + num);
+			
 		},
 
 		data: function (oEvent) {
@@ -722,64 +617,14 @@ sap.ui.define([
 
 						var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
 						if (DataModel.getData().length != undefined) {
-							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////		
-							// if (currentCallData == undefined) {
-							// 	if (data.d.results.length > 1) {
-							// 		currentCallData = data.d.results.length;
-							// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// 	} else {
-							// 		currentCallData = 0;
-							// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// 	}
-
-							// } else {
-								currentCallData =PPD_DealerCont.getView().getModel("oCountModel").getProperty("/recipient/current")+ data.d.results.length;
-								sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-								PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// }
-							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////			
-
+					
 							for (var m = 0; m < data.d.results.length; m++) {
 								DataModel.getData().push(data.d.results[m]);
 								DataModel.updateBindings(true);
 
 							}
 						} else {
-							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////					
-							// if (currentCallData == undefined) {
-							// 	if (data.d.results.length > 1) {
-							// 		currentCallData = data.d.results.length;
-							// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// 	} else {
-							// 		currentCallData = 0;
-							// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-							// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// 	}
-
-							// } else {
-								currentCallData = 	PPD_DealerCont.getView().getModel("oCountModel").getProperty("/recipient/current") + data.d.results.length;
-								sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								PPD_DealerCont.getView().getModel("oCountModel").refresh();
-							// }
-							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////			
+									
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
 						}
@@ -831,33 +676,7 @@ sap.ui.define([
 
 							var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
 							if (DataModel.getData().length != undefined) {
-								//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////					
-								// if (currentCallData == undefined) {
-								// 	if (data.d.results.length > 1) {
-								// 		currentCallData = data.d.results.length;
-								// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// 	} else {
-								// 		currentCallData = 0;
-								// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// 	}
-
-								// } else {
-									currentCallData = 	PPD_DealerCont.getView().getModel("oCountModel").getProperty("/recipient/current") + data.d.results.length;
-									sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-									PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-									sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-									PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-									PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// }
-								//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////					
+											
 
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
@@ -865,30 +684,7 @@ sap.ui.define([
 
 								}
 							} else {
-								//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////					
-								// if (currentCallData == undefined) {
-								// 	if (data.d.results.length > 1) {
-								// 		currentCallData = data.d.results.length;
-								// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// 	} else {
-								// 		currentCallData = 0;
-								// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// 	}
-
-								// } else {
-									currentCallData = 	PPD_DealerCont.getView().getModel("oCountModel").getProperty("/recipient/current") + data.d.results.length;
-									sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-									PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-									PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-									PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// }
-								//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////						
+												
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
 							}
@@ -942,33 +738,7 @@ sap.ui.define([
 
 							var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
 							if (DataModel.getData().length != undefined) {
-								//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////				
-								// if (currentCallData == undefined) {
-								// 	if (data.d.results.length > 1) {
-								// 		currentCallData = data.d.results.length;
-								// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// 	} else {
-								// 		currentCallData = 0;
-								// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// 	}
-
-								// } else {
-									currentCallData = PPD_DealerCont.getView().getModel("oCountModel").getProperty("/recipient/current") + data.d.results.length;
-									sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-									PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-									sap.ui.getCore().getModel("oCountModel").updateBindings(true);
-									PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-									PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// }
-								//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////			
+										
 
 								for (var m = 0; m < data.d.results.length; m++) {
 									DataModel.getData().push(data.d.results[m]);
@@ -976,30 +746,7 @@ sap.ui.define([
 
 								}
 							} else {
-								//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////				
-								// if (currentCallData == undefined) {
-								// 	if (data.d.results.length > 1) {
-								// 		currentCallData = data.d.results.length;
-								// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// 	} else {
-								// 		currentCallData = 0;
-								// 		sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-								// 		PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// 	}
-
-								// } else {
-									currentCallData = 	PPD_DealerCont.getView().getModel("oCountModel").getProperty("/recipient/current") + data.d.results.length;
-									sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-									PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
-									PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
-									PPD_DealerCont.getView().getModel("oCountModel").refresh();
-								// }
-								//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////				
+										
 								DataModel.setData(data.d.results);
 								DataModel.updateBindings(true);
 							}
