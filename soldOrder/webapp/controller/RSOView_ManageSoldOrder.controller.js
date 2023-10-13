@@ -565,7 +565,7 @@ sap.ui.define([
 					// if (_SOType == "SO") {
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-					var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
+					var url = "/node/tci2/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 
 					$.ajax({
 						url: url,
