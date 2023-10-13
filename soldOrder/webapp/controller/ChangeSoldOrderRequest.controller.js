@@ -160,7 +160,8 @@ sap.ui.define([
 		/////////////////////////// INC0187445 Changes done by Minakshi on 25/03/2021 end
 
 		_onSubmit: function () {
-
+			var submitBtn = CSOR_controller.getView().byId("Btn_submit_CSOR");
+			submitBtn.setEnabled(false);                                          //changes by swetha for Submit button for INC0241290 on 2nd Oct, 2023
 			var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
 			var valSuffix = CSOR_controller.getView().byId("suffix_CSOR").getSelectedKey();
 			var valApx = CSOR_controller.getView().byId("apx_CSOR").getSelectedKey();
@@ -267,6 +268,7 @@ sap.ui.define([
 									success: function (data) {
 										// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",
 										// 	sap.m.MessageBox.Action.OK, null, null);
+										submitBtn.setEnabled(true);                                 //changes by Swetha for INC0241290 on 2nd Oct, 2023
 										if (data.ZzsoReqNo) {
 											CSOR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 												Soreq: data.ZzsoReqNo

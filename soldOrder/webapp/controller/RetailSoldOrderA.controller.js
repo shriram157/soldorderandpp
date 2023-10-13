@@ -1292,6 +1292,7 @@ sap.ui.define([
 					.m.MessageBox.Action.OK, null, null);
 			} else {
 				//submitBtn.setEnabled(true);
+				submitBtn.setEnabled(false);         //changes by swetha for INC0241290 on 26th Sept, 2023
 				RSOA_controller.submitSO();
 
 			}
