@@ -548,5 +548,10 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 		return sval;
 	}
+//	tableCount: function(current, totalCount)
+//	{
+//		var recordStatus = "["+current+" / "+totalCount+"]";
+//		return recordStatus;
+//	}
 
 };

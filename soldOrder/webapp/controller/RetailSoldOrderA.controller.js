@@ -535,6 +535,7 @@ sap.ui.define([
 					RSOA_controller.getView().byId("City_RSOA").setValue("");
 					RSOA_controller.getView().byId("Province_RSOA").setValue("");
 					RSOA_controller.getView().byId("PostalCode_RSOA").setValue("");
+					
 					if (data.ZzsoReqNo) {
 						RSOA_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 							Soreq: data.ZzsoReqNo
@@ -1200,7 +1201,7 @@ sap.ui.define([
 			var valProvince = RSOA_controller.getView().byId("Province_RSOA").getValue();
 			var valPostalCode = RSOA_controller.getView().byId("PostalCode_RSOA").getValue();
 			// var valLicense = RSOA_controller.getView().byId("License_RSOA").getValue();
-
+			
 			if (valModelYr == "" || valSuffix == "" || valSeries == "" || valCustName == "" || valETATo == "" || valETAFrom == "" ||
 				valColour ==
 				"" || valModel == "" || valApx == "" || valSalesType == "" || valContractDate == "" || valAddress == "" || valCity == "" ||
@@ -1291,7 +1292,7 @@ sap.ui.define([
 					.m.MessageBox.Icon.ERROR, errTitle, sap
 					.m.MessageBox.Action.OK, null, null);
 			} else {
-				//submitBtn.setEnabled(true);
+				submitBtn.setEnabled(false);         //changes by swetha for INC0241290 on 26th Sept, 2023
 				RSOA_controller.submitSO();
 
 			}
