@@ -555,6 +555,34 @@ sap.ui.define([
 			oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 			//	DMND0003455 changes done by Minakshi 13/12/2021
 			oUrl = oUrl + "and expiry ne 'X'" + "&$orderby=dealer_ord desc";
+				///////////////////////////////////////////////////////////////////////////////////////Shriram
+				var oCount = oUrl.replace("?$top=100&$skip=0&", "/$count?");
+				$.ajax({
+					url: oCount,
+					method: "GET",
+					async: false,
+					dataType: "json",
+					success: function (data, textStatus, jqXHR) {
+						console.log("data....." + data);
+						console.log("clicks...." + clicks);
+						//var oCountModel = new sap.ui.model.json.JSONModel();
+						sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/totalCount",data);
+						
+						// sap.ui.getCore().setModel(oCountModel, "oCountModel");
+						// PPD_DealerCont.getView().setModel(oCountModel, "oCountModel");
+
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+
+						var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+
+					}
+				});
+				////////////////////////////////////////////////////////////////////////////////////////Shriram
+			
+			
+			
 
 			$.ajax({
 				url: oUrl,
