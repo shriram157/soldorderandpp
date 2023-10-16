@@ -79,8 +79,8 @@
 													change="_refreshCombo" class="sapUiMediumMarginEnd" items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}" value="" selectedKey="">
 													<!--<items>--><!--changed selectionChange to change for DMND0003239 by Swetha on 11th Oct, 2023-->
 													<core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}"
-														text="{path:'LoginUserModel>BusinessPartnerKey'},formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
-														additionalText="{path:'LoginUserModel&gt;BusinessPartnerName'},formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
+														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"	
+														additionalText="{path:'LoginUserModel&gt;BusinessPartnerName'}"
 														id="item12"/>
 														<!--	text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"-->
 													<layoutData>
