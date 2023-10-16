@@ -666,19 +666,6 @@ toyota.ca.SoldOrder.util.formatter = {
 		} else {
 			return "TBD";
 		}
-	},
-	format1dealers: function (dealerno) {
-		if (dealerno) {
-			return dealerno.slice(-5) + "-" ;
-		}
-	},
-	format2dealers: function (dealername) {
-		if (dealername) {
-			return dealername;
-		}
-		else {
-			return "";
-		}
 	}
 
 };
