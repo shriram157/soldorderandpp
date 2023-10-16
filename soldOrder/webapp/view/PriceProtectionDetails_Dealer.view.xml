@@ -85,7 +85,7 @@
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
-													<Text text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}], formatter: '_fnFormatter'}" />
+													<Text text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}], formatter: 'toyota.ca.SoldOrder.util.formatter_fnFormatter'}" />
 												</ComboBox>
 											</VBox>
 										</f:content>
