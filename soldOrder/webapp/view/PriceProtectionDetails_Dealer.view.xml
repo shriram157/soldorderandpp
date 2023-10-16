@@ -78,6 +78,7 @@
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}"
 													change="_refreshCombo" class="sapUiMediumMarginEnd" items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}"
 													value="{path:'LoginUserModel>BusinessPartnerKey'}" selectedKey="{path:'LoginUserModel&gt;BusinessPartnerName'}">
+													<Text text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}], formatter: '.fnFormatter'}" />
 													<!--<items>--><!--changed selectionChange to change for DMND0003239 by Swetha on 11th Oct, 2023-->
 													<core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey}"
 														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"

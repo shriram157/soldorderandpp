@@ -1026,6 +1026,19 @@ sap.ui.define([
 			}
 
 		},
+		fnFormatter: function(text, key) {
+			var sText = "";
+
+			if (text && key) {
+				sText += (text + " (" + key + ")");
+			} else if (text) {
+				sText += text;
+			} else if (key) {
+				sText += key;
+			}
+
+			return sText;
+		},
 
 		// DMND0003562 changes done by Minakshi
 	});
