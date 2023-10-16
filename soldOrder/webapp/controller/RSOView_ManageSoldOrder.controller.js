@@ -1616,8 +1616,8 @@ sap.ui.define([
 						if (data.Type=='S') {
 							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
 								sap.m.MessageBox.Action.OK, null, null);		
-							 var UPriceStatus=RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus");	
-							 RSO_MSO_controller.getView().getModel("mainservices").setProperty('/PriceStatus', UPriceStatus);
+							 var UPriceStatus=	data.MessageV1;
+							 RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 						} else {
 							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error",
 							sap.m.MessageBox.Action.OK, null, null);	
