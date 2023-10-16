@@ -666,6 +666,19 @@ toyota.ca.SoldOrder.util.formatter = {
 		} else {
 			return "TBD";
 		}
+	},
+	_fnFormatter: function(text, key) {
+			var sText = "";
+
+			if (text && key) {
+				sText += (text + " (" + key + ")");
+			} else if (text) {
+				sText += text;
+			} else if (key) {
+				sText += key;
+			}
+
+			return sText;
 	}
 
 };
