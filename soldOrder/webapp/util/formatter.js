@@ -666,19 +666,6 @@ toyota.ca.SoldOrder.util.formatter = {
 		} else {
 			return "TBD";
 		}
-	},
-	Dealerdropdown: function(BusinessPartnerKey,BusinessPartnerName) {
-		var sText = "";
-
-			if (BusinessPartnerKey && BusinessPartnerName) {
-				sText += (BusinessPartnerKey + " (" + BusinessPartnerName + ")");
-			} else if (BusinessPartnerKey) {
-				sText += BusinessPartnerKey;
-			} else if (BusinessPartnerName) {
-				sText += BusinessPartnerName;
-			}
-
-			return sText;
 	}
 
 };
