@@ -671,6 +671,14 @@ toyota.ca.SoldOrder.util.formatter = {
 		if (dealerno) {
 			return dealerno.slice(-5) + "-" ;
 		}
+	},
+	format2dealers: function (dealername) {
+		if (dealername) {
+			return dealername;
+		}
+		else {
+			return "";
+		}
 	}
 
 };
