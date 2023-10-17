@@ -1567,6 +1567,7 @@ sap.ui.define([
 							var sMsg = sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING;
 							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
 								sap.m.MessageBox.Action.OK, null, null);
+							RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 						} else {
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
 							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
