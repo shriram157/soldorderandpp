@@ -666,6 +666,12 @@ toyota.ca.SoldOrder.util.formatter = {
 		} else {
 			return "TBD";
 		}
+	},
+	//// Price Protection-DMND0003239    Shriram  17-OCT-2023
+	tableCount: function(current, totalCount)
+	{
+		var recordStatus = "["+current+" / "+totalCount+"]";
+		return recordStatus;
 	}
 
 };
