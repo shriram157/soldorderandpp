@@ -12,6 +12,7 @@ sap.ui.define([
 ], function (BaseController, formatter, Sorter, Filter, FilterOperator, Export, ExportTypeCSV, exportLibrary, Spreadsheet, History) {
 	"use strict";
 	var PPD_DealerCont, clicks = 0,
+		currentCallData, // Shriram Price Protection Demand   17-OCT-2023
 		num = 0,
 		oUrl,
 		pricepro = false;
@@ -153,8 +154,8 @@ sap.ui.define([
 			var PPDseriesModel = new sap.ui.model.json.JSONModel();
 			var data = sap.ui.getCore().getModel("seriesModel").getData();
 			PPDseriesModel.setData(data);
-			PPD_DealerCont.getView().setModel(PPDseriesModel, "PPDseriesModel");                   
-			if (data[0].ModelSeriesNo !== "ALL") {                            
+			PPD_DealerCont.getView().setModel(PPDseriesModel, "PPDseriesModel");
+			if (data[0].ModelSeriesNo !== "ALL") {
 				PPDseriesModel.getData().unshift({
 					"Division": "",
 					"ModelSeriesNo": "ALL",
@@ -170,7 +171,7 @@ sap.ui.define([
 				});
 			}
 			PPD_DealerCont.getView().getModel("PPDseriesModel").updateBindings(true);
-	
+
 			// PPD_DealerCont.getBrowserLanguage();
 			this._fnInitDataLoad();
 			this.getOwnerComponent().getRouter().getRoute("PriceProtectionDetails_Dealer").attachPatternMatched(this._onObjectMatched, this);
@@ -179,7 +180,7 @@ sap.ui.define([
 		_fnInitDataLoad: function () {
 			var oModel = new sap.ui.model.json.JSONModel();
 			PPD_DealerCont.getView().setModel(oModel, "ppdModel");
-			sap.ui.getCore().setModel(oModel, "ppdModel");      //changes for TASK0179454
+			sap.ui.getCore().setModel(oModel, "ppdModel"); //changes for TASK0179454
 			var PPDLocalModel = new sap.ui.model.json.JSONModel();
 			PPDLocalModel.setData({
 				PPDBusyIndicator: false
@@ -207,7 +208,7 @@ sap.ui.define([
 			var mcb_status_PPD_D = PPD_DealerCont.getView().byId("mcb_status_PPD_D");
 			var mcb_ordTyp_PPD_D = PPD_DealerCont.getView().byId("mcb_ordTyp_PPD_D");
 			var mcb_dealer_PPD_D = PPD_DealerCont.getView().byId("mcb_dealer_PPD_D");
-			var mcb_series_PPD_D = PPD_DealerCont.getView().byId("mcb_series_PPD_D");   //changes by swetha for Series filter for DMND0003239
+			var mcb_series_PPD_D = PPD_DealerCont.getView().byId("mcb_series_PPD_D"); //changes by swetha for Series filter for DMND0003239
 			// changes done for demand DMND0003456 by Minakshi
 			var aSelectedStatusArr = mcb_status_PPD_D.getItems().filter(item =>
 				item.getKey() == "OPEN" || item.getKey() == "PRE-APPROVED" ||
@@ -216,7 +217,7 @@ sap.ui.define([
 			mcb_status_PPD_D.setSelectedItems(aSelectedStatusArr);
 			mcb_dealer_PPD_D.setSelectedItems(mcb_dealer_PPD_D.getItems());
 			mcb_ordTyp_PPD_D.setSelectedItems(mcb_ordTyp_PPD_D.getItems());
-			mcb_series_PPD_D.setSelectedItems(mcb_series_PPD_D.getItems());           //changes by swetha for Series filter for DMND0003239
+			mcb_series_PPD_D.setSelectedItems(mcb_series_PPD_D.getItems()); //changes by swetha for Series filter for DMND0003239
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 
 			var sLocation = window.location.host;
@@ -306,9 +307,38 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
-				
 				//	DMND0003455 changes done by Minakshi 13/12/2021
 				oUrl = oUrl + "and expiry ne 'X'" + "&$orderby=dealer_ord desc";
+				///////////////////////////////////////////////////////////////////////////////////////Price Protection-DMND0003239  Shriram  17-OCT-2023//////////////// 
+				var oCount = oUrl.replace("?$top=100&$skip=0&", "/$count?");
+				$.ajax({
+					url: oCount,
+					method: "GET",
+					async: false,
+					dataType: "json",
+					success: function (data, textStatus, jqXHR) {
+						console.log("data....." + data);
+						console.log("clicks...." + clicks);
+						var oCountModel = new sap.ui.model.json.JSONModel();
+						oCountModel.setData({
+							recipient: {
+								totalCount: data,
+								current: currentCallData
+							}
+						});
+						sap.ui.getCore().setModel(oCountModel, "oCountModel");
+						PPD_DealerCont.getView().setModel(oCountModel, "oCountModel");
+
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+
+						var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+
+					}
+				});
+				////////////////////////////////////////////////////////////////////////////////////////Price Protection-DMND0003239  Shriram  17-OCT-2023////////////////////////////////////////////
+
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -332,6 +362,17 @@ sap.ui.define([
 						// 		console.log("DataModel.getData()", DataModel.getData());
 						// 	}
 						// } else {
+						////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Price Protection-DMND0003239//Shriram 11-oct-2023/////////////////////////////////////////////				
+
+						currentCallData = 0;
+						sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+						PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+						sap.ui.getCore().getModel("oCountModel").updateBindings(true);
+						PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+						PPD_DealerCont.getView().getModel("oCountModel").refresh();
+						// }
+						////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Price Protection-DMND0003239//Shriram 11-oct-2023/////////////////////////////////////////////				
+
 						DataModel.setData(data.d.results);
 						DataModel.updateBindings(true);
 						// }
@@ -375,11 +416,40 @@ sap.ui.define([
 							oUrl = oUrl + " or ";
 						}
 					}
-				//changes by swetha for series filter for DMND0003239---end
+					//changes by swetha for series filter for DMND0003239---end
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 					//	DMND0003455 changes done by Minakshi 13/12/2021
 					oUrl = oUrl + "and expiry ne 'X'" + "&$orderby=dealer_ord desc";
+					///////////////////////////////////////////////////////////////////////////////////////Price Protection-DMND0003239    Shriram  11-OCT-2023
+					var oCount = oUrl.replace("?$top=100&$skip=0&", "/$count?");
+					$.ajax({
+						url: oCount,
+						method: "GET",
+						async: false,
+						dataType: "json",
+						success: function (data, textStatus, jqXHR) {
+							console.log("data....." + data);
+							console.log("clicks...." + clicks);
+							var oCountModel = new sap.ui.model.json.JSONModel();
+							oCountModel.setData({
+								recipient: {
+									totalCount: data,
+									current: currentCallData
+								}
+							});
+							sap.ui.getCore().setModel(oCountModel, "oCountModel");
+							PPD_DealerCont.getView().setModel(oCountModel, "oCountModel");
+
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+
+							var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+
+						}
+					});
+					////////////////////////////////////////////////////////////////////////////////////////Price Protection-DMND0003239    Shriram  11-OCT-2023
 
 					$.ajax({
 						url: oUrl,
@@ -404,6 +474,17 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
+							////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Price Protection-DMND0003239//Shriram 11-oct-2023/////////////////////////////////////////////				
+
+							currentCallData = 0;
+							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
+							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+							PPD_DealerCont.getView().getModel("oCountModel").refresh();
+							// }
+							////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Price Protection-DMND0003239//Shriram 11-oct-2023/////////////////////////////////////////////				
+
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
 							// }
@@ -448,9 +529,38 @@ sap.ui.define([
 							oUrl = oUrl + " or ";
 						}
 					}
-				//changes by swetha for series filter for DMND0003239---end
+					//changes by swetha for series filter for DMND0003239---end
 					//	DMND0003455 changes done by Minakshi 13/12/2021
 					oUrl = oUrl + "and expiry ne 'X'" + "&$orderby=dealer_ord desc";
+					///////////////////////////////////////////////////////////////////////////////////////Shriram
+					var oCount = oUrl.replace("?$top=100&$skip=0&", "/$count?");
+					$.ajax({
+						url: oCount,
+						method: "GET",
+						async: false,
+						dataType: "json",
+						success: function (data, textStatus, jqXHR) {
+							console.log("data....." + data);
+							console.log("clicks...." + clicks);
+							var oCountModel = new sap.ui.model.json.JSONModel();
+							oCountModel.setData({
+								recipient: {
+									totalCount: data,
+									current: currentCallData
+								}
+							});
+							sap.ui.getCore().setModel(oCountModel, "oCountModel");
+							PPD_DealerCont.getView().setModel(oCountModel, "oCountModel");
+
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+
+							var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+
+						}
+					});
+					////////////////////////////////////////////////////////////////////////////////////////Shriram
 					$.ajax({
 						url: oUrl,
 						method: "GET",
@@ -474,6 +584,16 @@ sap.ui.define([
 							// 		console.log("DataModel.getData()", DataModel.getData());
 							// 	}
 							// } else {
+							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////			
+							currentCallData = 0;
+							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
+							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+							PPD_DealerCont.getView().getModel("oCountModel").refresh();
+							// 	}
+							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////				
+
 							DataModel.setData(data.d.results);
 							DataModel.updateBindings(true);
 							// }
@@ -522,11 +642,36 @@ sap.ui.define([
 					oUrl = oUrl + " or ";
 				}
 			}
-				//changes by swetha for series filter for DMND0003239---end
+			//changes by swetha for series filter for DMND0003239---end
 			var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 			oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 			//	DMND0003455 changes done by Minakshi 13/12/2021
 			oUrl = oUrl + "and expiry ne 'X'" + "&$orderby=dealer_ord desc";
+			///////////////////////////////////////////////////////////////////////////////////////Shriram
+			var oCount = oUrl.replace("?$top=100&$skip=0&", "/$count?");
+			$.ajax({
+				url: oCount,
+				method: "GET",
+				async: false,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					console.log("data....." + data);
+					console.log("clicks...." + clicks);
+					//var oCountModel = new sap.ui.model.json.JSONModel();
+					sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/totalCount", data);
+
+					// sap.ui.getCore().setModel(oCountModel, "oCountModel");
+					// PPD_DealerCont.getView().setModel(oCountModel, "oCountModel");
+
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+
+					var errMsg = PPD_DealerCont.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+					sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+
+				}
+			});
+			////////////////////////////////////////////////////////////////////////////////////////Shriram
 
 			$.ajax({
 				url: oUrl,
@@ -551,6 +696,19 @@ sap.ui.define([
 					// 		console.log("DataModel.getData()", DataModel.getData());
 					// 	}
 					// } else {
+					//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////		
+					// 	} else {
+					currentCallData = 0;
+					sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+					PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData + data.d.results.length);
+					sap.ui.getCore().getModel("oCountModel").updateBindings(true);
+					PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+					PPD_DealerCont.getView().getModel("oCountModel").refresh();
+					// 	}
+
+					// }
+					//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////	
+
 					DataModel.setData(data.d.results);
 					DataModel.updateBindings(true);
 					// }
@@ -658,7 +816,7 @@ sap.ui.define([
 						oUrl = oUrl + " or ";
 					}
 				}
-				
+
 				//	DMND0003455 changes done by Minakshi 13/12/2021
 				oUrl = oUrl + "and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 				$.ajax({
@@ -673,7 +831,19 @@ sap.ui.define([
 							BtnNext.setEnabled(false);
 						} else {
 							BtnNext.setEnabled(true);
+						
 						}
+						
+							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////		
+
+							currentCallData = PPD_DealerCont.getView().getModel("oCountModel").getProperty("/recipient/current") + data.d.results.length;
+							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
+							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
+							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+							PPD_DealerCont.getView().getModel("oCountModel").refresh();
+							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////			
+
 
 						var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
 						if (DataModel.getData().length != undefined) {
@@ -727,7 +897,7 @@ sap.ui.define([
 							oUrl = oUrl + " or ";
 						}
 					}
-				//changes by swetha for series filter for DMND0003239---end
+					//changes by swetha for series filter for DMND0003239---end
 					//	DMND0003455 changes done by Minakshi 13/12/2021
 					oUrl = oUrl + "and expiry ne 'X'" + "&$orderby=dealer_ord desc";
 					$.ajax({
@@ -742,7 +912,18 @@ sap.ui.define([
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
+
 							}
+							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////					
+
+							currentCallData = PPD_DealerCont.getView().getModel("oCountModel").getProperty("/recipient/current") + data.d.results.length;
+							sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
+							PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
+							sap.ui.getCore().getModel("oCountModel").updateBindings(true);
+							PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+							PPD_DealerCont.getView().getModel("oCountModel").refresh();
+
+							//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////					
 
 							var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
 							if (DataModel.getData().length != undefined) {
@@ -796,7 +977,7 @@ sap.ui.define([
 							oUrl = oUrl + " or ";
 						}
 					}
-				//changes by swetha for series filter for DMND0003239---end
+					//changes by swetha for series filter for DMND0003239---end
 					var dealer = this.getView().byId("cb_dealer_PPD_D").getSelectedKey();
 					oUrl = oUrl + "(dealer_code eq '" + dealer + "'))";
 					oUrl = oUrl + "and expiry ne 'X'" + "&$orderby=dealer_ord desc"; //Changed by singhmi 05/02/2021
@@ -813,7 +994,16 @@ sap.ui.define([
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
+								
 							}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////					
+								currentCallData = PPD_DealerCont.getView().getModel("oCountModel").getProperty("/recipient/current") + data.d.results.length;
+								sap.ui.getCore().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
+								PPD_DealerCont.getView().getModel("oCountModel").setProperty("/recipient/current", currentCallData);
+								PPD_DealerCont.getView().getModel("oCountModel").updateBindings(true);
+								PPD_DealerCont.getView().getModel("oCountModel").refresh();
+
+								//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Shriram 11-oct-2023/////////////////////////////////////////////						
 
 							var DataModel = PPD_DealerCont.getView().getModel("ppdModel");
 							if (DataModel.getData().length != undefined) {

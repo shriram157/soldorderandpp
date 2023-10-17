@@ -22,7 +22,8 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_series_PPD_D" width="300px" selectionChange="_refresh" items="{ path: 'PPDseriesModel>/'}" class="sapUiMediumMarginEnd">
+												<MultiComboBox id="mcb_series_PPD_D" width="300px" selectionChange="_refresh" items="{ path: 'PPDseriesModel>/'}"
+													class="sapUiMediumMarginEnd">
 													<core:Item key="{PPDseriesModel>ModelSeriesNo}"
 														text="{=${LocalDataModel>/Lang} ==='FR' ? ${PPDseriesModel>TCISeriesDescriptionFR} : ${PPDseriesModel>TCISeriesDescriptionEN} }"/>
 													<layoutData>
@@ -51,7 +52,7 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_ordTyp_PPD_D" selectionChange="_refresh" width="300px"
+												<MultiComboBox id="mcb_ordTyp_PPD_D" selectionChange="_refresh" width="300px"
 													items="{ path: 'OrderTypeModel>/PriceProtection_OrderType', sorter: { path: 'key' } }" class="sapUiMediumMarginEnd">
 													<core:Item key="{OrderTypeModel>key}" text="{OrderTypeModel>text}"/>
 													<layoutData>
@@ -65,23 +66,24 @@
 														<l:GridData span="L1 M12 S12"/>
 													</layoutData>
 												</Label>
-												<MultiComboBox  id="mcb_dealer_PPD_D" width="300px" showSecondaryValues="true" 
+												<MultiComboBox id="mcb_dealer_PPD_D" width="300px" showSecondaryValues="true"
 													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Nationalusertype'}" selectionChange="_refresh"
 													items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}" class="sapUiMediumMarginEnd">
 													<core:Item key="{LoginUserModel>BusinessPartnerKey}"
-													text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
+														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel>BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"/>
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
-												<ComboBox  xmlns="sap.m" id="cb_dealer_PPD_D" width="300px"  showSecondaryValues="true" filterSecondaryValues= "true"
-													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}"
-													change="_refreshCombo" class="sapUiMediumMarginEnd" items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}" value="" selectedKey="">
-													<!--<items>--><!--changed selectionChange to change for DMND0003239 by Swetha on 11th Oct, 2023-->
+												<ComboBox xmlns="sap.m" id="cb_dealer_PPD_D" width="300px" showSecondaryValues="true" filterSecondaryValues="true"
+													visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" change="_refreshCombo"
+													class="sapUiMediumMarginEnd" items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}" value="" selectedKey="">
+													<!--<items>-->
+													<!--changed selectionChange to change for DMND0003239 by Swetha on 11th Oct, 2023-->
 													<core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey'}"
-														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"	
+														text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"
 														id="item12"/>
-														<!--	text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"-->
+													<!--	text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"-->
 													<layoutData>
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
@@ -92,7 +94,8 @@
 								</items>
 							</VBox>
 							<t:Table id="table_PPD_Dealer" selectionMode="None" rows="{ppdModel>/}" enableColumnReordering="false" alternateRowColors="true"
-								class="marginCorners"> <!--change 24 sep, earlier 7-->
+								class="marginCorners">
+								<!--change 24 sep, earlier 7-->
 								<t:extension>
 									<Toolbar>
 										<Title id="tableHeader" text="{detailView>/tableCount}"/>
@@ -103,7 +106,7 @@
 											</layoutData>
 										</SearchField>
 										<!--DMND0003562 changes done by Minakshi-->
-										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true"  class="sapUiTinyMarginBegin"></Button>
+										<Button text="{i18n>exportToExcel}" press="onExport" enabled="true" class="sapUiTinyMarginBegin"></Button>
 									</Toolbar>
 								</t:extension>
 								<t:columns>
@@ -150,7 +153,7 @@
 											<Text text="{ppdModel>zzseries}"/>
 										</t:template>
 									</t:Column>
-										<!--//	DMND0003455 changes done by Minakshi 13/12/2021-->
+									<!--//	DMND0003455 changes done by Minakshi 13/12/2021-->
 									<!--<t:Column>-->
 									<!--	<Label class="TableLabel" text="{i18n>model}"/>-->
 									<!--	<t:template>-->
@@ -175,7 +178,6 @@
 											<Text text="{ppdModel>zzvtn}"/>
 										</t:template>
 									</t:Column>
-									
 									<t:Column>
 										<Label class="TableLabel" text="{i18n>status}"/>
 										<t:template>
@@ -199,6 +201,8 @@
 							<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
 								<l:content>
 									<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
+									<Label
+										text="{parts: [{path: 'oCountModel>/recipient/current'},{path: 'oCountModel>/recipient/totalCount'}],formatter:'toyota.ca.SoldOrder.util.formatter.tableCount'}"/>
 								</l:content>
 							</l:Grid>
 							<!--	<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">-->
