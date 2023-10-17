@@ -75,8 +75,15 @@
 														<l:GridData span="L2 M12 S12"/>
 													</layoutData>
 												</MultiComboBox>
-												<<<<<<< HEAD <ComboBox xmlns="sap.m" id="cb_dealer_PPD_D" width="300px" showSecondaryValues="true" filterSecondaryValues="true" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" change="_refreshCombo" class="sapUiMediumMarginEnd" items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}" value="" selectedKey=""> <!--<items>--> <!--changed selectionChange to change for DMND0003239 by Swetha on 11th Oct, 2023--> <core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey'}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}" ======= <ComboBox xmlns="sap.m" id="cb_dealer_PPD_D" width="300px" showSecondaryValues="true" filterSecondaryValues= "true" visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" change="_refreshCombo" class="sapUiMediumMarginEnd" items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}" value="" selectedKey=""> <!--<items>--><!--changed selectionChange to change for DMND0003239 by Swetha on 11th Oct, 2023--> <core:Item xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey},{LoginUserModel&gt;BusinessPartnerName}" text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}" >>>>>>> refs/heads/develop id="item12"/>
-												<!--	text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"-->
+												 <ComboBox xmlns="sap.m" id="cb_dealer_PPD_D" width="300px" showSecondaryValues="true" filterSecondaryValues="true" 
+												 visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.NationalorZonalusertype'}" 
+												 change="_refreshCombo" class="sapUiMediumMarginEnd" 
+												 items="{path: 'LoginUserModel>/BpDealerModel', sorter: { path: 'BusinessPartner' }}" value="" selectedKey=""> 
+												 <!--<items>--> <!--changed selectionChange to change for DMND0003239 by Swetha on 11th Oct, 2023--> 
+												 <core:ListItem xmlns:core="sap.ui.core" key="{LoginUserModel>BusinessPartnerKey'}" 
+												 text="{path:'LoginUserModel&gt;BusinessPartnerName',formatter: 'toyota.ca.SoldOrder.util.formatter.format1dealers'}"
+												 additionalText="{path:'LoginUserModel&gt;BusinessPartnerName'}"/>
+												 <!--	text="{parts: [{path:'LoginUserModel>BusinessPartnerKey'},{path:'LoginUserModel&gt;BusinessPartnerName'}],formatter: 'toyota.ca.SoldOrder.util.formatter.formatdealers'}"-->
 												<layoutData>
 													<l:GridData span="L2 M12 S12"/>
 												</layoutData>
@@ -194,7 +201,8 @@
 						<l:Grid hSpacing="0" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners marginCornersBottom moreBtn">
 							<l:content>
 								<Button xmlns="sap.m" id="buttonNext" press="onActionNext" text="{i18n>more}"/>
-								<Label text="{parts: [{path: 'oCountModel>/recipient/current'},{path: 'oCountModel>/recipient/totalCount'}],formatter:'toyota.ca.SoldOrder.util.formatter.tableCount'}"/>
+								<Label
+									text="{parts: [{path: 'oCountModel>/recipient/current'},{path: 'oCountModel>/recipient/totalCount'}],formatter:'toyota.ca.SoldOrder.util.formatter.tableCount'}"/>
 							</l:content>
 						</l:Grid>
 						<!--	<l:Grid hSpacing="2" vSpacing="1" defaultSpan="L4 M4 S4" class="marginCorners">-->

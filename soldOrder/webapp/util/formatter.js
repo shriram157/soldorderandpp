@@ -672,6 +672,11 @@ toyota.ca.SoldOrder.util.formatter = {
 	{
 		var recordStatus = "["+current+" / "+totalCount+"]";
 		return recordStatus;
+	},
+	format1dealers: function(dealerno) {
+		if (dealerno) {
+			return dealerno.slice(-5);
+		}
 	}
 
 };
