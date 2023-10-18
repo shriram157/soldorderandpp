@@ -9,7 +9,7 @@
 								<HBox>
 									<items>
 										<Label text="{i18n>Providelast8CharacterofVIN}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-										<Input id="rdrvin" maxLength="8" value="" placeholder="Enter here" width="50%" valueState="None"/>
+										<Input id="rdrvin" maxLength="8" value="" placeholder="{i18n>Enterhere}" width="50%" valueState="None"/>
 									</items>
 									<Button text="{i18n>ValidateVIN}" press="_validateVIN">
 										<layoutData>
@@ -78,7 +78,7 @@
 			</VBox>
 		</content>
 		<endButton>
-			<Button text="Close" press="onCloseDialog"></Button>
+			<Button text="{i18n>Close}" press="onCloseDialog"></Button>
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>

@@ -78,7 +78,7 @@
 			</VBox>
 		</content>
 		<endButton>
-			<Button text="Close" press="onCloseSDialog"></Button>
+			<Button text="{i18n>Close}" press="onCloseSDialog"></Button>
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
