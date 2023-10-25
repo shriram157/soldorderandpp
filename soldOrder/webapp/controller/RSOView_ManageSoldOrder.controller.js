@@ -1290,6 +1290,8 @@ sap.ui.define([
 						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
 					//this.getView().getModel('mainservices')._refresh;
+					if(suffix != "XX")
+					{
 					this.getView().byId('suffix_CSOR').bindItems({
 						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
 						filters: new sap.ui.model.Filter([
@@ -1302,6 +1304,10 @@ sap.ui.define([
 							text: suf
 						})
 					});
+					}else
+					{
+						this.getView().byId('suffix_CSOR').setSelectedKey('');
+					}
 				}
 
 			},
