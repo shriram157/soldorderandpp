@@ -651,7 +651,7 @@ sap.ui.define([
 				var oBusyDialog = new sap.m.BusyDialog({
 					showCancelButton: false
 				});
-				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+				var url = "/node/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 					"&lastName=" + CustModel.SecondName;
 				//lastName=" + CustModel.Name;
 				var msg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("msgcustomer1");
@@ -720,7 +720,7 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-						url: '/node/tci/internal/api/v1.0/customer/custupdate/customerProfile',
+						url: '/node/api/v1.0/customer/custupdate/customerProfile',
 						headers: {
 							accept: 'application/json',
 							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
@@ -819,7 +819,7 @@ sap.ui.define([
 						var oBusyDialog = new sap.m.BusyDialog({
 							showCancelButton: false
 						});
-						var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+						var url = "/node/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 							"&lastName=" + CustModel.SecondName;
 						//lastName=" + CustModel.Name;
 						var msg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("msgcustomer1");
@@ -911,7 +911,7 @@ sap.ui.define([
 										soapMessage
 									);
 									$.ajax({
-										url: '/node/tci/internal/api/v1.0/customer/custupdate/oicc/profileChange',
+										url: '/node/api/v1.0/customer/custupdate/oicc/profileChange',
 										headers: {
 											accept: 'application/json',
 											// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
@@ -1054,7 +1054,7 @@ sap.ui.define([
 										soapMessage
 									);
 									$.ajax({
-										url: '/node/tci/internal/api/v1.0/customer/custupdate/oicc/profileChange',
+										url: '/node/api/v1.0/customer/custupdate/oicc/profileChange',
 										headers: {
 											accept: 'application/json',
 											// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
