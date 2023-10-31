@@ -494,7 +494,7 @@ sap.ui.define([
 				_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 					"Eligilibity");
 				//changes by swetha for DMND0003239
-				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW") &&
+				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW" || RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "REJECTED") &&
 					(RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "")) {
 					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(true);
 				} else {
@@ -526,6 +526,11 @@ sap.ui.define([
 					} else {
 						RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setEnabled(false);
 					}
+				}
+				if (userType=="Dealer_User") {
+					RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setVisible(true);
+				} else {
+					RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setVisible(false);
 				}
 				var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
 				if (zvtn != "") {
