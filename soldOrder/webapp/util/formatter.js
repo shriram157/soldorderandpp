@@ -548,10 +548,11 @@ toyota.ca.SoldOrder.util.formatter = {
 		}
 		return sval;
 	}
-//	tableCount: function(current, totalCount)
-//	{
-//		var recordStatus = "["+current+" / "+totalCount+"]";
-//		return recordStatus;
-//	}
+	//changes by shriram for DMND0003239 start
+	// tableCount: function(current, totalCount)
+	// {
+	// 	var recordStatus = "["+current+" / "+totalCount+"]";
+	// 	return recordStatus;
+	// } //changes by shriram for DMND0003239 end
 
 };

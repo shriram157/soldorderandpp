@@ -347,9 +347,9 @@ sap.ui.define([
 				//attachPatternMatched
 				// changes done for INC0217519 start by Minakshi
 				// if (!RSO_MSO_controller.pageNum) {
-		    	//this.byId("suffix_CSOR").setSelectedKey("");//commented this line--- changes by swetha for INC225765 on 27/01/2023 
+				//this.byId("suffix_CSOR").setSelectedKey("");//commented this line--- changes by swetha for INC225765 on 27/01/2023 
 				//this.byId("colour_CSOR").setSelectedKey("");//commented this line--- changes by swetha for INC225765 on 27/01/2023
-				
+
 				//	}
 				// changes done for INC0217519 end by Minakshi
 				//var oURL = host + "/ZVMS_SOLD_ORDER_SRV/Retail_Sold_OrderSet('" + req + "')";
@@ -463,8 +463,8 @@ sap.ui.define([
 
 				//----------------------------------------------------------
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoStatus');
-				console.log("status:"+status+"BoundContext:"+RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext())//14-Apr-2023 Shriram
-				/// changes done by Minakshi for INC0195063
+				console.log("status:" + status + "BoundContext:" + RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext()) //14-Apr-2023 Shriram
+					/// changes done by Minakshi for INC0195063
 				if (RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F") {
 					RSO_MSO_controller.getView().byId("btn_orderChange_RSO_MSO").setEnabled(false);
 				}
@@ -476,7 +476,7 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO").setEnabled(false);
 					RSO_MSO_controller.getView().byId("idComments_TA_RSO_ManageSO").setEnabled(false);
 					RSO_MSO_controller.getView().byId("RSOV_MSO_comment1").setEnabled(false);
-				}else {
+				} else {
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(true);
 				}
 				//changes done by Swetha for INC0213630
@@ -484,7 +484,7 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);
 				}
 				if (status == "CHANGED") {
-					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false);	 //changes by swetha
+					RSO_MSO_controller.getView().byId("btn_cancelOrder_RSO_MSO").setEnabled(false); //changes by swetha
 				}
 				// var vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
 				// var dealer_no = RSO_MSO_controller .getView().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
@@ -510,16 +510,15 @@ sap.ui.define([
 						var etaFromText = RSO_MSO_controller.getView().byId("idfromText").getText();
 						//INC0225765 SOPP and PEIS show wrong Suffix descriptions for some order---Shriram 18-Jan-2023 Code Start
 						// Since the model is defined in RetailSoldOrderB.controller.js,when this controller is not loaded before, datemodel comes as undefined
-						if(datemodel != undefined)
-						{
-						var data = datemodel.getData();
-						var ETAFrom1 = data.fromDate;
-						var ETATo1 = data.toDate;
-						OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom1));
-						OBJNew.ETATo = _oDateFormat.format(new Date(ETATo1));
-						SelectVehicleOption = false;
-						zinventoryModel.setData(OBJNew);
-						zinventoryModel.updateBindings(true);
+						if (datemodel != undefined) {
+							var data = datemodel.getData();
+							var ETAFrom1 = data.fromDate;
+							var ETATo1 = data.toDate;
+							OBJNew.ETAFrom = _oDateFormat.format(new Date(ETAFrom1));
+							OBJNew.ETATo = _oDateFormat.format(new Date(ETATo1));
+							SelectVehicleOption = false;
+							zinventoryModel.setData(OBJNew);
+							zinventoryModel.updateBindings(true);
 						}
 						//INC0225765 SOPP and PEIS show wrong Suffix descriptions for some order---Shriram 18-Jan-2023 Code End
 					} else {
@@ -604,14 +603,14 @@ sap.ui.define([
 					success: $.proxy(function (soOData) {
 						RSO_MSO_controller.byId("model_CSOR").setSelectedKey(soOData.Zzmodel);
 						RSO_MSO_controller.byId("suffix_CSOR").setSelectedKey(soOData.Zzsuffix);
-						console.log("Read: "+sObjectPath+"ZzsoStatus :"+soOData.ZzsoStatus);//14-Apr-2023 Shriram
-						RSO_MSO_controller.byId("RSOV_MSO_SoStatus").setText(soOData.ZzsoStatus);//13-Apr-2023 Shriram
+						console.log("Read: " + sObjectPath + "ZzsoStatus :" + soOData.ZzsoStatus); //14-Apr-2023 Shriram
+						RSO_MSO_controller.byId("RSOV_MSO_SoStatus").setText(soOData.ZzsoStatus); //13-Apr-2023 Shriram
 						this.byId('model_CSOR').setSelectedItem().setValue("");
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzmodel", soOData.Zzmodel);
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/zzSuffix", soOData.Zzsuffix);
-						if(soOData.Zzsuffix == 'XX'){
+						if (soOData.Zzsuffix == 'XX') {
 							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", '');
-						}else{
+						} else {
 							RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzextcol", soOData.Zzextcol);
 						}
 						RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").setProperty("/Zzapx", soOData.Zzapx);
@@ -868,16 +867,16 @@ sap.ui.define([
 					this.sPrefix = "";
 				}
 				this.nodeJsUrl = this.sPrefix + "/node";
-				var oUrl = this.nodeJsUrl +"/ZVMS_SOLD_ORDER_SRV"+sPath;
-// 				$.ajax({
-//     url: oUrl,
-//     type: 'DELETE',
-//     success: function(result) {
-// 		console("DELETED");
-//         // Do something with the result
-//     }
-// });
-               // Commented DELETE method below
+				var oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV" + sPath;
+				// 				$.ajax({
+				//     url: oUrl,
+				//     type: 'DELETE',
+				//     success: function(result) {
+				// 		console("DELETED");
+				//         // Do something with the result
+				//     }
+				// });
+				// Commented DELETE method below
 				RSO_MSO_controller.getView().getModel('mainservices').remove(sPath, {
 					// method: "DELETE",
 					success: function (data, oResponse) {
@@ -1121,7 +1120,7 @@ sap.ui.define([
 				return a;
 			},
 			onNavBack: function (Oevent) {
-				
+
 				if (ppdFlages) {
 					if (ppdFlages.getData().openCommentBox == 'X') {
 						ppdFlages.getData().openCommentBox = '';
@@ -1134,7 +1133,7 @@ sap.ui.define([
 							refresh: false
 						});
 					}
-				}else if(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F"){
+				} else if (RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F") {
 					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails", {
 						refresh: false
 					});
@@ -1152,7 +1151,7 @@ sap.ui.define([
 
 				// var year = this.getView().byId('modelYr_RSOA').getValue();
 				// items="{ path: 'oModel3>/'}"
-				
+
 				var modelkey = RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/Zzmodel");
 				this.getView().byId('model_CSOR').setSelectedKey(modelkey);
 				if (this.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzseries') && this.getView().getElementBinding(
@@ -1177,7 +1176,7 @@ sap.ui.define([
 					this.getView().byId('model_CSOR').bindItems({
 						path: "mainservices>/ZVMS_Model_EXCLSet",
 						filters: new sap.ui.model.Filter([new sap.ui.model.Filter("tci_series", sap.ui.model.FilterOperator.EQ, series),
-							
+
 							new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, modelkey),
 							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
 							new sap.ui.model.Filter("dlr", sap.ui.model.FilterOperator.EQ, dealer),
@@ -1228,19 +1227,23 @@ sap.ui.define([
 					} else {
 						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
-					//this.getView().getModel('mainservices')._refresh;
-					this.getView().byId('suffix_CSOR').bindItems({
-						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
-						filters: new sap.ui.model.Filter([
-							new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-							new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix)
-						], true),
-						template: new sap.ui.core.ListItem({
-							key: "{mainservices>suffix}",
-							text: suf
-						})
-					});
+					if (suffix != "XX") {           //changes by shriram for INC0234365 added "if(suffix!="XX")"
+						//this.getView().getModel('mainservices')._refresh;
+						this.getView().byId('suffix_CSOR').bindItems({
+							path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
+							filters: new sap.ui.model.Filter([
+								new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
+								new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+								new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix)
+							], true),
+							template: new sap.ui.core.ListItem({
+								key: "{mainservices>suffix}",
+								text: suf
+							})
+						});
+					} else {                                                      //changes by shriram for INC0234365 added else condition
+						this.getView().byId('suffix_CSOR').setSelectedKey('');
+					}
 				}
 
 			},
@@ -1254,11 +1257,10 @@ sap.ui.define([
 				if (suffix != "XX" && suffix != "") {
 					this.getView().byId('suffix_CSOR').setSelectedKey(suffix);
 					this.getView().byId('colour_CSOR').setSelectedKey(extcolor);
-				}else{
+				} else {
 					this.getView().byId('colour_CSOR').setSelectedKey('');
 				}
-			
-				
+
 				this.getView().byId('apx_CSOR').setSelectedKey(RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty(
 					"/Zzapx"));
 
