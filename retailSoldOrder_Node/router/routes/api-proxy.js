@@ -44,7 +44,7 @@ module.exports = function (appContext) {
 		var proxiedUrl = apimUrl + req.url;
 
 		// Proxied call is to IBM APIC
-		if (req.url.startsWith("/tci2/internal")) {
+		if (req.url.startsWith("/tci/internal")) {
 			proxiedReqHeaders["x-ibm-client-id"] = apicClientId;
 			proxiedReqHeaders["x-ibm-client-secret"] = apicClientSecret;
 

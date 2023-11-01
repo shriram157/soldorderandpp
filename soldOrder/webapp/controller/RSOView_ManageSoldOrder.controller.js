@@ -564,7 +564,7 @@ sap.ui.define([
 					// if (_SOType == "SO") {
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-					var url = "/node/tci2/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
+					var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 
 					$.ajax({
 						url: url,
@@ -1227,7 +1227,7 @@ sap.ui.define([
 					} else {
 						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
-					if (suffix != "XX") {
+					if (suffix != "XX") {           //changes by shriram for INC0234365 added "if(suffix!="XX")"
 						//this.getView().getModel('mainservices')._refresh;
 						this.getView().byId('suffix_CSOR').bindItems({
 							path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
@@ -1241,7 +1241,7 @@ sap.ui.define([
 								text: suf
 							})
 						});
-					} else {
+					} else {                                                      //changes by shriram for INC0234365 added else condition
 						this.getView().byId('suffix_CSOR').setSelectedKey('');
 					}
 				}
