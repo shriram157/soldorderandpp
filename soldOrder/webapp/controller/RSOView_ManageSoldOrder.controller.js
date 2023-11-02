@@ -1616,6 +1616,7 @@ sap.ui.define([
 				this._CPPoDialog.close();
 			},
 			onclickCancelPPYes: function () {
+				this._CPPoDialog.close();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus");
 				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/PP_Cancel", {
