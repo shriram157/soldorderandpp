@@ -1534,6 +1534,7 @@ sap.ui.define([
 			//changes by Swetha for DMND0003239 for RDR VIN validation on 3rd Oct, 2023 START 
 			onclickYes: function () {
 				//var Zlinkrdrvin = sap.ui.getCore().byId("rdrvin").getValue();
+				this._oDialog.close();
 				var rdrvin = sap.ui.getCore().getModel("LinkRDRModel").getData().results[0].VHVIN;
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var host = RSO_MSO_controller.host();
