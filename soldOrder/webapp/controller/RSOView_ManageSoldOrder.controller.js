@@ -600,7 +600,7 @@ sap.ui.define([
 					// if (_SOType == "SO") {
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-					var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
+					var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 
 					$.ajax({
 						url: url,
@@ -1620,7 +1620,7 @@ sap.ui.define([
 				this._CPPoDialog.close();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus");
-				var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
+			//	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/PP_Cancel", {
 					method: "POST",
 					urlParameters: {
