@@ -1620,11 +1620,13 @@ sap.ui.define([
 				this._CPPoDialog.close();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus");
+				var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/PP_Cancel", {
 					method: "POST",
 					urlParameters: {
 						ZzsoReqNo: zrequest,
-						Status: status
+						Status: status,
+						Language:language
 					}, // function import parameters
 					success: function (data, response) {
 						if (data.Type=='S') {
