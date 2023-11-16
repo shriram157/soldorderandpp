@@ -1625,7 +1625,8 @@ sap.ui.define([
 					method: "POST",
 					urlParameters: {
 						ZzsoReqNo: zrequest,
-						Status: status
+						Status: status,
+						Language: language
 					}, // function import parameters
 					success: function (data, response) {
 						if (data.Type=='S') {
