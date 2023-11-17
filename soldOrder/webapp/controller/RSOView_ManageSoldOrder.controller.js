@@ -1634,7 +1634,7 @@ sap.ui.define([
 						if (data.Type=='S') {
 							sap.m.MessageBox.show(data.Message, 
 							sap.m.MessageBox.Icon.SUCCESS,
-							sap.m.MessageBox.success{
+							sap.m.MessageBox.success,{
 								title:"{i18n>SUCCESS}"
 							},
 							sap.m.MessageBox.Action.OK, null, null);		
@@ -1644,7 +1644,7 @@ sap.ui.define([
 						} else {
 							sap.m.MessageBox.show(data.Message, 
 							sap.m.MessageBox.Icon.ERROR,
-							sap.m.MessageBox.error{
+							sap.m.MessageBox.error,{
 								title:"{i18n>ERROR}"
 							},
 							sap.m.MessageBox.Action.OK, null, null);
