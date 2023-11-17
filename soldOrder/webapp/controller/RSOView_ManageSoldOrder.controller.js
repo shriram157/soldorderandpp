@@ -1632,13 +1632,25 @@ sap.ui.define([
 					}, // function import parameters
 					success: function (data, response) {
 						if (data.Type=='S') {
+							if (language == "EN") {
 							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
 								sap.m.MessageBox.Action.OK, null, null);		
 							 var UPriceStatus=	data.MessageV1;
 							 RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
+							} else {
+								sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.SUCCESS, "SUCCÈS",
+								sap.m.MessageBox.Action.OK, null, null);		
+								var UPriceStatus=	data.MessageV1;
+								RSO_MSO_controller.getView().getModel('mainservices').refresh(true);	
+							}
 						} else {
+							if (language == "EN") {
 							sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Error",
-							sap.m.MessageBox.Action.OK, null, null);	
+							sap.m.MessageBox.Action.OK, null, null);
+							} else {
+								sap.m.MessageBox.show(data.Message, sap.m.MessageBox.Icon.ERROR, "Erreur",
+								sap.m.MessageBox.Action.OK, null, null);	
+							}
 						}
 					//	var oModel = new sap.ui.model.json.JSONModel();
 					//	oModel.setData(data.d);
