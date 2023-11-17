@@ -768,7 +768,8 @@ sap.ui.define([
 						method: "POST",
 						urlParameters: {
 							ZzsoReqNo: zrequest,
-							comment: RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue()
+							comment: RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue(),
+							Language: language
 						}, // function import parameters
 						success: function (oData, response) {
 							if (oData.Type == 'E') {
@@ -816,7 +817,8 @@ sap.ui.define([
 					method: "POST",
 					urlParameters: {
 						ZzsoReqNo: zrequest,
-						comment: RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue()
+						comment: RSO_MSO_controller.getView().byId("RSOV_MSO_comment3").getValue(),
+						Language: language
 					}, // function import parameters
 					success: function (oData, response) {
 						if (oData.Type == 'E') {
