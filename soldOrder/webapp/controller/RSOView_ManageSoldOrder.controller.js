@@ -1632,15 +1632,14 @@ sap.ui.define([
 					}, // function import parameters
 					success: function (data, response) {
 						if (data.Type=='S') {
-							sap.m.MessageBox.show(data.Message, 
-							sap.m.MessageBox.Icon.SUCCESS,
-							sap.m.MessageBox.success,{
-								title:"{i18n>SUCCESS}"
-							},
-							sap.m.MessageBox.Action.OK, null, null);		
+							var sMsg=data.Message;
+							sap.m.MessageBox.show(sMsg, {
+								icon: sap.m.MessageBox.Icon.ERROR,
+								title: "{i18n>SUCCESS}",
+								actions: [sap.m.MessageBox.Action.OK]
+							});
 							 var UPriceStatus=	data.MessageV1;
 							 RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
-						
 						} else {
 							sap.m.MessageBox.show(data.Message, 
 							sap.m.MessageBox.Icon.ERROR,
