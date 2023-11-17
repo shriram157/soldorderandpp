@@ -1575,23 +1575,35 @@ sap.ui.define([
 						RSO_MSO_controller.getView().setModel(oModel, "ClickYesModel");
 						if (sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING_FLAG == "E") {
 							var errMsg = sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING;
-							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
-								sap.m.MessageBox.Action.OK, null, null);
+								sap.m.MessageBox.show(errMsg, { 
+								icon: sap.m.MessageBox.Icon.ERROR,
+								title: "{i18n>ERROR}",
+								actions: [sap.m.MessageBox.Action.OK]
+								});
 						} else if (sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING_FLAG == "S") {
 							var sMsg = sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING;
-							sap.m.MessageBox.show(sMsg, sap.m.MessageBox.Icon.SUCCESS, "SUCCESS",
-								sap.m.MessageBox.Action.OK, null, null);
+								sap.m.MessageBox.show(sMsg,{ 
+								icon: sap.m.MessageBox.Icon.SUCCESS,
+								title: "{i18n>SUCCESS}",
+								actions: [sap.m.MessageBox.Action.OK]
+								});
 							RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 						} else {
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
-								sap.m.MessageBox.Action.OK, null, null);
+							sap.m.MessageBox.show(errMsg, { 
+							icon: sap.m.MessageBox.Icon.ERROR,
+							title: "{i18n>ERROR}",
+							actions: [sap.m.MessageBox.Action.OK]
+							});
 						}
 					},
 					error: function (oError) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
-							sap.m.MessageBox.Action.OK, null, null);
+							sap.m.MessageBox.show(errMsg, { 
+							icon: sap.m.MessageBox.Icon.ERROR,
+							title: "{i18n>ERROR}",
+							actions: [sap.m.MessageBox.Action.OK]
+							});
 					}
 
 				});
@@ -1634,19 +1646,18 @@ sap.ui.define([
 						if (data.Type=='S') {
 							var sMsg=data.Message;
 							sap.m.MessageBox.show(sMsg, {
-								icon: sap.m.MessageBox.Icon.ERROR,
+								icon: sap.m.MessageBox.Icon.SUCCESS,
 								title: "{i18n>SUCCESS}",
 								actions: [sap.m.MessageBox.Action.OK]
 							});
 							 var UPriceStatus=	data.MessageV1;
 							 RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 						} else {
-							sap.m.MessageBox.show(data.Message, 
-							sap.m.MessageBox.Icon.ERROR,
-							sap.m.MessageBox.error,{
-								title:"{i18n>ERROR}"
-							},
-							sap.m.MessageBox.Action.OK, null, null);
+							sap.m.MessageBox.show(sMsg, { 
+							icon: sap.m.MessageBox.Icon.ERROR,
+							title: "{i18n>ERROR}",
+							actions: [sap.m.MessageBox.Action.OK]
+							});
 						}
 					//	var oModel = new sap.ui.model.json.JSONModel();
 					//	oModel.setData(data.d);
@@ -1655,8 +1666,11 @@ sap.ui.define([
 					},
 					error: function (oError) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error",
-							sap.m.MessageBox.Action.OK, null, null);
+							sap.m.MessageBox.show(errMsg, { 
+							icon: sap.m.MessageBox.Icon.ERROR,
+							title: "{i18n>ERROR}",
+							actions: [sap.m.MessageBox.Action.OK]
+							});
 					}
 				});
 			},
