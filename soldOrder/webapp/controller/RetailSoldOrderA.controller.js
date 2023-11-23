@@ -635,7 +635,6 @@ sap.ui.define([
 				CustModel.Province != '' && CustModel.Province && CustModel.Address != '' && CustModel.Address && CustModel.PostCode != '' &&
 				CustModel.PostCode) {
 				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
-			
 
 				var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error1");
 				var title = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("title5");
@@ -655,7 +654,7 @@ sap.ui.define([
 					"&lastName=" + CustModel.SecondName;
 				//lastName=" + CustModel.Name;
 				var msg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("msgcustomer1");
-				
+
 				if (RSOA_controller.flagInvalidPCode == true && RSOA_controller.flagInvalidPhone == false) {
 
 					var errMsg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorPostalCode");
@@ -702,8 +701,7 @@ sap.ui.define([
 								"localNumber": CustModel.Phone.substr(3, 7),
 								"areaCode": CustModel.Phone.substr(0, 3),
 								"useCode": "WORK"
-							},
-							{
+							}, {
 								"localNumber": CustModel.Phone.substr(3, 7),
 								"areaCode": CustModel.Phone.substr(0, 3),
 								"useCode": "MOBILE"
@@ -720,11 +718,15 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-						url: '/node/api/v1.0/customer/custupdate/customerProfile',
+
+						//	url: '/node/api/v1.0/customer/custupdate/customerProfile',
+						url: 'https://dealerapps.qa.toyota.ca:443/authproxy/qa/api/v1.0/customer/custupdate/customerProfile',
 						headers: {
 							accept: 'application/json',
 							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
 							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+							'x-ibm-client-secret':'xN0dT3sM2mI2lT7pC0sQ2eA4hL0dH7dK4rH1hA3rU7fF8fL5iU',
+							'x-ibm-client-id':'7c9739e8-ae0a-4df4-8efc-be95dd399c77',
 							'content-type': 'application/json'
 						},
 						type: "POST",
@@ -778,12 +780,10 @@ sap.ui.define([
 
 						}
 					});
-					
+
 				}
-			    //validateFlagA = true;	// INC0201904
+				//validateFlagA = true;	// INC0201904
 
-
-				
 			} else {
 				var errTitle = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("error");
 				var errForm = formatter.formatErrorType("SO000023");
@@ -1152,7 +1152,7 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				},*/
-		
+
 		listOfModelYear: function () {
 			//	var omodelYearModel;
 			var d = new Date();
@@ -1292,7 +1292,7 @@ sap.ui.define([
 					.m.MessageBox.Action.OK, null, null);
 			} else {
 				//submitBtn.setEnabled(true);
-				submitBtn.setEnabled(false);         //changes by swetha for INC0241290 on 26th Sept, 2023
+				submitBtn.setEnabled(false); //changes by swetha for INC0241290 on 26th Sept, 2023
 				RSOA_controller.submitSO();
 
 			}
@@ -1743,8 +1743,7 @@ sap.ui.define([
 				var nameRegExp = new RegExp(/^[ a-zA-Z]+$/);
 				if (nameRegExp.test(name) == true) {
 					oEvt.getSource().setValueState("None");
-					
-					
+
 				} else {
 					oEvt.getSource().setValueState("Error");
 
@@ -1752,11 +1751,11 @@ sap.ui.define([
 				}
 
 			}
-			
-			if (RSOA_controller.getView().byId("CustName_RSOA").getValueState() == "None" && RSOA_controller.getView().byId("CustName_SSOA").getValueState() == "None"){
+
+			if (RSOA_controller.getView().byId("CustName_RSOA").getValueState() == "None" && RSOA_controller.getView().byId("CustName_SSOA").getValueState() ==
+				"None") {
 				RSOA_controller.flagInvalidName = false;
-			}
-			else {
+			} else {
 				RSOA_controller.flagInvalidName = true;
 			}
 			return name;
