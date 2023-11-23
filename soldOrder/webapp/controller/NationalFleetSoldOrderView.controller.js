@@ -101,7 +101,7 @@ sap.ui.define([
 					// 	//----------------------------------------------------------
 					// 	if (NFSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 					// 		var zcustomerNumber = NFSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
-					// 		var url = "/node/tci/internal//node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
+					// 		var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 					// 		//?customerNumber=" +
 
 					// 		$.ajax({
