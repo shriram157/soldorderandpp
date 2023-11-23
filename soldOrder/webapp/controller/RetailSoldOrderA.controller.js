@@ -720,7 +720,7 @@ sap.ui.define([
 					$.ajax({
 
 						//	url: '/node/api/v1.0/customer/custupdate/customerProfile',
-						url: 'https://dealerapps.qa.toyota.ca:443/authproxy/qa/api/v1.0/customer/custupdate/customerProfile',
+						url: 'https://dealerapps.qa.toyota.ca/authproxy/qa/api/v1.0/customer/custupdate/customerProfile',
 						headers: {
 							accept: 'application/json',
 							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
