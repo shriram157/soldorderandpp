@@ -719,7 +719,7 @@ sap.ui.define([
 					);
 					$.ajax({
 
-							url: '/node/api/v1.0/customer/custupdate/customerProfile',
+							url: '/node/authproxy/qa/api/v1.0/customer/custupdate/customerProfile',
 						// url: 'https://dealerapps.qa.toyota.ca/authproxy/qa/api/v1.0/customer/custupdate/customerProfile',
 						headers: {
 							accept: 'application/json',
