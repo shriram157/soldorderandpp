@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m"
 	xmlns:tnt="sap.tnt">
-	<Dialog title="{i18n>CreditSimulation}" contentWidth="70%" contentHeight="100%">
+	<Dialog title="{i18n>CreditSimulation}" contentWidth="50%" contentHeight="100%">
 		<content>
 			<VBox>
 				<f:SimpleForm id="s1">
@@ -9,7 +9,7 @@
 							<items>
 								<HBox>
 									<items>
-										<Label text="{i18n>SOEffectiveDate}"  class="sapUiSmallMarginBegin" width="6rem"></Label>
+										<Label text="{i18n>SOEffectiveDate}"  class="sapUiSmallMarginBegin" width="8rem"></Label>
 										<Text text="{path:'SimulatePriceModel>/results/0/SO_CREATION_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"/>
 									</items>
 								</HBox>
