@@ -509,6 +509,12 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setVisible(false)
 					RSO_MSO_controller.getView().byId("btn_SimulatePrice").setEnabled(false); //changes by swetha for DMND0003239
 				}
+				//changes by swetha on 29th Nov, 2023 for DMND0003239 for View Linked RDR button
+				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "X") {
+					RSO_MSO_controller.getView().byId("btn_vlinkedrdr").setVisible(true);	
+				} else {
+					RSO_MSO_controller.getView().byId("btn_vlinkedrdr").setVisible(false);
+				}
 				//changes by swetha for DMND0003239 on 12th Oct, 2023 Zone user should not be able to see Approve Price Protection and Reject Price Protection Buttons.
 				var userType = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 				if (userType == "TCI_Zone_User") {
