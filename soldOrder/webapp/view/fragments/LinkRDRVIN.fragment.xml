@@ -53,7 +53,7 @@
 							<items>
 								<HBox id="idconfirm" visible="false">
 									<items>
-										<Label wrapping="true" text="{i18n>ConfirmationMsg}" class="sapUiLargeMarginTop sapUiSmallMarginBegin"/>
+										<Label wrapping="true" text="{i18n>Msg}" class="sapUiLargeMarginTop sapUiSmallMarginBegin"/>
 										<Text/>
 									</items>
 								</HBox>
