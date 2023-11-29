@@ -43,14 +43,6 @@
 										<Text text="{path:'LinkRDRModel>/results/0/VHVIN'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
-							</items>
-						</VBox>
-					</f:content>
-				</f:SimpleForm>
-				<f:SimpleForm>
-					<f:content>
-						<VBox>
-							<items>
 								<HBox id="idconfirm" visible="false">
 									<items>
 										<Label wrapping="true" text="{i18n>Msg}" class="sapUiLargeMarginTop sapUiSmallMarginBegin"/>
