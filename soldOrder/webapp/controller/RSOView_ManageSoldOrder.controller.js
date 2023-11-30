@@ -1419,11 +1419,13 @@ sap.ui.define([
 					sap.ui.getCore().byId("idrdr_date").setVisible(true);
 					sap.ui.getCore().byId("idrdrcustname").setVisible(true);
 					sap.ui.getCore().byId("idvin").setVisible(true);
+					sap.ui.getCore().byId("idwdate").setVisible(true);
 					sap.ui.getCore().byId("idconfirm").setVisible(false);
 					sap.ui.getCore().byId("idYesNo").setVisible(false);
 				} else {
 					sap.ui.getCore().byId("idrdr_date").setVisible(false);
 					sap.ui.getCore().byId("idrdrcustname").setVisible(false);
+					sap.ui.getCore().byId("idwdate").setVisible(false);
 					sap.ui.getCore().byId("idvin").setVisible(false);
 					sap.ui.getCore().byId("idconfirm").setVisible(false);
 					sap.ui.getCore().byId("idYesNo").setVisible(false);
@@ -1513,6 +1515,7 @@ sap.ui.define([
 							sap.ui.getCore().byId("rdrvin").setValueState("None");
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
+							sap.ui.getCore().byId("idwdate").setVisible(false);
 							sap.ui.getCore().byId("idvin").setVisible(false);
 							sap.ui.getCore().byId("idconfirm").setVisible(false);
 							sap.ui.getCore().byId("idYesNo").setVisible(false);
@@ -1520,6 +1523,7 @@ sap.ui.define([
 							sap.ui.getCore().byId("rdrvin").setValueState("None");
 							sap.ui.getCore().byId("idrdr_date").setVisible(true);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(true);
+							sap.ui.getCore().byId("idwdate").setVisible(true);
 							sap.ui.getCore().byId("idvin").setVisible(true);
 							sap.ui.getCore().byId("idconfirm").setVisible(true);
 							sap.ui.getCore().byId("idYesNo").setVisible(true);
@@ -1527,6 +1531,7 @@ sap.ui.define([
 							sap.ui.getCore().byId("rdrvin").setValueState("Error");
 							sap.ui.getCore().byId("idrdr_date").setVisible(false);
 							sap.ui.getCore().byId("idrdrcustname").setVisible(false);
+							sap.ui.getCore().byId("idwdate").setVisible(false);
 							sap.ui.getCore().byId("idvin").setVisible(false);
 							sap.ui.getCore().byId("idconfirm").setVisible(false);
 							sap.ui.getCore().byId("idYesNo").setVisible(false);
