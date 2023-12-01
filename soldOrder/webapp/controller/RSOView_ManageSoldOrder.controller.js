@@ -1529,7 +1529,7 @@ sap.ui.define([
 							sap.ui.getCore().byId("idwdate").setVisible(true);
 							sap.ui.getCore().byId("idvin").setVisible(true);
 							sap.ui.getCore().byId("idconfirm").setVisible(true);
-							sap.ui.getCore().byId("idDiscription").setVisible(false);
+							sap.ui.getCore().byId("idDiscription").setVisible(true);
 							sap.ui.getCore().byId("idYesNo").setVisible(true);
 						} else {
 							sap.ui.getCore().byId("rdrvin").setValueState("Error");
