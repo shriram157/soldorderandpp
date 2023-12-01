@@ -46,7 +46,7 @@
 								<HBox id="idwdate" visible="false">
 									<items>
 										<Label text="{i18n>WDate}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
-										<Text text="" class="sapUiSmallMarginTop"/>
+										<Text text="{path:'LinkRDRModel>/results/0/INV_DATE'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 								<HBox id="idconfirm" visible="false">

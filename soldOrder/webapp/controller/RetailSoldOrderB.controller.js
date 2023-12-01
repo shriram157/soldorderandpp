@@ -522,8 +522,10 @@ sap.ui.define([
 				var oBusyDialog = new sap.m.BusyDialog({
 					showCancelButton: false
 				});
-				var url = "/node/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
-					"&lastName=" + CustModel.SecondName;
+				// var url = "/node/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+				// 	"&lastName=" + CustModel.SecondName;    //for CRQA
+				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+					"&lastName=" + CustModel.SecondName;	//for CRDEV
 				//lastName=" + CustModel.Name;
 				var msg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("msgcustomer1");
 
@@ -590,8 +592,8 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-						url: 'https://dealerapps.qa.toyota.ca/authproxy/qa/api/v1.0/customer/custupdate/customerProfile',
-						//	url: '/node/api/v1.0/customer/custupdate/customerProfile',
+						//url: 'https://dealerapps.qa.toyota.ca/authproxy/qa/api/v1.0/customer/custupdate/customerProfile', //for CRQA
+							url: '/node/tci/internal/api/v1.0/customer/custupdate/customerProfile', //for CRDEV
 						headers: {
 							accept: 'application/json',
 							'x-ibm-client-secret': 'xN0dT3sM2mI2lT7pC0sQ2eA4hL0dH7dK4rH1hA3rU7fF8fL5iU',
