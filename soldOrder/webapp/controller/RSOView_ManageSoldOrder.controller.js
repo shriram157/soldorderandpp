@@ -1631,6 +1631,7 @@ sap.ui.define([
 				sap.ui.getCore().byId("rdrvin").setValueState("None");
 				sap.ui.getCore().byId("idrdr_date").setVisible(false);
 				sap.ui.getCore().byId("idrdrcustname").setVisible(false);
+				sap.ui.getCore().byId("idwdate").setVisible(false);
 				sap.ui.getCore().byId("idvin").setVisible(false);
 				sap.ui.getCore().byId("idconfirm").setVisible(false);
 				sap.ui.getCore().byId("idDiscription").setVisible(false);
