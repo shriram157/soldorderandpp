@@ -606,8 +606,8 @@ sap.ui.define([
 					// if (_SOType == "SO") {
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-					//var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for CRQA
-						var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for CRDEV
+					var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for CRQA
+					//	var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for CRDEV
 					$.ajax({
 						url: url,
 						headers: {
@@ -1498,7 +1498,7 @@ sap.ui.define([
 				var ZDealercode = this.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzdealerCode');
 				var token = RSO_MSO_controller.getView().getModel('mainservices').getSecurityToken();
 				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/Vin_ValidationSet?$filter=(VHVIN eq '" + Zlinkrdrvin + "' and SERIES eq '" + Zseries +
-					"' and MODEL_YEAR eq '" + ZModel_Year + "' and SO_DEALER eq '" + ZDealercode + "')";
+					"' and MODEL_YEAR eq '" + ZModel_Year + "' and SO_DEALER eq '" + ZDealercode + "' and Language eq '" + language + "')";
 				$.ajax({
 					url: oUrl,
 					method: "GET",
@@ -1553,7 +1553,8 @@ sap.ui.define([
 				var host = RSO_MSO_controller.host();
 				var _data = {
 					"VHVIN": rdrvin,
-					"SO_NUMBER": zrequest
+					"SO_NUMBER": zrequest,
+					"language" : Language
 
 				};
 				var dataString = JSON.stringify(
