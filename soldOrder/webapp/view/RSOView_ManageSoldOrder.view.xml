@@ -267,7 +267,7 @@
 							</Button>
 							<Button text="{i18n>VLinkedRDR}" id="btn_vlinkedrdr" press="_onvlinkedrdr">    <!--changes by swetha for DMND0003239-->
 							<layoutData>
-								<l:GridData span="L4"/>
+								<l:GridData span="L6"/>
 							</layoutData>
 							</Button>
 							<Label wrapping="true" text="{i18n>CreditMemo}"/>
