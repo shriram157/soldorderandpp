@@ -596,8 +596,8 @@ sap.ui.define([
 							url: '/node/tci/internal/api/v1.0/customer/custupdate/customerProfile', //for CRDEV
 						headers: {
 							accept: 'application/json',
-							'x-ibm-client-secret': 'xN0dT3sM2mI2lT7pC0sQ2eA4hL0dH7dK4rH1hA3rU7fF8fL5iU',
-							'x-ibm-client-id': '7c9739e8-ae0a-4df4-8efc-be95dd399c77',
+						//	'x-ibm-client-secret': 'xN0dT3sM2mI2lT7pC0sQ2eA4hL0dH7dK4rH1hA3rU7fF8fL5iU', //for CRQA
+						//	'x-ibm-client-id': '7c9739e8-ae0a-4df4-8efc-be95dd399c77',                   //for CRQA
 							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
 							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
 							'content-type': 'application/json'
