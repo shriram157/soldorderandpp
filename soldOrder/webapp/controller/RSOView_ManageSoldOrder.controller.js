@@ -1719,12 +1719,12 @@ sap.ui.define([
 							.m.MessageBox.Action.OK, null, null);
 					}
 				});
-				if (!this._voDialog) {
+				if (!this._soDialog) {
 
-					this._voDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.ViewLinkedRDR", this);
-					this.getView().addDependent(this._voDialog);
+					this._soDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.ViewLinkedRDR", this);
+					this.getView().addDependent(this._soDialog);
 				}
-				this._voDialog.open();
+				this._soDialog.open();
 			},
 
 			//changes by swetha for DMND0003239 on 4th Dec, 2023 for View Linked RDR End
