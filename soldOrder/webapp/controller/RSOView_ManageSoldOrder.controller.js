@@ -1697,7 +1697,7 @@ sap.ui.define([
 			_onvlinkedrdr: function () {
 				var host = RSO_MSO_controller.host();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/View_link_RDR?$filter=(Zzso_req_no eq '" + zrequest + "')";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/View_link_RDRSet?$filter=(Zzso_req_no eq '" + zrequest + "')";
 
 				var that = this;
 				$.ajax({
