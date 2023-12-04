@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
+	<Dialog title="{i18n>ViewLinkedRDR}" contentWidth="50%" contentHeight="50%">
+		<content>
+			<VBox>
+				<f:SimpleForm>
+					<f:content>
+						<VBox>
+							<items>
+								<HBox>
+									<items>
+										<Label text="{i18n>VIN}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{VLinkedRDRModel>/Vhvin}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox>
+									<items>
+										<Label text="{i18n>CustomerName}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{VLinkedRDRModel>/CustName1}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox>
+									<items>
+										<Label text="{i18n>Street}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{VLinkedRDRModel>/Street}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox>
+									<items>
+										<Label text="{i18n>VCity}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{VLinkedRDRModel>/City1}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox>
+									<items>
+										<Label text="{i18n>InvoiceDate}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{VLinkedRDRModel>/Invoice_date}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox>
+									<items>
+										<Label text="{i18n>RDRDate}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{VLinkedRDRModel>/Rdr_date}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+							</items>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<endButton>
+			<Button text="{i18n>Close}" press="onCloseDialog"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

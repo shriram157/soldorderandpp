@@ -1693,5 +1693,40 @@ sap.ui.define([
 					}
 				});
 			},
+			//changes by swetha for DMND0003239 on 4th Dec, 2023 for View Linked RDR Start
+			_onvlinkedrdr: function () {
+				var host = RSO_MSO_controller.host();
+				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/View_link_RDR?$filter=(Zzso_req_no eq '" + zrequest + "' and Language eq '")";
+
+				var that = this;
+				$.ajax({
+					url: oUrl,
+					method: "GET",
+					async: false,
+					dataType: 'json',
+					success: function (data, textStatus, jqXHR) {
+						var oModel = new sap.ui.model.json.JSONModel();
+						oModel.setData(data.d);
+						sap.ui.getCore().setModel(oModel, "VLinkedRDRModel");
+						RSO_MSO_controller.getView().setModel(oModel, "VLinkedRDRModel");
+
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						var errMsg = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle().getText("errorServer");
+
+						sap.m.MessageBox.show(errMsg, sap.m.MessageBox.Icon.ERROR, "Error", sap
+							.m.MessageBox.Action.OK, null, null);
+					}
+				});
+				if (!this._voDialog) {
+
+					this._voDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.ViewLinkedRDR", this);
+					this.getView().addDependent(this._voDialog);
+				}
+				this._voDialog.open();
+			},	
+			
+			//changes by swetha for DMND0003239 on 4th Dec, 2023 for View Linked RDR End
 		});
 	});
