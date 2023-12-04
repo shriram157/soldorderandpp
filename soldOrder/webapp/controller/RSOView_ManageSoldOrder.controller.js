@@ -494,7 +494,8 @@ sap.ui.define([
 				_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 					"Eligilibity");
 				//changes by swetha for DMND0003239
-				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW" || RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "REJECTED") &&
+				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW" ||
+						RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "REJECTED") &&
 					(RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "")) {
 					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(true);
 				} else {
@@ -511,7 +512,7 @@ sap.ui.define([
 				}
 				//changes by swetha on 29th Nov, 2023 for DMND0003239 for View Linked RDR button
 				if (RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "X") {
-					RSO_MSO_controller.getView().byId("btn_vlinkedrdr").setVisible(true);	
+					RSO_MSO_controller.getView().byId("btn_vlinkedrdr").setVisible(true);
 				} else {
 					RSO_MSO_controller.getView().byId("btn_vlinkedrdr").setVisible(false);
 				}
@@ -533,7 +534,7 @@ sap.ui.define([
 						RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setEnabled(false);
 					}
 				}
-				if (userType=="Dealer_User") {
+				if (userType == "Dealer_User") {
 					RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setVisible(true);
 				} else {
 					RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setVisible(false);
@@ -606,7 +607,7 @@ sap.ui.define([
 					// if (_SOType == "SO") {
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-					var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for CRQA
+					var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; //for CRQA
 					//	var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for CRDEV
 					$.ajax({
 						url: url,
@@ -667,7 +668,8 @@ sap.ui.define([
 				var that = this;
 				for (var i = 0; i < ppdModellength; i++) {
 					if (sap.ui.getCore().getModel("ppdModel").getData()[i].dealer_ord == req) {
-						if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW" || sap.ui.getCore().getModel("ppdModel").getData()[i].status == "REJECTED") {
+						if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW" || sap.ui.getCore().getModel("ppdModel").getData()[
+								i].status == "REJECTED") {
 							that.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
 								method: "GET",
 								urlParameters: {
@@ -1303,22 +1305,20 @@ sap.ui.define([
 						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
 					//this.getView().getModel('mainservices')._refresh;
-					if(suffix != "XX")
-					{
-					this.getView().byId('suffix_CSOR').bindItems({
-						path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
-						filters: new sap.ui.model.Filter([
-							new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
-							new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
-							new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix)
-						], true),
-						template: new sap.ui.core.ListItem({
-							key: "{mainservices>suffix}",
-							text: suf
-						})
-					});
-					}else
-					{
+					if (suffix != "XX") {
+						this.getView().byId('suffix_CSOR').bindItems({
+							path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
+							filters: new sap.ui.model.Filter([
+								new sap.ui.model.Filter("model", sap.ui.model.FilterOperator.EQ, model),
+								new sap.ui.model.Filter("model_year", sap.ui.model.FilterOperator.EQ, modelyear),
+								new sap.ui.model.Filter("suffix", sap.ui.model.FilterOperator.EQ, suffix)
+							], true),
+							template: new sap.ui.core.ListItem({
+								key: "{mainservices>suffix}",
+								text: suf
+							})
+						});
+					} else {
 						this.getView().byId('suffix_CSOR').setSelectedKey('');
 					}
 				}
@@ -1559,7 +1559,7 @@ sap.ui.define([
 				var _data = {
 					"VHVIN": rdrvin,
 					"SO_NUMBER": zrequest,
-					"Language" : language
+					"Language": language
 
 				};
 				var dataString = JSON.stringify(
@@ -1592,35 +1592,35 @@ sap.ui.define([
 						RSO_MSO_controller.getView().setModel(oModel, "ClickYesModel");
 						if (sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING_FLAG == "E") {
 							var errMsg = sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING;
-								sap.m.MessageBox.show(errMsg, { 
+							sap.m.MessageBox.show(errMsg, {
 								icon: sap.m.MessageBox.Icon.ERROR,
 								title: "{i18n>ERROR}",
 								actions: [sap.m.MessageBox.Action.OK]
-								});
+							});
 						} else if (sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING_FLAG == "S") {
 							var sMsg = sap.ui.getCore().getModel("ClickYesModel").getData().MSG_POSTING;
-								sap.m.MessageBox.show(sMsg,{ 
+							sap.m.MessageBox.show(sMsg, {
 								icon: sap.m.MessageBox.Icon.SUCCESS,
 								title: "{i18n>SUCCESS}",
 								actions: [sap.m.MessageBox.Action.OK]
-								});
+							});
 							RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 						} else {
 							var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, { 
-							icon: sap.m.MessageBox.Icon.ERROR,
-							title: "{i18n>ERROR}",
-							actions: [sap.m.MessageBox.Action.OK]
+							sap.m.MessageBox.show(errMsg, {
+								icon: sap.m.MessageBox.Icon.ERROR,
+								title: "{i18n>ERROR}",
+								actions: [sap.m.MessageBox.Action.OK]
 							});
 						}
 					},
 					error: function (oError) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, { 
+						sap.m.MessageBox.show(errMsg, {
 							icon: sap.m.MessageBox.Icon.ERROR,
 							title: "{i18n>ERROR}",
 							actions: [sap.m.MessageBox.Action.OK]
-							});
+						});
 					}
 
 				});
@@ -1653,7 +1653,7 @@ sap.ui.define([
 				this._CPPoDialog.close();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
 				var status = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus");
-			//	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
+				//	var language = sap.ui.getCore().getModel("i18n").getResourceBundle().sLocale.toLocaleUpperCase();
 				RSO_MSO_controller.getView().getModel('mainservices').callFunction("/PP_Cancel", {
 					method: "POST",
 					urlParameters: {
@@ -1662,34 +1662,34 @@ sap.ui.define([
 						Language: language
 					}, // function import parameters
 					success: function (data, response) {
-						if (data.Type=='S') {
-							var sMsg=data.Message;
+						if (data.Type == 'S') {
+							var sMsg = data.Message;
 							sap.m.MessageBox.show(sMsg, {
 								icon: sap.m.MessageBox.Icon.SUCCESS,
 								title: "{i18n>SUCCESS}",
 								actions: [sap.m.MessageBox.Action.OK]
 							});
-							 var UPriceStatus=	data.MessageV1;
-							 RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
+							var UPriceStatus = data.MessageV1;
+							RSO_MSO_controller.getView().getModel('mainservices').refresh(true);
 						} else {
-							sap.m.MessageBox.show(sMsg, { 
-							icon: sap.m.MessageBox.Icon.ERROR,
-							title: "{i18n>ERROR}",
-							actions: [sap.m.MessageBox.Action.OK]
+							sap.m.MessageBox.show(sMsg, {
+								icon: sap.m.MessageBox.Icon.ERROR,
+								title: "{i18n>ERROR}",
+								actions: [sap.m.MessageBox.Action.OK]
 							});
 						}
-					//	var oModel = new sap.ui.model.json.JSONModel();
-					//	oModel.setData(data.d);
-					//	sap.ui.getCore().setModel(oModel, "CancelPPModel");
-					//	RSO_MSO_controller.getView().setModel(oModel, "CancelPPModel");
+						//	var oModel = new sap.ui.model.json.JSONModel();
+						//	oModel.setData(data.d);
+						//	sap.ui.getCore().setModel(oModel, "CancelPPModel");
+						//	RSO_MSO_controller.getView().setModel(oModel, "CancelPPModel");
 					},
 					error: function (oError) {
 						var errMsg = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("errorServer");
-							sap.m.MessageBox.show(errMsg, { 
+						sap.m.MessageBox.show(errMsg, {
 							icon: sap.m.MessageBox.Icon.ERROR,
 							title: "{i18n>ERROR}",
 							actions: [sap.m.MessageBox.Action.OK]
-							});
+						});
 					}
 				});
 			},
@@ -1697,7 +1697,7 @@ sap.ui.define([
 			_onvlinkedrdr: function () {
 				var host = RSO_MSO_controller.host();
 				var zrequest = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('ZzsoReqNo');
-				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/View_link_RDR?$filter=(Zzso_req_no eq '" + zrequest + "' and Language eq '")";
+				var oUrl = host + "/ZVMS_SOLD_ORDER_SRV/View_link_RDR?$filter=(Zzso_req_no eq '" + zrequest + "')";
 
 				var that = this;
 				$.ajax({
@@ -1725,8 +1725,8 @@ sap.ui.define([
 					this.getView().addDependent(this._voDialog);
 				}
 				this._voDialog.open();
-			},	
-			
+			},
+
 			//changes by swetha for DMND0003239 on 4th Dec, 2023 for View Linked RDR End
 		});
 	});
