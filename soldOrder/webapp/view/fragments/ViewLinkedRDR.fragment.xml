@@ -49,7 +49,7 @@
 			</VBox>
 		</content>
 		<endButton>
-			<Button text="{i18n>Close}" press="onCloseDialog"></Button>
+			<Button text="{i18n>Close}" press="onCloseViewLinkedRDRDialog"></Button>
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
