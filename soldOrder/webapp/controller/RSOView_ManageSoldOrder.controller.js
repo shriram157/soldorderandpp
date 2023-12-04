@@ -1724,7 +1724,7 @@ sap.ui.define([
 					this._voDialog = sap.ui.xmlfragment("toyota.ca.SoldOrder.view.fragments.ViewLinkedRDR", this);
 					this.getView().addDependent(this._voDialog);
 				}
-				this._soDialog.open();
+				this._voDialog.open();
 			},
 			onCloseViewLinkedRDRDialog: function (oEvent) {
 				this._voDialog.close();
