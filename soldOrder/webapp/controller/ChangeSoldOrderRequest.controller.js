@@ -58,8 +58,9 @@ sap.ui.define([
 						//------------------------------------------
 						if (CSOR_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = CSOR_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
+							//	var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 							//var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for CRDEV
-							var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; // for CRQA
+							var url = "/node/authproxy/qa/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; // for CRQA
 							// ?customerNumber=" + zcustomerNumber;
 							$.ajax({
 								url: url,

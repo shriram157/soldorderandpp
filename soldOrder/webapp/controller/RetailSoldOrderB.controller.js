@@ -522,7 +522,7 @@ sap.ui.define([
 				var oBusyDialog = new sap.m.BusyDialog({
 					showCancelButton: false
 				});
-				 var url = "/node/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+				 var url = "/node/authproxy/qa/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 					"&lastName=" + CustModel.SecondName;    //for CRQA
 				//var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 				//	"&lastName=" + CustModel.SecondName;	//for CRDEV
