@@ -68,6 +68,9 @@ sap.ui.define([
 									accept: 'application/json'
 										// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
 										// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
+										'x-ibm-client-secret':'xN0dT3sM2mI2lT7pC0sQ2eA4hL0dH7dK4rH1hA3rU7fF8fL5iU', //for CRQA
+										'x-ibm-client-id':'7c9739e8-ae0a-4df4-8efc-be95dd399c77', //for CRQA
+										'content-type': 'application/json' //for CRQA
 								},
 								type: "GET",
 								dataType: "json",
