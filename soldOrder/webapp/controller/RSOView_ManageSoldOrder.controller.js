@@ -671,7 +671,7 @@ sap.ui.define([
 					error: function () {}
 				});
 				//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
-				
+				if (_Eligilibity == "YES") {
 				var ppdModellength = sap.ui.getCore().getModel("ppdModel").getData().length;
 				var that = this;
 				for (var i = 0; i < ppdModellength; i++) {
@@ -700,6 +700,7 @@ sap.ui.define([
 					} else {
 						RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
 					}
+				}
 				}
 				//changes by swetha for DMND0003239 on 18th Sept, 2023 End
 			},
