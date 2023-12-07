@@ -13,6 +13,7 @@ sap.ui.define([
 
 		onInit: function () {
 			vehSelDealerInvController = this;
+			sap.ui.core.BusyIndicator.hide();     //changes by Swetha for Defect 607
 			// vehSelDealerInvController.getBrowserLanguage();
 			this.getOwnerComponent().getRouter().getRoute("vehicleSelection_DealerInventory").attachPatternMatched(this._getattachRouteMatched,
 				this);
