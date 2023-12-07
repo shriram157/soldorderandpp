@@ -320,8 +320,41 @@ sap.ui.define([
 							}
 						}
 					}
+					
 
 				}
+				//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
+				
+				var ppdModellength = sap.ui.getCore().getModel("ppdModel").getData().length;
+				var that = this;
+				for (var i = 0; i < ppdModellength; i++) {
+					if (sap.ui.getCore().getModel("ppdModel").getData()[i].dealer_ord == req) {
+						if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW" || sap.ui.getCore().getModel("ppdModel").getData()[
+								i].status == "REJECTED") {
+							that.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
+								method: "GET",
+								urlParameters: {
+									ZzsoReqNo: req,
+									Vhvin: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin'),
+									Status: sap.ui.getCore().getModel("ppdModel").getData()[i].status
+								}, // function import parameters
+								success: function (data, response) {
+									if (data.MessageV1 == 'X') {
+										RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);
+									} else {
+										RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
+									} //page
+								},
+								error: function (oData, oResponse) {
+									sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+								}
+							});
+						}
+					} else {
+						RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
+					}
+				}
+				//changes by swetha for DMND0003239 on 18th Sept, 2023 End
 
 			},
 
@@ -668,37 +701,7 @@ sap.ui.define([
 					}, this),
 					error: function () {}
 				});
-				//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
-				var ppdModellength = sap.ui.getCore().getModel("ppdModel").getData().length;
-				var that = this;
-				for (var i = 0; i < ppdModellength; i++) {
-					if (sap.ui.getCore().getModel("ppdModel").getData()[i].dealer_ord == req) {
-						if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW" || sap.ui.getCore().getModel("ppdModel").getData()[
-								i].status == "REJECTED") {
-							that.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
-								method: "GET",
-								urlParameters: {
-									ZzsoReqNo: req,
-									Vhvin: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin'),
-									Status: sap.ui.getCore().getModel("ppdModel").getData()[i].status
-								}, // function import parameters
-								success: function (data, response) {
-									if (data.MessageV1 == 'X') {
-										RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);
-									} else {
-										RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
-									} //page
-								},
-								error: function (oData, oResponse) {
-									sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-								}
-							});
-						}
-					} else {
-						RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
-					}
-				}
-				//changes by swetha for DMND0003239 on 18th Sept, 2023 End
+				
 			},
 
 			_updateSoldOrderRequest: function () {
