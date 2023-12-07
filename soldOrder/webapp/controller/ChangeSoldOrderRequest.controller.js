@@ -65,7 +65,7 @@ sap.ui.define([
 							$.ajax({
 								url: url,
 								headers: {
-									accept: 'application/json'
+									accept: 'application/json',
 										// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
 										// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
 										'x-ibm-client-secret':'xN0dT3sM2mI2lT7pC0sQ2eA4hL0dH7dK4rH1hA3rU7fF8fL5iU', //for CRQA
