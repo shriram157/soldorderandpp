@@ -20,7 +20,7 @@
 								</HBox>
 								<HBox>
 									<items>
-										<Label text="{i18n>Street}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Label text="{i18n>VAddress}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
 										<Text text="{path:'VLinkedRDRModel>/results/0/Street'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
