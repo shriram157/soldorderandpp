@@ -18,7 +18,6 @@
 						<Label text="{i18n>RDRDate}"></Label>
 						<Text text="{path:'VLinkedRDRModel>/results/0/Rdr_date',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
 				</f:SimpleForm>
-			</VBox>
 		</content>
 		<endButton>
 			<Button text="{i18n>Close}" press="onCloseViewLinkedRDRDialog"></Button>
