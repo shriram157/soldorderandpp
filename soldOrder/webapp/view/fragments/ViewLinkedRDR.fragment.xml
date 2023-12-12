@@ -1,7 +1,6 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
-	<Dialog title="{i18n>ViewLinkedRDR}" contentWidth="40%" contentHeight="50%">
+	<Dialog title="{i18n>ViewLinkedRDR}">
 		<content>
-			<VBox>
 				<f:SimpleForm class="FormTitle VisibleStyle" labelSpanXL="3" labelSpanL="3" layout="ResponsiveGridLayout" emptySpanXL="0" emptySpanL="0"
 					emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false" labelSpanM="12" labelSpanS="12"
 					adjustLabelSpan="false">
@@ -18,7 +17,6 @@
 						<Text text="{path:'VLinkedRDRModel>/results/0/Invoice_date',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
 						<Label text="{i18n>RDRDate}"></Label>
 						<Text text="{path:'VLinkedRDRModel>/results/0/Rdr_date',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
-					</f:content>
 				</f:SimpleForm>
 			</VBox>
 		</content>
