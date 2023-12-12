@@ -787,7 +787,7 @@ sap.ui.define([
 
 			var x = sap.ui.getCore().getModel("LoginUserModel").getProperty("/UserType");
 			if (x != "TCI_User" && x !== "TCI_Zone_User" && x !== "National_Fleet_User") {
-				oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";        //changes for More button count by Swetha on 12th Dec, 2023
+				oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=" + num + "&$filter=(";        //changes for More button count by Swetha on 12th Dec, 2023
 				for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 					var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 					oUrl = oUrl + "(status eq '" + status + "')";
@@ -877,7 +877,7 @@ sap.ui.define([
 				});
 			} else {
 				if (pricepro == false) {
-					oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";               //changes for More button by swetha on 12th Dec, 2023
+					oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=" + num + "&$filter=(";               //changes for More button by swetha on 12th Dec, 2023
 					for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(status eq '" + status + "')";
@@ -957,7 +957,7 @@ sap.ui.define([
 					});
 				} else {
 
-					oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=0&$filter=(";                      //changes by swetha for More button count on 12th Dec, 2023
+					oUrl = this.nodeJsUrl + "/ZVMS_SOLD_ORDER_SRV/ZVMS_CDS_PRC_PRTC_Eligible?$top=100&$skip=" + num + "&$filter=(";                      //changes by swetha for More button count on 12th Dec, 2023
 					for (var i = 0; i < this.getView().byId("mcb_status_PPD_D").getSelectedItems().length; i++) {
 						var status = this.getView().byId("mcb_status_PPD_D").getSelectedItems()[i].getKey();
 						oUrl = oUrl + "(status eq '" + status + "')";
