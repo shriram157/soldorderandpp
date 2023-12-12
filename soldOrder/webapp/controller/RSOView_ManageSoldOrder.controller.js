@@ -496,8 +496,7 @@ sap.ui.define([
 				_Eligilibity = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty(
 					"Eligilibity");
 				//changes by swetha for DMND0003239
-				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW" ||
-						RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "REJECTED") &&
+				if ((RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PriceStatus") == "UNDER-REVIEW") &&
 					(RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty("PRCPROTADD1") == "")) {
 					RSO_MSO_controller.getView().byId("btn_linkrdrvin").setVisible(true);
 				} else {
