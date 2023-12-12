@@ -676,8 +676,7 @@ sap.ui.define([
 				var that = this;
 				for (var i = 0; i < ppdModellength; i++) {
 					if (sap.ui.getCore().getModel("ppdModel").getData()[i].dealer_ord == req) {
-						if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW" || sap.ui.getCore().getModel("ppdModel").getData()[
-								i].status == "REJECTED") {
+						if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW") {
 							that.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
 								method: "GET",
 								urlParameters: {

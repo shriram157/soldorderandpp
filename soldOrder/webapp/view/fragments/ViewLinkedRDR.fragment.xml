@@ -1,20 +1,21 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
-	<Dialog title="{i18n>ViewLinkedRDR}" contentWidth="50%" contentHeight="50%">
+	<Dialog title="{i18n>ViewLinkedRDR}" contentWidth="30%" contentHeight="50%">
 		<content>
 			<VBox>
-				<f:SimpleForm>
+				<f:SimpleForm class="FormTitle VisibleStyle"  labelSpanXL="3" labelSpanL="3"
+						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false">
 					<f:content>
 						<VBox>
 							<items>
 								<HBox>
 									<items>
-										<Label text="{i18n>VIN}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop"></Label>
+										<Label text="{i18n>VIN}"></Label>
 										<Text text="{path:'VLinkedRDRModel>/results/0/Vhvin'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
 								<HBox>
 									<items>
-										<Label text="{i18n>CustomerName}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Label text="{i18n>CustomerName}"></Label>
 										<Text text="{path:'VLinkedRDRModel>/results/0/CustName1'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
