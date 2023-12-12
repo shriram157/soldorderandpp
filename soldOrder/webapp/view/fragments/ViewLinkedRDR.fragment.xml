@@ -8,7 +8,7 @@
 							<items>
 								<HBox>
 									<items>
-										<Label text="{i18n>VIN}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Label text="{i18n>VIN}"  class="sapUiSmallMarginBegin sapUiSmallMarginTop"></Label>
 										<Text text="{path:'VLinkedRDRModel>/results/0/Vhvin'}" class="sapUiSmallMarginTop"/>
 									</items>
 								</HBox>
