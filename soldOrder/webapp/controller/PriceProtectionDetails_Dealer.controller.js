@@ -250,6 +250,7 @@ sap.ui.define([
 
 		_refresh: function (oEvent) {
 			//changes by swetha for DMND0003239 for series filter start
+			clicks = 0;
 			if (oEvent) {
 				if ((oEvent.getParameter("changedItem").getKey() == "ALL") && (oEvent.getParameter("selected") === false)) {
 					PPD_DealerCont.getView().byId("mcb_series_PPD_D").setSelectedItems();
