@@ -17,6 +17,7 @@
 						<Text text="{path:'VLinkedRDRModel>/results/0/Invoice_date',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
 						<Label text="{i18n>RDRDate}"></Label>
 						<Text text="{path:'VLinkedRDRModel>/results/0/Rdr_date',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
+					</f:content>
 				</f:SimpleForm>
 		</content>
 		<endButton>
