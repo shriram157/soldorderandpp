@@ -652,7 +652,7 @@ sap.ui.define([
 				var oBusyDialog = new sap.m.BusyDialog({
 					showCancelButton: false
 				});
-				var url = "/node/tci2/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+				var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 					"&lastName=" + CustModel.SecondName;
 				//lastName=" + CustModel.Name;
 				var msg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("msgcustomer1");
@@ -721,11 +721,13 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-						url: '/node/tci2/internal/api/v1.0/customer/custupdate/customerProfile',
+						url: '/node/authprox/api/v1.0/customer/custupdate/customerProfile',
 						headers: {
 							accept: 'application/json',
 							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
 							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
+							'x-ibm-client-secret':'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN', 
+							'x-ibm-client-id':'7e6caee3-c465-4134-a86d-dd26e123b52b', 
 							'content-type': 'application/json'
 						},
 						type: "POST",
