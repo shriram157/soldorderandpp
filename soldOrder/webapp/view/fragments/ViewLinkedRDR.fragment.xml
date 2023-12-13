@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
 	<Dialog title="{i18n>ViewLinkedRDR}" contentWidth="50%">
 		<content>
-				<f:SimpleForm>
+				<f:SimpleForm labelSpanXL="3">
 					<f:content>
 						<Label text="{i18n>VVIN}"></Label>
 						<Text text="{path:'VLinkedRDRModel>/results/0/Vhvin'}"/>
