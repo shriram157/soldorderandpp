@@ -569,7 +569,7 @@ sap.ui.define([
 					$.ajax({
 						url: url,
 						headers: {
-							accept: 'application/json'
+							accept: 'application/json',
 							'x-ibm-client-secret':'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN', 
 							'x-ibm-client-id':'7e6caee3-c465-4134-a86d-dd26e123b52b', 
 							'content-type': 'application/json' 
