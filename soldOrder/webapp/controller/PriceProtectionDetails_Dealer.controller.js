@@ -348,7 +348,7 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						PPD_DealerCont.dialog.close();
 						var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-						if (data.d.results.length <= 0) {
+						if (data.d.results.length <= 0 ||data.d.results.length <100) {             //changes by swetha for DMND0003239 on 13th Dec, 2023
 							BtnNext.setEnabled(false);
 						} else {
 							BtnNext.setEnabled(true);
@@ -460,7 +460,7 @@ sap.ui.define([
 						success: function (data, textStatus, jqXHR) {
 							PPD_DealerCont.dialog.close();
 							var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-							if (data.d.results.length <= 0) {
+							if (data.d.results.length <= 0||data.d.results.length <100) {            //changes by swetha for DMND0003239 on 13th Dec, 2023
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
@@ -570,7 +570,7 @@ sap.ui.define([
 						success: function (data, textStatus, jqXHR) {
 							PPD_DealerCont.dialog.close();
 							var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-							if (data.d.results.length <= 0) {
+							if (data.d.results.length <= 0||data.d.results.length <100) {  //changes by swetha for DMND0003239 on 13th Dec, 2023
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
@@ -693,7 +693,7 @@ sap.ui.define([
 				success: function (data, textStatus, jqXHR) {
 					PPD_DealerCont.dialog.close();
 					var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-					if (data.d.results.length <= 0) {
+					if (data.d.results.length <= 0||data.d.results.length <100) { //changes by swetha for DMND0003239 on 13th Dec, 2023
 						BtnNext.setEnabled(false);
 					} else {
 						BtnNext.setEnabled(true);
@@ -839,7 +839,7 @@ sap.ui.define([
 					success: function (data, textStatus, jqXHR) {
 						PPD_DealerCont.dialog.close();
 						var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-						if (data.d.results.length <= 0) {
+						if (data.d.results.length <= 0||data.d.results.length <100) {       //changes by swetha for DMND0003239 on 13th Dec, 2023
 							BtnNext.setEnabled(false);
 						} else {
 							BtnNext.setEnabled(true);
@@ -919,7 +919,7 @@ sap.ui.define([
 						success: function (data, textStatus, jqXHR) {
 							PPD_DealerCont.dialog.close();
 							var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-							if (data.d.results.length <= 0) {
+							if (data.d.results.length <= 0||data.d.results.length <100) {       //changes by swetha for DMND0003239 on 13th Dec, 2023
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
@@ -1001,7 +1001,7 @@ sap.ui.define([
 						success: function (data, textStatus, jqXHR) {
 							PPD_DealerCont.dialog.close();
 							var BtnNext = PPD_DealerCont.getView().byId("buttonNext");
-							if (data.d.results.length <= 0) {
+							if (data.d.results.length <= 0 ||data.d.results.length <100) {     //changes by swetha for DMND0003239 on 13th Dec, 2023
 								BtnNext.setEnabled(false);
 							} else {
 								BtnNext.setEnabled(true);
