@@ -1081,10 +1081,11 @@ sap.ui.define([
 
 			// oTable = this._oTable;
 			//oRowBinding = oTable.getBinding("items");
+			var cur = this.getView().getModel("oCountModel").getData().recipient.current;          //changes by swetha for DMND0003239 on 13th Dec, 2023
 			aCols = this.createColumnConfig();
-			sUri = oUrl.replace("$top=100&$skip=0&", "");
-			sUri = sUri.replace("$top=100&$skip=100&", "");
-			sUri = sUri.replace("$top=100&$skip=200&", "");
+			sUri = oUrl.replace("$top=100&$skip=" + num + "&", "$top="+cur+"&$skip=0&");           //changes by swetha for DMND0003239 on 13th Dec, 2023
+		//	sUri = sUri.replace("$top=100&$skip=100&", "");
+		//	sUri = sUri.replace("$top=100&$skip=200&", "");
 			//changes by Swetha for INC0234397 on 25th June, 2023 --- commented line 770 for export to excel in Price Protection tab zzrdrcust_name value
 			//sUri = sUri +"&$select=dealer_ord,zzendcu_name,zzrdrcust_name,zzordtypedesc,zzmoyr,zzseries,vhvin,zzvtn,status,ownership_doc,credit_memo_doc";
 			// icount = oRowBinding.aContexts.length;
