@@ -64,7 +64,7 @@
 													</layoutData>
 												</Label>
 												<MultiComboBox id="mcb_dealer_PPD_Z" visible="false" selectionChange="_refresh" items="{ path: '/ProductCollection', sorter: { path: 'reason' } }" required="true"
-													class="sapUiMediumMarginEnd">
+													class="sapUiMediumMarginEnd" filterSecondaryValues="true">
 													<core:Item key="{ProductId}"
 														text="{parts: [{path:'/Products/0/Name'},{path:'/Products/0/Name'}] , formatter: 'toyota.ca.SoldOrder.util.formatter.formatDealer'}"/>
 													<layoutData>

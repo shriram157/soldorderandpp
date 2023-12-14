@@ -365,7 +365,8 @@ toyota.ca.SoldOrder.util.formatter = {
 	NationalorZonalusertype: function (Usertypevalue) {
 
 		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue == "TCI_Zone_User")) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue ==
+				"TCI_Zone_User")) {
 			return true;
 		} else {
 			return false;
@@ -390,7 +391,8 @@ toyota.ca.SoldOrder.util.formatter = {
 	},
 	Nationalusertype: function (Usertypevalue) {
 		//Added by for National fleet user singhmi DMND0002946 on 11/03/2021
-		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue === "TCI_Zone_User")) {
+		if ((Usertypevalue === "National") || (Usertypevalue === "TCI_User") || (Usertypevalue === "National_Fleet_User") || (Usertypevalue ===
+				"TCI_Zone_User")) {
 			return false;
 		} else {
 			return true;
@@ -531,7 +533,7 @@ toyota.ca.SoldOrder.util.formatter = {
 
 	},
 	fnValFormat: function (val) {
-		if(val){
+		if (val) {
 			return "    " + val;
 		}
 	},
@@ -547,6 +549,134 @@ toyota.ca.SoldOrder.util.formatter = {
 			sval = null;
 		}
 		return sval;
+	},
+	_PriceDateFomatter: function (oDate) {       //changes by Swetha for DMND0003239 for Effective date in Credit simulate screen on 22nd Sept, 2023
+		if (oDate) {
+			var year = oDate.substring(0, 4);
+			var month = oDate.substring(4, 6);
+			var day = oDate.substring(6, 8);
+			if (month == "01") {
+				month = "Jan";
+			} else if (month == "02") {
+				month = "Feb";
+			}
+			if (month == "03") {
+				month = "Mar";
+			} else if (month == "04") {
+				month = "Apr";
+			}
+			if (month == "05") {
+				month = "May";
+			} else if (month == "06") {
+				month = "Jun";
+			}
+			if (month == "07") {
+				month = "Jul";
+			} else if (month == "08") {
+				month = "Aug";
+			}
+			if (month == "09") {
+				month = "Sep";
+			} else if (month == "10") {
+				month = "Oct";
+			}
+			if (month == "11") {
+				month = "Nov";
+			} else if (month == "12") {
+				month = "Dec";
+			}
+
+			return  month +" "+ day+","+" "+ year ;
+		}
+	},
+	_PriceSymbolFormatter: function (ovalue) {   //changes by Swetha for DMND0003239 for Eligible claim $ symbol on 29th Sept, 2023
+		if (ovalue != undefined) {
+			var value = ovalue;
+			return "$"+value;
+		} else {
+			return "$"+"0.00";
+		}
+			
+	},
+	_CreatedOnFormatter: function(oDate) {          //changes by swetha for DMND0003239 for Created On date on 29th Sept, 2023
+		if (oDate) {
+			var year = oDate.substring(0,4);
+			var month = oDate.substring(4,6);
+			var day = oDate.substring(6,8);
+			if (month == "01") {
+				month = "January";
+			} else if (month == "02") {
+				month = "February";
+			}
+			if (month == "03") {
+				month = "March";
+			} else if (month == "04") {
+				month = "April";
+			}
+			if (month == "05") {
+				month = "May";
+			} else if (month == "06") {
+				month = "June";
+			}
+			if (month == "07") {
+				month = "July";
+			} else if (month == "08") {
+				month = "August";
+			}
+			if (month == "09") {
+				month = "September";
+			} else if (month == "10") {
+				month = "October";
+			}
+			if (month == "11") {
+				month = "November";
+			} else if (month == "12") {
+				month = "December";
+			}
+			if (day == "01") {
+				day = "1";
+			} else if (day == "02") {
+				day = "2";	
+			}
+			if (day == "03") {
+				day = "3";
+			} else if (day == "04") {
+				day = "4";
+			} 
+			if (day == "05") {
+				day = "5";
+			} else if (day == "06") {
+				day = "6";
+			} 
+			if (day == "07") {
+				day ="7";
+			} else if(day == "08") {
+				day = "8";
+			} 
+			if (day == "09") {
+				day = "9";
+			}
+			return  month+" "+day+","+" "+year ;
+		}
+		
+	},
+	_VINValueformatter: function(oValue) {    //changes by swetha for DMND0003239 for VIN on 29th Sept, 2023
+		if (oValue) {
+			return oValue;
+		} else {
+			return "TBD";
+		}
+	},
+	//// Price Protection-DMND0003239    Shriram  17-OCT-2023
+	tableCount: function(current, totalCount)
+	{
+		var recordStatus = "["+current+" / "+totalCount+"]";
+		return recordStatus;
+	},
+	format1dealers: function(dealerno) {
+		if (dealerno) {
+			return dealerno.slice(-5);
+		}
 	}
 	//changes by shriram for DMND0003239 start
 	// tableCount: function(current, totalCount)

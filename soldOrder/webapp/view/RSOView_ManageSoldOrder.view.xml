@@ -29,9 +29,6 @@
 							<ComboBox id="colour_CSOR" editable="false" maxWidth="100%" required="true" selectedKey="{mainservices>Zzextcol}"></ComboBox>
 							<Label text="{i18n>APX}"/>
 							<ComboBox id="apx_CSOR" editable="false" required="true" selectedKey="{mainservices>Zzapx}"></ComboBox>
-							<Label wrapping="true" text="{i18n>ContractDate}"/>
-							<Text
-								text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>SalesType}"/>
 							<ComboBox id="salestype_CSOR" items="{ path: 'salesTypeModel>/SalesType'}" editable="false" selectedKey="{mainservices>ZsalesType}">
 								<core:Item key="{salesTypeModel>key}" text="{salesTypeModel>text}"/>
@@ -75,6 +72,14 @@
 							<Text id="RSOV_MSO_SoStatus" text=""/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
 							<TextArea id="RSOV_MSO_comment1" enabled="false" editable="false" maxLength="40" value="{mainservices>Comment}"/>
+							<!-- changes for DMND000xxx Added Effective Date and Created On fields and Moved Contract date from Vehicle Information to Sold Order Information by Swetha on 12th Sept, 2023 Start-->
+							<Label wrapping="true" text="{i18n>EffectiveDate}"/>
+							<Text text="{path:'mainservices>ZzeffDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
+							<Label wrapping="true" text="{i18n>CreatedOn}"/> 
+							<Text text="{path:'mainservices>Zcreated_on_raw',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
+							<Label wrapping="true" text="{i18n>ContractDate}"/>                    
+							<Text text="{path:'mainservices>ZcontractDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
+							<!-- changes for DMND000xxx Added Effective Date and Created On fields and Moved Contract date from Vehicle Information to Sold Order Information by Swetha on 12th Sept, 2023 End-->
 							<!--	<Label wrapping="true" text=""/>
 							<CheckBox enabled="false" id="ChatCB" visible="false" text="Enable Post Note" select="onSelectCB"></CheckBox>
 						-->
@@ -254,6 +259,17 @@
 							<Text text="{mainservices>Eligilibity}" id="RSO_PRC_Eligilibity"/>
 							<Label wrapping="true" text="{i18n>Status}"/>
 							<Text text="{mainservices>PriceStatus}"/>
+							<Label/>
+							<Button text="{i18n>LINKRDRVIN}" id="btn_linkrdrvin" press="_onlinkrdrvin">    <!--changes by swetha for DMND0003239-->
+							<layoutData>
+								<l:GridData span="L4"/>
+							</layoutData>
+							</Button>
+							<Button text="{i18n>VLinkedRDR}" id="btn_vlinkedrdr" press="_onvlinkedrdr">    <!--changes by swetha for DMND0003239-->
+							<layoutData>
+								<l:GridData span="L6"/>
+							</layoutData>
+							</Button>
 							<Label wrapping="true" text="{i18n>CreditMemo}"/>
 							<Text text="{mainservices>CreditMemoDoc}"/>
 							<Label wrapping="true" text="{i18n>Comments}"/>
@@ -266,6 +282,12 @@
 								text="{path:'mainservices>PaymentDate', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM d, y', strictParsing: true, UTC: true, relative: false }}"/>
 							<Label wrapping="true" text="{i18n>PayAmount}"/>
 							<Text text="{path:'mainservices>PaymentAmmount',formatter:'toyota.ca.SoldOrder.util.formatter.formatAmount'}"/>
+							<Label/>
+							<Button text="{i18n>CreditSimulation}" id="btn_SimulatePrice" press="_simulateprice"> <!--changes by swetha for DMND0003239-->
+							<layoutData>
+								<l:GridData span="L6"/>
+							</layoutData>
+							</Button>
 						</f:content>
 					</f:SimpleForm>
 					<MessageStrip text="{i18n>titleVehicleOwnership}" class="marginCornersRSO msgStripCss2"/>
@@ -372,6 +394,12 @@
 						<Button id="btn_cancelOrder_RSO_MSO"
 							enabled="{path:'mainservices>ZzsoStatus',formatter:'toyota.ca.SoldOrder.util.formatter.ordercancelled'}" text="{i18n>CancelOrder}"
 						    visible="{path:'LoginUserModel>/UserType',formatter:'toyota.ca.SoldOrder.util.formatter.Dealerusertype'}" press="_navCancleOrder">
+							<layoutData>
+								<l:GridData span="L2 M4 S6"/>
+							</layoutData>
+						</Button>
+						<!--changes for DMND0003239 for Cancel PP claim-->
+						<Button id="btn_cancelPPClaim_RSO_MSO" text="{i18n>CancelPP}" press="onCancelPP">
 							<layoutData>
 								<l:GridData span="L2 M4 S6"/>
 							</layoutData>

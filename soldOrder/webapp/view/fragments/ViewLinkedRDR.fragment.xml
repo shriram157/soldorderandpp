@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
+	<Dialog title="{i18n>ViewLinkedRDR}" contentWidth="50%">
+		<content>
+				<f:SimpleForm labelSpanXL="3">
+					<f:content>
+						<Label text="{i18n>VVIN}"></Label>
+						<Text text="{path:'VLinkedRDRModel>/results/0/Vhvin'}"/>
+						<Label text="{i18n>CustomerName}"></Label>
+						<Text text="{path:'VLinkedRDRModel>/results/0/CustName1'}"/>
+						<Label text="{i18n>VAddress}"></Label>
+						<Text text="{path:'VLinkedRDRModel>/results/0/Street'}"/>
+						<Label text="{i18n>VCity}"></Label>
+						<Text text="{path:'VLinkedRDRModel>/results/0/City1'}"/>
+						<Label text="{i18n>InvoiceDate}"></Label>
+						<Text text="{path:'VLinkedRDRModel>/results/0/Invoice_date',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
+						<Label text="{i18n>VRDRDate}"></Label>
+						<Text text="{path:'VLinkedRDRModel>/results/0/Rdr_date',formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}"/>
+					</f:content>
+				</f:SimpleForm>
+		</content>
+		<endButton>
+			<Button text="{i18n>Close}" press="onCloseViewLinkedRDRDialog"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
