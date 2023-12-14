@@ -608,20 +608,17 @@ sap.ui.define([
 					// if (_SOType == "SO") {
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
-
 					//var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; 
-						var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for CRQA
-					//	var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for CRDEV
-
+						var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  
+					//	var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  
 					$.ajax({
 						url: url,
 						headers: {
-
 							accept: 'application/json',
 							'x-ibm-client-secret':'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN', 
 							'x-ibm-client-id':'7e6caee3-c465-4134-a86d-dd26e123b52b', 
 							'content-type': 'application/json'
-
+							
 						},
 						type: "GET",
 						dataType: "json",
@@ -1314,8 +1311,7 @@ sap.ui.define([
 					} else {
 						pathAB = "mainservices>/ZVMS_SUFFIX_PIPLINE";
 					}
-					if (suffix != "XX") {           //changes by shriram for INC0234365 added "if(suffix!="XX")"
-						//this.getView().getModel('mainservices')._refresh;
+					//this.getView().getModel('mainservices')._refresh;
 					if (suffix != "XX") {
 						this.getView().byId('suffix_CSOR').bindItems({
 							path: pathAB, //"mainservices>/ZVMS_CDS_SUFFIX(DLR='" + dealer + "')/Set",
@@ -1329,11 +1325,9 @@ sap.ui.define([
 								text: suf
 							})
 						});
-
-					} else {   //changes by shriram for INC0234365 added else condition
+					} else {
 						this.getView().byId('suffix_CSOR').setSelectedKey('');
 					}
-
 				}
 
 			},
