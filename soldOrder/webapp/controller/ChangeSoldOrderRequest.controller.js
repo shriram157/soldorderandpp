@@ -57,14 +57,20 @@ sap.ui.define([
 						//------------------------------------------
 						if (CSOR_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu')) {
 							var zcustomerNumber = CSOR_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
-							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
+							
+							//	var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
+							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for PROD
+							//var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; //for QA
 							// ?customerNumber=" + zcustomerNumber;
 							$.ajax({
 								url: url,
 								headers: {
-									accept: 'application/json'
+									accept: 'application/json',
 										// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
 										// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
+									//	'x-ibm-client-secret':'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN',  //for QA
+									//	'x-ibm-client-id':'7e6caee3-c465-4134-a86d-dd26e123b52b',                   / for QA
+										'content-type': 'application/json' 
 								},
 								type: "GET",
 								dataType: "json",
@@ -159,6 +165,7 @@ sap.ui.define([
 		/////////////////////////// INC0187445 Changes done by Minakshi on 25/03/2021 end
 
 		_onSubmit: function () {
+
 			var submitBtn = CSOR_controller.getView().byId("Btn_submit_CSOR");
 			submitBtn.setEnabled(false);                                          //changes by swetha for Submit button for INC0241290 on 2nd Oct, 2023
 			var valModel = CSOR_controller.getView().byId("model_CSOR").getSelectedKey();
@@ -267,9 +274,10 @@ sap.ui.define([
 									success: function (data) {
 										// sap.m.MessageBox.show("Sold Order Saved Successfully.", sap.m.MessageBox.Icon.SUCCESS, "Success",
 										// 	sap.m.MessageBox.Action.OK, null, null);
+
 										submitBtn.setEnabled(true);                                 //changes by Swetha for INC0241290 on 2nd Oct, 2023
 										if (data.ZzsoReqNo) {
-											
+
 											CSOR_controller.getOwnerComponent().getRouter().navTo("RSOView_ManageSoldOrder", {
 												Soreq: data.ZzsoReqNo
 											}, true);

@@ -19,6 +19,7 @@ sap.ui.define([
 
 		},
 		_getattachRouteMatched: function (parameters) {
+		//	sap.ui.core.BusyIndicator.hide();     //changes by Swetha for Defect 607
 			vehSelDealerInvController.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 			if (oDivision == "10") {
@@ -34,7 +35,7 @@ sap.ui.define([
 			var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 			//Dealer Inventory
 			vehicle = sap.ui.getCore().getModel('Vehicle_Selection').getData();
-
+			                                                                    
 			vechile_items.filter([new Filter([
 				//	(MATRIX eq 'A205') and (Dealer eq '2400001116') and (RSO_NUM eq 'SO0000000119') and (source eq 'RSO') and (ZDIVISION eq 'TOY') and (Model eq 'B11HLT') and (Modelyear eq '2019') and (TCISeries eq 'CAM') and (Suffix eq 'AM')
 
@@ -49,6 +50,7 @@ sap.ui.define([
 				new Filter("Suffix", FilterOperator.EQ, vehicle.suffix),
 				new Filter("ExteriorColorCode", FilterOperator.EQ, vehicle.color)
 			], true)]);
+			
 		},
 		onAfterRendering: function () {},
 		filter_change: function (Oevent) {

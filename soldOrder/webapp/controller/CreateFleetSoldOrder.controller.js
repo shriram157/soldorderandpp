@@ -413,7 +413,8 @@ sap.ui.define([
 				CFSO_controller.getView().getModel('Data').getData().Zendcu = CFSO_controller.getView().getModel('Customer').getData().Partner;
 				var dealer_no = sap.ui.getCore().getModel("LoginUserModel").getProperty("/BPDealerDetails").BusinessPartnerKey;
 				CFSO_controller.getView().getModel('Data').getData().ZzdealerCode = dealer_no;
-				// INC0230898   we simply needs to cut off digits 13 onward  Shriram   16-May-2023  Code Start
+
+				 // INC0230898   we simply needs to cut off digits 13 onward  Shriram   16-May-2023  Code Start
 				CFSO_controller.getView().getModel('Data').setProperty("/ZpoNumber",CFSO_controller.getView().getModel('Data').getData().ZpoNumber.slice(0,12));
 				// INC0230898   we simply needs to cut off digits 13 onward  Shriram   16-May-2023  Code End
 				CFSO_controller.getView().getModel('mainservices').create('/SO_FLEET_HeaderSet', CFSO_controller.getView().getModel('Data').getData(), {

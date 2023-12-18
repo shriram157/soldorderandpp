@@ -1,0 +1,88 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt">
+	<Dialog title="{i18n>LINKRDRVIN}" contentWidth="50%" contentHeight="50%">
+		<content>
+			<VBox>
+				<f:SimpleForm>
+					<f:content>
+						<VBox>
+							<items>
+								<HBox>
+									<items>
+										<Label text="{i18n>Providelast8CharacterofVIN}" required="true" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Input id="rdrvin" maxLength="8" value="" placeholder="{i18n>Enterhere}" width="50%" valueState="None"/>
+									</items>
+									<Button text="{i18n>ValidateVIN}" press="_validateVIN">
+										<layoutData>
+											<l:GridData span="L2"/>
+										</layoutData>
+									</Button>
+								</HBox>
+							</items>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+				<f:SimpleForm>
+					<f:content>
+						<VBox>
+							<items>
+								<HBox id="idrdr_date" visible="false">
+									<items>
+										<Label text="{i18n>RDRDate}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{path:'LinkRDRModel>/results/0/RDR_DATE', formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox id="idrdrcustname" visible="false">
+									<items>
+										<Label text="{i18n>RDRCustName}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{path:'LinkRDRModel>/results/0/RDR_CUSTOMER'}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox id="idvin" visible="false">
+									<items>
+										<Label text="{i18n>VIN}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{path:'LinkRDRModel>/results/0/VHVIN'}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox id="idwdate" visible="false">
+									<items>
+										<Label text="{i18n>WDate}" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"></Label>
+										<Text text="{path:'LinkRDRModel>/results/0/INV_DATE', formatter:'toyota.ca.SoldOrder.util.formatter._CreatedOnFormatter'}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox id="idconfirm" visible="false">
+									<items>
+										<Label wrapping="true" text="{i18n>Msg}" class="sapUiLargeMarginTop sapUiSmallMarginBegin"/>
+										<Text/>
+									</items>
+								</HBox>
+								<HBox id="idYesNo" visible="false">
+									<items>
+										<Button text="{i18n>Yes}" press="onclickYes" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+										<layoutData>
+											<l:GridData span="S2"/>
+										</layoutData>
+										</Button>
+										<Button text="{i18n>No}" press="onclickNo" class="sapuiMediumMarginBegin sapUiSmallMarginTop">
+										<layoutData>
+											<l:GridData span="S2"/>
+										</layoutData>
+										</Button>
+									</items>
+								</HBox>
+								<HBox id="idDiscription" visible="false">
+									<items>
+										<Label wrapping="true" class="sapUiLargeMarginTop sapUiNoMarginBegin"/>
+										<Text  text="{path:'LinkRDRModel>/results/0/DISCRIPTION'}" class="sapUiLargeMarginTop"/>
+									</items>
+								</HBox>
+							</items>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<endButton>
+			<Button text="{i18n>Close}" press="onCloseDialog"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

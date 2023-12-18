@@ -1,0 +1,84 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	xmlns:tnt="sap.tnt">
+	<Dialog title="{i18n>CreditSimulation}" contentWidth="50%" contentHeight="100%">
+		<content>
+			<VBox>
+				<f:SimpleForm id="s1">
+					<f:content>
+						<VBox>
+							<items>
+								<HBox>
+									<items>
+										<Label text="{i18n>SOEffectiveDate}"  class="sapUiSmallMarginBegin" width="8rem"></Label>
+										<Text text="{path:'SimulatePriceModel>/results/0/SO_CREATION_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"/>
+									</items>
+								</HBox>
+							</items>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+				<Table id="t1" items="{path:'SimulatePriceModel>/results'}" inset="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="95%">
+					<columns>
+						<Column width="12em">
+							<Label text="{i18n>EffectiveDate}"/>
+						</Column>
+						<Column width="8em">
+							<Label text="{i18n>CreditAmount}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{path:'SimulatePriceModel>EFFET_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"/>
+								<Text text="{path:'SimulatePriceModel>CREDIT_AMOUNT',formatter:'toyota.ca.SoldOrder.util.formatter._PriceSymbolFormatter'}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<f:SimpleForm id="s2">
+					<f:content>
+						<VBox>
+							<items>
+								<HBox>
+									<items>
+										<Label wrapping="true" text="{i18n>VIN}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="2rem"/>
+										<Text id="idVhin" text="{path:'SimulatePriceModel>/results/0/Vhvin',formatter:'toyota.ca.SoldOrder.util.formatter._VINValueformatter'}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox  id="idWhoDate"  visible="false">
+									<items>
+										<Label wrapping="true" text="{i18n>VehicleWholesaleDate}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="10rem"/>
+										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"
+											class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox id ="idSimulationDate"  visible="false">
+									<items>
+										<Label wrapping="true" text="{i18n>SimulationDate}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="7rem"/>
+										<Text text="{path:'SimulatePriceModel>/results/0/WHOLESALE_DATE',formatter:'toyota.ca.SoldOrder.util.formatter._PriceDateFomatter'}"
+											class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox>
+									<items>
+										<Label wrapping="true" text="{i18n>EligibleClaim}" class="sapUiSmallMarginTop sapUiSmallMarginBegin" width="6rem"/>
+										<Text id="idTotal" text="{path:'SimulatePriceModel>/results/0/TOTAL',formatter:'toyota.ca.SoldOrder.util.formatter._PriceSymbolFormatter'}" class="sapUiSmallMarginTop"/>
+									</items>
+								</HBox>
+								<HBox>
+									<items>
+										<Label wrapping="true" class="sapUiLargeMarginTop sapUiNoMarginBegin"/>
+										<Text  text="{path:'SimulatePriceModel>/results/0/DISCRIPTION'}" class="sapUiLargeMarginTop"/>
+									</items>
+								</HBox>
+							</items>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<endButton>
+			<Button text="{i18n>Close}" press="onCloseSDialog"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
