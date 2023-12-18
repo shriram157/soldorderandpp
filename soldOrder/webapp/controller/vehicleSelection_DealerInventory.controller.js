@@ -19,7 +19,7 @@ sap.ui.define([
 
 		},
 		_getattachRouteMatched: function (parameters) {
-		//	sap.ui.core.BusyIndicator.hide();     //changes by Swetha for Defect 607
+			sap.ui.core.BusyIndicator.hide();     //changes by Swetha for Defect 607
 			vehSelDealerInvController.getOwnerComponent().getModel("LocalDataModel").setProperty("/Lang", language);
 			var oDivision = window.location.search.match(/Division=([^&]*)/i)[1];
 			if (oDivision == "10") {

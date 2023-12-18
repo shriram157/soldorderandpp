@@ -43,7 +43,7 @@ module.exports = function (appContext) {
 		};
 		var proxiedUrl = apimUrl + req.url;
 
-		// Proxied call is to IBM APIC
+		// Proxied call is to IBM APIC 
 		if (req.url.startsWith("/api/v1.0")) { //for QA
 		//if (req.url.startsWith("/tci/internal")) {  //for PROD
 			proxiedReqHeaders["x-ibm-client-id"] = apicClientId;

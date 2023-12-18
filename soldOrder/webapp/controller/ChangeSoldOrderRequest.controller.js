@@ -60,7 +60,7 @@ sap.ui.define([
 							
 							//	var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 						//	var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for PROD
-							var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; //for QA
+							var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; //for QA 
 							// ?customerNumber=" + zcustomerNumber;
 							$.ajax({
 								url: url,

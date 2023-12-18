@@ -653,7 +653,7 @@ sap.ui.define([
 				});
 
 				var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
-					"&lastName=" + CustModel.SecondName; //for QA
+					"&lastName=" + CustModel.SecondName; //for QA 
 			//	var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 			//		"&lastName=" + CustModel.SecondName; //for PROD
 
