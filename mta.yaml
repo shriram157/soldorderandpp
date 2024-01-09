@@ -59,6 +59,7 @@ modules:
       builder: grunt
       build-result: dist
    requires:
+    - name: hello-world-destination-service
     - name: application-logs_retailSoldOrder
     - name: uaa_retailSoldOrder
     - name: cf-drain
