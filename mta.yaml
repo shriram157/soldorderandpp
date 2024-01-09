@@ -71,6 +71,13 @@ modules:
          timeout: 60000
 
 resources:
+ - name: hello-world-destination-service
+   type: org.cloudfoundry.managed-service
+   parameters:
+      service: destination 
+      service-name: hello-world-destination-service
+      service-plan: lite
+      
  - name: application-logs_retailSoldOrder
    type: org.cloudfoundry.managed-service
    parameters:
