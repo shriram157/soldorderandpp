@@ -720,7 +720,7 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-						url: '/node/api/v1.0/customer/custupdate/customerProfile',
+						url: '/customerProfile/api/v1.0/customer/custupdate/customerProfile',
 						//	url: '/node/authproxy/qa/api/v1.0/customer/custupdate/customerProfile', //for CRQA
 						// url: '/node/tci/internal/api/v1.0/customer/custupdate/customerProfile', //for CRDEV
 						// url: 'https://dealerapps.qa.toyota.ca/authproxy/qa/api/v1.0/customer/custupdate/customerProfile',

@@ -49,7 +49,7 @@
 			]
 		}, {
 			"source": "/node(.*)",
-			"destination": "CDMS",
+			"destination": "retailSoldOrder-node-backend",
 			"csrfProtection": false,
 			"scope": [
 				"$XSAPPNAME.Approve_Fleet_Sold_Order",
@@ -64,6 +64,20 @@
 		}, {
 			"source": "/userDetails(.*)",
 			"destination": "retailSoldOrder-node-backend",
+			"csrfProtection": false,
+			"scope": [
+				"$XSAPPNAME.Approve_Fleet_Sold_Order",
+				"$XSAPPNAME.Approve_Price_Protection",
+				"$XSAPPNAME.Manage_Fleet_Sold_Order",
+				"$XSAPPNAME.Manage_Retail_Sold_Order",
+				"$XSAPPNAME.View_Fleet_Sold_Order",
+				"$XSAPPNAME.View_Price_Protection",
+				"$XSAPPNAME.View_Retail_Sold_Order",
+				"$XSAPPNAME.Approve_National_Fleet"
+			]
+		}, {
+			"source": "/customerProfile(.*)",
+			"destination": "CDMS",
 			"csrfProtection": false,
 			"scope": [
 				"$XSAPPNAME.Approve_Fleet_Sold_Order",
