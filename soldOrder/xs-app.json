@@ -5,75 +5,77 @@
 		"logoutEndpoint": "/do/logout"
 	},
 	"routes": [{
-		"source": "^/soldorderandpp/index.html",
-		"target": "index.html",
-		"localDir": "webapp",
-		"cacheControl": "no-cache, no-store, must-revalidate",
-		"scope": [
-			"$XSAPPNAME.Approve_Fleet_Sold_Order",
-			"$XSAPPNAME.Approve_Price_Protection",
-			"$XSAPPNAME.Manage_Fleet_Sold_Order",
-			"$XSAPPNAME.Manage_Retail_Sold_Order",
-			"$XSAPPNAME.View_Fleet_Sold_Order",
-			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order",
-			"$XSAPPNAME.Approve_National_Fleet"
-		]
-	}, {
-		"source": "^/soldorderandpp/(.*)$",
-		"target": "$1",
-		"localDir": "webapp",
-		"scope": [
-			"$XSAPPNAME.Approve_Fleet_Sold_Order",
-			"$XSAPPNAME.Approve_Price_Protection",
-			"$XSAPPNAME.Manage_Fleet_Sold_Order",
-			"$XSAPPNAME.Manage_Retail_Sold_Order",
-			"$XSAPPNAME.View_Fleet_Sold_Order",
-			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order",
-			"$XSAPPNAME.Approve_National_Fleet"
-		]
-	}, {
-		"source": "/apiProxy(.*)",
-		"destination": "retailSoldOrder-node-backend",
-		"csrfProtection": false,
-		"scope": [
-			"$XSAPPNAME.Approve_Fleet_Sold_Order",
-			"$XSAPPNAME.Approve_Price_Protection",
-			"$XSAPPNAME.Manage_Fleet_Sold_Order",
-			"$XSAPPNAME.Manage_Retail_Sold_Order",
-			"$XSAPPNAME.View_Fleet_Sold_Order",
-			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order",
-			"$XSAPPNAME.Approve_National_Fleet"
-		]
-	}, {
-		"source": "/node(.*)",
-		"destination": "retailSoldOrder-node-backend",
-		"csrfProtection": false,
-		"scope": [
-			"$XSAPPNAME.Approve_Fleet_Sold_Order",
-			"$XSAPPNAME.Approve_Price_Protection",
-			"$XSAPPNAME.Manage_Fleet_Sold_Order",
-			"$XSAPPNAME.Manage_Retail_Sold_Order",
-			"$XSAPPNAME.View_Fleet_Sold_Order",
-			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order",
-			"$XSAPPNAME.Approve_National_Fleet"
-		]
-	}, {
-		"source": "/userDetails(.*)",
-		"destination": "retailSoldOrder-node-backend",
-		"csrfProtection": false,
-		"scope": [
-			"$XSAPPNAME.Approve_Fleet_Sold_Order",
-			"$XSAPPNAME.Approve_Price_Protection",
-			"$XSAPPNAME.Manage_Fleet_Sold_Order",
-			"$XSAPPNAME.Manage_Retail_Sold_Order",
-			"$XSAPPNAME.View_Fleet_Sold_Order",
-			"$XSAPPNAME.View_Price_Protection",
-			"$XSAPPNAME.View_Retail_Sold_Order",
-			"$XSAPPNAME.Approve_National_Fleet"
-		]
-	}]
+			"source": "^/soldorderandpp/index.html",
+			"target": "index.html",
+			"localDir": "webapp",
+			"cacheControl": "no-cache, no-store, must-revalidate",
+			"scope": [
+				"$XSAPPNAME.Approve_Fleet_Sold_Order",
+				"$XSAPPNAME.Approve_Price_Protection",
+				"$XSAPPNAME.Manage_Fleet_Sold_Order",
+				"$XSAPPNAME.Manage_Retail_Sold_Order",
+				"$XSAPPNAME.View_Fleet_Sold_Order",
+				"$XSAPPNAME.View_Price_Protection",
+				"$XSAPPNAME.View_Retail_Sold_Order",
+				"$XSAPPNAME.Approve_National_Fleet"
+			]
+		}, {
+			"source": "^/soldorderandpp/(.*)$",
+			"target": "$1",
+			"localDir": "webapp",
+			"scope": [
+				"$XSAPPNAME.Approve_Fleet_Sold_Order",
+				"$XSAPPNAME.Approve_Price_Protection",
+				"$XSAPPNAME.Manage_Fleet_Sold_Order",
+				"$XSAPPNAME.Manage_Retail_Sold_Order",
+				"$XSAPPNAME.View_Fleet_Sold_Order",
+				"$XSAPPNAME.View_Price_Protection",
+				"$XSAPPNAME.View_Retail_Sold_Order",
+				"$XSAPPNAME.Approve_National_Fleet"
+			]
+		}, {
+			"source": "/apiProxy(.*)",
+			"destination": "retailSoldOrder-node-backend",
+			"csrfProtection": false,
+			"scope": [
+				"$XSAPPNAME.Approve_Fleet_Sold_Order",
+				"$XSAPPNAME.Approve_Price_Protection",
+				"$XSAPPNAME.Manage_Fleet_Sold_Order",
+				"$XSAPPNAME.Manage_Retail_Sold_Order",
+				"$XSAPPNAME.View_Fleet_Sold_Order",
+				"$XSAPPNAME.View_Price_Protection",
+				"$XSAPPNAME.View_Retail_Sold_Order",
+				"$XSAPPNAME.Approve_National_Fleet"
+			]
+		}, {
+			"source": "/node(.*)",
+			"destination": "CDMS",
+			"csrfProtection": false,
+			"scope": [
+				"$XSAPPNAME.Approve_Fleet_Sold_Order",
+				"$XSAPPNAME.Approve_Price_Protection",
+				"$XSAPPNAME.Manage_Fleet_Sold_Order",
+				"$XSAPPNAME.Manage_Retail_Sold_Order",
+				"$XSAPPNAME.View_Fleet_Sold_Order",
+				"$XSAPPNAME.View_Price_Protection",
+				"$XSAPPNAME.View_Retail_Sold_Order",
+				"$XSAPPNAME.Approve_National_Fleet"
+			]
+		}, {
+			"source": "/userDetails(.*)",
+			"destination": "retailSoldOrder-node-backend",
+			"csrfProtection": false,
+			"scope": [
+				"$XSAPPNAME.Approve_Fleet_Sold_Order",
+				"$XSAPPNAME.Approve_Price_Protection",
+				"$XSAPPNAME.Manage_Fleet_Sold_Order",
+				"$XSAPPNAME.Manage_Retail_Sold_Order",
+				"$XSAPPNAME.View_Fleet_Sold_Order",
+				"$XSAPPNAME.View_Price_Protection",
+				"$XSAPPNAME.View_Retail_Sold_Order",
+				"$XSAPPNAME.Approve_National_Fleet"
+			]
+		}
+
+	]
 }
