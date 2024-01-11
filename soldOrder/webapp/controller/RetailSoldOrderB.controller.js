@@ -531,8 +531,8 @@ sap.ui.define([
 					showCancelButton: false
 				});
 
-				// var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
-				//	"&lastName=" + CustModel.SecondName;    //for QA
+			//	 var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+			//		"&lastName=" + CustModel.SecondName;    //for QA 
 				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
 					"&lastName=" + CustModel.SecondName;	//for PROD
 
@@ -602,8 +602,8 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-
-						//url: 'https://dealerapps.qa.toyota.ca/authproxy/acpt/api/v1.0/customer/custupdate/customerProfile',  //for QA
+					//	url: '/node/authproxy/acpt/api/v1.0/customer/custupdate/customerProfile', //for QA
+					//	url: 'https://dealerapps.qa.toyota.ca/authproxy/acpt/api/v1.0/customer/custupdate/customerProfile',  
 							url: '/node/tci/internal/api/v1.0/customer/custupdate/customerProfile',  //for PROD
 
 						headers: {
