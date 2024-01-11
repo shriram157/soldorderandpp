@@ -609,14 +609,14 @@ sap.ui.define([
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 					//var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; 
-				//	var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for QA 
-						var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for PROD
+					var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for QA 
+					//	var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for PROD
 					$.ajax({
 						url: url,
 						headers: {
 							accept: 'application/json',
-							// 'x-ibm-client-secret':'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN', //for QA
-							// 'x-ibm-client-id':'7e6caee3-c465-4134-a86d-dd26e123b52b',                   //for QA
+							 'x-ibm-client-secret':'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN', //for QA
+							 'x-ibm-client-id':'7e6caee3-c465-4134-a86d-dd26e123b52b',                   //for QA
 							'content-type': 'application/json'
 							
 						},
