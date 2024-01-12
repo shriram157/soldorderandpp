@@ -238,7 +238,6 @@ sap.ui.define([
 			if (oEvent.getParameters().arguments.refresh == 'true') {
 				this._fnLoadInitData();
 			}
-			location.reload(); //changes by swetha for cache check
 		},
 
 		onAfterRendering: function () {
@@ -601,6 +600,7 @@ sap.ui.define([
 			} else {
 				RSOS_controller.getView().getModel("retailsumModel").setData();
 				RSOS_controller.getView().getModel("retailsumModel").updateBindings(true);
+				
 			}
 		},
 		_dispalySoldOrderDetails: function (evt) {
