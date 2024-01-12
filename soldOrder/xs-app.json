@@ -76,8 +76,9 @@
 				"$XSAPPNAME.Approve_National_Fleet"
 			]
 		}, {
-			"source": "/customerProfile(.*)",
-			"destination": "CDMS",
+			"source": "^aws/(.*)$",
+			"target": "$1",
+			"destination": "aws",
 			"csrfProtection": false,
 			"scope": [
 				"$XSAPPNAME.Approve_Fleet_Sold_Order",
