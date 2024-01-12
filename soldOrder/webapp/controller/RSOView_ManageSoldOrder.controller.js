@@ -1224,7 +1224,7 @@ sap.ui.define([
 				} else {
 					//window.history.go(-1);
 					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
-						refresh: false
+						refresh: true                              //changes by Swetha for testing on 12th Jan, 2024
 					});
 				}
 			},
