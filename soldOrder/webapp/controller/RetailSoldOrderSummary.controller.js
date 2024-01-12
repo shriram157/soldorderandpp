@@ -238,7 +238,7 @@ sap.ui.define([
 			if (oEvent.getParameters().arguments.refresh == 'true') {
 				this._fnLoadInitData();
 			}
-
+			location.reload(); //changes by swetha for cache check
 		},
 
 		onAfterRendering: function () {
