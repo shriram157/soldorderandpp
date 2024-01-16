@@ -366,6 +366,9 @@ sap.ui.define([
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzsuffix', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzextcol', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
+				//Changes for INC0246972 by Devika on 16-01-2024
+				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzvtn', "");
+				//End of changes for INC0246972
 				this.byId('model_CSOR').setSelectedItem().setValue("");
 				zmodel.refresh();
 				// this.getOwnerComponent().getModel('mainservices').refresh();
@@ -541,6 +544,9 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setVisible(false);
 				}
 				var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
+				//testing by Devika
+				var vtn = RSO_MSO_controller.getView().byId("idVTN").getValue();
+				//end
 				if (zvtn != "") {
 					var OBJNew = {};
 					var _oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
