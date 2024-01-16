@@ -368,7 +368,8 @@ sap.ui.define([
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
 				this.byId('model_CSOR').setSelectedItem().setValue("");
 				zmodel.refresh();
-				RSO_MSO_controller.getView().getModel("mainservices").updateBindings(true); //changes for VTN test
+				RSO_MSO_controller.getView().getElementBinding('mainservices').refresh(true);
+				RSO_MSO_controller.getView().getElementBinding('mainservices').updateBindings(true); //changes for VTN test
 				// this.getOwnerComponent().getModel('mainservices').refresh();
 				// this.getOwnerComponent().getModel("mainservices").updateBindings();
 				RSO_MSO_controller.getView().bindElement({
