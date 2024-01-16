@@ -670,6 +670,7 @@ sap.ui.define([
 					error: function () {}
 				});
 				//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
+				//Changes by Devika for INC0246972 on 16 Jan 2024
 				if (_Eligilibity == "YES" && sap.ui.getCore().getModel("ppdModel")) {
 				var ppdModellength = sap.ui.getCore().getModel("ppdModel").getData().length;
 				var that = this;
