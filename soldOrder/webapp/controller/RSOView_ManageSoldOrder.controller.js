@@ -544,9 +544,6 @@ sap.ui.define([
 					RSO_MSO_controller.getView().byId("btn_cancelPPClaim_RSO_MSO").setVisible(false);
 				}
 				var zvtn = RSO_MSO_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzvtn');
-				//testing by Devika
-				var vtn = RSO_MSO_controller.getView().byId("idVTN").getValue();
-				//end
 				if (zvtn != "") {
 					var OBJNew = {};
 					var _oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
