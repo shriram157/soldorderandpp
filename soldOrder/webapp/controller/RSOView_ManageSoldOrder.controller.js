@@ -227,6 +227,7 @@ sap.ui.define([
 				RSO_MSO_controller = this;
 
 				RSO_MSO_controller.getView().getModel("mainservices").oData = {};
+				RSO_MSO_controller.getView().byId("idVTN").setText("");
 
 				// INC0238832 sold order comments (SOPP issue)  Shriram  9-Aug-2023  setting TextArea value blank file loading  line 228
 				RSO_MSO_controller.getView().byId('idComments_TA_RSO_ManageSO').setValue('');
