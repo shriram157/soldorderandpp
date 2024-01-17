@@ -1228,9 +1228,9 @@ sap.ui.define([
 					}
 				} else if (RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F") {
 					//Changes by Devika for INC0246972 on 17 Jan 2024
-					//sap.ui.getCore().getModel("ModelCore").destroy();
+					sap.ui.getCore().getModel("ModelCore").destroy();
 					
-					sap.ui.getCore().getModel("ModelCore") = undefined;
+					//sap.ui.getCore().getModel("ModelCore") = undefined;
 					//End for INC0246972
 					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails", {
 						refresh: false
