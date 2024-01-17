@@ -226,8 +226,10 @@ sap.ui.define([
 				//	var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
 				RSO_MSO_controller = this;
 
+				//Changes for INC0246972 by Devika on 16-01-2024
 				RSO_MSO_controller.getView().getModel("mainservices").oData = {};
 				RSO_MSO_controller.getView().byId("idVTN").setText("");
+				//End of changes for incident INC0246972
 
 				// INC0238832 sold order comments (SOPP issue)  Shriram  9-Aug-2023  setting TextArea value blank file loading  line 228
 				RSO_MSO_controller.getView().byId('idComments_TA_RSO_ManageSO').setValue('');
@@ -675,6 +677,7 @@ sap.ui.define([
 					error: function () {}
 				});
 				//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
+
 				//Changes by Devika for INC0246972 on 16 Jan 2024
 				if (_Eligilibity == "YES" && sap.ui.getCore().getModel("ppdModel")) {
 					var ppdModellength = sap.ui.getCore().getModel("ppdModel").getData().length;
@@ -1210,7 +1213,7 @@ sap.ui.define([
 				return a;
 			},
 			onNavBack: function (Oevent) {
-
+				
 				if (ppdFlages) {
 					if (ppdFlages.getData().openCommentBox == 'X') {
 						ppdFlages.getData().openCommentBox = '';
@@ -1224,6 +1227,10 @@ sap.ui.define([
 						});
 					}
 				} else if (RSO_MSO_controller.getOwnerComponent().getModel("LocalDataModel").getProperty("/pageArg") == "F") {
+					//Changes by Devika for INC0246972 on 17 Jan 2024
+					sap.ui.getCore().getModel("ModelCore").destroy();
+					sap.ui.getCore().getModel("ModelCore") = undefined;
+					//End for INC0246972
 					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("FleetSoldOrderDetails", {
 						refresh: false
 					});
