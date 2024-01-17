@@ -1213,7 +1213,7 @@ sap.ui.define([
 				return a;
 			},
 			onNavBack: function (Oevent) {
-				
+
 				if (ppdFlages) {
 					if (ppdFlages.getData().openCommentBox == 'X') {
 						ppdFlages.getData().openCommentBox = '';
@@ -1232,11 +1232,11 @@ sap.ui.define([
 					});
 				} else {
 					//window.history.go(-1);
-						//Changes by Devika for INC0246972 on 17 Jan 2024
-					sap.ui.getCore().getModel("ModelCore").destroy();
 					
-					//sap.ui.getCore().getModel("ModelCore") = undefined;
+					//Changes by Devika for INC0246972 on 17 Jan 2024
+					sap.ui.getCore().setModel(null, "ModelCore");
 					//End for INC0246972
+					
 					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
 						refresh: false
 					});
