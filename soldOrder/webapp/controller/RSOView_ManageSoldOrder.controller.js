@@ -397,6 +397,10 @@ sap.ui.define([
 			_getSOChangeEvt: function (sObjectPath, req) {
 				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 				// Filter for Display Data Sold Order
+				//Changes by Devika on 18 Jan 2024 for INC0246972
+				RSO_MSO_controller.getView().getModel("mainservices").oData = {};
+				//End of changes INC0246972
+				
 				this.byId('model_CSOR').setSelectedItem().setValue("");
 				var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
