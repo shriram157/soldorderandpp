@@ -1219,7 +1219,7 @@ sap.ui.define([
 			onNavBack: function (Oevent) {
 				
 				//Changes by Devika for INC0246972 on 17 Jan 2024
-			//	sap.ui.getCore().setModel(null, "ModelCore");
+				sap.ui.getCore().setModel(null, "ModelCore");
 				//End for INC0246972
 
 				if (ppdFlages) {
