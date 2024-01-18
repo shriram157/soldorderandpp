@@ -228,7 +228,7 @@ sap.ui.define([
 
 				//Changes for INC0246972 by Devika on 16-01-2024
 				//RSO_MSO_controller.getView().getModel("mainservices").oData = {};
-				RSO_MSO_controller.getView().byId("idVTN").setText("");
+		//		RSO_MSO_controller.getView().byId("idVTN").setText("");
 				//End of changes for incident INC0246972
 
 				// INC0238832 sold order comments (SOPP issue)  Shriram  9-Aug-2023  setting TextArea value blank file loading  line 228
@@ -371,7 +371,7 @@ sap.ui.define([
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzextcol', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
 				//Changes for INC0246972 by Devika on 16-01-2024
-				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzvtn', "");
+			//	RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzvtn', "");
 				//End of changes for INC0246972
 				this.byId('model_CSOR').setSelectedItem().setValue("");
 				zmodel.refresh();
@@ -398,7 +398,7 @@ sap.ui.define([
 				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 				// Filter for Display Data Sold Order
 				//Changes by Devika on 18 Jan 2024 for INC0246972
-				RSO_MSO_controller.getView().getModel("mainservices").oData = {};
+		//		RSO_MSO_controller.getView().getModel("mainservices").oData = {};
 				//End of changes INC0246972
 				
 				this.byId('model_CSOR').setSelectedItem().setValue("");
@@ -1219,7 +1219,7 @@ sap.ui.define([
 			onNavBack: function (Oevent) {
 				
 				//Changes by Devika for INC0246972 on 17 Jan 2024
-				sap.ui.getCore().setModel(null, "ModelCore");
+			//	sap.ui.getCore().setModel(null, "ModelCore");
 				//End for INC0246972
 
 				if (ppdFlages) {
@@ -1243,7 +1243,7 @@ sap.ui.define([
 
 					// Changes by Devika for INC0246972 on 17 Jan 2024
 					// sap.ui.getCore().setModel(null, "ModelCore");
-					RSO_MSO_controller.getView().getModel("mainservices").oData = {};
+				//	RSO_MSO_controller.getView().getModel("mainservices").oData = {};
 					//End for INC0246972
 					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
 						refresh: false
