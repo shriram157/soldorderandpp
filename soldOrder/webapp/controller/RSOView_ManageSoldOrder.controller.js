@@ -227,7 +227,7 @@ sap.ui.define([
 				RSO_MSO_controller = this;
 
 				//Changes for INC0246972 by Devika on 16-01-2024
-				RSO_MSO_controller.getView().getModel("mainservices").oData = {};
+				//RSO_MSO_controller.getView().getModel("mainservices").oData = {};
 				RSO_MSO_controller.getView().byId("idVTN").setText("");
 				//End of changes for incident INC0246972
 
