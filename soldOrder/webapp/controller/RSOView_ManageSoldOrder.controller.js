@@ -1237,10 +1237,10 @@ sap.ui.define([
 				} else {
 					//window.history.go(-1);
 
-					// //Changes by Devika for INC0246972 on 17 Jan 2024
+					// Changes by Devika for INC0246972 on 17 Jan 2024
 					// sap.ui.getCore().setModel(null, "ModelCore");
-					// //End for INC0246972
-
+					RSO_MSO_controller.getView().getModel("mainservices").oData = {};
+					//End for INC0246972
 					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
 						refresh: false
 					});
