@@ -720,7 +720,7 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-						url: "aws/api/v1.0/customer/custupdate/customerProfile/",
+						url: "/aws/api/v1.0/customer/custupdate/customerProfile/",
 							// url: '/customerProfile',
 							// url: '/customerProfile/api/v1.0/customer/custupdate/customerProfile',
 							//	url: '/node/authproxy/qa/api/v1.0/customer/custupdate/customerProfile', //for CRQA
