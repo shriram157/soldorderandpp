@@ -11,7 +11,7 @@
 		"cross-env": "^7.0.0"
 	},
 	"scripts": {
-		"start": "env CF_NODEJS_LOGGING_LEVEL=verbose node node_modules/@sap/approuter/approuter.js"
+		"start": "node server.js"
 	},
 	"engines": {
 		"node": "^20.0.0"
