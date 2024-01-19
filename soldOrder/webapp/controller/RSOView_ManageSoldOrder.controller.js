@@ -225,6 +225,12 @@ sap.ui.define([
 			_getattachRouteMatched: function (parameters) {
 				//	var cb_chat = RSO_MSO_controller.getView().byId("ChatCB");
 				RSO_MSO_controller = this;
+
+				//Changes for INC0246972 by Devika on 16-01-2024
+				//RSO_MSO_controller.getView().getModel("mainservices").oData = {};
+		//		RSO_MSO_controller.getView().byId("idVTN").setText("");
+				//End of changes for incident INC0246972
+
 				// INC0238832 sold order comments (SOPP issue)  Shriram  9-Aug-2023  setting TextArea value blank file loading  line 228
 				RSO_MSO_controller.getView().byId('idComments_TA_RSO_ManageSO').setValue('');
 				var feed = RSO_MSO_controller.getView().byId("feedId");
@@ -320,10 +326,8 @@ sap.ui.define([
 							}
 						}
 					}
-					
 
 				}
-				
 
 			},
 
@@ -366,6 +370,9 @@ sap.ui.define([
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzsuffix', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzextcol', "");
 				RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzseries', "");
+				//Changes for INC0246972 by Devika on 16-01-2024
+			//	RSO_MSO_controller.getView().getModel("mainservices").setProperty('/Zzvtn', "");
+				//End of changes for INC0246972
 				this.byId('model_CSOR').setSelectedItem().setValue("");
 				zmodel.refresh();
 				// this.getOwnerComponent().getModel('mainservices').refresh();
@@ -390,6 +397,10 @@ sap.ui.define([
 			_getSOChangeEvt: function (sObjectPath, req) {
 				//RSO_MSO_controller.getOwnerComponent().getModel('mainservices')._refresh;
 				// Filter for Display Data Sold Order
+				//Changes by Devika on 18 Jan 2024 for INC0246972
+		//		RSO_MSO_controller.getView().getModel("mainservices").oData = {};
+				//End of changes INC0246972
+				
 				this.byId('model_CSOR').setSelectedItem().setValue("");
 				var attachButton = RSO_MSO_controller.getView().byId("btn_addAttach_RSO_MSO");
 				var oBundle = RSO_MSO_controller.getView().getModel("i18n").getResourceBundle();
@@ -609,16 +620,16 @@ sap.ui.define([
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/NFVisible", false);
 					// RSO_MSO_controller.getView().getModel("RSO_MSO_Model").setProperty("/SOVisible", true);
 					//var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; 
-				//	var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for QA 
+					//var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; //for QA 
 						var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for PROD
 					$.ajax({
 						url: url,
 						headers: {
 							accept: 'application/json',
-							// 'x-ibm-client-secret':'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN', //for QA
-							// 'x-ibm-client-id':'7e6caee3-c465-4134-a86d-dd26e123b52b',                   //for QA
+						//	'x-ibm-client-secret': 'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN', //for QA
+						//	'x-ibm-client-id': '7e6caee3-c465-4134-a86d-dd26e123b52b', //for QA
 							'content-type': 'application/json'
-							
+
 						},
 						type: "GET",
 						dataType: "json",
@@ -670,35 +681,37 @@ sap.ui.define([
 					error: function () {}
 				});
 				//changes by swetha for DMND0003239 on 18th Sept, 2023 Start 
-				if (_Eligilibity == "YES") {
-				var ppdModellength = sap.ui.getCore().getModel("ppdModel").getData().length;
-				var that = this;
-				for (var i = 0; i < ppdModellength; i++) {
-					if (sap.ui.getCore().getModel("ppdModel").getData()[i].dealer_ord == req) {
-						if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW") {
-							that.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
-								method: "GET",
-								urlParameters: {
-									ZzsoReqNo: req,
-									Vhvin: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin'),
-									Status: sap.ui.getCore().getModel("ppdModel").getData()[i].status
-								}, // function import parameters
-								success: function (data, response) {
-									if (data.MessageV1 == 'X') {
-										RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);
-									} else {
-										RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
-									} //page
-								},
-								error: function (oData, oResponse) {
-									sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
-								}
-							});
+
+				//Changes by Devika for INC0246972 on 16 Jan 2024
+				if (_Eligilibity == "YES" && sap.ui.getCore().getModel("ppdModel")) {
+					var ppdModellength = sap.ui.getCore().getModel("ppdModel").getData().length;
+					var that = this;
+					for (var i = 0; i < ppdModellength; i++) {
+						if (sap.ui.getCore().getModel("ppdModel").getData()[i].dealer_ord == req) {
+							if (sap.ui.getCore().getModel("ppdModel").getData()[i].status == "UNDER-REVIEW") {
+								that.getView().getModel('mainservices').callFunction("/RSO_RDR_LINK", {
+									method: "GET",
+									urlParameters: {
+										ZzsoReqNo: req,
+										Vhvin: that.getView().getElementBinding('mainservices').getBoundContext().getProperty('Vhvin'),
+										Status: sap.ui.getCore().getModel("ppdModel").getData()[i].status
+									}, // function import parameters
+									success: function (data, response) {
+										if (data.MessageV1 == 'X') {
+											RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(true);
+										} else {
+											RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
+										} //page
+									},
+									error: function (oData, oResponse) {
+										sap.m.MessageBox.show(oData.Message, sap.m.MessageBox.Icon.ERROR, "Error", sap.m.MessageBox.Action.OK, null, null);
+									}
+								});
+							}
+						} else {
+							RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
 						}
-					} else {
-						RSO_MSO_controller.getView().byId("btn_linkrdrvin").setEnabled(false);
 					}
-				}
 				}
 				//changes by swetha for DMND0003239 on 18th Sept, 2023 End
 			},
@@ -1204,6 +1217,10 @@ sap.ui.define([
 				return a;
 			},
 			onNavBack: function (Oevent) {
+				
+				//Changes by Devika for INC0246972 on 17 Jan 2024
+				sap.ui.getCore().setModel(null, "ModelCore");
+				//End for INC0246972
 
 				if (ppdFlages) {
 					if (ppdFlages.getData().openCommentBox == 'X') {
@@ -1223,6 +1240,11 @@ sap.ui.define([
 					});
 				} else {
 					//window.history.go(-1);
+
+					// Changes by Devika for INC0246972 on 17 Jan 2024
+					// sap.ui.getCore().setModel(null, "ModelCore");
+				//	RSO_MSO_controller.getView().getModel("mainservices").oData = {};
+					//End for INC0246972
 					RSO_MSO_controller.getOwnerComponent().getRouter().navTo("RetailSoldOrderSummary", {
 						refresh: false
 					});

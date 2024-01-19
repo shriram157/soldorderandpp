@@ -677,6 +677,14 @@ toyota.ca.SoldOrder.util.formatter = {
 		if (dealerno) {
 			return dealerno.slice(-5);
 		}
+	},
+	//changes by Swetha for INC0246972 on 18th Jan, 2024
+	formatPFVTN: function(status,vtn) {
+		if(status=="PENDING FULFILLMENT") {
+			return "";
+		} else {
+			return vtn;
+		}
 	}
 	
 };
