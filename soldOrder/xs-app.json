@@ -5,11 +5,14 @@
 		"logoutEndpoint": "/do/logout"
 	},
 	"routes": [{
+			"source": "^/user-api/currentUser$",
+			"target": "/currentUser",
+			"service": "sap-approuter-userapi"
+		}, {
 			"source": "^/aws/(.*)$",
 			"target": "$1",
 			"destination": "aws",
 			"csrfProtection": false,
-			"authenticationType": "none",
 			"scope": [
 				"$XSAPPNAME.Approve_Fleet_Sold_Order",
 				"$XSAPPNAME.Approve_Price_Protection",
