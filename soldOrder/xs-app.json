@@ -79,8 +79,7 @@
 			"source": "^/aws/(.*)$",
 			"target": "$1",
 			"destination": "aws",
-			"authenticationType":"none",
-			
+			"authenticationType": "none",
 			"scope": [
 				"$XSAPPNAME.Approve_Fleet_Sold_Order",
 				"$XSAPPNAME.Approve_Price_Protection",

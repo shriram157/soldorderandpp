@@ -720,14 +720,14 @@ sap.ui.define([
 						soapMessage
 					);
 					$.ajax({
-						url: "/aws/api/v1.0/customer/custupdate/customerProfile/",
+						url: "aws/api/v1.0/customer/custupdate/customerProfile/",
 						// url: '/customerProfile',
 						// url: '/customerProfile/api/v1.0/customer/custupdate/customerProfile',
 						//	url: '/node/authproxy/qa/api/v1.0/customer/custupdate/customerProfile', //for CRQA
 						// url: '/node/tci/internal/api/v1.0/customer/custupdate/customerProfile', //for CRDEV
 						// url: 'https://dealerapps.qa.toyota.ca/authproxy/qa/api/v1.0/customer/custupdate/customerProfile',
 						headers: {
-							'accept': 'application/json',
+							// 'accept': 'application/json',
 							// 'x-ibm-client-secret': 'D1qR2eO3hV4wR6sM8fB2gU5aE0fQ0iM7iJ4pU6iM0gQ1dF0yV1',
 							// 'x-ibm-client-id': 'a73cc0ac-1106-40e4-95a4-6d8f9184387e',
 							'x-ibm-client-secret': 'xN0dT3sM2mI2lT7pC0sQ2eA4hL0dH7dK4rH1hA3rU7fF8fL5iU', //for CRQA
