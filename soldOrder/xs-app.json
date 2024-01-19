@@ -76,7 +76,7 @@
 				"$XSAPPNAME.Approve_National_Fleet"
 			]
 		}, {
-			"source": "^aws/(.*)$",
+			"source": "^/aws/(.*)$",
 			"target": "$1",
 			"destination": "aws",
 			"authenticationType":"none",
