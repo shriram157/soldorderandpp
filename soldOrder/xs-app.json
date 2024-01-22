@@ -53,7 +53,7 @@
 			"$XSAPPNAME.Approve_National_Fleet"
 		]
 	}, {
-		"source": "^(.*)$",
+		"source": "^/soldorderandpp/(.*)$",
 		"target": "$1",
 		"localDir": "webapp",
 		"scope": [
