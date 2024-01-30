@@ -59,13 +59,14 @@ sap.ui.define([
 							var zcustomerNumber = CSOR_controller.getView().getElementBinding('mainservices').getBoundContext().getProperty('Zzendcu');
 							
 							//	var url = "/node/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
-							var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for PROD
+						//	var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;  //for PROD
 						//	var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber; //for QA 
+						    var url = "/aws/api/v1.0/customer/cdms/customers/profile/" + zcustomerNumber;
 							// ?customerNumber=" + zcustomerNumber;
 							$.ajax({
 								url: url,
 								headers: {
-									accept: 'application/json',
+								//	accept: 'application/json',
 										// 'x-ibm-client-secret': 'Q7gP8pI0gU5eF8wM2jQ3gB8pQ5mA8rP8nO5dR1iY8qW2kS0wA0',
 										// 'x-ibm-client-id': 'd4d033d5-c49e-4394-b3e3-42564296ec65'
 									//	'x-ibm-client-secret':'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN',  //for QA

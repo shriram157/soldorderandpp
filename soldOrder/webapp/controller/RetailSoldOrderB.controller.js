@@ -531,10 +531,10 @@ sap.ui.define([
 					showCancelButton: false
 				});
 
-			//	 var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
-			//		"&lastName=" + CustModel.SecondName;    //for QA 
-				var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
-					"&lastName=" + CustModel.SecondName;	//for PROD
+				 var url = "/node/authproxy/acpt/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+					"&lastName=" + CustModel.SecondName;    //for QA 
+			//	var url = "/node/tci/internal/api/v1.0/customer/cdms/customers/profile?postalCode=" + CustModel.PostCode + "&phone=" + CustModel.Phone +
+			//		"&lastName=" + CustModel.SecondName;	//for PROD
 
 				//lastName=" + CustModel.Name;
 				var msg1 = sap.ui.getCore().getModel("i18n").getResourceBundle().getText("msgcustomer1");
@@ -604,10 +604,11 @@ sap.ui.define([
 					$.ajax({
 					//	url: '/node/authproxy/acpt/api/v1.0/customer/custupdate/customerProfile', //for QA
 					//	url: 'https://dealerapps.qa.toyota.ca/authproxy/acpt/api/v1.0/customer/custupdate/customerProfile',  
-							url: '/node/tci/internal/api/v1.0/customer/custupdate/customerProfile',  //for PROD
+					//		url: '/node/tci/internal/api/v1.0/customer/custupdate/customerProfile',  //for PROD
+						url: "/aws/api/v1.0/customer/custupdate/customerProfile/",
 
 						headers: {
-							accept: 'application/json',
+						//	accept: 'application/json',
 						//	'x-ibm-client-secret':'gO3aB8wM7wU3lA7tJ1sJ0bM8wD5pY0yG4aW0nH5xF3bJ5eS7fN',  //for QA
 						//	'x-ibm-client-id':'7e6caee3-c465-4134-a86d-dd26e123b52b',                    //for QA
 							'content-type': 'application/json'
