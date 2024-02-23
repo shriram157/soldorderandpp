@@ -21,7 +21,6 @@
 		]
 	}, {
 		"source": "/apiProxy(.*)",
-		"target": "$1",
 		"destination": "retailSoldOrder-node-backend",
 		"csrfProtection": false,
 		"scope": [
@@ -36,7 +35,6 @@
 		]
 	}, {
 		"source": "/node(.*)",
-		"target": "$1",
 		"destination": "retailSoldOrder-node-backend",
 		"csrfProtection": false,
 		"scope": [
@@ -51,7 +49,6 @@
 		]
 	}, {
 		"source": "/userDetails(.*)",
-		"target": "$1",
 		"destination": "retailSoldOrder-node-backend",
 		"csrfProtection": false,
 		"scope": [
