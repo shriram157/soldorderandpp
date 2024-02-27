@@ -65,6 +65,7 @@
 		"source": "^/soldorderandpp/(.*)$",
 		"target": "$1",
 		"localDir": "webapp",
+		"cacheControl": "no-cache, no-store, must-revalidate",
 		"csrfProtection": false,
 		"scope": [
 			"$XSAPPNAME.Approve_Fleet_Sold_Order",
