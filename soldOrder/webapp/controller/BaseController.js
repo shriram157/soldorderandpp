@@ -1,6 +1,5 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-
 	"sap/ui/model/resource/ResourceModel",
 	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
